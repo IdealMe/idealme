@@ -11,6 +11,7 @@ gem 'devise'
 gem 'cancan'
 gem 'capistrano'
 gem 'omniauth'
+gem 'airbrake'
 
 gem 'formatted_form'
 gem 'comfortable_mexican_sofa', '~> 1.8.0'
