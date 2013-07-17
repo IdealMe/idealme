@@ -1,5 +1,7 @@
 Idealme::Application.routes.draw do
 
+
+
   root :to => 'landings#index'
 
   devise_for :users,
@@ -38,6 +40,12 @@ Idealme::Application.routes.draw do
       get ':id/identity/:pid/revoke' => 'users#identity_revoke', :as => :user_identity_revoke
     end
   end
+
+  ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
+
+  # Make sure this routeset is defined last
+  ComfortableMexicanSofa::Routing.content(:path => '/', :sitemap => false)
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

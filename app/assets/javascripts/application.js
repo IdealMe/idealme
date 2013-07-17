@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.flexslider
+//= require formatted_form
 //= require_tree .
 
 

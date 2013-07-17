@@ -14,10 +14,11 @@
     %meta{:charset => 'utf-8'}/
     %title Ideal Me
     %meta{:content => '', :name => 'description'}/
-    %meta{:content => 'width=device-width', :name => 'viewport'}/
+    %meta{:content => 'width=1200', :name => 'viewport'}/
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}/
   %body
     /
       Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -26,7 +27,7 @@
     %header
       .container
         .social_box
-          = image_tag('landings/social.png')
+          .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
         .sing_in_box
         %form.sing_in_box{:action=>new_user_session_path,:method => :get}
           %input.btn{:type => 'submit', :value => 'Sing in'}/
@@ -49,3 +50,12 @@
     .help_box
       Have a Question?
       %a{:href => '#'} Contact Us
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = '//connect.facebook.net/en_US/all.js#xfbml=1&appId=122762434513312';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));

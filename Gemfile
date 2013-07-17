@@ -10,6 +10,11 @@ gem 'sqlite3'
 gem 'devise'
 gem 'cancan'
 gem 'capistrano'
+gem 'omniauth'
+
+gem 'formatted_form'
+gem 'comfortable_mexican_sofa', '~> 1.8.0'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

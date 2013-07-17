@@ -6,6 +6,7 @@
         = image_tag('landings/better_info_txt.png')
       .msg Collect gems of wisdom and find courses to help reach your goals
       .btn-black.btn-round GET STARTED (IT'S FREE)
+      -#= link_to("GET STARTED (IT'S FREE)➝", new_user_session_path, :class => 'btn-black btn-round')
     .card_box
       .cards.card_top
         = image_tag('landings/pic_top.jpg', :width => 168)
@@ -106,4 +107,4 @@
         .user_name Shannon Thomas
     .clear
 .btn_box
-  .btn.btn-red GET STARTED (IT'S FREE)➝
+  = link_to("GET STARTED (IT'S FREE)➝", new_user_session_path, :class => 'btn btn-red')
