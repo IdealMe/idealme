@@ -1,25 +1,44 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano'
+require './config/boot'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+default_run_options[:pty] = true
+ssh_options[:port] = 31337
+ssh_options[:keys] = [File.join(ENV['HOME'], '.ssh', 'id_rsa')]
+ssh_options[:forward_agent] = true
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+set :application, 'idealme'
+set :scm, :git
+set :repository, 'ssh://git@bitbucket.org/billxinli/idealme.git'
+set :deploy_via, :remote_cache
+set :user, 'deploy'
+set :use_sudo, false
+set :keep_releases, 5
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+# Remove No such file/directory warnings.
+set :normalize_asset_timestamps, false
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+
+task :staging do
+  set :rails_env, 'staging'
+  set :domain, '198.58.105.102'
+  set :deploy_to, '/webapps/idealme'
+  set :branch, 'master'
+  set :keep_releases, 1
+  role :app, domain
+  role :web, domain
+  role :db, domain, :primary => true
+end
+
+#If you are using Passenger mod_rails uncomment this:
+namespace :deploy do
+  task :start do
+    ;
+  end
+  task :stop do
+    ;
+  end
+  task :restart, :roles => :app, :except => {:no_release => true} do
+    run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
+  end
+end
