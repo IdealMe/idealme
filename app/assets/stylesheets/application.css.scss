@@ -1,0 +1,550 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require flexslider
+ *= require_self
+ */
+
+/* line 58, icons/*.png */
+.icons-sprite, .logo a, .footer_bg, .testimonials_section .testimonial_container .testimonial_box .arrow {
+    background: image-url("icons-sebf8826e48.png") no-repeat;
+}
+
+/* ******************************************** */
+/* Typography */
+/* ******************************************** */
+/* line 1, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn {
+    background: white;
+    background-position: top left;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    border: 1px solid #ebebeb;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding: 11px 35px;
+    color: #4d4d4d;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: uppercase;
+}
+
+/* line 12, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn:hover {
+    background-position: top left;
+    border: 1px solid #bcbcbc;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
+    background-image: -webkit-linear-gradient(top, #ffffff, #fafafa);
+    background-image: -moz-linear-gradient(top, #ffffff, #fafafa);
+    background-image: -o-linear-gradient(top, #ffffff, #fafafa);
+    background-image: linear-gradient(top, #ffffff, #fafafa);
+}
+
+/* line 16, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-black {
+    background: #333333;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 22px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* line 26, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-black:hover {
+    background: #4d4d4d;
+}
+
+/* line 28, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-round {
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+    -ms-border-radius: 45px;
+    -o-border-radius: 45px;
+    border-radius: 45px;
+}
+
+/* line 30, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-red {
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    background: #f16764;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px 95px;
+    color: white;
+    text-shadow: none;
+}
+
+/* line 41, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-red:hover {
+    border: none;
+    background: #fa7977;
+    color: white;
+}
+
+/* line 46, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-group .btn {
+    border: 1px solid #cccccc;
+    color: #666666;
+    font-size: 12px;
+    text-transform: none;
+    padding: 5px 30px;
+}
+
+/* line 52, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_buttons.sass */
+.btn-group .btn:hover, .btn-group .btn.flex-active {
+    border: 1px solid #cccccc;
+    background: #ff6766;
+    color: white;
+    text-shadow: none;
+}
+
+/* ******************************************** */
+/* Header */
+/* ******************************************** */
+/* line 5, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_header.sass */
+.social_box {
+    display: inline;
+    float: left;
+    width: 170px;
+    margin: 53px 0px 0 40px;
+}
+
+/* Logo */
+/* line 10, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_header.sass */
+.logo {
+    margin: 0 170px;
+}
+
+/* line 12, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_header.sass */
+.logo a {
+    background-position: 0 -78px;
+    height: 75px;
+    width: 196px;
+    display: block;
+    margin: 22px auto 23px auto;
+}
+
+/* line 16, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_header.sass */
+.sing_in_box {
+    display: inline;
+    float: right;
+    width: 170px;
+    text-align: right;
+    margin: 0;
+}
+
+/* line 21, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_header.sass */
+.sing_in_box .btn {
+    margin: 50px 22px 0 0px;
+}
+
+/* ******************************************** */
+/* Footer */
+/* ******************************************** */
+/* line 5, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_footer.sass */
+footer {
+    background: #f6f6f8;
+}
+
+/* line 7, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_footer.sass */
+.footer_bg {
+    background-position: 0 0;
+    height: 78px;
+    width: 798px;
+    position: relative;
+    margin: 73px auto 60px auto;
+}
+
+/* line 11, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_footer.sass */
+.footer_menu {
+    list-style: none;
+    z-index: 100;
+    left: 50%;
+    top: 103px;
+    position: absolute;
+    width: 360px;
+    margin-left: -180px;
+}
+
+/* line 17, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_footer.sass */
+.footer_menu li {
+    display: inline;
+    float: left;
+    margin-right: 30px;
+}
+
+/* line 20, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/elements/_footer.sass */
+.footer_menu li a {
+    font-size: 14px;
+    color: #999999;
+}
+
+/* ******************************************** */
+/* Main styles (Global styles for all pages) */
+/* ******************************************** */
+/* line 5, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_global.sass */
+body {
+    background: #fbfaec;
+    font-family: Arial;
+}
+
+/* line 8, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_global.sass */
+.container {
+    width: 1024px;
+    position: relative;
+}
+
+/* ******************************************** */
+/* modal box elements */
+/* ******************************************** */
+/* ******************************************** */
+/* Helpers */
+/* ******************************************** */
+/* line 24, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_global.sass */
+.fleft {
+    display: inline;
+    float: left;
+}
+
+/* line 26, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_global.sass */
+.fright {
+    display: inline;
+    float: right;
+}
+
+/* line 28, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_global.sass */
+.clear {
+    clear: both;
+    font-size: 1px;
+    height: 0px;
+}
+
+/* ******************************************** */
+/* Home page */
+/* ******************************************** */
+/* ***************** promo section ***************** */
+/* line 7, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section {
+    background: #ff6f6e;
+}
+
+/* line 9, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .bg_1 {
+    background: #f6987c;
+    left: 55px;
+    top: 135px;
+    position: absolute;
+    height: 175px;
+    width: 970px;
+}
+
+/* line 13, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .msg_box {
+    display: inline;
+    float: left;
+    height: 188px;
+    width: 540px;
+    margin-top: 100px;
+    margin-left: 27px;
+    margin-bottom: 120px;
+    background: #e98492;
+    z-index: 100;
+    position: relative;
+}
+
+/* line 22, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .msg_box .title {
+    background: white;
+    height: 60px;
+    width: 523px;
+    left: -22px;
+    top: 27px;
+    position: absolute;
+    padding-top: 16px;
+    padding-left: 50px;
+    margin: 0;
+}
+
+/* line 29, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .msg_box .msg {
+    padding-top: 120px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* line 34, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .msg_box .btn-black {
+    width: 180px;
+    position: absolute;
+    bottom: -12px;
+    left: 155px;
+}
+
+/* line 37, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box {
+    display: inline;
+    float: left;
+    position: relative;
+}
+
+/* line 40, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .cards {
+    background: white;
+    padding: 7px;
+}
+
+/* line 43, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_top {
+    left: 134px;
+    top: 98px;
+    position: absolute;
+    width: 168px;
+    -webkit-transform: rotate(357deg);
+    -moz-transform: rotate(357deg);
+    -ms-transform: rotate(357deg);
+    -o-transform: rotate(357deg);
+    transform: rotate(357deg);
+    z-index: 300;
+}
+
+/* line 48, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_top .description {
+    padding: 17px;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* line 53, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_1 {
+    left: 37px;
+    top: 56px;
+    position: absolute;
+    width: 118px;
+    -webkit-transform: rotate(340deg);
+    -moz-transform: rotate(340deg);
+    -ms-transform: rotate(340deg);
+    -o-transform: rotate(340deg);
+    transform: rotate(340deg);
+}
+
+/* line 57, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_1 .description {
+    padding: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* line 62, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_2 {
+    left: 21px;
+    top: 240px;
+    position: absolute;
+    width: 97px;
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    -ms-transform: rotate(6deg);
+    -o-transform: rotate(6deg);
+    transform: rotate(6deg);
+}
+
+/* line 66, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_3 {
+    left: 290px;
+    top: 74px;
+    position: absolute;
+    width: 100px;
+    -webkit-transform: rotate(357deg);
+    -moz-transform: rotate(357deg);
+    -ms-transform: rotate(357deg);
+    -o-transform: rotate(357deg);
+    transform: rotate(357deg);
+}
+
+/* line 70, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.promo_section .card_box .card_4 {
+    left: 319px;
+    top: 194px;
+    position: absolute;
+    width: 113px;
+    -webkit-transform: rotate(276deg);
+    -moz-transform: rotate(276deg);
+    -ms-transform: rotate(276deg);
+    -o-transform: rotate(276deg);
+    transform: rotate(276deg);
+}
+
+/* ***************** how it works section ***************** */
+/* line 77, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .how_it_works_txt {
+    color: #999999;
+    font-size: 12px;
+    text-align: center;
+    padding: 34px 0 0;
+}
+
+/* line 82, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .slide_wrapper {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* line 87, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .slides li .title {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+/* line 90, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .slides li .title img {
+    display: inline;
+}
+
+/* line 92, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .slides li p {
+    color: #6b635b;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* line 96, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .slides li .showcase {
+    padding-top: 15px;
+}
+
+/* line 98, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.how_it_works_section .control-nav {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ***************** testimonials section ***************** */
+/* line 102, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section {
+    background: #f7f7f7;
+    padding: 44px 0 50px;
+}
+
+/* line 105, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .title {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+/* line 108, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .title img {
+    display: inline;
+}
+
+/* line 110, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section p {
+    color: #6b635b;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* line 114, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .showcase {
+    padding-top: 15px;
+}
+
+/* line 116, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .testimonial_container {
+    width: 630px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+/* line 120, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .testimonial_container .testimonial_box {
+    position: relative;
+    color: #957662;
+    height: 80px;
+    width: 225px;
+    background: #f6e8df;
+    font-size: 12px;
+    border: 1px solid #d7cbc4;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* line 131, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .testimonial_container .testimonial_box .arrow {
+    background-position: 0 -153px;
+    height: 12px;
+    width: 26px;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    margin-left: -13px;
+}
+
+/* line 135, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .testimonial_container .user_info {
+    padding: 10px 0 42px;
+    overflow: hidden;
+    *zoom: 1;
+}
+
+/* line 138, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .testimonial_container .user_info .user_pic {
+    display: inline;
+    float: left;
+    margin-left: 35px;
+    margin-right: 12px;
+    width: 32px;
+}
+
+/* line 143, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.testimonials_section .testimonial_container .user_info .user_name {
+    display: inline;
+    float: left;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* line 147, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.btn_box {
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+/* line 150, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_home.sass */
+.help_box {
+    height: 55px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 55px;
+    color: #999999;
+}
