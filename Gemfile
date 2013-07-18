@@ -13,6 +13,9 @@ gem 'capistrano'
 gem 'omniauth'
 gem 'airbrake'
 
+gem 'paperclip', '~> 3.4.2'
+
+
 gem 'formatted_form'
 gem 'comfortable_mexican_sofa', '~> 1.8.0'
 
@@ -20,14 +23,14 @@ gem 'comfortable_mexican_sofa', '~> 1.8.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   gem 'haml-rails'
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
-  
+
   gem 'uglifier', '>= 1.0.3'
 end
 

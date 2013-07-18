@@ -1,9 +1,7 @@
 Idealme::Application.routes.draw do
-
-
-
   root :to => 'landings#index'
-
+  resources :markets
+  resources :courses
   devise_for :users,
              :path => '',
              :path_names => {

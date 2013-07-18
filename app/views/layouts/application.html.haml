@@ -19,20 +19,48 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}/
-  %body
+  %body.marketplace.logged_in
+    = image_tag('staging.png', :style=>"position: fixed; top: 0;left: 0;z-index: 99999;") #- if Rails.env.staging?
     /
       Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
       chromium.org/developers/how-tos/chrome-frame-getting-started
     /[if lt IE 7] <p class='chromeframe'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true'>activate Google Chrome Frame</a> to improve your experience.</p>
     %header
-      .container
-        .social_box
-          .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
-        .sing_in_box
-        %form.sing_in_box{:action=>new_user_session_path,:method => :get}
-          %input.btn{:type => 'submit', :value => 'Sing in'}/
-        .logo
-          = link_to('', root_path)
+      - if current_user || true
+        .user_box
+          =image_tag 'anonymous_user.png'
+          %ul.user_menu
+            %li
+              %a{:href => "#"} SETTINGS
+            %li
+              %a{:href => "#"} REMINDERS
+            %li
+              %a{:href => "#"} FIND FREINDS
+            %li.sign_out
+              %a{:href => "#"} SIGN OUT
+        %ul.left_menu
+          %li
+            %a{:href => "#"} DISCOVER
+          %li
+            %a.active{:href => "#"} MARKETPLACE
+          %li
+            %a{:href => "#"} ME
+        %form.search_box{:action=>"#"}
+          %input.search_field{:type => "text", :value=>"Search goals, gems, courses, people",:placeholder=>"Search goals, gems, courses, people"}/
+          %button.search_btn{:type => "submit"}
+        .logo.logged_in
+          %a{:href => "/", :title=>"Ideal me"}
+        .clear
+
+      - else
+        .container
+          .social_box
+            .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
+          .sing_in_box
+          %form.sing_in_box{:action=>new_user_session_path,:method => :get}
+            %input.btn{:type => 'submit', :value => 'Sing in'}/
+          .logo
+            = link_to('', root_path)
     %section.body_content
       = yield
     %footer

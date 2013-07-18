@@ -1,0 +1,22 @@
+= form_for @market do |f|
+  - if @market.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@market.errors.count, "error")} prohibited this market from being saved:"
+      %ul
+        - @market.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :slug
+    = f.text_field :slug
+  .field
+    = f.label :hidden
+    = f.check_box :hidden
+  .field
+    = f.label :avatar
+    = f.text_field :avatar
+  .actions
+    = f.submit 'Save'
