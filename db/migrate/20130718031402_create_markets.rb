@@ -3,7 +3,9 @@ class CreateMarkets < ActiveRecord::Migration
     create_table :markets do |t|
       t.string :name
       t.string :slug
-      t.boolean :hidden
+
+      t.boolean :hidden, :default => false
+      t.boolean :slider, :default => false
       t.attachment :avatar
 
       t.timestamps

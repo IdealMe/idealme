@@ -1,18 +1,21 @@
-%p#notice= notice
+.container
+  .row
+    .span12
+      %p#notice= notice
 
-%p
-  %b Name:
-  = @market.name
-%p
-  %b Slug:
-  = @market.slug
-%p
-  %b Hidden:
-  = @market.hidden
-%p
-  %b Avatar:
-  = @market.avatar
+      %p
+        %b Name:
+        = @market.name
+      %p
+        %b Slug:
+        = @market.slug
+      %p
+        %b Hidden:
+        = @market.hidden
+      %p
+        %b Avatar:
+        = @market.avatar
 
-= link_to 'Edit', edit_market_path(@market)
-\|
-= link_to 'Back', markets_path
+      = link_to 'Edit', edit_market_path(@market)
+      \|
+      = link_to 'Back', markets_path

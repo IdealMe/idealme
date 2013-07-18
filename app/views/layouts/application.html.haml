@@ -42,14 +42,14 @@
           %li
             %a{:href => "#"} DISCOVER
           %li
-            %a.active{:href => "#"} MARKETPLACE
+            = link_to('MARKETPLACE', markets_path, :class=>'active')
           %li
             %a{:href => "#"} ME
         %form.search_box{:action=>"#"}
           %input.search_field{:type => "text", :value=>"Search goals, gems, courses, people",:placeholder=>"Search goals, gems, courses, people"}/
           %button.search_btn{:type => "submit"}
         .logo.logged_in
-          %a{:href => "/", :title=>"Ideal me"}
+          = link_to('', root_path,:title=>'Ideal Me')
         .clear
 
       - else

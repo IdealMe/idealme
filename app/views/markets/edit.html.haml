@@ -1,7 +1,10 @@
-%h1 Editing market
+.container
+  .row
+    .span12
+      %h1 Editing market
 
-= render 'form'
+      = render 'form'
 
-= link_to 'Show', @market
-\|
-= link_to 'Back', markets_path
+      = link_to 'Show', @market
+      \|
+      = link_to 'Back', markets_path

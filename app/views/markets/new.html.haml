@@ -1,5 +1,8 @@
-%h1 New market
+.container
+  .row
+    .span12
+      %h1 New market
 
-= render 'form'
+      = render 'form'
 
-= link_to 'Back', markets_path
+      = link_to 'Back', markets_path, :class=>'btn'
