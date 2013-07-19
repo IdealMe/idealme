@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap_and_overrides
+ *= require jquery.ui.all
  *= require flexslider
  *= require formatted_form
  *= require_self
@@ -1164,7 +1165,7 @@ body {
 
 /* line 80, /home/vladimir/Documents/FreeLProjects/ODESK/Bill/ideal_me/source/css/pages/_marketplace.sass */
 .like_box .like {
-  background: url("../img/icons/like.png") no-repeat;
+  background: image-url("icons/like.png") no-repeat;
   display: inline;
   float: left;
   font-size: 10px;

@@ -28,15 +28,19 @@ gem 'tinymce-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
   gem 'haml-rails'
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
-
-  gem 'uglifier', '>= 1.0.3'
+  #Sass adapter for the Rails asset pipeline.
+  gem 'sass-rails', '~> 3.2.6'
+  #Ruby wrapper for UglifyJS JavaScript compressor
+  gem 'uglifier', '>= 1.3.0'
+  #jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+ asset pipeline
+  gem 'jquery-ui-rails'
+  #ZURB Foundation on SASS/Compass
+  gem 'compass-rails'
 end
 
 gem 'jquery-rails'
