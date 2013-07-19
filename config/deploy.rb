@@ -34,21 +34,16 @@ end
 
 #If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-
   namespace :db do
     desc 'drop database'
     task :drop do
       run "cd #{current_path}; bundle exec rake db:drop RAILS_ENV=#{rails_env}"
     end
-
-
     desc 'reload the database with seed data'
     task :seed do
       run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
     end
   end
-
-
   task :start do
     ;
   end
