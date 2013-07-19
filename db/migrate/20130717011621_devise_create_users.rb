@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :lastname
       t.string :username
       t.string :timezone, :default => 'Etc/Zulu'
+      t.string :tagline, :default => ''
       t.decimal :survey_base, :precision => 6, :scale => 3, :default => 0
       t.decimal :checkin_base, :precision => 6, :scale => 3, :default => 0
       t.boolean :auto_follow, :default => false
@@ -22,7 +23,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :access_support, :default => false
       t.boolean :access_administrator_read_only, :default => false
       t.boolean :access_administrator, :default => false
-      t.attachment :profile_pic
+      t.attachment :avatar
 
       ## Database authenticatable
       t.string :email, :null => false, :default => ""

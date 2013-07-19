@@ -1,0 +1,7 @@
+= formatted_form_for(@course, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+  %fieldset
+    #legend
+      %legend Course
+  = f.text_field :name, :autofocus => true
+  = f.submit 'Save', :class => 'btn btn-success'
+  = link_to 'Back', admin_courses_path, :class => 'btn'

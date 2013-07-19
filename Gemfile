@@ -6,7 +6,8 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'mysql2'
+gem 'pg'
 gem 'devise'
 gem 'cancan'
 gem 'capistrano'
@@ -15,10 +16,14 @@ gem 'airbrake'
 
 gem 'paperclip', '~> 3.4.2'
 
-
+gem 'seedbank', :github => 'james2m/seedbank'
 gem 'formatted_form'
 gem 'comfortable_mexican_sofa', '~> 1.8.0'
 
+gem 'friendly_id'
+
+#Seamlessly integrates TinyMCE into the Rails asset pipeline introduced in Rails 3.1.
+gem 'tinymce-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

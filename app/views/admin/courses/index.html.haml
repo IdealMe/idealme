@@ -1,0 +1,14 @@
+%h1 Courses
+
+%table.table
+  %tr
+    %th
+      Course
+
+  - @courses.each do |course|
+    %tr
+      %td= link_to course.name, edit_admin_course_path(course)
+
+%br
+
+= link_to 'New course', new_admin_course_path, :class => 'btn'

@@ -10,7 +10,7 @@ Idealme::Application.configure do
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
@@ -35,3 +35,10 @@ Idealme::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+#
+#Paperclip::Attachment.default_options[:bucket] = ENV['AWS_S3_BUCKET']
+#Paperclip::Attachment.default_options[:storage] = :s3
+#Paperclip::Attachment.default_options[:s3_credentials] = {:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
+#Paperclip::Attachment.default_options[:s3_protocol] = 'https'
+#Paperclip::Attachment.default_options[:s3_permissions] = :public_read

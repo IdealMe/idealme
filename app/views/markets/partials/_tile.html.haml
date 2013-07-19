@@ -1,0 +1,20 @@
+.offer_card
+  = link_to image_tag(market.avatar.url(:full)), market_path(market)
+  = link_to market.name, market_path(market), :class => 'offer_title'
+  .vendor
+    .vendor_pic
+      = link_to image_tag(market.course.owner.avatar.url(:thumb)), user_path(market.course.owner)
+    = link_to market.course.owner.fullname, user_path(market.course.owner), :class => 'vendor_name'
+    .vendor_working_area
+      = market.course.owner.tagline
+    .clear
+  .bottom_box
+    .like_box
+      .like 352
+      .dislike 12
+      .clear
+    .price_box
+      = penny_to_currency(market.course.cost)
+    .add_me_box
+      .unchecked +
+      .checked

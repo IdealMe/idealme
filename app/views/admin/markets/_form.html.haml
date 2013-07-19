@@ -1,0 +1,9 @@
+= formatted_form_for(@market, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+  %fieldset
+    #legend
+      %legend Market
+  = f.text_field :name, :autofocus => true
+  = f.text_area :content, :class => 'tinymce'
+  = f.file_field :avatar
+  = f.submit 'Save', :class => 'btn btn-success'
+  = link_to 'Back', admin_markets_path, :class => 'btn'

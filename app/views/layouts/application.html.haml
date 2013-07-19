@@ -14,21 +14,22 @@
     %meta{:charset => 'utf-8'}/
     %title Ideal Me
     %meta{:content => '', :name => 'description'}/
-    %meta{:content => 'width=1200', :name => 'viewport'}/
+    %meta{:content => 'width=1300', :name => 'viewport'}/
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}/
-  %body.marketplace.logged_in
-    = image_tag('staging.png', :style=>"position: fixed; top: 0;left: 0;z-index: 99999;") #- if Rails.env.staging?
+    = tinymce :content_css => asset_path('application.css')
+  %body{:class => body_class}
+    = image_tag('staging.png', :style=>"position: fixed; top: 0;left: 0;z-index: 99999;") if Rails.env.staging?
     /
       Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
       chromium.org/developers/how-tos/chrome-frame-getting-started
     /[if lt IE 7] <p class='chromeframe'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true'>activate Google Chrome Frame</a> to improve your experience.</p>
     %header
-      - if current_user || true
+      - if current_user
         .user_box
-          =image_tag 'anonymous_user.png'
+          =image_tag current_user.avatar(:thumb)
           %ul.user_menu
             %li
               %a{:href => "#"} SETTINGS
@@ -42,9 +43,9 @@
           %li
             %a{:href => "#"} DISCOVER
           %li
-            = link_to('MARKETPLACE', markets_path, :class=>'active')
+            = link_to 'MARKETPLACE', markets_path, :class => active_tab?('markets', params[:controller])
           %li
-            %a{:href => "#"} ME
+            = link_to 'ME', user_path(current_user), :class => active_tab?('users', params[:controller])
         %form.search_box{:action=>"#"}
           %input.search_field{:type => "text", :value=>"Search goals, gems, courses, people",:placeholder=>"Search goals, gems, courses, people"}/
           %button.search_btn{:type => "submit"}
@@ -62,7 +63,24 @@
           .logo
             = link_to('', root_path)
     %section.body_content
-      = yield
+      - if flash[:alert]
+        .alert.alert-error= flash[:alert]
+      - if flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - c = params[:controller].split('/')
+      - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c[0])
+        .container{:style => 'background:#ffffff; padding:10px;min-height:900px'}
+          %div{:style=>'margin:10px'}
+            = link_to 'Dashboard', admin_root_path, :class => 'btn'
+            = link_to 'Markets', admin_markets_path, :class => 'btn'
+            = link_to 'Courses', admin_courses_path, :class => 'btn'
+            = link_to 'Users', admin_users_path, :class => 'btn'
+            %hr
+            = yield
+      - else
+        = yield
+
+
     %footer
       .container
         %ul.footer_bg

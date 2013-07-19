@@ -1,8 +1,0 @@
-= formatted_form_for(@market, :html => {:class => 'form-horizontal'}) do |f|
-  %fieldset
-    #legend
-      %legend Market
-  = f.text_field :name, :autofocus => true
-  = f.check_box :hidden
-  = f.file_field :avatar
-  = f.submit 'Save', :class=>'btn btn-success'

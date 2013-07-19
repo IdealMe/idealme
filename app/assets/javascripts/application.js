@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require jquery.flexslider
 //= require formatted_form
+//= require tinymce-jquery
 //= require_tree .
 
 

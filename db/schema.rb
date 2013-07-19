@@ -133,19 +133,8 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "slug"
-    t.boolean  "hidden",              :default => true
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-  end
-
-  create_table "markets", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.boolean  "hidden"
+    t.integer  "cost"
+    t.integer  "owner_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -153,6 +142,46 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
+
+  add_index "courses", ["owner_id"], :name => "index_courses_on_owner_id"
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "markets", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "content"
+    t.boolean  "hidden",              :default => false
+    t.boolean  "slider",              :default => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "course_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "markets", ["course_id"], :name => "index_markets_on_course_id"
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
     t.boolean  "has_password",                                                 :default => true
@@ -163,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
     t.string   "lastname"
     t.string   "username"
     t.string   "timezone",                                                     :default => "Etc/Zulu"
+    t.string   "tagline",                                                      :default => ""
     t.decimal  "survey_base",                    :precision => 6, :scale => 3, :default => 0.0
     t.decimal  "checkin_base",                   :precision => 6, :scale => 3, :default => 0.0
     t.boolean  "auto_follow",                                                  :default => false
@@ -175,10 +205,10 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
     t.boolean  "access_support",                                               :default => false
     t.boolean  "access_administrator_read_only",                               :default => false
     t.boolean  "access_administrator",                                         :default => false
-    t.string   "profile_pic_file_name"
-    t.string   "profile_pic_content_type"
-    t.integer  "profile_pic_file_size"
-    t.datetime "profile_pic_updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "email",                                                        :default => "",                    :null => false
     t.string   "encrypted_password",                                           :default => "",                    :null => false
     t.string   "reset_password_token"

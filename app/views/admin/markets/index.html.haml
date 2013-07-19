@@ -1,0 +1,14 @@
+%h1 Markets
+
+%table.table
+  %tr
+    %th
+      Market
+
+  - @markets.each do |market|
+    %tr
+      %td= link_to market.name, edit_admin_market_path(market)
+
+%br
+
+= link_to 'New market', new_admin_market_path, :class => 'btn'

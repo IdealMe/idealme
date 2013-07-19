@@ -1,0 +1,16 @@
+%h1 Users
+
+%table.table
+  %tr
+    %th
+      User
+    %th
+      Email
+
+  - @users.each do |user|
+    %tr
+      %td= link_to user.fullname, edit_admin_user_path(user)
+      %td= link_to user.email, edit_admin_user_path(user)
+%br
+
+= link_to 'New user', new_admin_user_path, :class => 'btn'
