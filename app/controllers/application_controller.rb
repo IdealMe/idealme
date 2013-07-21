@@ -100,7 +100,8 @@ class ApplicationController < ActionController::Base
     image = ''
     set_meta_tags(:og => {:site_name => 'Ideal Me', :title => title, :description => description, :type => :website, :url => 'https://www.idealme.com', :image => image},
                   :fb => {:admins => %w(100004702779319 278115168965598 470201106346280).join(',')},
-                  :twitter => {:card => 'summary', :title => title, :description => description, :image => image}
+                  :twitter => {:card => 'summary', :title => title, :description => description, :image => image},
+                  :server => IM_HOSTNAME
 
     )
   end
