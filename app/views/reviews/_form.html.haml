@@ -1,0 +1,22 @@
+= form_for @review do |f|
+  - if @review.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@review.errors.count, "error")} prohibited this review from being saved:"
+      %ul
+        - @review.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :content
+    = f.text_area :content
+  .field
+    = f.label :recommended
+    = f.check_box :recommended
+  .field
+    = f.label :owner_id
+    = f.number_field :owner_id
+  .field
+    = f.label :course
+    = f.text_field :course
+  .actions
+    = f.submit 'Save'

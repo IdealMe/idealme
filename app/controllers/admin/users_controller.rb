@@ -1,54 +1,59 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
+  before_filter :load_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_users, :only => :index
+  before_filter :build_user, :only => [:new, :create]
+  
   # GET /admin/users
   def index
-    @users = User.all
   end
 
   # GET /admin/users/1
   def show
-    @user = User.find(params[:id])
   end
 
   # GET /admin/users/new
   def new
-    @user = User.new
   end
 
   # GET /admin/users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # POST /admin/users
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      redirect_to admin_user_path(@user), notice: 'User was successfully created.'
-    else
-      render action: "new"
-    end
+    @user.save!
+    redirect_to admin_user_path(@user), :notice => 'User was successfully created.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :new
   end
 
   # PUT /admin/users/1
   def update
-    @user = User.find(params[:id])
-    # required for settings form to submit when password is left blank
-    if params[:user][:password].blank?
-      params[:user].delete('password')
-      params[:user].delete('password_confirmation')
-    end
-    if @user.update_attributes(params[:user])
-      redirect_to admin_user_path(@user), notice: 'User was successfully updated.'
-    else
-      render action: "edit"
-    end
+    @user.update_attributes!(params[:user])
+    redirect_to admin_user_path(@user), :notice => 'User was successfully updated.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :edit
   end
 
   # DELETE /admin/users/1
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_users_url
+    redirect_to admin_users_url, :notice => 'User was successfully deleted'
+  end
+
+  protected
+  def load_user
+    @user = User.where(:username => params[:id]).first
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_users_path, :alert => "User not found"
+  end
+
+  def load_users
+    @users = User.all
+  end
+
+  def build_user
+    @user = User.new(params[:user])
   end
 
 end

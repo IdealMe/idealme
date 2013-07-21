@@ -6,11 +6,14 @@
       User
     %th
       Email
+    %th
+      Affiliate Tag
 
   - @users.each do |user|
     %tr
       %td= link_to user.fullname, edit_admin_user_path(user)
       %td= link_to user.email, edit_admin_user_path(user)
+      %td= user.affiliate_tag
 %br
 
 = link_to 'New user', new_admin_user_path, :class => 'btn'

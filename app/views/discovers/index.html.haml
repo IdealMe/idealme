@@ -1,0 +1,88 @@
+.container
+  .filter_box
+    %select
+      %option Everything
+      %option Goals 
+      %option Gems
+      %option Courses
+    %select
+      %option Most popular 
+      %option Most recent
+    .clear
+.container
+  .main_section
+    - @discovers.each do |discovery|
+      =render :partial => 'discovers/partials/tile', :locals => {:discover => discovery}
+
+    .clear
+  .right_sidebar
+    .modal_box.adv_box
+      =image_tag 'banner.png'
+    .modal_box
+      .modal_title1 HIGH FIVES!
+      .modal_body
+        .media
+          .pull-left
+            .checked_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Jen Miesler
+              %br
+              7 consecutive checkins
+        .media
+          .pull-left
+            .ok_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Candice S
+              %br
+              Most props today
+        .media
+          .pull-left
+            .checked_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Mai   Curran 
+              %br
+              First complete goal
+        .media
+          .pull-left
+            .checked_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Ktimene Gensler
+              %br
+              6 months regular check ins
+        .media
+          .pull-left
+            .checked_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Ulrika Henessen
+              %br 
+              6 consecutive checkins
+        .media
+          .pull-left
+            .flag_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Just Jenna
+              %br
+              Completed all goals
+        .media
+          .pull-left
+            .checked_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Molly G
+              %br
+              4 consecutive checkins
+        .media
+          .pull-left
+            .checked_icon
+          .media-body
+            %a{:href => "#"} 
+              %span.media-heading Loren Adams
+              %br
+              28 check ins in 1 month
+      

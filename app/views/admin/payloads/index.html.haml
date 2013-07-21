@@ -1,0 +1,17 @@
+%h1 Listing admin_payloads
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @admin_payloads.each do |admin_payload|
+    %tr
+      %td= link_to 'Show', admin_payload
+      %td= link_to 'Edit', edit_admin_payload_path(admin_payload)
+      %td= link_to 'Destroy', admin_payload, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Payload', new_admin_payload_path

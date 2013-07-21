@@ -42,3 +42,7 @@ end
 #Paperclip::Attachment.default_options[:s3_credentials] = {:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
 #Paperclip::Attachment.default_options[:s3_protocol] = 'https'
 #Paperclip::Attachment.default_options[:s3_permissions] = :public_read
+
+
+AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => '5zKG6HaL25f4', :password => '2eMsq3rD3kH266Nc', :test => true)
+PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login => 'bill_1351753306_biz_api1.ideal.me', :password => '1351753374', :signature => 'ABWxvXq5fyKjoekNasQ5QgN7l9NIAHOqW7kZJjH7atwVshi-4E178qmb', :test => true)

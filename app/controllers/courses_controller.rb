@@ -1,7 +1,9 @@
 class CoursesController < ApplicationController
+  before_filter :require_authentication, :only => [:show]
+
   # GET /courses
   def index
-    redirect_to market_path and return
+    redirect_to markets_path and return
   end
 
   # GET /courses/1

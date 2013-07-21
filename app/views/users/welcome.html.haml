@@ -1,0 +1,16 @@
+.top_msg_box
+  %h3.title{:title => "create your ideal me to do list"}
+    = image_tag 'create_your_txt.png'
+  %p
+    Ready for some "me" time? What do you want to achieve?
+    %br/
+    Pick some goals to get started. You can add more or change them anytime.
+.container
+  %table.goals_section
+    - while (@goals.length != 0) do
+      - @batch = @goals.shift(5)
+      %tr
+        - @batch.each do |goal|
+          %td
+            =render :partial => 'users/partials/goal_tile', :locals => {:goal => goal}
+  .btn.btn-red I'm done ➝

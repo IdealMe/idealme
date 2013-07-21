@@ -1,0 +1,38 @@
+= formatted_form_for(@active_merchant_validator, :url => orders_path, :method => :post, :html => {:class => 'form-horizontal'}) do |f|
+  = f.hidden_field :market_id
+  = f.hidden_field :course_id
+  = f.hidden_field :time
+  = f.hidden_field :checksum
+  %fieldset
+    %legend Credit Card Information
+  = f.text_field :firstname, :autofocus => true, :value => 'Bill'
+  = f.text_field :lastname, :value => 'Li'
+  = f.text_field :card_number, :size => 16, :maxlength => 16, :value => '4222222222222', :label => 'Card Number'
+  = f.select :card_type, options_for_select([["Visa", "visa"], ["Master Card", "master"]]), :value => 'visa', :label => 'Card Type'
+  = f.text_field :card_exp, :size => 4, :maxlength => 4, :value => '0817', :label => 'Expiry Date (mmyy)'
+  = f.text_field :cvv, :size => 4, :maxlength => 4, :value => '111', :label => 'Card Security Code (CVV/CSV)'
+  - if current_user
+    = f.hidden_field :email, :value => current_user.email
+  - else
+    = f.text_field :email, :value => 'bill@idealme.com'
+
+  %fieldset
+    %legend Billing Address
+  = f.text_field :billing_address1, :label => 'Address Line 1'
+  = f.text_field :billing_address2, :label => 'Address Line 2'
+  = f.text_field :billing_company, :label => 'Company Name'
+  = f.text_field :billing_city, :label => 'City/Town'
+  = f.text_field :billing_state, :label => 'State / Province / Region'
+  = f.text_field :billing_country, :label => 'Canada'
+  = f.text_field :billing_zip, :label => 'Zip / Postal Code'
+  = f.text_field :billing_phone, :label => 'Phone'
+  = f.submit 'Purchase', :class => 'btn btn-success'
+  = link_to 'Cancel', market_path(@market), :class => 'btn btn-danger'
+
+
+-#-#= formatted_form_for @order do |f|
+-#-#  = text_field_tag :lol
+-#-#  = f.hidden_field :course_id
+-#-#  = f.hidden_field :user_id
+-#-#  = f.submit 'Order', :class => 'btn'
+-#

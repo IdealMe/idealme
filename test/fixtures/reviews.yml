@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  recommended: false
+  owner_id: 1
+  course: 
+
+two:
+  content: MyText
+  recommended: false
+  owner_id: 1
+  course: 

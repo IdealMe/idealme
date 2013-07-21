@@ -6,7 +6,7 @@
       %p.autor
         %em by
         = @market.course.owner.fullname
-      .btn.btn-arrow
+      = link_to subscribe_orders_path(@market), :class => 'btn btn-arrow' do
         Take this course
         %span.price
           = penny_to_currency(@market.course.cost)
@@ -17,41 +17,19 @@
   .main_section
     .post-wrapper
       = @market.content.html_safe if @market.content
-      .btn.btn-red.btn-arrow
+      = link_to subscribe_orders_path(@market), :class => 'btn btn-red btn-arrow' do
         Take this course
         %span.price
           = penny_to_currency(@market.course.cost)
   .right_sidebar
-    .modal_title2 TAKEN BY 86 MEMBERS
+    .modal_title2
+      TAKEN BY
+      = @course.users.length
+      MEMBERS
     .member_box
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
-      .member_icon
-        =image_tag('member_avatar.png')
+      - @course.users.each do |user|
+        .member_icon
+          =image_tag(user.avatar.url(:thumb))
       .clear
     .modal_footer
       .bottom_box
@@ -65,27 +43,28 @@
           .unchecked +
           .checked
         .clear
-    .modal_title3 WHAT YOU GET
-    .what_you_get_box
-      .media
-        .pull-left
-          .analysis_icon
-        .media-body Over 34 lectures and 7.5 hours of content!
-      .media
-        .pull-left
-          .natural_icon
-        .media-body
-          At the end of this course, you should be very comfortable in all kinds of natural light situations
-      .media
-        .pull-left
-          .improve_icon
-        .media-body
-          Your fashion and beauty work will see significant improvement
-      .media
-        .pull-left
-          .tools_icon
-        .media-body
-          If you have experience in shooting, you will be able to add some additional tools to your arsenal of light
+    -#.modal_title3 WHAT YOU GET
+    -#.what_you_get_box
+    -#  .media
+    -#    .pull-left
+    -#      .analysis_icon
+    -#    .media-body
+    -#      Over 34 lectures and 7.5 hours of content!
+    -#  .media
+    -#    .pull-left
+    -#      .natural_icon
+    -#    .media-body
+    -#      At the end of this course, you should be very comfortable in all kinds of natural light situations
+    -#  .media
+    -#    .pull-left
+    -#      .improve_icon
+    -#    .media-body
+    -#      Your fashion and beauty work will see significant improvement
+    -#  .media
+    -#    .pull-left
+    -#      .tools_icon
+    -#    .media-body
+    -#      If you have experience in shooting, you will be able to add some additional tools to your arsenal of light
     .modal_title3 YOUR INSTRUCTOR
     .instructor_box
       .instructor_head
@@ -99,59 +78,55 @@
           Donna Krech is a successful entrepreneur, motivational speaker and published author. As the co-founder and CEO of the Thin & Healthy Weight Loss Program with over 25 years experience in the health and weight loss industry, Donna is the go-to expert when it comes to achieving your health and wellness goals.
         %p
           From losing weight, getting in shape, looking younger and feeling revitalized, Donna has all the health and wellness answers and advice you've been searching for.
-      .modal_title3 REVIEWS
-      .review_box
-        .review
-          .reviewer_pic
-            = image_tag('user_review.png')
-          .review_body
-            .review_info
-              by
-              %a{:href => "#"} Gökçe Çözen,
-              %span 5 months ago
-            .review_title Worth every penny!!
-            .riview_msg
-              I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          .clear
-        .review
-          .reviewer_pic
-            = image_tag('user_review.png')
-          .review_body
-            .review_info
-              by
-              %a{:href => "#"} Gökçe Çözen,
-              %span 5 months ago
-            .review_title Worth every penny!!
-            .riview_msg
-              I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          .clear
-        %a.seeAll{:href => "#"} See all 5 reviews
+      -#.modal_title3 REVIEWS
+      -#.review_box
+      -#  .review
+      -#    .reviewer_pic
+      -#      = image_tag('user_review.png')
+      -#    .review_body
+      -#      .review_info
+      -#        by
+      -#        %a{:href => "#"} Gökçe Çözen,
+      -#        %span 5 months ago
+      -#      .review_title Worth every penny!!
+      -#      .riview_msg
+      -#        I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+      -#    .clear
+      -#  .review
+      -#    .reviewer_pic
+      -#      = image_tag('user_review.png')
+      -#    .review_body
+      -#      .review_info
+      -#        by
+      -#        %a{:href => "#"} Gökçe Çözen,
+      -#        %span 5 months ago
+      -#      .review_title Worth every penny!!
+      -#      .riview_msg
+      -#        I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+      -#    .clear
+      -#  = link_to 'See all ### reviews', market_reviews_path(@market), :class => 'see_all'
       .modal_title3 CURRICULUM
       .cirriculum_box
-        .media
-          .pull-left MODULE 1
-          .media-body Goal Setting for Your Ideal Me
-        .media
-          .pull-left MODULE 2
-          .media-body Goal Setting for Your Ideal Me
-        .media
-          .pull-left MODULE 3
-          .media-body Goal Setting for Your Ideal Me
-        .media
-          .pull-left MODULE 4
-          .media-body Goal Setting for Your Ideal Me
-      .modal_title3 FAQ
-      .foq_box
-        %ul.list_1
-          %li How long do I have access to the course materials?
-          %li You can view and review the lecture materials indefinitely, like an on-demand channel.
-          %li What is the refund policy on the course?
-          %li
-            We like to keep our users happy, so we have a 30-day no questions asked refund policy. Send an email to support@idealme.com for refund requests.
-          %li Can I take my courses with me wherever I go?
-      .modal_title3 AS SEEN IN
-      .partners_box
-        .elle_icon
-        .fab_icon
-        .oxygen_icon
-        .clear
+        - @market.course.sections.each_with_index do |section, index|
+          .media
+            .pull-left
+              MODULE
+              = index
+            .media-body
+              = section.name
+
+      -#.modal_title3 FAQ
+      -#.foq_box
+      -#  %ul.list_1
+      -#    %li How long do I have access to the course materials?
+      -#    %li You can view and review the lecture materials indefinitely, like an on-demand channel.
+      -#    %li What is the refund policy on the course?
+      -#    %li
+      -#      We like to keep our users happy, so we have a 30-day no questions asked refund policy. Send an email to support@idealme.com for refund requests.
+      -#    %li Can I take my courses with me wherever I go?
+      -#.modal_title3 AS SEEN IN
+      -#.partners_box
+      -#  .elle_icon
+      -#  .fab_icon
+      -#  .oxygen_icon
+      -#  .clear

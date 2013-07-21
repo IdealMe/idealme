@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ */
+
+// Import all compass sheets
+@import "compass";
+@import "compass/css3";
+@import "compass/utilities";
+
+// Import all compass sprites
+@import "icons/*.png";
+
+// Import Bootstrap
+@import "bootstrap_and_overrides";
+
+// Element
+@import "elements/fonts";
+@import "elements/base";
+@import "elements/typography";
+@import "elements/buttons";
+@import "elements/header";
+@import "elements/footer";
+
+@import "markets/index";
+@import "markets/show";
+
+@import "discovers/index";
+
+@import "users/profile";
+
+// PAGES
+@import "pages/global";
+@import "pages/home";
+@import "users/welcome";
+
+
+// Gem imports
+
+@import "flexslider";
+@import "formatted_form";
+@import "jquery.ui.all";

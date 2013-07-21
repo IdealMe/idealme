@@ -1,0 +1,9 @@
+= formatted_form_for(@section, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+  %fieldset
+    #legend
+      %legend Section
+  = f.text_field :name, :autofocus => true
+  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
+  = f.text_area :content, :class => 'tinymce'
+  = f.submit 'Save', :class => 'btn btn-success'
+  = link_to 'Back', admin_sections_path, :class => 'btn'

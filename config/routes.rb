@@ -1,13 +1,37 @@
 Idealme::Application.routes.draw do
+  resources :lectures
+
+  resources :orders, :only => [:new, :create] do
+    collection do
+      get 'new/:id' => 'orders#new', :as => :subscribe
+    end
+  end
   root :to => 'landings#index'
   namespace :admin do
     root :to => 'landings#index'
     resources :markets
     resources :courses
+    resources :sections
+    resources :lectures
     resources :users
+    resources :goals
   end
-  resources :markets
-  resources :courses
+
+  resources :markets, :only => [:index, :show] do
+    resources :reviews
+    collection do
+      get ':market_affiliate_tag/:user_affiliate_tag/:tracking_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate_tracking
+      get ':market_affiliate_tag/:user_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate
+    end
+  end
+
+  resources :courses, :only => [:index, :show]
+  resources :discovers, :only => [:index, :show]
+
+  ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
+  # Make sure this routeset is defined last
+  ComfortableMexicanSofa::Routing.content(:path => '/cms', :sitemap => false)
+
   devise_for :users,
              :path => '',
              :path_names => {
@@ -34,6 +58,7 @@ Idealme::Application.routes.draw do
       get ':id' => 'users#profile', :as => :user
       get ':id/edit' => 'users/registrations#edit', :as => :user_edit
       get ':id/course' => 'users#course', :as => :user_course
+      get ':id/welcome' => 'users#welcome', :as => :user_welcome
       get ':id/goal' => 'users#goal', :as => :user_goal
       get ':id/goal/:active_goal' => 'users#active_goal', :as => :user_active_goal
       get ':id/friend' => 'users#friend', :as => :user_friend
@@ -45,7 +70,4 @@ Idealme::Application.routes.draw do
     end
   end
 
-  ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
-  # Make sure this routeset is defined last
-  ComfortableMexicanSofa::Routing.content(:path => '/', :sitemap => false)
 end

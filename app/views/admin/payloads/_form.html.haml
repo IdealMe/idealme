@@ -1,0 +1,10 @@
+= form_for @admin_payload do |f|
+  - if @admin_payload.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@admin_payload.errors.count, "error")} prohibited this admin_payload from being saved:"
+      %ul
+        - @admin_payload.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

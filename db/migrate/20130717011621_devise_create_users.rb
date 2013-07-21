@@ -21,8 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :access_affiliate, :default => false
       t.boolean :access_course_creation, :default => false
       t.boolean :access_support, :default => false
-      t.boolean :access_administrator_read_only, :default => false
-      t.boolean :access_administrator, :default => false
+      t.boolean :access_admin, :default => false
       t.attachment :avatar
 
       ## Database authenticatable

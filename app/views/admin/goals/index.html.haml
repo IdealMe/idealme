@@ -1,0 +1,17 @@
+%h1 Goals
+
+%table.table
+  %tr
+    %th
+      Goal
+    %th
+      Subscribed
+
+  - @goals.each do |goal|
+    %tr
+      %td= link_to goal.name, edit_admin_goal_path(goal)
+      %td= goal.users.length
+
+%br
+
+= link_to 'New goal', new_admin_goal_path, :class => 'btn'

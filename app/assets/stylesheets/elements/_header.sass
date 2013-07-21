@@ -1,0 +1,117 @@
+/* ******************************************** */
+/* Header */
+/* ******************************************** */
+header
+  min-width: 1250px
+
+.social_box
+  +float-left()
+  width: 170px
+  margin: 53px 0px 0 40px
+
+.user_box
+  +float-left()
+  +p_l(0)
+  +m_l(10)
+  +rel
+  .user_pic
+    padding: 9px
+    width: 41px
+    +rel
+    z-index: 500
+    +bg(#fff)
+    &.on
+      border: 1px solid #cbcac8
+      border-bottom: none
+  .user_menu
+    display: none
+    +abs_tl(58px, 0px)
+    z-index: 200
+    margin: 0
+    list-style: none
+    width: 120px
+    +bg(#fff)
+    border: 1px solid #c9c9c9
+    padding: 5px 0
+    li
+      padding: 0 17px
+      a
+        +block
+        +upper
+        +hex(#777777)
+        +fs(12px)
+        +lh(20px)
+        padding: 5px 0
+        +left
+        text-decoration: none
+      &.sign_out
+        border-top: 1px solid #c9c9c9
+        margin-top: 5px
+        a
+          padding: 10px 0
+
+.left_menu
+  +float-left()
+  margin: 0px 0px 0 11px
+  li
+    +float-left()
+    margin: 0 10px
+    a
+      +hex(#777777)
+      +fs(12px)
+      +lh(60px)
+      +upper
+      +block
+      text-decoration: none
+      height: 60px
+      &:hover, &.active
+        border-bottom: 2px solid #ff6766
+/* Logo */
+.logo
+  margin: 0 400px
+  a
+    +sprite_css('logo')
+    +block
+    margin: 0px auto 0px auto
+    position: relative
+    top: -8px
+    margin: 22px auto 23px auto
+
+  &.logged_in
+    margin: 0 400px
+    a
+      +sprite_css('logo_small')
+      margin: 0px auto 23px auto
+
+.sign_in_box
+  +float-right()
+  width: 170px
+  +right
+  margin: 0
+  .btn
+    margin: 50px 22px 0 0px
+
+.search_box
+  +float-right()
+  width: 280px
+  +rel
+  margin: 12px 53px 0 0
+  .search_field
+    width: 280px
+    height: 28px
+    +bg(#fafafa)
+    +fs(12px)
+    +lh(28px)
+  .search_btn
+    border: none
+    +sprite_css('search')
+    +abs_tr(9px, 0px)
+/* ******************************************** */
+/* Header logged In*/
+/* ******************************************** */
+.logged_in
+  header
+    +bg(#fff)
+    min-width: 1250px
+    border-bottom: 1px solid #ebebeb
+    height: 61px

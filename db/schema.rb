@@ -11,7 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718031402) do
+ActiveRecord::Schema.define(:version => 20130721110731) do
+
+  create_table "affiliate_clicks", :force => true do |t|
+    t.integer  "clicks",                :default => 1
+    t.string   "ip"
+    t.string   "user_agent"
+    t.string   "tracking_code"
+    t.integer  "user_id"
+    t.integer  "affiliate_tracking_id"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  add_index "affiliate_clicks", ["affiliate_tracking_id"], :name => "index_affiliate_clicks_on_affiliate_tracking_id"
+  add_index "affiliate_clicks", ["user_id"], :name => "index_affiliate_clicks_on_user_id"
+
+  create_table "affiliate_sales", :force => true do |t|
+    t.boolean  "completed",             :default => false
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.integer  "affiliate_tracking_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  add_index "affiliate_sales", ["affiliate_tracking_id"], :name => "index_affiliate_sales_on_affiliate_tracking_id"
+  add_index "affiliate_sales", ["order_id"], :name => "index_affiliate_sales_on_order_id"
+  add_index "affiliate_sales", ["user_id"], :name => "index_affiliate_sales_on_user_id"
+
+  create_table "affiliate_trackings", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "note"
+    t.string   "affiliate_tag"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "affiliate_trackings", ["user_id"], :name => "index_affiliate_trackings_on_user_id"
 
   create_table "cms_blocks", :force => true do |t|
     t.integer  "page_id",                        :null => false
@@ -130,19 +169,34 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
   add_index "cms_snippets", ["site_id", "identifier"], :name => "index_cms_snippets_on_site_id_and_identifier", :unique => true
   add_index "cms_snippets", ["site_id", "position"], :name => "index_cms_snippets_on_site_id_and_position"
 
+  create_table "course_users", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "course_users", ["course_id"], :name => "index_course_users_on_course_id"
+  add_index "course_users", ["user_id"], :name => "index_course_users_on_user_id"
+
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "slug"
     t.integer  "cost"
     t.integer  "owner_id"
+    t.boolean  "hidden",                                                   :default => false
+    t.text     "google_conversion_tracking"
+    t.decimal  "affiliate_commission",       :precision => 6, :scale => 3, :default => 50.0
+    t.integer  "default_market_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
   end
 
+  add_index "courses", ["default_market_id"], :name => "index_courses_on_default_market_id"
   add_index "courses", ["owner_id"], :name => "index_courses_on_owner_id"
 
   create_table "friendly_id_slugs", :force => true do |t|
@@ -156,9 +210,46 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "goal_users", :force => true do |t|
+    t.boolean  "private"
+    t.integer  "user_id"
+    t.integer  "goal_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "goal_users", ["goal_id"], :name => "index_goal_users_on_goal_id"
+  add_index "goal_users", ["user_id"], :name => "index_goal_users_on_user_id"
+
+  create_table "goals", :force => true do |t|
+    t.string   "name"
+    t.boolean  "hidden",              :default => false
+    t.boolean  "welcome",             :default => false
+    t.integer  "ordering",            :default => 9999
+    t.integer  "user_count"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "lectures", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "content"
+    t.integer  "section_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "lectures", ["section_id"], :name => "index_lectures_on_section_id"
+
   create_table "markets", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.string   "affiliate_tag"
     t.text     "content"
     t.boolean  "hidden",              :default => false
     t.boolean  "slider",              :default => false
@@ -173,6 +264,57 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
 
   add_index "markets", ["course_id"], :name => "index_markets_on_course_id"
 
+  create_table "orders", :force => true do |t|
+    t.string   "transaction_id"
+    t.string   "transaction_status"
+    t.text     "ipn"
+    t.integer  "status"
+    t.string   "subscriber_id"
+    t.integer  "cost"
+    t.integer  "course_id",          :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "orders", ["course_id"], :name => "index_orders_on_course_id"
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "payloads", :force => true do |t|
+    t.string   "payload_file_name"
+    t.string   "payload_content_type"
+    t.integer  "payload_file_size"
+    t.datetime "payload_updated_at"
+    t.integer  "intended_type"
+    t.integer  "payloadable_id"
+    t.string   "payloadable_type"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.text     "content"
+    t.boolean  "recommended"
+    t.integer  "owner_id"
+    t.integer  "course_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "reviews", ["course_id"], :name => "index_reviews_on_course_id"
+  add_index "reviews", ["owner_id"], :name => "index_reviews_on_owner_id"
+
+  create_table "sections", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "content"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sections", ["course_id"], :name => "index_sections_on_course_id"
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -184,46 +326,45 @@ ActiveRecord::Schema.define(:version => 20130718031402) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.boolean  "has_password",                                                 :default => true
-    t.datetime "identity_unlocked_at",                                         :default => '1970-01-01 01:01:00', :null => false
+    t.boolean  "has_password",                                               :default => true
+    t.datetime "identity_unlocked_at",                                       :default => '1970-01-01 01:01:00', :null => false
     t.text     "about"
     t.text     "notes"
     t.string   "firstname"
     t.string   "lastname"
     t.string   "username"
-    t.string   "timezone",                                                     :default => "Etc/Zulu"
-    t.string   "tagline",                                                      :default => ""
-    t.decimal  "survey_base",                    :precision => 6, :scale => 3, :default => 0.0
-    t.decimal  "checkin_base",                   :precision => 6, :scale => 3, :default => 0.0
-    t.boolean  "auto_follow",                                                  :default => false
+    t.string   "timezone",                                                   :default => "Etc/Zulu"
+    t.string   "tagline",                                                    :default => ""
+    t.decimal  "survey_base",                  :precision => 6, :scale => 3, :default => 0.0
+    t.decimal  "checkin_base",                 :precision => 6, :scale => 3, :default => 0.0
+    t.boolean  "auto_follow",                                                :default => false
     t.string   "affiliate_tag"
     t.integer  "affiliate_default_payment_id"
     t.integer  "affiliate_payment_frequency"
-    t.boolean  "access_normal",                                                :default => true
-    t.boolean  "access_affiliate",                                             :default => false
-    t.boolean  "access_course_creation",                                       :default => false
-    t.boolean  "access_support",                                               :default => false
-    t.boolean  "access_administrator_read_only",                               :default => false
-    t.boolean  "access_administrator",                                         :default => false
+    t.boolean  "access_normal",                                              :default => true
+    t.boolean  "access_affiliate",                                           :default => false
+    t.boolean  "access_course_creation",                                     :default => false
+    t.boolean  "access_support",                                             :default => false
+    t.boolean  "access_admin",                                               :default => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "email",                                                        :default => "",                    :null => false
-    t.string   "encrypted_password",                                           :default => "",                    :null => false
+    t.string   "email",                                                      :default => "",                    :null => false
+    t.string   "encrypted_password",                                         :default => "",                    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                                :default => 0
+    t.integer  "sign_in_count",                                              :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.integer  "goal_count",                                                   :default => 0
-    t.integer  "course_count",                                                 :default => 0
-    t.datetime "created_at",                                                                                      :null => false
-    t.datetime "updated_at",                                                                                      :null => false
+    t.integer  "goal_count",                                                 :default => 0
+    t.integer  "course_count",                                               :default => 0
+    t.datetime "created_at",                                                                                    :null => false
+    t.datetime "updated_at",                                                                                    :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

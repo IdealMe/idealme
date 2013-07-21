@@ -1,51 +1,61 @@
-class Admin::MarketsController < ApplicationController
+class Admin::MarketsController < Admin::BaseController
+  before_filter :load_market, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_markets, :only => :index
+  before_filter :build_market, :only => [:new, :create]
+
   # GET /admin/markets
   def index
-    @markets = Market.all
   end
 
   # GET /admin/markets/1
   def show
-    @market = Market.find(params[:id])
   end
 
   # GET /admin/markets/new
   def new
-    @market = Market.new
   end
 
   # GET /admin/markets/1/edit
   def edit
-    @market = Market.find(params[:id])
   end
 
   # POST /admin/markets
   def create
-    @market = Market.new(params[:market])
-    if @market.save
-      redirect_to admin_market_path(@market), notice: 'Market was successfully created.'
-    else
-      render action: "new"
-    end
+    @market.save!
+    redirect_to admin_market_path(@market), :notice => 'Market was successfully created.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :new
   end
 
   # PUT /admin/markets/1
   def update
-    @market = Market.find(params[:id])
-
-    respond_to do |format|
-      if @market.update_attributes(params[:market])
-        redirect_to admin_market_path(@market), notice: 'Market was successfully updated.'
-      else
-        render action: "edit"
-      end
-    end
+    @market.update_attributes!(params[:market])
+    redirect_to admin_market_path(@market), :notice => 'Market was successfully updated.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :edit
   end
 
   # DELETE /admin/markets/1
   def destroy
-    @market = Market.find(params[:id])
     @market.destroy
-    redirect_to admin_markets_url
+    redirect_to admin_markets_url, :notice => 'Market was successfully deleted'
   end
+
+
+  protected
+  def load_market
+    @market = Market.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_markets_path, :alert => "Market not found"
+  end
+
+  def load_markets
+    @markets = Market.all
+  end
+
+  def build_market
+    @market = Market.new(params[:market])
+  end
+
 end
+

@@ -3,11 +3,12 @@ class CreateMarkets < ActiveRecord::Migration
     create_table :markets do |t|
       t.string :name
       t.string :slug
+      t.string :affiliate_tag
       t.text :content
       t.boolean :hidden, :default => false
       t.boolean :slider, :default => false
       t.attachment :avatar
-      t.belongs_to :course
+      t.references :course
       t.timestamps
     end
 

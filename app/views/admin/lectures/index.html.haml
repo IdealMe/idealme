@@ -1,0 +1,19 @@
+%h1 Lectures
+
+%table.table
+  %tr
+    %th
+      Lecture
+    %th
+      Section
+    %th
+      Course
+  - @lectures.each do |lecture|
+    %tr
+      %td= link_to lecture.name, edit_admin_lecture_path(lecture)
+      %td= link_to lecture.section.name, edit_admin_section_path(lecture.section)
+      %td= link_to lecture.course.name, edit_admin_course_path(lecture.course)
+
+%br
+
+= link_to 'New lecture', new_admin_lecture_path, :class => 'btn'

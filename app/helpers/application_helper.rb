@@ -39,4 +39,24 @@ module ApplicationHelper
       inactive_text
     end
   end
+
+  # Get the human readable version of the affiliate user and the affiliate campaign that is cookied on the customer's computer
+  #
+  # This is displayed in the footer
+  #
+  # @return [String] The friendly cookie string
+  def get_friendly_affiliate_tracking
+    friendly = nil
+    zid = cookies.signed[:zid]
+    if zid
+      last_affiliate_user = User.get_affiliate_user(zid).first
+      friendly = "#{last_affiliate_user.username}" if last_affiliate_user
+      tid = cookies.signed[:tid]
+      if tid
+        last_affiliate_tracking = AffiliateTracking.where(:affiliate_tag => tid).first
+        friendly = "#{friendly}/#{last_affiliate_tracking.name}" if last_affiliate_tracking
+      end
+    end
+    friendly
+  end
 end

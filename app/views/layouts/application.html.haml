@@ -11,15 +11,17 @@
 %html.no-js{:lang => 'en'}
   / <![endif]
   %head
-    %meta{:charset => 'utf-8'}/
-    %title Ideal Me
-    %meta{:content => '', :name => 'description'}/
+    = display_meta_tags :site => 'Ideal Me'
     %meta{:content => 'width=1300', :name => 'viewport'}/
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}/
     = tinymce :content_css => asset_path('application.css')
+    = favicon_link_tag 'apple-touch-icon-144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
   %body{:class => body_class}
     = image_tag('staging.png', :style=>"position: fixed; top: 0;left: 0;z-index: 99999;") if Rails.env.staging?
     /
@@ -29,25 +31,28 @@
     %header
       - if current_user
         .user_box
-          =image_tag current_user.avatar(:thumb)
+          =image_tag current_user.avatar(:thumb), :class => 'user_pic'
           %ul.user_menu
             %li
-              %a{:href => "#"} SETTINGS
+              = link_to 'SETTINGS', user_edit_path(current_user)
             %li
               %a{:href => "#"} REMINDERS
             %li
               %a{:href => "#"} FIND FREINDS
+            - if can? :access, :admin
+              %li
+                = link_to 'ADMIN', admin_root_path
             %li.sign_out
-              %a{:href => "#"} SIGN OUT
+              = link_to 'SIGN OUT', destroy_user_session_path
         %ul.left_menu
           %li
-            %a{:href => "#"} DISCOVER
+            = link_to 'DISCOVER', discovers_path, :class => active_tab?('discovers', params[:controller])
           %li
             = link_to 'MARKETPLACE', markets_path, :class => active_tab?('markets', params[:controller])
           %li
             = link_to 'ME', user_path(current_user), :class => active_tab?('users', params[:controller])
         %form.search_box{:action=>"#"}
-          %input.search_field{:type => "text", :value=>"Search goals, gems, courses, people",:placeholder=>"Search goals, gems, courses, people"}/
+          %input.search_field{:type => "text", :placeholder=>"Search goals, gems, courses, people"}/
           %button.search_btn{:type => "submit"}
         .logo.logged_in
           = link_to('', root_path,:title=>'Ideal Me')
@@ -57,9 +62,9 @@
         .container
           .social_box
             .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
-          .sing_in_box
-          %form.sing_in_box{:action=>new_user_session_path,:method => :get}
-            %input.btn{:type => 'submit', :value => 'Sing in'}/
+          .sign_in_box
+          %form.sign_in_box{:action => new_user_session_path,:method => :get}
+            %input.btn{:type => 'submit', :value => 'Sign in'}/
           .logo
             = link_to('', root_path)
     %section.body_content
@@ -74,7 +79,11 @@
             = link_to 'Dashboard', admin_root_path, :class => 'btn'
             = link_to 'Markets', admin_markets_path, :class => 'btn'
             = link_to 'Courses', admin_courses_path, :class => 'btn'
+            = link_to 'Sections', admin_sections_path, :class => 'btn'
+            = link_to 'Lectures', admin_lectures_path, :class => 'btn'
+
             = link_to 'Users', admin_users_path, :class => 'btn'
+            = link_to 'Goals', admin_goals_path, :class => 'btn'
             %hr
             = yield
       - else
@@ -96,6 +105,8 @@
     .help_box
       Have a Question?
       %a{:href => '#'} Contact Us
+      %br/
+      = get_friendly_affiliate_tracking
     #fb-root
     :javascript
       (function(d, s, id) {

@@ -1,8 +1,7 @@
-class Admin::CoursesController < ApplicationController
+class Admin::CoursesController < Admin::BaseController
   before_filter :load_course, :only => [:show, :edit, :update, :destroy]
   before_filter :load_courses, :only => :index
   before_filter :build_course, :only => [:new, :create]
-
 
   # GET /admin/courses
   def index
@@ -18,7 +17,6 @@ class Admin::CoursesController < ApplicationController
 
   # GET /admin/courses/1/edit
   def edit
-    @course = Course.find(params[:id])
   end
 
   # POST /admin/courses
@@ -57,5 +55,4 @@ class Admin::CoursesController < ApplicationController
   def build_course
     @course = Course.new(params[:course])
   end
-
 end

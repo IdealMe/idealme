@@ -1,0 +1,162 @@
+/* ******************************************** */
+/* Home page */
+/* ******************************************** */
+/* ***************** promo section ***************** */
+.home
+  .promo_section
+    .container
+      width: 1024px
+
+.promo_section
+  +bg(#ff6f6e)
+  min-width: 1250px
+  .bg_1
+    +bg(#f6987c)
+    +abs_tl(135px, 55px)
+    +wxh(970px, 175px)
+  .msg_box
+    +float-left
+    +wxh(540px, 188px)
+    +m_t(100px)
+    +m_l(27px)
+    +m_b(120px)
+    +bg(#e98492)
+    z-index: 100
+    +rel
+    .title
+      +bg(#fff)
+      +wxh(523px, 60px)
+      +abs_tl(27px, -22px)
+      +p_t(16px)
+      +p_l(50px)
+      margin: 0
+    .msg
+      +p_t(120px)
+      +hex(#fff)
+      +fs(16px)
+      +centered
+    .btn-black
+      width: 180px
+      +abs_bl(-12px, 155px)
+  .card_box
+    +float-left
+    +rel
+    .cards
+      +bg(#fff)
+      padding: 7px
+    .card_top
+      +abs_tl(98px, 134px)
+      width: 168px
+      +rotate(357deg)
+      z-index: 300
+      .description
+        padding: 17px
+        +fs(12px)
+        +upper
+        +centered
+    .card_1
+      +abs_tl(56px, 37px)
+      width: 118px
+      +rotate(340deg)
+      .description
+        padding: 3px
+        +fs(10px)
+        +upper
+        +centered
+    .card_2
+      +abs_tl(240px, 21px)
+      width: 97px
+      +rotate(6deg)
+    .card_3
+      +abs_tl(74px, 290px)
+      width: 100px
+      +rotate(357deg)
+    .card_4
+      +abs_tl(194px, 319px)
+      width: 113px
+      +rotate(276deg)
+
+/* ***************** how it works section ***************** */
+.how_it_works_section
+  .how_it_works_txt
+    +hex(#999999)
+    +fs(12px)
+    +centered
+    padding: 34px 0 0
+  .slide_wrapper
+    width: 800px
+    margin: 0 auto
+  .slides
+    li
+      .title
+        +centered
+        margin-bottom: 18px
+        img
+          display: inline
+      p
+        +hex(#6B635B)
+        +fs(16px)
+        +centered
+      .showcase
+        +p_t(15px)
+  .control-nav
+    +centered
+    +m_b(40px)
+/* ***************** testimonials section ***************** */		
+.testimonials_section
+  +bg(#f7f7f7)
+  padding: 44px 0 50px
+  .title
+    +centered
+    margin-bottom: 18px
+    img
+      display: inline
+  p
+    +hex(#6B635B)
+    +fs(16px)
+    +centered
+  .showcase
+    +p_t(15px)
+  .testimonial_container
+    width: 630px
+    margin: 0 auto
+    +p_t(30px)
+    .testimonial_box
+      +rel
+      +hex(#957662)
+      +wxh(225px, 80px)
+      +bg(#f6e8df)
+      +fs(12px)
+      border: 1px solid #d7cbc4
+      display: table-cell
+      vertical-align: middle
+      +centered
+      +border-radius(5px)
+      .arrow
+        +sprite_css(testimonial_arrow)
+        +abs_bl(-12px, 50%)
+        +m_l(-13px)
+    .user_info
+      padding: 10px 0 42px
+      +clearfix()
+      .user_pic
+        +float-left()
+        margin-left: 35px
+        margin-right: 12px
+        width: 32px
+      .user_name
+        +float-left()
+        +fs(12px)
+        margin-top: 8px
+
+.btn_box
+  padding: 100px 0 80px
+  +centered
+
+.help_box
+  min-width: 1220px
+  height: 55px
+  +centered
+  +fs(14px)
+  +lh(55px)
+  +hex(#999999)

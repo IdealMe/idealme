@@ -1,1 +1,46 @@
-user
+.container
+  .user_section
+    .user_pic
+      = image_tag @user.avatar.url(:square)
+    .user_info
+      .user_name
+        = @user.fullname
+      .user_location
+        %a{:href => "#"} + add location
+    .user_counters
+      .counter
+        Checkins
+        .checkins_box 0
+      .divider
+      .counter
+        Collected
+        .collected_box 0
+      .divider
+      .counter
+        Created
+        .created_box 0
+      .divider
+      .counter
+        Supporters
+        .supporters_box 0
+      .divider
+      .counter
+        Supporting
+        .supporting_box 0
+    .clear
+  .menu_section
+    %ul.user_menu
+      %li
+        = link_to 'goals', user_path(current_user, {:tab => 'goal'}), :class => 'goals_icon'
+      %li
+        = link_to 'course history', user_path(current_user, {:tab => 'course'}), :class => 'course_icon'
+    .clear
+    %a.edit_box{:href => "#"} edit goals
+    .clear
+  .goals_section
+    - @goals.each do |goal|
+      =render :partial => 'users/partials/profile_goal_tile', :locals => {:goal => goal}
+    .add_goal
+      .plus +
+      Add goals
+    .clear

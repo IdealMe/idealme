@@ -7,14 +7,14 @@ class Market < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content
+  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag
 
   # == Relationships ========================================================
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     :styles => {:full => '252x202#'},
                     :convert_options => {
-                        :full => '-background black -gravity center -extent 252x202 -quality 75 -strip',
+                        :full => '-gravity center -extent 252x202 -quality 75 -strip',
                     }
 
   # == Validations ==========================================================

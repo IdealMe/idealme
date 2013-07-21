@@ -1,0 +1,158 @@
+/* ******************************************** */
+/* Me page */
+/* ******************************************** */
+.users_profile
+  +bg(#faf9f4)
+  .user_section
+    margin: 30px 0 40px 0
+    .user_pic
+      +float-left
+    .user_info
+      +float-left
+      padding:   26px 0 0 32px
+      .user_name   
+        +fs(28px)
+        +lh(20px)
+        +hex(#6B635B)
+        +bold
+        +m_b(8px)
+      .user_location
+        a
+          +hex(#A1A1A1)
+          +fs(12px)
+          +lh(20px)
+  .user_counters
+    +float-right
+    border: 1px solid #f2f2f2
+    +bg(#fff)
+    +border-radius(2px)
+    margin-top: 15px
+    margin-right: 15px
+    .counter
+      +centered
+      +hex(#999)
+      +fs(11px)
+      +float-left
+      padding: 8px 35px 0 35px
+    .checkins_box 
+      +fs(36px)
+      +lh(36px)
+      +bg(image-url("icons/checked_green_icon.png") no-repeat )
+      +bg_pos(100%, 1px)
+      +hex(#4FBE56)
+      text-align: left
+      padding-right: 36px
+    .collected_box
+      @extend .checkins_box
+      +hex(#FF716F)
+      +bg(image-url("icons/ruby2.png") no-repeat )
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .created_box 
+      @extend .checkins_box
+      +hex(#E88391)
+      +bg(image-url("icons/ruby3.png") no-repeat )
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .supporters_box 
+      @extend .checkins_box
+      +hex(#FF716F)
+      +bg(image-url("icons/support_icon.png") no-repeat )
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .supporting_box 
+      @extend .checkins_box
+      +hex(#E88391)
+      +bg(image-url("icons/support_icon2.png") no-repeat )
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .divider
+      +sprite_css(divider)
+      +float-left
+  .menu_section
+    border-bottom: 1px solid #ebeae5
+    +m_b(50px)
+    .user_menu
+      margin: 0
+      +float-left()
+      li
+        +float-left
+        +m_r(27px)
+        a
+          padding: 10px 28px
+          +block
+          +hex(#424242)
+          +fs(14px)
+          +upper
+          +rel
+          top: 1px
+          &.active, &:hover
+            border-bottom: 2px solid #ff6766
+            text-decoration: none
+        .goals_icon
+          +bg(image-url("icons/flag_icon2.png") no-repeat )
+          +bg_pos(0px, 50%)
+
+        .course_icon
+          +bg(image-url("icons/course_icon.png") no-repeat )
+          +bg_pos(0, 50%)
+          +p_l(35px)
+    .edit_box  
+      +float-right
+      +bg(image-url("icons/edit_icon.png") no-repeat )
+      +bg_pos(0, 50%)
+      padding: 10px 28px
+      +block
+      +hex(#424242)
+      +fs(14px)
+      +upper
+      +rel
+      top: 1px
+      &.active, &:hover
+        border-bottom: 2px solid #ff6766
+        text-decoration: none
+  .goals_section
+    padding-bottom: 20px
+  .bottom_box
+    +fs(10px)
+    +lh(14px)
+  .counter
+    +hex(#FF6766) 
+    +centered
+  .check_ins 
+    +float-left
+    width: 45px
+    padding: 10px 15px
+    +centered
+  .gems_collected
+    +float-left
+    width: 48px
+    padding: 10px 15px
+    border-left: 1px solid #e4e4e4
+    border-right: 1px solid #e4e4e4
+    +centered
+  .gems_created
+    +float-left
+    width: 45px
+    +centered
+    padding: 10px 15px
+  .lose_weight_icon
+    margin: 35px auto 30px auto 
+  .add_goal
+    +float-left
+    +bg(image-url("icons/add_goal.png") no-repeat )
+    width: 236px
+    height: 163px
+    +hex(#cccccc)
+    +fs(18px)
+    +m_l(9px)
+    +m_r(9px)
+    +centered
+    +p_t(110px)
+    pointer:cursor
+    &:hover
+      +bg(image-url("icons/add_goal_on.png") no-repeat )
+      +hex(#4d4d4d)
+    .plus
+      +fs(48px)
+      +p_b(15px)

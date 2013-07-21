@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  transaction_id: 
+  transaction_status: MyString
+  ipn: MyText
+  status: 1
+  subscriber_id: MyString
+  cost: 1
+  course: 
+  user: 
+
+two:
+  transaction_id: 
+  transaction_status: MyString
+  ipn: MyText
+  status: 1
+  subscriber_id: MyString
+  cost: 1
+  course: 
+  user: 

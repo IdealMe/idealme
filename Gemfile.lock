@@ -57,25 +57,68 @@ GEM
   specs:
     active_link_to (1.0.1)
       actionpack
+    active_utils (1.0.5)
+      activesupport (>= 2.3.11)
+      i18n
+    activemerchant (1.34.0)
+      active_utils (>= 1.0.2)
+      activesupport (>= 2.3.14)
+      builder (>= 2.0.0)
+      i18n
+      json (>= 1.5.1)
+      money
+      nokogiri
     airbrake (3.1.12)
       activesupport
       builder
       json
     arel (3.0.2)
+    awesome_print (1.1.0)
+    aws-sdk (1.13.0)
+      json (~> 1.4)
+      nokogiri (< 1.6.0)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.1)
+    better_errors (0.9.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    brakeman (2.0.0)
+      erubis (~> 2.6)
+      fastercsv (~> 1.5)
+      haml (>= 3.0, < 5.0)
+      highline (~> 1.6.19)
+      multi_json (~> 1.2)
+      ruby2ruby (~> 2.0.5)
+      ruby_parser (~> 3.1.1)
+      sass (~> 3.0)
+      slim (~> 1.3.6)
+      terminal-table (~> 1.4)
+    browser (0.2.0)
     builder (3.0.4)
+    bullet (4.6.0)
+      uniform_notifier
+    callsite (0.0.11)
     cancan (1.6.10)
+    cane (2.6.0)
+      parallel
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    choice (0.1.6)
     chunky_png (1.2.8)
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    cloudfront-signer (2.1.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    code_analyzer (0.3.2)
+      sexp_processor
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -83,6 +126,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    colored (1.2)
     comfortable_mexican_sofa (1.8.4)
       active_link_to (>= 1.0.0)
       coffee-rails (>= 3.1.0)
@@ -101,18 +145,29 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    daemons (1.1.9)
+    debug_inspector (0.0.2)
+    deep_cloneable (1.5.3)
+      activerecord (>= 3.2)
     devise (3.0.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
+    fastercsv (1.5.5)
     formatted_form (2.1.1)
       rails (>= 3.1.0)
     friendly_id (4.0.9)
     fssm (0.2.10)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -123,6 +178,7 @@ GEM
     hashie (2.0.5)
     highline (1.6.19)
     hike (1.2.3)
+    httpauth (0.2.0)
     i18n (0.6.4)
     journey (1.0.4)
     jquery-rails (3.0.4)
@@ -132,6 +188,8 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kramdown (1.1.0)
     less (2.3.2)
       commonjs (~> 0.2.6)
@@ -142,9 +200,18 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta-tags (1.5.0)
+      actionpack
+    meta_request (0.2.7)
+      callsite
+      rack-contrib
+      railties
     mime-types (1.23)
+    money (5.1.1)
+      i18n (~> 0.6.0)
     multi_json (1.7.7)
-    mysql2 (0.3.12)
+    multipart-post (1.2.0)
+    mysql2 (0.3.13)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -152,9 +219,25 @@ GEM
     net-ssh (2.6.8)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.6.5.130)
+    nokogiri (1.5.10)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
+    omniauth-google-oauth2 (0.2.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     orm_adapter (0.4.0)
     paperclip (3.4.2)
       activemodel (>= 3.0.0)
@@ -162,33 +245,72 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
-    pg (0.14.1)
+    parallel (0.7.1)
+    pg (0.15.1)
     polyglot (0.3.3)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rails-erd (1.1.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      choice (~> 0.1.6)
+      ruby-graphviz (~> 1.0.4)
+    rails_best_practices (1.13.8)
+      activesupport
+      awesome_print
+      code_analyzer
+      colored
+      erubis
+      i18n
+      ruby-progressbar
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    reek (1.3.1)
+      ruby2ruby (~> 2.0.2)
+      ruby_parser (~> 3.1.1)
+      sexp_processor
     ref (1.0.5)
+    ruby-graphviz (1.0.9)
+    ruby-progressbar (1.1.1)
+    ruby2ruby (2.0.6)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.0)
+    ruby_parser (3.1.3)
+      sexp_processor (~> 4.1)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sexp_processor (4.2.1)
+    slim (1.3.9)
+      temple (~> 0.6.3)
+      tilt (~> 1.3, >= 1.3.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    temple (0.6.5)
+    terminal-table (1.4.5)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
     tinymce-rails (4.0.1)
@@ -205,35 +327,62 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uniform_notifier (1.2.0)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
+    will_paginate (3.0.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemerchant
   airbrake
+  awesome_print
+  aws-sdk
+  better_errors
+  binding_of_caller
+  brakeman
+  browser
+  bullet
   cancan
+  cane
   capistrano
+  cloudfront-signer
   coffee-rails (~> 3.2.1)
   comfortable_mexican_sofa (~> 1.8.0)
   compass-rails
+  deep_cloneable
   devise
   formatted_form
   friendly_id
+  gon
   haml-rails
   jquery-rails
   jquery-ui-rails
   less-rails
+  meta-tags
+  meta_request
   mysql2
+  newrelic_rpm
   omniauth
+  omniauth-facebook
+  omniauth-google-oauth2
   paperclip (~> 3.4.2)
   pg
+  quiet_assets
   rails!
+  rails-erd
+  rails_best_practices
+  reek
   sass-rails (~> 3.2.6)
   seedbank!
   sqlite3
   therubyracer
+  thin
   tinymce-rails
   twitter-bootstrap-rails
+  tzinfo
   uglifier (>= 1.3.0)
+  will_paginate

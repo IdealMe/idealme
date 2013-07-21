@@ -1,0 +1,122 @@
+// ********************* Font color
+=hex($hex: "#000")
+  color: $hex
+// ********************* Font color END
+// ********************* Font size
+=fs($font_size: 12px)
+  font-size: $font_size
+
+=lh($font_lh: 16px)
+  line-height: $font_lh
+
+=left
+  text-align: left
+
+=right
+  text-align: right
+
+=centered
+  text-align: center
+
+=bold
+  font-weight: bold
+
+=italic
+  font-style: italic
+
+=upper
+  text-transform: uppercase
+// ********************* Font size end
+// HELPERS
+=block
+  display: block
+
+=pointer
+  cursor: pointer
+
+//Sprites
+// Note: Name the folder with icons should be "icons"
+=sprite_css($name)
+  +icons-sprite($name)
+  height: icons-sprite-height($name)
+  width: icons-sprite-width($name)
+
+// background
+=bg($bg_data)
+  :background $bg_data
+
+=bg_pos($x, $y)
+  :background-position $x $y
+
+// width and height
+=wxh($width, $height:  "")
+  @if $height != ""
+    height: $height
+  width: $width
+
+// margin
+=m($top: "auto", $right: "auto", $bottom: "auto", $left: "auto")
+  :margin $top $right $bottom $left
+
+=m_t($px)
+  :margin-top $px
+
+=m_r($px)
+  :margin-right $px
+
+=m_b($px)
+  :margin-bottom $px
+
+=m_l($px)
+  :margin-left $px
+
+// padding
+=p($top: "auto", $right: "auto", $bottom: "auto", $left: "auto")
+  :padding $top $right $bottom $left
+
+=p_t($px)
+  :padding-top $px
+
+=p_r($px)
+  :padding-right $px
+
+=p_b($px)
+  :padding-bottom $px
+
+=p_l($px)
+  :padding-left $px
+
+=rel
+  :position relative
+
+=abs
+  :position absolute
+
+=abs_br($x_pos: 0px, $y_pos: 0px)
+  bottom: $x_pos
+  right: $y_pos
+  +abs
+
+=abs_tl($x_pos:  0px, $y_pos:  0px)
+  left: $y_pos
+  top: $x_pos
+  +abs
+
+=abs_tr($x_pos:  0px, $y_pos:  0px)
+  top: $x_pos
+  right: $y_pos
+  +abs
+
+=abs_bl($x_pos:  0px, $y_pos: 0px)
+  +abs
+  bottom: $x_pos
+  left: $y_pos
+
+// NEW AND IMPROVED
+=aabs_tlw($x_pos, $y_pos, $width)
+  +wxh($width)
+  +abs_tl($x_pos, $y_pos)
+
+=abs_blw($x_pos, $y_pos, $width)
+  +wxh($width)
+  +abs_bl($x_pos, $y_pos)

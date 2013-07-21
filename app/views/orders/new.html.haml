@@ -1,0 +1,18 @@
+.container
+  .row
+    .span12
+      %p Response:
+      = debug (@response)
+      %p CC:
+      = debug (@active_merchant_validator.cc)
+  .row
+    .span12
+      %h1
+        Ordering #{@market.course.name}
+      %p
+        You are purchasing the #{@market.course.name} course for #{penny_to_currency(@market.course.cost)} USD.
+      %p
+        Total: #{penny_to_currency(@market.course.cost)} USD.
+  .row
+    .span12
+      = render(:partial => 'form')

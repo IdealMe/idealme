@@ -3,5 +3,6 @@
     #legend
       %legend Course
   = f.text_field :name, :autofocus => true
+  = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_courses_path, :class => 'btn'

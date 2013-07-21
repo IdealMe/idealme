@@ -18,10 +18,26 @@
 //= require jquery.flexslider
 //= require formatted_form
 //= require tinymce-jquery
+//= require jquery.stayInWebApp.js
 //= require_tree .
 
 
 $(function () {
+    $('.user_pic').click(function () {
+        var user_menu = $(this).siblings('.user_menu');
+
+        var $this = $(this);
+        if ($this.hasClass('on')) {
+            $this.removeClass('on');
+            user_menu.hide();
+        } else {
+            $this.addClass('on');
+            user_menu.show();
+        }
+    });
+
+    $.stayInWebApp();
+
     // ****************************************** PLACEHOLDER
     function placeholder() { // placeholder for inputs textarea
         //placeholder for form
@@ -47,4 +63,3 @@ $(function () {
     });
 
 });
-
