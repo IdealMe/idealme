@@ -7,6 +7,9 @@ class CreateCourses < ActiveRecord::Migration
 
       t.integer :owner_id
 
+      t.integer :review_positive, :default => 0
+      t.integer :review_negative, :default => 0
+
       t.boolean :hidden, :default => false
       t.text :google_conversion_tracking
       t.decimal :affiliate_commission, :precision => 6, :scale => 3, :default => 50

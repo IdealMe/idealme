@@ -22,7 +22,7 @@
     = favicon_link_tag 'apple-touch-icon-72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
   %body{:class => body_class}
-    = image_tag('staging.png', :style=>"position: fixed; top: 0;left: 0;z-index: 99999;") if Rails.env.staging?
+    = image_tag('staging.png', :style=>"position: fixed; top: 0;right: 0;z-index: 99999;") if Rails.env.staging? || Rails.env.development?
     /
       Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
       chromium.org/developers/how-tos/chrome-frame-getting-started
@@ -59,7 +59,7 @@
 
       - else
         .container
-          .social_box
+          .fb_social_box
             .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
           .sign_in_box
           %form.sign_in_box{:action => new_user_session_path,:method => :get}
@@ -80,15 +80,12 @@
             = link_to 'Courses', admin_courses_path, :class => 'btn'
             = link_to 'Sections', admin_sections_path, :class => 'btn'
             = link_to 'Lectures', admin_lectures_path, :class => 'btn'
-
             = link_to 'Users', admin_users_path, :class => 'btn'
             = link_to 'Goals', admin_goals_path, :class => 'btn'
             %hr
             = yield
       - else
         = yield
-
-
     %footer
       .container
         %ul.footer_bg

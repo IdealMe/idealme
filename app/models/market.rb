@@ -12,9 +12,10 @@ class Market < ActiveRecord::Base
   # == Relationships ========================================================
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    :styles => {:full => '252x202#'},
+                    :styles => {:full => '252x202#', :thumb => '80x64#'},
                     :convert_options => {
                         :full => '-gravity center -extent 252x202 -quality 75 -strip',
+                        :thumb => '-gravity center -extent 80x64 -quality 75 -strip'
                     }
 
   # == Validations ==========================================================

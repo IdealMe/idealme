@@ -1,9 +1,13 @@
 class Section < ActiveRecord::Base
   # == Imports ==============================================================
+  extend FriendlyId
+
   # == Slug =================================================================
+  friendly_id :name, :use => [:history, :slugged]
+  
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :name, :slug
+  attr_accessible :name, :slug, :course, :course_id
 
   # == Relationships ========================================================
   belongs_to :course

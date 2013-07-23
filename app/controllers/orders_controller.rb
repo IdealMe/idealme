@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    render :create
+    return
   end
 
   # POST /orders
@@ -36,6 +38,7 @@ class OrdersController < ApplicationController
         #TODO: Order
         #TODO: Affiliate
         current_user.subscribe_course(@market.course)
+        render :create
       else
         flash[:alert] = @response.message
         render :new

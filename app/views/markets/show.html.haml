@@ -34,8 +34,10 @@
     .modal_footer
       .bottom_box
         .like_box
-          .like 352
-          .dislike 12
+          .like
+            = @market.course.review_positive
+          .dislike
+            = @market.course.review_negative
           .clear
         .comment_box
           31
@@ -74,37 +76,23 @@
           = @market.course.owner.fullname
         .clear
       .instructor_description
-        %p
-          Donna Krech is a successful entrepreneur, motivational speaker and published author. As the co-founder and CEO of the Thin & Healthy Weight Loss Program with over 25 years experience in the health and weight loss industry, Donna is the go-to expert when it comes to achieving your health and wellness goals.
-        %p
-          From losing weight, getting in shape, looking younger and feeling revitalized, Donna has all the health and wellness answers and advice you've been searching for.
-      -#.modal_title3 REVIEWS
-      -#.review_box
-      -#  .review
-      -#    .reviewer_pic
-      -#      = image_tag('user_review.png')
-      -#    .review_body
-      -#      .review_info
-      -#        by
-      -#        %a{:href => "#"} Gökçe Çözen,
-      -#        %span 5 months ago
-      -#      .review_title Worth every penny!!
-      -#      .riview_msg
-      -#        I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-      -#    .clear
-      -#  .review
-      -#    .reviewer_pic
-      -#      = image_tag('user_review.png')
-      -#    .review_body
-      -#      .review_info
-      -#        by
-      -#        %a{:href => "#"} Gökçe Çözen,
-      -#        %span 5 months ago
-      -#      .review_title Worth every penny!!
-      -#      .riview_msg
-      -#        I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-      -#    .clear
-      -#  = link_to 'See all ### reviews', market_reviews_path(@market), :class => 'see_all'
+        = @market.course.owner.instructor_about.html_safe
+      .modal_title3 REVIEWS
+      .review_box
+        - @market.course.reviews.each do |review|
+          .review
+            .reviewer_pic
+              = image_tag review.owner.avatar.url(:thumb)
+            .review_body
+              .review_info
+                by
+                = link_to review.owner.fullname, user_path(review.owner)
+                %span 5 months ago
+              .review_title Worth every penny!!
+              .review_msg
+                = review.content
+            .clear
+        = link_to "See all #{@market.course.reviews.length} reviews", market_reviews_path(@market), :class => 'see_all'
       .modal_title3 CURRICULUM
       .cirriculum_box
         - @market.course.sections.each_with_index do |section, index|

@@ -1,0 +1,17 @@
+%h1 Listing ajax_goals
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @ajax_goals.each do |ajax_goal|
+    %tr
+      %td= link_to 'Show', ajax_goal
+      %td= link_to 'Edit', edit_ajax_goal_path(ajax_goal)
+      %td= link_to 'Destroy', ajax_goal, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Goal', new_ajax_goal_path

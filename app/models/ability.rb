@@ -11,7 +11,7 @@ class Ability
       end
       if user.access_affiliate
       end
-      if user.access_course_creation
+      if user.access_instructor
       end
       if user.access_admin
         can :manage, :all

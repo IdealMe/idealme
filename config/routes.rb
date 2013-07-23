@@ -28,6 +28,17 @@ Idealme::Application.routes.draw do
   resources :courses, :only => [:index, :show]
   resources :discovers, :only => [:index, :show]
 
+
+  namespace :ajax do
+    resources :users, :only => [], :defaults => {:format => :json} do
+      collection do
+        post 'set_timezone' => 'users#set_timezone'
+      end
+    end
+    resources :goals, :only => [:index], :defaults => {:format => :json}
+  end
+
+
   ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
   # Make sure this routeset is defined last
   ComfortableMexicanSofa::Routing.content(:path => '/cms', :sitemap => false)

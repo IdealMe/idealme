@@ -1,0 +1,76 @@
+/* ******************************************** */
+/* Post payment page */
+/* ******************************************** */
+.orders_new {
+  .offer_section {
+    padding: 33px 41px 0 41px;
+    min-width: 1168px;
+    .section_header {
+      color: #8b8b8b;
+      font-size: 14px;
+      text-transform: uppercase;
+      line-height: 20px;
+      font-weight: normal;
+      margin-bottom: 24px;
+    }
+    table {
+      width: 100%;
+      border: none;
+    }
+    td {
+      text-align: center;
+    }
+  }
+  .also_viewed_header {
+    @include fs(14px);
+    @include m_b(25px);
+  }
+  .offer_section {
+    @include p_t(29px);
+  }
+  .thank_you_box {
+    padding: 10px;
+    @include m_t(23px);
+    .thanks_msg_box {
+      padding: 30px 10px 77px 10px;
+      @include fs(20px);
+      @include float-left;
+      width: 746px;
+      @include lh(20px);
+      @include hex(#4d4d4d);
+      @include bold;
+      border-right: 1px solid #ebeae8;
+      .btn-red {
+        padding: 15px 34px;
+        margin-top: 27px;
+        font-size: 12px;
+      }
+    }
+    .testimonials_box {
+      @include float-left;
+      width: 430px;
+      padding: 50px 0 0 30px;
+      .testimonial {
+        @include m_b(12px);
+      }
+      .user_pic {
+        @include m_r(25px);
+        @include float-left;
+      }
+      .testimonial_body {
+        @include hex(#424242);
+        @include float-left;
+        width: 290px;
+        @include fs(16px);
+        @include lh(20px);
+      }
+      .share_btn {
+        margin-right: 41px;
+        .btn {
+          @include fs(10px);
+          padding: 5px 60px 5px 26px;
+        }
+      }
+    }
+  }
+}

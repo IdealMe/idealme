@@ -1,0 +1,185 @@
+/* ******************************************** */
+/* Course page */
+/* ******************************************** */
+.markets_show {
+  @include bg(#faf9f5);
+  .promo_section {
+    min-width: 1250px;
+    @include bg(#c1e4de);
+    padding: 20px 0;
+    .promo_wrapper {
+      width: 1024px;
+      margin: 0 auto;
+    }
+    .info_box {
+      @include float-left;
+      width: 620px;
+    }
+    .icon_box {
+      @include float-left;
+      @include m_l(140px);
+    }
+  }
+  .title {
+    @include fs(34px);
+    @include lh(50px);
+    @include hex(#424242);
+    @include centered;
+    @include upper;
+    font-weight: normal;
+    margin-bottom: 22px;
+  }
+  .autor {
+    @include fs(16px);
+    @include centered;
+    margin-bottom: 26px;
+    @include hex(#666666);
+  }
+  .btn {
+    width: 230px;
+    margin: 0 auto;
+    padding: 16px 16px;
+    text-align: left;
+    vertical-align: baseline;
+    @include bg-pos(93%, 50%);
+    @include block;
+    .price {
+      @include rel;
+      top: 3px;
+      @include fs(24px);
+    }
+  }
+  .btn-red {
+    &.btn-arrow, &.btn-arrow:hover {
+      @include fs(12px);
+      @include lh(12px);
+      width: 230px;
+      margin: 140px 0 60px 0;
+      padding: 16px 16px;
+      text-align: left;
+      background-image: image-url("icons/btn_arrow_red.png");
+      background-repeat: no-repeat;
+      background-position: 96% 50%;
+    }
+  }
+  .main_section {
+    width: 764px;
+  }
+  .right_sidebar {
+    width: 466px;
+    @include bg(white);
+    margin-top: 42px;
+    border: 1px solid #ebeae8;
+    .bottom_box {
+      width: 230px;
+      margin: 0 auto;
+      @include block;
+    }
+  }
+  .member_box {
+    padding: 15px 0 0 15px;
+    .member_icon {
+      @include float-left;
+      @include m_r(16px);
+      @include m_b(16px);
+      @include border-radius(5px);
+      border: 1px solid #686869;
+    }
+  }
+  .modal_footer {
+    padding: 12px;
+  }
+  .what_you_get_box {
+    padding: 25px;
+    .media-body {
+      @include fs(16px);
+      color: #333333;
+    }
+  }
+  .instructor_box {
+    .instructor_head {
+      padding: 20px 40px 12px 40px;
+      border-bottom: 1px solid #ebeae8;
+    }
+    .instructor_pic {
+      @include float-left;
+    }
+    .instructor_name {
+      @include p_t(60px);
+      @include float-left;
+      @include fs(36px);
+      @include hex(#424242);
+      padding: 45px 0 0 20px;
+    }
+    .instructor_description {
+      padding: 35px;
+      @include fs(16px);
+      @include lh(26px);
+      @include hex(#333333);
+      p {
+        margin-bottom: 26px;
+      }
+    }
+  }
+  .review_box {
+    .review {
+      padding: 20px;
+      border-bottom: 1px solid #ebeae8;
+    }
+    .reviewer_pic {
+      @include float-left;
+      @include m_r(20px);
+    }
+    .review_body {
+      @include float-left;
+      @include fs(14px);
+      @include lh(20px);
+      @include hex(#333333);
+      width: 355px;
+    }
+    .review_title {
+      @include bold;
+      padding: 15px 0 25px 0;
+    }
+    .review_msg {
+      @include fs(12px);
+      @include lh(19px);
+    }
+    .see_all {
+      @include block;
+      height: 67px;
+      @include fs(16px);
+      @include lh(67px);
+      @include bold;
+      @include centered;
+    }
+  }
+  .cirriculum_box {
+    padding: 20px 20px 5px 20px;
+    color: #424242;
+    @include fs(12px);
+    .media {
+      @include m_t(0);
+      @include m_b(15px);
+    }
+    .pull-left {
+      margin-right: 41px;
+      @include bold;
+    }
+  }
+  .foq_box {
+    padding: 20px 20px 20px 20px;
+  }
+  .partners_box {
+    padding: 20px;
+  }
+  .elle_icon, .fab_icon, .oxygen_icon {
+    @include float-left;
+  }
+  .elle_icon {
+    margin: 14px 0 0 0;
+  }
+  .fab_icon {
+    margin: 21px 41px 0px 41px;
+  }
+}

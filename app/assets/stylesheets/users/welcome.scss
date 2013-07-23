@@ -1,0 +1,44 @@
+/* ******************************************** */
+/* To Do page */
+/* ******************************************** */
+.users_welcome {
+  .top_msg_box {
+    @include centered;
+    @include hex(#8b8b8b);
+    @include fs(16px);
+    @include lh(20px);
+    .title {}
+  }
+  @include bg(#fbfaf4);
+  .goals_section {
+    width: 100%;
+    border: none;
+    margin-top: 15px;
+    .goal_box {
+      float: none;
+      @include block;
+      margin: 0 auto 20px auto;
+    }
+    .goal_icon {
+      height: 125px;
+      @include p_t(35px);
+      @include centered;
+    }
+    .bottom_box {
+      @include bg(#fafafa);
+      height: 55px;
+      @include lh(55px);
+      @include centered;
+      .goal-picker {
+        @include fs(36px);
+      }
+    }
+  }
+  .btn-red {
+    width: 236px;
+    padding: 25px 0px;
+    @include centered;
+    margin: 0px auto 40px auto;
+    @include block;
+  }
+}

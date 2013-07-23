@@ -1,18 +1,95 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @course.name
-%p
-  %b Slug:
-  = @course.slug
-%p
-  %b Hidden:
-  = @course.hidden
-%p
-  %b Avatar:
-  = @course.avatar
-
-= link_to 'Edit', edit_course_path(@course)
-\|
-= link_to 'Back', courses_path
+.promo_section
+  .container
+    .info_box
+      %h3.title
+        = @course.name
+      %p.autor 
+        %em by 
+        = @course.owner.fullname  
+      .progress
+        .bar{:style => "width: 20%;"}
+    .share_btn.btn-group
+      %button.btn.dropdown-toggle{"data-toggle" => "dropdown"} 
+        Share (281)
+        %span.caret
+      .dropdown-menu
+        .social_box
+          .social_icon.twitter_icon
+          .social_name twitter
+          .turquoise_bg.counter 261
+          .clear
+        .social_box
+          .social_icon.facebook_icon
+          .social_name facebook
+          .dark_blue_bg.counter 16
+          .clear
+        .social_box
+          .social_icon.google_plus_icon
+          .social_name google plus
+          .red_bg.counter 3
+          .clear
+        .social_box
+          .social_icon.pinterest_icon
+          .social_name pinterest
+          .soft_blue_bg.counter 3
+          .clear
+        .social_box
+          .social_icon.stumble_icon
+          .social_name stumble upon
+          .red_1_bg.counter 0
+          .clear            
+        .social_box
+          .social_icon.twitter2_icon
+          .social_name twitter
+          .light_blue_bg.counter 0
+          .clear
+    .clear
+.container
+  .main_section
+    .module_box
+      %h3 MODULES
+      - @course.sections.each_with_index do |section, index|
+        .module 
+          -#.progress
+          -#  .bar{:style => "width: 100%;"}
+          .numb 
+            = index + 1
+          .module_title 
+            = section.name    
+          -#.module_time 03:08 
+          .clear              
+        .module-lectures  
+          %ul
+            - section.lectures.each do |lecture|
+              %li= lecture.name
+        .clear                            
+          
+          
+          
+          
+          
+  .right_sidebar
+    %ul.tab_menu
+      %li
+        %a.active{:href => "#"} QUESTIONS
+      %li
+        %a{:href => "#"} ACTIVITY
+    .clear
+    %form.question_box{:action=>"#"}
+      %input.question_field{:type => "text", :value=>"Questions? Ask here...",:placeholder=>"Questions? Ask here..."}/
+      %button.question_btn.btn{:type => "submit"} Submit
+      .clear
+    .comments_box
+      -2.times do 
+        .comment
+          .user_pic
+            =image_tag 'vendor.png'
+          .comment_body
+            .comment_msg
+              .user_name Jane Smith
+              .date 2 minutes ago
+              .clear
+              .msg
+                I'm fired up to do this
+            .comment_count 3
+          .clear

@@ -5,10 +5,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :has_password, :default => true
       t.datetime :identity_unlocked_at, :null => false, :default => Time.zone.local(1970, 1, 1, 1, 1)
       t.text :about
+      t.text :instructor_about
+
       t.text :notes
       t.string :firstname
       t.string :lastname
       t.string :username
+
+
       t.string :timezone, :default => 'Etc/Zulu'
       t.string :tagline, :default => ''
       t.decimal :survey_base, :precision => 6, :scale => 3, :default => 0
@@ -19,7 +23,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :affiliate_payment_frequency
       t.boolean :access_normal, :default => true
       t.boolean :access_affiliate, :default => false
-      t.boolean :access_course_creation, :default => false
+      t.boolean :access_instructor, :default => false
       t.boolean :access_support, :default => false
       t.boolean :access_admin, :default => false
       t.attachment :avatar

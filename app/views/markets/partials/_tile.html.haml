@@ -10,11 +10,14 @@
     .clear
   .bottom_box
     .like_box
-      .like 352
-      .dislike 12
+      .like
+        = market.course.review_positive
+      .dislike
+        = market.course.review_negative
       .clear
     .price_box
       = penny_to_currency(market.course.cost)
     .add_me_box
       .unchecked +
-      .checked
+      .checked    
+    .clear              

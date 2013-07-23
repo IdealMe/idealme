@@ -1,18 +1,22 @@
 class Lecture < ActiveRecord::Base
   # == Imports ==============================================================
+  extend FriendlyId
+
   # == Slug =================================================================
+  friendly_id :name, :use => [:history, :slugged]
+  
   # == Constants ============================================================
   # == Attributes ===========================================================
+  attr_accessible :name, :slug, :section, :section_id
+  
   # == Relationships ========================================================
+  belongs_to :section
+  delegate :course, :to => :section, :allow_nil => true
+  
   # == Paperclip ============================================================
   # == Validations ==========================================================
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
-
-  belongs_to :section
-  attr_accessible :name, :slug
-  delegate :course, :to => :section, :allow_nil => true
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721110731) do
+ActiveRecord::Schema.define(:version => 20130722002923) do
 
   create_table "affiliate_clicks", :force => true do |t|
     t.integer  "clicks",                :default => 1
@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(:version => 20130721110731) do
     t.string   "slug"
     t.integer  "cost"
     t.integer  "owner_id"
+    t.integer  "review_positive",                                          :default => 0
+    t.integer  "review_negative",                                          :default => 0
     t.boolean  "hidden",                                                   :default => false
     t.text     "google_conversion_tracking"
     t.decimal  "affiliate_commission",       :precision => 6, :scale => 3, :default => 50.0
@@ -234,6 +236,18 @@ ActiveRecord::Schema.define(:version => 20130721110731) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
+
+  create_table "identities", :force => true do |t|
+    t.text     "access_token"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "identifier"
+    t.integer  "owner_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "identities", ["owner_id"], :name => "index_identities_on_owner_id"
 
   create_table "lectures", :force => true do |t|
     t.string   "name"
@@ -294,11 +308,11 @@ ActiveRecord::Schema.define(:version => 20130721110731) do
 
   create_table "reviews", :force => true do |t|
     t.text     "content"
-    t.boolean  "recommended"
+    t.boolean  "recommended", :default => true
     t.integer  "owner_id"
     t.integer  "course_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "reviews", ["course_id"], :name => "index_reviews_on_course_id"
@@ -329,6 +343,7 @@ ActiveRecord::Schema.define(:version => 20130721110731) do
     t.boolean  "has_password",                                               :default => true
     t.datetime "identity_unlocked_at",                                       :default => '1970-01-01 01:01:00', :null => false
     t.text     "about"
+    t.text     "instructor_about"
     t.text     "notes"
     t.string   "firstname"
     t.string   "lastname"
@@ -343,7 +358,7 @@ ActiveRecord::Schema.define(:version => 20130721110731) do
     t.integer  "affiliate_payment_frequency"
     t.boolean  "access_normal",                                              :default => true
     t.boolean  "access_affiliate",                                           :default => false
-    t.boolean  "access_course_creation",                                     :default => false
+    t.boolean  "access_instructor",                                          :default => false
     t.boolean  "access_support",                                             :default => false
     t.boolean  "access_admin",                                               :default => false
     t.string   "avatar_file_name"

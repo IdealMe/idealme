@@ -10,6 +10,8 @@
         = f.text_field :lastname
         = f.email_field :email
         = f.file_field :avatar
+        - if resource.access_instructor
+          = f.text_area :instructor_about, :class => 'tinymce'
         = f.password_field :password, :placeholder => "leave blank if you don't want to change it"
         = f.password_field :password_confirmation
         = f.password_field :current_password, :placeholder => "we need your current password"

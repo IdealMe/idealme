@@ -1,12 +1,18 @@
 .container
   .row
-    .span12
-      %h1
-        Ordering #{@market.course.name}
+    .span1
+      = image_tag @market.avatar.url(:thumb)
+    .span10
       %p
-        You are purchasing the #{@market.course.name} course for #{penny_to_currency(@market.course.cost)} USD.
+        %strong
+          Ordering #{@market.course.name}
       %p
-        Total: #{penny_to_currency(@market.course.cost)} USD.
+        %i
+          By:
+        = @market.course.owner.fullname
+
+      %p
+        #{penny_to_currency(@market.course.cost)}
   .row
     .span12
       = render(:partial => 'form')

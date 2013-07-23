@@ -7,7 +7,8 @@ class Course < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :avatar, :hidden, :name, :slug, :owner_id, :cost, :default_market_id
+  attr_accessible :avatar, :hidden, :name, :slug, :owner_id, :cost, :default_market_id,
+                  :review_positive, :review_negative
 
   # == Relationships ========================================================
   has_many :markets
@@ -22,9 +23,12 @@ class Course < ActiveRecord::Base
   has_many :sections
   has_many :lectures, :through => :sections
 
+  has_many :reviews
+
   # == Paperclip ============================================================
   # == Validations ==========================================================
   # == Scopes ===============================================================
+  scope :with_sections_and_lectures, -> { includes(:sections => :lectures) }
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================

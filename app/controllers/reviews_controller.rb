@@ -1,7 +1,15 @@
 class ReviewsController < ApplicationController
+  before_filter :require_authentication
+
+  before_filter :load_market
+
+  before_filter :load_review, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_reviews, :only => [:index]
+  before_filter :build_review, :only => [:new, :create]
+
+
   # GET /reviews
   def index
-    @reviews = Review.all
   end
 
   # GET /reviews/1
@@ -11,38 +19,49 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @review = Review.new
   end
 
   # GET /reviews/1/edit
   def edit
-    @review = Review.find(params[:id])
   end
 
   # POST /reviews
   def create
-    @review = Review.new(params[:review])
-    if @review.save
-      redirect_to @review, notice: 'Review was successfully created.'
-    else
-      render action: "new"
-    end
+    @review.save!
+    redirect_to market_path(@market), notice: 'Review was successfully created.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :new
   end
 
   # PUT /reviews/1
   def update
-    @review = Review.find(params[:id])
-    if @review.update_attributes(params[:review])
-      redirect_to @review, notice: 'Review was successfully updated.'
-    else
-      render action: "edit"
-    end
+    @review.update_attributes!(params[:review])
+    redirect_to market_path(@market), notice: 'Review was successfully updated.'
+  rescue ActiveRecord::RecordInvalid
+    render action => :edit
   end
 
   # DELETE /reviews/1
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
-    redirect_to reviews_url
+    redirect_to market_path(@market), :notice => 'Review was successfully deleted'
+  end
+
+  protected
+
+  def load_market
+    @market = Market.find(params[:market_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to markets_path, :alert => "Market not found"
+  end
+
+  def load_reviews
+    @reviews = @market.course.reviews
+  end
+
+  def build_review
+    @review = Review.new(params[:review])
+    @review.course = @market.course
+    @review.owner = current_user
   end
 end

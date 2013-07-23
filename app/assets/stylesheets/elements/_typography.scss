@@ -1,0 +1,27 @@
+/* ******************************************** */
+/* Typography */
+/* ******************************************** */
+h1 {
+  @include fs(28px);
+  @include lh(21px);
+}
+
+h2 {
+  @include fs(20px);
+  @include lh(21px);
+}
+
+h3 {
+  @include fs(18px);
+  @include lh(21px);
+}
+
+/* ******************** LISTS ********************** */
+.list_1 {
+  list-style: none;
+  margin: 0;
+  li {
+    padding: 15px 0px 15px 40px;
+    @include bg(image-url("icons/list_1.png") no-repeat 6px 18px);
+  }
+}

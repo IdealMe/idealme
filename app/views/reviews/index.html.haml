@@ -1,6 +1,8 @@
-%h1 Listing reviews
+%h1
+  Reviews for
+  = @market.course.name
 
-%table
+%table.table
   %tr
     %th Content
     %th Recommended
@@ -22,4 +24,4 @@
 
 %br
 
-= link_to 'New Review', new_review_path
+= link_to 'New Review', new_market_review_path(@market), :class => 'btn'

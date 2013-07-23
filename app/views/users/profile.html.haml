@@ -43,4 +43,34 @@
     .add_goal
       .plus +
       Add goals
-    .clear
+    .clear         
+      
+        
+  .offer_section
+    %h3.also_viewed_header Customers who took this course also viewed
+    %table
+      %tr
+        -4.times do
+          %td
+            .offer_card
+              %a{:href => "#"} 
+                =image_tag 'recomandation_img.png'
+              %a.offer_title{:href => "#"} Negotiate a Lower Rent
+              .vendor
+                .vendor_pic 
+                  %a{:href => "#"} 
+                    =image_tag 'vendor.png'
+                %a.vendor_name{:href => "#"} Jen Snow
+                .vendor_working_area Lifecoach - Mother - Guru
+                .clear
+              .bottom_box
+                .like_box
+                  .like 352 
+                  .dislike 12
+                  .clear
+                .price_box
+                  $26.96
+                .add_me_box
+                  .unchecked +
+                .clear
+    

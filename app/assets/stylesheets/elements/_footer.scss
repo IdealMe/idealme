@@ -1,0 +1,29 @@
+/* ******************************************** */
+/* Footer */
+/* ******************************************** */
+footer {
+  @include bg(#f6f6f8);
+  min-width: 1250px;
+}
+
+.footer_bg {
+  @include sprite_css(footer_bg);
+  @include rel;
+  margin: 73px auto 60px auto;
+}
+
+.footer_menu {
+  list-style: none;
+  z-index: 100;
+  @include abs_tl(100px, 50%);
+  width: 370px;
+  @include m_l(-180px);
+  li {
+    @include float-left;
+    @include m_r(30px);
+    a {
+      @include fs(14px);
+      @include hex(#999999);
+    }
+  }
+}

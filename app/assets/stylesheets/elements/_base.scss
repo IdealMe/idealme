@@ -1,0 +1,158 @@
+// ********************* Font color
+@mixin hex($hex: "#000") {
+  color: $hex;
+}
+
+// ********************* Font color END
+// ********************* Font size
+@mixin fs($font_size: 12px) {
+  font-size: $font_size;
+}
+
+@mixin lh($font_lh: 16px) {
+  line-height: $font_lh;
+}
+
+@mixin left {
+  text-align: left;
+}
+
+@mixin right {
+  text-align: right;
+}
+
+@mixin centered {
+  text-align: center;
+}
+
+@mixin bold {
+  font-weight: bold;
+}
+
+@mixin italic {
+  font-style: italic;
+}
+
+@mixin upper {
+  text-transform: uppercase;
+}
+
+// ********************* Font size end
+// HELPERS
+@mixin block {
+  display: block;
+}
+
+@mixin pointer {
+  cursor: pointer;
+}
+
+//Sprites
+// Note: Name the folder with icons should be "icons"
+@mixin sprite_css($name) {
+  @include icons-sprite($name);
+  height: icons-sprite-height($name);
+  width: icons-sprite-width($name);
+}
+
+// background
+@mixin bg($bg_data) {
+  background: $bg_data;
+}
+
+@mixin bg_pos($x, $y) {
+  background-position: $x $y;
+}
+
+// width and height
+@mixin wxh($width, $height: "") {
+  @if $height != "" {
+    height: $height;
+  }
+  width: $width;
+}
+
+// margin
+@mixin m($top: "auto", $right: "auto", $bottom: "auto", $left: "auto") {
+  margin: $top $right $bottom $left;
+}
+
+@mixin m_t($px) {
+  margin-top: $px;
+}
+
+@mixin m_r($px) {
+  margin-right: $px;
+}
+
+@mixin m_b($px) {
+  margin-bottom: $px;
+}
+
+@mixin m_l($px) {
+  margin-left: $px;
+}
+
+// padding
+@mixin p($top: "auto", $right: "auto", $bottom: "auto", $left: "auto") {
+  padding: $top $right $bottom $left;
+}
+
+@mixin p_t($px) {
+  padding-top: $px;
+}
+
+@mixin p_r($px) {
+  padding-right: $px;
+}
+
+@mixin p_b($px) {
+  padding-bottom: $px;
+}
+
+@mixin p_l($px) {
+  padding-left: $px;
+}
+
+@mixin rel {
+  position: relative;
+}
+
+@mixin abs {
+  position: absolute;
+}
+
+@mixin abs_br($x_pos: 0px, $y_pos: 0px) {
+  bottom: $x_pos;
+  right: $y_pos;
+  @include abs;
+}
+
+@mixin abs_tl($x_pos: 0px, $y_pos: 0px) {
+  left: $y_pos;
+  top: $x_pos;
+  @include abs;
+}
+
+@mixin abs_tr($x_pos: 0px, $y_pos: 0px) {
+  top: $x_pos;
+  right: $y_pos;
+  @include abs;
+}
+
+@mixin abs_bl($x_pos: 0px, $y_pos: 0px) {
+  @include abs;
+  bottom: $x_pos;
+  left: $y_pos;
+}
+
+// NEW AND IMPROVED
+@mixin aabs_tlw($x_pos, $y_pos, $width) {
+  @include wxh($width);
+  @include abs_tl($x_pos, $y_pos);
+}
+
+@mixin abs_blw($x_pos, $y_pos, $width) {
+  @include wxh($width);
+  @include abs_bl($x_pos, $y_pos);
+}

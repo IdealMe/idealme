@@ -1,0 +1,81 @@
+.container
+  .thank_you_box.modal_box
+    .thanks_msg_box
+      %div Thank you, your order has been placed and you are enrolled in this course!
+      = link_to 'GO TO COURSE', course_path(@market.course), :class => 'btn btn-red'
+         
+    .testimonials_box
+      .testimonial
+        .user_pic   
+          = image_tag @market.avatar(:thumb)
+        .testimonial_body
+          I just enrolled: 
+          = @market.course.name 
+          by 
+          = @market.course.owner.fullname
+          on IdealMe
+        .clear
+      .share_btn.btn-group
+        %button.btn.dropdown-toggle{"data-toggle" => "dropdown"} 
+          SHARE
+          %span.caret
+        .dropdown-menu
+          .social_box
+            .social_icon.twitter_icon
+            .social_name twitter
+            .turquoise_bg.counter 261
+            .clear
+          .social_box
+            .social_icon.facebook_icon
+            .social_name facebook
+            .dark_blue_bg.counter 16
+            .clear
+          .social_box
+            .social_icon.google_plus_icon
+            .social_name google plus
+            .red_bg.counter 3
+            .clear
+          .social_box
+            .social_icon.pinterest_icon
+            .social_name pinterest
+            .soft_blue_bg.counter 3
+            .clear
+          .social_box
+            .social_icon.stumble_icon
+            .social_name stumble upon
+            .red_1_bg.counter 0
+            .clear            
+          .social_box
+            .social_icon.twitter2_icon
+            .social_name twitter
+            .light_blue_bg.counter 0
+            .clear
+    .clear
+.offer_section
+  %h3.also_viewed_header Customers who took this course also viewed
+  %table
+    %tr
+      -4.times do
+        %td
+          .offer_card
+            %a{:href => "#"} 
+              =image_tag 'recomandation_img.png'
+            %a.offer_title{:href => "#"} Negotiate a Lower Rent
+            .vendor
+              .vendor_pic 
+                %a{:href => "#"} 
+                  =image_tag 'vendor.png'
+              %a.vendor_name{:href => "#"} Jen Snow
+              .vendor_working_area Lifecoach - Mother - Guru
+              .clear
+            .bottom_box
+              .like_box
+                .like 352 
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+              .clear
+  

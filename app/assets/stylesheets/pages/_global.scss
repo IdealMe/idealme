@@ -1,0 +1,415 @@
+/* ******************************************** */
+/* Main styles (Global styles for all pages) */
+/* ******************************************** */
+body {
+  @include bg(#fbfaec);
+  font-family: Arial;
+}
+
+.container {
+  width: 1250px;
+  @include rel;
+}
+
+.main_section {
+  @include float-left;
+  width: 872px;
+  @include left;
+  .post-wrapper {
+    margin-left: 105px;
+    width: 600px;
+    @include hex(#333333);
+    @include fs(16px);
+    @include lh(25px);
+    padding-top: 50px;
+    h1, h2 {
+      font-weight: normal;
+    }
+    h2 {
+      @include lh(32px);
+      @include m_t(0);
+    }
+    p, h1, h2, h3 {
+      @include m_b(25px);
+    }
+  }
+}
+
+.right_sidebar {
+  @include float-left;
+  width: 370px;
+  @include left;
+}
+
+/* ******************************************** */
+/* modal box elements */
+/* ******************************************** */
+.modal_box {
+  border: 1px solid #ebeae8;
+  @include border-radius(5px);
+  @include bg(white);
+  .modal_body {
+    padding: 20px;
+    @include fs(14px);
+    @include hex(#999999);
+    .media-heading {
+      @include bold;
+      @include hex(#4d4d4d);
+    }
+  }
+}
+
+.modal_title1 {
+  @include fs(14px);
+  @include centered;
+  @include hex(#8b8b8b);
+  padding: 17px 0 14px 0;
+  @include upper;
+  border-bottom: 1px solid #ebeae8;
+}
+
+.modal_title2 {
+  @include bg(#fbfbfb);
+  @extend .modal_title1;
+  @include fs(18px);
+  @include hex(#8b8b8b);
+  padding: 12px 0 12px 0;
+}
+
+.modal_title3 {
+  @extend .modal_title2;
+  padding: 28px 0 18px 0;
+  border-top: 1px solid #ebeae8;
+}
+
+.modal_footer {
+  border-top: 1px solid #ebeae8;
+}
+
+.media {
+  margin-top: 30px;
+  .pull-left {
+    margin-right: 18px;
+  }
+}
+
+/* ******************************************** */
+/* offer card elements */
+/* ******************************************** */
+.offer_card {
+  width: 252px;
+  margin: 0 auto 12px auto;
+  @include bg(white);
+  border: 1px solid #ebebeb;
+  @include left;
+  .offer_title {
+    @include fs(12px);
+    @include hex(#4b4b4b);
+    margin-top: 12px;
+    margin-left: 16px;
+    @include block;
+  }
+  .vendor_pic {
+    @include float-left;
+    margin: 12px 10px 6px 13px;
+  }
+  .vendor_name {
+    @include fs(12px);
+    @include lh(16px);
+    @include hex(#6b635b);
+    @include p_t(13px);
+    @include block;
+  }
+  .vendor_working_area {
+    @include fs(10px);
+    @include hex(#999999);
+    @include lh(14px);
+  }
+}
+
+.bottom_box {
+  border-top: 1px solid #ebebeb;
+}
+
+.comment_box {
+  @include float-left;
+  @include fs(10px);
+  @include hex(#4d4d4d);
+  width: 29px;
+  padding: 7px 33px 7px 0px;
+  @include m_l(8px);
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+  @include bg(image-url("icons/comment.png") no-repeat);
+  @include bg_pos(70%, 8px);
+  @include right;
+}
+
+.like_box {
+  @include float-left;
+  border-top: 2px solid #6b823c;
+  width: 90px;
+  padding: 5px 5px 5px 5px;
+  .like {
+    @include bg(image-url("icons/like.png") no-repeat);
+    @include float-left;
+    @include fs(10px);
+    @include hex(#999999);
+    @include pointer;
+    padding: 0 5px 0 20px;
+  }
+  .dislike {
+    @include bg(image-url("icons/dislike.png") no-repeat);
+    @include float-right;
+    @include fs(10px);
+    @include hex(#999999);
+    @include pointer;
+    padding: 0 5px 0 20px;
+  }
+}
+
+.price_box {
+  @include float-left;
+  @include fs(10px);
+  @include hex(#4d4d4d);
+  @include centered;
+  width: 80px;
+  padding: 7px 0px;
+  @include m_l(13px);
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+}
+
+.add_me_box {
+  @include float-left;
+  @include fs(16px);
+  @include hex(#797979);
+  @include rel;
+  @include bold;
+  @include pointer;
+  .unchecked {
+    width: 57px;
+    text-align: center;
+    padding: 6px 0;
+  }
+  .checked {
+    display: none;
+  }
+}
+
+/* ******************************************** */
+/* goals card elements */
+/* ******************************************** */
+.goal_box {
+  @include float-left;
+  width: 230px;
+  @include bg(#fcfcfc);
+  border: 1px solid #e4e4e4;
+  @include border-radius(5px);
+  @include m_r(28px);
+  @include pointer;
+  &:hover {
+    @include bg(white);
+    border-color: #c9c9c9;
+  }
+  .goal_name {
+    color: #666666;
+    @include fs(12px);
+    @include bold;
+    @include centered;
+    @include m_b(27px);
+  }
+}
+
+/* ******************************************** */
+/* icons */
+/* ******************************************** */
+.ok_icon {
+  @include sprite_css(ok_icon);
+}
+
+.checked_icon {
+  @include sprite_css(checked_icon);
+}
+
+.flag_icon {
+  @include sprite_css(flag_icon);
+}
+
+.analysis_icon {
+  @include sprite_css(analysis_icon);
+}
+
+.natural_icon {
+  @include sprite_css(natural_icon);
+}
+
+.improve_icon {
+  @include sprite_css(improve_icon);
+}
+
+.tools_icon {
+  @include sprite_css(tools_icon);
+}
+
+.elle_icon {
+  @include sprite_css(elle_icon);
+}
+
+.fab_icon {
+  @include sprite_css(fab_icon);
+}
+
+.oxygen_icon {
+  @include sprite_css(oxygen);
+}
+
+.twitter_icon {
+  @include sprite_css(twitter_icon);
+}
+
+.google_plus_icon {
+  @include sprite_css(google_plus_icon);
+}
+
+.stumble_icon {
+  @include sprite_css(stumble_icon);
+}
+
+.facebook_icon {
+  @include sprite_css(facebook_icon);
+}
+
+.pinterest_icon {
+  @include sprite_css(pinterest_icon);
+}
+
+.twitter2_icon {
+  @include sprite_css(twitter2_icon);
+}
+
+/* ******************************************** */
+/* Progress Bar */
+/* ******************************************** */
+.progress {
+  @include rel;
+  @include box-shadow(none);
+  @include border-radius(0);
+  height: 23px;
+  .bar {
+    @include bg(#ffaba9);
+    @include box-shadow(none);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffaba9', endColorstr='#ffffaba9', GradientType=0);
+  }
+}
+
+/* ******************************************** */
+/* Share Button */
+/* ******************************************** */
+.share_btn {
+  @include float-right;
+  @include m_r(14px);
+  @include border-radius(0);
+  .btn {
+    height: 36px;
+    @include border-radius(0);
+    @include rel;
+    padding: 5px 45px 5px 13px;
+    @include hex(#424242);
+    &:hover, &:active {
+      @include bg(white);
+      @include hex(#424242);
+    }
+    &:first-child {
+      @include border-radius(0);
+    }
+    .caret {
+      @include bg(image-url("icons/caret.png") no-repeat 50% 50%);
+      @include abs_tr(0, 0px);
+      @include wxh(36px, 34px);
+      border: none;
+      margin: 0;
+      padding: 0;
+      border-left: 1px solid #ebeae5;
+    }
+  }
+  .dropdown-menu {
+    right: 0px;
+    left: auto;
+    @include border-radius(0);
+    width: 470px;
+    padding: 10px 0;
+    .social_box {
+      border-bottom: 1px solid #eaeaea;
+      @include hex(#333333);
+      @include fs(12px);
+      @include lh(20px);
+      @include upper;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      @include float-left;
+      width: 210px;
+      @include m_l(16px);
+      div {
+        @include float-left;
+      }
+      .social_icon {
+        margin: 8px 8px 0 0;
+      }
+      .counter {
+        @include float-right;
+        padding: 4px 12px;
+        @include hex(white);
+        @include fs(14px);
+        @include bold;
+      }
+      .social_name {
+        @include m_t(10px);
+      }
+    }
+  }
+}
+
+/* ******************************************** */
+/* Bg colors */
+/* ******************************************** */
+.turquoise_bg {
+  @include bg(#00b7f1);
+}
+
+.red_bg {
+  @include bg(#e04a31);
+}
+
+.red_1_bg {
+  @include bg(#d50000);
+}
+
+.dark_blue_bg {
+  @include bg(#39579a);
+}
+
+.soft_blue_bg {
+  @include bg(#338cb6);
+}
+
+.light_blue_bg {
+  @include bg(#7ba1d0);
+}
+
+/* ******************************************** */
+/* Helpers */
+/* ******************************************** */
+.fleft {
+  @include float-left;
+}
+
+.fright {
+  @include float-right;
+}
+
+.clear {
+  clear: both;
+  @include fs(1px);
+  height: 0px;
+}
