@@ -1,0 +1,483 @@
+.goals-show {
+  @include bg(#faf9f4);
+  .top-section {
+    @include m_b(20px);
+    .goal-name {
+      @include fs(36px);
+      @include lh(20px);
+      @include hex(#6b635b);
+      @include bg(image-url('icons/flag_big.png') no-repeat 0 21px);
+      padding: 40px 0 18px 47px;
+      @include bold;
+    }
+    .goal-privacy {
+      @include abs_tr(36px, 25px);
+      .btn {
+        padding: 5px 10px;
+      }
+    }
+  }
+  .menu_section {
+    border-bottom: 1px solid #ebeae5;
+    @include m_b(55px);
+    .user_menu {
+      margin: 0;
+      @include float-left;
+      li {
+        @include float-left;
+        a {
+          padding: 14px 28px;
+          @include block;
+          @include hex(#424242);
+          @include fs(14px);
+          @include upper;
+          &.current, &:hover {
+            border-bottom: 2px solid #ff6766;
+            text-decoration: none;
+          }
+        }
+        .activity_icon {
+          @include bg(image-url('icons/activity_icon.png') no-repeat);
+          @include bg_pos(0px, 50%);
+          @include p_l(49px);
+          @include m_r(22px);
+        }
+        .top_gems_icon {
+          @include bg(image-url('icons/ruby25x25.png') no-repeat);
+          @include bg_pos(0px, 50%);
+          @include p_l(37px);
+          @include m_r(13px);
+        }
+        .my_gem_icon {
+          padding: 14px;
+          @include m_r(35px);
+          height: 20px;
+          overflow: hidden;
+          span {
+            @include fs(24px);
+            font-weight: bold;
+            position: relative;
+            top: 2px;
+            margin-right: 12px;
+          }
+        }
+        .course_icon {
+          @include bg(image-url('icons/course_icon.png') no-repeat);
+          @include bg_pos(0, 50%);
+          @include p_l(41px);
+          @include m_r(19px);
+        }
+        .community_icon {
+          @include bg(image-url('icons/community_32x32.png') no-repeat);
+          @include bg_pos(0px, 50%);
+          padding: 14px 28px 14px 47px;
+        }
+      }
+    }
+  }
+  .main_section {
+    width: 820px;
+    .share_section {
+      @include m_b(32px);
+      .toggle_box {
+        @include fs(12px);
+        @include p_l(10px);
+        @include m_b(16px);
+        a {
+          @include hex(#1d95cb);
+          text-decoration: underline;
+          &.on {
+            @include hex(#777777);
+            text-decoration: none;
+          }
+        }
+      }
+      .check_in_toggle {
+        border-right: 1px solid #e4e4e4;
+        padding-right: 20px;
+      }
+      .share_toggle {
+        padding-left: 20px;
+      }
+      .input-append {
+        @include p_l(10px);
+        #appendedInputButton {
+          border: 2px solid #e4e4e4;
+          width: 541px;
+          height: 30px;
+          @include fs(12px);
+          @include hex(#aaaaaa);
+        }
+        .btn {
+          padding: 14px 81px;
+          @include fs(12px);
+          @include bold;
+        }
+      }
+      .checked_in_msg {
+        padding: 10px 0 22px 10px;
+        @include hex(#999999);
+        @include fs(12px);
+        display: none;
+      }
+    }
+    .wall_section {
+      @include rel;
+      @include m_b(35px);
+      overflow: hidden;
+      .v_line {
+        @include bg(white);
+        @include wxh(4px, 100%);
+        @include abs_tl(26px, 15px);
+        z-index: 100;
+      }
+    }
+  }
+  .posts_box {
+    margin: 0;
+    list-style: none;
+    @include rel;
+    z-index: 100;
+    li {
+      padding: 0 0 0 47px;
+      @include bg(image-url('icons/post_mark.png') no-repeat);
+      @include bg_pos(10px, 22px);
+      @include m_b(8px);
+      &:last-child {
+        @include m_b(0px);
+      }
+      .post {
+        @include m_r(35px);
+        .post_arrow {
+          @include sprite_css(arrow_left_icon);
+          width: 13px;
+          @include abs_tl(18px, -13px);
+        }
+        @include rel;
+        @include bg(white);
+        @include border-radius(5px);
+        border: 1px solid #ebeae5;
+        padding: 15px;
+        .post_date {
+          @include abs_tr(17px, 24px);
+          @include bg(image-url('icons/time_icon.png') no-repeat 0 2px);
+          @include hex(#cccccc);
+          @include fs(10px);
+          @include bold;
+          @include p_l(17px);
+        }
+        .user_pic {
+          @include float-left;
+          @include wxh(30px, 30px);
+          img {
+            @include border-radius(10px);
+          }
+        }
+        .post_body {
+          @include m_l(41px);
+          .post_title {
+            @include hex(#424242);
+            @include fs(12px);
+            @include m_b(12px);
+            .post_autor {
+              @include bold;
+              @include hex(#666666);
+            }
+          }
+          .post_msg {
+            @include bg(#f2f2f2);
+            padding: 6px 10px;
+            @include fs(10px);
+            @include rel;
+            @include m_b(8px);
+          }
+          .post_msg_arrow {
+            @include sprite_css(grey_arrow_top_icon);
+            @include abs_tl(-8px, 10px);
+          }
+          .post_bottom {
+            .like {
+              @include bg(image-url('icons/like.png') no-repeat);
+              @include float-left;
+              @include fs(10px);
+              @include hex(#999999);
+              @include pointer;
+              padding: 0 5px 0 14px;
+            }
+            .dislike {
+              @include bg(image-url('icons/dislike.png') no-repeat);
+              @include float-left;
+              @include fs(10px);
+              @include hex(#999999);
+              @include pointer;
+              padding: 0 5px 0 20px;
+              @include m_r(6px);
+            }
+            .comment_count {
+              @include float-left;
+              @include bg(image-url('icons/comment.png') no-repeat 100% 1px);
+              padding: 0px 20px 0px 0px;
+              @include fs(10px);
+              @include hex(#999999);
+              margin-right: 13px;
+            }
+            .add_comment {
+              @include fs(10px);
+              @include hex(#999999);
+              &:hover {
+                @include hex(#1d95cb);
+              }
+            }
+          }
+          .comments_box {
+            @include p_t(19px);
+            .comment {
+              @include bg(#fafafa);
+              padding: 10px;
+              @include m_b(8px);
+              .user_pic {
+                @include m_r(20px);
+              }
+              .comment_txt {
+                @include m_l(50px);
+                @include p_t(5px);
+                @include fs(12px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .right_sidebar {
+    width: 425px;
+    border-left: 1px solid #ebeae8;
+    @include hex(#999999);
+    .check_in_box {
+      @include p_l(25px);
+      .check_in_status {
+        border-bottom: 1px solid #ebeae8;
+        width: 345px;
+        @include p_b(15px);
+        @include m_b(15px);
+        .checkin-today-no-checkin {
+          @include fs(12px);
+          margin: 6px 0 0 3px;
+          display: none;
+          border-right: 1px solid #ebeae8;
+          @include float-left;
+          width: 234px;
+          height: 46px;
+          @include lh(46px);
+        }
+        .checkin-today-has-checkin {
+          border-right: 1px solid #ebeae8;
+          @include float-left;
+          width: 197px;
+          @include bg(image-url('icons/checked2.png') no-repeat 0 0px);
+          @include p_l(40px);
+          @include fs(10px);
+          @include hex(#424242);
+          .checkined_in_title {
+            @include hex(#4fbe56);
+            @include fs(12px);
+            @include lh(16px);
+            @include bold;
+            margin: 0;
+          }
+        }
+        .checkin-this-week {
+          @include float-left;
+          @include fs(10px);
+          @include hex(#999999);
+          padding: 15px 0 0 12px;
+          .checkin-this-week-icon {
+            @include sprite_css(numb_bg_icon);
+            @include float-left;
+            padding: 4px 0 0 11px;
+            @include wxh(15px, 22px);
+            &.red {
+              @include hex(#f16764);
+            }
+          }
+          .checkin-this-week-copy {
+            @include float-left;
+            @include p_t(4px);
+            @include m_l(4px);
+          }
+        }
+      }
+      .checkin-calendar {
+        .checkin-calendar-time-log {
+          @include float-left;
+          @include fs(11px);
+          @include p_r(10px);
+          @include p_t(15px);
+          div {
+            height: 22px;
+            @include lh(22px);
+          }
+        }
+        .days_section {
+          @include float-left;
+        }
+        .days_head {
+          div {
+            @include float-left;
+            @include fs(9px);
+            @include centered;
+            width: 30px;
+            @include m_r(10px);
+          }
+        }
+        .days_row {
+          clear: both;
+          div {
+            @include float-left;
+            @include wxh(28px, 10px);
+            @include bg(white);
+            border: 1px solid #e4e4e4;
+            @include border-radius(28px);
+            margin: 0 10px 10px 0;
+            &.grey {
+              @include bg(#faf9f4);
+            }
+            &.checked {
+              @include bg(#4fbe56);
+            }
+          }
+        }
+      }
+    }
+  }
+  .gems {
+    .offer_card {
+      margin: 0px 20px 20px 0px;
+      width: 230px;
+      .offer_pic {
+        width: 230px;
+        height: 197px;
+        @include block;
+        img {
+          width: 230px;
+        }
+      }
+      .ruby_icon {
+        @include sprite_css(ruby);
+        @include float-left;
+        margin: 13px 0px 0px 12px;
+      }
+      .offer_title {
+        margin-left: 33px;
+        @include m_b(5px);
+        height: 40px;
+        a {
+          color: #4b4b4b;
+        }
+      }
+      .like_box {
+        padding: 7px 5px 5px 11px;
+      }
+      .add_me_box {
+        .unchecked {
+          width: 50px;
+        }
+      }
+    }
+    .like_box {
+      border: none;
+      border-bottom: 2px solid #6b823c;
+    }
+  }
+  .community_title {
+    @include hex(#333333);
+    @include fs(12px);
+    @include upper;
+    @include m_b(16px);
+  }
+  .community_box {
+    @include bg(white);
+    border: 1px solid #ebeae5;
+    @include border-radius(5px);
+    @include p_b(16px);
+    width: 840px;
+    @include m_b(40px);
+    .user_box {
+      @include float-left;
+      margin: 13px 0 0 21px;
+      .user_pic {
+        @include float-left;
+        @include m_r(10px);
+        img {
+          width: 24px;
+        }
+      }
+      .user_name {
+        @include p_t(6px);
+        @include float-left;
+        @include fs(12px);
+        @include hex(#6b635b);
+      }
+    }
+  }
+  .community_txt {
+    @include fs(12px);
+    a {
+      @include p_t(10px);
+    }
+  }
+  .pop_up_example {
+    display: none;
+    @include abs;
+    border: 1px solid #bcbcbc;
+    @include bg(white);
+    @include border-radius(5px);
+    z-index: 1100;
+    .pop_up_header {
+      border-bottom: 1px solid #d7d7d7;
+      padding: 12px 15px;
+      .gem_title {
+        @include float-left;
+        @include bg(image-url('icons/ruby25x25.png') no-repeat 26px);
+        padding: 4px 0 4px 60px;
+      }
+      .add_me_box {
+        .unchecked {
+          padding: 3px 0;
+        }
+      }
+      .like_box {
+        border: none;
+      }
+    }
+    .pop_up_body {
+      @include bg(#fbfaf4);
+      @include centered;
+      @include p_t(11px);
+      @include m_b(50px);
+    }
+    .pop_up_footer {
+      .link_to {
+        @include bg(image-url('icons/link_to.png') no-repeat 35px);
+        padding: 4px 0 4px 67px;
+        @include fs(12px);
+        @include hex(#333333);
+        @include m_b(20px);
+      }
+      .posts_box {
+        li {
+          @include bg(none);
+          padding: 0 0 0 38px;
+          .post_msg.white_bg_mod {
+            @include bg(none);
+            padding: 0;
+          }
+        }
+      }
+    }
+    .close_pop_up {
+      @include abs_tr(9px, -60px);
+      @include pointer;
+    }
+  }
+}

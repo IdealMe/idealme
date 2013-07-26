@@ -1,32 +1,34 @@
 .container
-  .user_section
-    .user_pic
+  .user-profile
+    .user-avatar
       = image_tag @user.avatar.url(:square)
-    .user_info
-      .user_name
+    .user-informaiton
+      .user-fullname
         = @user.fullname
-      .user_location
+      .user-location
         %a{:href => "#"} + add location
-    .user_counters
+    .user-counters
       .counter
         Checkins
-        .checkins_box 0
+        .checkins-box  
+          = @user.checkins.length
+        
       .divider
       .counter
         Collected
-        .collected_box 0
+        .collected-box 0
       .divider
       .counter
         Created
-        .created_box 0
+        .created-box 0
       .divider
       .counter
         Supporters
-        .supporters_box 0
+        .supporters-box 0
       .divider
       .counter
         Supporting
-        .supporting_box 0
+        .supporting-box 0
     .clear
   .menu_section
     %ul.user_menu
@@ -38,39 +40,38 @@
     %a.edit_box{:href => "#"} edit goals
     .clear
   .goals_section
-    - @goals.each do |goal|
-      =render :partial => 'users/partials/profile_goal_tile', :locals => {:goal => goal}
-    .add_goal
+    - @goal_users.each do |goal_user|
+      =render :partial => 'users/partials/profile_goal_tile', :locals => {:goal_user => goal_user}
+    .goal-card-new{"data-toggle" => "modal", :href => "#myModal", :role => "button"} 
+      .plus + 
+      Add goals
+            
+
+    .goal-card-new
       .plus +
       Add goals
-    .clear         
       
-        
+    .clear         
   .offer_section
-    %h3.also_viewed_header Customers who took this course also viewed
-    %table
-      %tr
-        -4.times do
-          %td
-            .offer_card
-              %a{:href => "#"} 
-                =image_tag 'recomandation_img.png'
-              %a.offer_title{:href => "#"} Negotiate a Lower Rent
-              .vendor
-                .vendor_pic 
-                  %a{:href => "#"} 
-                    =image_tag 'vendor.png'
-                %a.vendor_name{:href => "#"} Jen Snow
-                .vendor_working_area Lifecoach - Mother - Guru
-                .clear
-              .bottom_box
-                .like_box
-                  .like 352 
-                  .dislike 12
-                  .clear
-                .price_box
-                  $26.96
-                .add_me_box
-                  .unchecked +
-                .clear
-    
+    %table             
+      - @markets = Market.all
+      - while (@markets.length != 0) do
+        - @batch = @markets.shift(4)
+        %tr
+          - @batch.each do |market|
+            %td
+              =render :partial => 'partials/course_card', :locals => {:market => market}
+
+
+/ Modal
+#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Modal header
+  .modal-body
+    - Goal.find_each do |goal|
+      %p 
+        = goal.name
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    %button.btn.btn-primary Save changes

@@ -16,9 +16,8 @@ module ApplicationHelper
 
   def body_class
     # Need this version for older pages
-    classes = ["#{params[:controller]}_#{params[:action]}"]
-    classes << params[:controller] << params[:action]
-    classes << (user_signed_in? ? 'logged_in' : 'logged_out')
+    classes = ["#{params[:controller]}-#{params[:action]}"]
+    classes << (user_signed_in? ? 'logged-in' : 'logged-out')
     classes.join(" ")
   end
 

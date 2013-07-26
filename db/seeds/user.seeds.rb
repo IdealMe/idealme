@@ -9,6 +9,11 @@ u.save
 u.goals << Goal.first
 u.goals << Goal.last
 
+
+u.goal_users.first.checkins << Checkin.create!
+u.goal_users.last.checkins << Checkin.create!
+
+
 c = Course.create!(:name => 'Fresh Start! Raw Detox Diet', :cost => 49700)
 
 u.courses << c
@@ -91,6 +96,16 @@ end
 
 
 %w(alice bob charlie david eden frank george hilbert).each do |user|
-  User.create(:firstname => user, :lastname => 'IdealMe', :username => user, :password => 'passpass',
-              :email => "#{user}@idealme.com", :tagline => 'Idealist - Coder - RoR')
-end                     
+  User.create(:firstname => user, :lastname => 'IdealMe', :username => user,
+              :password => 'passpass', :email => "#{user}@idealme.com",
+              :tagline => 'Idealist - Coder - RoR')
+end
+
+
+['Health and wellness', 'Fitness', 'Learning', 'Mindfulness',
+ 'Happiness' 'Money and Financial', 'Relationships'].each do |c|
+  Category.create(:name => c)
+end
+
+
+

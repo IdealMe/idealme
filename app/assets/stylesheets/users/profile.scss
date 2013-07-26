@@ -1,68 +1,25 @@
 /* ******************************************** */
 /* Me page */
 /* ******************************************** */
-.users_profile {
-  .offer_card {
-    width: 252px;
-    margin: 0 auto 12px auto;
-    @include bg(white);
-    border: 1px solid #ebebeb;
-    @include left;
-    .offer_title {
-      @include fs(12px);
-      @include hex(#4b4b4b);
-      margin-top: 12px;
-      margin-left: 16px;
-      @include block;
-    }
-    .vendor_pic {
-      @include float-left;
-      margin: 12px 10px 6px 13px;
-    }
-    .vendor_name {
-      @include fs(12px);
-      @include lh(16px);
-      @include hex(#6b635b);
-      @include p_t(13px);
-      @include block;
-    }
-    .vendor_working_area {
-      @include fs(10px);
-      @include hex(#999999);
-      @include lh(14px);
-    }
-  }
-  .goal_box {
-    .goal_icon {
-      height: 125px;
-      @include p_t(35px);
-      @include centered;
-    }
-    .bottom_box {
-      @include bg(#fafafa);
-      @include centered;
-      .goal-picker {
-        @include fs(36px);
-      }
-    }
-  }
+.users-profile {
   @include bg(#faf9f4);
-  .user_section {
+
+  .user-profile {
     margin: 30px 0 40px 0;
-    .user_pic {
+    .user-avatar {
       @include float-left;
     }
-    .user_info {
+    .user-informaiton {
       @include float-left;
       padding: 26px 0 0 32px;
-      .user_name {
+      .user-fullname {
         @include fs(28px);
         @include lh(20px);
         @include hex(#6b635b);
         @include bold;
         @include m_b(8px);
       }
-      .user_location {
+      .user-location {
         a {
           @include hex(#a1a1a1);
           @include fs(12px);
@@ -71,7 +28,7 @@
       }
     }
   }
-  .user_counters {
+  .user-counters {
     @include float-right;
     border: 1px solid #f2f2f2;
     @include bg(white);
@@ -85,7 +42,7 @@
       @include float-left;
       padding: 8px 35px 0 35px;
     }
-    .checkins_box {
+    .checkins-box {
       @include fs(36px);
       @include lh(36px);
       @include bg(image-url("icons/checked_green_icon.png") no-repeat);
@@ -94,29 +51,29 @@
       text-align: left;
       padding-right: 36px;
     }
-    .collected_box {
-      @extend .checkins_box;
+    .collected-box {
+      @extend .checkins-box;
       @include hex(#ff716f);
       @include bg(image-url("icons/ruby2.png") no-repeat);
       @include bg_pos(100%, 5px);
       padding-right: 28px;
     }
-    .created_box {
-      @extend .checkins_box;
+    .created-box {
+      @extend .checkins-box;
       @include hex(#e88391);
       @include bg(image-url("icons/ruby3.png") no-repeat);
       @include bg_pos(100%, 5px);
       padding-right: 28px;
     }
-    .supporters_box {
-      @extend .checkins_box;
+    .supporters-box {
+      @extend .checkins-box;
       @include hex(#ff716f);
       @include bg(image-url("icons/support_icon.png") no-repeat);
       @include bg_pos(100%, 5px);
       padding-right: 28px;
     }
-    .supporting_box {
-      @extend .checkins_box;
+    .supporting-box {
+      @extend .checkins-box;
       @include hex(#e88391);
       @include bg(image-url("icons/support_icon2.png") no-repeat);
       @include bg_pos(100%, 5px);
@@ -188,49 +145,9 @@
     @include hex(#ff6766);
     @include centered;
   }
-  .check_ins {
-    @include float-left;
-    width: 45px;
-    padding: 10px 15px;
-    @include centered;
-  }
-  .gems_collected {
-    @include float-left;
-    width: 48px;
-    padding: 10px 15px;
-    border-left: 1px solid #e4e4e4;
-    border-right: 1px solid #e4e4e4;
-    @include centered;
-  }
-  .gems_created {
-    @include float-left;
-    width: 45px;
-    @include centered;
-    padding: 10px 15px;
-  }
+
   .lose_weight_icon {
     margin: 35px auto 30px auto;
   }
-  .add_goal {
-    @include float-left;
-    @include bg(image-url("icons/add_goal.png") no-repeat);
-    width: 236px;
-    height: 163px;
-    @include hex(#cccccc);
-    @include fs(18px);
-    @include m_l(9px);
-    @include m_r(9px);
-    @include centered;
-    @include p_t(110px);
-    pointer:cursor {
-    }
-    &:hover {
-      @include bg(image-url("icons/add_goal_on.png") no-repeat);
-      @include hex(#4d4d4d);
-    }
-    .plus {
-      @include fs(48px);
-      @include p_b(15px);
-    }
-  }
+
 }

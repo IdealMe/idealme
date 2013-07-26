@@ -1,0 +1,2 @@
+module Ajax::CheckinsHelper
+end

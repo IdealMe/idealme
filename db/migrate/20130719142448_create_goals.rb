@@ -8,7 +8,13 @@ class CreateGoals < ActiveRecord::Migration
       t.integer :user_count
       t.attachment :avatar
 
+
+      t.references :category
+
       t.timestamps
     end
+
+    add_index :goals, :category_id
+
   end
 end

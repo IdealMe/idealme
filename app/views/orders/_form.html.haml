@@ -1,38 +1,84 @@
-= formatted_form_for(@active_merchant_validator, :url => orders_path, :method => :post, :html => {:class => 'form-horizontal'}) do |f|
+= form_for(@active_merchant_validator, :url => orders_path, :method => :post, :html => {:class => 'orders-payment-form'}) do |f|
   = f.hidden_field :market_id
   = f.hidden_field :course_id
   = f.hidden_field :time
   = f.hidden_field :checksum
-  %fieldset
-    %legend Credit Card Information
-  = f.text_field :firstname, :autofocus => true, :value => 'Bill'
-  = f.text_field :lastname, :value => 'Li'
-  = f.text_field :card_number, :size => 16, :maxlength => 16, :value => '4222222222222', :label => 'Card Number'
-  = f.select :card_type, options_for_select([["Visa", "visa"], ["Master Card", "master"]]), :value => 'visa', :label => 'Card Type'
-  = f.text_field :card_exp, :size => 4, :maxlength => 4, :value => '0817', :label => 'Expiry Date (mmyy)'
-  = f.text_field :cvv, :size => 4, :maxlength => 4, :value => '111', :label => 'Card Security Code (CVV/CSV)'
+              
+  %pre
+    = @active_merchant_validator.errors.to_yaml
+        
+  %section.pay-method
+    %p
+      = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'
+    .clear              
+  
+  %section.first-name{:class => ('control-group error' if @active_merchant_validator.errors[:firstname].length > 0)}
+    = f.label :firstname, 'First Name'    
+    = f.text_field :firstname, :autofocus => true, :value => 'Bill'
+             
+
+  %section.last-name{:class => ('control-group error' if @active_merchant_validator.errors[:lastname].length > 0)}
+    = f.label :lastname, 'Last Name'
+    = f.text_field :lastname, :value => 'Li' 
+
+  .clear
+    
   - if current_user
     = f.hidden_field :email, :value => current_user.email
-  - else
+  - else   
+    %section.email{:class => ('control-group error' if @active_merchant_validator.errors[:email].length > 0)}             
+    = f.label :email, 'E-mail'
     = f.text_field :email, :value => 'bill@idealme.com'
 
-  %fieldset
-    %legend Billing Address
-  = f.text_field :billing_address1, :label => 'Address Line 1'
-  = f.text_field :billing_address2, :label => 'Address Line 2'
-  = f.text_field :billing_company, :label => 'Company Name'
-  = f.text_field :billing_city, :label => 'City/Town'
-  = f.text_field :billing_state, :label => 'State / Province / Region'
-  = f.text_field :billing_country, :label => 'Canada'
-  = f.text_field :billing_zip, :label => 'Zip / Postal Code'
-  = f.text_field :billing_phone, :label => 'Phone'
-  = f.submit 'Purchase', :class => 'btn btn-success'
-  = link_to 'Cancel', market_path(@market), :class => 'btn btn-danger'
+  %section.card-number{:class => ('control-group error' if @active_merchant_validator.errors[:card_number].length > 0)}      
+    = f.label :card_number
+    = f.text_field :card_number, :size => 16, :maxlength => 16, :value => '4222222222222'
 
+  %section.card-type{:class => ('control-group error' if @active_merchant_validator.errors[:card_type].length > 0)}        
+    = f.label :card_type, 'Card Type'
+    = f.select :card_type, options_for_select([["Visa", "visa"], ["Master Card", "master"]]), :value => 'visa'
+  .clear
 
--#-#= formatted_form_for @order do |f|
--#-#  = text_field_tag :lol
--#-#  = f.hidden_field :course_id
--#-#  = f.hidden_field :user_id
--#-#  = f.submit 'Order', :class => 'btn'
--#
+  %section.exp-date{:class => ('control-group error' if @active_merchant_validator.errors[:card_exp_month].length > 0 || @active_merchant_validator.errors[:card_exp_year].length > 0)}       
+    = f.label :card_exp_month, 'Expiration Date'
+    = f.select(:card_exp_month, 1..12, {}, { :class => 'exp-month' })
+    = f.select(:card_exp_year, Time.now.year..Time.now.year+10, {}, { :class => 'exp-year' })
+    
+    .clear
+  %section.security-code{:class => ('control-group error' if @active_merchant_validator.errors[:cvv].length > 0)}       
+    = f.label :cvv, 'Security Code (CVV/CSV)'
+    = f.text_field :cvv, :size => 4, :maxlength => 4, :value => '111'
+  .clear
+  %section.address1{:class => ('control-group error' if @active_merchant_validator.errors[:billing_address1].length > 0)}    
+    = f.label :billing_address1, 'Address line 1'
+    = f.text_field :billing_address1
+  %section.address2{:class => ('control-group error' if @active_merchant_validator.errors[:billing_address2].length > 0)}   
+    = f.label :billing_address2, 'Address line 2'
+    = f.text_field :billing_address2
+  %section.city{:class => ('control-group error' if @active_merchant_validator.errors[:billing_city].length > 0)}      
+    = f.label :billing_city, 'City'
+    = f.text_field :billing_city
+  %section.zip{:class => ('control-group error' if @active_merchant_validator.errors[:billing_zip].length > 0)}                     
+    = f.label :billing_zip, 'Zip / Postal Code'
+    = f.text_field :billing_zip
+  .clear
+  %section.state{:class => ('control-group error' if @active_merchant_validator.errors[:billing_state].length > 0)}   
+    = f.label :billing_state, 'State / Province / Region'
+    = f.text_field :billing_state
+  %section.country{:class => ('control-group error' if @active_merchant_validator.errors[:billing_country].length > 0)}        
+    = f.label :billing_country, 'Country'
+    = f.text_field :billing_country
+  .clear
+  %section.submit-box      
+    = f.submit 'Complete Purchase', :class => 'btn btn-red'
+    .agreement-text
+      By clicking "Complete purchase", I have read and agree to the Terms and Conditions and Privacy Policy. Note: When you click "Complete purchase", you will be billed immediately.
+    .clear       
+      
+      
+%section.pay-method
+  %p
+    %strong
+      Or check out with PayPal
+  %p
+    = image_tag 'icons/paypal_icon.png', :class => 'paypal-image'

@@ -1,0 +1,1 @@
+json.partial! 'ajax/application/im_ajax_results', im_ajax_results: @im_ajax_results

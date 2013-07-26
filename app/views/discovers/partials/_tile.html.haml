@@ -1,11 +1,11 @@
-.offer_card
-  = link_to image_tag(discover.avatar.url(:full)), market_path(discover), :class => 'offer_pic'
+.discover-card
+  = link_to image_tag(discover.avatar.url(:full)), market_path(discover), :class => 'avatar'
   .ruby_icon
-  .offer_title
+  .title
     = link_to discover.name, market_path(discover)
   .clear
-  .bottom_box
-    .like_box
+  .bottom-box
+    .like-box
       .like 352
       .dislike 12
       .clear

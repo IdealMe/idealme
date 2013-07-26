@@ -1,0 +1,14 @@
+= formatted_form_for(@poll, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+  %fieldset
+    #legend
+      %legend Poll
+  = f.text_field :name, :label => 'Poll Question'
+  = f.fields_for :poll_choices do |p|
+    .row
+      .span3
+        = p.text_field :name, :label => 'Poll Choice'
+      .span4
+        = p.check_box :_destroy, :label =>  'Remove Choice' 
+  = f.check_box :display_results
+  = f.submit 'Save', :class => 'btn btn-success'
+  = link_to 'Back', admin_polls_path, :class => 'btn'

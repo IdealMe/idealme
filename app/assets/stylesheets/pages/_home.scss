@@ -194,11 +194,3 @@
   @include centered;
 }
 
-.help_box {
-  min-width: 1220px;
-  height: 55px;
-  @include centered;
-  @include fs(14px);
-  @include lh(55px);
-  @include hex(#999999);
-}

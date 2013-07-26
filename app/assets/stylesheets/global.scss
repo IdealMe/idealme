@@ -1,0 +1,29 @@
+.staging-banner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.offer_section {
+  padding: 33px 41px 0 41px;
+  min-width: 1168px;
+  min-width: 960px;
+  max-width: 1250px;
+  margin: auto;
+  .section_header {
+    color: #8b8b8b;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 20px;
+    font-weight: normal;
+    margin-bottom: 24px;
+  }
+  table {
+    width: 100%;
+    border: none;
+  }
+  td {
+    text-align: center;
+  }
+}

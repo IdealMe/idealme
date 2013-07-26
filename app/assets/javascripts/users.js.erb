@@ -1,0 +1,18 @@
+$(function () {
+    //Update the register's timezone, during register page
+    $('input[name="user[timezone]"]').val(jstz.determine().name());
+
+    //Update the user's timezone, if it was on the default timezone of Etc/Zulu
+    if (im_js.current_user_id != null && (im_js.timezone == 'Etc/Zulu' || im_js.timezone != jstz.determine().name())) {
+        $.ajax({
+            url: '/ajax/users/set_timezone',
+            async: false,
+            type: 'POST',
+            cache: false,
+            data: {
+                'timezone': jstz.determine().name()
+            },
+            dataType: 'json'
+        });
+    }
+});

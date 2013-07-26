@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_time_zone
   before_filter :set_common_date
   before_filter :authenticate_staging
+  before_filter :set_last_location
+  #https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug("CanCan: Access denied on #{exception.action} #{exception.subject.inspect}")
@@ -55,6 +57,14 @@ class ApplicationController < ActionController::Base
 
 
   protected
+
+  def set_last_location
+    if (request.fullpath != '/login' && request.fullpath != '/logout' && !request.xhr?)
+      session[:previous_url] = request.fullpath
+    end
+  end
+
+
   def require_authentication
     redirect_to new_user_session_path and return unless current_user
   end
@@ -155,4 +165,5 @@ class ApplicationController < ActionController::Base
     # This is a defined method in the devise gem which will return true of the current controller is a devise controller.
     respond_to?(:devise_controller?)
   end
+
 end

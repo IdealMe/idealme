@@ -2,11 +2,12 @@
 /* Main styles (Global styles for all pages) */
 /* ******************************************** */
 body {
-  @include bg(#fbfaec);
+  @include bg(#FAF9F4);
   font-family: Arial;
 }
 
 .container {
+  padding-top: 5px;
   width: 1250px;
   @include rel;
 }
@@ -80,6 +81,12 @@ body {
   @extend .modal_title2;
   padding: 28px 0 18px 0;
   border-top: 1px solid #ebeae8;
+}
+
+.modal_title4 {
+  @extend .modal_title3;
+  @include fs(14px);
+  padding: 21px 0 21px 0;
 }
 
 .modal_footer {
@@ -286,6 +293,18 @@ body {
 
 .twitter2_icon {
   @include sprite_css(twitter2_icon);
+}
+
+.paypal_icon2 {
+  @include sprite_css(paypal_icon2);
+}
+
+.norton_icon {
+  @include sprite_css(norton_icon);
+}
+
+.protected_icon {
+  @include sprite_css(protected_icon);
 }
 
 /* ******************************************** */

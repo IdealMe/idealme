@@ -1,0 +1,34 @@
+footer {
+  min-width: 960px;
+  max-width: 1250px;
+  @include bg(#f6f6f8);
+  margin: auto;
+  .footer-bg {
+    @include sprite_css(footer_bg);
+    @include rel;
+    margin: 60px auto 60px auto;
+  }
+  .footer-menu {
+    list-style: none;
+    z-index: 100;
+    @include abs_tl(90px, 50%);
+    width: 370px;
+    @include m_l(-180px);
+    li {
+      @include float-left;
+      @include m_r(30px);
+      a {
+        @include fs(14px);
+        @include hex(#999999);
+      }
+    }
+  }
+}
+.help-box {
+  min-width: 1220px;
+  height: 55px;
+  @include centered;
+  @include fs(14px);
+  @include lh(55px);
+  @include hex(#999999);
+}

@@ -1,0 +1,235 @@
+.course-card {
+  width: 252px;
+  margin: 12px 12px 12px 12px;
+  @include m_l(auto);
+  @include m_r(auto);
+
+  @include bg(white);
+  border: 1px solid #ebebeb;
+  @include left;
+  .course-name {
+    @include fs(12px);
+    @include hex(#4b4b4b);
+    @include m_t(10px);
+    @include m_l(10px);
+    @include m_r(10px);
+    @include block;
+    min-height: 40px;
+  }
+
+  .owner {
+    .avatar {
+      @include float-left;
+      margin: 12px 10px 6px 13px;
+    }
+    .name {
+      @include fs(12px);
+      @include lh(16px);
+      @include hex(#6b635b);
+      @include p_t(13px);
+      @include block;
+    }
+    .working-area {
+      @include fs(10px);
+      @include hex(#999999);
+      @include lh(14px);
+    }
+  }
+  .bottom-box {
+    border-top: 1px solid #ebebeb;
+  }
+  .like-box {
+    @include float-left;
+    border-bottom: 2px solid #6b823c;
+    width: 90px;
+    padding: 7px 5px 5px 5px;
+    .like {
+      @include bg(image-url("icons/like.png") no-repeat);
+      @include float-left;
+      @include fs(10px);
+      @include hex(#999999);
+      @include pointer;
+      padding: 0 5px 0 20px;
+    }
+    .dislike {
+      @include bg(image-url("icons/dislike.png") no-repeat);
+      @include float-right;
+      @include fs(10px);
+      @include hex(#999999);
+      @include pointer;
+      padding: 0 5px 0 20px;
+    }
+  }
+  .price-box {
+    @include float-left;
+    @include fs(10px);
+    @include hex(#4d4d4d);
+    @include centered;
+    width: 80px;
+    padding: 7px 0px;
+    @include m_l(13px);
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+  }
+  .add-me-box {
+    @include float-left;
+    @include fs(16px);
+    @include hex(#797979);
+    @include rel;
+    @include bold;
+    @include pointer;
+    .unchecked {
+      width: 57px;
+      text-align: center;
+      padding: 6px 0;
+    }
+    .checked {
+      display: none;
+    }
+  }
+}
+
+.discover-card {
+  @include float-left;
+  margin: 0px 41px 30px 0px;
+  width: 230px;
+  @include bg(white);
+  border: 1px solid #ebebeb;
+  @include left;
+  .avatar {
+    width: 230px;
+    height: 190px;
+    @include block;
+    img {
+      width: 230px;
+    }
+  }
+  .ruby_icon {
+    @include sprite_css(ruby);
+    @include float-left;
+    margin: 1px 0px 0px 12px;
+  }
+  .title {
+    @include fs(12px);
+    @include hex(#4b4b4b);
+    @include block;
+    margin-left: 33px;
+    @include m_b(5px);
+    height: 40px;
+    a {
+      color: #4b4b4b;
+    }
+  }
+  .bottom-box {
+    border-top: 1px solid #ebebeb;
+  }
+
+  .like-box {
+    @include float-left;
+    width: 90px;
+    padding: 7px 5px 5px 5px;
+    .like {
+      @include bg(image-url("icons/like.png") no-repeat);
+      @include float-left;
+      @include fs(10px);
+      @include hex(#999999);
+      @include pointer;
+      padding: 0 5px 0 20px;
+    }
+    .dislike {
+      @include bg(image-url("icons/dislike.png") no-repeat);
+      @include float-right;
+      @include fs(10px);
+      @include hex(#999999);
+      @include pointer;
+      padding: 0 5px 0 20px;
+    }
+  }
+  .add-me-box {
+    .unchecked {
+      width: 50px;
+    }
+  }
+}
+
+.goal-card {
+  margin: 0 auto 20px auto;
+  @include float-left;
+  width: 230px;
+  @include bg(#fcfcfc);
+  border: 1px solid #e4e4e4;
+  @include border-radius(5px);
+  @include m_r(28px);
+  @include pointer;
+  &:hover {
+    @include bg(white);
+    border-color: #c9c9c9;
+  }
+
+  .avatar {
+    height: 125px;
+    @include p_t(35px);
+    @include centered;
+  }
+  .name {
+    color: #666666;
+    @include fs(12px);
+    @include bold;
+    @include centered;
+    @include m_b(27px);
+  }
+
+  .bottom-box {
+    @include bg(#fafafa);
+    height: 55px;
+    @include lh(55px);
+    @include centered;
+
+  }
+  .picker {
+    @include fs(36px);
+  }
+
+  .check-ins {
+    @include float-left;
+    width: 45px;
+    padding: 10px 15px;
+    @include centered;
+  }
+  .gems-collected {
+    @include float-left;
+    width: 48px;
+    padding: 10px 15px;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    @include centered;
+  }
+  .gems-created {
+    @include float-left;
+    width: 45px;
+    @include centered;
+    padding: 10px 15px;
+  }
+}
+
+.goal-card-new {
+  @include float-left;
+  @include bg(image-url("icons/add_goal.png") no-repeat);
+  width: 236px;
+  height: 163px;
+  @include hex(#cccccc);
+  @include fs(18px);
+  @include m_l(9px);
+  @include m_r(9px);
+  @include centered;
+  @include p_t(110px);
+  pointer: cursor;
+  &:hover {
+    @include bg(image-url("icons/add_goal_on.png") no-repeat);
+    @include hex(#4d4d4d);
+  }
+  .plus {
+    @include fs(48px);
+    @include p_b(15px);
+  }
+}

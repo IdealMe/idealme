@@ -1,18 +1,35 @@
 .container
-  .row
-    .span1
-      = image_tag @market.avatar.url(:thumb)
-    .span10
-      %p
-        %strong
-          Ordering #{@market.course.name}
-      %p
-        %i
-          By:
-        = @market.course.owner.fullname
-
-      %p
-        #{penny_to_currency(@market.course.cost)}
-  .row
-    .span12
-      = render(:partial => 'form')
+  .main_section
+    .product_info
+      .media
+        .pull-left  
+          = image_tag @market.avatar(:thumb)
+        .media-body
+          %h4.media-heading 
+            = @market.course.name
+          .autor 
+            by 
+            = @market.course.owner.fullname
+          .price 
+            = penny_to_currency(@market.course.cost)
+    = render :partial => 'form'
+  .right_sidebar
+    .modal_title4 What you get
+    .what_you_get
+      %ul.list_1
+        %li Lifetime access to the online course complete with 136 lectures
+        %li On demand access to complete the course
+        %li WhatAn interactive discussion board where students can connect with the instructor & fellow students
+    .modal_title4 AS SEEN IN
+    .partners_box
+      .elle_icon
+      .fab_icon
+      .oxygen_icon
+      .clear
+    .modal_title4 SECURE TRANSACTION
+    .partners_box
+      .paypal_icon2
+      .norton_icon
+      .protected_icon
+      .clear
+  .clear

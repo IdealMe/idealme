@@ -1,0 +1,1 @@
+json.partial! 'goal_user', goal_user: @goal_user

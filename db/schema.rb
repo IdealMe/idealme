@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722002923) do
+ActiveRecord::Schema.define(:version => 20130725025927) do
 
   create_table "affiliate_clicks", :force => true do |t|
     t.integer  "clicks",                :default => 1
@@ -51,6 +51,21 @@ ActiveRecord::Schema.define(:version => 20130722002923) do
   end
 
   add_index "affiliate_trackings", ["user_id"], :name => "index_affiliate_trackings_on_user_id"
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "checkins", :force => true do |t|
+    t.integer  "goal_user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "checkins", ["goal_user_id"], :name => "index_checkins_on_goal_user_id"
 
   create_table "cms_blocks", :force => true do |t|
     t.integer  "page_id",                        :null => false
@@ -213,11 +228,11 @@ ActiveRecord::Schema.define(:version => 20130722002923) do
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "goal_users", :force => true do |t|
-    t.boolean  "private"
+    t.boolean  "private",    :default => true
     t.integer  "user_id"
     t.integer  "goal_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "goal_users", ["goal_id"], :name => "index_goal_users_on_goal_id"
@@ -233,9 +248,12 @@ ActiveRecord::Schema.define(:version => 20130722002923) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "category_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
+
+  add_index "goals", ["category_id"], :name => "index_goals_on_category_id"
 
   create_table "identities", :force => true do |t|
     t.text     "access_token"
@@ -305,6 +323,34 @@ ActiveRecord::Schema.define(:version => 20130722002923) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end
+
+  create_table "poll_choices", :force => true do |t|
+    t.string   "name"
+    t.integer  "poll_question_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "poll_choices", ["poll_question_id"], :name => "index_poll_choices_on_poll_question_id"
+
+  create_table "poll_questions", :force => true do |t|
+    t.string   "name"
+    t.boolean  "display_results", :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  create_table "poll_results", :force => true do |t|
+    t.integer  "poll_question_id"
+    t.integer  "poll_choice_id"
+    t.integer  "owner_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "poll_results", ["owner_id"], :name => "index_poll_results_on_owner_id"
+  add_index "poll_results", ["poll_choice_id"], :name => "index_poll_results_on_poll_choice_id"
+  add_index "poll_results", ["poll_question_id"], :name => "index_poll_results_on_poll_question_id"
 
   create_table "reviews", :force => true do |t|
     t.text     "content"

@@ -1,7 +1,7 @@
 class CreateGoalUsers < ActiveRecord::Migration
   def change
     create_table :goal_users do |t|
-      t.boolean :private
+      t.boolean :private, :default => true
       t.belongs_to :user
       t.belongs_to :goal
 

@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
   has_many :goal_users
   has_many :goals, :through => :goal_users
 
+
+  has_many :checkins, :through => :goal_users
+
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     :styles => {:thumb => '40x40#', :square => '120x120#'},

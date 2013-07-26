@@ -1,8 +1,8 @@
 /* ******************************************** */
 /* Discover page */
 /* ******************************************** */
-.discovers_index {
-  .filter_box {
+.discovers-index {
+  .filter-box {
     padding: 25px 0;
     select {
       @include float-left;
@@ -17,41 +17,7 @@
       height: 28px;
     }
   }
-  .offer_card {
-    @include float-left;
-    margin: 0px 41px 30px 0px;
-    width: 230px;
-    .offer_pic {
-      width: 230px;
-      height: 197px;
-      @include block;
-      img {
-        width: 230px;
-      }
-    }
-    .ruby_icon {
-      @include sprite_css(ruby);
-      @include float-left;
-      margin: 13px 0px 0px 12px;
-    }
-    .offer_title {
-      margin-left: 33px;
-      @include m_b(5px);
-      height: 40px;
-      a {
-        color: #4b4b4b;
-      }
-    }
-    .like_box {
-      border: none;
-      padding: 7px 5px 5px 11px;
-    }
-    .add_me_box {
-      .unchecked {
-        width: 50px;
-      }
-    }
-  }
+
   .media-body {
     a {
       display: block;
@@ -59,7 +25,7 @@
       @include hex(#999999);
     }
   }
-  .adv_box {
+  .adv-box {
     padding: 8px 5px 11px 9px;
     @include m_b(36px);
   }

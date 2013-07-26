@@ -10,6 +10,8 @@
  *
  */
 
+
+
 // Import all compass sheets
 @import "compass";
 @import "compass/css3";
@@ -27,11 +29,17 @@
 @import "elements/base";
 @import "elements/typography";
 @import "elements/buttons";
-@import "elements/header";
-@import "elements/footer";
 
 // PAGES
 @import "pages/global";
+
+
+@import "global";
+
+@import "shared/cards";
+
+@import "shared/header";
+
 
 
 @import "markets/index";
@@ -43,18 +51,25 @@
 
 @import "users/profile";
 
+
+@import "orders/new";
 @import "orders/create";
+
+@import "goals/show";
+
+
 
 
 @import "pages/home";
 @import "users/welcome";
 
+@import "shared/footer";
 
 // Gem imports
 
 @import "flexslider";
 @import "formatted_form";
 @import "jquery.ui.all";
-
+@import "font-awesome";
 
 @import "additions.css.scss";

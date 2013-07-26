@@ -5,7 +5,8 @@
   = f.text_field :name, :autofocus => true
   = f.file_field :avatar
   = f.check_box :hidden
-  = f.check_box :welcome
+  = f.check_box :welcome           
+  = f.select :category_id, Category.for_select
 
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_goals_path, :class => 'btn'

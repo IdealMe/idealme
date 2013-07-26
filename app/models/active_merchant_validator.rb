@@ -9,10 +9,9 @@ class ActiveMerchantValidator
   attr_accessor :gateway
   attr_accessor :market, :market_id, :course_id, :time, :checksum
   attr_accessor :firstname, :lastname, :email
-  attr_accessor :card_number, :card_exp, :card_type, :cvv
+  attr_accessor :card_number, :card_type, :card_exp_year, :card_exp_month, :cvv
   attr_accessor :cc
   attr_accessor :billing_address1, :billing_address2, :billing_company, :billing_phone, :billing_zip, :billing_city, :billing_country, :billing_state
-
 
   def initialize(attributes = {})
     attributes.each do |name, value|
@@ -32,8 +31,7 @@ class ActiveMerchantValidator
   end
 
   before_validation :before_validation
-  validates_length_of :card_exp, :is => 4
-  validates_presence_of :market_id, :course_id, :time, :checksum, :firstname, :lastname, :card_number, :card_exp, :cvv
+  validates_presence_of :card_exp_year, :card_exp_month, :market_id, :course_id, :time, :checksum, :firstname, :lastname, :card_number, :cvv
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
 
 
@@ -50,18 +48,20 @@ class ActiveMerchantValidator
         :brand => self.card_type,
         :number => self.card_number,
         :verification_value => self.cvv,
-        :month => self.get_month,
-        :year => self.get_year,
+        :month => self.card_exp_month,
+        :year => self.card_exp_year,
+        :month => 12,
+        :year => 2014,
         :first_name => self.firstname,
         :last_name => self.lastname
     )
     self.cc.valid?
     self.cc.errors.each do |key, message|
       if key == 'month' && message.length > 0
-        self.errors.add(:card_exp, message)
+        self.errors.add(:card_exp_month, message)
       end
       if key == 'year' && message.length > 0
-        self.errors.add(:card_exp, message)
+        self.errors.add(:card_exp_year, message)
       end
       if key == 'verification_value' && message.length > 0
         self.errors.add(:cvv, message)
@@ -71,15 +71,6 @@ class ActiveMerchantValidator
       end
     end
   end
-
-  def get_month
-    card_exp[0..1].to_i if card_exp
-  end
-
-  def get_year
-    ('20' + card_exp[2..3]).to_i if card_exp[2..3]
-  end
-
 
   def persisted?
     false

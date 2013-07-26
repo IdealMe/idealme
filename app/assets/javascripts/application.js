@@ -19,12 +19,39 @@
 //= require formatted_form
 //= require tinymce-jquery
 //= require jquery.stayInWebApp.js
+//= require jstz-1.0.5.js
+//
+//
+//= require users.js
+//
 //= require_tree .
 
 
 $(function () {
-    $('.user_pic').click(function () {
-        var user_menu = $(this).siblings('.user_menu');
+    $('.goal-privacy-toggle').click(function () {
+        var self = $(this);
+        var data_goal_user_id = self.attr('data-goal-user-id');
+        var data_goal_user_private = self.attr('data-goal-user-private');
+        if (data_goal_user_private == 1) {
+            self.attr('data-goal-user-private', 0);
+            self.html('Public');
+        } else {
+            self.attr('data-goal-user-private', 1);
+            self.html('Private');
+        }
+        $.ajax({
+            type: "POST",
+            url: '/ajax/goal_users/set_privacy',
+            data: {'goal_user_id': data_goal_user_id},
+            //success: success,
+            dataType: 'json'
+        });
+    });
+});
+
+$(function () {
+    $('.user-avatar').click(function () {
+        var user_menu = $(this).siblings('.user-menu');
 
         var $this = $(this);
         if ($this.hasClass('on')) {
@@ -38,24 +65,22 @@ $(function () {
 
     $.stayInWebApp();
 
-    // ****************************************** PLACEHOLDER
-    function placeholder() { // placeholder for inputs textarea
-        //placeholder for form
-        $('input, textarea').focus(function () {
-            if ($(this).attr('placeholder') == $(this).val()) {
-                $(this).val('');
-                $(this).data('placeholder', $(this).attr('placeholder'));
-                $(this).attr('placeholder', '');
-            }
-        });
-        $('input, textarea').blur(function () {
-            if ($(this).val() == '') {
-                $(this).val($(this).data('placeholder'));
-                $(this).attr('placeholder', $(this).data('placeholder'));
-            }
-        });
-    };
-    placeholder();
+
+    //placeholder for form
+    $('input, textarea').focus(function () {
+        if ($(this).attr('placeholder') == $(this).val()) {
+            $(this).val('');
+            $(this).data('placeholder', $(this).attr('placeholder'));
+            $(this).attr('placeholder', '');
+        }
+    });
+    $('input, textarea').blur(function () {
+        if ($(this).val() == '') {
+            $(this).val($(this).data('placeholder'));
+            $(this).attr('placeholder', $(this).data('placeholder'));
+        }
+    });
+
     $('.flexslider').flexslider({
         animation: "slide",
         controlNav: true,

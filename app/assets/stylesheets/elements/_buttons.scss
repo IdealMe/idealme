@@ -15,7 +15,7 @@
   &:hover {
     @include bg-pos(top, left);
     border: 1px solid #bcbcbc;
-    @include background-image(linear-gradient(top, white, #fafafa));
+    //@include background-image(linear-gradient(top, white, #fafafa));
   }
 }
 

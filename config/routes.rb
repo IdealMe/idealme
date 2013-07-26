@@ -15,6 +15,8 @@ Idealme::Application.routes.draw do
     resources :lectures
     resources :users
     resources :goals
+    resources :categories
+    resources :polls
   end
 
   resources :markets, :only => [:index, :show] do
@@ -27,6 +29,7 @@ Idealme::Application.routes.draw do
 
   resources :courses, :only => [:index, :show]
   resources :discovers, :only => [:index, :show]
+  resources :goals
 
 
   namespace :ajax do
@@ -36,6 +39,22 @@ Idealme::Application.routes.draw do
       end
     end
     resources :goals, :only => [:index], :defaults => {:format => :json}
+    resources :categories, :only => [:index], :defaults => {:format => :json}
+
+
+    resources :checkins, :only => [:index, :show], :defaults => {:format => :json} do
+      collection do
+        get 'add_checkin' => 'checkins#add_checkin'
+      end
+    end
+
+    resources :goal_users, :only => [], :defaults => {:format => :json} do
+      collection do
+        post 'set_privacy' => 'goal_users#set_privacy'
+      end
+    end
+
+
   end
 
 

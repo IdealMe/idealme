@@ -1,13 +1,10 @@
-/* ******************************************** */
-/* Course page */
-/* ******************************************** */
-.markets_show {
+.markets-show {
   @include bg(#faf9f5);
-  .promo_section {
+  .promo-section {
     min-width: 1250px;
     @include bg(#c1e4de);
     padding: 20px 0;
-    .promo_wrapper {
+    .promo-wrapper {
       width: 1024px;
       margin: 0 auto;
     }

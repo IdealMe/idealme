@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #gem 'metainspector'
 #gem 'pismo'
 gem 'activemerchant'
+gem 'jbuilder'
 
 
 #Ruby on Rails
@@ -80,6 +81,8 @@ group :assets do
   #Integrate Compass into Rails 2.3 and up.
   gem 'compass-rails'
 
+
+  gem 'font-awesome-rails'
 end
 
 

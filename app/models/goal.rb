@@ -3,11 +3,13 @@ class Goal < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :hidden, :name, :user_count, :avatar, :welcome, :hidden, :ordering
+  attr_accessible :hidden, :name, :user_count, :avatar, :welcome, :hidden, :ordering, :category_id
 
   # == Relationships ========================================================
   has_many :goal_users
   has_many :users, :through => :goal_users
+
+  belongs_to :category
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
@@ -22,7 +24,6 @@ class Goal < ActiveRecord::Base
   scope :is_welcome, -> { where(:welcome => true) }
   scope :visible, -> { where(:hidden => false) }
   scope :hidden, -> { where(:hidden => true) }
-
 
   # == Callbacks ============================================================
   # == Class Methods ========================================================

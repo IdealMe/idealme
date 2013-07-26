@@ -1,8 +1,8 @@
 /* ******************************************** */
 /* Marketplace page */
 /* ******************************************** */
-.markets_index {
-  .promo_section {
+.markets-index {
+  .promo-section {
     min-width: 1250px;
     @include bg(#ff8594);
     padding-top: 30px;
@@ -11,12 +11,12 @@
       display: none;
     }
   }
-  .slide_wrapper {
+  .slide-wrapper {
     width: 620px;
     margin: 0 auto;
     @include hex(white);
     @include centered;
-    .title {
+    .market-name {
       @include fs(34px);
       @include lh(50px);
       @include hex(white);
@@ -25,7 +25,7 @@
       font-weight: normal;
       margin-bottom: 22px;
     }
-    .autor {
+    .owner-name {
       @include fs(16px);
       margin-bottom: 26px;
     }
@@ -33,25 +33,6 @@
       width: 185px;
       padding: 16px 35px;
       text-align: left;
-    }
-  }
-  .offer_section {
-    padding: 33px 41px 0 41px;
-    min-width: 1168px;
-    .section_header {
-      color: #8b8b8b;
-      font-size: 14px;
-      text-transform: uppercase;
-      line-height: 20px;
-      font-weight: normal;
-      margin-bottom: 24px;
-    }
-    table {
-      width: 100%;
-      border: none;
-    }
-    td {
-      text-align: center;
     }
   }
 }

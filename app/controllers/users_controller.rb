@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :require_authentication
 
   def profile
-    @goals = @user.goals
+    @goal_users = GoalUser.where(:user_id => @user.id).includes(:goal, :checkins).all
   end
 
   def welcome
