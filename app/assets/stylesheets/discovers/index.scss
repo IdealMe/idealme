@@ -17,7 +17,6 @@
       height: 28px;
     }
   }
-
   .media-body {
     a {
       display: block;
@@ -29,4 +28,22 @@
     padding: 8px 5px 11px 9px;
     @include m_b(36px);
   }
+
+  .main-section {
+    display: inline;
+    float: left;
+    width: 880px;
+    text-align: left;
+    .discover-card {
+      margin: 0px 60px 18px 0px;
+
+    }
+  }
+  .sidebar {
+    display: inline;
+    float: left;
+    width: 370px;
+    text-align: left;
+  }
+
 }

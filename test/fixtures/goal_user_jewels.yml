@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  goal: 
+  goal_user: 
+  jewel: 
+
+two:
+  goal: 
+  goal_user: 
+  jewel: 

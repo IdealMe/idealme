@@ -91,7 +91,7 @@
 
 .discover-card {
   @include float-left;
-  margin: 0px 41px 30px 0px;
+  margin: 0px 18px 18px 0px;
   width: 230px;
   @include bg(white);
   border: 1px solid #ebebeb;
@@ -104,7 +104,7 @@
       width: 230px;
     }
   }
-  .ruby_icon {
+  .ruby-icon {
     @include sprite_css(ruby);
     @include float-left;
     margin: 1px 0px 0px 12px;
@@ -113,7 +113,8 @@
     @include fs(12px);
     @include hex(#4b4b4b);
     @include block;
-    margin-left: 33px;
+    @include m_l(33px);
+    @include m_r(10px);
     @include m_b(5px);
     height: 40px;
     a {
@@ -122,6 +123,20 @@
   }
   .bottom-box {
     border-top: 1px solid #ebebeb;
+  }
+
+  .comment-box {
+    @include float-left;
+    @include fs(10px);
+    @include hex(#4d4d4d);
+    width: 29px;
+    padding: 7px 33px 7px 0px;
+    @include m_l(8px);
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+    @include bg(image-url("icons/comment.png") no-repeat);
+    @include bg_pos(70%, 8px);
+    @include right;
   }
 
   .like-box {
@@ -146,10 +161,22 @@
     }
   }
   .add-me-box {
+    @include float-left;
+    @include fs(16px);
+    @include hex(#797979);
+    @include rel;
+    @include bold;
+    @include pointer;
     .unchecked {
-      width: 50px;
+      width: 57px;
+      text-align: center;
+      padding: 6px 0;
+    }
+    .checked {
+      display: none;
     }
   }
+
 }
 
 .goal-card {

@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :goal_users
   has_many :goals, :through => :goal_users
 
+  has_many :created_jewels, :class_name => 'Jewel', :foreign_key => 'owner_id'
 
   has_many :checkins, :through => :goal_users
 

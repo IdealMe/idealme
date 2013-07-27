@@ -11,6 +11,9 @@ class Goal < ActiveRecord::Base
 
   belongs_to :category
 
+  has_many :goal_courses
+  has_many :courses, :through => :goal_courses
+
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     :styles => {:full => '115x115#'},

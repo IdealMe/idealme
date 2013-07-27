@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725025927) do
+ActiveRecord::Schema.define(:version => 20130727154711) do
 
   create_table "affiliate_clicks", :force => true do |t|
     t.integer  "clicks",                :default => 1
@@ -227,6 +227,28 @@ ActiveRecord::Schema.define(:version => 20130725025927) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "goal_courses", :force => true do |t|
+    t.integer  "goal_id"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "goal_courses", ["course_id"], :name => "index_goal_courses_on_course_id"
+  add_index "goal_courses", ["goal_id"], :name => "index_goal_courses_on_goal_id"
+
+  create_table "goal_user_jewels", :force => true do |t|
+    t.integer  "goal_id"
+    t.integer  "goal_user_id"
+    t.integer  "jewel_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "goal_user_jewels", ["goal_id"], :name => "index_goal_user_jewels_on_goal_id"
+  add_index "goal_user_jewels", ["goal_user_id"], :name => "index_goal_user_jewels_on_goal_user_id"
+  add_index "goal_user_jewels", ["jewel_id"], :name => "index_goal_user_jewels_on_jewel_id"
+
   create_table "goal_users", :force => true do |t|
     t.boolean  "private",    :default => true
     t.integer  "user_id"
@@ -266,6 +288,22 @@ ActiveRecord::Schema.define(:version => 20130725025927) do
   end
 
   add_index "identities", ["owner_id"], :name => "index_identities_on_owner_id"
+
+  create_table "jewels", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "url"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "owner_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.text     "content"
+  end
+
+  add_index "jewels", ["owner_id"], :name => "index_jewels_on_owner_id"
 
   create_table "lectures", :force => true do |t|
     t.string   "name"

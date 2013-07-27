@@ -17,57 +17,65 @@
       }
     }
   }
-  .menu_section {
+  .menu-section {
     border-bottom: 1px solid #ebeae5;
     @include m_b(55px);
-    .user_menu {
+    .user-menu {
       margin: 0;
       @include float-left;
       li {
         @include float-left;
+        &.active, &:hover {
+          border-bottom: 2px solid #ff6766;
+        }
         a {
           padding: 14px 28px;
           @include block;
           @include hex(#424242);
           @include fs(14px);
           @include upper;
-          &.current, &:hover {
-            border-bottom: 2px solid #ff6766;
+          &:hover {
             text-decoration: none;
           }
         }
-        .activity_icon {
+        .activity-icon {
           @include bg(image-url('icons/activity_icon.png') no-repeat);
           @include bg_pos(0px, 50%);
           @include p_l(49px);
           @include m_r(22px);
         }
-        .top_gems_icon {
+        .top-gem-icon {
           @include bg(image-url('icons/ruby25x25.png') no-repeat);
           @include bg_pos(0px, 50%);
           @include p_l(37px);
           @include m_r(13px);
         }
-        .my_gem_icon {
-          padding: 14px;
+        .my-gem-icon {
+          @include bg(image-url('icons/ruby25x25.png') no-repeat);
+          @include bg_pos(0px, 50%);
+          @include p_l(37px);
           @include m_r(35px);
-          height: 20px;
-          overflow: hidden;
-          span {
-            @include fs(24px);
-            font-weight: bold;
-            position: relative;
-            top: 2px;
-            margin-right: 12px;
-          }
+          
+          //
+          //padding: 14px;
+          //@include m_r(35px);
+          //height: 20px;
+          //overflow: hidden;
+          //span {
+          //  @include fs(24px);
+          //  font-weight: bold;
+          //  position: relative;
+          //  top: 2px;
+          //  margin-right: 12px;
+          //}
         }
-        .course_icon {
+        .course-icon {
           @include bg(image-url('icons/course_icon.png') no-repeat);
           @include bg_pos(0, 50%);
           @include p_l(41px);
           @include m_r(19px);
         }
-        .community_icon {
+        .community-icon {
           @include bg(image-url('icons/community_32x32.png') no-repeat);
           @include bg_pos(0px, 50%);
           padding: 14px 28px 14px 47px;

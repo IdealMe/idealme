@@ -1,0 +1,136 @@
+%section.main_section
+  %section.share_section
+    .toggle_box
+      %a.check_in_toggle.on{:href => "#"} Check in
+      %a.share_toggle{:href => "#"} Share gem
+    .input-append
+      %input#appendedInputButton.share_input.span2{:type => "text", :value => "Say how you make progress today..."}/
+      %button.btn.btn-red.btn-checkin{:type => "button"} Checkin
+    .checked_in_msg You checked in today. Come back tomorrow!
+  %section.wall_section
+    .v_line
+    %ul.posts_box
+  
+      %li
+        .post
+          .post_arrow
+          .post_date 5m
+          .user_pic
+            %img{:src => "../img/user_2.png"}/
+          .post_body
+            .post_title
+              %a.post_autor{:href => "#"} Rachel Crossley
+              shared a gem:
+              %a.post_link.open_pop_up{"data-popupname" => "pop_up_example", "data-top" => "146", "data-width" => "600", :href => "#"} Amazing free workout mixes
+            .post_msg
+              .post_msg_arrow
+              Check out these mixes, they are so awesome and you can't beat free!!!
+            .post_bottom
+              .like 1
+              .dislike 0
+              .comment_count 0
+              %a.add_comment{:href => "#"} Add comment
+            .comments_box
+      %li
+        .post
+          .post_arrow
+          .post_date 15m
+          .user_pic
+            %img{:src => "../img/user_2.png"}/
+          .post_body
+            .post_title
+              %a.post_autor{:href => "#"} Erika
+              is supporting you
+      %li
+        .post
+          .post_arrow
+          .post_date 1d
+          .user_pic
+            %img{:src => "../img/user_2.png"}/
+          .post_body
+            .post_title
+              %a.post_autor{:href => "#"} You
+              checked in for the 100th day in a row!
+            .post_msg
+              .post_msg_arrow
+              I DID IT!!!
+            .post_bottom
+              .like 0
+              .dislike 0
+              .comment_count 3
+              %a.add_comment{:href => "#"} Add comment
+            .comments_box
+              .comment
+                .user_pic
+                  %img{:src => "../img/user_2.png"}/
+                .comment_txt
+                  Nice work girl!
+                .clear
+              .comment
+                .user_pic
+                  %img{:src => "../img/user_2.png"}/
+                .comment_txt
+                  Way to go. Do you feel like a million $$$?!?
+                .clear
+              .comment
+                .user_pic
+                  %img{:src => "../img/user_2.png"}/
+                .comment_txt
+                  I feel GREAT and BF thinks I look good. Keep at it people this works!
+                .clear
+%section.right_sidebar
+  .check_in_box
+    .check_in_status
+      
+      - if @last_checkin.today?
+        .checkin-today-has-checkin
+          %p.checkined_in_title CHECKED IN
+          %p First time. Let's do this!
+      - else
+        .checkin-today-no-checkin 
+          NO CHECKINS
+        
+        
+        
+      .checkin-this-week
+        .checkin-this-week-icon 
+          = @checkins_this_week.length
+        .checkin-this-week-copy 
+          CHECK 
+          = 'IN'.pluralize(@checkins_this_week.length).upcase
+      .clear
+    .checkin-calendar
+      .checkin-calendar-time-log          
+        - n = 7
+        - end_date = Checkin.end_date  
+        - from_date = Checkin.start_date(n)
+        - (-1..n-2).each do |week|
+          - start_date = end_date - 6.days
+          %div
+            - if week > 0 
+              = start_date.strftime('%d/%m')
+              \-
+              = end_date.strftime('%d/%m')
+            - elsif week == -1
+              This week
+            - else     
+              Last week
+          - end_date = start_date - 1.day
+        
+      .days_section
+        .days_head
+          %div S
+          %div M
+          %div T
+          %div W
+          %div T
+          %div F
+          %div S
+        - end_date = Checkin.end_date
+        - (-1..n-2).each do |week|
+          .days_row
+            - start_date = end_date - 6.days
+            - (0..6).each do |offset|
+              %div{:class => checkin_class(@checkins_7_weeks_dates, (start_date + offset).strftime('%Y%m%d') ), :data => {:date => (start_date + offset).strftime('%Y%m%d')}}
+          - end_date = start_date - 1.day
+        

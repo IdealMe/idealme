@@ -1,0 +1,17 @@
+.discover-card
+  = link_to image_tag(discover.avatar.url(:full)), discover.url, :class => 'avatar'
+  .ruby-icon
+  .title
+    = link_to truncate(discover.name, :length => 40, :separator => '...'), discover.url, :data => {:title => discover.name}   
+  .clear
+  .bottom-box
+    .like-box
+      .like 352
+      .dislike 12
+      .clear
+    .comment-box
+      31
+    .add-me-box
+      .unchecked +
+      .checked
+    .clear

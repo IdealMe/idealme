@@ -1,7 +1,7 @@
 class DiscoversController < ApplicationController
   # GET /discovers
   def index
-    @discovers = Market.all
+    @discovers = Jewel.all
 
   end
 

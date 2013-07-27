@@ -15,7 +15,13 @@ class GoalsController < ApplicationController
     @checkins_7_weeks = Checkin.last_n_week(7).for_goal_user(@goal_user).all
     @checkins_7_weeks_dates = @checkins_7_weeks.collect { |x| x.created_at.strftime('%Y%m%d') }
     @last_checkin = Checkin.for_goal_user(@goal_user).last
-    
-    
+
+
+    @goal_mates = GoalUser.goal_mate_for(@goal_user.goal).all
+
+    @discovers = Jewel.all
+
+
+    @tab = params[:tab] || 'activity'
   end
 end

@@ -20,7 +20,8 @@
       .divider
       .counter
         Created
-        .created-box 0
+        .created-box 
+          = @user.created_jewels.length
       .divider
       .counter
         Supporters

@@ -10,12 +10,12 @@
       %option Most recent
     .clear
 .container
-  .main_section
+  .main-section
     - @discovers.each do |discovery|
-      =render :partial => 'discovers/partials/tile', :locals => {:discover => discovery}
+      =render :partial => 'partials/discover_card', :locals => {:discover => discovery}
 
     .clear
-  .right_sidebar
+  .sidebar
     .modal_box.adv-box
       =image_tag 'banner.png'
     .modal_box

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-#
-#gem 'metainspector'
-#gem 'pismo'
+
+gem 'metainspector'
+
 gem 'activemerchant'
 gem 'jbuilder'
 
