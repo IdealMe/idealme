@@ -3,7 +3,7 @@ class CreateJewels < ActiveRecord::Migration
     create_table :jewels do |t|
       t.string :name
       t.string :slug
-      t.test :content
+      t.text :content
       t.text :url
       t.attachment :avatar
       t.integer :owner_id
