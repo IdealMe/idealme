@@ -82,6 +82,7 @@ Course.find_each do |course|
   course.owner = u
   course.default_market_id = course.id
   course.save
+  CourseGoal.create!(:goal_id => Goal.first.id, :course_id => course.id)
 end
 
 

@@ -19,6 +19,8 @@ class GoalsController < ApplicationController
 
     @top_gems = (Jewel.for_goal(@goal_user.goal).private_goal(false).all + @my_gems).uniq
 
+    @courses = @goal_user.goal.courses
+    
     @tab = params[:tab] || 'activity'
   end
 
