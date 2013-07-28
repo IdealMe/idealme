@@ -28,14 +28,15 @@ class Course < ActiveRecord::Base
   has_many :course_goals
   has_many :goals, :through => :course_goals
 
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :replies, :through => :comments
+
   # == Paperclip ============================================================
   # == Validations ==========================================================
   # == Scopes ===============================================================
   scope :with_sections_and_lectures, -> { includes(:sections => :lectures) }
-  
+
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
-
-
 end

@@ -2,6 +2,8 @@ class GoalsController < ApplicationController
   before_filter :require_authentication
 
   before_filter :load_goal_user, :only => [:show, :share, :checkin]
+  before_filter :ensure_owner
+
   # GET /goals  
   def index
     redirect_to user_path(current_user) and return
@@ -13,14 +15,9 @@ class GoalsController < ApplicationController
     @checkins_7_weeks = Checkin.last_n_week(7).for_goal_user(@goal_user).all
     @checkins_7_weeks_dates = @checkins_7_weeks.collect { |x| x.created_at.strftime('%Y%m%d') }
     @goal_mates = GoalUser.goal_mate_for(@goal_user.goal).all
-
-
     @my_gems = Jewel.for_goal(@goal_user.goal).for_user(current_user).all
-
     @top_gems = (Jewel.for_goal(@goal_user.goal).private_goal(false).all + @my_gems).uniq
-
     @courses = @goal_user.goal.courses
-    
     @tab = params[:tab] || 'activity'
   end
 
@@ -53,6 +50,11 @@ class GoalsController < ApplicationController
   protected
   def load_goal_user
     @goal_user = GoalUser.where(:id => params[:id]).includes(:goal, :checkins).first
+    @owner = (@goal_user.user_id == current_user.id)
+  end
 
+  # Ensure that the owner is browsing the curent profile
+  def ensure_owner
+    redirect_to(user_path(current_user), :alert => 'That goal does not exist!') and return if (!@owner && @goal_user.private?)
   end
 end

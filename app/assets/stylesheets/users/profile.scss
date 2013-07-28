@@ -19,12 +19,12 @@
         @include bold;
         @include m_b(8px);
       }
-      .user-location {
-        a {
-          @include hex(#a1a1a1);
-          @include fs(12px);
-          @include lh(20px);
-        }
+      .user-tagline {
+
+        @include hex(#a1a1a1);
+        @include fs(12px);
+        @include lh(20px);
+        width: 350px;
       }
     }
   }
@@ -120,22 +120,7 @@
         }
       }
     }
-    .goal-edit-box {
-      @include float-right;
-      @include bg(image-url("icons/edit_icon.png") no-repeat);
-      @include bg_pos(0, 50%);
-      padding: 10px 28px;
-      @include block;
-      @include hex(#424242);
-      @include fs(14px);
-      @include upper;
-      @include rel;
-      top: 1px;
-      &.active, &:hover {
-        border-bottom: 2px solid #ff6766;
-        text-decoration: none;
-      }
-    }
+
   }
   .goals_section {
     padding-bottom: 20px;

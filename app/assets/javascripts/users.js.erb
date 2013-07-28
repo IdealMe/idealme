@@ -1,16 +1,38 @@
 $(function () {
+    $('.im-best-in-place').best_in_place();
+
+
+    $('.goal-picker-unchecked').click(function () {
+        var self = $(this);
+        var goal_id = self.attr('data-goal-id');
+        self.addClass('hide');
+        $('.goal-picker-checked[data-goal-id="' + goal_id + '"]').removeClass('hide');
+        $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('1');
+
+    });
+    $('.goal-picker-checked').click(function () {
+        var self = $(this);
+        var goal_id = self.attr('data-goal-id');
+        self.addClass('hide');
+        $('.goal-picker-unchecked[data-goal-id="' + goal_id + '"]').removeClass('hide');
+        $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('0');
+    });
+
+
     //Update the register's timezone, during register page
     $('input[name="user[timezone]"]').val(jstz.determine().name());
 
     //Update the user's timezone, if it was on the default timezone of Etc/Zulu
     if (im_js.current_user_id != null && (im_js.timezone == 'Etc/Zulu' || im_js.timezone != jstz.determine().name())) {
         $.ajax({
-            url: '/ajax/users/set_timezone',
+            url: '/ajax/users/' + im_js.current_user_username,
             async: false,
-            type: 'POST',
+            type: 'PUT',
             cache: false,
             data: {
-                'timezone': jstz.determine().name()
+                'user': {
+                    'timezone': jstz.determine().name()
+                }
             },
             dataType: 'json'
         });

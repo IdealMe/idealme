@@ -1,17 +1,21 @@
-.container
+.container           
   .user-profile
     .user-avatar
       = image_tag @user.avatar.url(:square)
     .user-informaiton
       .user-fullname
         = @user.fullname
-      .user-location
-        %a{:href => "#"} + add location
+      .user-tagline    
+        - if @owner
+          = best_in_place @user, :tagline, :type => :textarea, :classes => 'im-best-in-place', :activator => '.user-tagline-editor', :path => ajax_user_path(@user), :nil => '+ add a tagline'
+          %i.icon-edit.user-tagline-editor
+        - else
+          = @user.tagline
     .user-counters
       .counter
         Checkins
         .checkins-box  
-          = @user.checkins.length
+          = @checkins.length
       .divider
       .counter
         Collected
@@ -29,7 +33,7 @@
       .counter
         Supporting
         .supporting-box 0
-    .clear
+    .clear        
   .menu-section
     %ul.user-menu
       %li{:class => active_tab?('goal', @tab)}
@@ -37,9 +41,6 @@
       %li{:class => active_tab?('course', @tab)}
         = link_to 'course history', user_path(current_user, {:tab => 'course'}), :class => 'course-icon'
     .clear                                   
-    - if @tab == 'goal'
-      %a.goal-edit-box{:href => "#"} edit goals
-    .clear
   - if @tab == 'goal'
     = render :partial => 'users/partials/goal'
   - else       

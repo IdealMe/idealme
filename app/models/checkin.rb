@@ -21,9 +21,12 @@ class Checkin < ActiveRecord::Base
 
   scope :for_goal_user, lambda { |goal_user| where(:goal_user_id => goal_user.id) }
 
+  scope :for_user, lambda { |user| joins(:goal_user).where(:goal_users => {:user_id => user.id}) }
+
+  scope :private_goal, lambda { |permission| joins(:goal_user).where(:goal_users => {:private => permission}) }
+
   # == Callbacks ============================================================
   # == Class Methods ========================================================
-
   def self.start_date(n)
     DateTime.now.beginning_of_week(start_day = :sunday) - (n * 7).days
   end
@@ -33,7 +36,6 @@ class Checkin < ActiveRecord::Base
   end
 
   # == Instance Methods =====================================================
-
   def today?
     self.created_at.to_datetime >= DateTime.now.beginning_of_day
   end

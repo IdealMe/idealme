@@ -1,4 +1,9 @@
 .goals-show {
+  .discover-card{
+    @include m_l(9px);
+    @include m_r(9px);
+    @include m_b(9px);
+  }
   @include bg(#faf9f4);
   .top-section {
     @include m_b(20px);

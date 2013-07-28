@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727180434) do
+ActiveRecord::Schema.define(:version => 20130728064057) do
+
+  create_table "activities", :force => true do |t|
+    t.boolean  "read",           :default => false
+    t.integer  "count",          :default => 1
+    t.string   "key"
+    t.string   "action"
+    t.text     "parameters"
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
 
   create_table "affiliate_clicks", :force => true do |t|
     t.integer  "clicks",                :default => 1
@@ -184,6 +198,15 @@ ActiveRecord::Schema.define(:version => 20130727180434) do
 
   add_index "cms_snippets", ["site_id", "identifier"], :name => "index_cms_snippets_on_site_id_and_identifier", :unique => true
   add_index "cms_snippets", ["site_id", "position"], :name => "index_cms_snippets_on_site_id_and_position"
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "owner_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "course_goals", :force => true do |t|
     t.integer  "course_id"
@@ -390,6 +413,16 @@ ActiveRecord::Schema.define(:version => 20130727180434) do
   add_index "poll_results", ["owner_id"], :name => "index_poll_results_on_owner_id"
   add_index "poll_results", ["poll_choice_id"], :name => "index_poll_results_on_poll_choice_id"
   add_index "poll_results", ["poll_question_id"], :name => "index_poll_results_on_poll_question_id"
+
+  create_table "replies", :force => true do |t|
+    t.text     "content"
+    t.integer  "comment_id"
+    t.integer  "owner_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "replies", ["comment_id"], :name => "index_replies_on_comment_id"
 
   create_table "reviews", :force => true do |t|
     t.text     "content"

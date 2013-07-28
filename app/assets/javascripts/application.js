@@ -21,6 +21,7 @@
 //= require jquery.stayInWebApp.js
 //= require jstz-1.0.5.js
 //
+//= require best_in_place
 //
 //= require users.js
 //

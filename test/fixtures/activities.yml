@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  read: false
+  count: 1
+  key: MyString
+  action: MyString
+  parameters: MyText
+
+two:
+  read: false
+  count: 1
+  key: MyString
+  action: MyString
+  parameters: MyText

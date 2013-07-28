@@ -13,8 +13,8 @@ class Identity < ActiveRecord::Base
   # == Scopes ===============================================================
   scope :facebook_identity, lambda { |owner| where(:owner_id => owner.id) }
   scope :google_identity, lambda { |owner| where(:owner_id => owner.id) }
+  
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
-
 end

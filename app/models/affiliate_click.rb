@@ -36,6 +36,4 @@ class AffiliateClick < ActiveRecord::Base
   end
 
   # == Instance Methods =====================================================
-
-
 end

@@ -3,7 +3,8 @@ class Order < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :cost, :ipn, :status, :subscriber_id, :transaction_id, :transaction_status, :course, :user, :course_id, :user_id
+  attr_accessible :cost, :ipn, :status, :subscriber_id, :transaction_id, :transaction_status, 
+                  :course, :user, :course_id, :user_id
 
   # == Relationships ========================================================
   belongs_to :course

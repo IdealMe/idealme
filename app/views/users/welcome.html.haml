@@ -5,12 +5,10 @@
     Ready for some "me" time? What do you want to achieve?
     %br/
     Pick some goals to get started. You can add more or change them anytime.
-.container
-  %table.goals_section
-    - while (@goals.length != 0) do
-      - @batch = @goals.shift(5)
-      %tr
-        - @batch.each do |goal|
-          %td
-            =render :partial => 'users/partials/goal_tile', :locals => {:goal => goal}
-  .btn.btn-red I'm done ➝
+
+.container   
+  = form_tag user_welcome_path do
+    - @goals.each do |goal|
+      = render :partial => 'users/partials/goal_tile', :locals => {:goal => goal}
+      = hidden_field_tag "goal_ids[#{goal.id}]", '0', {:data => {:goal_id => goal.id}}
+    = submit_tag "I'm done ➝", :class => 'btn btn-red'

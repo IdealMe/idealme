@@ -38,28 +38,20 @@ Idealme::Application.routes.draw do
 
 
   namespace :ajax do
-    resources :users, :only => [], :defaults => {:format => :json} do
-      collection do
-        post 'set_timezone' => 'users#set_timezone'
-      end
-    end
+    resources :comments, :only => [:create, :update, :destroy], :defaults => {:format => :json}
+    resources :users, :only => [:update], :defaults => {:format => :json}
     resources :goals, :only => [:index], :defaults => {:format => :json}
     resources :categories, :only => [:index], :defaults => {:format => :json}
-
-
     resources :checkins, :only => [:index, :show], :defaults => {:format => :json} do
       collection do
         get 'add_checkin' => 'checkins#add_checkin'
       end
     end
-
     resources :goal_users, :only => [], :defaults => {:format => :json} do
       collection do
         post 'set_privacy' => 'goal_users#set_privacy'
       end
     end
-
-
   end
 
 
@@ -89,11 +81,16 @@ Idealme::Application.routes.draw do
     get 'users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get 'register/affiliate_sign_up' => 'users/registrations#new_affiliate', :as => :new_affiliate_registration
     post 'register/affiliate_sign_up' => 'users/registrations#create_affiliate', :as => :affiliate_registration
-    constraints(:id => /[0-9A-Za-z\-\.]+/) do
+    constraints(:id => /[0-9A-Za-z\-\.\_]+/) do
       get ':id' => 'users#profile', :as => :user
       get ':id/edit' => 'users/registrations#edit', :as => :user_edit
       get ':id/course' => 'users#course', :as => :user_course
+
+      # Signup flow
       get ':id/welcome' => 'users#welcome', :as => :user_welcome
+      post ':id/welcome' => 'users#welcome_save', :as => :user_welcome
+      # Signup flow
+
       get ':id/goal' => 'users#goal', :as => :user_goal
       get ':id/goal/:active_goal' => 'users#active_goal', :as => :user_active_goal
       get ':id/friend' => 'users#friend', :as => :user_friend

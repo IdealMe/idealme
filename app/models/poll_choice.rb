@@ -15,8 +15,6 @@ class PollChoice < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================  
-
-
   def total_votes
     if self.poll_results
       self.poll_results.length

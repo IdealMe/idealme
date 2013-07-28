@@ -4,6 +4,7 @@ gem 'metainspector'
 
 gem 'activemerchant'
 gem 'jbuilder'
+gem 'best_in_place'
 
 
 #Ruby on Rails

@@ -18,7 +18,6 @@ class Review < ActiveRecord::Base
 
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
-
   def after_create
     if self.recommended
       self.course.review_positive += 1
@@ -36,6 +35,4 @@ class Review < ActiveRecord::Base
     end
     self.course.save!
   end
-
-
 end

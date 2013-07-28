@@ -1,6 +1,5 @@
 footer {
-  min-width: 960px;
-  max-width: 1250px;
+  width: 1250px;
   @include bg(#f6f6f8);
   margin: auto;
   .footer-bg {

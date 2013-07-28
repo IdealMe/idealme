@@ -12,10 +12,9 @@ class User < ActiveRecord::Base
 
   # == Attributes ===========================================================
   attr_accessible :login, :username, :firstname, :lastname, :email, :password, :password_confirmation,
-                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about
+                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about, :timezone
 
   attr_accessible :access_admin, :access_affiliate, :access_instructor, :as => :admin
-
 
   attr_accessor :login
   attr_accessible :login
@@ -47,7 +46,6 @@ class User < ActiveRecord::Base
 
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
-
   def fullname
     "#{self.firstname} #{self.lastname}"
   end

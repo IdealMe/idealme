@@ -28,5 +28,4 @@ class Category < ActiveRecord::Base
   end
   
   # == Instance Methods =====================================================
-
 end

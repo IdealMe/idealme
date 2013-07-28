@@ -22,5 +22,6 @@ class AffiliateSale < ActiveRecord::Base
       affiliate_sale
     end
   end
+  
   # == Instance Methods =====================================================
 end

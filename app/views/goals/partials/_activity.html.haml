@@ -1,28 +1,29 @@
-.main-section
-  .share-section
-    .toggle-box
-      %a.checkin-toggle{:href => '#checkin', :data => {:toggle => 'tab'}} Checkin
-      %a.share-toggle{:href => '#share', :data => {:toggle => 'tab'}} Share gem
-    .tab-content
-      #checkin.tab-pane{:class => ('active' unless @goal_user.checkedin?)}
-        - if @goal_user.checkedin?
-          .already-checkin-message
-            You checked in today. Come back tomorrow!
-        - else
-          .checkin-arrow
+.main-section      
+  - if @owner  && false
+    .share-section
+      .toggle-box
+        %a.checkin-toggle{:href => '#checkin', :data => {:toggle => 'tab'}} Checkin
+        %a.share-toggle{:href => '#share', :data => {:toggle => 'tab'}} Share gem
+      .tab-content
+        #checkin.tab-pane{:class => ('active' unless @goal_user.checkedin?)}
+          - if @goal_user.checkedin?
+            .already-checkin-message
+              You checked in today. Come back tomorrow!
+          - else
+            .checkin-arrow
+              = image_tag 'goal_arrow.png'
+            .input-append       
+              = form_tag(checkin_goal_path(@goal_user)) do
+                = text_field_tag :thoughts, '', {:placeholder => 'Say how you make progress today...', :class => 'input'}
+                = submit_tag 'Checkin', :class => 'btn btn-red'
+          
+        #share.tab-pane{:class => ('active' if @goal_user.checkedin?)}                 
+          .share-arrow
             = image_tag 'goal_arrow.png'
-          .input-append       
-            = form_tag(checkin_goal_path(@goal_user)) do
-              = text_field_tag :thoughts, '', {:placeholder => 'Say how you make progress today...', :class => 'input'}
-              = submit_tag 'Checkin', :class => 'btn btn-red'
-        
-      #share.tab-pane{:class => ('active' if @goal_user.checkedin?)}                 
-        .share-arrow
-          = image_tag 'goal_arrow.png'
-        .input-append
-          = form_tag(share_goal_path(@goal_user)) do
-            = text_field_tag :url, '', {:placeholder => 'Enter the link for a useful webpage, article, image, video, app, Tweet...', :class => 'input'}
-            = submit_tag 'Add Gem', :class => 'btn btn-red'
+          .input-append
+            = form_tag(share_goal_path(@goal_user)) do
+              = text_field_tag :url, '', {:placeholder => 'Enter the link for a useful webpage, article, image, video, app, Tweet...', :class => 'input'}
+              = submit_tag 'Add Gem', :class => 'btn btn-red'
             
   .wall_section
     .v_line

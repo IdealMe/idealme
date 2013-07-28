@@ -23,7 +23,8 @@ class Ajax::BaseController < ::ApplicationController
   end
 
   protected
-  def authenticate
+  def require_authentication
+
     unless current_user
       @im_ajax_results.error = 'User is not authenticated'
       @im_ajax_results.status = 401
