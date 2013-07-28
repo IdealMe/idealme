@@ -25,6 +25,7 @@
       @include float-left;
       li {
         @include float-left;
+        margin-right: 10px;
         &.active, &:hover {
           border-bottom: 2px solid #ff6766;
         }
@@ -55,7 +56,7 @@
           @include bg_pos(0px, 50%);
           @include p_l(37px);
           @include m_r(35px);
-          
+
           //
           //padding: 14px;
           //@include m_r(35px);
@@ -83,14 +84,26 @@
       }
     }
   }
-  .main_section {
+
+  .main-section {
     width: 820px;
-    .share_section {
+    float: left;
+
+    .share-section {
       @include m_b(32px);
-      .toggle_box {
+
+      .checkin-arrow {
+        margin-bottom: -7px;
+        margin-left: 20px;
+      }
+      .share-arrow {
+        margin-bottom: -7px;
+        margin-left: 120px;
+      }
+
+      .toggle-box {
         @include fs(12px);
         @include p_l(10px);
-        @include m_b(16px);
         a {
           @include hex(#1d95cb);
           text-decoration: underline;
@@ -99,17 +112,18 @@
             text-decoration: none;
           }
         }
-      }
-      .check_in_toggle {
-        border-right: 1px solid #e4e4e4;
-        padding-right: 20px;
-      }
-      .share_toggle {
-        padding-left: 20px;
+
+        .checkin-toggle {
+          border-right: 1px solid #e4e4e4;
+          padding-right: 20px;
+        }
+        .share-toggle {
+          padding-left: 20px;
+        }
       }
       .input-append {
         @include p_l(10px);
-        #appendedInputButton {
+        .input {
           border: 2px solid #e4e4e4;
           width: 541px;
           height: 30px;
@@ -122,11 +136,10 @@
           @include bold;
         }
       }
-      .checked_in_msg {
+      .already-checkin-message {
         padding: 10px 0 22px 10px;
         @include hex(#999999);
         @include fs(12px);
-        display: none;
       }
     }
     .wall_section {
@@ -257,8 +270,9 @@
       }
     }
   }
-  .right_sidebar {
+  .sidebar {
     width: 425px;
+    float: left;
     border-left: 1px solid #ebeae8;
     @include hex(#999999);
     .check_in_box {
@@ -326,10 +340,10 @@
             @include lh(22px);
           }
         }
-        .days_section {
+        .days-section {
           @include float-left;
         }
-        .days_head {
+        .days-header {
           div {
             @include float-left;
             @include fs(9px);
@@ -338,7 +352,7 @@
             @include m_r(10px);
           }
         }
-        .days_row {
+        .days-row {
           clear: both;
           div {
             @include float-left;

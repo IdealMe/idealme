@@ -84,15 +84,19 @@
       @include float-left;
     }
   }
-  .menu_section {
+  .menu-section {
     border-bottom: 1px solid #ebeae5;
     @include m_b(50px);
-    .user_menu {
+    .user-menu {
       margin: 0;
       @include float-left;
       li {
         @include float-left;
-        @include m_r(27px);
+        margin-right: 10px;
+
+        &.active, &:hover {
+          border-bottom: 2px solid #ff6766;
+        }
         a {
           padding: 10px 28px;
           @include block;
@@ -101,23 +105,22 @@
           @include upper;
           @include rel;
           top: 1px;
-          &.active, &:hover {
-            border-bottom: 2px solid #ff6766;
+          &:hover {
             text-decoration: none;
           }
         }
-        .goals_icon {
+        .goal-icon {
           @include bg(image-url("icons/flag_icon2.png") no-repeat);
           @include bg_pos(0px, 50%);
         }
-        .course_icon {
+        .course-icon {
           @include bg(image-url("icons/course_icon.png") no-repeat);
           @include bg_pos(0, 50%);
           @include p_l(35px);
         }
       }
     }
-    .edit_box {
+    .goal-edit-box {
       @include float-right;
       @include bg(image-url("icons/edit_icon.png") no-repeat);
       @include bg_pos(0, 50%);

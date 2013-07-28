@@ -29,7 +29,12 @@ Idealme::Application.routes.draw do
 
   resources :courses, :only => [:index, :show]
   resources :discovers, :only => [:index, :show]
-  resources :goals
+  resources :goals, :only => [:index, :show] do
+    member do
+      post :share
+      post :checkin
+    end
+  end
 
 
   namespace :ajax do

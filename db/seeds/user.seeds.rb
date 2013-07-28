@@ -7,13 +7,23 @@ u.assign_attributes({:access_admin => true, :access_affiliate => true, :access_i
 u.save
 
 
+%w(alice bob charlie david eden frank george hilbert).each do |user|
+  User.create(:firstname => user, :lastname => 'IdealMe', :username => user,
+              :password => 'passpass', :email => "#{user}@idealme.com",
+              :tagline => 'Idealist - Coder - RoR')
+end
+
+
 Goal.find_each do |goal|
-  u.goals << goal
+  u.subscribe_goal(goal)
 end
 
 
 u.goal_users.first.checkins << Checkin.create!
 u.goal_users.last.checkins << Checkin.create!
+
+
+User.last.subscribe_goal(Goal.first)
 
 
 c = Course.create!(:name => 'Fresh Start! Raw Detox Diet', :cost => 49700)
@@ -97,23 +107,22 @@ Market.find_each do |market|
 end
 
 
-%w(alice bob charlie david eden frank george hilbert).each do |user|
-  User.create(:firstname => user, :lastname => 'IdealMe', :username => user,
-              :password => 'passpass', :email => "#{user}@idealme.com",
-              :tagline => 'Idealist - Coder - RoR')
-end
-
-
 ['Health and wellness', 'Fitness', 'Learning', 'Mindfulness',
  'Happiness' 'Money and Financial', 'Relationships'].each do |c|
   Category.create(:name => c)
 end
 
 ['3Ro6o6okPFw', 'bDqr79kjmCE', 'XGFV4Ul9cEE', 'NGbZmcQg0lk', 'kiqRNoXuBgo', 'iYqtMfzLquA', 'oo-WU1madK4', 'TUFY_NixZCU',
- 'Ji9NmckJ8g8', '0MiKp8CzcNs', '9EAhNgk6XPk', 'UZarVfjgHXY', '5KjC-lWTDtw', 'MmnSUI15X5s', 'tV_L-Cet7RA', 'bJlY_nl6MLo',
- 'NblytNWvNRc', 'Nat0ZkZsumQ', 'vo8cB_3U3jQ', 'iWs6gwlTF5E', 'HvjziMbf0lg', 'APWjFMf4Hq4', 'Y4Zzs7IEIDQ', 'Y774exAPhsU',
+ 'Ji9NmckJ8g8', '0MiKp8CzcNs', '9EAhNgk6XPk', 'UZarVfjgHXY', '5KjC-lWTDtw', 'MmnSUI15X5s', 'tV_L-Cet7RA', 'bJlY_nl6MLo'].each do |video|
+  gem = Jewel.mine(User.first, "http://www.youtube.com/watch?v=#{video}")
+  GoalUser.first.add_gem(gem)
+end
+
+
+['NblytNWvNRc', 'Nat0ZkZsumQ', 'vo8cB_3U3jQ', 'iWs6gwlTF5E', 'HvjziMbf0lg', 'APWjFMf4Hq4', 'Y4Zzs7IEIDQ', 'Y774exAPhsU',
  '1PTx051vFQo', 'cog-2wSxMYw', 'UAc-55GTX58', 'wKorJK3xEV0', 'SyG8yv8VzL0', 'tud1NdaSfhU', '67Dbl5D4N5w', 'ZwlW4800Fz0',
  'ijk1sCF48FI', 'jxSwnRoyGFU', '829BdEDQOzc', 'D288bP1Ep2c', 'SoMFts81zHw', '7dqBN6D6VGs', 'HRzIrCiXNEg', 'oO0pUJhzuiA',
  'K0PWoWh9Gog', '_mrJguOU40c'].each do |video|
-  Jewel.mine(User.first, "http://www.youtube.com/watch?v=#{video}")
+  gem = Jewel.mine(User.first, "http://www.youtube.com/watch?v=#{video}")
+  GoalUser.last.add_gem(gem)
 end

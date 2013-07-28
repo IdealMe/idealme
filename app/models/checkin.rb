@@ -35,7 +35,7 @@ class Checkin < ActiveRecord::Base
   # == Instance Methods =====================================================
 
   def today?
-    self.created_at.to_datetime > DateTime.now.beginning_of_day
+    self.created_at.to_datetime >= DateTime.now.beginning_of_day
   end
 
 end

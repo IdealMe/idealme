@@ -11,33 +11,23 @@
               = market.course.owner.fullname
             = link_to 'ABOUT THIS COURSE', market_path(market), :class => 'btn btn-arrow'
 
+.container
+  %h3.section-header 
+    Recommended for you
+  - @markets.each do |market|
+    =render :partial => 'partials/course_card', :locals => {:market => market}
   .clear
-.offer_section
-  %h3.section_header RECOMMENDED FOR YOU
-  %table
-    - while (@markets.length != 0) do
-      - @batch = @markets.shift(4)
-      %tr
-        - @batch.each do |market|
-          %td
-            =render :partial => 'partials/course_card', :locals => {:market => market}
 
-.offer_section
-  %h3.section_header TRENDING
-  %table
-    - while (@markets.length != 0) do
-      - @batch = @markets.shift(4)
-      %tr
-        - @batch.each do |market|
-          %td
-            =render :partial => 'partials/course_card', :locals => {:market => market}
-            
-.offer_section
-  %h3.section_header NEW AND NOTEWORTHY
-  %table
-    - while (@markets.length != 0) do
-      - @batch = @markets.shift(4)
-      %tr
-        - @batch.each do |market|
-          %td
-            =render :partial => 'partials/course_card', :locals => {:market => market}
+.container
+  %h3.section-header 
+    Trending
+  - @markets.each do |market|
+    =render :partial => 'partials/course_card', :locals => {:market => market}
+  .clear    
+          
+.container
+  %h3.section-header 
+    New and noteworthy
+  - @markets.each do |market|
+    =render :partial => 'partials/course_card', :locals => {:market => market}
+  .clear

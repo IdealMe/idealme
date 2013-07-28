@@ -61,16 +61,17 @@
           .container
             .fb-social-box
               .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
-            .sign_in_box
-            %form.sign-in-box{:action => new_user_session_path,:method => :get}
-              %input.btn{:type => 'submit', :value => 'Sign in'}/
+            .sign-in-box
+              = link_to 'Sign in', new_user_session_path, :class => 'btn'
             .logo
               = link_to('', root_path)
     %section.body_content
       - if flash[:alert]
-        .alert.alert-error= flash[:alert]
+        .alert.alert-error
+          = flash[:alert]
       - if flash[:notice]
-        .alert.alert-success= flash[:notice]
+        .alert.alert-success
+          = flash[:notice]
       - c = params[:controller].split('/')
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c[0])
         .container{:style => 'background:#ffffff; padding:10px;min-height:900px'}

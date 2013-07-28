@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727154711) do
+ActiveRecord::Schema.define(:version => 20130727180434) do
 
   create_table "affiliate_clicks", :force => true do |t|
     t.integer  "clicks",                :default => 1
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20130727154711) do
 
   create_table "checkins", :force => true do |t|
     t.integer  "goal_user_id"
+    t.text     "thoughts"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -184,6 +185,16 @@ ActiveRecord::Schema.define(:version => 20130727154711) do
   add_index "cms_snippets", ["site_id", "identifier"], :name => "index_cms_snippets_on_site_id_and_identifier", :unique => true
   add_index "cms_snippets", ["site_id", "position"], :name => "index_cms_snippets_on_site_id_and_position"
 
+  create_table "course_goals", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "goal_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "course_goals", ["course_id"], :name => "index_course_goals_on_course_id"
+  add_index "course_goals", ["goal_id"], :name => "index_course_goals_on_goal_id"
+
   create_table "course_users", :force => true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
@@ -226,16 +237,6 @@ ActiveRecord::Schema.define(:version => 20130727154711) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
-
-  create_table "goal_courses", :force => true do |t|
-    t.integer  "goal_id"
-    t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "goal_courses", ["course_id"], :name => "index_goal_courses_on_course_id"
-  add_index "goal_courses", ["goal_id"], :name => "index_goal_courses_on_goal_id"
 
   create_table "goal_user_jewels", :force => true do |t|
     t.integer  "goal_id"
@@ -292,6 +293,7 @@ ActiveRecord::Schema.define(:version => 20130727154711) do
   create_table "jewels", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.text     "content"
     t.text     "url"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -300,7 +302,6 @@ ActiveRecord::Schema.define(:version => 20130727154711) do
     t.integer  "owner_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.text     "content"
   end
 
   add_index "jewels", ["owner_id"], :name => "index_jewels_on_owner_id"

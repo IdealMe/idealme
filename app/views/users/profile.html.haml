@@ -12,7 +12,6 @@
         Checkins
         .checkins-box  
           = @user.checkins.length
-        
       .divider
       .counter
         Collected
@@ -31,48 +30,17 @@
         Supporting
         .supporting-box 0
     .clear
-  .menu_section
-    %ul.user_menu
-      %li
-        = link_to 'goals', user_path(current_user, {:tab => 'goal'}), :class => 'goals_icon'
-      %li
-        = link_to 'course history', user_path(current_user, {:tab => 'course'}), :class => 'course_icon'
+  .menu-section
+    %ul.user-menu
+      %li{:class => active_tab?('goal', @tab)}
+        = link_to 'goals', user_path(current_user, {:tab => 'goal'}), :class => 'goal-icon'
+      %li{:class => active_tab?('course', @tab)}
+        = link_to 'course history', user_path(current_user, {:tab => 'course'}), :class => 'course-icon'
+    .clear                                   
+    - if @tab == 'goal'
+      %a.goal-edit-box{:href => "#"} edit goals
     .clear
-    %a.edit_box{:href => "#"} edit goals
-    .clear
-  .goals_section
-    - @goal_users.each do |goal_user|
-      =render :partial => 'users/partials/profile_goal_tile', :locals => {:goal_user => goal_user}
-    .goal-card-new{"data-toggle" => "modal", :href => "#myModal", :role => "button"} 
-      .plus + 
-      Add goals
-            
-
-    .goal-card-new
-      .plus +
-      Add goals
-      
-    .clear         
-  .offer_section
-    %table             
-      - @markets = Market.all
-      - while (@markets.length != 0) do
-        - @batch = @markets.shift(4)
-        %tr
-          - @batch.each do |market|
-            %td
-              =render :partial => 'partials/course_card', :locals => {:market => market}
-
-
-/ Modal
-#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-header
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3#myModalLabel Modal header
-  .modal-body
-    - Goal.find_each do |goal|
-      %p 
-        = goal.name
-  .modal-footer
-    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-    %button.btn.btn-primary Save changes
+  - if @tab == 'goal'
+    = render :partial => 'users/partials/goal'
+  - else       
+    = render :partial => 'users/partials/course'

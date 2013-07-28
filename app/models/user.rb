@@ -63,6 +63,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def subscribe_goal(goal)
+    c = GoalUser.where(:user_id => self.id, :goal_id => goal.id).first
+    if c.nil?
+      c = GoalUser.create(:user_id => self.id, :goal_id => goal.id)
+    end
+    c
+  end
 
   def subscribe_course(course)
     c = CourseUser.where(:user_id => self.id, :course_id => course.id).first

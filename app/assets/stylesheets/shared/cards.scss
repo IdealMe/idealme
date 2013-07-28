@@ -1,12 +1,14 @@
 .course-card {
   width: 252px;
-  margin: 12px 12px 12px 12px;
-  @include m_l(auto);
-  @include m_r(auto);
 
+  @include m_t(10px);
+  @include m_b(10px);
+  @include m_l(29px);
+  @include m_r(29px);
   @include bg(white);
   border: 1px solid #ebebeb;
   @include left;
+  float: left;
   .course-name {
     @include fs(12px);
     @include hex(#4b4b4b);
@@ -180,13 +182,13 @@
 }
 
 .goal-card {
-  margin: 0 auto 20px auto;
   @include float-left;
   width: 230px;
   @include bg(#fcfcfc);
   border: 1px solid #e4e4e4;
   @include border-radius(5px);
-  @include m_r(28px);
+  @include m_r(18px);
+  @include m_b(18px);
   @include pointer;
   &:hover {
     @include bg(white);
@@ -246,7 +248,6 @@
   height: 163px;
   @include hex(#cccccc);
   @include fs(18px);
-  @include m_l(9px);
   @include m_r(9px);
   @include centered;
   @include p_t(110px);

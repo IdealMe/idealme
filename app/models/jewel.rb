@@ -14,6 +14,13 @@ class Jewel < ActiveRecord::Base
                         :thumb => '-gravity center -extent 80x64 -quality 75 -strip'
                     }
 
+  has_many :goal_user_jewel
+  has_many :goals, :through => :goal_user_jewel
+
+
+  scope :private_goal, lambda { |permission| joins(:goal_user_jewel => :goal_user).where(:goal_users => {:private => permission}) }
+  scope :for_goal, lambda { |goal| joins(:goal_user_jewel => :goal_user).where(:goal_user_jewels => {:goal_id => goal.id}) }
+  scope :for_user, lambda { |user| joins(:goal_user_jewel => :goal_user).where(:goal_users => {:user_id => user.id}) }
 
   def scrub_url
     scrub = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']

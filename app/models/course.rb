@@ -25,6 +25,9 @@ class Course < ActiveRecord::Base
 
   has_many :reviews
 
+  has_many :course_goals
+  has_many :goals, :through => :course_goals
+
   # == Paperclip ============================================================
   # == Validations ==========================================================
   # == Scopes ===============================================================
