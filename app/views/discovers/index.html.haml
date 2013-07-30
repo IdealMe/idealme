@@ -1,13 +1,9 @@
 .container
-  .filter-box
-    %select
-      %option Everything
-      %option Goals 
-      %option Gems
-      %option Courses
-    %select
-      %option Most popular 
-      %option Most recent
+  .filter-box   
+    = form_tag(discovers_path, :method => :get, :html => { :class => 'form-inline' }) do
+      = select_tag :type, options_for_select(@type_select, params[:type])
+      = select_tag :sort, options_for_select(@sort_select, params[:sort])
+      = submit_tag 'Filter', :class => 'btn'
     .clear
 .container
   .main-section
@@ -17,7 +13,8 @@
     .clear
   .sidebar
     .modal_box.adv-box
-      =image_tag 'banner.png'
+      = image_tag 'banner.png'   
+      = cms_snippet_content('discover_index_banner') 
     .modal_box
       .modal_title1 HIGH FIVES!
       .modal_body

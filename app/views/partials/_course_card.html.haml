@@ -8,13 +8,21 @@
     .working-area
       = market.course.owner.tagline
     .clear
-  .bottom-box
-    .like-box
-      .like
-        = market.course.review_positive
-      .dislike
-        = market.course.review_negative
-      .clear
+  .bottom-box       
+    - if current_user
+      .like-box
+        .like{:data => {:type => market.course.class, :id => market.course.id, :direction => 1, :voted => (market.course.up_voted?(current_user) ? '1':'0')}}
+          = market.course.up_votes
+        .dislike{:data => {:type => market.course.class, :id => market.course.id, :direction => -1, :voted => (market.course.down_voted?(current_user) ? '1':'0')}}
+          = market.course.down_votes
+        .clear
+    -else
+      .like-box
+        .like
+          = market.course.up_votes
+        .dislike
+          = market.course.down_votes
+        .clear
     .price-box
       = penny_to_currency(market.course.cost)
     .add-me-box

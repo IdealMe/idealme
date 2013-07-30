@@ -54,10 +54,6 @@
 .offer_section
   %h3.also_viewed_header Customers who took this course also viewed
   %table             
-    - @markets = Market.all
-    - while (@markets.length != 0) do
-      - @batch = @markets.shift(4)
-      %tr
-        - @batch.each do |market|
-          %td
-            =render :partial => 'partials/course_card', :locals => {:market => market}
+    - @markets = Market.limit(4).all
+    - @markets.each do |market|
+      =render :partial => 'partials/course_card', :locals => {:market => market}

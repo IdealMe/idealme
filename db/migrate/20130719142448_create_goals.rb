@@ -8,6 +8,8 @@ class CreateGoals < ActiveRecord::Migration
       t.integer :user_count
       t.attachment :avatar
 
+      t.integer :up_votes, :default => 0
+      t.integer :down_votes, :default => 0
 
       t.references :category
 

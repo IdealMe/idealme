@@ -107,6 +107,14 @@
       width: 230px;
     }
   }
+  .text {
+    width: 200px;
+    height: 170px;
+    padding: 10px;
+    @include block;
+
+  }
+
   .ruby-icon {
     @include sprite_css(ruby);
     @include float-left;

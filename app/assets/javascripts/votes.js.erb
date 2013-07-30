@@ -1,0 +1,107 @@
+$(function () {
+    $('.like').click(function (e) {
+        var self = $(this);
+        var voted = self.attr('data-voted');
+        var votable_id = self.attr('data-id');
+        var votable_type = self.attr('data-type');
+        if (typeof votable_id !== 'undefined' && typeof votable_type !== 'undefined') {
+            var vote = {
+                'vote': {
+                    'owner_id': im_js.current_user_id,
+                    'up_vote': (self.attr('data-direction') == 1),
+                    'down_vote': (self.attr('data-direction') == -1),
+                    'votable_id': votable_id,
+                    'votable_type': votable_type
+                }
+            };
+            if (voted == 1) {
+                $.ajax({
+                    url: '/ajax/votes/un_vote',
+                    async: false,
+                    type: 'POST',
+                    cache: false,
+                    data: vote,
+                    dataType: 'json',
+                    success: function () {
+                        self.attr('data-voted', '0');
+                        var up_votes = parseInt(self.html());
+                        self.html(up_votes - 1);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: '/ajax/votes/up_vote',
+                    async: false,
+                    type: 'POST',
+                    cache: false,
+                    data: vote,
+                    dataType: 'json',
+                    success: function () {
+                        self.attr('data-voted', '1');
+                        var up_votes = parseInt(self.html());
+                        self.html(up_votes + 1);
+
+                        var dislike = $('.dislike[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"][data-voted="1"]');
+                        if (typeof dislike !== 'undefined') {
+                            dislike.attr('data-voted', '0');
+                            var down_votes = parseInt(dislike.html());
+                            dislike.html(down_votes - 1);
+                        }
+                    }
+                });
+            }
+        }
+    });
+    $('.dislike').click(function (e) {
+        var self = $(this);
+        var voted = self.attr('data-voted');
+        var votable_id = self.attr('data-id');
+        var votable_type = self.attr('data-type');
+        if (typeof votable_id !== 'undefined' && typeof votable_type !== 'undefined') {
+            var vote = {
+                'vote': {
+                    'owner_id': im_js.current_user_id,
+                    'up_vote': (self.attr('data-direction') == 1),
+                    'down_vote': (self.attr('data-direction') == -1),
+                    'votable_id': votable_id,
+                    'votable_type': votable_type
+                }
+            };
+            if (voted == 1) {
+                $.ajax({
+                    url: '/ajax/votes/un_vote',
+                    async: false,
+                    type: 'POST',
+                    cache: false,
+                    data: vote,
+                    dataType: 'json',
+                    success: function () {
+                        self.attr('data-voted', '0');
+                        var down_votes = parseInt(self.html());
+                        self.html(down_votes - 1);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: '/ajax/votes/down_vote',
+                    async: false,
+                    type: 'POST',
+                    cache: false,
+                    data: vote,
+                    dataType: 'json',
+                    success: function () {
+                        self.attr('data-voted', '1');
+                        var down_votes = parseInt(self.html());
+                        self.html(down_votes + 1);
+                        var like = $('.like[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"][data-voted="1"]');
+                        if (typeof like !== 'undefined') {
+                            like.attr('data-voted', '0');
+                            var down_votes = parseInt(like.html());
+                            like.html(down_votes - 1);
+                        }
+                    }
+                });
+            }
+        }
+    });
+});

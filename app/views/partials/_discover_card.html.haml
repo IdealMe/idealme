@@ -1,18 +1,91 @@
-.discover-card
-  = link_to image_tag(discover.avatar.url(:full)), discover.url, :class => 'avatar discover-link'
-  .ruby-icon
-  .title
-    = link_to truncate(discover.name, :length => 40, :separator => '...'), discover.url, :data => {:title => discover.name}, :class => 'discover-link'  
-  .clear
-  .bottom-box
-    .like-box
-      .like 352
-      .dislike 12
-      .clear
-    .comment-box
-      31
-    .add-me-box
-      .unchecked +
-      .checked
-    .clear                  
-      
+.discover-card         
+  - if discover.kind == Jewel::LINK
+    - if discover.avatar.exists?
+      = link_to image_tag(discover.avatar.url(:full)), discover.url, :class => 'avatar discover-link'
+    - else
+      = link_to discover.content , discover.url, :class => 'text discover-link'
+    .ruby-icon
+    .title
+      = link_to truncate(discover.name, :length => 40, :separator => '...'), discover.url, :data => {:title => discover.name}, :class => 'discover-link'  
+    .clear
+    .bottom-box
+      - if current_user
+        .like-box
+          .like{:data => {:type => discover.class, :id => discover.id, :direction => 1, :voted => (discover.up_voted?(current_user) ? '1':'0')}}
+            = discover.up_votes
+          .dislike{:data => {:type => discover.class, :id => discover.id, :direction => -1, :voted => (discover.down_voted?(current_user) ? '1':'0')}}
+            = discover.down_votes
+          .clear
+      - else
+        .like-box
+          .like
+            = discover.up_votes
+          .dislike
+            = discover.down_votes
+          .clear
+      .comment-box
+        31
+      .add-me-box
+        .unchecked +
+        .checked
+      .clear                  
+        
+  - elsif discover.kind == Jewel::COURSE
+    - market = discover.linked_course.default_market
+    - course = discover.linked_course
+    = link_to image_tag(market.avatar.url(:full)), market_path(market), :class => 'avatar discover-link'
+    .ruby-icon
+    .title
+      = link_to market.name, market_path(market), :data => {:title => market.name}, :class => 'discover-link'  
+    .clear
+    .bottom-box
+      - if current_user
+        .like-box
+          .like{:data => {:type => course.class, :id => course.id, :direction => 1, :voted => (course.up_voted?(current_user) ? '1':'0')}}
+            = course.up_votes
+          .dislike{:data => {:type => course.class, :id => course.id, :direction => -1, :voted => (course.down_voted?(current_user) ? '1':'0')}}
+            = course.down_votes
+          .clear
+      - else
+        .like-box
+          .like
+            = course.up_votes
+          .dislike
+            = course.down_votes
+          .clear
+      .comment-box
+        31
+      .add-me-box
+        .unchecked +
+        .checked
+      .clear                  
+        
+  - elsif discover.kind == Jewel::GOAL
+    - goal = discover.linked_goal
+    = image_tag goal.avatar.url(:full), :class => 'avatar discover-link'
+    .ruby-icon
+    .title
+      = goal.name  
+    .clear
+    .bottom-box
+      - if current_user
+        .like-box
+          .like{:data => {:type => goal.class, :id => goal.id, :direction => 1, :voted => (goal.up_voted?(current_user) ? '1':'0')}}
+            = goal.up_votes
+          .dislike{:data => {:type => goal.class, :id => goal.id, :direction => -1, :voted => (goal.down_voted?(current_user) ? '1':'0')}}
+            = goal.down_votes
+          .clear
+      - else
+        .like-box
+          .like
+            = goal.up_votes
+          .dislike
+            = goal.down_votes
+          .clear
+      .comment-box
+        31
+      .add-me-box
+        .unchecked +
+        .checked
+      .clear                  
+        

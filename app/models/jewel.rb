@@ -1,15 +1,30 @@
 class Jewel < ActiveRecord::Base
   # == Imports ==============================================================
+  extend FriendlyId
+  include Votable
+
   # == Slug =================================================================
+  friendly_id :name, :use => [:history, :slugged]
+
   # == Constants ============================================================
+  EVERYTHING = 0
+  LINK = 1
+  GOAL = 2
+  COURSE = 3
   # == Attributes ===========================================================
-  attr_accessible :name, :slug, :content, :url, :avatar, :owner_id
+  attr_accessible :name, :slug, :content, :url, :avatar, :owner_id, :up_votes, :down_votes, :kind, :course, :course_id
 
   # == Relationships ========================================================
   belongs_to :owner, :class_name => 'User'
   has_many :goal_user_jewel
   has_many :goals, :through => :goal_user_jewel
 
+
+  belongs_to :linked_course, :primary_key => :id, :foreign_key => :course_id, :class_name => 'Course'
+
+  belongs_to :linked_goal, :primary_key => :id, :foreign_key => :goal_id, :class_name => 'Goal'
+
+  
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     :styles => {:full => '252x202#', :thumb => '80x64#'},
@@ -36,12 +51,68 @@ class Jewel < ActiveRecord::Base
     gem.owner_id = user.id
     gem.scrub_url
 
-    page = MetaInspector.new(url)
-    gem.name = page.title
-    gem.content = page.description
-    gem.avatar = URI.parse(page.image) if page.image
+    service = Jewel.get_service(gem.url)
+
+    if service[:service] == :twitter_status
+      twitter = Twitter.status(service[:status_id])
+      gem.name = "Tweet from #{twitter.user.name}"
+      gem.name = twitter.text
+      gem.content = twitter.text
+      tweet_media = twitter.media
+      if tweet_media.length > 0
+        gem.avatar = URI.parse(tweet_media.first.media_url)
+      end
+
+      gem.kind = Jewel::LINK
+    elsif service[:service] == :other
+      page = MetaInspector.new(url)
+      gem.name = page.title
+      gem.content = page.description
+      gem.avatar = URI.parse(page.image) if page.image
+      gem.kind = Jewel::LINK
+
+
+    elsif service[:service] == :idealme
+      if service[:kind]==:courses
+        gem.kind = Jewel::COURSE
+        course = Course.where(:slug => service[:slug]).first
+        gem.course_id = course.id
+      elsif service[:kind]==:goals
+        gem.kind = Jewel::GOAL
+        goal = Goal.where(:id => service[:slug]).first
+        gem.goal_id = goal.id
+      end
+    end
+
+
     gem.save!
     gem
+  end
+
+  def self.get_service(url)
+    uri = URI(url)
+
+    if uri.host.include?('idealme.dev') || uri.host.include?('idealme.com')
+      segments = uri.path.split('/')
+      if segments.second == 'markets' || segments.second == 'courses'
+        return {:service => :idealme, :kind => :courses, :slug => segments.third}
+      elsif segments.second == 'goals'
+        return {:service => :idealme, :kind => :goals, :slug => segments.third}
+      end
+    elsif uri.host.include?('twitter.com')
+      segments = uri.path.split('/')
+      if segments.third == 'status' && segments.fourth.present?
+        return {:service => :twitter_status, :status_id => segments.fourth}
+      end
+    elsif uri.host.include?('youtube.com')
+      segments = uri.path.split('/')
+      if segments.second == 'watch'
+        return {:service => :other, :url => url}
+      end
+    end
+
+
+    {:service => :other, :url => url}
   end
 
   # == Instance Methods =====================================================

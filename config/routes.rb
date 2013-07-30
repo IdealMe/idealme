@@ -52,6 +52,15 @@ Idealme::Application.routes.draw do
         post 'set_privacy' => 'goal_users#set_privacy'
       end
     end
+    resources :votes, :only => [], :defaults => {:format => :json} do
+      collection do
+        post 'up_vote' => 'votes#up_vote'
+        post 'down_vote' => 'votes#down_vote'
+        post 'un_vote' => 'votes#un_vote'
+      end
+
+    end
+
   end
 
 

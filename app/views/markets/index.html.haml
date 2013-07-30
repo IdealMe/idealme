@@ -14,20 +14,20 @@
 .container
   %h3.section-header 
     Recommended for you
-  - @markets.each do |market|
+  - @markets.sample(4).each do |market|
     =render :partial => 'partials/course_card', :locals => {:market => market}
   .clear
 
 .container
   %h3.section-header 
     Trending
-  - @markets.each do |market|
+  - @markets.sample(4).each do |market|
     =render :partial => 'partials/course_card', :locals => {:market => market}
   .clear    
           
 .container
   %h3.section-header 
     New and noteworthy
-  - @markets.each do |market|
+  - @markets.sample(4).each do |market|
     =render :partial => 'partials/course_card', :locals => {:market => market}
   .clear

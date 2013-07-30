@@ -50,8 +50,8 @@ class ActiveMerchantValidator
         :verification_value => self.cvv,
         :month => self.card_exp_month,
         :year => self.card_exp_year,
-        :month => 12,
-        :year => 2014,
+        :month => '12',
+        :year => '2014',
         :first_name => self.firstname,
         :last_name => self.lastname
     )

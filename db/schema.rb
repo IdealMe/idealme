@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130728064057) do
+ActiveRecord::Schema.define(:version => 20130729024254) do
 
   create_table "activities", :force => true do |t|
     t.boolean  "read",           :default => false
@@ -235,6 +235,8 @@ ActiveRecord::Schema.define(:version => 20130728064057) do
     t.integer  "owner_id"
     t.integer  "review_positive",                                          :default => 0
     t.integer  "review_negative",                                          :default => 0
+    t.integer  "up_votes",                                                 :default => 0
+    t.integer  "down_votes",                                               :default => 0
     t.boolean  "hidden",                                                   :default => false
     t.text     "google_conversion_tracking"
     t.decimal  "affiliate_commission",       :precision => 6, :scale => 3, :default => 50.0
@@ -294,6 +296,8 @@ ActiveRecord::Schema.define(:version => 20130728064057) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "up_votes",            :default => 0
+    t.integer  "down_votes",          :default => 0
     t.integer  "category_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
@@ -316,6 +320,8 @@ ActiveRecord::Schema.define(:version => 20130728064057) do
   create_table "jewels", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.integer  "up_votes",            :default => 0
+    t.integer  "down_votes",          :default => 0
     t.text     "content"
     t.text     "url"
     t.string   "avatar_file_name"
@@ -323,8 +329,11 @@ ActiveRecord::Schema.define(:version => 20130728064057) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "owner_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "kind"
+    t.integer  "goal_id"
+    t.integer  "course_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "jewels", ["owner_id"], :name => "index_jewels_on_owner_id"
@@ -502,5 +511,17 @@ ActiveRecord::Schema.define(:version => 20130728064057) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.boolean  "up_vote"
+    t.boolean  "down_vote"
+    t.integer  "owner_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "votes", ["votable_id"], :name => "index_votes_on_votable_id"
 
 end

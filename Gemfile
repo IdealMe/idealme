@@ -1,11 +1,16 @@
 source 'https://rubygems.org'
 
+#MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
 gem 'metainspector'
-
+#Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
 gem 'activemerchant'
+#Create JSON structures via a Builder-style DSL
 gem 'jbuilder'
+#BestInPlace is a jQuery script and a Rails 3 helper that provide the method best_in_place to display any object field easily editable for the user by just clicking on it. 
 gem 'best_in_place'
 
+
+gem 'ransack'
 
 #Ruby on Rails
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
@@ -108,3 +113,5 @@ group :development do
   #Reek is a tool that examines Ruby classes, modules and methods and reports any code smells it finds.
   gem 'reek'
 end
+
+gem 'twitter'

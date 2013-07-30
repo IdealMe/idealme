@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   # == Imports ==============================================================
   extend FriendlyId
+  include Votable
 
   # == Slug =================================================================
   friendly_id :name, :use => [:history, :slugged]
@@ -8,7 +9,7 @@ class Course < ActiveRecord::Base
   # == Constants ============================================================
   # == Attributes ===========================================================
   attr_accessible :avatar, :hidden, :name, :slug, :owner_id, :cost, :default_market_id,
-                  :review_positive, :review_negative
+                  :review_positive, :review_negative, :up_votes, :down_votes
 
   # == Relationships ========================================================
   has_many :markets
@@ -31,6 +32,9 @@ class Course < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :replies, :through => :comments
 
+
+  has_many :votes, :as => :votable
+
   # == Paperclip ============================================================
   # == Validations ==========================================================
   # == Scopes ===============================================================
@@ -39,4 +43,7 @@ class Course < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
+  
+ 
+  
 end

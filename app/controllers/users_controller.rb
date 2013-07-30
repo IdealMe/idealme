@@ -12,14 +12,11 @@ class UsersController < ApplicationController
       @goal_users = GoalUser.goal_for(@user).private_goal(false).includes(:goal, :checkins).all
       @checkins = Checkin.for_user(@user).private_goal(false).all
     end
-
-
   end
 
   def welcome
     @goals = Goal.is_welcome.visible.ordered
   end
-
 
   def welcome_save
     goal_ids = params[:goal_ids].reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
@@ -30,7 +27,6 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-
   protected
   # Set the current profile of the given user in the URL, and determine if the active user is the owner of the user profile
   def load_user
@@ -38,7 +34,7 @@ class UsersController < ApplicationController
     # The requested user does not exist, redirect back to the user's page
     redirect_to(new_user_session_path) and return unless @user
     # Signals the user is browsing their own profile
-    @owner = (@user.id == current_user.id)
+    @owner = current_user && (@user.id == current_user.id)
   end
 
   # Ensure that the owner is browsing the curent profile

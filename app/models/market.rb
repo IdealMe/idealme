@@ -27,6 +27,11 @@ class Market < ActiveRecord::Base
   scope :hidden, -> { where(:hidden => true) }
   scope :with_course_and_owner, -> { includes(:course => :owner) }
 
+  scope :type_recommended, lambda {|user|}
+
+  scope :type_trending, lambda {|user|}
+
+
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
