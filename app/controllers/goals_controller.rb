@@ -19,6 +19,23 @@ class GoalsController < ApplicationController
     @top_gems = (Jewel.for_goal(@goal_user.goal).private_goal(false).all + @my_gems).uniq
     @courses = @goal_user.goal.courses
     @tab = params[:tab] || 'activity'
+
+    @activities = Activity
+    if @owner
+      supporting_activity_key = current_user.supported_goal_users.includes(:goal).where(:goals => {:id => @goal_user.goal_id}).map(&:to_activity_key)
+      if supporting_activity_key && supporting_activity_key.length > 0
+        @activities = @activities.where('(sender_id = ? AND sender_type = ?) OR share_key IN (?)', @goal_user.id, @goal_user.class.name, supporting_activity_key)
+      else
+        @activities = @activities.where('(sender_id = ? AND sender_type = ?)', @goal_user.id, @goal_user.class.name)
+      end
+    else
+      @activities = @activities.where('(sender_id = ? AND sender_type = ?)', @goal_user.id, @goal_user.class.name)
+    end
+
+    @activities = @activities.includes(:sender, :trackable, :comments => [:owner, :replies])
+    @activities = @activities.order('created_at DESC').all
+
+
   end
 
   # POST /goals/1/share
@@ -33,24 +50,21 @@ class GoalsController < ApplicationController
     #rescue URI::InvalidURIError
     #  redirect_to(goal_path(@goal_user), :alert => 'That was not a valid URL!') and return
     #end
-
-
     gem = Jewel.mine(current_user, url)
-
     @goal_user.add_gem(gem)
     redirect_to goal_path(@goal_user), :notice => 'Successfully shared your gem!'
   end
 
   # POST /goals/1/checkin
   def checkin
-    @goal_user.checkin(params[:thoughts])
+    checkin = @goal_user.checkin(params[:thoughts])
     redirect_to goal_path(@goal_user), :notice => 'Successfully checked in!'
   end
 
   protected
   def load_goal_user
     @goal_user = GoalUser.where(:id => params[:id]).includes(:goal, :checkins).first
-    @owner = (@goal_user.user_id == current_user.id)
+    @owner = current_user && (@goal_user.user_id == current_user.id)
   end
 
   # Ensure that the owner is browsing the curent profile

@@ -1,4 +1,6 @@
 class Jewel < ActiveRecord::Base
+  serialize :parameters
+
   # == Imports ==============================================================
   extend FriendlyId
   include Votable
@@ -12,7 +14,7 @@ class Jewel < ActiveRecord::Base
   GOAL = 2
   COURSE = 3
   # == Attributes ===========================================================
-  attr_accessible :name, :slug, :content, :url, :avatar, :owner_id, :up_votes, :down_votes, :kind, :course, :course_id
+  attr_accessible :name, :slug, :content, :url, :avatar, :owner_id, :up_votes, :down_votes, :kind, :course, :course_id, :parameters
 
   # == Relationships ========================================================
   belongs_to :owner, :class_name => 'User'
@@ -24,7 +26,11 @@ class Jewel < ActiveRecord::Base
 
   belongs_to :linked_goal, :primary_key => :id, :foreign_key => :goal_id, :class_name => 'Goal'
 
-  
+
+
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :replies, :through => :comments
+
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     :styles => {:full => '252x202#', :thumb => '80x64#'},
@@ -51,10 +57,11 @@ class Jewel < ActiveRecord::Base
     gem.owner_id = user.id
     gem.scrub_url
 
-    service = Jewel.get_service(gem.url)
+    parameters = Jewel.get_service(gem.url)
+    gem.parameters = parameters
 
-    if service[:service] == :twitter_status
-      twitter = Twitter.status(service[:status_id])
+    if parameters[:service] == :twitter_status
+      twitter = Twitter.status(parameters[:status_id])
       gem.name = "Tweet from #{twitter.user.name}"
       gem.name = twitter.text
       gem.content = twitter.text
@@ -64,7 +71,14 @@ class Jewel < ActiveRecord::Base
       end
 
       gem.kind = Jewel::LINK
-    elsif service[:service] == :other
+    elsif parameters[:service] == :other
+      page = MetaInspector.new(url)
+      gem.name = page.title
+      gem.content = page.description
+      gem.avatar = URI.parse(page.image) if page.image
+      gem.kind = Jewel::LINK
+
+    elsif parameters[:service] == :youtube
       page = MetaInspector.new(url)
       gem.name = page.title
       gem.content = page.description
@@ -72,14 +86,14 @@ class Jewel < ActiveRecord::Base
       gem.kind = Jewel::LINK
 
 
-    elsif service[:service] == :idealme
-      if service[:kind]==:courses
+    elsif parameters[:service] == :idealme
+      if parameters[:kind]==:courses
         gem.kind = Jewel::COURSE
-        course = Course.where(:slug => service[:slug]).first
+        course = Course.where(:slug => parameters[:slug]).first
         gem.course_id = course.id
-      elsif service[:kind]==:goals
+      elsif parameters[:kind]==:goals
         gem.kind = Jewel::GOAL
-        goal = Goal.where(:id => service[:slug]).first
+        goal = Goal.where(:id => parameters[:slug]).first
         gem.goal_id = goal.id
       end
     end
@@ -107,7 +121,10 @@ class Jewel < ActiveRecord::Base
     elsif uri.host.include?('youtube.com')
       segments = uri.path.split('/')
       if segments.second == 'watch'
-        return {:service => :other, :url => url}
+
+        queries = Rack::Utils.parse_nested_query(uri.query)
+        
+        return {:service => :youtube, :url => url, :youtube_id => queries['v']}
       end
     end
 

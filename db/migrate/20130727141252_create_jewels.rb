@@ -7,6 +7,7 @@ class CreateJewels < ActiveRecord::Migration
       t.integer :down_votes, :default => 0
       t.text :content
       t.text :url
+      t.text :parameters
       t.attachment :avatar
       t.integer :owner_id
       t.integer :kind

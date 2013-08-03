@@ -23,9 +23,10 @@ $(function () {
                     data: vote,
                     dataType: 'json',
                     success: function () {
-                        self.attr('data-voted', '0');
-                        var up_votes = parseInt(self.html());
-                        self.html(up_votes - 1);
+                        var like = $('.like[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"]');
+                        like.attr('data-voted', '0');
+                        var up_votes = parseInt(like.html());
+                        like.html(up_votes - 1);
                     }
                 });
             } else {
@@ -37,9 +38,11 @@ $(function () {
                     data: vote,
                     dataType: 'json',
                     success: function () {
-                        self.attr('data-voted', '1');
-                        var up_votes = parseInt(self.html());
-                        self.html(up_votes + 1);
+
+                        var like = $('.like[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"]');
+                        like.attr('data-voted', '1');
+                        var up_votes = parseInt(like.html());
+                        like.html(up_votes + 1);
 
                         var dislike = $('.dislike[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"][data-voted="1"]');
                         if (typeof dislike !== 'undefined') {
@@ -76,9 +79,10 @@ $(function () {
                     data: vote,
                     dataType: 'json',
                     success: function () {
-                        self.attr('data-voted', '0');
-                        var down_votes = parseInt(self.html());
-                        self.html(down_votes - 1);
+                        var dislike = $('.dislike[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"]');
+                        dislike.attr('data-voted', '0');
+                        var down_votes = parseInt(dislike.html());
+                        dislike.html(down_votes - 1);
                     }
                 });
             } else {
@@ -90,9 +94,10 @@ $(function () {
                     data: vote,
                     dataType: 'json',
                     success: function () {
-                        self.attr('data-voted', '1');
-                        var down_votes = parseInt(self.html());
-                        self.html(down_votes + 1);
+                        var dislike = $('.dislike[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"]');
+                        dislike.attr('data-voted', '1');
+                        var down_votes = parseInt(dislike.html());
+                        dislike.html(down_votes + 1);
                         var like = $('.like[data-type="' + votable_type + '"][data-id="' + votable_id + '"][data-id="' + votable_id + '"][data-voted="1"]');
                         if (typeof like !== 'undefined') {
                             like.attr('data-voted', '0');

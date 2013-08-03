@@ -7,9 +7,17 @@ class GoalUser < ActiveRecord::Base
   # == Relationships ========================================================
   belongs_to :user
   belongs_to :goal
-  has_many :checkins
+  has_many :checkins, :dependent => :destroy
   has_many :goal_user_jewels
   has_many :jewels, :through => :goal_user_jewels
+
+
+  has_many :activity_sender, :as => :sender, :class_name => 'Activity'
+
+
+  has_many :goal_user_supporters
+  has_many :supporters, :through => :goal_user_supporters 
+
 
   # == Paperclip ============================================================
   # == Validations ==========================================================
@@ -28,11 +36,33 @@ class GoalUser < ActiveRecord::Base
                    DateTime.now.beginning_of_day, DateTime.now.end_of_day, self.id).first.nil?
   end
 
+  def to_activity_key
+    if self.persisted?
+      "#{self.class.name}-#{self.id}-goal-#{self.goal.id}"
+    else
+      "#{self.class.name}"
+    end
+  end
+
   def checkin(thoughts)
-    self.checkins << Checkin.create(:thoughts => thoughts) unless self.checkedin?
+    checkin = nil
+    ActiveRecord::Base.transaction do
+      checkin = Checkin.where('created_at >= ? AND created_at <= ? AND goal_user_id = ?',
+                              DateTime.now.beginning_of_day, DateTime.now.end_of_day, self.id).first
+      if checkin.nil?
+        checkin = Checkin.create(:thoughts => thoughts)
+        self.checkins << checkin
+        Activity.create(:sender => self, :trackable => checkin, :share_key => self.to_activity_key, :action => 'goal-user/checkin-create')
+      end
+    end
+    checkin
   end
 
   def add_gem(gem)
-    GoalUserJewel.where(:goal_id => self.goal.id, :goal_user_id => self.id, :jewel_id => gem.id).first_or_create
+    goal_user_jewel = GoalUserJewel.where(:goal_id => self.goal.id, :goal_user_id => self.id, :jewel_id => gem.id).first
+    if  goal_user_jewel.nil?
+      GoalUserJewel.create!(:goal_id => self.goal.id, :goal_user_id => self.id, :jewel_id => gem.id)
+      Activity.create(:sender => self, :trackable => gem, :share_key => self.to_activity_key, :action => 'goal-user/jewel-create')
+    end
   end
 end

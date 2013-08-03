@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def render_activity(activity)
+    render_key = "activities/#{activity.action.downcase.gsub('.', '/')}"
+    render :partial => render_key, :locals => {:activity => activity}
+  end
 
   # A wrapper for number_to_currency which converts pennies to currency
   #

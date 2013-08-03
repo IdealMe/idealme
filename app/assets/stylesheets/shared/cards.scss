@@ -178,14 +178,182 @@
     @include rel;
     @include bold;
     @include pointer;
+    padding: 6px 0;
+
     .unchecked {
       width: 57px;
       text-align: center;
-      padding: 6px 0;
     }
     .checked {
       display: none;
     }
+  }
+
+  >.modal {
+    width: 600px;
+    margin-left: -300px;
+    top: 1%;
+
+    >.modal-body {
+      background-color: #faf9f4;
+      //max-height: none;
+      >.link {
+        @include bg(image-url('icons/link_to.png') no-repeat);
+        padding: 4px 0 4px 30px;
+        @include fs(12px);
+        @include hex(#333333);
+        @include m_b(20px);
+      }
+
+      >.comments {
+        margin: 0;
+        list-style: none;
+        @include rel;
+        z-index: 100;
+        >li {
+          padding: 0 0 0 47px;
+          @include bg(image-url('icons/post_mark.png') no-repeat);
+          @include bg_pos(10px, 22px);
+          @include m_b(8px);
+          &:last-child {
+            @include m_b(0px);
+          }
+          >.comment {
+            @include m_r(35px);
+            >.arrow {
+              @include sprite_css(arrow_left_icon);
+              width: 13px;
+              @include abs_tl(18px, -13px);
+            }
+            @include rel;
+            @include bg(white);
+            @include border-radius(5px);
+            border: 1px solid #ebeae5;
+            padding: 15px;
+            >.date {
+              @include abs_tr(17px, 24px);
+              @include bg(image-url('icons/time_icon.png') no-repeat 0 2px);
+              @include hex(#cccccc);
+              @include fs(10px);
+              @include bold;
+              @include p_l(17px);
+            }
+            >.user-avatar {
+              @include float-left;
+              @include wxh(30px, 30px);
+              img {
+                @include border-radius(10px);
+              }
+            }
+            >.body {
+              @include m_l(10px);
+              >.title {
+                @include hex(#424242);
+                @include fs(12px);
+                @include m_b(12px);
+                >.user-name {
+                  @include bold;
+                  @include hex(#666666);
+                }
+              }
+              >.message {
+                @include bg(#f2f2f2);
+                padding: 6px 10px;
+                @include fs(10px);
+                @include rel;
+                @include m_b(8px);
+              }
+              >.message-arrow {
+                @include sprite_css(grey_arrow_top_icon);
+                @include abs_tl(-8px, 10px);
+              }
+              >.bottom {
+                >.like {
+                  @include bg(image-url('icons/like.png') no-repeat);
+                  @include float-left;
+                  @include fs(10px);
+                  @include hex(#999999);
+                  @include pointer;
+                  padding: 0 5px 0 20px;
+                }
+                >.dislike {
+                  @include bg(image-url('icons/dislike.png') no-repeat);
+                  @include float-left;
+                  @include fs(10px);
+                  @include hex(#999999);
+                  @include pointer;
+                  padding: 0 5px 0 20px;
+                  @include m_r(6px);
+                }
+                >.comment-count {
+                  @include float-left;
+                  @include bg(image-url('icons/comment.png') no-repeat 100% 1px);
+                  padding: 0px 20px 0px 0px;
+                  @include fs(10px);
+                  @include hex(#999999);
+                  margin-right: 13px;
+                }
+                >.add-comment {
+                  @include fs(10px);
+                  @include hex(#999999);
+                  &:hover {
+                    @include hex(#1d95cb);
+                  }
+                }
+              }
+
+            }
+          }
+        }
+      }
+
+    }
+
+    .gem-title {
+      @include bg(image-url('icons/ruby25x25.png') no-repeat);
+      padding: 4px 0 4px 30px;
+      width: 380px;
+      float: left;
+    }
+
+    .add-me-box {
+      @include float-left;
+      @include fs(16px);
+      @include hex(#797979);
+      @include rel;
+      @include bold;
+      @include pointer;
+      padding: 5px 0;
+      .unchecked {
+        width: 57px;
+        text-align: center;
+      }
+      .checked {
+        display: none;
+      }
+    }
+    .like-box {
+      @include float-left;
+      width: 90px;
+      padding: 5px 5px 5px 5px;
+      .like {
+        @include bg(image-url("icons/like.png") no-repeat);
+        @include float-left;
+        @include fs(10px);
+        @include hex(#999999);
+        @include pointer;
+        padding: 0 5px 0 20px;
+      }
+      .dislike {
+        @include bg(image-url("icons/dislike.png") no-repeat);
+        @include float-right;
+        @include fs(10px);
+        @include hex(#999999);
+        @include pointer;
+        padding: 0 5px 0 20px;
+      }
+    }
+
   }
 
 }

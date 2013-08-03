@@ -10,68 +10,44 @@
  *
  */
 
-
-
 // Import all compass sheets
 @import "compass";
 @import "compass/css3";
 @import "compass/utilities";
-
 // Import all compass sprites
 @import "icons/*.png";
-
 // Import Bootstrap
 @import "bootstrap_and_overrides";
-
-
 // Element
 @import "elements/fonts";
 @import "elements/base";
 @import "elements/typography";
 @import "elements/buttons";
-
 // PAGES
 @import "pages/global";
-
-
 @import "global";
-
 @import "shared/cards";
 @import "shared/header";
-
-
-
 @import "markets/index";
 @import "markets/show";
-
 @import "courses/show";
-
 @import "discovers/index";
-
 @import "users/profile";
-
-
 @import "orders/new";
 @import "orders/create";
-
 @import "goals/show";
-
-
-
-
 @import "pages/home";
 @import "users/welcome";
-
 @import "shared/footer";
-
 // Gem imports
-
 @import "flexslider";
 @import "formatted_form";
 @import "jquery.ui.all";
 @import "font-awesome";
-
 @import "additions.css.scss";
-
-
 @import "bootstrap-tour";
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}

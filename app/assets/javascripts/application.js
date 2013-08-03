@@ -44,7 +44,9 @@ $(function () {
         $.ajax({
             type: "POST",
             url: '/ajax/goal_users/set_privacy',
-            data: {'goal_user_id': data_goal_user_id},
+            data: {
+                'goal_user_id': data_goal_user_id
+            },
             //success: success,
             dataType: 'json'
         });
@@ -92,56 +94,60 @@ $(function () {
 });
 
 $(function () {
-    var tour = new Tour({
-        template: "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><nav class='popover-navigation'> <div class='btn-group'><button data-role='prev'>« Prev</button><button data-role='next'>Next »</button></div><button  data-role='end'>End tour</button> </nav></div>"
-    });
-    tour.addSteps([
-        {
-            path: "/bill",
-            element: ".logo",
-            placement: "bottom",
-            title: "Hey Username! Welcome to Ideal Me",
-            content: "Let's get you started in under a minute by showing you around..."
+    var current_user_username = im_js.current_user_username;
 
-        },
-        {
-            path: "/bill",
-            element: ".user-counters",
-            placement: "bottom",
-            title: "Your stats",
-            content: "Track your progress, gems you collect and share, and supporters."
-        },
-        {
-            element: ".goal-card:first",
-            placement: "top",
-            title: "Your goals",
-            content: "Here are your goals. You can add more or mark them as done."
-        },
-        
-        {
-            path: "/discovers",
-            element: "a.active",
-            placement: "bottom",
-            title: "Find inspiration and resources",
-            content: "On the discover page you'll find all the latest gems, goals and courses sorted by popularity or the date they were added"
+    if (typeof current_user_username !== "undefined" && current_user_username != null) {
 
-        },
-        {
-            path: "/markets",
-            element: "a.active",
-            placement: "bottom",
-            title: "Find and buy courses you can trust",
-            content: "In the marketplace you can explore featured, popular and recommended courses from IdealMe and our partners, reviewed and vetted by our members"
+        var tour = new Tour({
+            template: "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><nav class='popover-navigation'> <div class='btn-group'><button data-role='prev'>« Prev</button><button data-role='next'>Next »</button></div><button  data-role='end'>End tour</button> </nav></div>"
+        });
+        tour.addSteps([
+            {
+                path: "/bill",
+                element: ".logo",
+                placement: "bottom",
+                title: "Hey Username! Welcome to Ideal Me",
+                content: "Let's get you started in under a minute by showing you around..."
 
-        },
-        {
-            path: "/bill",
-            element: ".logo",
-            placement: "bottom",
-            title: "All done!",
-            content: "Now get off to a good start by checking in for the first time..."
+            },
+            {
+                path: "/bill",
+                element: ".user-counters",
+                placement: "bottom",
+                title: "Your stats",
+                content: "Track your progress, gems you collect and share, and supporters."
+            },
+            {
+                element: ".goal-card:first",
+                placement: "top",
+                title: "Your goals",
+                content: "Here are your goals. You can add more or mark them as done."
+            },
 
-        }
+            {
+                path: "/discovers",
+                element: "a.active",
+                placement: "bottom",
+                title: "Find inspiration and resources",
+                content: "On the discover page you'll find all the latest gems, goals and courses sorted by popularity or the date they were added"
+
+            },
+            {
+                path: "/markets",
+                element: "a.active",
+                placement: "bottom",
+                title: "Find and buy courses you can trust",
+                content: "In the marketplace you can explore featured, popular and recommended courses from IdealMe and our partners, reviewed and vetted by our members"
+
+            },
+            {
+                path: "/bill",
+                element: ".logo",
+                placement: "bottom",
+                title: "All done!",
+                content: "Now get off to a good start by checking in for the first time..."
+
+            }
 // ,
 //        {
 //            element: "#usage",
@@ -191,11 +197,12 @@ $(function () {
 //            title: "Best of all, it's free!",
 //            content: "Yeah! Free as in beer... or speech. Use and abuse, but don't forget to contribute!"
 //        }
-    ]);
-   // tour.start();
-    $('.ts').click(function () {
-       // tour.restart();
-    })
+        ]);
+        tour.start();
+        $('.ts').click(function () {
+            tour.restart();
+        })
+    }
 
 });
 

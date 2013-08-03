@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729024254) do
+ActiveRecord::Schema.define(:version => 20130803160421) do
 
   create_table "activities", :force => true do |t|
     t.boolean  "read",           :default => false
     t.integer  "count",          :default => 1
-    t.string   "key"
+    t.string   "share_key"
     t.string   "action"
     t.text     "parameters"
     t.integer  "sender_id"
@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(:version => 20130729024254) do
   create_table "checkins", :force => true do |t|
     t.integer  "goal_user_id"
     t.text     "thoughts"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "up_votes",     :default => 0
+    t.integer  "down_votes",   :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "checkins", ["goal_user_id"], :name => "index_checkins_on_goal_user_id"
@@ -275,6 +277,16 @@ ActiveRecord::Schema.define(:version => 20130729024254) do
   add_index "goal_user_jewels", ["goal_user_id"], :name => "index_goal_user_jewels_on_goal_user_id"
   add_index "goal_user_jewels", ["jewel_id"], :name => "index_goal_user_jewels_on_jewel_id"
 
+  create_table "goal_user_supporters", :force => true do |t|
+    t.integer  "goal_user_id"
+    t.integer  "supporter_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "goal_user_supporters", ["goal_user_id"], :name => "index_goal_user_supporters_on_goal_user_id"
+  add_index "goal_user_supporters", ["supporter_id"], :name => "index_goal_user_supporters_on_supporter_id"
+
   create_table "goal_users", :force => true do |t|
     t.boolean  "private",    :default => true
     t.integer  "user_id"
@@ -324,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20130729024254) do
     t.integer  "down_votes",          :default => 0
     t.text     "content"
     t.text     "url"
+    t.text     "parameters"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

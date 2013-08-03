@@ -1,16 +1,17 @@
-.community_title 
+.community-title 
   GOAL MATES
-  .community_box  
+  .community-box  
     - @goal_mates.each do |goal_user|
-      .user_box
-        .user_pic
+      .user
+        .avatar
           = image_tag goal_user.user.avatar.url(:thumb)
-        .user_name 
+        .name 
           = goal_user.user.fullname
     .clear
-  .community_title SUPPORTERS
-  %p.community_txt
-    You don't have any supporters yet.  They can be a great way to stay motivated and share the satisfaction of reaching a goal.
+.community-title
+  SUPPORTERS
+  %p.community-supporter-copy
+    You don't have any supporters yet. They can be a great way to stay motivated and share the satisfaction of reaching a goal.
     %br/
     %a{:href => "#"} Invite family or friends to support you for this goal
     

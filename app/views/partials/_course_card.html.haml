@@ -16,7 +16,7 @@
         .dislike{:data => {:type => market.course.class, :id => market.course.id, :direction => -1, :voted => (market.course.down_voted?(current_user) ? '1':'0')}}
           = market.course.down_votes
         .clear
-    -else
+    - else
       .like-box
         .like
           = market.course.up_votes

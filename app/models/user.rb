@@ -21,16 +21,13 @@ class User < ActiveRecord::Base
 
   # == Relationships ========================================================
   has_many :courses
-
   has_many :goal_users
   has_many :goals, :through => :goal_users
-
   has_many :created_jewels, :class_name => 'Jewel', :foreign_key => 'owner_id'
-
-  
   has_many :votes, :foreign_key => 'owner_id'
-  
   has_many :checkins, :through => :goal_users
+  has_many :goal_user_supporters, :primary_key => 'id', :foreign_key => 'supporter_id'
+  has_many :supported_goal_users, :through => :goal_user_supporters, :source => :goal_user
 
   # == Paperclip ============================================================
   has_attached_file :avatar,

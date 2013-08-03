@@ -1,12 +1,91 @@
 .discover-card         
-  - if discover.kind == Jewel::LINK
+  - if discover.kind == Jewel::LINK   
+    %div.modal.hide{:id => "gc#{discover.id}"}
+      .modal-header
+        .gem-title 
+          = discover.name
+        .fright
+          .add-me-box
+            .unchecked +
+            .checked  
+          - if current_user
+            .like-box
+              .like{:data => {:type => discover.class, :id => discover.id, :direction => 1, :voted => (discover.up_voted?(current_user) ? '1':'0')}}
+                = discover.up_votes
+              .dislike{:data => {:type => discover.class, :id => discover.id, :direction => -1, :voted => (discover.down_voted?(current_user) ? '1':'0')}}
+                = discover.down_votes
+              .clear
+          - else
+            .like-box
+              .like
+                = discover.up_votes
+              .dislike
+                = discover.down_votes
+              .clear
+        .clear
+      .modal-body                                                                     
+        - if discover.parameters[:service] == :youtube
+          -#%iframe{:allowfullscreen => true, :frameborder => 0, :width => 570, :height => 400, :src => "//www.youtube-nocookie.com/embed/#{discover.parameters[:youtube_id]}?rel=0"}
+        .text-center
+          = image_tag discover.avatar.url(:original)
+        .link 
+          = link_to discover.url, discover.url, :target => '_blank' 
+          
+          
+        %ul.comments
+          %li
+            .comment
+              .arrow
+              .date 
+                = distance_of_time_in_words_to_now discover.created_at   
+                ago
+              .user-avatar
+                = image_tag discover.owner.avatar.url(:thumb)
+              .body
+                .title 
+                  = link_to discover.owner.fullname, user_path(discover.owner), :class => 'user-name'
+                  shared this gem
+                .bottom
+                  - if current_user
+                    .like{:data => {:type => discover.class, :id => discover.id, :direction => 1, :voted => (discover.up_voted?(current_user) ? '1':'0')}}
+                      = discover.up_votes
+                    .dislike{:data => {:type => discover.class, :id => discover.id, :direction => -1, :voted => (discover.down_voted?(current_user) ? '1':'0')}}
+                      = discover.down_votes
+                    .clear
+                  - else
+                    .like
+                      = discover.up_votes
+                    .dislike
+                      = discover.down_votes
+                    .clear 
+          - discover.comments.each do |comment|
+            
+            %li
+              .comment
+                .arrow
+                .date 
+                  = distance_of_time_in_words_to_now comment.created_at   
+                  ago
+                .user-avatar
+                  = image_tag comment.owner.avatar.url(:thumb)
+                .body
+                  .title
+                    = link_to comment.owner.fullname, user_path(comment.owner), :class => 'user-name'
+                  .message
+                    = comment.content
+          
+          
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close 
+        
+        
     - if discover.avatar.exists?
-      = link_to image_tag(discover.avatar.url(:full)), discover.url, :class => 'avatar discover-link'
+      = link_to image_tag(discover.avatar.url(:full)), "#gc#{discover.id}", :data => {:title => discover.name, :toggle => 'modal'}, :class => 'avatar discover-link'
     - else
-      = link_to discover.content , discover.url, :class => 'text discover-link'
+      = link_to discover.content, "#gc#{discover.id}", :data => {:title => discover.name, :toggle => 'modal'}, :class => 'text discover-link'
     .ruby-icon
     .title
-      = link_to truncate(discover.name, :length => 40, :separator => '...'), discover.url, :data => {:title => discover.name}, :class => 'discover-link'  
+      = link_to truncate(discover.name, :length => 50, :separator => '...'), "#gc#{discover.id}", :data => {:title => discover.name, :toggle => 'modal'}, :class => 'discover-link' 
     .clear
     .bottom-box
       - if current_user
@@ -24,7 +103,7 @@
             = discover.down_votes
           .clear
       .comment-box
-        31
+        = discover.comments.length
       .add-me-box
         .unchecked +
         .checked
@@ -54,7 +133,7 @@
             = course.down_votes
           .clear
       .comment-box
-        31
+        = discover.comments.length
       .add-me-box
         .unchecked +
         .checked
@@ -83,9 +162,8 @@
             = goal.down_votes
           .clear
       .comment-box
-        31
+        = discover.comments.length
       .add-me-box
         .unchecked +
         .checked
-      .clear                  
-        
+      .clear

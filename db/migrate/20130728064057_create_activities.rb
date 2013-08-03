@@ -3,7 +3,7 @@ class CreateActivities < ActiveRecord::Migration
     create_table :activities do |t|
       t.boolean :read, :default => false
       t.integer :count, :default => 1
-      t.string :key
+      t.string :share_key
       t.string :action
       t.text :parameters
       t.references :sender, :polymorphic => true

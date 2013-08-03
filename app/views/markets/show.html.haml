@@ -31,42 +31,51 @@
         .member_icon
           =image_tag(user.avatar.url(:thumb))
       .clear
-    .modal_footer
+    .modal_footer               
       .bottom_box
-        .like_box
-          .like
-            = @market.course.review_positive
-          .dislike
-            = @market.course.review_negative
-          .clear
+        - if current_user
+          .like_box
+            .like{:data => {:type => @market.course.class, :id => @market.course.id, :direction => 1, :voted => (@market.course.up_voted?(current_user) ? '1':'0')}}
+              = @market.course.up_votes
+            .dislike{:data => {:type => @market.course.class, :id => @market.course.id, :direction => -1, :voted => (@market.course.down_voted?(current_user) ? '1':'0')}}
+              = @market.course.down_votes
+            .clear
+        - else
+          .like_box
+            .like
+              = @market.course.up_votes
+            .dislike
+              = @market.course.down_votes
+            .clear
+      
         .comment_box
           31
         .add_me_box
           .unchecked +
           .checked
         .clear
-    -#.modal_title3 WHAT YOU GET
-    -#.what_you_get_box
-    -#  .media
-    -#    .pull-left
-    -#      .analysis_icon
-    -#    .media-body
-    -#      Over 34 lectures and 7.5 hours of content!
-    -#  .media
-    -#    .pull-left
-    -#      .natural_icon
-    -#    .media-body
-    -#      At the end of this course, you should be very comfortable in all kinds of natural light situations
-    -#  .media
-    -#    .pull-left
-    -#      .improve_icon
-    -#    .media-body
-    -#      Your fashion and beauty work will see significant improvement
-    -#  .media
-    -#    .pull-left
-    -#      .tools_icon
-    -#    .media-body
-    -#      If you have experience in shooting, you will be able to add some additional tools to your arsenal of light
+    .modal_title3 WHAT YOU GET
+    .what_you_get_box
+      .media
+        .pull-left
+          .analysis_icon
+        .media-body
+          Over 34 lectures and 7.5 hours of content!
+      .media
+        .pull-left
+          .natural_icon
+        .media-body
+          At the end of this course, you should be very comfortable in all kinds of natural light situations
+      .media
+        .pull-left
+          .improve_icon
+        .media-body
+          Your fashion and beauty work will see significant improvement
+      .media
+        .pull-left
+          .tools_icon
+        .media-body
+          If you have experience in shooting, you will be able to add some additional tools to your arsenal of light
     .modal_title3 YOUR INSTRUCTOR
     .instructor_box
       .instructor_head
@@ -103,18 +112,18 @@
             .media-body
               = section.name
 
-      -#.modal_title3 FAQ
-      -#.foq_box
-      -#  %ul.list_1
-      -#    %li How long do I have access to the course materials?
-      -#    %li You can view and review the lecture materials indefinitely, like an on-demand channel.
-      -#    %li What is the refund policy on the course?
-      -#    %li
-      -#      We like to keep our users happy, so we have a 30-day no questions asked refund policy. Send an email to support@idealme.com for refund requests.
-      -#    %li Can I take my courses with me wherever I go?
-      -#.modal_title3 AS SEEN IN
-      -#.partners_box
-      -#  .elle_icon
-      -#  .fab_icon
-      -#  .oxygen_icon
-      -#  .clear
+      .modal_title3 FAQ
+      .foq_box
+        %ul.list_1
+          %li How long do I have access to the course materials?
+          %li You can view and review the lecture materials indefinitely, like an on-demand channel.
+          %li What is the refund policy on the course?
+          %li
+            We like to keep our users happy, so we have a 30-day no questions asked refund policy. Send an email to support@idealme.com for refund requests.
+          %li Can I take my courses with me wherever I go?
+      .modal_title3 AS SEEN IN
+      .partners_box
+        .elle_icon
+        .fab_icon
+        .oxygen_icon
+        .clear

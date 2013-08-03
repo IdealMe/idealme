@@ -20,7 +20,7 @@ class DiscoversController < ApplicationController
       @discovers = @discovers.order('created_at DESC')
     end
 
-    @discovers = @discovers.limit(36).all
+    @discovers = @discovers.paginate(:page => params[:page], :per_page => 36).all
   end
 
   # GET /discovers/1
