@@ -62,4 +62,10 @@ module ApplicationHelper
     end
     friendly
   end
+
+
+  def month_options_for_select(selected_value = nil)
+    months = (1..12).map { |h| ["%02d"%h, h] }
+    options_for_select(months, selected_value)
+  end
 end

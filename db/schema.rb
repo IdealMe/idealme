@@ -382,15 +382,31 @@ ActiveRecord::Schema.define(:version => 20130803160421) do
 
   create_table "orders", :force => true do |t|
     t.string   "transaction_id"
-    t.string   "transaction_status"
-    t.text     "ipn"
-    t.integer  "status"
     t.string   "subscriber_id"
-    t.integer  "cost"
-    t.integer  "course_id",          :default => 0
+    t.text     "parameters"
+    t.integer  "status"
+    t.integer  "cost",             :default => 0
+    t.integer  "course_id"
+    t.integer  "market_id"
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.integer  "gateway"
+    t.string   "card_firstname"
+    t.string   "card_lastname"
+    t.string   "card_email"
+    t.string   "card_type"
+    t.integer  "card_number_4"
+    t.integer  "card_exp_year"
+    t.integer  "card_exp_month"
+    t.string   "billing_address1"
+    t.string   "billing_address2"
+    t.string   "billing_company"
+    t.string   "billing_phone"
+    t.string   "billing_zip"
+    t.string   "billing_city"
+    t.string   "billing_country"
+    t.string   "billing_state"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "orders", ["course_id"], :name => "index_orders_on_course_id"
