@@ -8,6 +8,7 @@ class AffiliateClick < ActiveRecord::Base
   # == Relationships ========================================================
   belongs_to :affiliate_tracking
   belongs_to :user
+  belongs_to :order
 
   # == Paperclip ============================================================
   # == Validations ==========================================================

@@ -3,6 +3,8 @@
     #legend
       %legend Market
   = f.text_field :name, :autofocus => true
+  = f.text_field :affiliate_tag
+  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
   = f.text_area :content, :class => 'tinymce'
   = f.file_field :avatar
   = f.submit 'Save', :class => 'btn btn-success'

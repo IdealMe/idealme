@@ -92,6 +92,10 @@ group :assets do
 end
 
 
+
+gem 'database_cleaner'
+
+
 group :development do
   gem 'quiet_assets'
   #A rails plugin to kill N+1 queries and unused eager loading.

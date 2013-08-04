@@ -3,6 +3,8 @@ class AffiliateSale < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
+  attr_accessible :user_id, :order_id, :affiliate_tracking_id
+
   # == Relationships ========================================================
   # == Paperclip ============================================================
   # == Validations ==========================================================
@@ -11,16 +13,15 @@ class AffiliateSale < ActiveRecord::Base
   # == Class Methods ========================================================
   # Create or find an affiliate initiated sale based on the order and the raw (value) affiliate user and tracking data
   def self.create_affiliate_sale(order, affiliate_user, affiliate_tracking=nil)
-    if affiliate_user
-      affiliate_sale = AffiliateSale.where(:order_id => order.id, :user_id => affiliate_user.id, :completed => false).first_or_create
+	affiliate_sale = nil
+    if affiliate_user && order
+      affiliate_sale = AffiliateSale.create!(:order_id => order.id, :user_id => affiliate_user.id)
       if affiliate_tracking
         affiliate_sale.affiliate_tracking_id = affiliate_tracking.id
-      else
-        affiliate_sale.affiliate_tracking_id = nil
+	    affiliate_sale.save!
       end
-      affiliate_sale.save!
-      affiliate_sale
     end
+	affiliate_sale
   end
   
   # == Instance Methods =====================================================

@@ -150,6 +150,7 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     daemons (1.1.9)
+    database_cleaner (1.1.1)
     debug_inspector (0.0.2)
     deep_cloneable (1.5.3)
       activerecord (>= 3.2)
@@ -382,6 +383,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   comfortable_mexican_sofa (~> 1.8.0)
   compass-rails
+  database_cleaner
   deep_cloneable
   devise
   font-awesome-rails

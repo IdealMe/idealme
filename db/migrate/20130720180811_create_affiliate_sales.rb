@@ -1,7 +1,6 @@
 class CreateAffiliateSales < ActiveRecord::Migration
   def change
     create_table :affiliate_sales do |t|
-      t.boolean :completed, :default => false
       t.references :user
       t.references :order
       t.references :affiliate_tracking

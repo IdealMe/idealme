@@ -20,7 +20,7 @@
 //= require tinymce-jquery
 //= require jquery.stayInWebApp.js
 //= require jstz-1.0.5.js
-//
+//= require select2.js
 //= require best_in_place
 //= require jquery.cookie
 //= require bootstrap-tour
@@ -30,6 +30,9 @@
 
 
 $(function () {
+
+    $('.select2').select2();
+
     $('.goal-privacy-toggle').click(function () {
         var self = $(this);
         var data_goal_user_id = self.attr('data-goal-user-id');

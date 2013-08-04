@@ -26,7 +26,7 @@
 
   %section.card-number{:class => ('control-group error' if @order.errors[:card_number].length > 0)}      
     = f.label :card_number
-    = f.text_field :card_number, :size => 16, :maxlength => 16
+    = f.text_field :card_number, :size => 16, :maxlength => 16, :value => '4007000000027'
 
   %section.card-type{:class => ('control-group error' if @order.errors[:card_type].length > 0)}        
     = f.label :card_type, 'Card Type'

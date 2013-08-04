@@ -24,20 +24,14 @@ class OrdersController < ApplicationController
     market_id = @order.market.id
     course_id = @order.course.id
     time = @order.time
-
     redirect_to(markets_path) and return unless @order.valid_checksum?(market_id, course_id, time)
 
-
     if @order.valid?
-
       @order.cost = @market.course.cost
-
       gateway = AUTHORIZED_NET_GATEWAY
       gateway_options = {}
       if gateway.is_a?(ActiveMerchant::Billing::AuthorizeNetGateway)
-
         @order.gateway = Order::GATEWAY_AUTHORIZE_NET
-
         #gateway_options[:order_id] = Order.generate_invoice(@course.id)
         gateway_options[:description] = @order.course.name
         gateway_options[:email] = @order.card_email
@@ -46,10 +40,20 @@ class OrdersController < ApplicationController
 
       @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
       if @response.success?
+      	@order.parameters = @response
+		@order.status = Order::STATUS_SUCCESSFUL
         @order.save!
-        #TODO: Order
-        #TODO: Affiliate
-        current_user.subscribe_course(@market.course)
+        
+        
+         
+ 
+        
+        
+		if get_affiliate_user 
+        	AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
+        end
+        
+       # current_user.subscribe_course(@market.course)
       else
         flash[:alert] = @response.message
         render :new

@@ -42,12 +42,11 @@ ActiveRecord::Schema.define(:version => 20130803160421) do
   add_index "affiliate_clicks", ["user_id"], :name => "index_affiliate_clicks_on_user_id"
 
   create_table "affiliate_sales", :force => true do |t|
-    t.boolean  "completed",             :default => false
     t.integer  "user_id"
     t.integer  "order_id"
     t.integer  "affiliate_tracking_id"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   add_index "affiliate_sales", ["affiliate_tracking_id"], :name => "index_affiliate_sales_on_affiliate_tracking_id"

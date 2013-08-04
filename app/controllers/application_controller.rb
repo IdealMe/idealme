@@ -139,19 +139,19 @@ class ApplicationController < ActionController::Base
     gon.timezone = Rails.configuration.time_zone unless current_user
   end
 
-  ## Get the current affiliate tracking profile that is cookied on the user's computer
-  ##
-  ## @return [AffiliateTracking] The current affiliate tracking profile that is cookied on the user's computer
-  #def get_affiliate_tracking
-  #  AffiliateTracking.where(:affiliate_tag => cookies.signed[:tid]).first
-  #end
+  # Get the current affiliate tracking profile that is cookied on the user's computer
   #
-  ## Get the current affiliate user that is cookied on the user's computer
-  ##
-  ## @return [User] The current affiliate user that is cookied on the user's computer
-  #def get_affiliate_user
-  #  User.where(:affiliate_tag => cookies.signed[:zid]).first
-  #end
+  # @return [AffiliateTracking] The current affiliate tracking profile that is cookied on the user's computer
+  def get_affiliate_tracking
+    AffiliateTracking.where(:affiliate_tag => cookies.signed[:tid]).first
+  end
+  
+  # Get the current affiliate user that is cookied on the user's computer
+  #
+  # @return [User] The current affiliate user that is cookied on the user's computer
+  def get_affiliate_user
+    User.where(:affiliate_tag => cookies.signed[:zid]).first
+  end
 
   # Sets the current timezone based on the current user's preferences
   def set_time_zone

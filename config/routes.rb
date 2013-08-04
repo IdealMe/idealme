@@ -9,10 +9,16 @@ Idealme::Application.routes.draw do
   root :to => 'landings#index'
   namespace :admin do
     root :to => 'landings#index'
-    resources :markets
+    resources :markets do
+      resources :payloads
+    end
     resources :courses
     resources :sections
-    resources :lectures
+    resources :lectures do
+      resources :payloads 
+    end
+
+
     resources :users
     resources :goals
     resources :categories

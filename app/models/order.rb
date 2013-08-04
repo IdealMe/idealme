@@ -5,6 +5,10 @@ class Order < ActiveRecord::Base
   GATEWAY_PAYPAL = 1
   GATEWAY_AUTHORIZE_NET = 2
   GATEWAY_STRIPE = 3
+
+  STATUS_CREATED  = 1  
+  STATUS_SUCCESSFUL = 2
+
   # == Attributes ===========================================================
   attr_accessible :user_id, :market_id, :course_id, :card_firstname, :card_lastname, :card_type, :card_exp_month,
                   :card_exp_year, :billing_address1, :billing_address2, :billing_city, :billing_zip, :billing_state, :billing_country
@@ -51,6 +55,12 @@ class Order < ActiveRecord::Base
 
   # == Instance Methods =====================================================
 
+	def purchase
+	
+	
+	
+	end
+	
   def build_credit_card
     self.cc ||= ActiveMerchant::Billing::CreditCard.new(
         :brand => self.card_type,
@@ -68,9 +78,7 @@ class Order < ActiveRecord::Base
     self.cc.valid?
 
     self.cc.errors.each do |error|
-
-      Rails.logger.info error.inspect
-
+	  next if error.last.length == 0
       field_name = error.first
       if field_name == 'year'
         mapped_field = :card_exp_year

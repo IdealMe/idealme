@@ -3,6 +3,10 @@
     #legend
       %legend Course
   = f.text_field :name, :autofocus => true
+  = f.number_field :cost
+  = f.number_field :affiliate_commission
   = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
+  = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, :class => 'select2'
+  = f.check_box :hidden
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_courses_path, :class => 'btn'

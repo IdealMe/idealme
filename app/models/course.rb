@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
                   :review_positive, :review_negative, :up_votes, :down_votes
 
   # == Relationships ========================================================
-  has_many :markets
+  has_many :markets, :dependent => :destroy
 
   has_one :default_market, :class_name => 'Market', :foreign_key => 'id', :primary_key => 'default_market_id', :dependent => :destroy
 
