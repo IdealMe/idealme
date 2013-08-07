@@ -1,78 +1,157 @@
 .markets-show {
   @include bg(#faf9f5);
-  .promo-section {
-    min-width: 1250px;
-    @include bg(#c1e4de);
-    padding: 20px 0;
-    .promo-wrapper {
-      width: 1024px;
-      margin: 0 auto;
+  >.body-content {
+    >.promo-section {
+      min-width: 1250px;
+      @include bg(#c1e4de);
+      padding: 20px 0;
+      .promo-wrapper {
+        width: 1024px;
+        margin: 0 auto;
+        >.market-box {
+          @include float-left;
+          text-align: center;
+          width: 620px;
+          >.btn {
+            width: 230px;
+            padding: 16px 35px;
+            text-align: left;
+            @include border-radius(2px);
+            border: 1px solid #ebebeb;
+            @include box-shadow(none);
+            @include hex(#4d4d4d);
+            @include fs(12px);
+            @include upper;
+            &:hover {
+              @include bg-pos(top, left);
+              border: 1px solid #bcbcbc;
+            }
+            >.price {
+              position: relative;
+              top: 3px;
+              left: 2px;
+              font-size: 24px;
+            }
+          }
+          >.btn-arrow, .btn-arrow:hover {
+            background-image: image-url("icons/btn_arrow.png");
+            background-repeat: no-repeat;
+            background-position: 85% 50%;
+          }
+          >.name {
+            @include fs(34px);
+            @include lh(50px);
+            @include hex(#424242);
+            @include centered;
+            @include upper;
+            font-weight: normal;
+            margin-bottom: 22px;
+          }
+          >.owner {
+            @include fs(16px);
+            @include centered;
+            margin-bottom: 26px;
+            @include hex(#666666);
+          }
+        }
+      }
+      >.guarantee-box {
+        @include float-left;
+        @include m_l(140px);
+      }
     }
-    .info_box {
-      @include float-left;
-      width: 620px;
+
+    >.container {
+      >.main-section {
+        width: 764px;
+        display: inline;
+
+        @include float-left;
+        @include left;
+        >.market-wrapper {
+          margin-left: 105px;
+          width: 600px;
+          @include hex(#333333);
+          @include fs(16px);
+          @include lh(25px);
+          padding-top: 50px;
+          >h1, >h2 {
+            font-weight: normal;
+          }
+          >h2 {
+            @include lh(32px);
+            @include m_t(0);
+          }
+          >p, >h1, >h2, >h3 {
+            @include m_b(25px);
+          }
+
+          >.btn {
+            width: 230px;
+            margin: 0 auto;
+            padding: 16px 16px;
+            text-align: left;
+            vertical-align: baseline;
+            @include bg-pos(93%, 50%);
+            @include block;
+            >.price {
+              @include rel;
+              top: 3px;
+              left: 2px;
+              @include fs(24px);
+            }
+          }
+          >.btn-red {
+            border: none;
+            @include border-radius(4px);
+            @include bg(#f16764);
+            @include fs(14px);
+            @include lh(14px);
+            @include upper;
+            @include centered;
+            padding: 12px 95px;
+            @include hex(white);
+            @include text-shadow(none);
+            &:hover {
+              border: none;
+              @include bg(#fa7977);
+              @include hex(white);
+            }
+            &.btn-arrow, &.btn-arrow:hover {
+              @include fs(12px);
+              padding: 16px 16px;
+              width: 230px;
+              margin: 65px 0 40px 0;
+              padding: 16px 16px;
+              text-align: left;
+              background-image: image-url("icons/btn_arrow_red.png");
+              background-repeat: no-repeat;
+              background-position: 96% 50%;
+            }
+          }
+
+        }
+      }
+
+      >.sidebar {
+        width: 466px;
+        @include bg(white);
+        margin-top: 42px;
+        border: 1px solid #ebeae8;
+        display: inline;
+        float: left;
+        text-align: left;
+        .bottom_box {
+          width: 230px;
+          margin: 0 auto;
+          @include block;
+        }
+      }
     }
-    .icon_box {
-      @include float-left;
-      @include m_l(140px);
-    }
+
   }
-  .title {
-    @include fs(34px);
-    @include lh(50px);
-    @include hex(#424242);
-    @include centered;
-    @include upper;
-    font-weight: normal;
-    margin-bottom: 22px;
-  }
-  .autor {
-    @include fs(16px);
-    @include centered;
-    margin-bottom: 26px;
-    @include hex(#666666);
-  }
-  .btn {
-    width: 230px;
-    margin: 0 auto;
-    padding: 16px 16px;
-    text-align: left;
-    vertical-align: baseline;
-    @include bg-pos(93%, 50%);
-    @include block;
-    .price {
-      @include rel;
-      top: 3px;
-      @include fs(24px);
-    }
-  }
-  .btn-red {
-    &.btn-arrow, &.btn-arrow:hover {
-      @include fs(12px);
-      @include lh(12px);
-      width: 230px;
-      margin: 140px 0 60px 0;
-      padding: 16px 16px;
-      text-align: left;
-      background-image: image-url("icons/btn_arrow_red.png");
-      background-repeat: no-repeat;
-      background-position: 96% 50%;
-    }
-  }
-  .main_section {
-    width: 764px;
-  }
-  .right_sidebar {
-    width: 466px;
-    @include bg(white);
-    margin-top: 42px;
-    border: 1px solid #ebeae8;
-    .bottom_box {
-      width: 230px;
-      margin: 0 auto;
-      @include block;
-    }
-  }
+
+
   .member_box {
     padding: 15px 0 0 15px;
     .member_icon {

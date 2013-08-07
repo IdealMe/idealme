@@ -2,7 +2,7 @@
   .top-section
     .goal-name
       = @goal_user.goal.name
-    .goal-privacy.btn-group
+    .goal-privacy
       %button.btn.goal-privacy-toggle{:data => { :goal_user_id => @goal_user.id, :goal_user_private => (@goal_user.private ? 1 : 0 )}} 
         - if @goal_user.private?
           Private

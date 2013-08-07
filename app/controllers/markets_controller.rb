@@ -57,6 +57,9 @@ class MarketsController < ApplicationController
   protected
   def load_market
     @market = Market.find(params[:id])
+    @payloads = Payload.compute_payload_tags(@market)
+    @polls = PollQuestion.compute_poll_question_tags
+
   rescue ActiveRecord::RecordNotFound
     redirect_to markets_path, :alert => 'Market not found.'
   end

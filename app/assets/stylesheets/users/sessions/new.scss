@@ -1,0 +1,153 @@
+.users-sessions-new {
+  >.body-content {
+    >.sign-in-section {
+      width: 500px;
+      margin: 0 auto;
+      @include hex(#4d4d4d);
+      @include fs(16px);
+      .modal-box {
+        @include m_b(27px);
+        border: 1px solid #ebeae8;
+        border-radius: 5px;
+        background: white;
+        >.sign-in-box {
+          >.message-box {
+            @include fs(18px);
+            @include centered;
+            margin: 16px 0 21px 0;
+          }
+          >.checkbox {
+            @include float-left;
+            width: 242px;
+          }
+          >.remember-me-checkbox {
+            >.controls {
+              >label {
+                @include fs(13px);
+                display: inline;
+                float: left;
+                width: 242px;
+              }
+              >.forgot-link {
+                @include float-left;
+                @include fs(13px);
+                @include p_t(4px);
+              }
+            }
+          }
+          >.signin {
+            @include bg(#fdfaf9);
+            border-top: 1px solid #e4e4e4;
+            padding: 13px 0;
+            >.controls {
+              >.btn {
+                @include bg(white);
+                @include bg-pos(top, left);
+                @include border-radius(2px);
+                border: 1px solid #ebebeb;
+                @include box-shadow(none);
+                padding: 11px 35px;
+                @include hex(#4d4d4d);
+                @include fs(12px);
+                @include lh(12px);
+                @include upper;
+                &:hover {
+                  @include bg-pos(top, left);
+                  border: 1px solid #bcbcbc;
+                  //@include background-image(linear-gradient(top, white, #fafafa));
+                }
+              }
+
+              >.btn-red {
+                border: none;
+                @include border-radius(4px);
+                @include bg(#f16764);
+
+                @include lh(14px);
+                @include upper;
+                @include centered;
+                @include hex(white);
+                @include text-shadow(none);
+
+                padding: 19px 125px;
+                @include fs(16px);
+                @include bold;
+
+                &:hover {
+                  border: none;
+                  @include bg(#fa7977);
+                  @include hex(white);
+                }
+              }
+            }
+
+          }
+        }
+      }
+      .form-horizontal {
+        .control-group {
+          @include m_b(16px);
+        }
+        .control-label {
+          @include hex(#4d4d4d);
+          @include fs(16px);
+          padding-top: 10px;
+          width: 119px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+          width: 295px;
+          height: 37px;
+          @include bg(#fafafa);
+        }
+        .controls {
+          @include m_l(139px);
+        }
+      }
+      >.footer {
+        @include centered;
+        >.oauth {
+          @include p_t(13px);
+          @include p_b(30px);
+          @include left;
+          >.btn-blue {
+            background: #3b5998;
+            padding: 15px 83px;
+            display: inline-block;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 240px;
+            @include p_l(0);
+            @include p_r(0);
+            @include centered;
+          }
+          >.btn-lightblue {
+            background: #4099ff;
+            padding: 15px 83px;
+            display: inline-block;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 240px;
+            @include p_l(0);
+            @include p_r(0);
+            @include centered;
+            @include float-right;
+          }
+        }
+      }
+    }
+  }
+}

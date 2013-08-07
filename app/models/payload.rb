@@ -24,6 +24,7 @@ class Payload < ActiveRecord::Base
   def self.compute_payload_tags(base)
     payloads = Hash.new
     base.payloads.each { |payload| payloads["{im:model:payload:#{payload.id}}"] = payload }
+    base.payloads.each { |payload| payloads["[payload_#{payload.id}]"] = payload }
     payloads
   end
 

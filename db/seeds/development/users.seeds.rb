@@ -1,3 +1,4 @@
+puts 'Seeding users'
 u = User.create(:firstname => 'Bill', :lastname => 'IdealMe', :username => 'bill', :password => 'passpass',
                 :email => 'bill@idealme.com', :tagline => 'Idealist - Coder - RoR', :affiliate_tag => 'billideal',
                 :avatar => File.new("#{Rails.root.to_s}/db/seeds/users/images.jpg", 'r'),

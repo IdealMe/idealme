@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  article_source_id: 1
+  article_target_id: 1
+  sequence: 1
+
+two:
+  article_source_id: 1
+  article_target_id: 1
+  sequence: 1

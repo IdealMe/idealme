@@ -15,9 +15,10 @@ Idealme::Application.routes.draw do
     resources :courses
     resources :sections
     resources :lectures do
-      resources :payloads 
+      resources :payloads
     end
 
+    resources :articles
 
     resources :users
     resources :goals
@@ -66,7 +67,8 @@ Idealme::Application.routes.draw do
       end
 
     end
-
+    resources :poll_results, :only => [:create, :destroy], :defaults => {:format => :json}
+    resources :poll_questions, :only => [:show], :defaults => {:format => :json}
   end
 
 

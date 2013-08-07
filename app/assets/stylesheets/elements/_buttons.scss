@@ -1,90 +1,90 @@
-/* ******************************************** */
-/* Buttons page */
-/* ******************************************** */
-.btn {
-  @include bg(white);
-  @include bg-pos(top, left);
-  @include border-radius(2px);
-  border: 1px solid #ebebeb;
-  @include box-shadow(none);
-  padding: 11px 35px;
-  @include hex(#4d4d4d);
-  @include fs(12px);
-  @include lh(12px);
-  @include upper;
-  &:hover {
-    @include bg-pos(top, left);
-    border: 1px solid #bcbcbc;
-    //@include background-image(linear-gradient(top, white, #fafafa));
-  }
-}
-
-.btn-arrow, .btn-arrow:hover {
-  background-image: image-url("icons/btn_arrow.png");
-  background-repeat: no-repeat;
-  background-position: 85% 50%;
-}
-
-.btn-black {
-  @include bg(#333333);
-  @include fs(14px);
-  @include lh(14px);
-  @include upper;
-  @include centered;
-  padding: 15px 22px;
-  @include hex(white);
-  @include bold;
-  @include pointer;
-  &:hover {
-    @include bg(#4d4d4d);
-  }
-}
-
-.btn-round {
-  @include border-radius(45px);
-}
-
-.btn-red {
-  border: none;
-  @include border-radius(4px);
-  @include bg(#f16764);
-  @include fs(14px);
-  @include lh(14px);
-  @include upper;
-  @include centered;
-  padding: 12px 95px;
-  @include hex(white);
-  @include text-shadow(none);
-  &:hover {
-    border: none;
-    @include bg(#fa7977);
-    @include hex(white);
-  }
-  &.btn-arrow, &.btn-arrow:hover {
-    @include fs(12px);
-    padding: 16px 16px;
-    width: 230px;
-    margin: 65px 0 40px 0;
-    padding: 16px 16px;
-    text-align: left;
-    background-image: image-url("icons/btn_arrow_red.png");
-    background-repeat: no-repeat;
-    background-position: 96% 50%;
-  }
-}
-
-.btn-group {
-  .btn {
-    border: 1px solid #cccccc;
-    @include hex(#666666);
-    @include fs(12px);
-    text-transform: none;
-    padding: 5px 30px;
-    &:hover, &.flex-active {
-      border: 1px solid #cccccc;
-      @include bg(#ff6766);
-      @include hex(white);
-      @include text-shadow(none);
-    }
-  }
-}
+///* ******************************************** */
+///* Buttons page */
+///* ******************************************** */
+//.btn {
+//  @include bg(white);
+//  @include bg-pos(top, left);
+//  @include border-radius(2px);
+//  border: 1px solid #ebebeb;
+//  @include box-shadow(none);
+//  padding: 11px 35px;
+//  @include hex(#4d4d4d);
+//  @include fs(12px);
+//  @include lh(12px);
+//  @include upper;
+//  &:hover {
+//    @include bg-pos(top, left);
+//    border: 1px solid #bcbcbc;
+//    //@include background-image(linear-gradient(top, white, #fafafa));
+//  }
+//}
+//
+//.btn-arrow, .btn-arrow:hover {
+//  background-image: image-url("icons/btn_arrow.png");
+//  background-repeat: no-repeat;
+//  background-position: 85% 50%;
+//}
+//
+//.btn-black {
+//  @include bg(#333333);
+//  @include fs(14px);
+//  @include lh(14px);
+//  @include upper;
+//  @include centered;
+//  padding: 15px 22px;
+//  @include hex(white);
+//  @include bold;
+//  @include pointer;
+//  &:hover {
+//    @include bg(#4d4d4d);
+//  }
+//}
+//
+//.btn-round {
+//  @include border-radius(45px);
+//}
+//
+//.btn-red {
+//  border: none;
+//  @include border-radius(4px);
+//  @include bg(#f16764);
+//  @include fs(14px);
+//  @include lh(14px);
+//  @include upper;
+//  @include centered;
+//  padding: 12px 95px;
+//  @include hex(white);
+//  @include text-shadow(none);
+//  &:hover {
+//    border: none;
+//    @include bg(#fa7977);
+//    @include hex(white);
+//  }
+//  &.btn-arrow, &.btn-arrow:hover {
+//    @include fs(12px);
+//    padding: 16px 16px;
+//    width: 230px;
+//    margin: 65px 0 40px 0;
+//    padding: 16px 16px;
+//    text-align: left;
+//    background-image: image-url("icons/btn_arrow_red.png");
+//    background-repeat: no-repeat;
+//    background-position: 96% 50%;
+//  }
+//}
+//
+//.btn-group {
+//  .btn {
+//    border: 1px solid #cccccc;
+//    @include hex(#666666);
+//    @include fs(12px);
+//    text-transform: none;
+//    padding: 5px 30px;
+//    &:hover, &.flex-active {
+//      border: 1px solid #cccccc;
+//      @include bg(#ff6766);
+//      @include hex(white);
+//      @include text-shadow(none);
+//    }
+//  }
+//}

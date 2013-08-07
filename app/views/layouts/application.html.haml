@@ -65,7 +65,7 @@
               = link_to 'Sign in', new_user_session_path, :class => 'btn'
             .logo
               = link_to('', root_path)
-    %section.body_content
+    %section.body_content.body-content
       - if flash[:alert]
         .alert.alert-error
           = flash[:alert]
@@ -76,15 +76,16 @@
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c[0])
         .container{:style => 'background:#ffffff; padding:10px;min-height:900px'}
           %div{:style=>'margin:10px'}
-            = link_to 'Dashboard', admin_root_path, :class => 'btn'
-            = link_to 'Markets', admin_markets_path, :class => 'btn'
-            = link_to 'Courses', admin_courses_path, :class => 'btn'
-            = link_to 'Sections', admin_sections_path, :class => 'btn'
-            = link_to 'Lectures', admin_lectures_path, :class => 'btn'
-            = link_to 'Users', admin_users_path, :class => 'btn'
-            = link_to 'Goals', admin_goals_path, :class => 'btn'
-            = link_to 'Categories', admin_categories_path, :class => 'btn'
-            = link_to 'Polls', admin_polls_path, :class => 'btn'
+            = link_to 'Dashboard', admin_root_path, :class => 'btn btn-mini'
+            = link_to 'Markets', admin_markets_path, :class => 'btn btn-mini'
+            = link_to 'Courses', admin_courses_path, :class => 'btn btn-mini'
+            = link_to 'Sections', admin_sections_path, :class => 'btn btn-mini'
+            = link_to 'Lectures', admin_lectures_path, :class => 'btn btn-mini'
+            = link_to 'Users', admin_users_path, :class => 'btn btn-mini'
+            = link_to 'Goals', admin_goals_path, :class => 'btn btn-mini'
+            = link_to 'Categories', admin_categories_path, :class => 'btn btn-mini'
+            = link_to 'Polls', admin_polls_path, :class => 'btn btn-mini'
+            = link_to 'Articles', admin_articles_path, :class => 'btn btn-mini'
             %hr
             = yield
       - else

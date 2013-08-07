@@ -1,20 +1,35 @@
-/* ******************************************** */
-/* Discover page */
-/* ******************************************** */
 .discovers-index {
-  .filter-box {
-    padding: 25px 0;
-    select {
-      @include float-left;
-      width: 118px;
-      @include m_r(20px);
-      @include m_b(0px);
-      color: #4d4d4d;
-      @include fs(12px);
-      @include lh(28px);
-      @include border-radius(0);
-      border: 1px solid #e2e5de;
-      height: 28px;
+  .btn {
+    @include bg(white);
+    @include bg-pos(top, left);
+    @include border-radius(2px);
+    border: 1px solid #ebebeb;
+    @include box-shadow(none);
+    @include hex(#4d4d4d);
+    @include fs(12px);
+    @include upper;
+    &:hover {
+      @include bg-pos(top, left);
+      border: 1px solid #bcbcbc;
+    }
+  }
+  >.body-content {
+    >.container {
+      >.filter-box {
+        padding: 25px 0;
+        select {
+          @include float-left;
+          width: 118px;
+          @include m_r(20px);
+          @include m_b(0px);
+          color: #4d4d4d;
+          @include fs(12px);
+          @include lh(28px);
+          @include border-radius(0);
+          border: 1px solid #e2e5de;
+          height: 28px;
+        }
+      }
     }
   }
   .media-body {
@@ -28,7 +43,6 @@
     padding: 8px 5px 11px 9px;
     @include m_b(36px);
   }
-
   .main-section {
     display: inline;
     float: left;
@@ -45,5 +59,4 @@
     width: 370px;
     text-align: left;
   }
-
 }

@@ -1,20 +1,32 @@
-.container{:style => 'background:#ffffff; padding:10px;min-height:900px'}
-  %div{:style=>'margin:10px'}
-    = formatted_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
-      %fieldset
-        #legend
-          %legend Login
-      = f.email_field :email, :autofocus => true, :value => 'bill@idealme.com'
-      = f.password_field :password
-      = f.text_field :password, :value => 'passpass'
-      - if devise_mapping.rememberable?
-        = f.check_box :remember_me
-      = f.submit 'Sign in', :class => 'btn btn-success'
-      - if devise_mapping.registerable? && controller_name != 'registrations'
-        = link_to "Sign up", new_registration_path(resource_name), :class => 'btn'
-      - if devise_mapping.recoverable? && controller_name != 'passwords'
-        = link_to "Forgot your password?", new_password_path(resource_name), :class => 'btn'          
-      = link_to(user_omniauth_authorize_path(:facebook), :class => 'btn btn-danger') do
-        %i.icon-facebook.icon-4x
-      = link_to(user_omniauth_authorize_path(:google_oauth2), :class => 'btn  btn-danger') do
-        %i.icon-google-plus.icon-4x
+.sign-in-section
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
+    .modal-box
+      .sign-in-box
+        .message-box
+          Sign in to your Ideal Me account
+        .control-group
+          = f.label :email, 'Username', :class => 'control-label'
+          .controls
+            = f.email_field :email, :autofocus => true, :value => 'bill@idealme.com'
+        .control-group
+          = f.label :passwors, 'Password', :class => 'control-label'     
+          .controls
+            = f.password_field :password
+            = f.text_field :password, :value => 'passpass'
+        - if devise_mapping.rememberable? 
+          .control-group.remember-me-checkbox
+            .controls
+              %label.checkbox 
+                = f.check_box :remember_me
+                Stay signed in     
+              - if devise_mapping.recoverable? && controller_name != 'passwords'
+                = link_to 'Forgot?', new_password_path(resource_name), :class => 'forgot-link'   
+              
+        .signin
+          .controls 
+            = f.submit 'SIGN IN', :class => 'btn btn-red'
+  .footer
+    Or sign up with:
+    .oauth      
+      = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
+      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')

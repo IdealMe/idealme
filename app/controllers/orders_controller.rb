@@ -40,20 +40,16 @@ class OrdersController < ApplicationController
 
       @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
       if @response.success?
-      	@order.parameters = @response
-		@order.status = Order::STATUS_SUCCESSFUL
+        @order.parameters = @response
+        @order.status = Order::STATUS_SUCCESSFUL
         @order.save!
-        
-        
-         
- 
-        
-        
-		if get_affiliate_user 
-        	AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
+
+
+        if get_affiliate_user
+          AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
         end
-        
-       # current_user.subscribe_course(@market.course)
+
+        # current_user.subscribe_course(@market.course)
       else
         flash[:alert] = @response.message
         render :new

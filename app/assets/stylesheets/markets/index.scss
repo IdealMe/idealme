@@ -1,46 +1,63 @@
-/* ******************************************** */
-/* Marketplace page */
-/* ******************************************** */
 .markets-index {
-  .promo-section {
-    min-width: 1250px;
-    @include bg(#ff8594);
-    padding-top: 30px;
-    padding-bottom: 1px;
-    .flex-control-nav {
-      display: none;
+  >.body-content {
+    >.promo-section {
+      min-width: 1250px;
+      @include bg(#ff8594);
+      padding-top: 30px;
+      padding-bottom: 1px;
+      .flex-control-nav {
+        display: none;
+      }
+      .slide-wrapper {
+        width: 620px;
+        margin: 0 auto;
+        @include hex(white);
+        @include centered;
+        >.market-name {
+          @include fs(34px);
+          @include lh(50px);
+          @include hex(white);
+          @include centered;
+          @include upper;
+          font-weight: normal;
+          margin-bottom: 22px;
+        }
+        >.owner-name {
+          @include fs(16px);
+          margin-bottom: 26px;
+        }
+        >.btn {
+          width: 185px;
+          padding: 16px 35px;
+          text-align: left;
+          @include border-radius(2px);
+          border: 1px solid #ebebeb;
+          @include box-shadow(none);
+          @include hex(#4d4d4d);
+          @include fs(12px);
+          @include upper;
+          &:hover {
+            @include bg-pos(top, left);
+            border: 1px solid #bcbcbc;
+          }
+        }
+        >.btn-arrow, >.btn-arrow:hover {
+          background-color: #ffffff;
+          background-image: image-url("icons/btn_arrow.png");
+          background-repeat: no-repeat;
+          background-position: 85% 50%;
+        }
+      }
     }
-  }
-  .section-header {
-    color: #8b8b8b;
-    font-size: 14px;
-    text-transform: uppercase;
-    line-height: 20px;
-    font-weight: normal;
-    margin-bottom: 24px;
-  }
-  .slide-wrapper {
-    width: 620px;
-    margin: 0 auto;
-    @include hex(white);
-    @include centered;
-    .market-name {
-      @include fs(34px);
-      @include lh(50px);
-      @include hex(white);
-      @include centered;
-      @include upper;
-      font-weight: normal;
-      margin-bottom: 22px;
-    }
-    .owner-name {
-      @include fs(16px);
-      margin-bottom: 26px;
-    }
-    .btn {
-      width: 185px;
-      padding: 16px 35px;
-      text-align: left;
+    >.container {
+      >.section-header {
+        color: #8b8b8b;
+        font-size: 14px;
+        text-transform: uppercase;
+        line-height: 20px;
+        font-weight: normal;
+        margin-bottom: 24px;
+      }
     }
   }
 }

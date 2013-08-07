@@ -1,4 +1,4 @@
-puts "Seeding checkins"
+puts 'Seeding checkins'
 User.find_each do |user|
   user.goal_users.each do |goal_user|
   	(0..21).each do |x|

@@ -427,6 +427,8 @@
   @include hex(#cccccc);
   @include fs(18px);
   @include m_r(9px);
+  @include m_l(9px);
+  @include m_b(18px);
   @include centered;
   @include p_t(110px);
   pointer: cursor;

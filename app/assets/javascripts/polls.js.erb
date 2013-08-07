@@ -1,0 +1,108 @@
+function im_polls_reload_poll(id) {
+    $.ajax({
+        url: '/ajax/poll_questions/' + id,
+        async: false,
+        type: 'GET',
+        cache: false,
+        dataType: 'json',
+        success: function (data) {
+            $.each(data.poll_question.poll_choices, function (index, choice) {
+                $('.im-poll-result-choice-meter[data-poll-choice-id="' + choice.poll_choice.id + '"]').attr('data-poll-choice-votes', choice.poll_choice.total_votes);
+            });
+        }
+    });
+}
+function im_polls_binding() {
+    $.each($('.im-poll-result'), function (index, result) {
+        var data_poll_question_id = $(this).attr('data-poll-question-id');
+        var total = 0;
+        $.each($('.im-poll-result-choice-meter', result), function (index_choice, result_choice) {
+            total = total + parseInt($(result_choice).attr('data-poll-choice-votes'));
+        });
+        $.each($('.im-poll-result-choice-meter', result), function (index_choice, result_choice) {
+            var data_poll_choice_id = $(result_choice).attr('data-poll-choice-id');
+            if (total == 0) {
+                $(result_choice).css('width', '100%');
+                $('.im-poll-result-choice-label[data-poll-choice-id="' + data_poll_choice_id + '"]').html(0);
+            } else {
+                var count = parseInt($(result_choice).attr('data-poll-choice-votes'));
+                $(result_choice).css('width', (count / total * 100).valueOf() + '%');
+                $('.im-poll-result-choice-label[data-poll-choice-id="' + data_poll_choice_id + '"]').html(count + '/' + total);
+            }
+        });
+    });
+    $('.im-poll-result-remove').unbind('click').bind('click', function (e) {
+        var data_poll_result_id = $(this).attr('data-poll-result-id');
+        var data_poll_question_id = $(this).attr('data-poll-question-id');
+        if ($.isNumeric(data_poll_result_id)) {
+            $.ajax({
+                url: '/ajax/poll_results/' + data_poll_result_id.valueOf(),
+                async: false,
+                type: 'POST',
+                cache: false,
+                data: {
+                    '_method': 'delete'
+                },
+                dataType: 'json',
+                success: function () {
+                    $('.im-poll-question[data-poll-question-id="' + data_poll_question_id + '"]').removeClass('hide');
+                    $('.im-poll-result[data-poll-question-id="' + data_poll_question_id + '"]').addClass('hide');
+                    $('.im-poll-result-remove[data-poll-question-id="' + data_poll_question_id + '"]').attr('data-poll-result-id', '');
+                    im_polls_reload_poll(data_poll_question_id);
+                    im_polls_binding();
+                }
+            });
+        }
+    });
+    $('.im-poll-results-current-path').val(' ');
+    $('.im-poll-result-submit').unbind('click').bind('click', function (e) {
+        e.preventDefault();
+        var data_poll_question_id = $(this).attr('data-poll-question-id');
+        $('.im-poll-result-form[data-poll-question-id="' + data_poll_question_id + '"]').submit();
+        return false;
+    });
+    $('.im-poll-choice-radio').unbind('click').bind('click', function (e) {
+        var data_poll_question_id = $(this).attr('data-poll-question-id');
+        if ($('.im-poll-result-submit[data-poll-question-id="' + data_poll_question_id + '"]').hasClass('alert')) {
+            $('.im-poll-result-submit[data-poll-question-id="' + data_poll_question_id + '"]').removeClass('alert').addClass('success').val('Cast vote');
+        }
+    });
+    $('.im-poll-result-form').unbind('submit').bind('submit', function (e) {
+        e.preventDefault();
+        var form = $(this);
+        var data_poll_question_id = $(this).attr('data-poll-question-id');
+        var poll_choice_id = null;
+        var form_data = form.serializeArray();
+        var voted = false;
+        $.each(form_data, function (index, value) {
+            if (value['name'] == 'poll_result[poll_choice_id]') {
+                poll_choice_id = value['value'];
+                voted = true;
+            }
+        });
+        if (voted) {
+            $.ajax({
+                url: '/ajax/poll_results',
+                async: false,
+                type: 'POST',
+                cache: false,
+                data: form_data,
+                dataType: 'json',
+                success: function (data) {
+                    $('.im-poll-question[data-poll-question-id="' + data_poll_question_id + '"]').addClass('hide');
+                    $('.im-poll-result[data-poll-question-id="' + data_poll_question_id + '"]').removeClass('hide');
+                    $('.im-poll-result-remove[data-poll-question-id="' + data_poll_question_id + '"]').attr('data-poll-result-id', data.poll_result.id);
+                    im_polls_reload_poll(data_poll_question_id);
+                    im_polls_binding();
+                }
+            });
+        } else {
+            if ($('.im-poll-result-submit[data-poll-question-id="' + data_poll_question_id + '"]').hasClass('success')) {
+                $('.im-poll-result-submit[data-poll-question-id="' + data_poll_question_id + '"]').removeClass('success').addClass('alert').val('You have to cast a vote first');
+            }
+        }
+    });
+}
+$(function () {
+    im_polls_binding();
+});

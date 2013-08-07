@@ -1,16 +1,14 @@
-/* ******************************************** */
-/* To Do page */
-/* ******************************************** */
 .users-welcome {
-  .top_msg_box {
-    @include centered;
-    @include hex(#8b8b8b);
-    @include fs(16px);
-    @include lh(20px);
-    .title {
+  >.body-content {
+    >.top-message-box {
+      @include centered;
+      @include hex(#8b8b8b);
+      @include fs(16px);
+      @include lh(20px);
+      .title {
+      }
     }
   }
-
   @include bg(#fbfaf4);
   .goals_section {
     width: 100%;

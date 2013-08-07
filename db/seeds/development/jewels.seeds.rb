@@ -1,3 +1,4 @@
+puts 'Seeding jewels'
 ['3Ro6o6okPFw', 'bDqr79kjmCE', 'XGFV4Ul9cEE', 'NGbZmcQg0lk', 'kiqRNoXuBgo', 'iYqtMfzLquA', 'oo-WU1madK4', 'TUFY_NixZCU',
  'Ji9NmckJ8g8', '0MiKp8CzcNs', '9EAhNgk6XPk', 'UZarVfjgHXY', '5KjC-lWTDtw', 'MmnSUI15X5s', 'tV_L-Cet7RA', 'bJlY_nl6MLo',
  'NblytNWvNRc', 'Nat0ZkZsumQ', 'vo8cB_3U3jQ', 'iWs6gwlTF5E', 'HvjziMbf0lg', 'APWjFMf4Hq4', 'Y4Zzs7IEIDQ', 'Y774exAPhsU',

@@ -1,7 +1,2 @@
-%h1 Editing admin_payload
-
-= render 'form'
-
-= link_to 'Show', @admin_payload
-\|
-= link_to 'Back', admin_payloads_path
+%h1 Editing Payload
+= render :partial => 'form', :locals => {:url => admin_payload_path(@payload)}

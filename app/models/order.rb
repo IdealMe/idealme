@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   GATEWAY_AUTHORIZE_NET = 2
   GATEWAY_STRIPE = 3
 
-  STATUS_CREATED  = 1  
+  STATUS_CREATED = 1
   STATUS_SUCCESSFUL = 2
 
   # == Attributes ===========================================================
@@ -22,6 +22,8 @@ class Order < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
   belongs_to :market
+
+  has_many :affiliate_sales
 
   # == Paperclip ============================================================
   # == Validations ==========================================================
@@ -55,12 +57,11 @@ class Order < ActiveRecord::Base
 
   # == Instance Methods =====================================================
 
-	def purchase
-	
-	
-	
-	end
-	
+  def purchase
+
+
+  end
+
   def build_credit_card
     self.cc ||= ActiveMerchant::Billing::CreditCard.new(
         :brand => self.card_type,
@@ -78,7 +79,7 @@ class Order < ActiveRecord::Base
     self.cc.valid?
 
     self.cc.errors.each do |error|
-	  next if error.last.length == 0
+      next if error.last.length == 0
       field_name = error.first
       if field_name == 'year'
         mapped_field = :card_exp_year

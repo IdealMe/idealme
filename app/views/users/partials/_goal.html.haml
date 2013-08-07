@@ -1,6 +1,23 @@
 - @goal_users.each do |goal_user|
   =render :partial => 'partials/goal_card', :locals => {:goal_user => goal_user}
-.goal-card-new
+.goal-card-new{"data-toggle" => "modal", :href => "#myModal", :role => "button"}
   .plus +
   Add goals
-.clear      
+.clear                                     
+  
+  
+
+
+#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Add goal
+  .modal-body
+     
+    %form
+      %input
+      %button Search
+      %button Create
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+    %button.btn.btn-primary Save changes

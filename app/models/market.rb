@@ -7,9 +7,11 @@ class Market < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag
+  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag, :course_id, :course
 
   # == Relationships ========================================================
+  has_many :payloads, :as => :payloadable, :dependent => :destroy
+
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     :styles => {:full => '252x202#', :thumb => '80x64#'},
@@ -27,9 +29,9 @@ class Market < ActiveRecord::Base
   scope :hidden, -> { where(:hidden => true) }
   scope :with_course_and_owner, -> { includes(:course => :owner) }
 
-  scope :type_recommended, lambda {|user|}
+  scope :type_recommended, lambda { |user|}
 
-  scope :type_trending, lambda {|user|}
+  scope :type_trending, lambda { |user|}
 
 
   # == Callbacks ============================================================

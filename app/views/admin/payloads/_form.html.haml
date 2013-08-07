@@ -1,10 +1,14 @@
-= form_for @admin_payload do |f|
-  - if @admin_payload.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@admin_payload.errors.count, "error")} prohibited this admin_payload from being saved:"
-      %ul
-        - @admin_payload.errors.full_messages.each do |msg|
-          %li= msg
+= formatted_form_for(@payload, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+  %fieldset
+    #legend
+      %legend Payload
+  = f.hidden_field :payloadable_id, :value => @payload_parent.id
+  = f.hidden_field :payloadable_type, :value => @payload_parent.class.name.to_s
+  = f.file_field :payload
+  = f.select :intended_type, Payload::PAYLOAD_TYPE, {}, :class => 'select2'
+  = f.submit 'Save', :class => 'btn btn-success'
+  = link_to 'Back', admin_payloads_path, :class => 'btn'
 
-  .actions
-    = f.submit 'Save'
+
+
+  

@@ -2,12 +2,9 @@
 
 %table.table
   %tr
-    %th
-      Lecture
-    %th
-      Section
-    %th
-      Course
+    %th Lecture
+    %th Section
+    %th Course
   - @lectures.each do |lecture|
     %tr
       %td= link_to lecture.name, edit_admin_lecture_path(lecture)

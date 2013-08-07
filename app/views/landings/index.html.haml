@@ -1,60 +1,60 @@
-.promo_section
+.promo-section
   .container
-    .bg_1
-    .msg_box
+    .background
+    .main-message
       %h3.title{:title => 'Better information, faster'}
         = image_tag('landings/better_info_txt.png')
-      .msg Collect gems of wisdom and find courses to help reach your goals
-      .btn-black.btn-round GET STARTED (IT'S FREE)
-      -#= link_to("GET STARTED (IT'S FREE)➝", new_user_session_path, :class => 'btn-black btn-round')
-    .card_box
-      .cards.card_top
+      .message Collect gems of wisdom and find courses to help reach your goals
+      = link_to("GET STARTED (IT'S FREE)", new_user_session_path, :class => 'btn-black btn-round')
+    .cards
+      .card.card-top
         = image_tag('landings/pic_top.jpg', :width => 168)
         .description 10 BEST SURF TIPS
-      .cards.card_1
+      .card.card-1
         = image_tag('landings/pic_1.jpg', :width => 118)
         .description WRITE A BOOK
-      .cards.card_2
+      .card.card-2
         = image_tag('landings/pic_2.jpg', :width => 97)
-      .cards.card_3
+      .card.card-3
         = image_tag('landings/pic_3.jpg', :width => 100)
-      .cards.card_4
+      .card.card-4
         = image_tag('landings/pic_4.jpg', :width => 113)
     .clear
-.how_it_works_section
-  %p.how_it_works_txt HOW IT WORKS
+.how-it-works-section
+  %p.how-it-works-copy
+    HOW IT WORKS
   .flexslider
     %ul.slides
       %li
-        .slide_wrapper
+        .slide-wrapper
           %h3.title{:title => 'create your ideal me to do list'}
             = image_tag('landings/create_your_txt.png')
           %p Select the goal categories you want to track your progress or discover gems of wisdom
           .showcase
             = image_tag('landings/slide_1.png')
       %li
-        .slide_wrapper
+        .slide-wrapper
           %h3.title{:title => 'collect gems of wisdom'}
             = image_tag('landings/collect_gems_txt.png')
           %p posted by other community members to create your own curated collection
           .showcase
             = image_tag('landings/slide_2.png')
       %li
-        .slide_wrapper
+        .slide-wrapper
           %h3.title{:title => 'Vote on everything'}
             = image_tag('landings/vote_on_txt.png')
           %p Hot gems float to the top while cool gems sink to the bottom
           .showcase
             = image_tag('landings/slide_3.png')
       %li
-        .slide_wrapper
+        .slide-wrapper
           %h3.title{:title => 'Track your progress'}
             = image_tag('landings/track_your_txt.png')
           %p Invite your friends and family to keep you accountable or keep your progress private
           .showcase
             = image_tag('landings/slide_4.png')
       %li
-        .slide_wrapper
+        .slide-wrapper
           %h3.title{:title => 'Supercharge your ideal me'}
             = image_tag('landings/supercharge_txt.png')
           %p Select the goal categories you want to track your progress or discover gems of wisdom
@@ -67,44 +67,44 @@
       %button.btn Vote
       %button.btn Track
       %button.btn Courses
-.testimonials_section
+.testimonials-section
   %h3.title{:title => 'Dont just take our word for it'}
     = image_tag('landings/dont_just_txt.png')
   %p We listen to our users, and so should you
-  .testimonial_container
+  .testimonial-container
     .testimonial.fleft
-      .testimonial_box
+      .testimonial-box
         Ideal Me is a seriously cool site!
         .arrow
-      .user_info
-        .user_pic
+      .user
+        .avatar
           = image_tag('landings/user_1.jpg', :width => 32)
         .user_name Shannon Thomas
     .testimonial.fright
-      .testimonial_box
+      .testimonial-box
         Ideal Me is a seriously cool site!
         .arrow
-      .user_info
-        .user_pic
+      .user
+        .avatar
           = image_tag('landings/user_2.png', :width => 32)
         .user_name Shannon Thomas
     .clear
     .testimonial.fleft
-      .testimonial_box
+      .testimonial-box
         Ideal Me is a seriously cool site!
         .arrow
-      .user_info
-        .user_pic
+      .user
+        .avatar
           = image_tag('landings/user_3.jpg', :width => 32)
         .user_name Shannon Thomas
     .testimonial.fright
-      .testimonial_box
+      .testimonial-box
         Ideal Me is a seriously cool site!
         .arrow
-      .user_info
-        .user_pic
+      .user
+        .avatar
           = image_tag('landings/user_4.png', :width => 32)
         .user_name Shannon Thomas
     .clear
-.btn_box
+.call-to-action-section
   = link_to("GET STARTED (IT'S FREE)➝", new_user_session_path, :class => 'btn btn-red')

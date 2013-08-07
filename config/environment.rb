@@ -30,8 +30,8 @@ elsif Rails.env.staging?
   #ENV['AWS_CF_STREAMING'] = 'rtmp://s3a7eohta229p4.cloudfront.net/cfx/st'
   #ENV['AWS_CF_ASSET'] = '//d3awp6qor11omf.cloudfront.net'
 elsif Rails.env.development?
-  ENV['FACEBOOK_API_KEY'] = '407719212622205'
-  ENV['FACEBOOK_API_SECRET'] = '4eec57cdef43a2b5c3bf99a5e63ae14a'
+  ENV['FACEBOOK_API_KEY'] = '230769680405348'
+  ENV['FACEBOOK_API_SECRET'] = 'edc8a8c0a757f768fcf062a1352fcce2'
 
   ENV['GOOGLE_API_KEY'] = '230865568543.apps.googleusercontent.com'
   ENV['GOOGLE_API_SECRET'] ='HVV6T2KCCafYjIeiR0JS8A_S'

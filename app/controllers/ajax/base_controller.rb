@@ -4,6 +4,7 @@ class Ajax::BaseController < ::ApplicationController
   respond_to :json
   before_filter :set_im_ajax_results
 
+
   rescue_from IdealmeException::Ajax::EarlyBailout do |exception|
     render :early_bailout and return
   end
@@ -24,7 +25,6 @@ class Ajax::BaseController < ::ApplicationController
 
   protected
   def require_authentication
-
     unless current_user
       @im_ajax_results.error = 'User is not authenticated'
       @im_ajax_results.status = 401

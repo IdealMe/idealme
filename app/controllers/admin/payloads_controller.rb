@@ -1,48 +1,102 @@
 class Admin::PayloadsController < Admin::BaseController
-  # GET /admin/payloads
+  before_filter :set_parent
+
+  # List the payloads
   def index
-    @admin_payloads = Admin::Payload.all
+    @payloads = @payload_parent.payloads
   end
 
-  # GET /admin/payloads/1
+  # Show a specific payload
   def show
-    @admin_payload = Admin::Payload.find(params[:id])
+    @payload = Payload.where(:id => params[:id]).first
   end
 
-  # GET /admin/payloads/new
+  # Create a specific payload
   def new
-    @admin_payload = Admin::Payload.new
+    @payload = Payload.new
   end
 
-  # GET /admin/payloads/1/edit
+  # Edit a specific payload
   def edit
-    @admin_payload = Admin::Payload.find(params[:id])
+    @payload = Payload.where(:id => params[:id]).first
   end
 
-  # POST /admin/payloads
+  # Create a specific payload
   def create
-    @admin_payload = Admin::Payload.new(params[:admin_payload])
-    if @admin_payload.save
-      redirect_to @admin_payload, notice: 'Payload was successfully created.'
+    @payload = Payload.new(params[:payload])
+    if @payload.save
+      redirect_to @payload, :notice => 'Payload was successfully created.'
     else
-      render action: "new"
+      render :new
     end
   end
 
-  # PUT /admin/payloads/1
+  # Update a specific payload
   def update
-    @admin_payload = Admin::Payload.find(params[:id])
-    if @admin_payload.update_attributes(params[:admin_payload])
-      redirect_to @admin_payload, notice: 'Payload was successfully updated.'
+    @payload = Payload.where(:id => params[:id]).first
+    if @payload.update_attributes(params[:payload])
+      redirect_to @payload, :notice => 'Payload was successfully updated.'
     else
-      render action: "edit"
+      render :edit
     end
   end
 
-  # DELETE /admin/payloads/1
+  # Destroy a specific payload
   def destroy
-    @admin_payload = Admin::Payload.find(params[:id])
-    @admin_payload.destroy
-    redirect_to admin_payloads_url
+    @payload = Payload.where(:id => params[:id]).first
+    @payload.destroy
+    redirect_to payloads_url
+  end
+
+  private
+  # Relative path helper for the url of a single payload
+  #
+  # @todo What is the parameter *payload* used for?
+  # @return [String] The relative path for the url of a single payload with respect to *Market*, *Lecture*, or *Article*
+  # @see Market
+  # @see Lecture
+  # @see Article
+  def payload_url(payload = nil)
+    case @payload_parent.class.name
+      when 'Market'
+        admin_market_payload_url(@payload_parent, payload)
+      when 'Lecture'
+        admin_lecture_payload_url(@payload_parent, payload)
+      when 'Article'
+        admin_article_payload_url(@payload_parent, payload)
+    end
+  end
+
+  # Relative path helper for the url of the list of payloads
+  #
+  # @todo What is the parameter *payload* used for?
+  # @return [String] The relative path for the url of the list of payloads with respect to *Market*, *Lecture*, or *Article*
+  # @see Market
+  # @see Lecture
+  # @see Article
+  def payloads_url
+    case @payload_parent.class.name
+      when 'Market'
+        admin_market_payloads_url
+      when 'Lecture'
+        admin_lecture_payloads_url
+      when 'Article'
+        admin_article_payloads_url
+    end
+  end
+
+  # Set the parent of the nested resource
+  # @see Market
+  # @see Lecture
+  # @see Article
+  def set_parent
+    @payload_parent = nil
+    if params[:market_id]
+      @payload_parent = ::Market.where(:slug => params[:market_id]).first
+    elsif params[:lecture_id]
+      @payload_parent = ::Lecture.where(:slug => params[:lecture_id]).first
+    elsif params[:article_id]
+      @payload_parent = ::Article.where(:slug => params[:article_id]).first
+    end
   end
 end

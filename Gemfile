@@ -10,6 +10,8 @@ gem 'jbuilder'
 gem 'best_in_place'
 
 
+gem 'rabl'
+
 gem 'ransack'
 
 #Ruby on Rails
@@ -34,6 +36,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 #A Google oauth2 strategy for OmniAuth 1.0
 gem 'omniauth-google-oauth2'
+#OmniAuth strategy for Twitter
+gem 'omniauth-twitter'
+
 #Send your application errors to our hosted service and reclaim your inbox.
 gem 'airbrake'
 #If you need to send some data to your js files and you don't want to do this with long way trough views and parsing - use this force!
@@ -90,7 +95,6 @@ group :assets do
 
   gem 'font-awesome-rails'
 end
-
 
 
 gem 'database_cleaner'

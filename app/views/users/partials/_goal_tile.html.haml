@@ -1,9 +1,0 @@
-.goal-card
-  .avatar
-    = image_tag goal.avatar.url(:full)
-  .name
-    = goal.name
-  .bottom-box
-    .picker 
-      = image_tag 'users/plus.png', :class => 'goal-picker-unchecked', :data => {:goal_id => goal.id}
-      = image_tag 'users/checkmark.png', :class => 'goal-picker-checked hide', :data => {:goal_id => goal.id}

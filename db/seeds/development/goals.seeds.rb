@@ -1,3 +1,4 @@
+puts 'Seeding goals'
 Goal.create(:name => 'Lose weight', :welcome => true, :ordering => 1,
             :avatar => File.new("#{Rails.root.to_s}/db/seeds/goals/lose_weight.png", 'r'))
 Goal.create(:name => 'Learn to cook', :welcome => true, :ordering => 2,

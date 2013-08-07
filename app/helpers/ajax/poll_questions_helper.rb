@@ -1,0 +1,2 @@
+module Ajax::PollQuestionsHelper
+end

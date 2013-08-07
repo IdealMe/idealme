@@ -20,8 +20,9 @@ module ApplicationHelper
 
   def body_class
     # Need this version for older pages
-    classes = ["#{params[:controller]}-#{params[:action]}"]
+    classes = ["#{params[:controller].gsub('/', '-')}-#{params[:action]}"]
     classes << (user_signed_in? ? 'logged-in' : 'logged-out')
+    classes << 'admin' if params[:controller].include?('admin/')
     classes.join(" ")
   end
 

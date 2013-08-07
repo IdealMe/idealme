@@ -1,4 +1,4 @@
-.top_msg_box
+.top-message-box
   %h3.title{:title => "create your ideal me to do list"}
     = image_tag 'create_your_txt.png'
   %p
@@ -9,6 +9,14 @@
 .container   
   = form_tag user_welcome_path do
     - @goals.each do |goal|
-      = render :partial => 'users/partials/goal_tile', :locals => {:goal => goal}
+      .goal-card
+        .avatar
+          = image_tag goal.avatar.url(:full)
+        .name
+          = goal.name
+        .bottom-box
+          .picker 
+            = image_tag 'users/plus.png', :class => 'goal-picker-unchecked', :data => {:goal_id => goal.id}
+            = image_tag 'users/checkmark.png', :class => 'goal-picker-checked hide', :data => {:goal_id => goal.id}
       = hidden_field_tag "goal_ids[#{goal.id}]", '0', {:data => {:goal_id => goal.id}}
     = submit_tag "I'm done ➝", :class => 'btn btn-red'

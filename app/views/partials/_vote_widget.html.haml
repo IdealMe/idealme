@@ -1,0 +1,38 @@
+.im-poll-widget
+  - if current_user
+    - voted = current_user.voted?(poll_question)
+    %h2= poll_question.name
+    .im-poll-question{:class => ('hide' if voted), :data => {:poll_question_id=>poll_question.id}} 
+      - @poll_result = PollResult.new(:owner => current_user, :poll_question => poll_question)
+      = form_for @poll_result, :url => root_path, :html => {:class => 'im-poll-result-form', :data => {:poll_question_id => poll_question.id}} do |f|
+        = hidden_field_tag 'poll_results_current_path', request.fullpath, :class => 'im-poll-results-current-path'
+        = f.hidden_field :owner_id
+        = f.hidden_field :poll_question_id
+        - poll_question.poll_choices.each do |choice|
+          %div
+            = f.radio_button(:poll_choice_id, choice.id, :class => 'im-poll-choice-radio', :data => {:poll_question_id => poll_question.id})
+            %strong
+              = choice.name
+        = f.submit 'Cast vote', :class => 'btn im-poll-result-submit', :data => {:poll_question_id => poll_question.id}
+        
+  
+    .im-poll-result{:class => ('hide' unless voted), :data => {:poll_question_id=> poll_question.id}}
+      - if poll_question.display_results
+        - poll_question.poll_choices.each do |choice|
+          .im-poll-result-choice
+            %div
+              %strong
+                = choice.name
+                (
+                %span{:class => 'im-poll-result-choice-label', :data => {:poll_choice_id=> choice.id}}
+                )
+            .progress
+              .bar{:class=>'im-poll-result-choice-meter', :data => {:poll_choice_votes => choice.total_votes, :poll_choice_id=> choice.id}}
+      - else
+        %p 
+          Results are hidden.
+      %button{:class=>'btn im-poll-result-remove', :data => {:poll_question_id=> poll_question.id, :poll_result_id => (voted.id if voted)} }
+        Remove my vote
+  - else
+    %p
+      You have to sign in first

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803160421) do
+ActiveRecord::Schema.define(:version => 20130804194952) do
 
   create_table "activities", :force => true do |t|
     t.boolean  "read",           :default => false
@@ -64,6 +64,56 @@ ActiveRecord::Schema.define(:version => 20130803160421) do
   end
 
   add_index "affiliate_trackings", ["user_id"], :name => "index_affiliate_trackings_on_user_id"
+
+  create_table "article_authors", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "article_authors", ["article_id"], :name => "index_article_authors_on_article_id"
+  add_index "article_authors", ["author_id"], :name => "index_article_authors_on_author_id"
+
+  create_table "article_courses", :force => true do |t|
+    t.integer  "sequence"
+    t.integer  "article_id"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "article_courses", ["article_id"], :name => "index_article_courses_on_article_id"
+  add_index "article_courses", ["course_id"], :name => "index_article_courses_on_course_id"
+
+  create_table "article_volumes", :force => true do |t|
+    t.integer  "article_source_id"
+    t.integer  "article_target_id"
+    t.integer  "sequence"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "article_volumes", ["article_source_id"], :name => "index_article_volumes_on_article_source_id"
+  add_index "article_volumes", ["article_target_id"], :name => "index_article_volumes_on_article_target_id"
+
+  create_table "articles", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "content"
+    t.boolean  "hidden"
+    t.integer  "category_id"
+    t.integer  "course_id"
+    t.integer  "goal_id"
+    t.integer  "default_market_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "articles", ["category_id"], :name => "index_articles_on_category_id"
+  add_index "articles", ["course_id"], :name => "index_articles_on_course_id"
+  add_index "articles", ["default_market_id"], :name => "index_articles_on_default_market_id"
+  add_index "articles", ["goal_id"], :name => "index_articles_on_goal_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"

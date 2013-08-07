@@ -1,3 +1,4 @@
+puts 'Seeding markets and courses'
 [
 {:name => 'Fresh Start! Raw Detox Diet', :cost => 700, :slider => true}, 
 {:name => 'Fresh Start! Energizing Diet', :cost => 700, :slider => true}, 

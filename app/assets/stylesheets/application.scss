@@ -26,29 +26,57 @@
 // PAGES
 @import "pages/global";
 @import "global";
+//
 @import "shared/cards";
 @import "shared/header";
+@import "shared/footer";
+//
 @import "markets/index";
 @import "markets/show";
+//
 @import "courses/show";
+//
 @import "discovers/index";
+//
+@import "landings/index";
+//
 @import "users/profile";
+@import "users/welcome";
+@import "users/sessions/new";
+
+//
 @import "orders/new";
 @import "orders/create";
+//
 @import "goals/show";
-@import "pages/home";
-@import "users/welcome";
-@import "shared/footer";
 // Gem imports
 @import "select2";
 @import "flexslider";
 @import "formatted_form";
 @import "jquery.ui.all";
 @import "font-awesome";
-@import "additions.css.scss";
 @import "bootstrap-tour";
 
 .modal-backdrop, .modal-backdrop.fade.in {
   opacity: 0.2;
   filter: alpha(opacity=20);
+}
+
+.admin {
+  .btn {
+    border-radius: 0px;
+    //@include bg(white);
+    @include bg-pos(top, left);
+    border: 1px solid #ebebeb;
+    @include box-shadow(none);
+    padding: 4px 12px;
+    @include hex(#4d4d4d);
+    @include fs(12px);
+    @include lh(12px);
+    @include upper;
+    &:hover {
+      @include bg-pos(top, left);
+      border: 1px solid #bcbcbc;
+    }
+  }
 }
