@@ -1,14 +1,22 @@
-.container
-  .row
-    .span12
-      = formatted_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
-        %fieldset
-          #legend
-            %legend Register
+.authentication-section
+  = formatted_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
+    .modal-box
+      .account-box
+        .message-box
+          Sign in to your Ideal Me account
         = f.text_field :username, :autofocus => true
         = f.text_field :firstname
         = f.text_field :lastname
         = f.email_field :email
         = f.password_field :password
         = f.password_field :password_confirmation
-        = f.submit 'Sign up', :class => 'btn btn-success'
+        .control-box
+          = f.submit 'SIGN UP', :class => 'btn btn-red'
+  .footer
+    Or sign up with:
+    .oauth      
+      = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
+      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')
+  %p
+    Already have an account? 
+    = link_to 'Sign in', new_user_session_path

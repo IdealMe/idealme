@@ -1,83 +1,69 @@
-.users-sessions-new {
+.users-sessions-new, .users-sessions-create,
+.users-passwords-new, .users-passwords-create,
+.users-registrations-new, .users-registrations-create {
   >.body-content {
-    >.sign-in-section {
+    >.authentication-section {
       width: 500px;
       margin: 0 auto;
       @include hex(#4d4d4d);
       @include fs(16px);
+      >p {
+        text-align: center;
+      }
       .modal-box {
         @include m_b(27px);
         border: 1px solid #ebeae8;
         border-radius: 5px;
         background: white;
-        >.sign-in-box {
+        >.account-box {
           >.message-box {
             @include fs(18px);
             @include centered;
             margin: 16px 0 21px 0;
           }
-          >.checkbox {
-            @include float-left;
-            width: 242px;
-          }
-          >.remember-me-checkbox {
-            >.controls {
-              >label {
-                @include fs(13px);
-                display: inline;
-                float: left;
-                width: 242px;
-              }
-              >.forgot-link {
-                @include float-left;
-                @include fs(13px);
-                @include p_t(4px);
-              }
-            }
-          }
-          >.signin {
+         
+          >.control-box {
             @include bg(#fdfaf9);
             border-top: 1px solid #e4e4e4;
             padding: 13px 0;
-            >.controls {
-              >.btn {
-                @include bg(white);
+            text-align: center;
+            >.btn {
+              @include bg(white);
+              @include bg-pos(top, left);
+              @include border-radius(2px);
+              border: 1px solid #ebebeb;
+              @include box-shadow(none);
+              padding: 11px 35px;
+              @include hex(#4d4d4d);
+              @include fs(12px);
+              @include lh(12px);
+              @include upper;
+              &:hover {
                 @include bg-pos(top, left);
-                @include border-radius(2px);
-                border: 1px solid #ebebeb;
-                @include box-shadow(none);
-                padding: 11px 35px;
-                @include hex(#4d4d4d);
-                @include fs(12px);
-                @include lh(12px);
-                @include upper;
-                &:hover {
-                  @include bg-pos(top, left);
-                  border: 1px solid #bcbcbc;
-                  //@include background-image(linear-gradient(top, white, #fafafa));
-                }
+                border: 1px solid #bcbcbc;
+                //@include background-image(linear-gradient(top, white, #fafafa));
               }
+            }
 
-              >.btn-red {
+            >.btn-red {
+              border: none;
+              @include border-radius(4px);
+              @include bg(#f16764);
+
+              @include lh(14px);
+              @include upper;
+              @include centered;
+              @include hex(white);
+              @include text-shadow(none);
+
+              padding: 19px 125px;
+              @include fs(16px);
+              @include bold;
+
+              &:hover {
                 border: none;
-                @include border-radius(4px);
-                @include bg(#f16764);
-
-                @include lh(14px);
-                @include upper;
-                @include centered;
+                @include bg(#fa7977);
                 @include hex(white);
-                @include text-shadow(none);
-
-                padding: 19px 125px;
-                @include fs(16px);
-                @include bold;
-
-                &:hover {
-                  border: none;
-                  @include bg(#fa7977);
-                  @include hex(white);
-                }
               }
             }
 

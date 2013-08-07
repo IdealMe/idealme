@@ -17,39 +17,3 @@
         = f.password_field :current_password, :placeholder => "we need your current password"
         = f.submit 'Update', :class => 'btn btn-success'
         = link_to 'Back', user_path(current_user), :class => 'btn'
-
-    -#.five.columns
-    -#  %h1.im-font-profile Login with
-    -#  = link_to(image_tag(asset_path('social/facebook.png')), user_omniauth_authorize_path(:facebook))
-    -#  = link_to(image_tag(asset_path('social/google_oauth2.png')), user_omniauth_authorize_path(:google_oauth2))
-
-%h2
--#  Edit #{resource_name.to_s.humanize}
--#= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
--#  = devise_error_messages!
--#  %div
--#    = f.label :email
--#    %br/
--#    = f.email_field :email, :autofocus => true
--#  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
--#    %div
--#      Currently waiting confirmation for: #{resource.unconfirmed_email}
--#  %div
--#    = f.label :password
--#    %i (leave blank if you don't want to change it)
--#    %br/
--#    = f.password_field :password, :autocomplete => "off"
--#  %div
--#    = f.label :password_confirmation
--#    %br/
--#    = f.password_field :password_confirmation
--#  %div
--#    = f.label :current_password
--#    %i (we need your current password to confirm your changes)
--#    %br/
--#    = f.password_field :current_password
--#  %div= f.submit "Update"
--#%h3 Cancel my account
--#%p
--#  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}
--#= link_to "Back", :back
