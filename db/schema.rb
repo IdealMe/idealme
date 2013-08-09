@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130804194952) do
+ActiveRecord::Schema.define(:version => 20130808030004) do
 
   create_table "activities", :force => true do |t|
     t.boolean  "read",           :default => false
@@ -302,6 +302,16 @@ ActiveRecord::Schema.define(:version => 20130804194952) do
 
   add_index "courses", ["default_market_id"], :name => "index_courses_on_default_market_id"
   add_index "courses", ["owner_id"], :name => "index_courses_on_owner_id"
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "feedback_type", :default => 1
+    t.integer  "owner_id"
+    t.text     "content"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "feedbacks", ["owner_id"], :name => "index_feedbacks_on_owner_id"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false

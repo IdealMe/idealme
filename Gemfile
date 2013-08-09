@@ -6,11 +6,10 @@ gem 'metainspector'
 gem 'activemerchant'
 #Create JSON structures via a Builder-style DSL
 gem 'jbuilder'
+#
+gem 'rabl'
 #BestInPlace is a jQuery script and a Rails 3 helper that provide the method best_in_place to display any object field easily editable for the user by just clicking on it. 
 gem 'best_in_place'
-
-
-gem 'rabl'
 
 gem 'ransack'
 
@@ -75,8 +74,12 @@ gem 'deep_cloneable'
 gem 'newrelic_rpm'
 #A gem to sign url and stream paths for Amazon CloudFront private content. Includes specific signing methods for both url and streaming paths, including html 'safe' escpaed versions of each.
 gem 'cloudfront-signer'
-# Gems used only for assets and not required
-# in production environments by default.
+
+
+gem 'twitter'
+gem 'database_cleaner'
+
+
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'haml-rails'
@@ -91,16 +94,17 @@ group :assets do
   gem 'jquery-ui-rails'
   #Integrate Compass into Rails 2.3 and up.
   gem 'compass-rails'
-
-
   gem 'font-awesome-rails'
 end
 
-
-gem 'database_cleaner'
-
+group :test do
+  gem 'simplecov', :require => false
+end
 
 group :development do
+  gem 'capistrano-unicorn', :require => false
+
+  
   gem 'quiet_assets'
   #A rails plugin to kill N+1 queries and unused eager loading.
   gem 'bullet'
@@ -122,4 +126,13 @@ group :development do
   gem 'reek'
 end
 
-gem 'twitter'
+
+group :development, :test do
+  gem 'rspec-rails', '2.14.0'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+end
+
+group :production, :staging do
+  gem 'unicorn'
+end

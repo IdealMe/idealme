@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  author_id: 1
-  article: 
-
-two:
-  author_id: 1
-  article: 

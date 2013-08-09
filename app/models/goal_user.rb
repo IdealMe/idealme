@@ -3,7 +3,8 @@ class GoalUser < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :private, :user_id, :goal_id
+  attr_accessible :private, :user_id, :goal_id, :archived, :completed
+
   # == Relationships ========================================================
   belongs_to :user
   belongs_to :goal
@@ -16,7 +17,7 @@ class GoalUser < ActiveRecord::Base
 
 
   has_many :goal_user_supporters
-  has_many :supporters, :through => :goal_user_supporters 
+  has_many :supporters, :through => :goal_user_supporters
 
 
   # == Paperclip ============================================================
@@ -27,6 +28,13 @@ class GoalUser < ActiveRecord::Base
   scope :private_goal, lambda { |permission| where(:private => permission) }
 
   scope :goal_for, lambda { |user| where(:user_id => user.id) }
+
+  scope :active, -> { where(:archived => false, :completed => false) }
+
+  scope :archived, -> { where(:archived => true, :completed => false) }
+
+  scope :finished, -> { where(:archived => false, :completed => true) }
+
 
   # == Callbacks ============================================================
   # == Class Methods ========================================================
@@ -42,6 +50,28 @@ class GoalUser < ActiveRecord::Base
     else
       "#{self.class.name}"
     end
+  end
+
+  def active?
+    self.archived == false && self.completed == false
+  end
+
+  def complete!
+    self.archived = false
+    self.completed = true
+    self.save!
+  end
+
+  def active!
+    self.archived = false
+    self.completed = false
+    self.save!
+  end
+
+  def archive!
+    self.archived = true
+    self.completed = false
+    self.save!
   end
 
   def checkin(thoughts)

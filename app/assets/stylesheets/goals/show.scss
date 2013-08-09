@@ -11,6 +11,27 @@
           padding: 40px 0 18px 47px;
           @include bold;
         }
+        >.goal-status {
+          @include abs_tr(36px, 100px);
+          >.btn {
+            padding: 5px 10px;
+            @include bg(white);
+            @include bg-pos(top, left);
+            @include border-radius(2px);
+            @include box-shadow(none);
+            @include fs(12px);
+            @include lh(12px);
+            border: 1px solid #cccccc;
+            @include hex(#666666);
+            @include fs(12px);
+            &:hover, &.flex-active {
+              border: 1px solid #cccccc;
+              @include bg(#ff6766);
+              @include hex(white);
+              @include text-shadow(none);
+            }
+          }
+        }
         >.goal-privacy {
           @include abs_tr(36px, 25px);
           >.btn {
@@ -80,11 +101,7 @@
               @include p_l(41px);
               @include m_r(19px);
             }
-            >.community-icon {
-              @include bg(image-url('icons/community_32x32.png') no-repeat);
-              @include bg_pos(0px, 50%);
-              padding: 14px 28px 14px 47px;
-            }
+
           }
         }
       }
@@ -140,7 +157,6 @@
                 .btn {
                   padding: 14px 81px;
                   @include fs(12px);
-               
 
                   @include bg(white);
                   @include bg-pos(top, left);
@@ -171,7 +187,7 @@
                     @include bg(#fa7977);
                     @include hex(white);
                   }
-                 
+
                 }
 
               }
@@ -427,42 +443,4 @@
     @include m_b(9px);
   }
 
-  .community-title {
-    @include hex(#333333);
-    @include fs(12px);
-    @include upper;
-    @include m_b(16px);
-
-    .community-box {
-      @include bg(white);
-      border: 1px solid #ebeae5;
-      @include border-radius(5px);
-      @include p_b(16px);
-      width: 840px;
-      @include m_b(40px);
-      .user {
-        @include float-left;
-        margin: 13px 0 0 21px;
-        .avatar {
-          @include float-left;
-          @include m_r(10px);
-          img {
-            width: 24px;
-          }
-        }
-        .name {
-          @include p_t(6px);
-          @include float-left;
-          @include fs(12px);
-          @include hex(#6b635b);
-        }
-      }
-    }
-    .community-supporter-copy {
-      @include fs(12px);
-      a {
-        @include p_t(10px);
-      }
-    }
-  }
 }

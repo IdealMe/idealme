@@ -1,9 +1,12 @@
 require 'bundler/capistrano'
 require 'airbrake/capistrano'
+require 'capistrano-unicorn'
+
+
 require './config/boot'
 
 default_run_options[:pty] = true
-ssh_options[:port] = 31337
+#ssh_options[:port] = 31337
 ssh_options[:keys] = [File.join(ENV['HOME'], '.ssh', 'id_rsa')]
 ssh_options[:forward_agent] = true
 
@@ -21,9 +24,10 @@ set :normalize_asset_timestamps, false
 
 
 task :staging do
+  set :repository, 'ssh://git@bitbucket.org/billxinli/idealme.git'
   set :rails_env, 'staging'
-  set :domain, '198.58.105.102'
-  set :deploy_to, '/webapps/idealme'
+  set :domain, 'idealmedev.com'
+  set :deploy_to, '/apps/idealme'
   set :branch, 'master'
   set :keep_releases, 1
   role :app, domain
@@ -41,7 +45,7 @@ namespace :deploy do
     end
     desc 'reload the database with seed data'
     task :seed do
-      run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+      run "cd #{current_path}; bundle exec rake  db:seed:development:users db:seed:development:goals db:seed:development:goal_users db:seed:development:checkins db:seed:development:categories db:seed:development:jewels db:seed:development:courses RAILS_ENV=#{rails_env}"
     end
   end
   task :start do

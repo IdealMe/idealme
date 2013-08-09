@@ -34,16 +34,20 @@
             =image_tag current_user.avatar(:thumb), :class => 'user-avatar'
             %ul.user-menu
               %li
-                = link_to 'SETTINGS', user_edit_path(current_user)
-              %li
-                %a{:href => "#"} REMINDERS
-              %li
-                %a{:href => "#"} FIND FREINDS
+                = link_to 'Settings', user_edit_path(current_user)
+              %li                                                 
+                = link_to 'Notifications', user_edit_path(current_user)
+              %li                                                 
+                = link_to 'Find friends', user_edit_path(current_user)
+              %li                                                 
+                = link_to 'Archived goals', archived_goals_path
+              %li                                                 
+                = link_to 'Give feedback', feedbacks_path                
               - if can? :access, :admin
                 %li
-                  = link_to 'ADMIN', admin_root_path
+                  = link_to 'Admin', admin_root_path
               %li.sign-out
-                = link_to 'SIGN OUT', destroy_user_session_path
+                = link_to 'Sign out', destroy_user_session_path
           %ul.left-menu
             %li
               = link_to 'DISCOVER', discovers_path, :class => active_tab?('discovers', params[:controller])
@@ -86,27 +90,20 @@
             = link_to 'Categories', admin_categories_path, :class => 'btn btn-mini'
             = link_to 'Polls', admin_polls_path, :class => 'btn btn-mini'
             = link_to 'Articles', admin_articles_path, :class => 'btn btn-mini'
+            = link_to 'Feedbacks', admin_feedbacks_path, :class => 'btn btn-mini'  
+            = link_to 'CMS', cms_admin_path, :class => 'btn btn-mini'  
             %hr
             = yield
       - else
         = yield
     %footer
       .container
-        %ul.footer-bg
-        %ul.footer-menu
-          %li
-            %a{:href => '#'} About
-          %li
-            %a{:href => '#'} Blog
-          %li
-            %a{:href => '#'} Terms of Use
-          %li
-            %a{:href => '#'} Privacy Policy
-    .help-box
-      Have a Question?   
-      = mail_to 'info@idealme.com', 'Contact Us'
-      %br/
-      = get_friendly_affiliate_tracking
+        %a{:href => '/static/about', :class => 'footer-menu'} About
+        %a{:href => '#', :class => 'footer-menu'} Blog
+        %a{:href => '/static/terms-of-services', :class => 'footer-menu'} Terms of Services
+        %a{:href => '/static/privacy-policy', :class => 'footer-menu'} Privacy Policy
+        %a{:href => '/static/customer-care', :class => 'footer-menu'} Customer Care
+    = get_friendly_affiliate_tracking
     #fb-root
     :javascript
       (function(d, s, id) {

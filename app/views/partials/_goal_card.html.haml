@@ -4,10 +4,10 @@
       = image_tag 'users/drop_down.png', :data => { :toggle => 'dropdown' }
       %ul.dropdown-menu{:style=>'border-radius:0px'}      
         %li
-          %a{:href => "#", :tabindex => "-1"} Mark as complete  
+          = link_to 'Mark as complete', complete_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}  
         %li.divider
-        %li
-          %a{:href => "#", :tabindex => "-1"} Archive
+        %li                                            
+          = link_to 'Archive', archive_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}
   .avatar
     = link_to image_tag(goal_user.goal.avatar.url(:full)), goal_path(goal_user)
   .name

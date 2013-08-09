@@ -43,7 +43,6 @@
 @import "users/profile";
 @import "users/welcome";
 @import "users/sessions/new";
-
 //
 @import "orders/new";
 @import "orders/create";
@@ -77,6 +76,199 @@
     &:hover {
       @include bg-pos(top, left);
       border: 1px solid #bcbcbc;
+    }
+  }
+}
+
+.feedbacks-new, .feedbacks-edit, .feedbacks-create {
+  >.body-content {
+    >.container {
+      >.main-section {
+        width: 750px;
+        margin: auto;
+        >h1 {
+          text-align: center;
+        }
+        label {
+          float: left;
+          padding-left: 10px;
+          padding-right: 20px;
+          font-weight: bold;
+        }
+        input[type="radio"] {
+          float: left;
+        }
+        textarea {
+          width: 100%;
+        }
+        .btn {
+          @include bg(white);
+          @include bg-pos(top, left);
+          @include border-radius(2px);
+          border: 1px solid #ebebeb;
+          @include box-shadow(none);
+          padding: 11px 35px;
+          @include hex(#4d4d4d);
+          @include fs(12px);
+          @include lh(12px);
+          @include upper;
+          &:hover {
+            @include bg-pos(top, left);
+            border: 1px solid #bcbcbc;
+          }
+        }
+
+        .btn-red {
+          border: none;
+          @include border-radius(4px);
+          @include bg(#f16764);
+          @include fs(14px);
+          @include lh(14px);
+          @include upper;
+          @include centered;
+          padding: 12px 95px;
+          @include hex(white);
+          @include text-shadow(none);
+          &:hover {
+            border: none;
+            @include bg(#fa7977);
+            @include hex(white);
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.cms-about-card {
+
+  margin-bottom: 40px;
+  >.cms-about-title {
+    width: 250px;
+    >h2 {
+      font-size: 35px;
+    }
+
+    >p {
+      color: #999999;
+    }
+  }
+
+  >.cms-about-image {
+    width: 600px;
+  }
+
+}
+
+.cms-customer-care-contact-phone {
+  background: image-url("icons/phone.png") no-repeat -6px -6px;
+  padding: 20px 0 20px 70px;
+  font-size: 18px;
+  color: #4d4d4d;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.cms-customer-care-contact-email {
+  background: image-url("icons/email.png") no-repeat 0 0;
+  padding: 24px 0 22px 75px;
+  font-size: 18px;
+  color: #1d95cb;
+  font-weight: bold;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.cms-thin-container {
+  padding-top: 5px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  >h1, >h2 {
+    text-align: center;
+    line-height: 40px;
+  }
+}
+
+.cms-wide-container {
+  padding-top: 5px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  >h1, >h2 {
+    text-align: center;
+    line-height: 40px;
+  }
+}
+
+.goals-archived {
+  >.body-content {
+    >.container {
+      width: 600px;
+      >h1 {
+        text-align: center;
+        font-size: 25px;
+      }
+
+      >.archived-goals {
+        >.archived-goal {
+          border-top: 1px solid #e4e4e4;
+          padding-top: 3px;
+          padding-bottom: 3px;
+
+          >.name {
+            width: 500px;
+            float: left;
+            font-weight: bold;
+
+          }
+          >.control {
+            width: 70px;
+            float: right;
+
+
+            .btn {
+              @include bg(white);
+              @include bg-pos(top, left);
+              @include border-radius(2px);
+              border: 1px solid #ebebeb;
+              @include box-shadow(none);
+              @include hex(#4d4d4d);
+              @include lh(12px);
+              &:hover {
+                @include bg-pos(top, left);
+                border: 1px solid #bcbcbc;
+              }
+            }
+            
+            .btn-red {
+              border: none;
+              @include bg(#f16764);
+              @include lh(14px);
+              @include centered;
+              padding: 2px 5px;
+              @include hex(white);
+              @include text-shadow(none);
+              &:hover {
+                border: none;
+                @include bg(#fa7977);
+                @include hex(white);
+              }
+            }
+            
+          }
+
+        }
+
+        >.archived-goal:last-child {
+
+          border-bottom: 1px solid #e4e4e4;
+
+        }
+      }
     }
   }
 }

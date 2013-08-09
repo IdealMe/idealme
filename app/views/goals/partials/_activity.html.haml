@@ -1,5 +1,5 @@
 .main-section      
-  - if @owner
+  - if @owner && @goal_user.active?
     .share-section
       .toggle-box
         %a.checkin-toggle{:href => '#checkin', :data => {:toggle => 'tab'}} Checkin
@@ -31,7 +31,6 @@
       - if @activities.length > 0
         - @activities.each do |activity| 
           = render_activity(activity)
-
       %li
         .activity
           .arrow
@@ -43,49 +42,50 @@
               %a.user-name{:href => "#"} Erika
               is supporting you
 
-.sidebar
-  .checkin-widget
-    .checkin-status
-      - if @goal_user.checkedin?
-        .checkin-today-has-checkin
-          %p.checkin-title CHECKED IN
-          %p
-            = @checkins_this_week.length.ordinalize
-            time this week. Let's do this!
-      - else
-        .checkin-today-no-checkin 
-          NO CHECKINS
-      .checkin-this-week
-        .checkin-this-week-icon 
-          = @checkins_this_week.length
-        .checkin-this-week-copy 
-          CHECK 
-          = 'IN'.pluralize(@checkins_this_week.length).upcase
-      .clear
-    .checkin-calendar
-      .checkin-calendar-time-log          
-        - n = 7
-        - end_date = Checkin.end_date  
-        - (-1..n-2).each do |week|
-          - start_date = end_date - 6.days
-          %div
-            - if week > 0 
-              = start_date.strftime('%d/%m')
-              \-
-              = end_date.strftime('%d/%m')
-            - elsif week == -1
-              This week
-            - else
-              Last week
-          - end_date = start_date - 1.day
-      .days-section
-        .days-header    
-          - ['S', 'M', 'T', 'W', 'T', 'F', 'S'].each do |weekday|
-            %div= weekday
-        - end_date = Checkin.end_date
-        - (-1..n-2).each do |week|
-          .days-row
+.sidebar    
+  - if @goal_user.active?
+    .checkin-widget
+      .checkin-status
+        - if @goal_user.checkedin?
+          .checkin-today-has-checkin
+            %p.checkin-title CHECKED IN
+            %p
+              = @checkins_this_week.length.ordinalize
+              time this week. Let's do this!
+        - else
+          .checkin-today-no-checkin 
+            NO CHECKINS
+        .checkin-this-week
+          .checkin-this-week-icon 
+            = @checkins_this_week.length
+          .checkin-this-week-copy 
+            CHECK 
+            = 'IN'.pluralize(@checkins_this_week.length).upcase
+        .clear
+      .checkin-calendar
+        .checkin-calendar-time-log          
+          - n = 7
+          - end_date = Checkin.end_date  
+          - (-1..n-2).each do |week|
             - start_date = end_date - 6.days
-            - (0..6).each do |offset|
-              %div{:class => checkin_class(@checkins_7_weeks_dates, (start_date + offset).strftime('%Y%m%d') ), :data => {:date => (start_date + offset).strftime('%Y%m%d')}}
-          - end_date = start_date - 1.day
+            %div
+              - if week > 0 
+                = start_date.strftime('%d/%m')
+                \-
+                = end_date.strftime('%d/%m')
+              - elsif week == -1
+                This week
+              - else
+                Last week
+            - end_date = start_date - 1.day
+        .days-section
+          .days-header    
+            - ['S', 'M', 'T', 'W', 'T', 'F', 'S'].each do |weekday|
+              %div= weekday
+          - end_date = Checkin.end_date
+          - (-1..n-2).each do |week|
+            .days-row
+              - start_date = end_date - 6.days
+              - (0..6).each do |offset|
+                %div{:class => checkin_class(@checkins_7_weeks_dates, (start_date + offset).strftime('%Y%m%d') ), :data => {:date => (start_date + offset).strftime('%Y%m%d')}}
+            - end_date = start_date - 1.day

@@ -1,0 +1,15 @@
+%h1 Feedbacks
+
+%table.table
+  %tr
+    %th Feedback
+    %th Owner
+
+  - @feedbacks.each do |feedback|
+    %tr
+      %td= link_to feedback.content, edit_admin_feedback_path(feedback)
+      %td= link_to feedback.owner.fullname, edit_admin_user_path(feedback.owner)
+
+%br
+
+= link_to 'New feedback', new_admin_feedback_path, :class => 'btn'

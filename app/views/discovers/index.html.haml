@@ -10,7 +10,9 @@
     - @discovers.each do |discovery|
       =render :partial => 'partials/discover_card', :locals => {:discover => discovery}
     .clear
-    = will_paginate @discovers
+    = will_paginate @discovers    
+    = will_paginate @discovers, :page_links => false
+
   .sidebar
     .modal_box.adv-box
       = image_tag 'banner.png'   

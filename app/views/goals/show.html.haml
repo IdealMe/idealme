@@ -1,13 +1,17 @@
 .container
   .top-section
     .goal-name
-      = @goal_user.goal.name
-    .goal-privacy
-      %button.btn.goal-privacy-toggle{:data => { :goal_user_id => @goal_user.id, :goal_user_private => (@goal_user.private ? 1 : 0 )}} 
-        - if @goal_user.private?
-          Private
-        - else
-          Public
+      = @goal_user.goal.name 
+    - if @owner    
+      - if @goal_user.archived?
+        .goal-status
+          = link_to 'Reactivate', activate_goal_path(@goal_user), :class => 'btn', :method => :post, :data => {:confirm => 'Are you sure?'}
+      .goal-privacy
+        %a.btn.goal-privacy-toggle{:href => '#', :data => { :goal_user_id => @goal_user.id, :goal_user_private => (@goal_user.private ? 1 : 0 )}} 
+          - if @goal_user.private?
+            Private
+          - else
+            Public
     .clear
   .menu-section
     %ul.user-menu
@@ -15,12 +19,11 @@
         = link_to 'Activity', goal_path(@goal_user, {:tab => 'activity'}), :class => 'activity-icon'
       %li{:class => active_tab?(@tab, 'top_gem')}
         = link_to 'Top gems', goal_path(@goal_user, {:tab => 'top_gem'}), :class => 'top-gem-icon'
-      %li{:class => active_tab?(@tab, 'my_gem')}
-        = link_to 'My gems', goal_path(@goal_user, {:tab => 'my_gem'}), :class => 'my-gem-icon'
+      - if @goal_user.active?
+        %li{:class => active_tab?(@tab, 'my_gem')}
+          = link_to 'My gems', goal_path(@goal_user, {:tab => 'my_gem'}), :class => 'my-gem-icon'
       %li{:class => active_tab?(@tab, 'course')}
         = link_to 'Courses', goal_path(@goal_user, {:tab => 'course'}), :class => 'course-icon'
-      %li{:class => active_tab?(@tab, 'community')}
-        = link_to 'Community', goal_path(@goal_user, {:tab => 'community'}), :class => 'community-icon'
     .clear
   .panes
     %div.active
@@ -28,9 +31,7 @@
         = render :partial => 'goals/partials/activity'
       - elsif @tab == 'top_gem'
         = render :partial => 'goals/partials/top_gem'
-      - elsif @tab == 'my_gem'
+      - elsif @tab == 'my_gem' && @goal_user.active?
         = render :partial => 'goals/partials/my_gem'
       - elsif @tab == 'course'
         = render :partial => 'goals/partials/course'
-      - elsif @tab == 'community'
-        = render :partial => 'goals/partials/community'

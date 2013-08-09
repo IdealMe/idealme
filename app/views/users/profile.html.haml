@@ -3,7 +3,9 @@
 .container           
   .user-profile
     .user-avatar
-      = image_tag @user.avatar.url(:square)
+      = image_tag @user.avatar.url(:square)     
+      %button.follow.btn
+        lol
     .user-informaiton
       .user-fullname
         = @user.fullname
@@ -38,12 +40,19 @@
     .clear        
   .menu-section
     %ul.user-menu
-      %li{:class => active_tab?('goal', @tab)}
-        = link_to 'goals', user_path(current_user, {:tab => 'goal'}), :class => 'goal-icon'
-      %li{:class => active_tab?('course', @tab)}
-        = link_to 'course history', user_path(current_user, {:tab => 'course'}), :class => 'course-icon'
-    .clear                                   
-  - if @tab == 'goal'
+      - if @owner
+        %li{:class => active_tab?('goal', @tab)}
+          = link_to 'goals', user_path(@user, {:tab => 'goal'}), :class => 'goal-icon'
+        %li{:class => active_tab?('course', @tab)}
+          = link_to 'course history', user_path(@user, {:tab => 'course'}), :class => 'course-icon'
+      - else
+        %li.active
+          = link_to 'public goals', user_path(@user, {:tab => 'goal'}), :class => 'goal-icon'
+    .clear              
+  - if @owner                     
+    - if @tab == 'goal'
+      = render :partial => 'users/partials/goal'
+    - else       
+      = render :partial => 'users/partials/course'
+  - else                                        
     = render :partial => 'users/partials/goal'
-  - else       
-    = render :partial => 'users/partials/course'

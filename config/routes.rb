@@ -1,12 +1,15 @@
 Idealme::Application.routes.draw do
-  resources :lectures
 
+  root :to => 'landings#index'
+
+  resources :lectures
+  resources :feedbacks, :only => [:index, :new, :create]
   resources :orders, :only => [:new, :create] do
     collection do
       get 'new/:id' => 'orders#new', :as => :subscribe
     end
   end
-  root :to => 'landings#index'
+
   namespace :admin do
     root :to => 'landings#index'
     resources :markets do
@@ -17,13 +20,12 @@ Idealme::Application.routes.draw do
     resources :lectures do
       resources :payloads
     end
-
     resources :articles
-
     resources :users
     resources :goals
     resources :categories
     resources :polls
+    resources :feedbacks
   end
 
   resources :markets, :only => [:index, :show] do
@@ -40,6 +42,12 @@ Idealme::Application.routes.draw do
     member do
       post :share
       post :checkin
+      post :activate
+      post :complete
+      post :archive
+    end
+    collection do
+      get :archived
     end
   end
 
@@ -72,9 +80,9 @@ Idealme::Application.routes.draw do
   end
 
 
-  ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
+  ComfortableMexicanSofa::Routing.admin(:path => '/admin/cms')
   # Make sure this routeset is defined last
-  ComfortableMexicanSofa::Routing.content(:path => '/cms', :sitemap => false)
+  ComfortableMexicanSofa::Routing.content(:path => '/static', :sitemap => false)
 
   devise_for :users,
              :path => '',
@@ -101,14 +109,13 @@ Idealme::Application.routes.draw do
     constraints(:id => /[0-9A-Za-z\-\.\_]+/) do
       get ':id' => 'users#profile', :as => :user
       get ':id/edit' => 'users/registrations#edit', :as => :user_edit
-      get ':id/course' => 'users#course', :as => :user_course
 
       # Signup flow
       get ':id/welcome' => 'users#welcome', :as => :user_welcome
       post ':id/welcome' => 'users#welcome_save', :as => :user_welcome
       # Signup flow
 
-      get ':id/goal' => 'users#goal', :as => :user_goal
+
       get ':id/goal/:active_goal' => 'users#active_goal', :as => :user_active_goal
       get ':id/friend' => 'users#friend', :as => :user_friend
       get ':id/stuff' => 'users#stuff', :as => :user_stuff
