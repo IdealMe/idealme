@@ -20,7 +20,7 @@ APP_PATH = '/apps/idealme/current'
 
 working_directory APP_PATH
 
-pid APP_PATH + '/tmp/pid/unicorn.pid'
+pid APP_PATH + '/tmp/pids/unicorn.pid'
 stderr_path APP_PATH + '/log/unicorn.stderr.log'
 stderr_path APP_PATH + '/log/unicorn.stdout.log'
 
