@@ -11,6 +11,11 @@ ssh_options[:keys] = [File.join(ENV['HOME'], '.ssh', 'id_rsa')]
 ssh_options[:forward_agent] = true
 
 
+
+set :maintenance_template_path, 'app/views/maintenance.html.haml'
+set :maintenance_config_warning, false
+set :maintenance_dirname, "#{shared_path}/public/system"
+
 set :application, 'idealme'
 set :scm, :git
 set :repository, 'ssh://git@bitbucket.org/billxinli/idealme.git'
