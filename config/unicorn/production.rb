@@ -1,6 +1,6 @@
-rails_env = staging
+rails_env = production
 
-worker_processes 2
+worker_processes 16
 
 # Load rails+github.git into the master before forking workers
 # for super-fast worker spawn times

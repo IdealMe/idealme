@@ -2,7 +2,6 @@ require 'bundler/capistrano'
 require 'airbrake/capistrano'
 require 'capistrano-unicorn'
 
-
 require './config/boot'
 
 default_run_options[:pty] = true
@@ -36,7 +35,6 @@ task :staging do
 end
 
 
-#If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   namespace :db do
     desc 'drop database'
@@ -48,13 +46,15 @@ namespace :deploy do
       run "cd #{current_path}; bundle exec rake  db:seed:development:users db:seed:development:goals db:seed:development:goal_users db:seed:development:checkins db:seed:development:categories db:seed:development:jewels db:seed:development:courses RAILS_ENV=#{rails_env}"
     end
   end
-  task :start do
-    ;
-  end
-  task :stop do
-    ;
-  end
-  task :restart, :roles => :app, :except => {:no_release => true} do
-    run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
-  end
+  #task :start do
+  #  ;
+  #end
+  #task :stop do
+  #  ;
+  #end
+  #task :restart, :roles => :app, :except => {:no_release => true} do
+  #  run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
+  #end
 end
+
+after 'deploy:restart', 'unicorn:restart' # app preloaded
