@@ -9,3 +9,5 @@
   = f.file_field :avatar
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_markets_path, :class => 'btn'
+  - if @market.persisted?
+    = link_to 'Payloads', admin_market_payloads_path(@market), :class => 'btn'                                                                   

@@ -5,20 +5,24 @@
         .message-box
           Sign in to your Ideal Me account
         = f.email_field :email, :autofocus => true, :value => 'bill@idealme.com'
-        = f.password_field :password
-        = f.text_field :password, :value => 'passpass'
+        - if Rails.env.production?
+          = f.password_field :password
+        - else
+          = f.text_field :password, :value => 'passpass'
         - if devise_mapping.rememberable? 
           = f.check_box :remember_me, :label => 'Stay signed in'            
         .control-box
-          = f.submit 'SIGN IN', :class => 'btn btn-red'
+          = f.submit 'Sign in', :class => 'btn btn-red'
   .footer
     Or sign up with:
     .oauth      
       = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
-      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')
+      = link_to('G+', user_omniauth_authorize_path(:google_oauth2), :class => 'btn btn-red')
   %p
     Need an account? 
     = link_to 'Sign up', new_user_registration_path
     - if devise_mapping.recoverable? && controller_name != 'passwords'
       or 
-      = link_to 'Recover my account', new_password_path(resource_name)
+      = link_to 'Recover my account', new_password_path(resource_name)                  
+  %p
+    = link_to 'Confirm my account',new_user_confirmation_path

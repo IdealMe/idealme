@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::BaseController
   # POST /admin/users
   def create
     @user.save!
-    redirect_to admin_user_path(@user), :notice => 'User was successfully created.'
+    redirect_to edit_admin_user_path(@user), :notice => 'User was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::UsersController < Admin::BaseController
   # PUT /admin/users/1
   def update
     @user.update_attributes!(params[:user])
-    redirect_to admin_user_path(@user), :notice => 'User was successfully updated.'
+    redirect_to edit_admin_user_path(@user), :notice => 'User was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

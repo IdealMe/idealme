@@ -1,0 +1,24 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Down for maintenance</title>
+  <link href="/static/css/http_errors.css" media="screen" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo">
+      <a href="/" title="Ideal me"></a>
+    </div>
+  </div>
+</header>
+<section class="body-content">
+  <div class="container">
+    <h1>The system is down for <%= reason ? reason : 'maintenance'%></h1>
+    <p>It will be back <%= deadline ? deadline : 'soon'%></p>
+    <img src="/static/images/tb_run2.png" alt="Down for maintenance"/>
+  </div>
+</section>
+</body>
+</html>

@@ -15,9 +15,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :timezone, :default => 'Etc/Zulu'
       t.string :tagline, :default => ''
-      t.decimal :survey_base, :precision => 6, :scale => 3, :default => 0
-      t.decimal :checkin_base, :precision => 6, :scale => 3, :default => 0
-      t.boolean :auto_follow, :default => false
+
       t.string :affiliate_tag
       t.integer :affiliate_default_payment_id
       t.integer :affiliate_payment_frequency
@@ -27,6 +25,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :access_support, :default => false
       t.boolean :access_admin, :default => false
       t.attachment :avatar
+
+
+      t.integer :goal_count, :default => 0
+      t.integer :course_count, :default => 0
+
 
       ## Database authenticatable
       t.string :email, :null => false, :default => ""
@@ -47,21 +50,18 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      # t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      t.integer :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
+      t.string :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
 
       ## Token authenticatable
       t.string :authentication_token
-
-      t.integer :goal_count, :default => 0
-      t.integer :course_count, :default => 0
 
 
       t.timestamps
@@ -69,8 +69,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
     add_index :users, :email, :unique => true
     add_index :users, :reset_password_token, :unique => true
-    # add_index :users, :confirmation_token,   :unique => true
-    # add_index :users, :unlock_token,         :unique => true
-    # add_index :users, :authentication_token, :unique => true
+    add_index :users, :confirmation_token, :unique => true
+    add_index :users, :unlock_token, :unique => true
+    add_index :users, :authentication_token, :unique => true
   end
 end

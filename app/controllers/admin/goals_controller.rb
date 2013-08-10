@@ -22,7 +22,7 @@ class Admin::GoalsController < Admin::BaseController
   # POST /admin/goals
   def create
     @goal.save!
-    redirect_to admin_goal_path(@goal), :notice => 'Goal was successfully created.'
+    redirect_to edit_admin_goal_path(@goal), :notice => 'Goal was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::GoalsController < Admin::BaseController
   # PUT /admin/goals/1
   def update
     @goal.update_attributes!(params[:goal])
-    redirect_to admin_goal_path(@goal), :notice => 'Goal was successfully updated.'
+    redirect_to edit_admin_goal_path(@goal), :notice => 'Goal was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

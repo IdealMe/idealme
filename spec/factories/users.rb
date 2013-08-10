@@ -2,12 +2,15 @@ FactoryGirl.define do
   factory :user do
     firstname 'normal'
     lastname 'idealme'
-    username { "#{firstname}_#{lastname}" }
+    username 'normal_idealme'
     password 'passpass'
-    email { "#{firstname}_#{lastname}@idealme.com" }
+    email 'normal@idealme.com'
+    confirmed_at Time.now
+
     factory :user_admin do
       firstname 'admin'
       lastname 'idealme'
+      email 'admin@idealme.com'
       access_admin true
     end
   end

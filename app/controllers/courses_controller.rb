@@ -18,6 +18,8 @@ class CoursesController < ApplicationController
     @course = Course.with_sections_and_lectures.find(params[:id])
     @comments = Comment.for(@course).includes(:owner, :replies => :owner)
 
+    authorize!(:read, @course)
+
   rescue ActiveRecord::RecordNotFound
     redirect_to markets_path, :alert => 'Course not found.'
   end

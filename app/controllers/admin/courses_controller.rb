@@ -22,7 +22,7 @@ class Admin::CoursesController < Admin::BaseController
   # POST /admin/courses
   def create
     @course.save!
-    redirect_to admin_course_path(@category), :notice => 'Course was successfully created.'
+    redirect_to edit_admin_course_path(@category), :notice => 'Course was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::CoursesController < Admin::BaseController
   # PUT /admin/courses/1
   def update
     @course.update_attributes!(params[:course])
-    redirect_to admin_course_path(@course), :notice => 'Course was successfully updated.'
+    redirect_to edit_admin_course_path(@course), :notice => 'Course was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

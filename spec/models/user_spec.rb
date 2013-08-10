@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe User do
   it 'has a valid factory' do
-    FactoryGirl.create(:user).should be_valid
-    FactoryGirl.create(:user_admin).should be_valid
+    build(:user).should be_valid
+    build(:user_admin).should be_valid
   end
 
   describe 'Class methods' do

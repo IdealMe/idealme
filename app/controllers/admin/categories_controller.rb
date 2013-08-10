@@ -22,7 +22,7 @@ class Admin::CategoriesController < Admin::BaseController
   # POST /admin/categories
   def create
     @category.save!
-    redirect_to admin_category_path(@category), :notice => 'Category was successfully created.'
+    redirect_to edit_admin_category_path(@category), :notice => 'Category was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::CategoriesController < Admin::BaseController
   # PUT /admin/categories/1
   def update
     @category.update_attributes!(params[:category])
-    redirect_to admin_category_path(@category), :notice => 'Category was successfully updated.'
+    redirect_to edit_admin_category_path(@category), :notice => 'Category was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

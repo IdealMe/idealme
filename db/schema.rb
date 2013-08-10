@@ -348,10 +348,12 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
 
   create_table "goal_users", :force => true do |t|
     t.boolean  "private",    :default => true
+    t.boolean  "archived",   :default => false
+    t.boolean  "completed",  :default => false
     t.integer  "user_id"
     t.integer  "goal_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "goal_users", ["goal_id"], :name => "index_goal_users_on_goal_id"
@@ -590,6 +592,10 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "authentication_token"
     t.integer  "goal_count",                                                 :default => 0
     t.integer  "course_count",                                               :default => 0

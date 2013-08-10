@@ -1,37 +1,34 @@
-/* ******************************************** */
-/* Post payment page */
-/* ******************************************** */
 .orders-new, .orders-create {
-  .offer_section {
-    padding: 33px 41px 0 41px;
-    min-width: 1168px;
-    .section_header {
-      color: #8b8b8b;
-      font-size: 14px;
-      text-transform: uppercase;
-      line-height: 20px;
-      font-weight: normal;
-      margin-bottom: 24px;
-    }
-    table {
-      width: 100%;
-      border: none;
-    }
-    td {
-      text-align: center;
+  @include bg(#faf9f4);
+
+  >.body-content {
+    >.container {
+      >.main-section {
+      }
+      >.also-viewed {
+        @include fs(14px);
+        @include m_b(25px);
+
+      }
     }
   }
-  .also_viewed_header {
-    @include fs(14px);
-    @include m_b(25px);
-  }
-  .offer_section {
-    @include p_t(29px);
-  }
-  .thank_you_box {
+}
+
+.orders-new, .orders-create {
+
+  .thank-you-box {
     padding: 10px;
     @include m_t(23px);
-    .thanks_msg_box {
+
+    border: 1px solid #ebeae8;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    background: white;
+
+    .thank-you-message {
       padding: 30px 10px 77px 10px;
       @include fs(20px);
       @include float-left;
@@ -40,35 +37,109 @@
       @include hex(#4d4d4d);
       @include bold;
       border-right: 1px solid #ebeae8;
-      .btn-red {
+      >.btn-red {
         padding: 15px 34px;
         margin-top: 27px;
         font-size: 12px;
+        border: none;
+        @include border-radius(4px);
+        @include bg(#f16764);
+        @include lh(14px);
+        @include upper;
+        @include centered;
+        @include hex(white);
+        @include text-shadow(none);
+        &:hover {
+          border: none;
+          @include bg(#fa7977);
+          @include hex(white);
+        }
+
       }
     }
-    .testimonials_box {
+    >.share-widget {
       @include float-left;
       width: 430px;
       padding: 50px 0 0 30px;
-      .testimonial {
+      >.share {
         @include m_b(12px);
+        >.message {
+          @include hex(#424242);
+          @include float-left;
+          width: 290px;
+          @include fs(16px);
+          @include lh(20px);
+        }
+
+        >.user-avatar {
+          @include m_r(25px);
+          @include float-left;
+        }
+
       }
-      .user_pic {
-        @include m_r(25px);
-        @include float-left;
-      }
-      .testimonial_body {
-        @include hex(#424242);
-        @include float-left;
-        width: 290px;
-        @include fs(16px);
-        @include lh(20px);
-      }
-      .share_btn {
+      >.btn-share {
         margin-right: 41px;
+        @include float-right;
+        @include m_r(14px);
+        @include border-radius(0);
         .btn {
+          height: 36px;
+          @include border-radius(0);
+          @include rel;
           @include fs(10px);
           padding: 5px 60px 5px 26px;
+          @include hex(#424242);
+          &:hover, &:active {
+            @include bg(white);
+            @include hex(#424242);
+          }
+          &:first-child {
+            @include border-radius(0);
+          }
+          .caret {
+            @include bg(image-url("icons/caret.png") no-repeat 50% 50%);
+            @include abs_tr(0, 0px);
+            @include wxh(36px, 34px);
+            border: none;
+            margin: 0;
+            padding: 0;
+            border-left: 1px solid #ebeae5;
+          }
+        }
+        .dropdown-menu {
+          right: 0px;
+          left: auto;
+          @include border-radius(0);
+          width: 470px;
+          padding: 10px 0;
+          .social_box {
+            border-bottom: 1px solid #eaeaea;
+            @include hex(#333333);
+            @include fs(12px);
+            @include lh(20px);
+            @include upper;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            @include float-left;
+            width: 210px;
+            @include m_l(16px);
+            div {
+              @include float-left;
+            }
+            .social_icon {
+              margin: 8px 8px 0 0;
+            }
+            .counter {
+              @include float-right;
+              padding: 4px 12px;
+              @include hex(white);
+              @include fs(14px);
+              @include bold;
+            }
+            .social_name {
+              @include m_t(10px);
+            }
+          }
         }
       }
     }

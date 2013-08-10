@@ -22,7 +22,7 @@ class Admin::FeedbacksController < Admin::BaseController
   # POST /admin/feedbacks
   def create
     @feedback.save!
-    redirect_to admin_feedback_path(@feedback), :notice => 'Feedback was successfully created.'
+    redirect_to edit_admin_feedback_path(@feedback), :notice => 'Feedback was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::FeedbacksController < Admin::BaseController
   # PUT /admin/feedbacks/1
   def update
     @feedback.update_attributes!(params[:feedback])
-    redirect_to admin_feedback_path(@feedback), :notice => 'Feedback was successfully updated.'
+    redirect_to edit_admin_feedback_path(@feedback), :notice => 'Feedback was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

@@ -65,7 +65,7 @@ class MarketsController < ApplicationController
   end
 
   def load_markets
-    @markets = Market.all
+    @courses = Course.all
     @sliders = Market.slider.with_course_and_owner.all
   end
 end

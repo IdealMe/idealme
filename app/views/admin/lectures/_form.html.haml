@@ -3,7 +3,10 @@
     #legend
       %legend Lecture
   = f.text_field :name, :autofocus => true
-  = f.select :section_id, Section.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
+  = f.select :section_id, Section.all.collect { |section| ["#{section.name} - #{section.course.name}", section.id] }, {}, :class => 'select2'
+  = f.text_area :description, :class => 'tinymce', :rows => 4
   = f.text_area :content, :class => 'tinymce'
   = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_lectures_path, :class => 'btn'
+  = link_to 'Back', admin_lectures_path, :class => 'btn'                     
+  - if @lecture.persisted?
+    = link_to 'Payloads', admin_lecture_payloads_path(@lecture), :class => 'btn'

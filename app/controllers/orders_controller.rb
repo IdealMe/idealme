@@ -1,13 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :require_authentication
-
-  #before_filter :load_active_merchant_validator_with_market, :only => [:new]
-  #before_filter :build_active_merchant_validator_with_market, :only => [:create]
-
   before_filter :init_order, :only => [:new]
-
   before_filter :build_order, :only => [:create]
-
   before_filter :ensure_product_user_uniqueness
 
   # GET /orders
@@ -17,6 +11,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    render :create
   end
 
   # POST /orders
@@ -43,13 +38,11 @@ class OrdersController < ApplicationController
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
         @order.save!
-
-
+        
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
         end
-
-        # current_user.subscribe_course(@market.course)
+        current_user.subscribe_course(@market.course)
       else
         flash[:alert] = @response.message
         render :new

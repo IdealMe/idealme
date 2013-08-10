@@ -3,10 +3,26 @@
     #legend
       %legend Goal
   = f.text_field :name, :autofocus => true
+  = f.select :category_id, Category.for_select, {}, :class => 'select2'
+  .control-group
+    .control-label
+      %p
+        Existing avatar
+    .controls
+      - if @goal.avatar.exists?
+        = image_tag(@goal.avatar.url)
   = f.file_field :avatar
   = f.check_box :hidden
-  = f.check_box :welcome           
-  = f.select :category_id, Category.for_select
-
+  = f.check_box :welcome
+  %fieldset
+    #legend
+      %legend Course
+  .control-group
+    .controls                 
+      = hidden_field_tag "goal[course_ids][]", nil
+      - Course.all.each do |course|                                                                                 
+        %label
+          = check_box_tag "goal[course_ids][]", course.id, @goal.course_ids.include?(course.id)
+          = course.name
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_goals_path, :class => 'btn'

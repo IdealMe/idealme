@@ -1,6 +1,6 @@
 .container
-  .main_section
-    .product_info
+  .main-section
+    .product-info
       .media
         .pull-left  
           = image_tag @market.avatar(:thumb)
@@ -13,7 +13,7 @@
           .price 
             = penny_to_currency(@market.course.cost)
     = render :partial => 'form'
-  .right_sidebar
+  .sidebar
     .modal_title4 What you get
     .what_you_get
       %ul.list_1

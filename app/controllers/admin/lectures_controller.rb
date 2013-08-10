@@ -1,52 +1,66 @@
 class Admin::LecturesController < Admin::BaseController
+  before_filter :load_lecture, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_lectures, :only => :index
+  before_filter :build_lecture, :only => [:new, :create]
+
+  def sort
+    params[:lecture].each_with_index do |id, index|
+      Lecture.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
+
   # GET /admin/lectures
   def index
-    @lectures = Lecture.all
   end
 
   # GET /admin/lectures/1
   def show
-    @lecture = Lecture.find(params[:id])
-
   end
 
   # GET /admin/lectures/new
   def new
-    @lecture = Lecture.new
   end
 
   # GET /admin/lectures/1/edit
   def edit
-    @lecture = Lecture.find(params[:id])
   end
 
   # POST /admin/lectures
   def create
-    @lecture = Lecture.new(params[:lecture])
-
-    if @lecture.save
-      redirect_to admin_lecture_path(@lecture), notice: 'Lecture was successfully created.'
-    else
-      render action: "new"
-    end
+    @lecture.save!
+    redirect_to edit_admin_lecture_path(@lecture), :notice => 'Lecture was successfully created.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :new
   end
 
   # PUT /admin/lectures/1
   def update
-    @lecture = Lecture.find(params[:id])
-
-    if @lecture.update_attributes(params[:lecture])
-      redirect_to admin_lecture_path(@lecture), notice: 'Lecture was successfully updated.'
-    else
-      render action: "edit"
-    end
+    @lecture.update_attributes!(params[:lecture])
+    redirect_to edit_admin_lecture_path(@lecture), :notice => 'Lecture was successfully updated.'
+  rescue ActiveRecord::RecordInvalid
+    render :action => :edit
   end
 
   # DELETE /admin/lectures/1
   def destroy
-    @lecture = Lecture.find(params[:id])
     @lecture.destroy
-    redirect_to admin_lectures_url
+    redirect_to admin_lectures_url, :notice => 'CLecture was successfully deleted'
+  end
+
+  protected
+  def load_lecture
+    @lecture = Lecture.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to admin_lectures_path, :alert => 'Lecture not found'
+  end
+
+  def load_lectures
+    @lectures = Lecture.all
+  end
+
+  def build_lecture
+    @lecture = Lecture.new(params[:lecture])
   end
 
 end

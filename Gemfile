@@ -1,17 +1,7 @@
 source 'https://rubygems.org'
 
-#MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
-gem 'metainspector'
-#Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
-gem 'activemerchant'
-#Create JSON structures via a Builder-style DSL
-gem 'jbuilder'
-#
-gem 'rabl'
-#BestInPlace is a jQuery script and a Rails 3 helper that provide the method best_in_place to display any object field easily editable for the user by just clicking on it. 
-gem 'best_in_place'
 
-gem 'ransack'
+gem 'acts_as_list'
 
 #Ruby on Rails
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
@@ -35,9 +25,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 #A Google oauth2 strategy for OmniAuth 1.0
 gem 'omniauth-google-oauth2'
-#OmniAuth strategy for Twitter
-gem 'omniauth-twitter'
-
 #Send your application errors to our hosted service and reclaim your inbox.
 gem 'airbrake'
 #If you need to send some data to your js files and you don't want to do this with long way trough views and parsing - use this force!
@@ -74,12 +61,22 @@ gem 'deep_cloneable'
 gem 'newrelic_rpm'
 #A gem to sign url and stream paths for Amazon CloudFront private content. Includes specific signing methods for both url and streaming paths, including html 'safe' escpaed versions of each.
 gem 'cloudfront-signer'
-
-
+#MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
+gem 'metainspector'
+#Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
+gem 'activemerchant'
+#Create JSON structures via a Builder-style DSL
+gem 'jbuilder'
+#General ruby templating with json, bson, xml and msgpack support
+gem 'rabl'
+#BestInPlace is a jQuery script and a Rails 3 helper that provide the method best_in_place to display any object field easily editable for the user by just clicking on it. 
+gem 'best_in_place'
+#Ransack is the successor to the MetaSearch gem. It improves and expands upon MetaSearch's functionality, but does not have a 100%-compatible API.
+gem 'ransack'
+#A Ruby interface to the Twitter API.
 gem 'twitter'
+#Strategies for cleaning databases. Can be used to ensure a clean state for testing.
 gem 'database_cleaner'
-
-
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'haml-rails'
@@ -104,7 +101,6 @@ end
 group :development do
   gem 'capistrano-unicorn', :require => false
   gem 'capistrano-maintenance'
-  
   gem 'quiet_assets'
   #A rails plugin to kill N+1 queries and unused eager loading.
   gem 'bullet'
@@ -126,11 +122,14 @@ group :development do
   gem 'reek'
 end
 
-
 group :development, :test do
   gem 'rspec-rails', '2.14.0'
   gem 'factory_girl'
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'parallel_tests'
 end
 
 group :production, :staging do

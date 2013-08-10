@@ -5,7 +5,7 @@ class Goal < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :hidden, :name, :user_count, :avatar, :welcome, :hidden, :ordering, :category_id
+  attr_accessible :hidden, :name, :user_count, :avatar, :welcome, :hidden, :ordering, :category_id, :course_ids
 
   # == Relationships ========================================================
   has_many :goal_users
@@ -24,6 +24,10 @@ class Goal < ActiveRecord::Base
                     }
 
   # == Validations ==========================================================
+  validates :name, :presence => true
+  validates :name, :length => {:minimum => 1}
+
+
   # == Scopes ===============================================================
   scope :ordered, -> { order(:ordering) }
   scope :is_welcome, -> { where(:welcome => true) }

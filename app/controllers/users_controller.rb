@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     if @owner
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).all
       @checkins = Checkin.for_user(@user).all
+      @courses = @user.courses
+      
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).all
       @checkins = Checkin.for_user(@user).private_goal(false).all

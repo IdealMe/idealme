@@ -6,8 +6,12 @@ footer {
     >.footer-menu {
       @include m_l(15px);
       @include m_r(15px);
-      @include fs(14px);
+      @include fs(12px);
       @include hex(#999999);
+      padding-bottom: 30px;
+      >a {
+
+      }
     }
   }
 }

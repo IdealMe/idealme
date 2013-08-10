@@ -359,6 +359,23 @@
 }
 
 .goal-card {
+  .btn {
+    @include bg(white);
+    @include bg-pos(top, left);
+    @include border-radius(2px);
+    border: 1px solid #ebebeb;
+    @include box-shadow(none);
+    padding: 11px 35px;
+    @include hex(#4d4d4d);
+    @include fs(12px);
+    @include lh(12px);
+    @include upper;
+    &:hover {
+      @include bg-pos(top, left);
+      border: 1px solid #bcbcbc;
+      //@include background-image(linear-gradient(top, white, #fafafa));
+    }
+  }
   @include float-left;
   width: 230px;
   @include bg(#fcfcfc);

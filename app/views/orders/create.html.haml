@@ -1,21 +1,21 @@
 .container
-  .thank_you_box.modal_box
-    .thanks_msg_box
+  .thank-you-box
+    .thank-you-message
       %div Thank you, your order has been placed and you are enrolled in this course!
       = link_to 'GO TO COURSE', course_path(@market.course), :class => 'btn btn-red'
          
-    .testimonials_box
-      .testimonial
-        .user_pic   
+    .share-widget
+      .share
+        .user-avatar   
           = image_tag @market.avatar(:thumb)
-        .testimonial_body
+        .message
           I just enrolled: 
           = @market.course.name 
           by 
           = @market.course.owner.fullname
           on IdealMe
         .clear
-      .share_btn.btn-group
+      .btn-share.btn-group
         %button.btn.dropdown-toggle{"data-toggle" => "dropdown"} 
           SHARE
           %span.caret
@@ -51,9 +51,8 @@
             .light_blue_bg.counter 0
             .clear
     .clear
-.offer_section
-  %h3.also_viewed_header Customers who took this course also viewed
-  %table             
-    - @markets = Market.limit(4).all
-    - @markets.each do |market|
-      =render :partial => 'partials/course_card', :locals => {:market => market}
+.container
+  %h3.also-viewed Customers who took this course also viewed
+  - Course.all.sample(4).each do |course|
+    =render :partial => 'partials/course_card', :locals => {:course => course}
+  .clear

@@ -72,7 +72,7 @@ class Order < ActiveRecord::Base
         :first_name => self.card_firstname,
         :last_name => self.card_lastname
     )
-    self.card_number_4 = self.card_number
+    self.card_number_4 = self.card_number[-4,4]
   end
 
   def validate_credit_card

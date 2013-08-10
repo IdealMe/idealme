@@ -1,0 +1,4 @@
+.container 
+  - @courses.each do |course|
+    =render :partial => 'partials/course_card', :locals => {:course => course}
+  .clear

@@ -1,33 +1,13 @@
 Idealme::Application.routes.draw do
-
   root :to => 'landings#index'
-
-  resources :lectures
+  resources :searches, :only => [:index]
+  resources :lectures, :only => [:index, :show]
   resources :feedbacks, :only => [:index, :new, :create]
   resources :orders, :only => [:new, :create] do
     collection do
       get 'new/:id' => 'orders#new', :as => :subscribe
     end
   end
-
-  namespace :admin do
-    root :to => 'landings#index'
-    resources :markets do
-      resources :payloads
-    end
-    resources :courses
-    resources :sections
-    resources :lectures do
-      resources :payloads
-    end
-    resources :articles
-    resources :users
-    resources :goals
-    resources :categories
-    resources :polls
-    resources :feedbacks
-  end
-
   resources :markets, :only => [:index, :show] do
     resources :reviews
     collection do
@@ -35,7 +15,6 @@ Idealme::Application.routes.draw do
       get ':market_affiliate_tag/:user_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate
     end
   end
-
   resources :courses, :only => [:index, :show]
   resources :discovers, :only => [:index, :show]
   resources :goals, :only => [:index, :show] do
@@ -49,6 +28,35 @@ Idealme::Application.routes.draw do
     collection do
       get :archived
     end
+  end
+
+  namespace :admin do
+    root :to => 'landings#index'
+    resources :gems
+    resources :markets do
+      resources :payloads
+    end
+    resources :lectures do
+      resources :payloads
+      collection do
+        post :sort
+      end
+    end
+    resources :articles do
+      resources :payloads
+    end
+
+    resources :courses
+    resources :sections do
+      collection do
+        post :sort
+      end
+    end
+    resources :users
+    resources :goals
+    resources :categories
+    resources :polls
+    resources :feedbacks
   end
 
 
@@ -73,12 +81,10 @@ Idealme::Application.routes.draw do
         post 'down_vote' => 'votes#down_vote'
         post 'un_vote' => 'votes#un_vote'
       end
-
     end
     resources :poll_results, :only => [:create, :destroy], :defaults => {:format => :json}
     resources :poll_questions, :only => [:show], :defaults => {:format => :json}
   end
-
 
   ComfortableMexicanSofa::Routing.admin(:path => '/admin/cms')
   # Make sure this routeset is defined last
@@ -108,6 +114,9 @@ Idealme::Application.routes.draw do
     post 'register/affiliate_sign_up' => 'users/registrations#create_affiliate', :as => :affiliate_registration
     constraints(:id => /[0-9A-Za-z\-\.\_]+/) do
       get ':id' => 'users#profile', :as => :user
+
+      get ':id/:tab' => 'users#profile', :constraints => {:tab => /(goal)|(course)/}, :as => :user_tab
+
       get ':id/edit' => 'users/registrations#edit', :as => :user_edit
 
       # Signup flow
@@ -116,7 +125,6 @@ Idealme::Application.routes.draw do
       # Signup flow
 
 
-      get ':id/goal/:active_goal' => 'users#active_goal', :as => :user_active_goal
       get ':id/friend' => 'users#friend', :as => :user_friend
       get ':id/stuff' => 'users#stuff', :as => :user_stuff
       get ':id/feed' => 'users#feed', :as => :user_feed

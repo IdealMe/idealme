@@ -22,7 +22,7 @@ class Admin::ArticlesController < Admin::BaseController
   # POST /admin/articles
   def create
     @article.save!
-    redirect_to admin_article_path(@article), :notice => 'Article was successfully created.'
+    redirect_to edit_admin_article_path(@article), :notice => 'Article was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::ArticlesController < Admin::BaseController
   # PUT /admin/articles/1
   def update
     @article.update_attributes!(params[:article])
-    redirect_to admin_article_path(@article), :notice => 'Article was successfully updated.'
+    redirect_to edit_admin_article_path(@article), :notice => 'Article was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

@@ -11,12 +11,12 @@
         = f.password_field :password
         = f.password_field :password_confirmation
         .control-box
-          = f.submit 'SIGN UP', :class => 'btn btn-red'
+          = f.submit 'Sign up', :class => 'btn btn-red'
   .footer
     Or sign up with:
     .oauth      
       = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
-      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')
+      = link_to('G+', user_omniauth_authorize_path(:google_oauth2), :class => 'btn btn-red')
   %p
     Already have an account? 
     = link_to 'Sign in', new_user_session_path

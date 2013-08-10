@@ -25,7 +25,7 @@ staging:
 # Do not set this db to the same as development or production.
 test:
   <<: *defaults
-  database: idealme_test
+  database: idealme_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
   <<: *defaults

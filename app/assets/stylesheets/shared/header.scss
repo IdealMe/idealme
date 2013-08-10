@@ -85,11 +85,23 @@ header {
         @include fs(12px);
         @include lh(28px);
       }
-      .search-btn {
-        border: none;
-        @include sprite_css("search");
-        @include abs_tr(9px, 0px);
+
+      .btn {
+        @include bg(white);
+        @include bg(#fafafa);
+        @include bg-pos(top, left);
+        border: 1px solid #ebebeb;
+        @include box-shadow(none);
+        padding: 12px 15px;
+        @include hex(#4d4d4d);
+        @include fs(12px);
+        @include lh(12px);
+        &:hover {
+          @include bg-pos(top, left);
+          border: 1px solid #bcbcbc;
+        }
       }
+
     }
 
     .logo {

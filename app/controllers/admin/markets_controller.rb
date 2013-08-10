@@ -22,7 +22,7 @@ class Admin::MarketsController < Admin::BaseController
   # POST /admin/markets
   def create
     @market.save!
-    redirect_to admin_market_path(@market), :notice => 'Market was successfully created.'
+    redirect_to edit_admin_market_path(@market), :notice => 'Market was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -30,7 +30,7 @@ class Admin::MarketsController < Admin::BaseController
   # PUT /admin/markets/1
   def update
     @market.update_attributes!(params[:market])
-    redirect_to admin_market_path(@market), :notice => 'Market was successfully updated.'
+    redirect_to edit_admin_market_path(@market), :notice => 'Market was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end

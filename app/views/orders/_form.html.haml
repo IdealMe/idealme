@@ -5,12 +5,12 @@
   = f.hidden_field :time
   = f.hidden_field :checksum
               
-  %pre
-    = @order.errors.to_yaml
-        
   %section.pay-method
-    %p
-      = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'
+    %p 
+      Checkout with
+      = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'       
+      Or
+      = image_tag 'icons/paypal_icon.png', :class => 'paypal-image'
     .clear              
   
   %section.first-name{:class => ('control-group error' if @order.errors[:firstname].length > 0)}
@@ -68,11 +68,3 @@
     .agreement-text
       By clicking "Complete purchase", I have read and agree to the Terms and Conditions and Privacy Policy. Note: When you click "Complete purchase", you will be billed immediately.
     .clear       
-      
-      
-%section.pay-method
-  %p
-    %strong
-      Or check out with PayPal
-  %p
-    = image_tag 'icons/paypal_icon.png', :class => 'paypal-image'

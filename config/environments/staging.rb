@@ -5,7 +5,7 @@ Idealme::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
@@ -16,7 +16,6 @@ Idealme::Application.configure do
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
-
 
 
   # Generate digests for assets URLs
@@ -66,4 +65,16 @@ Idealme::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      :user_name => 'ideal-me-development',
+      :password => '24eedef449ddd0e2',
+      :address => 'mailtrap.io',
+      :port => '2525',
+      :authentication => :plain,
+  }
+  config.action_mailer.default_url_options = { :host => 'idealmedev.com' }
+
 end

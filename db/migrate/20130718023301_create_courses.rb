@@ -5,6 +5,8 @@ class CreateCourses < ActiveRecord::Migration
       t.string :slug
       t.integer :cost
 
+      t.text :description
+      
       t.integer :owner_id
 
       t.integer :review_positive, :default => 0

@@ -10,18 +10,13 @@ class Activity < ActiveRecord::Base
   # == Relationships ========================================================
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :replies, :through => :comments
-
   belongs_to :sender, :polymorphic => true
   belongs_to :trackable, :polymorphic => true
-  
+
   # == Paperclip ============================================================
   # == Validations ==========================================================
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
-
-
-
-
 end

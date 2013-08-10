@@ -18,3 +18,4 @@ public/system
 .vagrant
 coverage
 erd.pdf
+libpeerconnection.log

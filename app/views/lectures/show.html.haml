@@ -1,11 +1,5 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @lecture.name
-%p
-  %b Slug:
-  = @lecture.slug
-%p
-  %b Section:
-  = @lecture.section
+.container
+  %p
+    = @lecture.name
+                   
+  = @lecture.content.html_safe

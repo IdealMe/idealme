@@ -1,171 +1,204 @@
 .orders-new, .orders-create {
   @include bg(#faf9f4);
-  .main_section {
-    width: 781px;
-    @include p_t(39px);
+
+  >.body-content {
+    >.container {
+      >.main-section {
+        width: 781px;
+        padding-top: 39px;
+        display: inline;
+        float: left;
+        text-align: left;
+
+        .product-info {
+          @include m_l(7px);
+          @include m_b(25px);
+          .autor {
+            @include hex(#666666);
+            @include fs(12px);
+            @include m_b(3px);
+          }
+        }
+
+        .orders-payment-form {
+          @include m_l(9px);
+          @include hex(#4d4d4d);
+
+          .credit-cards-image {
+            display: inline;
+            @include rel;
+            top: -2px;
+          }
+
+          .paypal-image {
+            display: inline;
+            @include rel;
+            top: 1px;
+          }
+
+          .card-number {
+            @include float-left;
+            @include m_r(65px);
+            input {
+              width: 240px;
+            }
+          }
+
+          .exp-date {
+            @include float-left;
+            .exp-month, .exp-year {
+              @include float-left;
+              width: 120px;
+            }
+            .exp-month {
+              @include m_r(17px);
+            }
+            .exp-year {
+              @include m_r(65px);
+            }
+          }
+
+          .security-code, .card-type {
+            @include float-left;
+            input {
+              width: 105px;
+            }
+            select {
+              width: 120px;
+            }
+          }
+
+          .email, .address1, .address2 {
+            input {
+              width: 428px;
+            }
+          }
+
+          .first-name {
+            @include float-left;
+            input {
+              width: 195px;
+              @include m_r(21px);
+            }
+          }
+
+          .last-name {
+            @include float-left;
+            input {
+              width: 195px;
+            }
+          }
+
+          .city {
+            @include float-left;
+            input {
+              width: 285px;
+              @include m_r(19px);
+            }
+          }
+
+          .zip {
+            @include float-left;
+            input {
+              width: 110px;
+            }
+          }
+
+          .state {
+            @include float-left;
+            input {
+              width: 285px;
+              @include m_r(19px);
+            }
+          }
+
+          .country {
+            @include float-left;
+            input {
+              width: 110px;
+            }
+          }
+
+          .submit-box {
+            @include m_t(4px);
+          }
+
+          .btn {
+            @include bg(white);
+            @include bg-pos(top, left);
+            @include border-radius(2px);
+            border: 1px solid #ebebeb;
+            @include box-shadow(none);
+            padding: 11px 35px;
+            @include hex(#4d4d4d);
+            @include fs(12px);
+            @include lh(12px);
+            @include upper;
+            &:hover {
+              @include bg-pos(top, left);
+              border: 1px solid #bcbcbc;
+              //@include background-image(linear-gradient(top, white, #fafafa));
+            }
+
+            @include float-left;
+            @include fs(12px);
+            padding: 15px 7px;
+          }
+
+          .agreement-text {
+            @include float-left;
+            @include fs(10px);
+            @include lh(16px);
+            @include hex(#333333);
+            width: 500px;
+            @include m_l(20px);
+            @include p_t(4px);
+          }
+        }
+      }
+      >.sidebar {
+
+        display: inline;
+        float: left;
+        text-align: left;
+
+        width: 466px;
+        @include bg(white);
+        margin-top: 33px;
+        border: 1px solid #ebeae8;
+        .modal_title4:first-child {
+          border-top: 0px;
+        }
+        .what_you_get {
+          padding: 10px 27px 23px 27px;
+          li {
+            padding: 7px 0px 7px 35px;
+            @include bg_pos(7px, 10px);
+          }
+        }
+        .partners_box {
+          padding: 20px;
+        }
+        .elle_icon, .fab_icon, .oxygen_icon, .paypal_icon2, .norton_icon, .protected_icon {
+          @include float-left;
+        }
+        .elle_icon {
+          margin: 14px 0 0 0;
+        }
+        .fab_icon {
+          margin: 21px 41px 0px 41px;
+        }
+        .paypal_icon2 {
+          margin: 15px 88px 0 17px;
+        }
+        .norton_icon {
+          margin: 10px 66px 0 0;
+        }
+        .protected_icon {
+          margin: 2px 0 0 0;
+        }
+      }
+    }
   }
-  .product_info {
-    @include m_l(7px);
-    @include m_b(25px);
-    .autor {
-      @include hex(#666666);
-      @include fs(12px);
-      @include m_b(3px);
-    }
-  }
 
-  .orders-payment-form {
-    @include m_l(9px);
-    @include hex(#4d4d4d);
-
-    .credit-cards-image {
-      display: inline;
-      @include rel;
-    }
-
-    .paypal-image {
-      display: inline;
-      @include rel;
-    }
-
-    .card-number {
-      @include float-left;
-      @include m_r(65px);
-      input {
-        width: 240px;
-      }
-    }
-
-    .exp-date {
-      @include float-left;
-      .exp-month, .exp-year {
-        @include float-left;
-        width: 120px;
-      }
-      .exp-month {
-        @include m_r(17px);
-      }
-      .exp-year {
-        @include m_r(65px);
-      }
-    }
-
-    .security-code, .card-type {
-      @include float-left;
-      input {
-        width: 105px;
-      }
-      select {
-        width: 120px;
-      }
-    }
-
-    .email, .address1, .address2 {
-      input {
-        width: 428px;
-      }
-    }
-
-    .first-name {
-      @include float-left;
-      input {
-        width: 195px;
-        @include m_r(21px);
-      }
-    }
-
-    .last-name {
-      @include float-left;
-      input {
-        width: 195px;
-      }
-    }
-
-    .city {
-      @include float-left;
-      input {
-        width: 285px;
-        @include m_r(19px);
-      }
-    }
-
-    .zip {
-      @include float-left;
-      input {
-        width: 110px;
-      }
-    }
-
-    .state {
-      @include float-left;
-      input {
-        width: 285px;
-        @include m_r(19px);
-      }
-    }
-
-    .country {
-      @include float-left;
-      input {
-        width: 110px;
-      }
-    }
-
-    .submit-box {
-      @include m_t(4px);
-    }
-
-    .btn {
-      @include float-left;
-      @include fs(12px);
-      padding: 15px 7px;
-    }
-
-    .agreement-text {
-      @include float-left;
-      @include fs(10px);
-      @include lh(16px);
-      @include hex(#333333);
-      width: 500px;
-      @include m_l(20px);
-      @include p_t(4px);
-    }
-  }
-  .right_sidebar {
-    width: 466px;
-    @include bg(white);
-    margin-top: 33px;
-    border: 1px solid #ebeae8;
-    .modal_title4:first-child {
-      border-top: 0px;
-    }
-    .what_you_get {
-      padding: 10px 27px 23px 27px;
-      li {
-        padding: 7px 0px 7px 35px;
-        @include bg_pos(7px, 10px);
-      }
-    }
-    .partners_box {
-      padding: 20px;
-    }
-    .elle_icon, .fab_icon, .oxygen_icon, .paypal_icon2, .norton_icon, .protected_icon {
-      @include float-left;
-    }
-    .elle_icon {
-      margin: 14px 0 0 0;
-    }
-    .fab_icon {
-      margin: 21px 41px 0px 41px;
-    }
-    .paypal_icon2 {
-      margin: 15px 88px 0 17px;
-    }
-    .norton_icon {
-      margin: 10px 66px 0 0;
-    }
-    .protected_icon {
-      margin: 2px 0 0 0;
-    }
-  }
 }

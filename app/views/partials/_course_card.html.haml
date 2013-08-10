@@ -1,30 +1,30 @@
 .course-card
-  = link_to image_tag(market.avatar.url(:full)), market_path(market)
-  = link_to market.name, market_path(market), :class => 'course-name'
+  = link_to image_tag(course.default_market.avatar.url(:full)), course_path(course)
+  = link_to course.default_market.name, course_path(course), :class => 'course-name'
   .owner
     .avatar
-      = link_to image_tag(market.course.owner.avatar.url(:thumb)), user_path(market.course.owner)
-    = link_to market.course.owner.fullname, user_path(market.course.owner), :class => 'name'
+      = link_to image_tag(course.owner.avatar.url(:thumb)), user_path(course.owner)
+    = link_to course.owner.fullname, user_path(course.owner), :class => 'name'
     .working-area
-      = market.course.owner.tagline
+      = course.owner.tagline
     .clear
   .bottom-box       
     - if current_user
       .like-box
-        .like{:data => {:type => market.course.class, :id => market.course.id, :direction => 1, :voted => (market.course.up_voted?(current_user) ? '1':'0')}}
-          = market.course.up_votes
-        .dislike{:data => {:type => market.course.class, :id => market.course.id, :direction => -1, :voted => (market.course.down_voted?(current_user) ? '1':'0')}}
-          = market.course.down_votes
+        .like{:data => {:type => course.class, :id => course.id, :direction => 1, :voted => (course.up_voted?(current_user) ? '1':'0')}}
+          = course.up_votes
+        .dislike{:data => {:type => course.class, :id => course.id, :direction => -1, :voted => (course.down_voted?(current_user) ? '1':'0')}}
+          = course.down_votes
         .clear
     - else
       .like-box
         .like
-          = market.course.up_votes
+          = course.up_votes
         .dislike
-          = market.course.down_votes
+          = course.down_votes
         .clear
     .price-box
-      = penny_to_currency(market.course.cost)
+      = penny_to_currency(course.cost)
     .add-me-box
       .unchecked +
       .checked    

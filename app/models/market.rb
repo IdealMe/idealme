@@ -11,6 +11,7 @@ class Market < ActiveRecord::Base
 
   # == Relationships ========================================================
   has_many :payloads, :as => :payloadable, :dependent => :destroy
+  belongs_to :course
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
@@ -21,19 +22,17 @@ class Market < ActiveRecord::Base
                     }
 
   # == Validations ==========================================================
-  belongs_to :course
+  validates :name, :presence => true
+  validates :name, :length => {:minimum => 1}
 
   # == Scopes ===============================================================
   scope :slider, -> { where(:slider => true) }
   scope :visible, -> { where(:hidden => false) }
   scope :hidden, -> { where(:hidden => true) }
   scope :with_course_and_owner, -> { includes(:course => :owner) }
-
   scope :type_recommended, lambda { |user|}
-
   scope :type_trending, lambda { |user|}
-
-
+  
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================

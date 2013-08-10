@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # == Imports ==============================================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable, :token_authenticatable
+         :trackable, :validatable, :omniauthable, :token_authenticatable, :confirmable
 
   # == Slug =================================================================
   def to_param
@@ -20,9 +20,13 @@ class User < ActiveRecord::Base
   attr_accessible :login
 
   # == Relationships ========================================================
-  has_many :courses
+  has_many :owned_courses, :class_name => 'Course', :foreign_key => 'owner_id'
   has_many :goal_users
   has_many :goals, :through => :goal_users
+
+  has_many :course_users
+  has_many :courses, :through => :course_users
+
   has_many :created_jewels, :class_name => 'Jewel', :foreign_key => 'owner_id'
   has_many :votes, :foreign_key => 'owner_id'
   has_many :feedbacks, :foreign_key => 'owner_id'
@@ -176,6 +180,16 @@ class User < ActiveRecord::Base
     PollResult.where(:owner_id => self.id, :poll_question_id => poll.id).first
   end
 
+  def subscribed_course?(course)
+    CourseUser.where(:user_id => self.id, :course_id => course.id).first
+  end
 
+  def subscribed_section?(section)
+    subscribe_course(section.course)
+  end
+
+  def subscribed_lecture?(lecture)
+    subscribe_course(lecture.course)
+  end
 end
 
