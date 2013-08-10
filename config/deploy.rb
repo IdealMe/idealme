@@ -1,6 +1,7 @@
 require 'bundler/capistrano'
 require 'airbrake/capistrano'
 require 'capistrano-unicorn'
+require 'capistrano/maintenance'
 
 require './config/boot'
 

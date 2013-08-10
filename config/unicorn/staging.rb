@@ -1,8 +1,9 @@
-rails_env = staging
+# Rails environment
+rails_env = 'staging'
 
+# Number of workers
 worker_processes 2
 
-# Load rails+github.git into the master before forking workers
 # for super-fast worker spawn times
 preload_app true
 
@@ -50,28 +51,4 @@ after_fork do |server, worker|
   ActiveRecord::Base.establish_connection
   # Redis and Memcached would go here but their connections are established
   # on demand, so the master never opens a socket
-
-
-  ##
-  # Unicorn master is started as root, which is fine, but let's
-  # drop the workers to git:git
-  #
-  #begin
-  #  uid, gid = Process.euid, Process.egid
-  #  user, group = 'git', 'git'
-  #  target_uid = Etc.getpwnam(user).uid
-  #  target_gid = Etc.getgrnam(group).gid
-  #  worker.tmp.chown(target_uid, target_gid)
-  #  if uid != target_uid || gid != target_gid
-  #    Process.initgroups(user, target_gid)
-  #    Process::GID.change_privilege(target_gid)
-  #    Process::UID.change_privilege(target_uid)
-  #  end
-  #rescue => e
-  #  if RAILS_ENV == 'development'
-  #    STDERR.puts "couldn't change user, oh well"
-  #  else
-  #    raise e
-  #  end
-  #end
 end
