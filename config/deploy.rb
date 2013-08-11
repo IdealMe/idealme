@@ -54,7 +54,7 @@ namespace :db do
   desc 'Seed database'
   task :seed do
     if exists?(:db_destruction)
-      run "cd #{current_path}; bundle exec rake  db:seed:development:users db:seed:development:goals db:seed:development:goal_users db:seed:development:checkins db:seed:development:categories db:seed:development:jewels db:seed:development:courses RAILS_ENV=#{rails_env}"
+      run "cd #{current_path}; bundle exec rake  db:seed:development:users db:seed:development:goals db:seed:development:goal_users db:seed:development:checkins db:seed:development:categories db:seed:development:jewels db:seed:development:courses db:seed:development:cms comfortable_mexican_sofa:fixtures:import FROM=idealme TO=idealme RAILS_ENV=#{rails_env}"
     end
   end
 end

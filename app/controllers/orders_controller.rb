@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    render :create
   end
 
   # POST /orders
