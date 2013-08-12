@@ -283,6 +283,7 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
     t.string   "name"
     t.string   "slug"
     t.integer  "cost"
+    t.text     "description"
     t.integer  "owner_id"
     t.integer  "review_positive",                                          :default => 0
     t.integer  "review_negative",                                          :default => 0
@@ -415,10 +416,12 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
   create_table "lectures", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.text     "description"
     t.text     "content"
+    t.integer  "position",    :default => 0
     t.integer  "section_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "lectures", ["section_id"], :name => "index_lectures_on_section_id"
@@ -538,10 +541,12 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
   create_table "sections", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.text     "description"
     t.text     "content"
     t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "position",    :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "sections", ["course_id"], :name => "index_sections_on_course_id"
@@ -557,37 +562,36 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.boolean  "has_password",                                               :default => true
-    t.datetime "identity_unlocked_at",                                       :default => '1970-01-01 01:01:00', :null => false
+    t.boolean  "has_password",                 :default => true
+    t.datetime "identity_unlocked_at",         :default => '1970-01-01 01:01:00', :null => false
     t.text     "about"
     t.text     "instructor_about"
     t.text     "notes"
     t.string   "firstname"
     t.string   "lastname"
     t.string   "username"
-    t.string   "timezone",                                                   :default => "Etc/Zulu"
-    t.string   "tagline",                                                    :default => ""
-    t.decimal  "survey_base",                  :precision => 6, :scale => 3, :default => 0.0
-    t.decimal  "checkin_base",                 :precision => 6, :scale => 3, :default => 0.0
-    t.boolean  "auto_follow",                                                :default => false
+    t.string   "timezone",                     :default => "Etc/Zulu"
+    t.string   "tagline",                      :default => ""
     t.string   "affiliate_tag"
     t.integer  "affiliate_default_payment_id"
     t.integer  "affiliate_payment_frequency"
-    t.boolean  "access_normal",                                              :default => true
-    t.boolean  "access_affiliate",                                           :default => false
-    t.boolean  "access_instructor",                                          :default => false
-    t.boolean  "access_support",                                             :default => false
-    t.boolean  "access_admin",                                               :default => false
+    t.boolean  "access_normal",                :default => true
+    t.boolean  "access_affiliate",             :default => false
+    t.boolean  "access_instructor",            :default => false
+    t.boolean  "access_support",               :default => false
+    t.boolean  "access_admin",                 :default => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "email",                                                      :default => "",                    :null => false
-    t.string   "encrypted_password",                                         :default => "",                    :null => false
+    t.integer  "goal_count",                   :default => 0
+    t.integer  "course_count",                 :default => 0
+    t.string   "email",                        :default => "",                    :null => false
+    t.string   "encrypted_password",           :default => "",                    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                              :default => 0
+    t.integer  "sign_in_count",                :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -596,15 +600,19 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",              :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.string   "authentication_token"
-    t.integer  "goal_count",                                                 :default => 0
-    t.integer  "course_count",                                               :default => 0
-    t.datetime "created_at",                                                                                    :null => false
-    t.datetime "updated_at",                                                                                    :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
   end
 
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
   create_table "votes", :force => true do |t|
     t.integer  "votable_id"

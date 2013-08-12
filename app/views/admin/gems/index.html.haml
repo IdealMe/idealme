@@ -1,17 +1,18 @@
-%h1 Listing admin_gems
+%h1 Gems
 
-%table
+%table.table
   %tr
-    %th
-    %th
-    %th
+    %th Gem 
+    %th Kind
+    %th Owner
 
-  - @admin_gems.each do |admin_gem|
-    %tr
-      %td= link_to 'Show', admin_gem
-      %td= link_to 'Edit', edit_admin_gem_path(admin_gem)
-      %td= link_to 'Destroy', admin_gem, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  - @gems.each do |gem|
+    %tr                                                         
+      %td= link_to gem.name, edit_admin_gem_path(gem)  
+      %td= link_to gem.kind_to_s
+                  
+      %td= link_to gem.owner.fullname, edit_admin_user_path(gem.owner)
 
 %br
 
-= link_to 'New Gem', new_admin_gem_path
+= link_to 'New gem', new_admin_gem_path, :class => 'btn'

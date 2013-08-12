@@ -12,6 +12,8 @@ class Admin::LecturesController < Admin::BaseController
 
   # GET /admin/lectures
   def index
+    @q = Lecture.search(params[:q])
+    @lectures = @q.result(:distinct => true)
   end
 
   # GET /admin/lectures/1

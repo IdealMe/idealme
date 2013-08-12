@@ -16,14 +16,14 @@
   .menu-section
     %ul.user-menu
       %li{:class => active_tab?(@tab, 'activity')}
-        = link_to 'Activity', goal_path(@goal_user, {:tab => 'activity'}), :class => 'activity-icon'
+        = link_to 'Activity', tab_goal_path(@goal_user, 'activity'), :class => 'activity-icon'
       %li{:class => active_tab?(@tab, 'top_gem')}
-        = link_to 'Top gems', goal_path(@goal_user, {:tab => 'top_gem'}), :class => 'top-gem-icon'
+        = link_to 'Top gems', tab_goal_path(@goal_user, 'top_gem'), :class => 'top-gem-icon'
       - if @goal_user.active?
         %li{:class => active_tab?(@tab, 'my_gem')}
-          = link_to 'My gems', goal_path(@goal_user, {:tab => 'my_gem'}), :class => 'my-gem-icon'
+          = link_to 'My gems', tab_goal_path(@goal_user, 'my_gem'), :class => 'my-gem-icon'
       %li{:class => active_tab?(@tab, 'course')}
-        = link_to 'Courses', goal_path(@goal_user, {:tab => 'course'}), :class => 'course-icon'
+        = link_to 'Courses', tab_goal_path(@goal_user, 'course'), :class => 'course-icon'
     .clear
   .panes
     %div.active

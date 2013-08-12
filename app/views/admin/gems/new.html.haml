@@ -1,5 +1,2 @@
-%h1 New admin_gem
-
-= render 'form'
-
-= link_to 'Back', admin_gems_path
+%h1 New gem
+= render :partial => 'form', :locals => {:url => admin_goals_path}

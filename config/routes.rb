@@ -6,6 +6,8 @@ Idealme::Application.routes.draw do
   resources :orders, :only => [:new, :create] do
     collection do
       get 'new/:id' => 'orders#new', :as => :subscribe
+      post 'thanks/:id' => 'orders#thanks', :as => :paypal_return
+      
     end
   end
   resources :markets, :only => [:index, :show] do
@@ -19,6 +21,7 @@ Idealme::Application.routes.draw do
   resources :discovers, :only => [:index, :show]
   resources :goals, :only => [:index, :show] do
     member do
+      get ':tab' => 'goals#show', :constraints => {:tab => /(activity)|(top_gem)|(my_gem)|(course)/}, :as => :tab
       post :share
       post :checkin
       post :activate
@@ -84,6 +87,21 @@ Idealme::Application.routes.draw do
     end
     resources :poll_results, :only => [:create, :destroy], :defaults => {:format => :json}
     resources :poll_questions, :only => [:show], :defaults => {:format => :json}
+  end
+
+
+  namespace :webhook do
+    resources :paypals, :only => [] do
+      collection do
+        post 'paypal_return' => 'paypals#paypal_return'
+        post 'paypal_cancel' => 'paypals#paypal_cancel'
+        post 'paypal_create' => 'paypals#paypal_create'
+        
+        get 'paypal_return' => 'paypals#paypal_return'
+        get 'paypal_cancel' => 'paypals#paypal_cancel'
+      end
+
+    end
   end
 
   ComfortableMexicanSofa::Routing.admin(:path => '/admin/cms')

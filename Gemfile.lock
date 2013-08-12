@@ -193,6 +193,7 @@ GEM
       rails (>= 3.1.0)
     friendly_id (4.0.9)
     fssm (0.2.10)
+    gatling_gun (0.0.3)
     gon (4.1.1)
       actionpack (>= 2.3.0)
       json
@@ -452,6 +453,7 @@ DEPENDENCIES
   font-awesome-rails
   formatted_form
   friendly_id
+  gatling_gun
   gon
   haml-rails
   jbuilder

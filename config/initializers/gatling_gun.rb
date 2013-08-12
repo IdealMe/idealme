@@ -1,0 +1,1 @@
+SendGridNewsletter = GatlingGun.new(ENV['SENDGRID_API_USERNAME'], ENV['SENDGRID_API_PASSWORD'])

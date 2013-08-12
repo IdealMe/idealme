@@ -61,7 +61,10 @@
         .module-lectures  
           %ul
             - section.lectures.each do |lecture|
-              %li= lecture.name
+              %li 
+                = link_to lecture.name, lecture_path(lecture)    
+                %div
+                  = lecture.description.html_safe if lecture.description
         .clear                            
   .sidebar
     %ul.tab_menu

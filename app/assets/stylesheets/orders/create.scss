@@ -1,4 +1,4 @@
-.orders-new, .orders-create {
+.orders-new, .orders-create, .orders-thanks {
   @include bg(#faf9f4);
 
   >.body-content {
@@ -14,8 +14,7 @@
   }
 }
 
-.orders-new, .orders-create {
-
+.orders-new, .orders-create, .orders-thanks {
   .thank-you-box {
     padding: 10px;
     @include m_t(23px);

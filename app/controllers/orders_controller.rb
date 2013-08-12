@@ -1,8 +1,17 @@
 class OrdersController < ApplicationController
   before_filter :require_authentication
-  before_filter :init_order, :only => [:new]
+  before_filter :init_order, :only => [:new, :thanks]
   before_filter :build_order, :only => [:create]
+  
   before_filter :ensure_product_user_uniqueness
+
+
+  protect_from_forgery :except => :thanks
+
+
+  def thanks
+    render :create
+  end
 
   # GET /orders
   def index
@@ -37,7 +46,7 @@ class OrdersController < ApplicationController
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
         @order.save!
-        
+
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
         end
@@ -58,6 +67,7 @@ class OrdersController < ApplicationController
   def init_order
     @market = Market.find(params[:id])
     @order = Order.create_order_by_market_and_user(@market, current_user)
+    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_tracking)
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
   end
@@ -66,6 +76,7 @@ class OrdersController < ApplicationController
   def build_order
     @order = Order.new(params[:order])
     @market = Market.where(:id => @order.market.id).first
+    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_tracking)
     raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return

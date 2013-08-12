@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'gatling_gun'
 gem 'acts_as_list'
 
 #Ruby on Rails

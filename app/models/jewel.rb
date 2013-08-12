@@ -16,6 +16,18 @@ class Jewel < ActiveRecord::Base
   # == Attributes ===========================================================
   attr_accessible :name, :slug, :content, :url, :avatar, :owner_id, :up_votes, :down_votes, :kind, :course, :course_id, :parameters
 
+  def kind_to_s
+    if self.kind == Jewel::EVERYTHING
+      '???'
+    elsif self.kind == Jewel::LINK
+      'Link'
+    elsif self.kind == Jewel::GOAL
+      'Goal'
+    elsif self.kind == Jewel::COURSE
+      'Course'
+    end
+  end
+
   # == Relationships ========================================================
   belongs_to :owner, :class_name => 'User'
   has_many :goal_user_jewel
@@ -25,7 +37,6 @@ class Jewel < ActiveRecord::Base
   belongs_to :linked_course, :primary_key => :id, :foreign_key => :course_id, :class_name => 'Course'
 
   belongs_to :linked_goal, :primary_key => :id, :foreign_key => :goal_id, :class_name => 'Goal'
-
 
 
   has_many :comments, :as => :commentable, :dependent => :destroy
@@ -123,7 +134,7 @@ class Jewel < ActiveRecord::Base
       if segments.second == 'watch'
 
         queries = Rack::Utils.parse_nested_query(uri.query)
-        
+
         return {:service => :youtube, :url => url, :youtube_id => queries['v']}
       end
     end

@@ -139,6 +139,10 @@ class User < ActiveRecord::Base
     result
   end
 
+  def self.for_select
+    User.all.collect { |user| [user.fullname, user.id] }
+  end
+
   # == Instance Methods =====================================================
   def fullname
     "#{self.firstname} #{self.lastname}"

@@ -38,6 +38,42 @@ class Order < ActiveRecord::Base
   # == Class Methods ========================================================
 
 
+
+
+  # Generate invoice based on *course_id* and *order_id*
+  #
+  # @param [Course] course the course to be used for the invoice
+  # @param [Order] order the order to be used for the invoice
+  # @return [String] the invoice string for orders
+  def self.generate_invoice(course, affiliate_user=nil, affiliate_tracking=nil)
+    invoice = "#{course.id}.#{rand(36**8).to_s(36)}"
+    if affiliate_user
+      invoice << ".#{affiliate_user.id}"
+      invoice << ".#{affiliate_tracking.id}" if affiliate_tracking
+    end
+    invoice
+  end
+
+  # Parse the given invoice and populate an invoice hash
+  #
+  # @param [String] invoice the invoice returned by PayPal
+  # @return [Hash] the hash contains the parsed data
+  def self.parse_invoice(invoice)
+    invoice_parts = invoice.split('.')
+    parsed = Hash.new
+    parsed['affiliate_user_id'] = nil
+    parsed['affiliate_tracking_id'] = nil
+    parsed['course_id'] = invoice_parts[0].to_i if invoice_parts.length >= 1
+    parsed['nonce'] = invoice_parts[1] if invoice_parts.length >= 2
+    parsed['affiliate_user_id'] = invoice_parts[2].to_i if invoice_parts.length >= 3
+    parsed['affiliate_tracking_id'] = invoice_parts[3].to_i if invoice_parts.length >= 4
+    parsed
+  end
+  
+  
+  
+  
+  
   def self.create_order_by_market_and_user(market, user)
     order = Order.new
     order.market = market

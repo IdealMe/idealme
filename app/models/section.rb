@@ -20,5 +20,9 @@ class Section < ActiveRecord::Base
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   # == Class Methods ========================================================
+  def self.for_select
+    Section.all.collect { |section| [section.name, section.id] }
+  end
+
   # == Instance Methods =====================================================
 end

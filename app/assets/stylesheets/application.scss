@@ -229,7 +229,6 @@
             width: 70px;
             float: right;
 
-
             .btn {
               @include bg(white);
               @include bg-pos(top, left);
@@ -243,7 +242,7 @@
                 border: 1px solid #bcbcbc;
               }
             }
-            
+
             .btn-red {
               border: none;
               @include bg(#f16764);
@@ -258,7 +257,7 @@
                 @include hex(white);
               }
             }
-            
+
           }
 
         }
@@ -268,6 +267,16 @@
           border-bottom: 1px solid #e4e4e4;
 
         }
+      }
+    }
+  }
+}
+
+.searches-index {
+  >.body-content {
+    >.container {
+      >.course-card {
+
       }
     }
   }

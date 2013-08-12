@@ -1,22 +1,21 @@
+%section.pay-method
+  %p 
+    %strong
+      Checkout with:
+  %p
+    = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'       
+  .clear       
+
 = form_for(@order, :url => orders_path, :method => :post, :html => {:class => 'orders-payment-form'}) do |f|
   = f.hidden_field :market_id
   = f.hidden_field :course_id
   = f.hidden_field :user_id
   = f.hidden_field :time
   = f.hidden_field :checksum
-              
-  %section.pay-method
-    %p 
-      Checkout with
-      = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'       
-      Or
-      = image_tag 'icons/paypal_icon.png', :class => 'paypal-image'
-    .clear              
-  
+         
   %section.first-name{:class => ('control-group error' if @order.errors[:firstname].length > 0)}
     = f.label :card_firstname, 'First Name'    
-    = f.text_field :card_firstname, :autofocus => true, :value => 'Bill'
-             
+    = f.text_field :card_firstname, :autofocus => true, :value => 'Bill'      
 
   %section.last-name{:class => ('control-group error' if @order.errors[:lastname].length > 0)}
     = f.label :card_lastname, 'Last Name'
@@ -67,4 +66,19 @@
     = f.submit 'Complete Purchase', :class => 'btn btn-red'
     .agreement-text
       By clicking "Complete purchase", I have read and agree to the Terms and Conditions and Privacy Policy. Note: When you click "Complete purchase", you will be billed immediately.
-    .clear       
+    .clear     
+      
+%section.pay-method
+  %p 
+    %strong
+      Or complete your purchase with PayPal
+      - paypal_payment_service_for @invoice, ENV['PAYPAL_ACCOUNT'], :amount => number_to_currency(@order.course.cost/100.0), :currency => 'USD', :service => :paypal, :encrypt => true do |service|
+        - service.customer :email => current_user.email
+        - service.invoice @invoice
+        - service.item_name @order.course.name
+        - service.notify_url paypal_create_webhook_paypals_url # PayPal will POST a callback here when the payment is done 
+        
+        - service.return_url paypal_return_orders_url(@order.course) # PayPal will take your user here with a POST after he pays
+        - service.cancel_return_url market_path(@order.market) # PayPal will redirect your user here if he cancels the payment
+        = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
+  .clear   

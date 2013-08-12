@@ -42,6 +42,9 @@ class Course < ActiveRecord::Base
 
   # == Callbacks ============================================================
   # == Class Methods ========================================================
+  def self.for_select
+    Course.all.collect { |course| [course.name, course.id] }
+  end
   # == Instance Methods =====================================================
 
 

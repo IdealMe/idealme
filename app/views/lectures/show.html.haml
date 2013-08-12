@@ -2,4 +2,4 @@
   %p
     = @lecture.name
                    
-  = @lecture.content.html_safe
+  = @lecture.content.html_safe      if @lecture.content
