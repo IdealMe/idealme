@@ -47,7 +47,7 @@ namespace :db do
   desc 'Drop database'
   task :drop do
     if exists?(:db_destruction)
-      run "cd #{current_path}; bundle exec rake db:drop RAILS_ENV=#{rails_env}"
+      run "cd #{current_path}; bundle exec rake db:drop db:create RAILS_ENV=#{rails_env}"
     end
   end
   

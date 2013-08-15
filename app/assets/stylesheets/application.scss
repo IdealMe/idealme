@@ -275,8 +275,14 @@
 .searches-index {
   >.body-content {
     >.container {
-      >.course-card {
-
+      >.course-card, >.discover-card {
+        width: 230px;
+        margin: 9px;
+        >.bottom-box {
+          >.price-box {
+            width: 58px;
+          }
+        }
       }
     }
   }

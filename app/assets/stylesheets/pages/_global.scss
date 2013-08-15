@@ -309,6 +309,10 @@ body {
   @include sprite_css(protected_icon);
 }
 
+.arrow_icon {
+  @include sprite_css(arrow);
+}
+
 /* ******************************************** */
 /* Progress Bar */
 /* ******************************************** */

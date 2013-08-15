@@ -17,11 +17,11 @@
     %ul.user-menu
       %li{:class => active_tab?(@tab, 'activity')}
         = link_to 'Activity', tab_goal_path(@goal_user, 'activity'), :class => 'activity-icon'
-      %li{:class => active_tab?(@tab, 'top_gem')}
-        = link_to 'Top gems', tab_goal_path(@goal_user, 'top_gem'), :class => 'top-gem-icon'
-      - if @goal_user.active?
-        %li{:class => active_tab?(@tab, 'my_gem')}
-          = link_to 'My gems', tab_goal_path(@goal_user, 'my_gem'), :class => 'my-gem-icon'
+      %li{:class => active_tab?(@tab, 'top-gem')}
+        = link_to 'Top gems', tab_goal_path(@goal_user, 'top-gem'), :class => 'top-gem-icon'
+      - if @goal_user.active? && @owner
+        %li{:class => active_tab?(@tab, 'my-gem')}
+          = link_to 'My gems', tab_goal_path(@goal_user, 'my-gem'), :class => 'my-gem-icon'
       %li{:class => active_tab?(@tab, 'course')}
         = link_to 'Courses', tab_goal_path(@goal_user, 'course'), :class => 'course-icon'
     .clear
@@ -29,9 +29,9 @@
     %div.active
       - if @tab == 'activity'
         = render :partial => 'goals/partials/activity'
-      - elsif @tab == 'top_gem'
+      - elsif @tab == 'top-gem'
         = render :partial => 'goals/partials/top_gem'
-      - elsif @tab == 'my_gem' && @goal_user.active?
+      - elsif @tab == 'my-gem' && @goal_user.active? && @owner
         = render :partial => 'goals/partials/my_gem'
       - elsif @tab == 'course'
         = render :partial => 'goals/partials/course'

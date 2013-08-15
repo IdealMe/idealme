@@ -7,14 +7,19 @@ class Category < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :name, :slug
-  
+  attr_accessible :name, :slug, :avatar
+
   # == Relationships ========================================================
   has_many :courses
   has_many :goals
   #has_many :articles
 
   # == Paperclip ============================================================
+  has_attached_file :avatar,
+                    :styles => {:thumb => '30x30#'},
+                    :convert_options => {
+                        :thumb => ' -transparent white -gravity center -extent 30x30 -quality 75 -strip',
+                    }
   # == Validations ==========================================================
   validates_length_of :name, :minimum => 2
   validates :name, :presence => true
@@ -26,6 +31,6 @@ class Category < ActiveRecord::Base
   def self.for_select
     Category.all.collect { |category| [category.name, category.id] }
   end
-  
+
   # == Instance Methods =====================================================
 end

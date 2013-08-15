@@ -21,7 +21,7 @@ Idealme::Application.routes.draw do
   resources :discovers, :only => [:index, :show]
   resources :goals, :only => [:index, :show] do
     member do
-      get ':tab' => 'goals#show', :constraints => {:tab => /(activity)|(top_gem)|(my_gem)|(course)/}, :as => :tab
+      get ':tab' => 'goals#show', :constraints => {:tab => /(activity)|(top-gem)|(my-gem)|(course)/}, :as => :tab
       post :share
       post :checkin
       post :activate
@@ -133,7 +133,7 @@ Idealme::Application.routes.draw do
     constraints(:id => /[0-9A-Za-z\-\.\_]+/) do
       get ':id' => 'users#profile', :as => :user
 
-      get ':id/:tab' => 'users#profile', :constraints => {:tab => /(goal)|(course)/}, :as => :user_tab
+      get ':id/:tab' => 'users#profile', :constraints => {:tab => /(goal)|(course)|(saved-course)/}, :as => :user_tab
 
       get ':id/edit' => 'users/registrations#edit', :as => :user_edit
 

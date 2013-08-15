@@ -42,7 +42,6 @@
   }
   .like-box {
     @include float-left;
-    border-bottom: 2px solid #6b823c;
     width: 90px;
     padding: 7px 5px 5px 5px;
     .like {
@@ -358,7 +357,7 @@
 
 }
 
-.goal-card {
+.goal-user-card {
   .btn {
     @include bg(white);
     @include bg-pos(top, left);
@@ -378,7 +377,7 @@
   }
   @include float-left;
   width: 230px;
-  @include bg(#fcfcfc);
+  @include bg(white);
   border: 1px solid #e4e4e4;
   @include border-radius(5px);
   @include m_r(9px);
@@ -448,7 +447,7 @@
   @include m_b(18px);
   @include centered;
   @include p_t(110px);
-  pointer: cursor;
+  cursor: pointer;
   &:hover {
     @include bg(image-url("icons/add_goal_on.png") no-repeat);
     @include hex(#4d4d4d);
@@ -457,4 +456,155 @@
     @include fs(48px);
     @include p_b(15px);
   }
+}
+
+.goal-card {
+  .btn {
+    @include bg(white);
+    @include bg-pos(top, left);
+    @include border-radius(2px);
+    border: 1px solid #ebebeb;
+    @include box-shadow(none);
+    padding: 11px 35px;
+    @include hex(#4d4d4d);
+    @include fs(12px);
+    @include lh(12px);
+    @include upper;
+    &:hover {
+      @include bg-pos(top, left);
+      border: 1px solid #bcbcbc;
+      //@include background-image(linear-gradient(top, white, #fafafa));
+    }
+  }
+  @include float-left;
+  width: 230px;
+  @include bg(white);
+  border: 1px solid #e4e4e4;
+  @include m_r(9px);
+  @include m_l(9px);
+  @include m_b(18px);
+  @include pointer;
+  &:hover {
+    @include bg(white);
+    border-color: #c9c9c9;
+  }
+
+  .avatar {
+    height: 125px;
+    @include p_t(35px);
+    @include centered;
+  }
+  .goal-name {
+    color: #4b4b4b;
+    @include fs(12px);
+    display: block;
+
+    min-height: 40px;
+
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }
+
+  .bottom-box {
+    border-top: 1px solid #ebebeb;
+  }
+
+  .comment-box {
+    @include float-left;
+    @include fs(10px);
+    @include hex(#4d4d4d);
+    width: 29px;
+    padding: 7px 33px 7px 0px;
+    @include m_l(8px);
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+    @include bg(image-url("icons/comment.png") no-repeat);
+    @include bg_pos(70%, 8px);
+    @include right;
+  }
+  .like-box {
+    @include float-left;
+    width: 90px;
+    padding: 7px 5px 5px 5px;
+    .like {
+      @include bg(image-url("icons/like.png") no-repeat);
+      @include float-left;
+      @include fs(10px);
+      @include hex(#999999);
+      @include pointer;
+      padding: 0 5px 0 20px;
+    }
+    .dislike {
+      @include bg(image-url("icons/dislike.png") no-repeat);
+      @include float-right;
+      @include fs(10px);
+      @include hex(#999999);
+      @include pointer;
+      padding: 0 5px 0 20px;
+    }
+  }
+  .price-box {
+    @include float-left;
+    @include fs(10px);
+    @include hex(#4d4d4d);
+    @include centered;
+    width: 80px;
+    padding: 7px 0px;
+    @include m_l(13px);
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+  }
+  .add-me-box {
+    @include float-left;
+    @include fs(16px);
+    @include hex(#797979);
+    @include rel;
+    @include bold;
+    @include pointer;
+    .unchecked {
+      width: 57px;
+      text-align: center;
+      padding: 6px 0;
+    }
+    .checked {
+      display: none;
+    }
+  }
+}
+
+.user-card {
+
+  @include float-left;
+  width: 230px;
+  @include bg(white);
+  border: 1px solid #e4e4e4;
+  @include m_r(9px);
+  @include m_l(9px);
+  @include m_b(18px);
+  @include pointer;
+  &:hover {
+    @include bg(white);
+    border-color: #c9c9c9;
+  }
+
+  .avatar {
+    height: 125px;
+    @include p_t(35px);
+    @include centered;
+  }
+  .user-name {
+    color: #4b4b4b;
+    @include fs(12px);
+    display: block;
+
+    min-height: 40px;
+
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }
+
 }

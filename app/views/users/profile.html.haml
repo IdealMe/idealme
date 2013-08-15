@@ -41,6 +41,8 @@
           = link_to 'goals', user_tab_path(@user, 'goal'), :class => 'goal-icon'
         %li{:class => active_tab?('course', @tab)}
           = link_to 'course history', user_tab_path(@user, 'course'), :class => 'course-icon'
+        %li{:class => active_tab?('course', @tab)}
+          = link_to 'saved course', user_tab_path(@user, 'saved-course'), :class => 'course-icon'
       - else
         %li.active
           = link_to 'public goals', user_tab_path(@user, 'goal'), :class => 'goal-icon'
@@ -48,10 +50,12 @@
   - if @owner
     - if @tab == 'goal'
       = render :partial => 'users/partials/goal'
-    - else
+    - elsif @tab == 'course'
       = render :partial => 'users/partials/course'
+    - elsif @tab == 'saved-course'
+      = render :partial => 'users/partials/saved_course'
   - else
-    = render :partial => 'users/partials/goal'    
+    = render :partial => 'users/partials/goal'
     
     
 %button{:class=>'ts'}

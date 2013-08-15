@@ -1,4 +1,27 @@
 .container 
+  %h1
+    = @search     
+
+  %h2
+    Courses  
   - @courses.each do |course|
     =render :partial => 'partials/course_card', :locals => {:course => course}
-  .clear
+  .clear                                                                     
+    
+  %h2
+    Gems  
+  - @discovers.each do |discover|
+    =render :partial => 'partials/discover_card', :locals => {:discover => discover}
+  .clear                                   
+
+  %h2
+    Goals  
+  - @goals.each do |goal|
+    =render :partial => 'partials/goal_card', :locals => {:goal => goal}
+  .clear 
+
+  %h2
+    Users  
+  - @users.each do |user|
+    =render :partial => 'partials/user_card', :locals => {:user => user}
+  .clear                                   

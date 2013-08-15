@@ -11,14 +11,9 @@ class GoalUser < ActiveRecord::Base
   has_many :checkins, :dependent => :destroy
   has_many :goal_user_jewels
   has_many :jewels, :through => :goal_user_jewels
-
-
   has_many :activity_sender, :as => :sender, :class_name => 'Activity'
-
-
   has_many :goal_user_supporters
   has_many :supporters, :through => :goal_user_supporters
-
 
   # == Paperclip ============================================================
   # == Validations ==========================================================
@@ -95,4 +90,19 @@ class GoalUser < ActiveRecord::Base
       Activity.create(:sender => self, :trackable => gem, :share_key => self.to_activity_key, :action => 'goal-user/jewel-create')
     end
   end
+
+  def privacy_set_private
+
+  end
+
+  def privacy_set_public
+
+  end
+
+  def privacy_toggle
+    self.private = !self.private
+    self.save!
+  end
+
+
 end

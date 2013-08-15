@@ -18,9 +18,11 @@ class Goal < ActiveRecord::Base
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    :styles => {:full => '115x115#'},
+                    :styles => {:full => '115x115#', :thumb => '30x30#'},
                     :convert_options => {
                         :full => ' -transparent white -gravity center -extent 115x115 -quality 75 -strip',
+                        :thumb => ' -transparent white -gravity center -extent 30x30 -quality 75 -strip',
+
                     }
 
   # == Validations ==========================================================
