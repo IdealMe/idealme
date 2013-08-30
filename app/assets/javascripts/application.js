@@ -99,9 +99,25 @@ $(function () {
 $(function () {
     var current_user_username = im_js.current_user_username;
 
-    if (typeof current_user_username !== "undefined" && current_user_username != null) {
+    if (typeof current_user_username !== "undefined" && current_user_username != null && !im_js.current_user_toured) {
 
         var tour = new Tour({
+            onEnd: function () {
+
+                $.ajax({
+                    url: '/ajax/users/' + current_user_username,
+                    async: false,
+                    type: 'PUT',
+                    cache: false,
+                    data: {
+                        'user': {
+                            'toured': '1'
+                        }
+                    },
+                    dataType: 'json'
+                });
+
+            }
             //      template: "<div class='popover tour'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><nav class='popover-navigation'> <div class='btn-group'><button data-role='prev'>« Prev</button><button data-role='next'>Next »</button></div><button  data-role='end'>End tour</button> </nav></div>"
         });
         tour.addSteps([
@@ -202,9 +218,6 @@ $(function () {
 //        }
         ]);
         tour.start();
-        $('.ts').click(function () {
-            tour.restart();
-        })
     }
 
 });

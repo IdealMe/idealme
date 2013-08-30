@@ -26,6 +26,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :access_admin, :default => false
       t.attachment :avatar
 
+      t.boolean :toured, :default => false
+
 
       t.integer :goal_count, :default => 0
       t.integer :course_count, :default => 0

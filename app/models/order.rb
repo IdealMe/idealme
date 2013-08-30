@@ -1,5 +1,8 @@
 class Order < ActiveRecord::Base
   # == Imports ==============================================================
+  serialize :parameters
+
+
   # == Slug =================================================================
   # == Constants ============================================================
   GATEWAY_PAYPAL = 1
@@ -11,7 +14,7 @@ class Order < ActiveRecord::Base
 
   # == Attributes ===========================================================
   attr_accessible :user_id, :market_id, :course_id, :card_firstname, :card_lastname, :card_type, :card_exp_month,
-                  :card_exp_year, :billing_address1, :billing_address2, :billing_city, :billing_zip, :billing_state, :billing_country
+                  :card_exp_year, :billing_address1, :billing_address2, :billing_city, :billing_zip, :billing_state, :billing_country, :parameters
 
 
   attr_accessor :time, :checksum, :card_number, :card_cvv, :cc
@@ -36,9 +39,6 @@ class Order < ActiveRecord::Base
   before_validation :build_credit_card
 
   # == Class Methods ========================================================
-
-
-
 
   # Generate invoice based on *course_id* and *order_id*
   #
@@ -69,11 +69,8 @@ class Order < ActiveRecord::Base
     parsed['affiliate_tracking_id'] = invoice_parts[3].to_i if invoice_parts.length >= 4
     parsed
   end
-  
-  
-  
-  
-  
+
+
   def self.create_order_by_market_and_user(market, user)
     order = Order.new
     order.market = market
@@ -108,7 +105,7 @@ class Order < ActiveRecord::Base
         :first_name => self.card_firstname,
         :last_name => self.card_lastname
     )
-    self.card_number_4 = self.card_number[-4,4]
+    self.card_number_4 = self.card_number[-4, 4]
   end
 
   def validate_credit_card

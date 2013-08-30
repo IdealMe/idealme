@@ -13,7 +13,7 @@
     = display_meta_tags :site => 'Ideal Me'
     %meta{:content => 'width=1300', :name => 'viewport'}/
     = stylesheet_link_tag 'application', :media => 'all'
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'https://js.stripe.com/v2/', 'application'
     = csrf_meta_tags
     %link{:href => 'http://fonts.googleapis.com/css?family=Open+Sans', :rel => 'stylesheet', :type => 'text/css'}/
     = tinymce :content_css => asset_path('application.css')
@@ -96,7 +96,9 @@
       - else
         = yield
     %footer
-      .container
+      .container                
+        %a{:href => '/static/about', :class => 'footer-menu', :style => 'border-right: 1px solid black;'} About
+                                                                   
         %a{:href => '/static/about', :class => 'footer-menu'} About
         %a{:href => '#', :class => 'footer-menu'} Epic Challenge
         %a{:href => '/static/terms-of-services', :class => 'footer-menu'} Terms

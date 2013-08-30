@@ -331,11 +331,26 @@ body {
 /* ******************************************** */
 /* Share Button */
 /* ******************************************** */
-.share_btn {
+.btn-share {
   @include float-right;
   @include m_r(14px);
   @include border-radius(0);
+
+
   .btn {
+    @include bg(white);
+    @include bg-pos(top, left);
+    border: 1px solid #ebebeb;
+    @include box-shadow(none);
+    @include fs(12px);
+    @include lh(12px);
+    @include upper;
+    &:hover {
+      @include bg-pos(top, left);
+      border: 1px solid #bcbcbc;
+      //@include background-image(linear-gradient(top, white, #fafafa));
+    }
+
     height: 36px;
     @include border-radius(0);
     @include rel;

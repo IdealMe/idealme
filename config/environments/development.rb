@@ -58,3 +58,4 @@ end
 
 AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => '5zKG6HaL25f4', :password => '2eMsq3rD3kH266Nc', :test => true)
 PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login => 'bill_1351753306_biz_api1.ideal.me', :password => '1351753374', :signature => 'ABWxvXq5fyKjoekNasQ5QgN7l9NIAHOqW7kZJjH7atwVshi-4E178qmb', :test => true)
+STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => 'sk_test_0YBVMBWJ7IjlAjQHnZUWmAoN', :test => true)

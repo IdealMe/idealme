@@ -5,6 +5,8 @@ Paperclip::Attachment.default_options[:default_url] = '/missing/:class/:attachme
 
 
 
+
+
 ENV['AWS_CF_KEY_PAIR_ID'] = 'APKAIS27M4HGDLWDGQAQ'
 ENV['AWS_ACCESS_KEY_ID'] = 'AKIAJLDIGUPMHU2FYWPA'
 ENV['AWS_SECRET_ACCESS_KEY'] = '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'
@@ -49,9 +51,18 @@ unless Rails.env.production?
   ENV['PAYPAL_POST_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
   ENV['PAYPAL_ACCOUNT'] = 'bill-facilitator@idealme.com'
   ENV['PAYPAL_CERT_ID'] = 'UGNF3J2XZRN7Y'
+
+
+
+  ENV['STRIPE_SECRET_KEY'] = 'sk_test_0YBVMBWJ7IjlAjQHnZUWmAoN'
+  ENV['STRIPE_PUBLIC_KEY'] = 'pk_test_Z4UtHr3ItSYWAbFAvfNjCCDO'
+
+  
   ActiveMerchant::Billing::Base.mode = :test
   ActiveMerchant::Billing::Base.gateway_mode = :test
   ActiveMerchant::Billing::Base.integration_mode = :test
+  
+  
 end
 
 

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   # == Attributes ===========================================================
   attr_accessible :login, :username, :firstname, :lastname, :email, :password, :password_confirmation,
-                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about, :timezone
+                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about, :timezone, :toured
 
   attr_accessible :access_admin, :access_affiliate, :access_instructor, :as => :admin
 

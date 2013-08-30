@@ -4,6 +4,17 @@ require 'capistrano-unicorn'
 require 'capistrano/maintenance'
 require './config/boot'
 
+
+# RVM options
+set :rvm_ruby_string, 'ruby-2.0.0-p247'
+set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
+
+before 'deploy:setup', 'rvm:install_rvm'  # install RVM
+before 'deploy:setup', 'rvm:install_ruby' # install Ruby and create gemset, OR:
+
+require 'rvm/capistrano'
+
+
 default_run_options[:pty] = true
 #ssh_options[:port] = 31337
 ssh_options[:keys] = [File.join(ENV['HOME'], '.ssh', 'id_rsa')]
@@ -11,7 +22,7 @@ ssh_options[:forward_agent] = true
 
 set :application, 'idealme'
 set :scm, :git
-set :repository, 'ssh://git@bitbucket.org/billxinli/idealme.git'
+set :repository, 'git@bitbucket.org:idealmeinc/idealme.git'
 set :deploy_via, :remote_cache
 set :user, 'deploy'
 set :use_sudo, false
@@ -30,7 +41,7 @@ task :production do
 end
 
 task :staging do
-  set :repository, 'ssh://git@bitbucket.org/billxinli/idealme.git'
+  set :repository, 'git@bitbucket.org:idealmeinc/idealme.git'
   set :rails_env, 'staging'
   set :domain, 'idealmedev.com'
   set :deploy_to, '/apps/idealme'

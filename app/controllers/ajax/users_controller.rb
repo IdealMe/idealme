@@ -15,7 +15,7 @@ class Ajax::UsersController < Ajax::BaseController
 
   protected
   def filter_params
-    allowed = ['timezone', 'tagline']
+    allowed = ['timezone', 'tagline', 'toured']
     params[:user].slice!(*allowed) if params[:user]
   end
 

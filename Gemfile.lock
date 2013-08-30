@@ -334,6 +334,8 @@ GEM
       ruby_parser (~> 3.1.1)
       sexp_processor
     ref (1.0.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (2.14.3)
     rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -353,6 +355,8 @@ GEM
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
     rubyzip (0.9.9)
+    rvm-capistrano (1.4.4)
+      capistrano (>= 2.15.4)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -378,6 +382,9 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    stripe (1.8.6)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
     temple (0.6.5)
     terminal-table (1.4.5)
     therubyracer (0.11.4)
@@ -480,11 +487,13 @@ DEPENDENCIES
   ransack
   reek
   rspec-rails (= 2.14.0)
+  rvm-capistrano
   sass-rails (~> 3.2.6)
   seedbank!
   selenium-webdriver
   simplecov
   sqlite3
+  stripe
   therubyracer
   thin
   tinymce-rails

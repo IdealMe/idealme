@@ -94,6 +94,9 @@ group :assets do
   gem 'font-awesome-rails'
 end
 
+
+gem 'stripe'
+
 group :test do
   gem 'simplecov', :require => false
 end
@@ -101,6 +104,8 @@ end
 group :development do
   gem 'capistrano-unicorn', :require => false
   gem 'capistrano-maintenance'
+  gem 'rvm-capistrano'
+
   gem 'quiet_assets'
   #A rails plugin to kill N+1 queries and unused eager loading.
   gem 'bullet'
