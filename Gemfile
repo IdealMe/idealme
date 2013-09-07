@@ -5,8 +5,6 @@ gem 'acts_as_list'
 
 #Ruby on Rails
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
-#This module allows Ruby programs to interface with the SQLite3 database engine
-gem 'sqlite3'
 #A simple, fast Mysql library for Ruby, binding to libmysql
 gem 'mysql2'
 #A thin and fast web server

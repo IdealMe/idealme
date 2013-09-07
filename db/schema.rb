@@ -588,6 +588,7 @@ ActiveRecord::Schema.define(:version => 20130808030004) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "toured",                       :default => false
     t.integer  "goal_count",                   :default => 0
     t.integer  "course_count",                 :default => 0
     t.string   "email",                        :default => "",                    :null => false
