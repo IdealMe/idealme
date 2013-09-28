@@ -4,7 +4,11 @@ require File.expand_path('../application', __FILE__)
 Paperclip::Attachment.default_options[:default_url] = '/missing/:class/:attachment/:style.png'
 
 
+#idealme
+#ralphy28E!
 
+#app17989773@heroku.com
+#akp8nwdl
 
 
 ENV['AWS_CF_KEY_PAIR_ID'] = 'APKAIS27M4HGDLWDGQAQ'
@@ -48,21 +52,29 @@ elsif Rails.env.development?
 end
 
 unless Rails.env.production?
-  ENV['PAYPAL_POST_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
-  ENV['PAYPAL_ACCOUNT'] = 'bill-facilitator@idealme.com'
-  ENV['PAYPAL_CERT_ID'] = 'UGNF3J2XZRN7Y'
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+  
+  #ENV['PAYPAL_POST_URL'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
+  #ENV['PAYPAL_ACCOUNT'] = 'bill-facilitator@idealme.com'
+  #ENV['PAYPAL_CERT_ID'] = 'UGNF3J2XZRN7Y'
 
 
 
-  ENV['STRIPE_SECRET_KEY'] = 'sk_test_0YBVMBWJ7IjlAjQHnZUWmAoN'
-  ENV['STRIPE_PUBLIC_KEY'] = 'pk_test_Z4UtHr3ItSYWAbFAvfNjCCDO'
+  #ENV['STRIPE_SECRET_KEY'] = 'sk_test_0YBVMBWJ7IjlAjQHnZUWmAoN'
+  #ENV['STRIPE_PUBLIC_KEY'] = 'pk_test_Z4UtHr3ItSYWAbFAvfNjCCDO'
 
   
-  ActiveMerchant::Billing::Base.mode = :test
-  ActiveMerchant::Billing::Base.gateway_mode = :test
-  ActiveMerchant::Billing::Base.integration_mode = :test
-  
-  
+  #ActiveMerchant::Billing::Base.mode = :test
+  #ActiveMerchant::Billing::Base.gateway_mode = :test
+  #ActiveMerchant::Billing::Base.integration_mode = :test
 end
 
 
