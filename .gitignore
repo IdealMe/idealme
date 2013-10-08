@@ -19,3 +19,6 @@ public/system
 coverage
 erd.pdf
 libpeerconnection.log
+
+# Ignore application configuration
+/config/application.yml

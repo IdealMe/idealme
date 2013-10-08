@@ -68,13 +68,6 @@ Idealme::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.smtp_settings = {
-      :user_name => 'ideal-me-development',
-      :password => '24eedef449ddd0e2',
-      :address => 'mailtrap.io',
-      :port => '2525',
-      :authentication => :plain,
-  }
   config.action_mailer.default_url_options = { :host => 'idealmedev.com' }
 
 end

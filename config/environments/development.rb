@@ -36,26 +36,17 @@ Idealme::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.delivery_method = :smtp
-
-  config.action_mailer.smtp_settings = {
-      :user_name => 'ideal-me-development',
-      :password => '24eedef449ddd0e2',
-      :address => 'mailtrap.io',
-      :port => '2525',
-      :authentication => :plain,
-  }
+  
   config.action_mailer.default_url_options = {:host => 'idealme.dev'}
 
 end
 
-#
 #Paperclip::Attachment.default_options[:bucket] = ENV['AWS_S3_BUCKET']
 #Paperclip::Attachment.default_options[:storage] = :s3
 #Paperclip::Attachment.default_options[:s3_credentials] = {:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
 #Paperclip::Attachment.default_options[:s3_protocol] = 'https'
 #Paperclip::Attachment.default_options[:s3_permissions] = :public_read
 
-
-AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => '5zKG6HaL25f4', :password => '2eMsq3rD3kH266Nc', :test => true)
-PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login => 'bill_1351753306_biz_api1.ideal.me', :password => '1351753374', :signature => 'ABWxvXq5fyKjoekNasQ5QgN7l9NIAHOqW7kZJjH7atwVshi-4E178qmb', :test => true)
-STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => 'sk_test_0YBVMBWJ7IjlAjQHnZUWmAoN', :test => true)
+AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => ENV['AUTHORIZED_NET_LOGIN'], :password => ENV['AUTHORIZED_NET_PASSWORD'], :test => true)
+PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login => ENV['PAYPAL_LOGIN'], :password => ENV['PAYPAL_PASSWORD'], :signature => ENV['PAYPAL_SIGNATURE'], :test => true)
+STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => ENV['STRIPE_SECRET_KEY'], :test => true)

@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       @order.cost = @market.course.cost
-      gateway = AUTHORIZED_NET_GATEWAY
+      #gateway = AUTHORIZED_NET_GATEWAY
       gateway = STRIPE_GATEWAY
 
       gateway_options = {}
@@ -64,6 +64,7 @@ class OrdersController < ApplicationController
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
         end
         current_user.subscribe_course(@market.course)
+        flash[:alert] = nil
       else
         flash[:alert] = @response.message
         render :new

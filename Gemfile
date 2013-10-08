@@ -92,8 +92,9 @@ group :assets do
   gem 'font-awesome-rails'
 end
 
-
 gem 'stripe'
+#Simple Rails app configuration
+gem 'figaro'
 
 group :test do
   gem 'simplecov', :require => false
