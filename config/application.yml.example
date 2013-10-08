@@ -1,0 +1,80 @@
+AWS_CF_KEY_PAIR_ID: ********************
+AWS_ACCESS_KEY_ID: ********************
+AWS_SECRET_ACCESS_KEY: ********************
+
+PAYPAL_POST_URL: ********************
+PAYPAL_ACCOUNT: ********************
+PAYPAL_CERT_ID: ********************
+
+development: ********************
+  FACEBOOK_API_KEY: ********************
+  FACEBOOK_API_SECRET: ********************
+  TWITTER_CONSUMER_KEY: ********************
+  TWITTER_CONSUMER_SECRET: ********************
+  GOOGLE_API_KEY: ********************
+  GOOGLE_API_SECRET: ********************
+  YAHOO_API_KEY: ********************
+  YAHOO_API_SECRET: ********************
+
+  AUTHORIZED_NET_LOGIN: ********************
+  AUTHORIZED_NET_PASSWORD: ********************
+  PAYPAL_LOGIN: ********************
+  PAYPAL_PASSWORD: ********************
+  PAYPAL_SIGNATURE: ********************
+  STRIPE_SECRET_KEY: ********************
+  STRIPE_PUBLISHIABLE_KEY: ********************
+
+  SENDGRID_API_USERNAME: ********************
+  SENDGRID_API_PASSWORD: ********************
+
+  #AWS_S3_BUCKET: ********************
+  #AWS_S3_ASSET_BUCKET: ********************
+  #AWS_CF_STREAMING: ********************
+  #AWS_CF_ASSET: ********************
+
+staging:
+  FACEBOOK_API_KEY: ********************
+  FACEBOOK_API_SECRET: ********************
+  TWITTER_CONSUMER_KEY: ********************
+  TWITTER_CONSUMER_SECRET: ********************
+
+  AUTHORIZED_NET_LOGIN: ********************
+  AUTHORIZED_NET_PASSWORD: ********************
+  PAYPAL_LOGIN: ********************
+  PAYPAL_PASSWORD: ********************
+  PAYPAL_SIGNATURE: ********************
+  STRIPE_SECRET_KEY: ********************
+  STRIPE_PUBLISHIABLE_KEY: ********************
+
+  SENDGRID_API_USERNAME: ********************
+  SENDGRID_API_PASSWORD: ********************
+
+  #AWS_S3_BUCKET: ********************
+  #AWS_S3_ASSET_BUCKET: ********************
+  #AWS_CF_STREAMING: ********************
+  #AWS_CF_ASSET: ********************
+
+production:
+  FACEBOOK_API_KEY: ********************
+  FACEBOOK_API_SECRET: ********************
+  TWITTER_CONSUMER_KEY: ********************
+  TWITTER_CONSUMER_SECRET: ********************
+
+  AUTHORIZED_NET_LOGIN: ********************
+  AUTHORIZED_NET_PASSWORD: ********************
+  PAYPAL_LOGIN: ********************
+  PAYPAL_PASSWORD: ********************
+  PAYPAL_SIGNATURE: ********************
+  STRIPE_SECRET_KEY: ********************
+  STRIPE_PUBLISHIABLE_KEY: ********************
+
+  SENDGRID_API_USERNAME: ********************
+  SENDGRID_API_PASSWORD: ********************
+  
+  #AWS_S3_BUCKET: ********************
+  #AWS_S3_ASSET_BUCKET: ********************
+  #AWS_CF_STREAMING: ********************
+  #AWS_CF_ASSET: ********************
+  #PAYPAL_ACCOUNT: ********************
+  #PAYPAL_CERT_ID: ********************
+  #PAYPAL_POST_URL: ********************
