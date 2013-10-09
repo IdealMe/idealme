@@ -9,6 +9,9 @@ Paperclip::Attachment.default_options[:default_url] = '/missing/:class/:attachme
 #app17989773@heroku.com
 #akp8nwdl
 
+# Initialize the rails application
+Idealme::Application.initialize!
+
 ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
   :port           => '587',
@@ -24,6 +27,3 @@ unless Rails.env.production?
   #ActiveMerchant::Billing::Base.gateway_mode = :test
   #ActiveMerchant::Billing::Base.integration_mode = :test
 end
-
-# Initialize the rails application
-Idealme::Application.initialize!
