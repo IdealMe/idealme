@@ -2,6 +2,12 @@
 require File.expand_path('../application', __FILE__)
 
 Paperclip::Attachment.default_options[:default_url] = '/missing/:class/:attachment/:style.png'
+Paperclip::Attachment.default_options[:storage] = :s3
+Paperclip::Attachment.default_options[:s3_credentials] = {
+  :bucket => ENV['AWS_S3_BUCKET'],
+  :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+  :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+}
 
 #idealme
 #ralphy28E!

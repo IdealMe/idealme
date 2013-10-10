@@ -41,12 +41,6 @@ Idealme::Application.configure do
 
 end
 
-#Paperclip::Attachment.default_options[:bucket] = ENV['AWS_S3_BUCKET']
-#Paperclip::Attachment.default_options[:storage] = :s3
-#Paperclip::Attachment.default_options[:s3_credentials] = {:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
-#Paperclip::Attachment.default_options[:s3_protocol] = 'https'
-#Paperclip::Attachment.default_options[:s3_permissions] = :public_read
-
 AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => ENV['AUTHORIZED_NET_LOGIN'], :password => ENV['AUTHORIZED_NET_PASSWORD'], :test => true)
 PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login => ENV['PAYPAL_LOGIN'], :password => ENV['PAYPAL_PASSWORD'], :signature => ENV['PAYPAL_SIGNATURE'], :test => true)
 STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => ENV['STRIPE_SECRET_KEY'], :test => true)
