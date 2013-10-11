@@ -8,7 +8,7 @@
         .form-horizontal
           .control-group
             .profile-picture.control-label
-              = image_tag "profile-image.png"
+              = image_tag resource.avatar.url(:square)
           = f.input :avatar, label: false
           = f.input :username, :autofocus => true
           = f.input :firstname
