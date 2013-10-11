@@ -158,3 +158,11 @@
   }
 
 }
+
+#edit_user {
+  .profile-picture { margin-bottom: -50px; }
+  .form-inline { margin-left: 180px; }
+  .user_password, .user_password_confirmation { width: 240px; float: left; }
+  .user_password { display: inline-block; }
+  .btn { padding: 7px 70px; }
+}
