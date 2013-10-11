@@ -1,19 +1,19 @@
 .container
   .row
     .span12
-      = formatted_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'form-horizontal'}) do |f|
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'form-horizontal'}) do |f|
         %fieldset
           #legend
             %legend My Profile
-        = f.text_field :username, :autofocus => true
-        = f.text_field :firstname
-        = f.text_field :lastname
-        = f.email_field :email
-        = f.file_field :avatar
+        = f.input :username, :autofocus => true
+        = f.input :firstname
+        = f.input :lastname
+        = f.input :email
+        = f.input :avatar
         - if resource.access_instructor
-          = f.text_area :instructor_about, :class => 'tinymce'
-        = f.password_field :password, :placeholder => "leave blank if you don't want to change it"
-        = f.password_field :password_confirmation
-        = f.password_field :current_password, :placeholder => "we need your current password"
+          = f.input :instructor_about, :class => 'tinymce'
+        = f.input :password, :placeholder => "leave blank if you don't want to change it"
+        = f.input :password_confirmation
+        = f.input :current_password, :placeholder => "we need your current password"
         = f.submit 'Update', :class => 'btn btn-success'
         = link_to 'Back', user_path(current_user), :class => 'btn'

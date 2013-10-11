@@ -54,4 +54,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     process_oauth(:facebook)
   end
+
+  def twitter
+    process_oauth(:twitter)
+  end  
 end

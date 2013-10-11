@@ -1,22 +1,22 @@
 .authentication-section
-  = formatted_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
     .modal-box
       .account-box
         .message-box
           Sign in to your Ideal Me account
-        = f.text_field :username, :autofocus => true
-        = f.text_field :firstname
-        = f.text_field :lastname
-        = f.email_field :email
-        = f.password_field :password
-        = f.password_field :password_confirmation
+        = f.input :username, :autofocus => true
+        = f.input :firstname
+        = f.input :lastname
+        = f.input :email
+        = f.input :password
+        = f.input :password_confirmation
         .control-box
-          = f.submit 'Sign up', :class => 'btn btn-red'
+          = f.submit 'Sign up with email->', :class => 'btn btn-red'
   .footer
     Or sign up with:
-    .oauth      
+    .oauth
       = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
-      = link_to('G+', user_omniauth_authorize_path(:google_oauth2), :class => 'btn btn-red')
-  %p
-    Already have an account? 
-    = link_to 'Sign in', new_user_session_path
+      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')
+    %p
+      Already have an account? 
+      = link_to 'Sign in', new_user_session_path

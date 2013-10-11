@@ -1,110 +1,379 @@
-.promo-section
+.promo_section
   .container
-    .background
-    .main-message
-      %h3.title{:title => 'Better information, faster'}
-        = image_tag('landings/better_info_txt.png')
-      .message Collect gems of wisdom and find courses to help reach your goals
-      = link_to("GET STARTED (IT'S FREE)", new_user_registration_path, :class => 'btn-black btn-round')
-    .cards
-      .card.card-top
-        = image_tag('landings/pic_top.jpg', :width => 168)
-        .description 10 BEST SURF TIPS
-      .card.card-1
-        = image_tag('landings/pic_1.jpg', :width => 118)
-        .description WRITE A BOOK
-      .card.card-2
-        = image_tag('landings/pic_2.jpg', :width => 97)
-      .card.card-3
-        = image_tag('landings/pic_3.jpg', :width => 100)
-      .card.card-4
-        = image_tag('landings/pic_4.jpg', :width => 113)
+    .intro-wp
+      %h2 Take the Ideal Me Challenge: 12 Goals, 1 Per Month, Maximum Results in Minimum Time
+      .cnt
+        .video
+          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "225", :src => "//www.youtube.com/embed/piLWFiS1fN8", :width => "370"}
+          %span.video-bg &nbsp;
+        .text
+          %ul
+            %li Your Ideal Me Challenge:
+            %li 1. Join the community
+            %li 2. Choose your goals
+            %li 3. Get hand-picked, user-reviewed course recommendations
+        .join-box
+          = form_for :user, url: user_session_path do |f|
+            = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
+            .or-text
+              %span.line &nbsp;
+              %span.tx Or
+            .field-wp
+              %span.email-icon &nbsp;
+              = f.email_field :email, :placeholder => "Email", :class => "field"
+            .field-wp
+              %span.pass-icon &nbsp;
+              = f.text_field :password, :placeholder => "Password", :class => "field"
+            .join-btn-wp
+              %span.strike &nbsp;
+              = f.submit "Join Now (It's Free)", :class => "join-btn"
+        .clear &nbsp;
     .clear
-.how-it-works-section
-  %p.how-it-works-copy
-    HOW IT WORKS
-  .flexslider
-    %ul.slides
-      %li
-        .slide-wrapper
-          %h3.title{:title => 'create your ideal me to do list'}
-            = image_tag('landings/create_your_txt.png')
-          %p Select the goal categories you want to track your progress or discover gems of wisdom
-          .showcase
-            = image_tag('landings/slide_1.png')
-      %li
-        .slide-wrapper
-          %h3.title{:title => 'collect gems of wisdom'}
-            = image_tag('landings/collect_gems_txt.png')
-          %p posted by other community members to create your own curated collection
-          .showcase
-            = image_tag('landings/slide_2.png')
-      %li
-        .slide-wrapper
-          %h3.title{:title => 'Vote on everything'}
-            = image_tag('landings/vote_on_txt.png')
-          %p Hot gems float to the top while cool gems sink to the bottom
-          .showcase
-            = image_tag('landings/slide_3.png')
-      %li
-        .slide-wrapper
-          %h3.title{:title => 'Track your progress'}
-            = image_tag('landings/track_your_txt.png')
-          %p Invite your friends and family to keep you accountable or keep your progress private
-          .showcase
-            = image_tag('landings/slide_4.png')
-      %li
-        .slide-wrapper
-          %h3.title{:title => 'Supercharge your ideal me'}
-            = image_tag('landings/supercharge_txt.png')
-          %p Select the goal categories you want to track your progress or discover gems of wisdom
-          .showcase
-            = image_tag('landings/slide_5.png')
-  .control-nav
-    .btn-group
-      %button.btn To Do List
-      %button.btn Gems
-      %button.btn Vote
-      %button.btn Track
-      %button.btn Courses
+.courses-wp
+  .title-text
+    %img{:alt => "", :src => "assets/title-text-1.jpg"}/
+  %p.top-text
+    All courses backed by the
+    = succeed "." do
+      %a{:href => "#"} Ideal Me Seal
+    If you're not satisfied you get a full refund.
+  .offer_section
+    %table
+      %tr
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic_2.png"}/
+            %a.offer_title{:href => "#"} Supersonic Speed Reading
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-5.png"}/
+            %a.offer_title{:href => "#"} Roger Love's Singing Academy
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-6.png"}/
+            %a.offer_title{:href => "#"} Become a Celebrity Journalist
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-7.png"}/
+            %a.offer_title{:href => "#"} Fluent in 3 Months
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+      %tr
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-8.png"}/
+            %a.offer_title{:href => "#"} Negotiate a Lower Rent
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-9.png"}/
+            %a.offer_title{:href => "#"} The Habit Course
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-10.png"}/
+            %a.offer_title{:href => "#"} The Art of Less Doing
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-11.png"}/
+            %a.offer_title{:href => "#"} Clutter Free Course
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+      %tr
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-8.png"}/
+            %a.offer_title{:href => "#"} Negotiate a Lower Rent
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-9.png"}/
+            %a.offer_title{:href => "#"} The Habit Course
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-10.png"}/
+            %a.offer_title{:href => "#"} The Art of Less Doing
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
+        %td
+          .offer_card
+            %a{:href => "#"}
+              %img{:src => "assets/pic-11.png"}/
+            %a.offer_title{:href => "#"} Clutter Free Course
+            .vendor
+              .vendor_pic
+                %a{:href => "#"}
+                  %img{:src => "assets/vendor.png"}/
+              %a.vendor_name{:href => "#"} Jen Snow
+              .clear
+            .bottom_box
+              .like_box
+                .like 352
+                .dislike 12
+                .clear
+              .price_box
+                $26.96
+              .add_me_box
+                .unchecked +
+                .checked
+              .clear
 .testimonials-section
-  %h3.title{:title => 'Dont just take our word for it'}
-    = image_tag('landings/dont_just_txt.png')
+  %h3.title{:title => "Dont just take our word for it"}
+    %img{:src => "assets/dont_just_txt.png"}/
   %p We listen to our users, and so should you
   .testimonial-container
     .testimonial.fleft
       .testimonial-box
-        Ideal Me is a seriously cool site!
-        .arrow
-      .user
-        .avatar
-          = image_tag('landings/user_1.jpg', :width => 32)
+        .box-cnt
+          Ideal Me is a
+          %i seriously
+          cool site!
+          .arrow
+      .user_info
+        .user_pic
+          %img{:src => "assets/user_1.jpg", :width => "32"}/
         .user_name Shannon Thomas
     .testimonial.fright
       .testimonial-box
-        Ideal Me is a seriously cool site!
-        .arrow
-      .user
-        .avatar
-          = image_tag('landings/user_2.png', :width => 32)
+        .box-cnt
+          Ideal Me Is
+          %strong THE
+          most amazing collection of resources that really work to live a lifestyle by design
+          .arrow
+      .user_info
+        .user_pic
+          %img{:src => "assets/user_2.png", :width => "32"}/
         .user_name Shannon Thomas
     .clear
     .testimonial.fleft
       .testimonial-box
-        Ideal Me is a seriously cool site!
-        .arrow
-      .user
-        .avatar
-          = image_tag('landings/user_3.jpg', :width => 32)
+        .box-cnt
+          Thanks to Ideal Me
+          %br/
+          %strong I've lost 10 pounds
+          .arrow
+      .user_info
+        .user_pic
+          %img{:src => "assets/user_3.jpg", :width => "32"}/
         .user_name Shannon Thomas
     .testimonial.fright
       .testimonial-box
-        Ideal Me is a seriously cool site!
-        .arrow
-      .user
-        .avatar
-          = image_tag('landings/user_4.png', :width => 32)
+        .box-cnt
+          The only thing don't like about Ideal Me is I haven't been able to do all the courses...yet! :-)
+          .arrow
+      .user_info
+        .user_pic
+          %img{:src => "assets/user_4.png", :width => "32"}/
         .user_name Shannon Thomas
     .clear
-.call-to-action-section
-  = link_to("GET STARTED (IT'S FREE)➝", new_user_registration_path, :class => 'btn btn-red')
+
+.bottom-join-wp
+  .container
+    %h3
+      Become a member of Ideal Me today and start living
+      %em your
+      dream life!
+    .box
+      = form_for :user, url: user_session_path do |f|
+        = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
+        .or-text
+          Or
+        .field-wp
+          %span.email-icon &nbsp;
+          = f.email_field :email, :placeholder => "Email", :class => "field"
+        .field-wp
+          %span.pass-icon &nbsp;
+          = f.text_field :password, :placeholder => "Password", :class => "field"
+        .join-btn-wp
+          %span.strike &nbsp;
+          = f.submit "Join Now (It's Free)", :class => "join-btn"
+        .clear &nbsp;

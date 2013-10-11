@@ -23,6 +23,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 #A Google oauth2 strategy for OmniAuth 1.0
 gem 'omniauth-google-oauth2'
+#Twitter strategy for OmniAuth
+gem 'omniauth-twitter'
 #Send your application errors to our hosted service and reclaim your inbox.
 gem 'airbrake'
 #If you need to send some data to your js files and you don't want to do this with long way trough views and parsing - use this force!
@@ -33,6 +35,8 @@ gem 'paperclip', '~> 3.4.2'
 gem 'seedbank', :github => 'james2m/seedbank'
 #A Rails form builder that generates Twitter Bootstrap markup and helps keep your code clean
 gem 'formatted_form'
+
+gem 'simple_form'
 #ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
 gem 'comfortable_mexican_sofa', '~> 1.8.0'
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.

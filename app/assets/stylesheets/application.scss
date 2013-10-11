@@ -55,6 +55,12 @@
 @import "jquery.ui.all";
 @import "font-awesome";
 @import "bootstrap-tour";
+//@import "responsive";
+@import "new-style";
+
+* {
+  font-family: Arial;
+}
 
 .modal-backdrop, .modal-backdrop.fade.in {
   opacity: 0.2;

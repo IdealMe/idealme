@@ -2,72 +2,31 @@
 .users-passwords-new, .users-passwords-create,
 .users-registrations-new, .users-registrations-create,
 .users-confirmations-new, .users-confirmations-create, .users-confirmations-show {
-  >.body-content {
-    >.authentication-section {
+  .body-content {
+    .authentication-section {
       width: 500px;
       margin: 0 auto;
       @include hex(#4d4d4d);
       @include fs(16px);
-      >p {
-        text-align: center;
-      }
       .modal-box {
         @include m_b(27px);
         border: 1px solid #ebeae8;
         border-radius: 5px;
         background: white;
-        >.account-box {
-          >.message-box {
+        .account-box {
+          .message-box {
             @include fs(18px);
             @include centered;
             margin: 16px 0 21px 0;
           }
 
-          >.control-box {
+          .control-box {
             @include bg(#fdfaf9);
             border-top: 1px solid #e4e4e4;
             padding: 13px 0;
             text-align: center;
-            >.btn {
-              @include bg(white);
-              @include bg-pos(top, left);
-              @include border-radius(2px);
-              border: 1px solid #ebebeb;
-              @include box-shadow(none);
-              padding: 11px 35px;
-              @include hex(#4d4d4d);
-              @include fs(12px);
-              @include lh(12px);
-              @include upper;
-              &:hover {
-                @include bg-pos(top, left);
-                border: 1px solid #bcbcbc;
-                //@include background-image(linear-gradient(top, white, #fafafa));
-              }
-            }
-
-            >.btn-red {
-              border: none;
-              @include border-radius(0px);
-              @include bg(#f16764);
-
-              @include lh(14px);
-              @include upper;
-              @include centered;
-              @include hex(white);
-              @include text-shadow(none);
-
-              padding: 19px 125px;
-              @include fs(16px);
-              @include bold;
-
-              &:hover {
-                border: none;
-                @include bg(#fa7977);
-                @include hex(white);
-              }
-            }
-
+            .btn { @include upper; }
+            .btn-red { padding: 15px 125px; }
           }
         }
       }
@@ -90,49 +49,13 @@
           @include m_l(139px);
         }
       }
-      >.footer {
+      .btn { color: #FFFFFF; padding: 15px 25px; text-shadow: none; font-size: 18px; }
+      .footer {
         @include centered;
-        >.oauth {
+        .oauth {
           @include p_t(13px);
           @include p_b(30px);
-          @include left;
-          >.btn-blue {
-            background: #3b5998;
-            padding: 15px 83px;
-            display: inline-block;
-            -webkit-border-radius: 0px;
-            -moz-border-radius: 0px;
-            -ms-border-radius: 0px;
-            -o-border-radius: 0px;
-            border-radius: 0px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 240px;
-            @include p_l(0);
-            @include p_r(0);
-            @include centered;
-          }
-          >.btn-red {
-            background: #f16764;
-            padding: 15px 83px;
-            display: inline-block;
-            -webkit-border-radius: 0px;
-            -moz-border-radius: 0px;
-            -ms-border-radius: 0px;
-            -o-border-radius: 0px;
-            border-radius: 0px;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            width: 240px;
-            @include p_l(0);
-            @include p_r(0);
-            @include centered;
-            @include float-right;
-          }
+          .btn { width: 185px; margin-left: 10px; }
         }
       }
     }

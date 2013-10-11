@@ -7,9 +7,8 @@
 
 .offer_section {
   padding: 33px 41px 0 41px;
-  min-width: 1168px;
-  min-width: 960px;
-  max-width: 1250px;
+  min-width: 1000px;
+  max-width: 1168px;
   margin: auto;
   .section_header {
     color: #8b8b8b;
@@ -27,3 +26,9 @@
     text-align: center;
   }
 }
+
+.btn-lightblue, .btn-blue, .btn-red { border: none; }
+
+.btn-lightblue { background: none repeat scroll 0 0 #4099FF; &:hover {background: none repeat scroll 0 0 #7099FF; } }
+.btn-blue { background: none repeat scroll 0 0 #3b5998; &:hover {background: none repeat scroll 0 0 #3B59A0; } }
+.btn-red { background: none repeat scroll 0 0 #f16764; &:hover {background: none repeat scroll 0 0 #FA7977; } }

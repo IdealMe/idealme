@@ -165,8 +165,11 @@
         }
       }
     }
+
     .testimonials-section {
-      @include bg(#f7f7f7);
+      @include bg(#ffffff);
+      border-top: solid 1px #ebebe9;
+      border-bottom: solid 1px #ebebe9;
       padding: 44px 0 50px;
       >.title {
         @include centered;
@@ -192,20 +195,27 @@
             @include bg(#f6e8df);
             @include fs(12px);
             border: 1px solid #d7cbc4;
-            display: table-cell;
+            display: block;
             vertical-align: middle;
             @include centered;
             @include border-radius(5px);
-            .arrow {
-              @include sprite_css(testimonial_arrow);
-              @include abs_bl(-12px, 50%);
-              @include m_l(-13px);
+            .box-cnt {
+              display: table-cell;
+              height: 80px;
+              padding: 0 15px;
+              vertical-align: middle;
+              width: 225px;
+              .arrow {
+                @include sprite_css(testimonial_arrow);
+                @include abs_bl(-12px, 50%);
+                @include m_l(-13px);
+              }
             }
           }
-          >.user {
+          >.user_info {
             padding: 10px 0 42px;
             @include clearfix;
-            >.avatar {
+            >.user_pic {
               @include float-left;
               margin-left: 35px;
               margin-right: 12px;
