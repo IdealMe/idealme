@@ -133,7 +133,7 @@ Idealme::Application.routes.draw do
     constraints(:id => /[0-9A-Za-z\-\.\_]+/) do
       get ':id' => 'users#profile', :as => :user
 
-      get ':id/:tab' => 'users#profile', :constraints => {:tab => /(goal)|(course)|(saved-course)/}, :as => :user_tab
+      #get ':id/:tab' => 'users#profile', :constraints => {:tab => /(goal)|(course)|(saved-course)/}, :as => :user_tab
 
       get ':id/edit' => 'users/registrations#edit', :as => :user_edit
 
