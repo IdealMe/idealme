@@ -109,6 +109,7 @@
     .user-menu {
       margin: 0;
       //@include float-left;
+      padding-top: 30px;
       li {
         @include float-left;
         margin-right: 10px;

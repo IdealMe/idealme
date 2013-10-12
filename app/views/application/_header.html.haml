@@ -4,23 +4,23 @@
       =image_tag current_user.avatar(:thumb), :class => 'user-avatar'
       %ul.user-menu
         %li
-          = link_to 'Settings', user_edit_path(current_user)
-        %li                                                 
-          = link_to 'Notifications', user_edit_path(current_user)
-        %li                                                 
-          = link_to 'Find friends', user_edit_path(current_user)
-        %li                                                 
-          = link_to 'Archived goals', archived_goals_path
-        %li                                                 
-          = link_to 'Give feedback', feedbacks_path                
-        - if can? :access, :admin
-          %li
-            = link_to 'Admin', admin_root_path
+          = link_to 'Account Settings', user_edit_path(current_user)
+        //%li                                                 
+        //  = link_to 'Notifications', user_edit_path(current_user)
+        //%li                                                 
+        //  = link_to 'Find friends', user_edit_path(current_user)
+        //%li                                                 
+        //  = link_to 'Archived goals', archived_goals_path
+        //%li                                                 
+        //  = link_to 'Give feedback', feedbacks_path                
+        //- if can? :access, :admin
+        //  %li
+        //    = link_to 'Admin', admin_root_path
         %li.sign-out
           = link_to 'Sign out', destroy_user_session_path
     %ul.left-menu
-      %li
-        = link_to 'DISCOVER', discovers_path, :class => active_tab?('discovers', params[:controller])
+      //%li
+      //  = link_to 'DISCOVER', discovers_path, :class => active_tab?('discovers', params[:controller])
       %li
         = link_to 'MARKETPLACE', markets_path, :class => active_tab?('markets', params[:controller])
       %li

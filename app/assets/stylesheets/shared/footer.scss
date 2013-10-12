@@ -1,16 +1,6 @@
-footer {
-  margin: auto;
-  >.container {
-    text-align: center;
-    >.footer-menu {
-      @include m_l(15px);
-      @include m_r(15px);
-      @include fs(12px);
-      @include hex(#999999);
-      padding-bottom: 30px;
-      >a {
-
-      }
-    }
-  }
+footer { background: #fbfbf3;
+  .container { border-top: solid 1px #e4e4e4; padding: 25px 0; }
+  .footer-menu { position: static; display: block; margin: 0 auto; width: 380px; }
+  .footer-menu li { display: inline; float: left; margin-right: 30px; &.last { margin: 0; } }
+  .footer-menu li a { color: #C9C9C9; font-family: Arial; font-size: 13px; font-style: normal; font-weight: normal; &:hover { color: #1d95cb; } }
 }

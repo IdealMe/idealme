@@ -33,9 +33,9 @@ header {
           padding: 0 17px;
           a {
             @include block;
-            @include upper;
+            //@include upper;
             @include hex(#777777);
-            @include fs(12px);
+            @include fs(13px);
             @include lh(20px);
             padding: 5px 0;
             @include left;

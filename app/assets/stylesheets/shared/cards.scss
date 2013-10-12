@@ -1,7 +1,7 @@
 .course-card {
   width: 252px;
 
-  @include m_t(10px);
+  @include m_t(0);
   @include m_b(10px);
   @include m_l(29px);
   @include m_r(29px);
@@ -13,8 +13,7 @@
     @include fs(12px);
     @include hex(#4b4b4b);
     @include m_t(10px);
-    @include m_l(10px);
-    @include m_r(10px);
+    @include m_l(16px);
     @include block;
     min-height: 40px;
   }
@@ -224,28 +223,30 @@
   }
 }
 
-.goal-card-new {
+.goal-card-new, .course-card-new {
+  border: 1px dashed;
+  border-radius: 5px 5px 5px 5px;
   @include float-left;
-  @include bg(image-url("icons/add_goal.png") no-repeat);
-  width: 236px;
-  height: 163px;
   @include hex(#cccccc);
   @include fs(18px);
   @include m_r(9px);
   @include m_l(9px);
   @include m_b(18px);
   @include centered;
-  @include p_t(110px);
   cursor: pointer;
   &:hover {
-    @include bg(image-url("icons/add_goal_on.png") no-repeat);
+    background: white;
     @include hex(#4d4d4d);
+    text-decoration: none;
   }
   .plus {
     @include fs(48px);
     @include p_b(15px);
   }
 }
+
+.goal-card-new { width: 236px;  height: 160px; @include p_t(110px); }
+.course-card-new { width: 236px; height: 210px; @include p_t(130px); }
 
 .goal-card {
   @include float-left;

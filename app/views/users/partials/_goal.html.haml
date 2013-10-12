@@ -3,7 +3,8 @@
 
 
 - if @owner
-  .goal-card-new{:data => {:toggle => 'modal'}, :href => '#new-goal-modal', :role => 'button'}
+  //.goal-card-new{:data => {:toggle => 'modal'}, :href => '#new-goal-modal', :role => 'button'}
+  = link_to user_welcome_path, :class => "goal-card-new" do
     .plus +
     Add goals
   .clear                                     

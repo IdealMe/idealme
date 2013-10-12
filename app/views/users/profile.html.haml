@@ -1,39 +1,40 @@
-.container           
-  .user-profile
-    .user-avatar
-      = image_tag @user.avatar.url(:square)     
-    .user-informaiton
-      .user-fullname
-        = @user.fullname
-      .user-tagline    
-        - if @owner
-          = best_in_place @user, :tagline, :type => :textarea, :classes => 'im-best-in-place', :activator => '.user-tagline-editor', :path => ajax_user_path(@user), :nil => '+ add a tagline'
-          %i.icon-edit.user-tagline-editor
-        - else
-          = @user.tagline
-    .user-counters
-      .counter
-        Checkins
-        .checkins-box  
-          = @checkins.length
-      .divider
-      .counter
-        Collected
-        .collected-box 0
-      .divider
-      .counter
-        Created
-        .created-box 
-          = @user.created_jewels.length
-      .divider
-      .counter
-        Supporters
-        .supporters-box 0
-      .divider
-      .counter
-        Supporting
-        .supporting-box 0
-    .clear
+.container
+  /
+    .user-profile
+      .user-avatar
+        = image_tag @user.avatar.url(:square)   
+      .user-informaiton
+        .user-fullname
+          = @user.fullname
+        .user-tagline    
+          - if @owner
+            = best_in_place @user, :tagline, :type => :textarea, :classes => 'im-best-in-place', :activator => '.user-tagline-editor', :path => ajax_user_path(@user), :nil => '+ add a tagline'
+            %i.icon-edit.user-tagline-editor
+          - else
+            = @user.tagline
+      .user-counters
+        .counter
+          Checkins
+          .checkins-box  
+            = @checkins.length
+        .divider
+        .counter
+          Collected
+          .collected-box 0
+        .divider
+        .counter
+          Created
+          .created-box 
+            = @user.created_jewels.length
+        .divider
+        .counter
+          Supporters
+          .supporters-box 0
+        .divider
+        .counter
+          Supporting
+          .supporting-box 0
+      .clear
   /    
     .menu-section
       %ul.user-menu
