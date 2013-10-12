@@ -39,13 +39,10 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .courses-wp .vendor_name { line-height: 26px; }
 .courses-wp .offer_card { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; overflow: hidden; }
 
-.offer_card.left { margin: 0 60px 25px 0; }
-
-.me_page .goal_box { overflow: hidden; }
-.me_page .goal-box-long { height: 270px; }
-.me_page .goal-box-long .lose_weight_icon { margin-top: 65px; margin-bottom: 45px; }
-.goal-box-long .goal_name { color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-weight: bold; }
-.offer_section_in { padding-top: 0; }
+.goal-box-long { height: 270px; 
+	.avatar { padding-top: 65px; }
+	.goal-name { font-size: 16px; }
+}
 
 .bottom-join-wp { background: #fbfbf3; padding: 45px 0; }
 .bottom-join-wp .box { width: 940px; background: #edecde; margin: 0 auto; padding: 10px; }
@@ -96,7 +93,7 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 
 footer { background: #fbfbf3;
 	.container { border-top: solid 1px #e4e4e4; padding: 25px 0; }
-	.footer_menu { position: static; display: block; margin: 0 auto; width: 380px; }
-	.footer_menu li { display: inline; float: left; margin-right: 30px; &.last { margin: 0; } }
-  .footer_menu li a { color: #C9C9C9; font-family: Arial; font-size: 13px; font-style: normal; font-weight: normal; &:hover { color: #1d95cb; } }
+	.footer-menu { position: static; display: block; margin: 0 auto; width: 380px; }
+	.footer-menu li { display: inline; float: left; margin-right: 30px; &.last { margin: 0; } }
+  .footer-menu li a { color: #C9C9C9; font-family: Arial; font-size: 13px; font-style: normal; font-weight: normal; &:hover { color: #1d95cb; } }
 }

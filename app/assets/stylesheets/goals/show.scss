@@ -3,14 +3,6 @@
     >.container {
       >.top-section {
         @include m_b(20px);
-        >.goal-name {
-          @include fs(36px);
-          @include lh(20px);
-          @include hex(#6b635b);
-          @include bg(image-url('icons/flag_big.png') no-repeat 0 21px);
-          padding: 40px 0 18px 47px;
-          @include bold;
-        }
         >.goal-status {
           @include abs_tr(36px, 100px);
           >.btn {

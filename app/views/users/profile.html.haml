@@ -33,26 +33,38 @@
       .counter
         Supporting
         .supporting-box 0
-    .clear        
-  .menu-section
-    %ul.user-menu
-      - if @owner
-        %li{:class => active_tab?('goal', @tab)}
-          = link_to 'goals', user_tab_path(@user, 'goal'), :class => 'goal-icon'
-        %li{:class => active_tab?('course', @tab)}
-          = link_to 'course history', user_tab_path(@user, 'course'), :class => 'course-icon'
-        %li{:class => active_tab?('course', @tab)}
-          = link_to 'saved course', user_tab_path(@user, 'saved-course'), :class => 'course-icon'
-      - else
-        %li.active
-          = link_to 'public goals', user_tab_path(@user, 'goal'), :class => 'goal-icon'
-    .clear              
-  - if @owner
-    - if @tab == 'goal'
+    .clear
+  /    
+    .menu-section
+      %ul.user-menu
+        - if @owner
+          %li{:class => active_tab?('goal', @tab)}
+            = link_to 'goals', user_tab_path(@user, 'goal'), :class => 'goal-icon'
+          %li{:class => active_tab?('course', @tab)}
+            = link_to 'course history', user_tab_path(@user, 'course'), :class => 'course-icon'
+          %li{:class => active_tab?('course', @tab)}
+            = link_to 'saved course', user_tab_path(@user, 'saved-course'), :class => 'course-icon'
+        - else
+          %li.active
+            = link_to 'public goals', user_tab_path(@user, 'goal'), :class => 'goal-icon'
+      .clear              
+    - if @owner
+      - if @tab == 'goal'
+        = render :partial => 'users/partials/goal'
+      - elsif @tab == 'course'
+        = render :partial => 'users/partials/course'
+      - elsif @tab == 'saved-course'
+        = render :partial => 'users/partials/saved_course'
+    - else
       = render :partial => 'users/partials/goal'
-    - elsif @tab == 'course'
-      = render :partial => 'users/partials/course'
-    - elsif @tab == 'saved-course'
-      = render :partial => 'users/partials/saved_course'
-  - else
+
+  .menu-section
+    .user-menu
+      .li GOALS
+  .goals-section
     = render :partial => 'users/partials/goal'
+  .menu-section
+    .user-menu
+      .li MY COURSES
+  .offer-section
+    = render :partial => 'users/partials/course'

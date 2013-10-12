@@ -108,7 +108,7 @@
     @include m_b(50px);
     .user-menu {
       margin: 0;
-      @include float-left;
+      //@include float-left;
       li {
         @include float-left;
         margin-right: 10px;

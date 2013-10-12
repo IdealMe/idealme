@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def profile
     redirect_to user_welcome_path if current_user.sign_in_count == 1
-    @tab = params[:tab] || 'goal'
+    #@tab = params[:tab] || 'goal'
     if @owner
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).all
       @checkins = Checkin.for_user(@user).all

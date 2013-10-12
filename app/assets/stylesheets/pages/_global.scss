@@ -101,132 +101,21 @@ body {
   }
 }
 
-/* ******************************************** */
-/* offer card elements */
-/* ******************************************** */
-.offer_card {
-  width: 252px;
-  margin: 0 auto 12px auto;
-  @include bg(white);
-  border: 1px solid #ebebeb;
-  @include left;
-  .offer_title {
-    @include fs(12px);
-    @include hex(#4b4b4b);
-    margin-top: 12px;
-    margin-left: 16px;
-    @include block;
-  }
-  .vendor_pic {
-    @include float-left;
-    margin: 12px 10px 6px 13px;
-  }
-  .vendor_name {
-    @include fs(12px);
-    @include lh(16px);
-    @include hex(#6b635b);
-    @include p_t(13px);
-    @include block;
-  }
-  .vendor_working_area {
-    @include fs(10px);
-    @include hex(#999999);
-    @include lh(14px);
-  }
+.goal-name { color: #666666; @include fs(12px); @include bold; @include centered; @include m_b(27px); }
+.bottom-box { border-top: 1px solid #EBEBEB; }
+.user-card, .goal-card, .goal-user-card { .avatar { height: 125px; @include p_t(35px); @include centered; } }
+.like-box { @include float-left; width: 90px; padding: 7px 5px 5px 5px; border-top: 2px solid #6B823C;
+  .like, .dislike { @include fs(10px); @include hex(#999999); @include pointer; padding: 0 5px 0 20px; }
+  .like { @include bg(image-url("icons/like.png") no-repeat); @include float-left; }
+  .dislike { @include bg(image-url("icons/dislike.png") no-repeat); @include float-right; }
 }
 
-.bottom_box {
-  border-top: 1px solid #ebebeb;
-}
-
-.comment_box {
-  @include float-left;
-  @include fs(10px);
-  @include hex(#4d4d4d);
-  width: 29px;
-  padding: 7px 33px 7px 0px;
-  @include m_l(8px);
-  border-left: 1px solid #ebebeb;
-  border-right: 1px solid #ebebeb;
-  @include bg(image-url("icons/comment.png") no-repeat);
-  @include bg_pos(70%, 8px);
-  @include right;
-}
-
-.like_box {
-  @include float-left;
-  border-top: 2px solid #6b823c;
-  width: 90px;
-  padding: 5px 5px 5px 5px;
-  .like {
-    @include bg(image-url("icons/like.png") no-repeat);
-    @include float-left;
-    @include fs(10px);
-    @include hex(#999999);
-    @include pointer;
-    padding: 0 5px 0 20px;
-  }
-  .dislike {
-    @include bg(image-url("icons/dislike.png") no-repeat);
-    @include float-right;
-    @include fs(10px);
-    @include hex(#999999);
-    @include pointer;
-    padding: 0 5px 0 20px;
-  }
-}
-
-.price_box {
-  @include float-left;
-  @include fs(10px);
-  @include hex(#4d4d4d);
-  @include centered;
-  width: 80px;
-  padding: 7px 0px;
-  @include m_l(13px);
-  border-left: 1px solid #ebebeb;
-  border-right: 1px solid #ebebeb;
-}
-
-.add_me_box {
-  @include float-left;
-  @include fs(16px);
-  @include hex(#797979);
-  @include rel;
-  @include bold;
-  @include pointer;
-  .unchecked {
-    width: 57px;
-    text-align: center;
-    padding: 6px 0;
-  }
-  .checked {
-    display: none;
-  }
-}
-
-/* ******************************************** */
-/* goals card elements */
-/* ******************************************** */
-.goal_box {
-  @include float-left;
-  width: 230px;
-  @include bg(#fcfcfc);
-  border: 1px solid #e4e4e4;
-  @include border-radius(5px);
-  @include m_r(28px);
-  @include pointer;
-  &:hover {
-    @include bg(white);
-    border-color: #c9c9c9;
-  }
-  .goal_name {
-    color: #666666;
-    @include fs(12px);
-    @include bold;
-    @include centered;
-    @include m_b(27px);
-  }
+.price-box, .comment-box { @include float-left; @include fs(10px); @include hex(#4d4d4d); }
+.price-box { @include centered; width: 80px; padding: 7px 0px; @include m_l(13px); border-left: 1px solid #ebebeb; border-right: 1px solid #ebebeb; }
+.comment-box { width: 29px; padding: 7px 33px 7px 0px; @include m_l(8px); border-left: 1px solid #ebebeb; border-right: 1px solid #ebebeb; @include bg(image-url("icons/comment.png") no-repeat); @include bg_pos(70%, 8px); @include right; }
+.add-me-box { @include float-left; @include fs(16px); @include hex(#797979); @include rel; @include bold; @include pointer;
+  .unchecked { width: 57px; text-align: center; padding: 6px 0; }
+  .checked { display: none; }
 }
 
 /* ******************************************** */

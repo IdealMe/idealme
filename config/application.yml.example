@@ -6,6 +6,9 @@ PAYPAL_POST_URL: ********************
 PAYPAL_ACCOUNT: ********************
 PAYPAL_CERT_ID: ********************
 
+SENDGRID_API_USERNAME: ********************
+SENDGRID_API_PASSWORD: ********************
+
 development: ********************
   FACEBOOK_API_KEY: ********************
   FACEBOOK_API_SECRET: ********************
@@ -24,10 +27,7 @@ development: ********************
   STRIPE_SECRET_KEY: ********************
   STRIPE_PUBLISHIABLE_KEY: ********************
 
-  SENDGRID_API_USERNAME: ********************
-  SENDGRID_API_PASSWORD: ********************
-
-  #AWS_S3_BUCKET: ********************
+  AWS_S3_BUCKET: ********************
   #AWS_S3_ASSET_BUCKET: ********************
   #AWS_CF_STREAMING: ********************
   #AWS_CF_ASSET: ********************
@@ -67,11 +67,8 @@ production:
   PAYPAL_SIGNATURE: ********************
   STRIPE_SECRET_KEY: ********************
   STRIPE_PUBLISHIABLE_KEY: ********************
-
-  SENDGRID_API_USERNAME: ********************
-  SENDGRID_API_PASSWORD: ********************
   
-  #AWS_S3_BUCKET: ********************
+  AWS_S3_BUCKET: ********************
   #AWS_S3_ASSET_BUCKET: ********************
   #AWS_CF_STREAMING: ********************
   #AWS_CF_ASSET: ********************

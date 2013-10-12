@@ -37,54 +37,6 @@
       @include lh(14px);
     }
   }
-  .like-box {
-    @include float-left;
-    width: 90px;
-    padding: 7px 5px 5px 5px;
-    .like {
-      @include bg(image-url("icons/like.png") no-repeat);
-      @include float-left;
-      @include fs(10px);
-      @include hex(#999999);
-      @include pointer;
-      padding: 0 5px 0 20px;
-    }
-    .dislike {
-      @include bg(image-url("icons/dislike.png") no-repeat);
-      @include float-right;
-      @include fs(10px);
-      @include hex(#999999);
-      @include pointer;
-      padding: 0 5px 0 20px;
-    }
-  }
-  .price-box {
-    @include float-left;
-    @include fs(10px);
-    @include hex(#4d4d4d);
-    @include centered;
-    width: 80px;
-    padding: 7px 0px;
-    @include m_l(13px);
-    border-left: 1px solid #ebebeb;
-    border-right: 1px solid #ebebeb;
-  }
-  .add-me-box {
-    @include float-left;
-    @include fs(16px);
-    @include hex(#797979);
-    @include rel;
-    @include bold;
-    @include pointer;
-    .unchecked {
-      width: 57px;
-      text-align: center;
-      padding: 6px 0;
-    }
-    .checked {
-      display: none;
-    }
-  }
 }
 
 .discover-card {
@@ -108,7 +60,6 @@
     height: 170px;
     padding: 10px;
     @include block;
-
   }
 
   .ruby-icon {
@@ -128,60 +79,6 @@
       color: #4b4b4b;
     }
   }
-
-  .comment-box {
-    @include float-left;
-    @include fs(10px);
-    @include hex(#4d4d4d);
-    width: 29px;
-    padding: 7px 33px 7px 0px;
-    @include m_l(8px);
-    border-left: 1px solid #ebebeb;
-    border-right: 1px solid #ebebeb;
-    @include bg(image-url("icons/comment.png") no-repeat);
-    @include bg_pos(70%, 8px);
-    @include right;
-  }
-
-  .like-box {
-    @include float-left;
-    width: 90px;
-    padding: 7px 5px 5px 5px;
-    .like {
-      @include bg(image-url("icons/like.png") no-repeat);
-      @include float-left;
-      @include fs(10px);
-      @include hex(#999999);
-      @include pointer;
-      padding: 0 5px 0 20px;
-    }
-    .dislike {
-      @include bg(image-url("icons/dislike.png") no-repeat);
-      @include float-right;
-      @include fs(10px);
-      @include hex(#999999);
-      @include pointer;
-      padding: 0 5px 0 20px;
-    }
-  }
-  .add-me-box {
-    @include float-left;
-    @include fs(16px);
-    @include hex(#797979);
-    @include rel;
-    @include bold;
-    @include pointer;
-    padding: 6px 0;
-
-    .unchecked {
-      width: 57px;
-      text-align: center;
-    }
-    .checked {
-      display: none;
-    }
-  }
-
   >.modal {
     width: 600px;
     margin-left: -300px;
@@ -294,7 +191,6 @@
                   }
                 }
               }
-
             }
           }
         }
@@ -308,47 +204,7 @@
       width: 380px;
       float: left;
     }
-
-    .add-me-box {
-      @include float-left;
-      @include fs(16px);
-      @include hex(#797979);
-      @include rel;
-      @include bold;
-      @include pointer;
-      padding: 5px 0;
-      .unchecked {
-        width: 57px;
-        text-align: center;
-      }
-      .checked {
-        display: none;
-      }
-    }
-    .like-box {
-      @include float-left;
-      width: 90px;
-      padding: 5px 5px 5px 5px;
-      .like {
-        @include bg(image-url("icons/like.png") no-repeat);
-        @include float-left;
-        @include fs(10px);
-        @include hex(#999999);
-        @include pointer;
-        padding: 0 5px 0 20px;
-      }
-      .dislike {
-        @include bg(image-url("icons/dislike.png") no-repeat);
-        @include float-right;
-        @include fs(10px);
-        @include hex(#999999);
-        @include pointer;
-        padding: 0 5px 0 20px;
-      }
-    }
-
   }
-
 }
 
 .goal-user-card {
@@ -357,58 +213,14 @@
   @include bg(white);
   border: 1px solid #e4e4e4;
   @include border-radius(5px);
-  @include m_r(9px);
+  @include m_r(28px);
   @include m_l(9px);
   @include m_b(18px);
   @include pointer;
+  height: 163px;
   &:hover {
     @include bg(white);
     border-color: #c9c9c9;
-  }
-
-  .avatar {
-    height: 125px;
-    @include p_t(35px);
-    @include centered;
-  }
-  .name {
-    color: #666666;
-    @include fs(12px);
-    @include bold;
-    @include centered;
-    @include m_b(27px);
-  }
-
-  .bottom-box {
-    @include bg(#fafafa);
-    height: 55px;
-    @include lh(55px);
-    @include centered;
-
-  }
-  .picker {
-    @include fs(36px);
-  }
-
-  .check-ins {
-    @include float-left;
-    width: 45px;
-    padding: 10px 15px;
-    @include centered;
-  }
-  .gems-collected {
-    @include float-left;
-    width: 48px;
-    padding: 10px 15px;
-    border-left: 1px solid #e4e4e4;
-    border-right: 1px solid #e4e4e4;
-    @include centered;
-  }
-  .gems-created {
-    @include float-left;
-    width: 45px;
-    @include centered;
-    padding: 10px 15px;
   }
 }
 
@@ -450,19 +262,6 @@
     border-color: #c9c9c9;
   }
 
-  .avatar {
-    height: 125px;
-    @include p_t(35px);
-    @include centered;
-  }
-  .goal-name {
-    color: #666666;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 27px;
-    text-align: center;
-  }
-
   .bottom-box {
     border-radius: 0 0 5px 5px;
     background: none repeat scroll 0 0 #FAFAFA;
@@ -470,72 +269,9 @@
     line-height: 55px;
     text-align: center;
   }
-
-  .comment-box {
-    @include float-left;
-    @include fs(10px);
-    @include hex(#4d4d4d);
-    width: 29px;
-    padding: 7px 33px 7px 0px;
-    @include m_l(8px);
-    border-left: 1px solid #ebebeb;
-    border-right: 1px solid #ebebeb;
-    @include bg(image-url("icons/comment.png") no-repeat);
-    @include bg_pos(70%, 8px);
-    @include right;
-  }
-  .like-box {
-    @include float-left;
-    width: 90px;
-    padding: 7px 5px 5px 5px;
-    .like {
-      @include bg(image-url("icons/like.png") no-repeat);
-      @include float-left;
-      @include fs(10px);
-      @include hex(#999999);
-      @include pointer;
-      padding: 0 5px 0 20px;
-    }
-    .dislike {
-      @include bg(image-url("icons/dislike.png") no-repeat);
-      @include float-right;
-      @include fs(10px);
-      @include hex(#999999);
-      @include pointer;
-      padding: 0 5px 0 20px;
-    }
-  }
-  .price-box {
-    @include float-left;
-    @include fs(10px);
-    @include hex(#4d4d4d);
-    @include centered;
-    width: 80px;
-    padding: 7px 0px;
-    @include m_l(13px);
-    border-left: 1px solid #ebebeb;
-    border-right: 1px solid #ebebeb;
-  }
-  .add-me-box {
-    @include float-left;
-    @include fs(16px);
-    @include hex(#797979);
-    @include rel;
-    @include bold;
-    @include pointer;
-    .unchecked {
-      width: 57px;
-      text-align: center;
-      padding: 6px 0;
-    }
-    .checked {
-      display: none;
-    }
-  }
 }
 
 .user-card {
-
   @include float-left;
   width: 230px;
   @include bg(white);
@@ -549,24 +285,13 @@
     border-color: #c9c9c9;
   }
 
-  .avatar {
-    height: 125px;
-    @include p_t(35px);
-    @include centered;
-  }
   .user-name {
     color: #4b4b4b;
     @include fs(12px);
     display: block;
-
     min-height: 40px;
-
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
-
   }
-
 }
-
-.bottom-box { border-top: 1px solid #EBEBEB; }
