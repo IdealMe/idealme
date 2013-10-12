@@ -37,9 +37,6 @@
       @include lh(14px);
     }
   }
-  .bottom-box {
-    border-top: 1px solid #ebebeb;
-  }
   .like-box {
     @include float-left;
     width: 90px;
@@ -130,9 +127,6 @@
     a {
       color: #4b4b4b;
     }
-  }
-  .bottom-box {
-    border-top: 1px solid #ebebeb;
   }
 
   .comment-box {
@@ -358,23 +352,6 @@
 }
 
 .goal-user-card {
-  .btn {
-    @include bg(white);
-    @include bg-pos(top, left);
-    @include border-radius(2px);
-    border: 1px solid #ebebeb;
-    @include box-shadow(none);
-    padding: 11px 35px;
-    @include hex(#4d4d4d);
-    @include fs(12px);
-    @include lh(12px);
-    @include upper;
-    &:hover {
-      @include bg-pos(top, left);
-      border: 1px solid #bcbcbc;
-      //@include background-image(linear-gradient(top, white, #fafafa));
-    }
-  }
   @include float-left;
   width: 230px;
   @include bg(white);
@@ -459,23 +436,6 @@
 }
 
 .goal-card {
-  .btn {
-    @include bg(white);
-    @include bg-pos(top, left);
-    @include border-radius(2px);
-    border: 1px solid #ebebeb;
-    @include box-shadow(none);
-    padding: 11px 35px;
-    @include hex(#4d4d4d);
-    @include fs(12px);
-    @include lh(12px);
-    @include upper;
-    &:hover {
-      @include bg-pos(top, left);
-      border: 1px solid #bcbcbc;
-      //@include background-image(linear-gradient(top, white, #fafafa));
-    }
-  }
   @include float-left;
   width: 230px;
   @include bg(white);
@@ -484,6 +444,7 @@
   @include m_l(9px);
   @include m_b(18px);
   @include pointer;
+  border-radius: 5px 5px 5px 5px;
   &:hover {
     @include bg(white);
     border-color: #c9c9c9;
@@ -495,20 +456,19 @@
     @include centered;
   }
   .goal-name {
-    color: #4b4b4b;
-    @include fs(12px);
-    display: block;
-
-    min-height: 40px;
-
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-
+    color: #666666;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 27px;
+    text-align: center;
   }
 
   .bottom-box {
-    border-top: 1px solid #ebebeb;
+    border-radius: 0 0 5px 5px;
+    background: none repeat scroll 0 0 #FAFAFA;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
   }
 
   .comment-box {
@@ -608,3 +568,5 @@
   }
 
 }
+
+.bottom-box { border-top: 1px solid #EBEBEB; }
