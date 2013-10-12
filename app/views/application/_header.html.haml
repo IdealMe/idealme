@@ -13,9 +13,9 @@
         //  = link_to 'Archived goals', archived_goals_path
         //%li                                                 
         //  = link_to 'Give feedback', feedbacks_path                
-        //- if can? :access, :admin
-        //  %li
-        //    = link_to 'Admin', admin_root_path
+        - if can? :access, :admin
+          %li
+            = link_to 'Admin', admin_root_path
         %li.sign-out
           = link_to 'Sign out', destroy_user_session_path
     %ul.left-menu
