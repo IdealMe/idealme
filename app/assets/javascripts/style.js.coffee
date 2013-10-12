@@ -29,7 +29,7 @@ $ ->
       user_menu.show()
 
   $.stayInWebApp()
-  
+
   #placeholder for form
   $("input, textarea").focus ->
     if $(this).attr("placeholder") is $(this).val()
@@ -60,6 +60,8 @@ $ ->
             toured: "1"
 
         dataType: "json"
+        success: () ->
+          window.location  = "/" + current_user_username + "/welcome"
 
     )
     
@@ -150,7 +152,7 @@ $ ->
     #            title: "Best of all, it's free!",
     #            content: "Yeah! Free as in beer... or speech. Use and abuse, but don't forget to contribute!"
     #        }
-    tour.start()
+    tour.restart()
 
   $(".sortable").sortable
     axis: "y"

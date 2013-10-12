@@ -1,2 +1,3 @@
-- @courses.each do |course|
-  =render :partial => 'partials/course_card', :locals => {:course => course}
+- unless @courses.blank?
+  - @courses.each do |course|
+    =render :partial => 'partials/course_card', :locals => {:course => course}
