@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/james2m/seedbank.git
-  revision: c7a272751336f0d17103028f45b88eac62cbedd7
-  specs:
-    seedbank (0.3.0.pre2)
-
-GIT
   remote: git://github.com/rails/rails.git
   revision: c539c684aa0fc08769304746e1702aa1b4ddd4c8
   branch: 3-2-stable
@@ -509,7 +503,6 @@ DEPENDENCIES
   rspec-rails (= 2.14.0)
   rvm-capistrano
   sass-rails (~> 3.2.6)
-  seedbank!
   selenium-webdriver
   simple_form
   simplecov

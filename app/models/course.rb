@@ -33,9 +33,8 @@ class Course < ActiveRecord::Base
   # == Validations ==========================================================
   validates :name, :presence => true
   validates :name, :length => {:minimum => 1}
-
   validates_inclusion_of :cost, :in => 0..999999
-
+  validates :default_market, :presence => true
 
   # == Scopes ===============================================================
   scope :with_sections_and_lectures, -> { includes(:sections => :lectures) }

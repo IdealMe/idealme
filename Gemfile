@@ -31,8 +31,6 @@ gem 'airbrake'
 gem 'gon'
 #Easy upload management for ActiveRecord
 gem 'paperclip', '~> 3.4.2'
-#Extends Rails seeds to split out complex seeds into multiple files and lets each environment have it's own seeds.
-gem 'seedbank', :github => 'james2m/seedbank'
 #A Rails form builder that generates Twitter Bootstrap markup and helps keep your code clean
 gem 'formatted_form'
 
