@@ -148,23 +148,10 @@
 }
 
 .cms-about-card {
-
   margin-bottom: 40px;
-  >.cms-about-title {
-    width: 250px;
-    >h2 {
-      font-size: 35px;
-    }
-
-    >p {
-      color: #999999;
-    }
-  }
-
-  >.cms-about-image {
-    width: 600px;
-  }
-
+  p { color: #999999; font-size: 20px; line-height: 32px; }
+  .cms-about-title { width: 600px; }
+  .cms-about-image { text-align: center; width: 250px; }
 }
 
 .cms-customer-care-contact-phone {
@@ -192,10 +179,12 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  >h1, >h2 {
+  ul, ol { list-style: none outside none; } 
+  h1, h2 {
     text-align: center;
     line-height: 40px;
   }
+  h4 { font-weight: normal; }
 }
 
 .cms-wide-container {

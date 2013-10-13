@@ -36,6 +36,8 @@
             = yield
       - else
         = yield
+    - if request.path == '/static/about'
+      = render "join_up"
     %footer
       = render 'footer'
     = get_friendly_affiliate_tracking

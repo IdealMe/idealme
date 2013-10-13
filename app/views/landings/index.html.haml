@@ -92,25 +92,4 @@
           %img{:src => "assets/user_4.png", :width => "32"}/
         .user_name Shannon Thomas
     .clear
-
-.bottom-join-wp
-  .container
-    %h3
-      Become a member of Ideal Me today and start living
-      %em your
-      dream life!
-    .box
-      = form_for :user, url: user_session_path do |f|
-        = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
-        .or-text
-          Or
-        .field-wp
-          %span.email-icon &nbsp;
-          = f.email_field :email, :placeholder => "Email", :class => "field"
-        .field-wp
-          %span.pass-icon &nbsp;
-          = f.text_field :password, :placeholder => "Password", :class => "field"
-        .join-btn-wp
-          %span.strike &nbsp;
-          = f.submit "Join Now (It's Free)", :class => "join-btn"
-        .clear &nbsp;
+= render "join_up"
