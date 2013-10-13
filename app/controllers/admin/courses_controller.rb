@@ -38,7 +38,7 @@ class Admin::CoursesController < Admin::BaseController
   # DELETE /admin/courses/1
   def destroy
     @course.destroy
-    redirect_to admin_courses_url, :notice => 'CCourse was successfully deleted'
+    redirect_to admin_courses_url, :notice => 'Course was successfully deleted'
   end
 
   protected
