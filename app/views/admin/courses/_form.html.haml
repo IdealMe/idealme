@@ -2,6 +2,11 @@
   %fieldset
     #legend
       %legend Course
+  - if @course.errors.any?
+    = @course.errors.full_messages.each do |msg|
+      %ul.alert.alert-error.unstyled
+        %li= msg
+
   = f.text_field :name, :autofocus => true
   = f.number_field :cost
   = f.number_field :affiliate_commission
