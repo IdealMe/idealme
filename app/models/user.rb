@@ -177,15 +177,15 @@ class User < ActiveRecord::Base
   end
 
   def voted?(poll)
-    PollResult.where(:owner_id => self.id, :poll_question_id => poll.id).first
+    PollResult.where(:owner_id => self.id, :poll_question_id => poll.id).exists?
   end
 
   def can_vote?(poll)
-    PollResult.where(:owner_id => self.id, :poll_question_id => poll.id).first
+    PollResult.where(:owner_id => self.id, :poll_question_id => poll.id).exists?
   end
 
   def subscribed_course?(course)
-    CourseUser.where(:user_id => self.id, :course_id => course.id).first
+    CourseUser.where(:user_id => self.id, :course_id => course.id).exists?
   end
 
   def subscribed_section?(section)
