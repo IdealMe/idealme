@@ -6,28 +6,28 @@
           .slide-wrapper
             %h3.market-name
               = market.name
-            %p.owner-name 
-              %em by 
+            %p.owner-name
+              %em by
               = market.course.owner.fullname
             = link_to 'ABOUT THIS COURSE', market_path(market), :class => 'btn btn-arrow'
 
 .container
-  %h3.section-header 
+  %h3.section-header
     Recommended for you
   - @courses.sample(4).each do |course|
-    =render :partial => 'partials/course_card', :locals => {:course => course}
+    = render :partial => 'partials/course_card', :locals => {:course => course}
   .clear
 
 .container
-  %h3.section-header 
+  %h3.section-header
     Trending
   - @courses.sample(4).each do |course|
-    =render :partial => 'partials/course_card', :locals => {:course => course}
-  .clear    
-          
+    = render :partial => 'partials/course_card', :locals => {:course => course}
+  .clear
+
 .container
-  %h3.section-header 
+  %h3.section-header
     New and noteworthy
   - @courses.sample(4).each do |course|
-    =render :partial => 'partials/course_card', :locals => {:course => course}
+    = render :partial => 'partials/course_card', :locals => {:course => course}
   .clear

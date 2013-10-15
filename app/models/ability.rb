@@ -28,7 +28,6 @@ class Ability
         end
         can :manage, GoalUser, :user_id => user.id
         can :read, GoalUser, :private => false
-
       end
       if user.access_affiliate
       end
