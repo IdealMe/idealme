@@ -8,7 +8,7 @@
   - @markets.each do |market|
     %tr
       %td= link_to market.name, edit_admin_market_path(market)
-      %td= link_to market.course.name, edit_admin_course_path(market.course)
+      %td= link_to market.course.name, edit_admin_course_path(market.course) if market.course
 
 %br
 

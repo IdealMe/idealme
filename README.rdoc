@@ -2,7 +2,7 @@
 
 - Ruby 2.0.0
 - Ruby on Rails 3.2.13
-- MySQl
+- MySQL
 
 ## Database creation and initialization
 
