@@ -1,25 +1,28 @@
-DEFAULTS: &defaults
-  adapter: mysql2
-  host: 127.0.0.1
-  encoding: utf8
-  username: root
+defaults: &defaults
+  pool: 5
+  adapter: postgresql
+  host: localhost
+  port: 5432 # connect directly to postgres
+  timeout: 5000
+  database: idealme_development
+  username: idealme
   password:
 
 development:
   <<: *defaults
-  database: idealme_dev
+
 
 test:
   <<: *defaults
-  database: idealme_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: idealme_test
 
 staging:
-  <<: *defaults     
+  <<: *defaults
   username: idealme_rw
   password: 32e982h3e92h!
   database: idealme_staging
 
 production:
   <<: *defaults
-  database: idealme_prod
+  database: idealme_production
 

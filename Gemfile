@@ -10,13 +10,13 @@ gem 'acts_as_list'
 gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
 
 #A simple, fast Mysql library for Ruby, binding to libmysql
-gem 'mysql2'
+# gem 'mysql2'
 
 #A thin and fast web server
 gem 'thin'
 
 #Pg is the Ruby interface to the PostgreSQL RDBMS. It works with PostgreSQL 8.4 and later
-# gem 'pg'
+gem 'pg'
 
 #Flexible authentication solution for Rails with Warden
 gem 'devise'
