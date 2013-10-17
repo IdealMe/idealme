@@ -16,6 +16,9 @@ listen '/tmp/unicorn.idealme.sock', :backlog => 2048
 APP_PATH = '~/apps/idealme/current'
 working_directory APP_PATH
 pid APP_PATH + '/tmp/pids/unicorn.pid'
+
+`touch #{APP_PATH}/log/unicorn.stderr.log`
+`touch #{APP_PATH}/log/unicorn.stdout.log`
 stderr_path APP_PATH + '/log/unicorn.stderr.log'
 stderr_path APP_PATH + '/log/unicorn.stdout.log'
 
