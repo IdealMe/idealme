@@ -28,7 +28,11 @@ namespace :deploy do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
       within release_path do
-        sudo "~/.rvm/bin/idealme_bundle exec bluepill restart idealme"
+        if test('[ "$(pidof bluepill)" ]')
+          sudo "~/.rvm/bin/idealme_bundle exec bluepill restart idealme"
+        else
+          sudo "~/.rvm/bin/idealme_bundle exec bluepill start idealme"
+        end
       end
     end
   end
