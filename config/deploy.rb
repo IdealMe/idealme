@@ -8,7 +8,7 @@ set :branch, 'mvp'
 set :deploy_to, '~/apps/idealme'
 # set :scm, :git
 
-set :format, :pretty
+#set :format, :pretty
 # set :log_level, :debug
 # set :pty, true
 
@@ -46,8 +46,19 @@ namespace :deploy do
     end
   end
 
-  before "deploy:migrate", "copy_application_yaml"
+  #namespace :assets do
+  #  desc "compile assets locally and upload before finalize_update"
+  #  task :deploy do
+  #    %x[bundle exec rake assets:clean && bundle exec rake assets:precompile]
+  #    ENV['COMMAND'] = " mkdir '#{release_path}/public/assets'"
+  #    invoke
+  #    upload "#{Rails.root}/public/assets", "#{release_path}/public/assets", {:recursive => true}
+  #  end
+  #end
+  #
+  #before :finishing, "assets:deploy"
 
+  before "deploy:migrate", "copy_application_yaml"
   after :finishing, 'deploy:cleanup'
 
 

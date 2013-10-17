@@ -17,7 +17,7 @@ require 'capistrano/deploy'
 #
 require 'capistrano/bundler'
 require 'capistrano/rvm'
-require 'capistrano/rails/assets'
+# require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 
 require 'pry'
