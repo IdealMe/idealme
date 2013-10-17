@@ -11,18 +11,18 @@ defaults: &defaults
 development:
   <<: *defaults
 
-
 test:
   <<: *defaults
   database: idealme_test
 
 staging:
   <<: *defaults
-  username: idealme_rw
-  password: 32e982h3e92h!
   database: idealme_staging
+  password: UjUyfCBZh89Wqd
+
 
 production:
   <<: *defaults
   database: idealme_production
+  password: UjUyfCBZh89Wqd
 
