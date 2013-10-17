@@ -27,7 +27,9 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      execute :bluepill, "restart idealme"
+      within release_path do
+        sudo "~/.rvm/bin/idealme_bundle exec bluepill restart idealme"
+      end
     end
   end
 
