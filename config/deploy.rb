@@ -27,13 +27,13 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      within release_path do
-        if test('[ "$(pgrep bluepill)" ]')
-          sudo "service idealme start"
-        else
-          sudo "service idealme restart"
-        end
-      end
+      #within release_path do
+      #  if test('[ "$(pgrep bluepill)" ]')
+      #    sudo "service idealme start"
+      #  else
+      #    sudo "service idealme restart"
+      #  end
+      #end
     end
   end
 
