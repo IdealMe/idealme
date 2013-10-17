@@ -29,9 +29,9 @@ namespace :deploy do
       # execute :touch, release_path.join('tmp/restart.txt')
       within release_path do
         if test('[ "$(pgrep bluepill)" ]')
-          sudo "~/.rvm/bin/idealme_bundle exec bluepill restart idealme"
+          sudo "service idealme start"
         else
-          sudo "~/.rvm/bin/idealme_bundle exec bluepill start idealme"
+          sudo "service idealme restart"
         end
       end
     end
