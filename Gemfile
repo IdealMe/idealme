@@ -138,7 +138,7 @@ group :assets do
   #Integrate Compass into Rails 2.3 and up.
   gem 'compass-rails'
   gem 'font-awesome-rails'
-  gem 'turbo-sprockets-rails3'
+  # gem 'turbo-sprockets-rails3', git: 'https://github.com/spohlenz/turbo-sprockets-rails3.git'
 end
 
 gem 'stripe'
