@@ -55,6 +55,11 @@ GEM
     best_in_place (2.1.0)
       jquery-rails
       rails (~> 3.1)
+    bluepill (0.0.66)
+      activesupport (>= 3.0.0, < 4.0.0)
+      daemons (~> 1.1.4)
+      i18n (>= 0.5.0)
+      state_machine (~> 1.1)
     brakeman (2.1.2)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -386,6 +391,7 @@ GEM
       net-scp
       net-ssh
       term-ansicolor
+    state_machine (1.2.0)
     stripe (1.8.7)
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
@@ -444,6 +450,7 @@ DEPENDENCIES
   acts_as_list
   aws-sdk
   best_in_place
+  bluepill
   brakeman
   browser
   bullet

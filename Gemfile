@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+gem 'bluepill'
+
 # A library for working with SendGrid's Newsletter API. The code is intended for managing and sending newletters.
 gem 'gatling_gun'
 
@@ -116,8 +119,7 @@ gem 'ransack'
 #A Ruby interface to the Twitter API.
 gem 'twitter'
 
-#Strategies for cleaning databases. Can be used to ensure a clean state for testing.
-gem 'database_cleaner'
+
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -189,6 +191,9 @@ group :development, :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'parallel_tests'
+
+  #Strategies for cleaning databases. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner'
 end
 
 group :production, :staging do
