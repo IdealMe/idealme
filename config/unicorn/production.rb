@@ -14,13 +14,14 @@ timeout 30
 listen '/tmp/unicorn.idealme.sock', :backlog => 2048
 
 APP_PATH = '/home/idealme/apps/idealme/current'
+SHARED_PATH = '/home/idealme/apps/idealme/shared'
 working_directory APP_PATH
-pid APP_PATH + '/tmp/pids/unicorn.pid'
+pid SHARED_PATH + '/tmp/pids/unicorn.pid'
 
-`touch #{APP_PATH}/log/unicorn.stderr.log`
-`touch #{APP_PATH}/log/unicorn.stdout.log`
-stderr_path APP_PATH + '/log/unicorn.stderr.log'
-stderr_path APP_PATH + '/log/unicorn.stdout.log'
+`touch #{SHARED_PATH}/log/unicorn.stderr.log`
+`touch #{SHARED_PATH}/log/unicorn.stdout.log`
+stderr_path SHARED_PATH + '/log/unicorn.stderr.log'
+stderr_path SHARED_PATH + '/log/unicorn.stdout.log'
 
 before_fork do |server, worker|
   ##
@@ -34,7 +35,7 @@ before_fork do |server, worker|
   #
   # Using this method we get 0 downtime deploys.
 
-  old_pid = APP_PATH + '/tmp/pids/unicorn.pid.oldbin'
+  old_pid = SHARED_PATH + '/tmp/pids/unicorn.pid.oldbin'
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
