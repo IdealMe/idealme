@@ -27,6 +27,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      execute :bluepill, "restart idealme"
     end
   end
 
@@ -42,6 +43,7 @@ namespace :deploy do
   before "deploy:migrate", "copy_application_yaml"
 
   after :finishing, 'deploy:cleanup'
+
 
 end
 

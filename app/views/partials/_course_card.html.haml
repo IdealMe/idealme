@@ -2,13 +2,14 @@
   = link_to image_tag(course.default_market.avatar.url(:full)), course_path(course)
   = link_to course.default_market.name, course_path(course), :class => 'course-name'
   .owner
-    .avatar
-      = link_to image_tag(course.owner.avatar.url(:thumb)), user_path(course.owner)
-    = link_to course.owner.fullname, user_path(course.owner), :class => 'name'
-    .working-area
-      = course.owner.tagline
+    - if course.owner
+      .avatar
+        = link_to image_tag(course.owner.avatar.url(:thumb)), user_path(course.owner)
+      = link_to course.owner.fullname, user_path(course.owner), :class => 'name'
+      .working-area
+        = course.owner.tagline
     .clear
-  .bottom-box       
+  .bottom-box
     - if current_user
       .like-box
         .like{:data => {:type => course.class, :id => course.id, :direction => 1, :voted => (course.up_voted?(current_user) ? '1':'0')}}
@@ -27,5 +28,5 @@
       = penny_to_currency(course.cost)
     .add-me-box
       .unchecked +
-      .checked    
-    .clear              
+      .checked
+    .clear
