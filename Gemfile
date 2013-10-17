@@ -7,10 +7,7 @@ gem 'gatling_gun'
 gem 'acts_as_list'
 
 #Ruby on Rails
-gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => '3-2-stable'
-
-#A simple, fast Mysql library for Ruby, binding to libmysql
-# gem 'mysql2'
+gem 'rails', '~> 3.2.15'
 
 #A thin and fast web server
 gem 'thin'
@@ -25,7 +22,10 @@ gem 'devise'
 gem 'cancan'
 
 #Capistrano is a utility and framework for executing commands in parallel on multiple remote machines, via SSH.
-gem 'capistrano'
+gem 'capistrano', '~> 3.0.0'
+gem 'capistrano-rails'
+gem 'capistrano-rvm', '~> 0.0.2'
+gem 'capistrano-bundler'
 
 #A generalized Rack framework for multiple-provider authentication.
 gem 'omniauth'
@@ -38,9 +38,6 @@ gem 'omniauth-google-oauth2'
 
 #Twitter strategy for OmniAuth
 gem 'omniauth-twitter'
-
-#Send your application errors to our hosted service and reclaim your inbox.
-# gem 'airbrake'
 
 #If you need to send some data to your js files and you don't want to do this with long way trough views and parsing - use this force!
 gem 'gon'
@@ -57,7 +54,7 @@ gem 'simple_form'
 gem 'comfortable_mexican_sofa', '~> 1.8.0'
 
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.
-gem 'friendly_id'
+gem 'friendly_id', '~> 4.0.10'
 
 #Seamlessly integrates TinyMCE into the Rails asset pipeline introduced in Rails 3.1.
 gem 'tinymce-rails'
@@ -73,7 +70,7 @@ gem 'pry-rails'
 gem 'pry-nav'
 gem 'pry-remote'
 # Great Ruby dubugging companion: pretty print Ruby objects to visualize their structure. Supports custom object formatting via plugins
-gem 'awesome_print'
+# gem 'awesome_print'
 
 
 #AWS SDK for Ruby
@@ -92,8 +89,8 @@ gem 'will_paginate'
 #clone to perform a deep clone that includes user specified associations.
 gem 'deep_cloneable'
 
-#New Relic is a performance management system, developed by New Relic, Inc (http://www.newrelic.com). New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin, hosted on http://github.com/newrelic/rpm/
-gem 'newrelic_rpm'
+# New Relic is a performance management system, developed by New Relic, Inc (http://www.newrelic.com). New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin, hosted on http://github.com/newrelic/rpm/
+# gem 'newrelic_rpm'
 
 #A gem to sign url and stream paths for Amazon CloudFront private content. Includes specific signing methods for both url and streaming paths, including html 'safe' escpaed versions of each.
 gem 'cloudfront-signer'
@@ -141,6 +138,7 @@ group :assets do
   #Integrate Compass into Rails 2.3 and up.
   gem 'compass-rails'
   gem 'font-awesome-rails'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'stripe'
@@ -153,10 +151,6 @@ group :test do
 end
 
 group :development do
-  gem 'capistrano-unicorn', :require => false
-  gem 'capistrano-maintenance'
-  gem 'rvm-capistrano'
-
   gem 'quiet_assets'
 
   #A rails plugin to kill N+1 queries and unused eager loading.

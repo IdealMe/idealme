@@ -1,0 +1,14 @@
+desc "Copy application.yml from shared directory"
+task :copy_application_yaml do
+  on roles(:all) do |host|
+    binding.pry
+    # if test("[ -e ../shared/application.yml ]")
+    #   info "GLARP"
+    # else
+    #   error "NO GLARP"
+    # end
+
+    execute "cp #{shared_path}/application.yml #{release_path}/config/"
+    execute "cp #{shared_path}/database.yml #{release_path}/config/"
+  end
+end
