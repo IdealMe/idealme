@@ -1,7 +1,6 @@
 desc "Copy application.yml from shared directory"
 task :copy_application_yaml do
   on roles(:all) do |host|
-    binding.pry
     # if test("[ -e ../shared/application.yml ]")
     #   info "GLARP"
     # else

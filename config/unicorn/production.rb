@@ -13,7 +13,7 @@ timeout 30
 # Listen on a Unix data socket
 listen '/tmp/unicorn.idealme.sock', :backlog => 2048
 
-APP_PATH = '/apps/idealme/current'
+APP_PATH = '~/apps/idealme/current'
 working_directory APP_PATH
 pid APP_PATH + '/tmp/pids/unicorn.pid'
 stderr_path APP_PATH + '/log/unicorn.stderr.log'
