@@ -80,7 +80,7 @@ Idealme::Application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_API_USERNAME'],
     :password       => ENV['SENDGRID_API_PASSWORD'],
-    :domain         => 'heroku.com',
+    :domain         => 'idealme.com',
     :enable_starttls_auto => true
   }
 end

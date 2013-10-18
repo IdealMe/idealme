@@ -39,6 +39,8 @@ Idealme::Application.configure do
 
   config.action_mailer.default_url_options = {:host => 'idealme.dev'}
 
+  config.middleware.use Rack::LiveReload
+
 end
 
 AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => ENV['AUTHORIZED_NET_LOGIN'], :password => ENV['AUTHORIZED_NET_PASSWORD'], :test => true)
