@@ -67,8 +67,6 @@ namespace :deploy do
 
   before "deploy:migrate", "copy_application_yaml"
   after :finishing, 'deploy:cleanup'
-  after :finishing, 'puma:restart'
-
 
 end
 
