@@ -69,4 +69,10 @@ module ApplicationHelper
     months = (1..12).map { |h| ["%02d"%h, h] }
     options_for_select(months, selected_value)
   end
+
+  def environment_info
+    if Rails.env.development? || Rails.env.test? || Rails.env.staging?
+      Rails.env
+    end
+  end
 end
