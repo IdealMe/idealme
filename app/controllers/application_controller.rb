@@ -130,12 +130,12 @@ class ApplicationController < ActionController::Base
     gon.current_user_username = current_user.username if current_user
     # Set user ID to null if no user is logged in
     gon.current_user_username = nil unless current_user
-    
+
     if current_user
       gon.current_user_toured = current_user.toured
-      
+
     end
-    
+
     # CSRF token
     #if protect_against_forgery?
     gon.form_authenticity_token = form_authenticity_token.inspect
@@ -151,7 +151,7 @@ class ApplicationController < ActionController::Base
   def get_affiliate_tracking
     AffiliateTracking.where(:affiliate_tag => cookies.signed[:tid]).first
   end
-  
+
   # Get the current affiliate user that is cookied on the user's computer
   #
   # @return [User] The current affiliate user that is cookied on the user's computer

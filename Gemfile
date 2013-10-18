@@ -15,6 +15,8 @@ gem 'rails', '~> 3.2.15'
 #A thin and fast web server
 gem 'thin'
 
+gem 'puma'
+
 #Pg is the Ruby interface to the PostgreSQL RDBMS. It works with PostgreSQL 8.4 and later
 gem 'pg'
 

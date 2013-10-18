@@ -3,9 +3,6 @@ require File.expand_path('../application', __FILE__)
 
 Paperclip::Attachment.default_options[:default_url] = '/missing/:class/:attachment/:style.png'
 
-#idealme
-#ralphy28E!
-
 #app17989773@heroku.com
 #akp8nwdl
 
