@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # == Imports ==============================================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable, :token_authenticatable, :confirmable
+         :trackable, :validatable, :omniauthable, :confirmable
 
   # == Slug =================================================================
   def to_param

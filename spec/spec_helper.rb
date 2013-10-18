@@ -9,12 +9,10 @@ require 'rspec/autorun'
 require 'capybara/rails'
 
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 
-
-#Capybara.register_driver :selenium do |app|
-#  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-#end
-Capybara.default_driver = :selenium
+Capybara.javascript_driver = :poltergeist
+Capybara.default_wait_time = 5
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,

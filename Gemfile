@@ -74,8 +74,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'pry-rails'
 gem 'pry-nav'
 gem 'pry-remote'
-# Great Ruby dubugging companion: pretty print Ruby objects to visualize their structure. Supports custom object formatting via plugins
-# gem 'awesome_print'
+gem 'awesome_print'
 
 
 #AWS SDK for Ruby
@@ -152,6 +151,7 @@ gem 'figaro'
 
 group :test do
   gem 'simplecov', :require => false
+  gem 'poltergeist'
 end
 
 group :development do
@@ -183,6 +183,13 @@ group :development do
 
   #Reek is a tool that examines Ruby classes, modules and methods and reports any code smells it finds.
   gem 'reek'
+
+  # gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  # gem 'guard-rubocop'
+  gem 'rack-livereload'
 end
 
 group :development, :test do
