@@ -6,6 +6,10 @@ set :repo_url, 'git@bitbucket.org:idealmeinc/ideal.me.git'
 set :branch, 'mvp'
 
 set :deploy_to, '~/apps/idealme'
+
+set :puma_state, "/tmp/puma.idealme.state"
+set :puma_socket, "unix://tmp/puma.idealme.sock"
+
 # set :scm, :git
 
 #set :format, :pretty
@@ -62,6 +66,7 @@ namespace :deploy do
 
   before "deploy:migrate", "copy_application_yaml"
   after :finishing, 'deploy:cleanup'
+  after :finishing, 'puma:restart'
 
 
 end
