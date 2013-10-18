@@ -38,8 +38,9 @@ namespace :deploy do
       #    sudo "service idealme restart"
       #  end
       #end
+      #execute("kill -1 $(cat /home/idealme/apps/idealme/shared/tmp/pids/unicorn.pid)")
 
-      execute("kill -1 $(cat /home/idealme/apps/idealme/shared/tmp/pids/unicorn.pid)")
+      execute
     end
   end
 
