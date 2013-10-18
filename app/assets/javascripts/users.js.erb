@@ -1,40 +1,40 @@
+
 $(function () {
-    $('.im-best-in-place').best_in_place();
+  $('.im-best-in-place').best_in_place();
 
 
-    $('.goal-picker-unchecked').click(function () {
-        var self = $(this);
-        var goal_id = self.attr('data-goal-id');
-        self.addClass('hide');
-        $('.goal-picker-checked[data-goal-id="' + goal_id + '"]').removeClass('hide');
-        $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('1');
+  $(document).on('click', '.goal-card', function(evt){
+    var self = $(this);
+    var goal_el = self.find('[data-goal-id]').first();
+    var goal_id = $(goal_el).attr('data-goal-id');
+    var selected = self.find('.goal-picker-unchecked').first().hasClass('hide');
+    self.find('.picker img').addClass('hide');
 
-    });
-    $('.goal-picker-checked').click(function () {
-        var self = $(this);
-        var goal_id = self.attr('data-goal-id');
-        self.addClass('hide');
-        $('.goal-picker-unchecked[data-goal-id="' + goal_id + '"]').removeClass('hide');
-        $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('0');
-    });
-
-
-    //Update the register's timezone, during register page
-    $('input[name="user[timezone]"]').val(jstz.determine().name());
-
-    //Update the user's timezone, if it was on the default timezone of Etc/Zulu
-    if (im_js.current_user_id != null && (im_js.timezone == 'Etc/Zulu' || im_js.timezone != jstz.determine().name())) {
-        $.ajax({
-            url: '/ajax/users/' + im_js.current_user_username,
-            async: false,
-            type: 'PUT',
-            cache: false,
-            data: {
-                'user': {
-                    'timezone': jstz.determine().name()
-                }
-            },
-            dataType: 'json'
-        });
+    if (selected) {
+      $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('0');
+      self.find('.picker img.goal-picker-unchecked').removeClass('hide');
+    } else {
+      $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('1');
+      self.find('.picker img.goal-picker-checked').removeClass('hide');
     }
+  });
+
+  //Update the register's timezone, during register page
+  $('input[name="user[timezone]"]').val(jstz.determine().name());
+
+  //Update the user's timezone, if it was on the default timezone of Etc/Zulu
+  if (im_js.current_user_id != null && (im_js.timezone == 'Etc/Zulu' || im_js.timezone != jstz.determine().name())) {
+    $.ajax({
+      url: '/ajax/users/' + im_js.current_user_username,
+      async: false,
+      type: 'PUT',
+      cache: false,
+      data: {
+        'user': {
+          'timezone': jstz.determine().name()
+        }
+      },
+      dataType: 'json'
+    });
+  }
 });
