@@ -13,7 +13,6 @@ describe 'login page' do
   end
 
   it 'testing login with valid data', :js => true do
-    pending 'looks like a timing issue with active record'
     visit new_user_session_path
     fill_in 'user_email', :with => 'normal@idealme.com'
     fill_in 'user_password', :with => 'passpass'
