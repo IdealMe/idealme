@@ -9,7 +9,6 @@ class UsersController < ApplicationController
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).all
       @checkins = Checkin.for_user(@user).all
       @courses = @user.courses
-      
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).all
       @checkins = Checkin.for_user(@user).private_goal(false).all
@@ -32,7 +31,13 @@ class UsersController < ApplicationController
   protected
   # Set the current profile of the given user in the URL, and determine if the active user is the owner of the user profile
   def load_user
-    @user = User.where(:username => params[:id]).first
+
+    if current_user.username == params[:id]
+      @user = current_user
+    else
+      @user = User.where(:username => params[:id]).first
+    end
+
     # The requested user does not exist, redirect back to the user's page
     redirect_to(new_user_session_path) and return unless @user
     # Signals the user is browsing their own profile
