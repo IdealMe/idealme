@@ -84,7 +84,6 @@ class Order < ActiveRecord::Base
 
     order.time = Time.now.to_i
     order.checksum = Digest::SHA1.hexdigest("#{order.market.id}#{order.market.id}#{order.time}#{Idealme::Application.config.secret_token.reverse}")
-
     order
   end
 

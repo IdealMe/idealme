@@ -4,7 +4,8 @@ module TestHelpers
     if Capybara.current_driver == :poltergeist
       #Capybara::Screenshot.screen_shot_and_open_image
       save_screenshot('test.png', :full => true)
-      exec('open test.png')
+      # exec('open test.png')
+      `open -Fg test.png`
     else
       save_and_open_page
     end
