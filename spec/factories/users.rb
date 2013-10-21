@@ -10,6 +10,7 @@ FactoryGirl.define do
     factory :user_admin do
       firstname 'admin'
       lastname 'idealme'
+      username 'admin_idealme'
       email 'admin@idealme.com'
       access_admin true
     end

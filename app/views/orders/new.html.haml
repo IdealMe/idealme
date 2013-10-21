@@ -2,15 +2,15 @@
   .main-section
     .product-info
       .media
-        .pull-left  
+        .pull-left
           = image_tag @market.avatar(:thumb)
         .media-body
-          %h4.media-heading 
+          %h4.media-heading
             = @market.course.name
-          .autor 
-            by 
+          .autor
+            by
             = @market.course.owner.fullname
-          .price 
+          .price
             = penny_to_currency(@market.course.cost)
     = render :partial => 'form'
   .sidebar
@@ -19,7 +19,7 @@
       %ul.list_1
         %li Lifetime access to the online course complete with 136 lectures
         %li On demand access to complete the course
-        %li WhatAn interactive discussion board where students can connect with the instructor & fellow students
+        %li An interactive discussion board where students can connect with the instructor & fellow students
     .modal_title4 AS SEEN IN
     .partners_box
       .elle_icon
