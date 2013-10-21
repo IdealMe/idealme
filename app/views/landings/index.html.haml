@@ -1,17 +1,14 @@
 .promo_section
   .container
     .intro-wp
-      %h2 Take the Ideal Me Challenge: 12 Goals, 1 Per Month, Maximum Results in Minimum Time
+      %h2 What's Stopping You From Living Your Ideal Life?
       .cnt
         .video
           %iframe{:allowfullscreen => "", :frameborder => "0", :height => "225", :src => "//www.youtube.com/embed/piLWFiS1fN8", :width => "370"}
           %span.video-bg &nbsp;
         .text
-          %ul
-            %li Your Ideal Me Challenge:
-            %li 1. Join the community
-            %li 2. Choose your goals
-            %li 3. Get hand-picked, user-reviewed course recommendations
+          %p
+            Join me in the Ideal Me Challenge: 12 goals, 1 a month for max results in minimum time and discover what really works! 
         .join-box
           = form_for :user, url: user_session_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
@@ -31,7 +28,9 @@
     .clear
 .courses-wp
   .title-text
-    %img{:alt => "", :src => "assets/title-text-1.jpg"}/
+    %h2 The 1st 100% Satisfaction Guaranteed Community of Curated Products 
+    %br/ 
+    %h2 That Actually Get Real Results Or Your Money Back!
   %p.top-text
     All courses backed by the
     = succeed "." do
@@ -69,7 +68,7 @@
       .user_info
         .user_pic
           %img{:src => "assets/user_2.png", :width => "32"}/
-        .user_name Shannon Thomas
+        .user_name Desiree Patel
     .clear
     .testimonial.fleft
       .testimonial-box
@@ -81,7 +80,7 @@
       .user_info
         .user_pic
           %img{:src => "assets/user_3.jpg", :width => "32"}/
-        .user_name Shannon Thomas
+        .user_name Tanya Mcdonald
     .testimonial.fright
       .testimonial-box
         .box-cnt
@@ -90,6 +89,6 @@
       .user_info
         .user_pic
           %img{:src => "assets/user_4.png", :width => "32"}/
-        .user_name Shannon Thomas
+        .user_name Laurie Williams
     .clear
 = render "join_up"
