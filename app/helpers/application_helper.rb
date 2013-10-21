@@ -72,7 +72,9 @@ module ApplicationHelper
 
   def environment_info
     if Rails.env.development? || Rails.env.test? || Rails.env.staging?
-      Rails.env
+      content_tag :div, class: 'environment-info' do
+        Rails.env
+      end
     end
   end
 end

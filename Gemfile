@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
+#Ruby on Rails
+gem 'rails', '~> 3.2.15'
 
+gem 'json', '~> 1.8.1'
 gem 'bluepill'
 
 # A library for working with SendGrid's Newsletter API. The code is intended for managing and sending newletters.
@@ -9,8 +12,6 @@ gem 'gatling_gun'
 # An ActiveRecord plugin for managing lists. http://swanandp.github.io/acts_as_list/
 gem 'acts_as_list'
 
-#Ruby on Rails
-gem 'rails', '~> 3.2.15'
 
 #A thin and fast web server
 gem 'thin'
