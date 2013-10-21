@@ -2,7 +2,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.secret_key = '4d0a7be4fcf868024b12e968ac721eeb48eb7fd88833bd635db5259f52ba2c173cea7cd45dee3dbcffdd55511c79932e36bb9d5dd63bf34397a9dcc6f2908b5d'
-  
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
@@ -221,8 +221,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, ENV['FACEBOOK_API_KEY'], ENV['FACEBOOK_API_SECRET'], :scope => 'email,offline_access,publish_stream,user_activities,user_likes,user_interests,xmpp_login', :display => 'popup'
-  config.omniauth :google_oauth2, ENV['GOOGLE_API_KEY'], ENV['GOOGLE_API_SECRET'], {:scope => 'userinfo.email,userinfo.profile,plus.me', :approval_prompt => 'auto'}
+  config.omniauth :facebook,
+                  ENV['FACEBOOK_API_KEY'],
+                  ENV['FACEBOOK_API_SECRET'],
+                  :scope => 'email,offline_access,publish_stream,user_activities,user_likes,user_interests,xmpp_login'
+
+  #config.omniauth :google_oauth2, ENV['GOOGLE_API_KEY'], ENV['GOOGLE_API_SECRET'], {:scope => 'userinfo.email,userinfo.profile,plus.me', :approval_prompt => 'auto'}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

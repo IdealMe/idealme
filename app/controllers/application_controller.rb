@@ -55,8 +55,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(user)
+    root_path
+  end
 
   protected
+
+
 
   def set_last_location
     if (request.fullpath != '/login' && request.fullpath != '/logout' && !request.xhr?)
