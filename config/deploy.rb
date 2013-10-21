@@ -1,14 +1,13 @@
+
 set :application, 'idealme'
-set :repo_url, 'git@bitbucket.org:idealmeinc/ideal.me.git'
+set :repo_url, 'git@github.com:flingbob/idealme.git'
 
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :branch, 'mvp'
+#set :branch, 'origin/mvp'
 
 set :deploy_to, '~/apps/idealme'
 
-set :puma_state, "/tmp/puma.idealme.state"
-set :puma_socket, "unix://tmp/puma.idealme.sock"
 
 # set :scm, :git
 
@@ -29,18 +28,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-      #within release_path do
-      #  if test('[ "$(pgrep bluepill)" ]')
-      #    sudo "service idealme start"
-      #  else
-      #    sudo "service idealme restart"
-      #  end
-      #end
-      #execute("kill -1 $(cat /home/idealme/apps/idealme/shared/tmp/pids/unicorn.pid)")
-
-      execute
+      execute("kill -s USR2 $(cat /tmp/pids/puma.idealme.pid)")
     end
   end
 
@@ -52,18 +40,6 @@ namespace :deploy do
       # end
     end
   end
-
-  #namespace :assets do
-  #  desc "compile assets locally and upload before finalize_update"
-  #  task :deploy do
-  #    %x[bundle exec rake assets:clean && bundle exec rake assets:precompile]
-  #    ENV['COMMAND'] = " mkdir '#{release_path}/public/assets'"
-  #    invoke
-  #    upload "#{Rails.root}/public/assets", "#{release_path}/public/assets", {:recursive => true}
-  #  end
-  #end
-  #
-  #before :finishing, "assets:deploy"
 
   before "deploy:migrate", "copy_application_yaml"
   after :finishing, 'deploy:cleanup'
