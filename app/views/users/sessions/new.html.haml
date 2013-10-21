@@ -8,18 +8,14 @@
         = f.password_field :password, :placeholder => 'Password'
         - if devise_mapping.rememberable?
           = f.check_box :remember_me, :label => 'Stay signed in'
+        - if devise_mapping.recoverable? && controller_name != 'passwords'
+          = link_to 'Forgot password?', new_password_path(resource_name), :class => "forgot-password"
         .control-box
           = f.submit 'Sign in', :class => 'btn btn-red'
   .footer
-    Or sign up with:
     .oauth
-      = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
-      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')
+      Or:
+      = link_to('Sign in with Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue' )
     %p
       Need an account?
       = link_to 'Sign up', new_user_registration_path
-      - if devise_mapping.recoverable? && controller_name != 'passwords'
-        or
-        = link_to 'Recover my account', new_password_path(resource_name)
-    %p
-      = link_to 'Confirm my account',new_user_confirmation_path

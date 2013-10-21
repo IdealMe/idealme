@@ -3,6 +3,7 @@
 .users-registrations-new, .users-registrations-create,
 .users-confirmations-new, .users-confirmations-create, .users-confirmations-show {
   .body-content {
+    padding-top: 100px;
     .authentication-section {
       width: 500px;
       margin: 0 auto;
@@ -10,23 +11,37 @@
       @include fs(16px);
       .modal-box {
         @include m_b(27px);
-        border: 1px solid #ebeae8;
-        border-radius: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
         background: white;
         .account-box {
           .message-box {
             @include fs(18px);
             @include centered;
-            margin: 16px 0 21px 0;
+            font-weight: 700;
+            margin: 17px -63px 16px 0;
           }
-
           .control-box {
             @include bg(#fdfaf9);
             border-top: 1px solid #e4e4e4;
             padding: 13px 0;
             text-align: center;
             .btn { @include upper; }
-            .btn-red { padding: 15px 125px; }
+            .btn-red { 
+              padding: 15px 121px; 
+              margin-left: 88px; }
+
+          }
+          .forgot-password {
+          text-align: right;
+          float: right;
+          position: relative;
+          bottom: 35px;
+          right: 49px;
+          font-size: 14px;
+          }
+          label {
+          margin-bottom: 0;
           }
         }
       }
@@ -52,9 +67,9 @@
       .footer {
         @include centered;
         .oauth {
-          @include p_t(13px);
-          @include p_b(30px);
-          .btn { width: 185px; margin-left: 10px; }
+          margin-right: -51px;
+          @include p_b(10px);
+          .btn { width: 260px; margin-left: 10px; text-transform: uppercase;}
         }
       }
       p { text-align: center; }
