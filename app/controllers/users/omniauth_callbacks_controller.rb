@@ -15,9 +15,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def process_oauth(provider)
     omniauth = request.env['omniauth.auth']
     results = User.find_or_create_identity(provider, omniauth, current_user)
+
     if results[:result] == 1 && results[:identity] && results[:user]
-
-
       if session[:invite_registration_active_goal]
         active_goal = ActiveGoal.where(:id => session[:invite_registration_active_goal]).first
         if active_goal
@@ -29,10 +28,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session[:invite_registration_active_goal] = nil
       end
 
-
       if current_user
         redirect_to(user_identity_path(current_user))
       else
+        results[:user].confirm! if results[:user].email
         sign_in_and_redirect results[:user], :event => :authentication #this will throw if @user is not activated
       end
 
@@ -57,5 +56,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def twitter
     process_oauth(:twitter)
-  end  
+  end
 end
