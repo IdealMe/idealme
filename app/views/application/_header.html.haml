@@ -27,7 +27,7 @@
         = link_to 'ME', user_path(current_user), :class => active_tab?('users', params[:controller])
     = form_tag(searches_path, :method => 'get', :class => 'search-box') do
       .input-append
-        = text_field_tag('q', @search, :class => 'search-field', :placeholder => 'Search goals, gems, courses, people')                                                                                              
+        = text_field_tag('q', @search, :class => 'search-field', :placeholder => 'Search courses and goals')                                                                                              
         %button.btn{:type => 'submit'}   
           %i.icon-search            
     .logo.logged-in

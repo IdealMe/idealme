@@ -224,14 +224,15 @@
 }
 
 .goal-card-new, .course-card-new {
+  background: #fcfcfc;
   border: 1px dashed;
   border-radius: 5px 5px 5px 5px;
   @include float-left;
   @include hex(#cccccc);
-  @include fs(18px);
+  font-weight: 600;
   @include m_r(9px);
   @include m_l(9px);
-  @include m_b(18px);
+  //@include m_b(18px);
   @include centered;
   cursor: pointer;
   &:hover {

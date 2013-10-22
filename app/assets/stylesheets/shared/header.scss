@@ -60,7 +60,8 @@ header {
         margin: 0 10px;
         a {
           @include hex(#777777);
-          @include fs(12px);
+          @include fs(14px);
+          font-weight: 600;
           @include lh(60px);
           @include upper;
           @include block;
@@ -75,22 +76,22 @@ header {
 
     .search-box {
       @include float-right;
-      width: 280px;
+      width: 200px;
       @include rel;
       margin: 12px 53px 0 0;
       .search-field {
-        width: 280px;
+        width: 200px;
         height: 28px;
-        @include bg(#fafafa);
-        @include fs(12px);
+        border: 1px solid #ccc;
+        @include bg(#f9f9f9);
+        padding-left:10px;
         @include lh(28px);
       }
 
       .btn {
         @include bg(white);
-        @include bg(#fafafa);
         @include bg-pos(top, left);
-        border: 1px solid #ebebeb;
+        border: 1px solid #ccc;
         @include box-shadow(none);
         padding: 12px 15px;
         @include hex(#4d4d4d);

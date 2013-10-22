@@ -105,11 +105,13 @@
   }
   .menu-section {
     border-bottom: 1px solid #ebeae5;
-    @include m_b(50px);
+    @include m_b(18px);
     .user-menu {
       margin: 0;
+      font-weight: 600;
+      color: #777;
       //@include float-left;
-      padding-top: 30px;
+      padding-top: 16px;
       li {
         @include float-left;
         margin-right: 10px;
