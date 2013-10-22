@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.paypal.com/v1/oauth2/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Authorization:
+      - Basic QWNhR19SQ0JVQWdoTHI1d1NFTkpLMG01cHoxQ3g2cV9hWExmYjN5OFpidDg0bkZhdjBKaUIwQmZlUlg0OkVKaTdMeEFVa2VSVDkzSUZzN3NKR2k1UF8tbnRoRVNqTG4tUjV5X3F5dFRVYUR4TmtWM1ZoRnFHUVJMbg==
+      Accept:
+      - application/json
+      Accept-Language:
+      - en_US
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      PayPal-Debug-Id:
+      - 30cb2b67c9bc7
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '321'
+      DC:
+      - origin1-api.sandbox.paypal.com
+      Date:
+      - Tue, 22 Oct 2013 16:43:01 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - DC=origin1-api.sandbox.paypal.com; secure
+    body:
+      encoding: UTF-8
+      string: '{"scope":"openid https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card/.*
+        https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/developer/.*","access_token":"Q8G8ImoApmnfGeSgHvmKTZs.NcV9wUmckucNly0rak4","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":28800}'
+    http_version: 
+  recorded_at: Tue, 22 Oct 2013 16:43:01 GMT
+recorded_with: VCR 2.6.0
