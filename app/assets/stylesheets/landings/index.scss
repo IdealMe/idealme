@@ -43,7 +43,7 @@
           .testimonial-box {
             @include rel;
             @include hex(#957662);
-            @include wxh(225px, 80px);
+            @include wxh(266px, 97px);
             @include bg(#f6e8df);
             @include fs(12px);
             border: 1px solid #d7cbc4;
@@ -53,10 +53,11 @@
             @include border-radius(5px);
             .box-cnt {
               display: table-cell;
-              height: 80px;
-              padding: 0 15px;
+              height: 92px;
+              padding: 0 10px;
               vertical-align: middle;
-              width: 225px;
+              width: 268px;
+              font-size: 14px;
               .arrow {
                 @include sprite_css(testimonial_arrow);
                 @include abs_bl(-12px, 50%);

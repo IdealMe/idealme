@@ -21,9 +21,9 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .intro-wp .text ul li { padding: 0 0 10px 0; display: block; }
 .intro-wp .join-box { width: 234px; float: right; display: inline; padding: 9px; background: #ff999a; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .intro-wp .join-box form { margin: 0; }
-.intro-wp .join-box a.fb-join-btn { width: 234px; height: 36px; line-height: 36px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: bold; text-align: center; display: block; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
+.intro-wp .join-box a.fb-join-btn { width: 234px; height: 36px; line-height: 36px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; text-align: center; display: block; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
 .intro-wp .join-box a.fb-join-btn:hover { background: #3b5999; text-decoration: none; }
-.intro-wp .join-box .or-text { margin: 0 0 10px 0; display: block; position: relative; height: 35px; line-height: 35px; font-size: 16px; font-weight: bold; color: #ffffff; text-align: center; text-transform: uppercase; }
+.intro-wp .join-box .or-text { margin: 0 0 10px 0; display: block; position: relative; height: 35px; line-height: 35px; font-size: 16px; font-weight: 600; color: #ffffff; text-align: center; text-transform: uppercase; }
 .intro-wp .join-box .or-text .tx { padding: 0 8px; background: #ff999a; position: relative; z-index: 10; }
 .intro-wp .join-box .or-text .line { position: absolute; top: 50%; left: 0; width: 100%; background: #fec5c5; font-size: 0; line-height: 0; text-indent: -4000px; height: 1px; display: block; margin-top: -1px; }
 .intro-wp .join-box .field-wp { height: 37px; display: block; background: #ffffff; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 0 0 13px 0; position: relative; }
@@ -32,7 +32,7 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .intro-wp .join-box .field-wp .pass-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/pass-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .intro-wp .join-box .join-btn-wp { background: #5cd3d0; width: 100%; height: 40px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; position: relative; display: block; }
 .intro-wp .join-box .join-btn-wp:hover { background: #32d3ce; }
-.intro-wp .join-box .join-btn-wp input.join-btn { display: block; border: 0; background: transparent; text-transform: uppercase; position: relative; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: bold; padding: 0 13px 0 0; text-align: center; width: 100%; height: 40px; }
+.intro-wp .join-box .join-btn-wp input.join-btn { display: block; border: 0; background: transparent; text-transform: uppercase; position: relative; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; padding: 0 13px 0 0; text-align: center; width: 100%; height: 40px; }
 .intro-wp .join-box .join-btn-wp .strike { width: 13px; height: 22px; background: url('icons/join-strike.png') no-repeat 0 0; position: absolute; top: 50%; margin-top: -11px; right: 28px; }
 
 .courses-wp { padding: 35px 0; border-top: solid 5px #f4f4ec; background: #fbfbf3; }
@@ -49,22 +49,22 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 
 .bottom-join-wp { background: #fbfbf3; padding: 25px 0; }
 .bottom-join-wp .box { width: 940px; background: #edecde; margin: 0 auto; padding: 10px; }
-.bottom-join-wp h3 { padding: 0 0 10px 0; text-align: center; color: #4D4D4D;  font-size: 20px; font-style: normal; font-weight: bold; }
+.bottom-join-wp h3 { padding: 0 0 10px 0; text-align: center; color: #4D4D4D;  font-size: 20px; font-style: normal; font-weight: 600; }
 .bottom-join-wp form { margin: 0px 0 -10px 0 }
-.bottom-join-wp a.fb-join-btn { float: left; display: inline; width: 200px; height: 37px; line-height: 37px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: bold; text-align: center; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
+.bottom-join-wp a.fb-join-btn { float: left; display: inline; width: 200px; height: 37px; line-height: 37px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; text-align: center; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
 .bottom-join-wp a.fb-join-btn:hover { background: #3b5999; text-decoration: none; }
-.bottom-join-wp .or-text { margin: 0 40px 10px 35px; display: block; position: relative; height: 38px; line-height: 38px; font-size: 16px; font-weight: bold; color: #4d4d4d; text-align: left; text-transform: uppercase; float: left; display: inline; }
+.bottom-join-wp .or-text { margin: 0 40px 10px 35px; display: block; position: relative; height: 38px; line-height: 38px; font-size: 16px; font-weight: 600; color: #4d4d4d; text-align: left; text-transform: uppercase; float: left; display: inline; }
 .bottom-join-wp .field-wp { height: 37px; float: left; display: inline; background: #ffffff; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 0 9px 0 0; position: relative; }
 .bottom-join-wp .field-wp input.field { display: block; padding: 0 10px 0 40px; background: transparent; border: 0; height: 37px; line-height: 37px; color: #999999; font-size: 16px; width: 150px; }
 .bottom-join-wp .field-wp .email-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/mail-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .bottom-join-wp .field-wp .pass-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/pass-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .bottom-join-wp .join-btn-wp { background: #5cd3d0; width: 215px; height: 37px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; position: relative; display: block; float: left; display: inline; }
 .bottom-join-wp .join-btn-wp:hover { background: #32d3ce; }
-.bottom-join-wp .join-btn-wp input.join-btn { display: block; border: 0; background: transparent; text-transform: uppercase; position: relative; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: bold; padding: 0 13px 0 0; text-align: center; width: 100%; height: 37px; }
+.bottom-join-wp .join-btn-wp input.join-btn { display: block; border: 0; background: transparent; text-transform: uppercase; position: relative; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; padding: 0 13px 0 0; text-align: center; width: 100%; height: 37px; }
 .bottom-join-wp .join-btn-wp .strike { width: 13px; height: 22px; background: url('icons/join-strike.png') no-repeat 0 0; position: absolute; top: 50%; margin-top: -11px; right: 20px; }
 
 .to_do_page .goals_section .bottom_box { position: relative; border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; }
-.to_do_page .goals_section .bottom_box .plus { font-weight: bold; }
+.to_do_page .goals_section .bottom_box .plus { font-weight: 600; }
 .to_do_page .goals_section .bottom_box .checked { width: 230px; height: 55px; background: #fafafa url(../img/icons/checked2.png) no-repeat center center; position: absolute; top: 0; left: 0; display:none; }
 
 .account-section { padding-top: 30px; }
@@ -74,7 +74,7 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .account-cnt .row .picture { width: 100px; float: left; display: inline; padding: 0 0 0 5px; }
 .account-cnt .row a.choose-btn { float: left; display: inline; color: #4D4D4D; font-size: 12px; font-style: normal; font-weight: normal; line-height: 42px; text-align: center; width: 160px; height: 42px; text-transform: uppercase; background: #ffffff; border: solid 1px #d7d7d7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 20px 0 0 0; }
 .account-cnt .row a.choose-btn:hover { text-decoration: none; }
-.account-cnt .row label.big { width: 100px; float: left; display: inline; color: #8B8B8B; font-size: 14px; font-style: normal; font-weight: bold; line-height: 30px; margin: 0; }
+.account-cnt .row label.big { width: 100px; float: left; display: inline; color: #8B8B8B; font-size: 14px; font-style: normal; font-weight: 600; line-height: 30px; margin: 0; }
 .account-cnt .row .field-wp { float: left; display: inline; }
 .account-cnt .row .sm-row { display: block; width: 240px; padding: 0 0 15px 0; }
 .account-cnt .row .sm-row.left { float: left; display: inline; }
@@ -84,12 +84,12 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .account-cnt .row input.save-btn:hover { background: #f27d7b; }
 
 .add_goal.add-2 { padding-top: 0; height: 273px; }
-.add_goal.add-2 a { display: block; margin: 0 auto; color: #cccccc; width: 100%; height: 163px; padding-top: 110px; font-size: 12px; font-style: normal; font-weight: bold; }
+.add_goal.add-2 a { display: block; margin: 0 auto; color: #cccccc; width: 100%; height: 163px; padding-top: 110px; font-size: 12px; font-style: normal; font-weight: 600; }
 .add_goal.add-2 a .plus { display: block; }
 .add_goal.add-2 a:hover { text-decoration: none; color: #4d4d4d; }
 
 .add_goal.add-3 { padding-top: 0; height: 328px; background: url(..//img/u369_normal.png) no-repeat center 0; }
 .add_goal.add-3:hover { background: url(..//img/u369_mouseover.png) no-repeat center 0; }
-.add_goal.add-3 a { display: block; margin: 0 auto; color: #cccccc; width: 100%; height: 170px; padding-top: 150px; font-size: 12px; font-style: normal; font-weight: bold; }
+.add_goal.add-3 a { display: block; margin: 0 auto; color: #cccccc; width: 100%; height: 170px; padding-top: 150px; font-size: 12px; font-style: normal; font-weight: 600; }
 .add_goal.add-3 a .plus { display: block; }
 .add_goal.add-3 a:hover { text-decoration: none; color: #4d4d4d; }
