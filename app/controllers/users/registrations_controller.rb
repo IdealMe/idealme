@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_authorization_check
+  layout 'minimal'
 
   protected
   def after_update_path_for(resource)

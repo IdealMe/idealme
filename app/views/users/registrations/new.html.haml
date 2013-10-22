@@ -5,18 +5,14 @@
         .message-box
           Create your FREE Ideal Me account
         = f.input :username, :autofocus => true
-        = f.input :firstname
-        = f.input :lastname
         = f.input :email
         = f.input :password
-        = f.input :password_confirmation
         .control-box
           = f.submit 'Sign up with email ➝', :class => 'btn btn-red'
   .footer
-    Or sign up with:
     .oauth
-      = link_to('Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
-      = link_to('Twitter', user_omniauth_authorize_path(:facebook), :class => 'btn btn-lightblue')
+      Or
+      = link_to('Sign up with Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
     %p
       Already have an account? 
       = link_to 'Sign in', new_user_session_path

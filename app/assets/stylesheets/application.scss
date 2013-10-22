@@ -126,7 +126,6 @@
 
         .btn-red {
           border: none;
-          font-weight: 500;
           @include border-radius(4px);
           @include bg(#f16764);
           @include fs(14px);
