@@ -35,16 +35,21 @@ Idealme::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.delivery_method = :smtp
+  config.middleware.use Rack::LiveReload
 
   config.action_mailer.default_url_options = {:host => 'idealme.com'}
-
-  config.middleware.use Rack::LiveReload
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => 'idealme-391cd542169169ce',
+    :password => 'aacad647af45183f',
+    :address => 'mailtrap.io',
+    :port => '2525',
+    :authentication => :plain
+  }
 
 end
 
 AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(:login => ENV['AUTHORIZED_NET_LOGIN'], :password => ENV['AUTHORIZED_NET_PASSWORD'], :test => true)
-
 # not used
 #PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(:login => ENV['PAYPAL_LOGIN'], :password => ENV['PAYPAL_PASSWORD'], :signature => ENV['PAYPAL_SIGNATURE'], :test => true)
 STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => ENV['STRIPE_SECRET_KEY'], :test => true)
