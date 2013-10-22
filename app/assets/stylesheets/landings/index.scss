@@ -75,10 +75,11 @@
               margin-right: 12px;
               width: 32px;
             }
-            >.name {
+            >.user_name {
               @include float-left;
               @include fs(12px);
-              margin-top: 8px;
+              padding-top: 7px;
+              font-size: 1.2em;
             }
           }
         }
