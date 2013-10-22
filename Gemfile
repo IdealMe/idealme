@@ -200,7 +200,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'selenium-webdriver'
-  gem 'parallel_tests'
 
   #Strategies for cleaning databases. Can be used to ensure a clean state for testing.
   gem 'database_cleaner'
