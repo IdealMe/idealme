@@ -95,42 +95,44 @@ class Order < ActiveRecord::Base
   end
 
   def build_credit_card
-    self.cc ||= ActiveMerchant::Billing::CreditCard.new(
-        :brand => self.card_type,
-        :number => self.card_number,
-        :verification_value => self.card_cvv,
-        :month => self.card_exp_month,
-        :year => self.card_exp_year,
-        :first_name => self.card_firstname,
-        :last_name => self.card_lastname
-    )
-    self.card_number_4 = self.card_number[-4, 4]
+    unless gateway == GATEWAY_PAYPAL
+      self.cc ||= ActiveMerchant::Billing::CreditCard.new(
+          :brand => self.card_type,
+          :number => self.card_number,
+          :verification_value => self.card_cvv,
+          :month => self.card_exp_month,
+          :year => self.card_exp_year,
+          :first_name => self.card_firstname,
+          :last_name => self.card_lastname
+      )
+      self.card_number_4 = self.card_number[-4, 4]
+    end
   end
 
   def validate_credit_card
-    self.cc.valid?
+    unless gateway == GATEWAY_PAYPAL
+      self.cc.valid?
 
-    self.cc.errors.each do |error|
-      next if error.last.length == 0
-      field_name = error.first
-      if field_name == 'year'
-        mapped_field = :card_exp_year
-      elsif field_name =='number'
-        mapped_field = :card_number
-      else
-        raise 'Uncaught credit card errors'
-      end
-
-      if mapped_field
-        field_errors = error.last
-        field_errors.each do |error|
-          errors.add(mapped_field, error)
+      self.cc.errors.each do |error|
+        next if error.last.length == 0
+        field_name = error.first
+        if field_name == 'year'
+          mapped_field = :card_exp_year
+        elsif field_name =='number'
+          mapped_field = :card_number
+        else
+          raise 'Uncaught credit card errors'
         end
+
+        if mapped_field
+          field_errors = error.last
+          field_errors.each do |error|
+            errors.add(mapped_field, error)
+          end
+        end
+
       end
-
     end
-
-
   end
 
 

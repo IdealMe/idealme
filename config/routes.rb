@@ -8,6 +8,11 @@ Idealme::Application.routes.draw do
       get 'new/:id' => 'orders#new', :as => :subscribe
       post 'thanks/:id' => 'orders#thanks', :as => :paypal_return
     end
+    member do
+      post 'paypal' => 'orders#paypal_checkout', as: :paypal_checkout
+      get 'paypal-return' => 'orders#paypal_return'
+      get 'paypal-cancel' => 'orders#paypal_cancel'
+    end
   end
 
   match "paypal/success" => "paypal#success"

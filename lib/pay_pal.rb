@@ -18,16 +18,16 @@ class PayPal
     end
 
     json = JSON.parse(response.body)
+    ap json
     json["access_token"]
   end
 
-  def create_payment(total, description)
-
+  def create_payment(total, description, return_url, cancel_url)
     body = {
       intent: 'sale',
       redirect_urls: {
-        return_url: 'https://idealme.com/paypal/success',
-        cancel_url: 'https://idealme.com/paypal/cancel'
+        return_url: return_url,
+        cancel_url: cancel_url
       },
       payer: { payment_method: 'paypal' },
       transactions: [
@@ -48,9 +48,23 @@ class PayPal
     end
 
     json          = JSON.parse(response.body)
+    ap json
     @approval_url = json["links"].detect { |link| link["rel"] == 'approval_url' }['href']
     @id           = json['id']
-    
+
+    json
+  end
+
+  def execute_payment(id, payer_id, token)
+    response = conn.post("/v1/payments/payment/#{id}/execute") do |request|
+      request.headers['Content-Type'] = 'application/json'
+      request.headers['Authorization'] = "Bearer #{get_token}"
+      request.body = { payer_id: payer_id }.to_json
+    end
+
+    json          = JSON.parse(response.body)
+    ap json
+
     json
   end
 
