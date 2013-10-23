@@ -21,6 +21,8 @@ gem 'puma'
 #Pg is the Ruby interface to the PostgreSQL RDBMS. It works with PostgreSQL 8.4 and later
 gem 'pg'
 
+gem 'redis'
+
 #Flexible authentication solution for Rails with Warden
 gem 'devise'
 
@@ -121,7 +123,9 @@ gem 'ransack'
 #A Ruby interface to the Twitter API.
 gem 'twitter'
 
-
+# network libs
+gem 'faraday'
+gem 'typhoeus'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -153,6 +157,7 @@ gem 'figaro'
 group :test do
   gem 'simplecov', :require => false
   gem 'poltergeist'
+  gem 'vcr'
 end
 
 group :development do

@@ -72,13 +72,7 @@
   %p
     %strong
       Or complete your purchase with PayPal
-      - paypal_payment_service_for @invoice, ENV['PAYPAL_ACCOUNT'], :amount => number_to_currency(@order.course.cost/100.0), :currency => 'USD', :service => :paypal, :encrypt => true do |service|
-        - service.customer :email => current_user.email
-        - service.invoice @invoice
-        - service.item_name @order.course.name
-        - service.notify_url paypal_create_webhook_paypals_url # PayPal will POST a callback here when the payment is done
-
-        - service.return_url paypal_return_orders_url(@order.course) # PayPal will take your user here with a POST after he pays
-        - service.cancel_return_url market_path(@order.market) # PayPal will redirect your user here if he cancels the payment
-        = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
+      %p
+        = link_to paypal_checkout_order_path, method: :post do
+          = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
   .clear

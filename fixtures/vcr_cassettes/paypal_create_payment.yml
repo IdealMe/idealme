@@ -1,0 +1,88 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.paypal.com/v1/oauth2/token?grant_type=client_credentials
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Authorization:
+      - Basic QWNhR19SQ0JVQWdoTHI1d1NFTkpLMG01cHoxQ3g2cV9hWExmYjN5OFpidDg0bkZhdjBKaUIwQmZlUlg0OkVKaTdMeEFVa2VSVDkzSUZzN3NKR2k1UF8tbnRoRVNqTG4tUjV5X3F5dFRVYUR4TmtWM1ZoRnFHUVJMbg==
+      Accept:
+      - application/json
+      Accept-Language:
+      - en_US
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      PayPal-Debug-Id:
+      - a40bfd63c98de
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '321'
+      DC:
+      - origin2-api.sandbox.paypal.com
+      Date:
+      - Tue, 22 Oct 2013 16:43:01 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - DC=origin2-api.sandbox.paypal.com; secure
+    body:
+      encoding: UTF-8
+      string: '{"scope":"openid https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card/.*
+        https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/developer/.*","access_token":"blKGwp4OtmOdsOaUdWlyoN-5kK-rmQKlZG-nvYO-CKo","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":28800}'
+    http_version: 
+  recorded_at: Tue, 22 Oct 2013 16:43:01 GMT
+- request:
+    method: post
+    uri: https://api.sandbox.paypal.com/v1/payments/payment
+    body:
+      encoding: UTF-8
+      string: '{"intent":"sale","redirect_urls":{"return_url":"https://idealme.com/paypal/success","cancel_url":"https://idealme.com/paypal/cancel"},"payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"19.99","currency":"USD"},"description":"You
+        sure love the internet!"}]}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer blKGwp4OtmOdsOaUdWlyoN-5kK-rmQKlZG-nvYO-CKo
+  response:
+    status:
+      code: 201
+      message: 
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      PayPal-Debug-Id:
+      - da9a36fbc9ef1
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '742'
+      DC:
+      - origin2-api.sandbox.paypal.com
+      Date:
+      - Tue, 22 Oct 2013 16:43:02 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - DC=origin2-api.sandbox.paypal.com; secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"PAY-906366041H497264AKJTKWFQ","create_time":"2013-10-22T16:43:02Z","update_time":"2013-10-22T16:43:02Z","state":"created","intent":"sale","payer":{"payment_method":"paypal","payer_info":{}},"transactions":[{"amount":{"total":"19.99","currency":"USD","details":{"subtotal":"19.99"}},"description":"You
+        sure love the internet!"}],"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-906366041H497264AKJTKWFQ","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-7XA82522G8059463P","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-906366041H497264AKJTKWFQ/execute","rel":"execute","method":"POST"}]}'
+    http_version: 
+  recorded_at: Tue, 22 Oct 2013 16:43:02 GMT
+recorded_with: VCR 2.6.0

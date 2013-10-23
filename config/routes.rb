@@ -7,9 +7,17 @@ Idealme::Application.routes.draw do
     collection do
       get 'new/:id' => 'orders#new', :as => :subscribe
       post 'thanks/:id' => 'orders#thanks', :as => :paypal_return
-      
+    end
+    member do
+      post 'paypal' => 'orders#paypal_checkout', as: :paypal_checkout
+      get 'paypal-return' => 'orders#paypal_return'
+      get 'paypal-cancel' => 'orders#paypal_cancel'
     end
   end
+
+  match "paypal/success" => "paypal#success"
+  match "paypal/cancel" => "paypal#cancel"
+
   resources :markets, :only => [:index, :show] do
     resources :reviews
     collection do
@@ -96,7 +104,7 @@ Idealme::Application.routes.draw do
         post 'paypal_return' => 'paypals#paypal_return'
         post 'paypal_cancel' => 'paypals#paypal_cancel'
         post 'paypal_create' => 'paypals#paypal_create'
-        
+
         get 'paypal_return' => 'paypals#paypal_return'
         get 'paypal_cancel' => 'paypals#paypal_cancel'
       end

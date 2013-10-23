@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :require_authentication
-  before_filter :init_order, :only => [:new, :thanks]
+  before_filter :init_order, :only => [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
   before_filter :build_order, :only => [:create]
 
   before_filter :ensure_product_user_uniqueness
@@ -20,6 +20,35 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+  end
+
+  # create a paypal payment and send the user to the approval url
+  def paypal_checkout
+    paypal = PayPal.new
+
+    paypal.create_payment(@order.course.cost_in_dollars, "Ideal Me - #{@market.name}", paypal_return_url, paypal_cancel_url)
+    session[:payment_id] = paypal.id
+    redirect_to paypal.approval_url
+  end
+
+  def paypal_return
+    paypal = PayPal.new
+    result = paypal.execute_payment(session[:payment_id], params['PayerID'], params['token'])
+    @order.parameters = result
+    @order.gateway = Order::GATEWAY_PAYPAL
+    @order.status = Order::STATUS_SUCCESSFUL
+    @order.save!
+
+    if get_affiliate_user
+      AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
+    end
+    current_user.subscribe_course(@market.course)
+    flash[:alert] = nil
+    render :create
+  end
+
+  def paypal_cancel
+    redirect_to action: :new and return
   end
 
   # POST /orders
@@ -119,6 +148,14 @@ class OrdersController < ApplicationController
       course_user = CourseUser.where(:course_id => market.course.id, :user_id => current_user.id).first
       redirect_to(course_path(market.course)) and return if course_user
     end
+  end
+
+  def paypal_return_url
+    request.url.sub(/paypal$/,'paypal-return')
+  end
+
+  def paypal_cancel_url
+    request.url.sub(/paypal$/,'paypal-cancel')
   end
 end
 
