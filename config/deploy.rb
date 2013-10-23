@@ -23,7 +23,6 @@ set :keep_releases, 5
 
 
 # hipchat config
-binding.pry
 set :hipchat_token, ENV['HIPCHAT_AUTH_TOKEN']
 set :hipchat_room_name, "Notifications" # If you pass an array such as ["room_a", "room_b"] you can send announcements to multiple rooms.
 set :hipchat_announce, false # notify users
@@ -57,3 +56,6 @@ namespace :deploy do
 
 end
 
+
+        require './config/boot'
+        require 'honeybadger/capistrano'

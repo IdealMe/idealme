@@ -15,6 +15,9 @@ gem 'acts_as_list'
 # chatty chat chat.
 gem 'hipchat'
 
+# error notifications
+gem 'honeybadger'
+
 #A thin and fast web server
 gem 'thin'
 

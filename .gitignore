@@ -22,3 +22,6 @@ libpeerconnection.log
 
 # Ignore application configuration
 /config/application.yml
+config/ansible
+push_app_yml
+paypal_production.pem
