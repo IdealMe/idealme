@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # == Imports ==============================================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable, :confirmable
+         :trackable, :validatable, :omniauthable #, :confirmable
 
   # == Slug =================================================================
   def to_param
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   scope :get_affiliate_user, lambda { |code| where(:affiliate_tag => code, :access_affiliate => true) }
 
   # == Callbacks ============================================================
-  
+
   after_create :after_create
 
   # == Class Methods ========================================================
