@@ -101,6 +101,11 @@ body {
   }
 }
 
+.answer {
+  margin-left: 40px;
+  font-style: italic;
+}
+
 .goal-name { color: #666666; @include fs(12px); @include bold; @include centered; @include m_b(27px); }
 .bottom-box { border-top: 1px solid #EBEBEB; }
 .user-card, .goal-card, .goal-user-card { .avatar { height: 125px; @include p_t(35px); @include centered; } }
