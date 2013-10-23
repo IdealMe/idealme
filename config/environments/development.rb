@@ -35,7 +35,11 @@ Idealme::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.middleware.use Rack::LiveReload
+  begin
+    config.middleware.use Rack::LiveReload
+  rescue Exception => e
+  end
+
 
   Paperclip::Attachment.default_options[:storage] = :s3
   Paperclip::Attachment.default_options[:s3_credentials] = {
