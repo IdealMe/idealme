@@ -16,7 +16,7 @@ gem 'acts_as_list'
 gem 'hipchat'
 
 # error notifications
-gem 'honeybadger'
+#gem 'honeybadger'
 
 #A thin and fast web server
 gem 'thin'
