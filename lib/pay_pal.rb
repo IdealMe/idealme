@@ -18,7 +18,6 @@ class PayPal
     end
 
     json = JSON.parse(response.body)
-    ap json
     json["access_token"]
   end
 
@@ -48,7 +47,6 @@ class PayPal
     end
 
     json          = JSON.parse(response.body)
-    ap json
     @approval_url = json["links"].detect { |link| link["rel"] == 'approval_url' }['href']
     @id           = json['id']
 
@@ -63,8 +61,6 @@ class PayPal
     end
 
     json          = JSON.parse(response.body)
-    ap json
-
     json
   end
 
