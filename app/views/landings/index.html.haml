@@ -1,19 +1,20 @@
 .promo_section
   .container
     .intro-wp
-      %h2 
-        What's Stopping 
-        %em You 
-        From Living 
-        %em Your 
+      %h2
+        What's Stopping
+        %em You
+        From Living
+        %em Your
         Ideal Life?
       .cnt
         .video
           %iframe{:allowfullscreen => "", :frameborder => "0", :height => "225", :src => "//www.youtube.com/embed/piLWFiS1fN8", :width => "370"}
+
           %span.video-bg &nbsp;
         .text
           %p
-            Join me in the Ideal Me Challenge: 12 goals, 1 a month for max results in minimum time and discover what really works! 
+            Join me in the Ideal Me Challenge: 12 goals, 1 a month for max results in minimum time and discover what really works!
         .join-box
           = form_for :user, url: user_session_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
@@ -33,8 +34,8 @@
     .clear
 .courses-wp
   .title-text
-    %h2 The 1st 100% satisfaction guaranteed community of curated 
-    %br/ 
+    %h2 The 1st 100% satisfaction guaranteed community of curated
+    %br/
     %h2  products that actually get real results or your money back!
   %p.top-text
     All courses backed by the

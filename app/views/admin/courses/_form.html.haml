@@ -8,20 +8,20 @@
         %li= msg
 
   = f.text_field :name, :autofocus => true
-  = f.number_field :cost
+  = f.number_field :cost_in_dollars
   = f.number_field :affiliate_commission
   = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
   = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, :class => 'select2'
   = f.text_area :description, :class => 'tinymce', :rows => 4
   = f.check_box :hidden
-           
+
   - if @course.persisted?
     %fieldset
       #legend
-        %legend Sections       
-        
+        %legend Sections
+
     %table.table
-      %tr        
+      %tr
         %th.span1
           Sort
         %th
@@ -33,20 +33,19 @@
               %i.icon-sort.handle
             %td
               = section.name
-              
-              
+
+
   %fieldset
     #legend
       %legend Goal
   .control-group
-    .controls                 
+    .controls
       = hidden_field_tag "course[goal_ids][]", nil
-      - Goal.all.each do |goal|                                                                                 
+      - Goal.all.each do |goal|
         %label
           = check_box_tag "course[goal_ids][]", goal.id, @course.goal_ids.include?(goal.id)
           = goal.name
-          
-          
+
+
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_courses_path, :class => 'btn'
-  

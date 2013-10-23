@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
   scope :get_affiliate_user, lambda { |code| where(:affiliate_tag => code, :access_affiliate => true) }
 
   # == Callbacks ============================================================
+  
   after_create :after_create
 
   # == Class Methods ========================================================
@@ -194,6 +195,10 @@ class User < ActiveRecord::Base
 
   def subscribed_lecture?(lecture)
     subscribe_course(lecture.course)
+  end
+
+  def instructor_about
+    self.read_attribute(:instructor_about) || ""
   end
 end
 

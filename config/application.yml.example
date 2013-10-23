@@ -25,7 +25,7 @@ development: ********************
   PAYPAL_PASSWORD: ********************
   PAYPAL_SIGNATURE: ********************
   STRIPE_SECRET_KEY: ********************
-  STRIPE_PUBLISHIABLE_KEY: ********************
+  STRIPE_PUBLISHABLE_KEY: ********************
 
   AWS_S3_BUCKET: ********************
   #AWS_S3_ASSET_BUCKET: ********************
@@ -44,7 +44,7 @@ staging:
   PAYPAL_PASSWORD: ********************
   PAYPAL_SIGNATURE: ********************
   STRIPE_SECRET_KEY: ********************
-  STRIPE_PUBLISHIABLE_KEY: ********************
+  STRIPE_PUBLISHABLE_KEY: ********************
 
   SENDGRID_API_USERNAME: ********************
   SENDGRID_API_PASSWORD: ********************
@@ -66,8 +66,8 @@ production:
   PAYPAL_PASSWORD: ********************
   PAYPAL_SIGNATURE: ********************
   STRIPE_SECRET_KEY: ********************
-  STRIPE_PUBLISHIABLE_KEY: ********************
-  
+  STRIPE_PUBLISHABLE_KEY: ********************
+
   AWS_S3_BUCKET: ********************
   #AWS_S3_ASSET_BUCKET: ********************
   #AWS_CF_STREAMING: ********************

@@ -9,9 +9,9 @@ class Course < ActiveRecord::Base
   # == Constants ============================================================
   # == Attributes ===========================================================
   attr_accessible :avatar, :hidden, :name, :slug, :owner_id, :cost, :default_market_id,
-                  :review_positive, :review_negative, :up_votes, :down_votes, :description, :goal_ids
-  
-  
+                  :review_positive, :review_negative, :up_votes, :down_votes, :description, :goal_ids, :cost_in_dollars
+
+
   attr_accessible :affiliate_commission
 
   # == Relationships ========================================================
@@ -46,5 +46,12 @@ class Course < ActiveRecord::Base
   end
   # == Instance Methods =====================================================
 
+  def cost_in_dollars
+    '%.2f' % (self.cost.to_i/100.0) # -> '0.10'
+  end
+
+  def cost_in_dollars=(v)
+    self.cost = (v.to_f*100).to_i
+  end
 
 end
