@@ -5,19 +5,23 @@
     >.container {
       >.main-section {
         width: 781px;
-        padding-top: 39px;
+        padding-top: 10px;
         display: inline;
         float: left;
         text-align: left;
 
         .product-info {
           @include m_l(7px);
-          @include m_b(25px);
+          @include m_b(10px);
           .autor {
             @include hex(#666666);
             @include fs(12px);
             @include m_b(3px);
           }
+        }
+
+        .pay-method {
+           @include m_l(10px);         
         }
 
         .orders-payment-form {
@@ -124,33 +128,29 @@
           }
 
           .btn {
-            @include bg(white);
+            @include bg(#f16764);
             @include bg-pos(top, left);
-            @include border-radius(2px);
-            border: 1px solid #ebebeb;
+            @include border-radius(4px);
             @include box-shadow(none);
-            padding: 11px 35px;
-            @include hex(#4d4d4d);
+            padding: 15px 26px;
+            @include hex(white);
             @include fs(12px);
-            @include lh(12px);
             @include upper;
             &:hover {
               @include bg-pos(top, left);
-              border: 1px solid #bcbcbc;
-              //@include background-image(linear-gradient(top, white, #fafafa));
+              @include bg(#F27D7B);
             }
 
             @include float-left;
             @include fs(12px);
-            padding: 15px 7px;
           }
 
           .agreement-text {
             @include float-left;
             @include fs(10px);
             @include lh(16px);
-            @include hex(#333333);
-            width: 500px;
+            @include hex(#999);
+            width: 238px;
             @include m_l(20px);
             @include p_t(4px);
           }
