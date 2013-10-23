@@ -1,8 +1,6 @@
 %section.pay-method
   %p
-    %strong
-      Checkout with:
-  %p
+    Pay with:
     = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'
   .clear
 
@@ -65,14 +63,14 @@
   %section.submit-box
     = f.submit 'Complete Purchase', :class => 'btn btn-red'
     .agreement-text
-      By clicking "Complete purchase", I have read and agree to the Terms and Conditions and Privacy Policy. Note: When you click "Complete purchase", you will be billed immediately.
+      By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy. 
+      Note: you will be billed immediately.
     .clear
 
 %section.pay-method
   %p
-    %strong
-      Or complete your purchase with PayPal
-      %p
-        = link_to paypal_checkout_order_path, method: :post do
-          = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
+    Or
+    %p
+      = link_to paypal_checkout_order_path, method: :post do
+        = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
   .clear
