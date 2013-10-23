@@ -104,7 +104,7 @@ body {
 .goal-name { color: #666666; @include fs(12px); @include bold; @include centered; @include m_b(27px); }
 .bottom-box { border-top: 1px solid #EBEBEB; }
 .user-card, .goal-card, .goal-user-card { .avatar { height: 125px; @include p_t(35px); @include centered; } }
-.like-box { @include float-left; width: 90px; padding: 7px 5px 5px 5px; border-top: 2px solid #6B823C;
+.like-box { @include float-left; width: 90px; padding: 7px 5px 5px 5px;
   .like, .dislike { @include fs(10px); @include hex(#999999); @include pointer; padding: 0 5px 0 20px; }
   .like { @include bg(image-url("icons/like.png") no-repeat); @include float-left; }
   .dislike { @include bg(image-url("icons/dislike.png") no-repeat); @include float-right; }

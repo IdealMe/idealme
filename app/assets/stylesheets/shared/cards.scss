@@ -1,6 +1,5 @@
 .course-card {
   width: 252px;
-
   @include m_t(0);
   @include m_b(10px);
   @include m_l(29px);
@@ -10,8 +9,8 @@
   @include left;
   float: left;
   .course-name {
-    @include fs(12px);
-    @include hex(#4b4b4b);
+    font-weight: 600;
+    @include hex(#555);
     @include m_t(10px);
     @include m_l(16px);
     @include block;
@@ -212,15 +211,11 @@
   @include bg(white);
   border: 1px solid #e4e4e4;
   @include border-radius(5px);
-  @include m_r(28px);
-  @include m_l(9px);
+  @include m_r(8px);
+  @include m_l(8px);
   @include m_b(18px);
   @include pointer;
   height: 163px;
-  &:hover {
-    @include bg(white);
-    border-color: #c9c9c9;
-  }
 }
 
 .goal-card-new, .course-card-new {
@@ -246,8 +241,8 @@
   }
 }
 
-.goal-card-new { width: 236px;  height: 160px; @include p_t(110px); }
-.course-card-new { width: 236px; height: 210px; @include p_t(130px); }
+.goal-card-new { width: 228px;  height: 160px; @include p_t(110px); }
+.course-card-new { width: 228px; height: 210px; @include p_t(130px); }
 
 .goal-card {
   @include float-left;

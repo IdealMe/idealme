@@ -2,7 +2,9 @@
   >.body-content {
     >.promo-section {
       min-width: 1250px;
-      @include bg(#ff8594);
+      @include bg(#fff);
+      margin-top: 20px;
+      height: 240px;
       padding-top: 30px;
       padding-bottom: 1px;
       .flex-control-nav {
@@ -51,12 +53,13 @@
     }
     >.container {
       >.section-header {
-        color: #8b8b8b;
+        color: #777;
         font-size: 14px;
         text-transform: uppercase;
         line-height: 20px;
-        font-weight: normal;
+        font-weight: 600;
         margin-bottom: 24px;
+        margin-left: 28px;
       }
     }
   }
