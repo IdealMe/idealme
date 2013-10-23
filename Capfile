@@ -40,6 +40,8 @@ set :hipchat_message_format, 'text' # Sets the deployment message format, see ht
 real_revision = `git rev-parse HEAD`
 set :real_revision, real_revision
 
+set(:asset_precompilation_triggers, %w(app/assets vendor/assets Gemfile.lock))
+
 namespace :deploy do
   desc "Restart the application following a deploy"
   task :restart do
