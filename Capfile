@@ -19,6 +19,7 @@ require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
+require 'hipchat/capistrano'
 require 'pry'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.

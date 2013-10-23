@@ -12,6 +12,8 @@ gem 'gatling_gun'
 # An ActiveRecord plugin for managing lists. http://swanandp.github.io/acts_as_list/
 gem 'acts_as_list'
 
+# chatty chat chat.
+gem 'hipchat'
 
 #A thin and fast web server
 gem 'thin'
