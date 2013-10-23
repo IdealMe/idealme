@@ -4,7 +4,7 @@ set :repo_url, 'git@github.com:flingbob/idealme.git'
 
 set :branch, 'origin/mvp'
 
-
+set_default_env :RAILS_ENV, 'production'
 
 # set :scm, :git
 
@@ -27,8 +27,13 @@ set :hipchat_success_color, 'green' #finished deployment message color
 set :hipchat_failed_color, 'red' #cancelled deployment message color
 set :hipchat_message_format, 'text' # Sets the deployment message format, see https://www.hipchat.com/docs/api/method/rooms/message
 
+namespace :deploy do
+  desc "Restart the application following a deploy"
+  task :restart do
+    binding.pry
+  end
+end
 
 
 
-        #require './config/boot'
-        #require 'honeybadger/capistrano'
+
