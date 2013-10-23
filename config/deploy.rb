@@ -57,5 +57,5 @@ namespace :deploy do
 end
 
 
-        require './config/boot'
-        require 'honeybadger/capistrano'
+        #require './config/boot'
+        #require 'honeybadger/capistrano'
