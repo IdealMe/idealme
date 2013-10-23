@@ -2,6 +2,9 @@
   %fieldset
     #legend
       %legend User
+
+  = image_tag @user.avatar.url(:square), :height => '50', :width => '50'
+  = f.file_field :avatar, label: false
   = f.text_field :username, :autofocus => true
   = f.text_field :tagline
   = f.text_field :firstname
