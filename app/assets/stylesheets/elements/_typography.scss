@@ -21,7 +21,9 @@ h3 {
   list-style: none;
   margin: 0;
   li {
+    margin: 0 20px 0 0;
     padding: 15px 0px 15px 40px;
+    font-weight: 600;
     @include bg(image-url("icons/list_1.png") no-repeat 6px 18px);
   }
 }
