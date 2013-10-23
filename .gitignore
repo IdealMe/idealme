@@ -24,3 +24,4 @@ libpeerconnection.log
 config/ansible
 push_app_yml
 paypal_production.pem
+fix_sequences.sql
