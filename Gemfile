@@ -35,10 +35,11 @@ gem 'devise'
 gem 'cancan'
 
 #Capistrano is a utility and framework for executing commands in parallel on multiple remote machines, via SSH.
-gem 'capistrano', '~> 3.0.0'
-gem 'capistrano-rails'
-gem 'capistrano-rvm', '~> 0.0.2'
-gem 'capistrano-bundler'
+gem 'recap'
+#gem 'capistrano', '~> 2.0.0'
+#gem 'capistrano-rails'
+#gem 'capistrano-rvm', '~> 0.0.2'
+#gem 'capistrano-bundler'
 
 #A generalized Rack framework for multiple-provider authentication.
 gem 'omniauth'
