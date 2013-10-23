@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::BaseController
   before_filter :load_user, :only => [:show, :edit, :update, :destroy]
   before_filter :load_users, :only => :index
   before_filter :build_user, :only => [:new, :create]
-  
+
   # GET /admin/users
   def index
   end
@@ -54,6 +54,7 @@ class Admin::UsersController < Admin::BaseController
 
   def build_user
     @user = User.new(params[:user])
+    @user.password = SecureRandom.hex unless @user.password
   end
 
 end
