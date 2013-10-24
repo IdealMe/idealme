@@ -39,6 +39,7 @@ set :hipchat_message_format, 'text' # Sets the deployment message format, see ht
 
 real_revision = `git rev-parse HEAD`
 set :real_revision, real_revision
+set :current_release, real_revision
 
 set(:asset_precompilation_triggers, %w(app/assets vendor/assets Gemfile.lock))
 
