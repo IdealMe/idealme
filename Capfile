@@ -1,7 +1,7 @@
 require 'hipchat/capistrano'
 require 'recap/recipes/rails'
 require './config/boot'
-require 'honeybadger/capistrano'
+#require 'honeybadger/capistrano'
 
 set :application, 'idealme'
 set :repository, 'git@github.com:flingbob/idealme.git'
@@ -50,5 +50,6 @@ namespace :deploy do
     as_app "kill -s USR2 $(cat /tmp/pids/puma.idealme.pid)"
   end
 end
+
 
 
