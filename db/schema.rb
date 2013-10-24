@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023205228) do
+ActiveRecord::Schema.define(:version => 20131023234930) do
 
   create_table "activities", :force => true do |t|
     t.boolean   "read",                        :default => false
@@ -624,6 +624,7 @@ ActiveRecord::Schema.define(:version => 20131023205228) do
     t.string    "authentication_token"
     t.timestamp "created_at",                   :limit => 6,                                    :null => false
     t.timestamp "updated_at",                   :limit => 6,                                    :null => false
+    t.boolean   "fake",                                      :default => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
