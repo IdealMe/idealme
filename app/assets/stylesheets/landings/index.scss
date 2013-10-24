@@ -1,5 +1,8 @@
 .landings-index {
   >.body-content {
+    .container {
+      width: 1113px;
+    }
     >.promo-section {
       background: #ff6f6e;
       >.container {
@@ -11,6 +14,10 @@
         margin-right: auto;
         position: relative;
       }
+
+    }
+    .course-name {
+      min-height: 60px;
     }
     .courses-wp {
       .offer-section {

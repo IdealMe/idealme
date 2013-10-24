@@ -11,23 +11,9 @@
               = market.course.owner.fullname
             = link_to 'ABOUT THIS COURSE', market_path(market), :class => 'btn btn-arrow'
 
-.container.recommended
+.container
   %h3.section-header
-    Recommended for you
-  - @courses.sample(4).each do |course|
-    = render :partial => 'partials/course_card', :locals => {:course => course}
-  .clear
-
-.container.trending
-  %h3.section-header
-    Trending
-  - @courses.sample(4).each do |course|
-    = render :partial => 'partials/course_card', :locals => {:course => course}
-  .clear
-
-.container.new-and-noteworthy
-  %h3.section-header
-    New and noteworthy
-  - @courses.sample(4).each do |course|
+    Available courses
+  - @courses.each do |course|
     = render :partial => 'partials/course_card', :locals => {:course => course}
   .clear
