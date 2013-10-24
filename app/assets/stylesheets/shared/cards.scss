@@ -11,8 +11,7 @@
   .course-name {
     font-weight: 600;
     @include hex(#555);
-    @include m_t(10px);
-    @include m_l(16px);
+    margin: 10px 10px 0 10px;
     @include block;
     min-height: 40px;
   }
@@ -20,7 +19,7 @@
   .owner {
     .avatar {
       @include float-left;
-      margin: 12px 10px 6px 13px;
+      margin: 6px 10px 8px 10px;
     }
     .name {
       @include fs(12px);
