@@ -160,6 +160,8 @@ gem 'stripe'
 #Simple Rails app configuration
 gem 'figaro'
 
+gem 'taps-taps'
+
 group :test do
   gem 'simplecov', :require => false
   gem 'poltergeist'

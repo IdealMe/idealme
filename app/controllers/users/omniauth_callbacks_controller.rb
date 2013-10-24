@@ -31,7 +31,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if current_user
         redirect_to(user_identity_path(current_user))
       else
-        results[:user].confirm! if results[:user].email
+        results[:user].touch(:confirmed_at) if results[:user].email
         sign_in_and_redirect results[:user], :event => :authentication #this will throw if @user is not activated
       end
 
