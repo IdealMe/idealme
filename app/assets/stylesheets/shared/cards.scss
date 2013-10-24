@@ -1,6 +1,6 @@
 .course-card {
   width: 252px;
-  @include m_t(0);
+  @include m_t(10px);
   @include m_b(10px);
   @include m_l(29px);
   @include m_r(29px);

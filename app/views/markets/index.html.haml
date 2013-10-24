@@ -12,8 +12,6 @@
             = link_to 'ABOUT THIS COURSE', market_path(market), :class => 'btn btn-arrow'
 
 .container
-  %h3.section-header
-    Available courses
   - @courses.each do |course|
     = render :partial => 'partials/course_card', :locals => {:course => course}
   .clear
