@@ -43,11 +43,10 @@
       %a{:href => "/static/about"} Ideal Me Seal
     If you're not satisfied you get a full refund.
   .offer-section
-    - (1..3).each do |i|
-      .container
-        - @courses.sample(4).each do |course|
-          =render :partial => 'partials/course_card', :locals => {:course => course}
-        .clear
+    .container
+      - @courses.each do |course|
+        =render :partial => 'partials/course_card', :locals => {:course => course}
+      .clear
 .testimonials-section
   %h3.title{:title => "Dont just take our word for it"}
     %img{:src => "assets/dont_just_txt.png"}/

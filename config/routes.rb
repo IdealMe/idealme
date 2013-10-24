@@ -64,6 +64,7 @@ Idealme::Application.routes.draw do
       end
     end
     resources :users
+    get 'users/:id/edit' => "users#edit", :id => /[^\/]+/
     resources :goals
     resources :categories
     resources :polls

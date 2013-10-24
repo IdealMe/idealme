@@ -1,7 +1,7 @@
 require 'hipchat/capistrano'
 require 'recap/recipes/rails'
 require './config/boot'
-require 'honeybadger/capistrano'
+#require 'honeybadger/capistrano'
 
 set :application, 'idealme'
 set :repository, 'git@github.com:flingbob/idealme.git'
@@ -39,6 +39,7 @@ set :hipchat_message_format, 'text' # Sets the deployment message format, see ht
 
 real_revision = `git rev-parse HEAD`
 set :real_revision, real_revision
+set :current_release, real_revision
 
 set(:asset_precompilation_triggers, %w(app/assets vendor/assets Gemfile.lock))
 
@@ -49,5 +50,3 @@ namespace :deploy do
     as_app "kill -s USR2 $(cat /tmp/pids/puma.idealme.pid)"
   end
 end
-
-

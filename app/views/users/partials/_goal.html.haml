@@ -1,5 +1,5 @@
 - @goal_users.each do |goal_user|
-  =render :partial => 'partials/goal_user_card', :locals => {:goal_user => goal_user}
+  = render :partial => 'partials/goal_user_card', :locals => {:goal_user => goal_user}
 
 
 - if @owner
@@ -43,3 +43,5 @@
 
             %div.arrow_icon{:style=>'width: 10px;float: right;margin: 18px;'}
             .clear
+- else
+  .clear

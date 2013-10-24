@@ -37,9 +37,9 @@
       = @course.users.length
       MEMBERS
     .member_box
-      - @course.users.each do |user|
+      - @course.users.first(16).each do |user|
         .member_icon
-          =image_tag(user.avatar.url(:thumb))
+          = image_tag(user.avatar.url(:thumb))
       .clear
     .modal_footer
       .bottom_box
@@ -50,13 +50,13 @@
             .dislike{:data => {:type => @market.course.class, :id => @market.course.id, :direction => -1, :voted => (@market.course.down_voted?(current_user) ? '1':'0')}}
               = @market.course.down_votes
             .clear
-        - else
-          .like_box
-            .like
-              = @market.course.up_votes
-            .dislike
-              = @market.course.down_votes
-            .clear
+        -#- else
+        -#  .like_box
+        -#    .like
+        -#      = @market.course.up_votes
+        -#    .dislike
+        -#      = @market.course.down_votes
+        -#    .clear
 
         .comment_box
           31
@@ -64,28 +64,17 @@
           .unchecked +
           .checked
         .clear
-    .modal_title3 WHAT YOU GET
-    .what_you_get_box
-      .media
-        .pull-left
-          .analysis_icon
-        .media-body
-          Over 34 lectures and 7.5 hours of content!
-      .media
-        .pull-left
-          .natural_icon
-        .media-body
-          At the end of this course, you should be very comfortable in all kinds of natural light situations
-      .media
-        .pull-left
-          .improve_icon
-        .media-body
-          Your fashion and beauty work will see significant improvement
-      .media
-        .pull-left
-          .tools_icon
-        .media-body
-          If you have experience in shooting, you will be able to add some additional tools to your arsenal of light
+    - unless @market.features.empty?
+      .modal_title3 WHAT YOU GET
+      .what_you_get_box
+
+        - @market.features.each do |feature|
+          .media
+            .pull-left
+              = image_tag feature.avatar.url(:square)
+            .media-body
+              = feature.description
+
     .modal_title3 YOUR INSTRUCTOR
     .instructor_box
       .instructor_head
@@ -95,7 +84,7 @@
           = @market.course.owner.fullname
         .clear
       .instructor_description
-        = @market.course.owner.instructor_about.html_safe
+        = @market.course.owner.instructor_about.try :html_safe
       .modal_title3 REVIEWS
       .review_box
         - @market.course.reviews.each do |review|
@@ -118,7 +107,7 @@
           .media
             .pull-left
               MODULE
-              = index
+              = (index + 1).to_s
             .media-body
               = section.name
 
