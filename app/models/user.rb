@@ -45,8 +45,6 @@ class User < ActiveRecord::Base
                     }
 
   # == Validations ==========================================================
-  validates :firstname, :presence => true
-  validates :lastname, :presence => true
   validates :username, :presence => true
   validates :email, :presence => true
 

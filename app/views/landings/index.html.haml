@@ -26,7 +26,9 @@
               = f.email_field :email, :placeholder => "Email", :class => "field"
             .field-wp
               %span.pass-icon &nbsp;
-              = f.text_field :password, :placeholder => "Password", :class => "field"
+              = f.password_field :password, :placeholder => "Password", :class => "field"
+              = f.hidden_field :remember_me, :value => '1'
+              = hidden_field_tag :quick, '1'
             .join-btn-wp
               %span.strike &nbsp;
               = f.submit "Join Now (It's Free)", :class => "join-btn"
