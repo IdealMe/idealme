@@ -437,10 +437,6 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     simple_oauth (0.2.0)
-    simplecov (0.7.1)
-      multi_json (~> 1.0)
-      simplecov-html (~> 0.7.1)
-    simplecov-html (0.7.1)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -585,7 +581,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.6)
   selenium-webdriver
   simple_form
-  simplecov
   stripe
   taps-taps
   therubyracer

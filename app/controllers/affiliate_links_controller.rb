@@ -1,0 +1,2 @@
+class AffiliateLinksController < ApplicationController
+end

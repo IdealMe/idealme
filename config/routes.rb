@@ -1,4 +1,7 @@
 Idealme::Application.routes.draw do
+  resources :affiliate_links
+
+
   root :to => 'landings#index'
   resources :searches, :only => [:index]
   resources :lectures, :only => [:index, :show]
