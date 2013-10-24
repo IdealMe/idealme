@@ -18,7 +18,7 @@
       %td= review.recommended
       %td= review.owner_id
       %td= review.course
-      %td= link_to 'Show', review
+      %td= link_to 'Show', market_review_path(review)
       %td= link_to 'Edit', edit_review_path(review)
       %td= link_to 'Destroy', review, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

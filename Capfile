@@ -50,6 +50,3 @@ namespace :deploy do
     as_app "kill -s USR2 $(cat /tmp/pids/puma.idealme.pid)"
   end
 end
-
-
-
