@@ -45,7 +45,7 @@
   .offer-section
     .container
       - @courses.each do |course|
-        =render :partial => 'partials/course_card', :locals => {:course => course}
+        = render :partial => 'partials/course_card', :locals => {:course => course}
       .clear
 .testimonials-section
   %h3.title{:title => "Dont just take our word for it"}

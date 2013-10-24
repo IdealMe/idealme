@@ -21,6 +21,7 @@ class Admin::UsersController < Admin::BaseController
 
   # POST /admin/users
   def create
+    @user.skip_confirmation!
     @user.save!
     redirect_to edit_admin_user_path(@user), :notice => 'User was successfully created.'
   rescue ActiveRecord::RecordInvalid
@@ -44,6 +45,7 @@ class Admin::UsersController < Admin::BaseController
   protected
   def load_user
     @user = User.where(:username => params[:id]).first
+    @instructor = Course.where(owner_id: @user.id).exists?
   rescue ActiveRecord::RecordNotFound
     redirect_to admin_users_path, :alert => "User not found"
   end

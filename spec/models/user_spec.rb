@@ -39,4 +39,15 @@ describe User do
       expect(user.subscribed_course?(course)).to eq true
     end
   end
+
+  describe 'User creation' do
+    context 'within the admin tool' do
+      it 'skips confirmation' do
+        user = build(:user)
+        user.skip_confirmation!
+        user.save!
+        expect(last_email).to be_nil
+      end
+    end
+  end
 end

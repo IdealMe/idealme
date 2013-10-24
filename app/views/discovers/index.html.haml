@@ -1,5 +1,5 @@
 .container
-  .filter-box   
+  .filter-box
     = form_tag(discovers_path, :method => :get, :html => { :class => 'form-inline' }) do
       = select_tag :type, options_for_select(@type_select, params[:type])
       = select_tag :sort, options_for_select(@sort_select, params[:sort])
@@ -8,15 +8,15 @@
 .container
   .main-section
     - @discovers.each do |discovery|
-      =render :partial => 'partials/discover_card', :locals => {:discover => discovery}
+      = render :partial => 'partials/discover_card', :locals => {:discover => discovery}
     .clear
-    = will_paginate @discovers    
+    = will_paginate @discovers
     = will_paginate @discovers, :page_links => false
 
   .sidebar
     .modal_box.adv-box
-      = image_tag 'banner.png'   
-      = cms_snippet_content('discover_index_banner') 
+      = image_tag 'banner.png'
+      = cms_snippet_content('discover_index_banner')
     .modal_box
       .modal_title1 HIGH FIVES!
       .modal_body
@@ -24,7 +24,7 @@
           .pull-left
             .checked_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Jen Miesler
               %br
               7 consecutive checkins
@@ -32,7 +32,7 @@
           .pull-left
             .ok_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Candice S
               %br
               Most props today
@@ -40,15 +40,15 @@
           .pull-left
             .checked_icon
           .media-body
-            %a{:href => "#"} 
-              %span.media-heading Mai   Curran 
+            %a{:href => "#"}
+              %span.media-heading Mai   Curran
               %br
               First complete goal
         .media
           .pull-left
             .checked_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Ktimene Gensler
               %br
               6 months regular check ins
@@ -56,15 +56,15 @@
           .pull-left
             .checked_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Ulrika Henessen
-              %br 
+              %br
               6 consecutive checkins
         .media
           .pull-left
             .flag_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Just Jenna
               %br
               Completed all goals
@@ -72,7 +72,7 @@
           .pull-left
             .checked_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Molly G
               %br
               4 consecutive checkins
@@ -80,8 +80,7 @@
           .pull-left
             .checked_icon
           .media-body
-            %a{:href => "#"} 
+            %a{:href => "#"}
               %span.media-heading Loren Adams
               %br
               28 check ins in 1 month
-      

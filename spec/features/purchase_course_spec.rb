@@ -29,7 +29,7 @@ describe 'purchase course' do
 
     click_link "Add courses"
 
-    within('.container.recommended') do
+    within('.container.courses') do
       click_link "Sample market"
     end
     find('#top-take-this-course-link').click
