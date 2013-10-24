@@ -39,7 +39,7 @@
     .member_box
       - @course.users.each do |user|
         .member_icon
-          =image_tag(user.avatar.url(:thumb))
+          = image_tag(user.avatar.url(:thumb))
       .clear
     .modal_footer
       .bottom_box
@@ -50,13 +50,13 @@
             .dislike{:data => {:type => @market.course.class, :id => @market.course.id, :direction => -1, :voted => (@market.course.down_voted?(current_user) ? '1':'0')}}
               = @market.course.down_votes
             .clear
-        - else
-          .like_box
-            .like
-              = @market.course.up_votes
-            .dislike
-              = @market.course.down_votes
-            .clear
+        -#- else
+        -#  .like_box
+        -#    .like
+        -#      = @market.course.up_votes
+        -#    .dislike
+        -#      = @market.course.down_votes
+        -#    .clear
 
         .comment_box
           31
@@ -107,7 +107,7 @@
           .media
             .pull-left
               MODULE
-              = index
+              = (index + 1).to_s
             .media-body
               = section.name
 
