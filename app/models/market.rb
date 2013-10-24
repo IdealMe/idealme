@@ -7,11 +7,14 @@ class Market < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag, :course_id, :course
+  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag, :course_id, :course, :features_attributes
 
   # == Relationships ========================================================
   has_many :payloads, :as => :payloadable, :dependent => :destroy
+  has_many :features, :class_name => "MarketFeature", :dependent => :destroy
   belongs_to :course
+
+  accepts_nested_attributes_for :features, :allow_destroy => true
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
@@ -32,8 +35,15 @@ class Market < ActiveRecord::Base
   scope :with_course_and_owner, -> { includes(:course => :owner) }
   scope :type_recommended, lambda { |user|}
   scope :type_trending, lambda { |user|}
-  
+
   # == Callbacks ============================================================
+  before_save :reject_blank_features
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
+
+  def reject_blank_features
+    features.each do |feature|
+      feature.destroy if feature.description.blank?
+    end
+  end
 end

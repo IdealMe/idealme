@@ -84,6 +84,20 @@
       border: 1px solid #bcbcbc;
     }
   }
+
+  .controls.inline .control-group {
+    display: inline-block;
+    vertical-align: top;
+    .control-label {
+      width: 80px;
+    }
+    .controls {
+      margin-left: 100px;
+      textarea {
+        width: 400px;
+      }
+    }
+  }
 }
 
 .feedbacks-new, .feedbacks-edit, .feedbacks-create {

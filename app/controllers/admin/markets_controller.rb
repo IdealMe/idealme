@@ -45,6 +45,7 @@ class Admin::MarketsController < Admin::BaseController
   protected
   def load_market
     @market = Market.find(params[:id])
+    @market.features.build
   rescue ActiveRecord::RecordNotFound
     redirect_to admin_markets_path, :alert => "Market not found"
   end
@@ -55,6 +56,7 @@ class Admin::MarketsController < Admin::BaseController
 
   def build_market
     @market = Market.new(params[:market])
+    @market.features.build
   end
 
 end
