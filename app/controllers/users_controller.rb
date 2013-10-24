@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   protected
   # Set the current profile of the given user in the URL, and determine if the active user is the owner of the user profile
   def load_user
-
+    redirect_to(new_user_session_path) and return unless current_user
     if current_user.username == params[:id]
       @user = current_user
     else
@@ -42,6 +42,7 @@ class UsersController < ApplicationController
     redirect_to(new_user_session_path) and return unless @user
     # Signals the user is browsing their own profile
     @owner = current_user && (@user.id == current_user.id)
+
   end
 
   # Ensure that the owner is browsing the curent profile
