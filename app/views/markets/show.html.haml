@@ -1,3 +1,18 @@
+.promo-section
+  .promo-wrapper
+    .market-box
+      %h3.name
+        = @market.name
+      %p.owner
+        %em by
+        = @market.course.owner.fullname
+      = link_to subscribe_orders_path(@market), :class => 'btn btn-arrow', :id => 'top-take-this-course-link' do
+        Take this course
+        %span.price
+          = penny_to_currency(@market.course.cost)
+    .guarantee-box
+      = image_tag('icons/guarantee.png')
+    .clear
 
 
 
