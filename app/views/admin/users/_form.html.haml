@@ -13,5 +13,18 @@
   = f.text_field :affiliate_tag
   - if @instructor || !@user.persisted?
     = f.text_area :instructor_about
+
+    .control-group
+      %label.control-label Affiliate Links
+      .controls.inline
+        = f.fields_for :affiliate_links do |link|
+          = link.text_field :slug
+          = link.text_field :tracking_tag
+          -#= link.text_field :market_tag
+          = link.select :market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
+          - if link.object.persisted?
+            = link.hidden_field :_destroy, :class => 'delete-link-field'
+            %button.delete-link
+              delete
   = f.submit 'Save', :class => 'btn btn-success'
   = link_to 'Back', admin_users_path, :class => 'btn'

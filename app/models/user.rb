@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
 
   # == Attributes ===========================================================
   attr_accessible :login, :username, :firstname, :lastname, :email, :password, :password_confirmation,
-                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about, :timezone, :toured
+                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about, :timezone, :toured,
+                  :affiliate_links_attributes
 
   attr_accessible :access_admin, :access_affiliate, :access_instructor, :as => :admin
 
@@ -35,7 +36,8 @@ class User < ActiveRecord::Base
   has_many :supported_goal_users, :through => :goal_user_supporters, :source => :goal_user
 
   has_many :affiliate_sales
-  has_many :affiliate_links
+  has_many :affiliate_links, :dependent => :destroy
+  accepts_nested_attributes_for :affiliate_links, :allow_destroy => true
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
@@ -58,7 +60,7 @@ class User < ActiveRecord::Base
   scope :get_affiliate_user, lambda { |code| where(:affiliate_tag => code, :access_affiliate => true) }
 
   # == Callbacks ============================================================
-
+  before_validation :reject_blank_affiliate_links
   after_create :after_create
 
   # == Class Methods ========================================================
@@ -198,6 +200,12 @@ class User < ActiveRecord::Base
 
   def instructor_about
     self.read_attribute(:instructor_about) || ""
+  end
+
+  def reject_blank_affiliate_links
+    affiliate_links.reject! do |link|
+      link.market_tag.blank? && link.slug.blank?
+    end
   end
 end
 
