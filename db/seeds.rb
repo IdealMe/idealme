@@ -6,8 +6,22 @@ u = User.find_or_create_by_email(:firstname => 'Bill', :lastname => 'IdealMe', :
 u.update_attributes({:access_admin => true, :access_affiliate => true, :access_instructor => true}, :as => :admin)
 u.confirm!
 
+u = User.find_or_create_by_email(:firstname => 'Charlie', :lastname => 'Wilkins', :username => 'charlie', :password => '123123123',
+                                 :email => 'charlie@idealme.com', :tagline => 'Idealist - Coder - RoR', :affiliate_tag => 'charlieideal',
+                                 :avatar => File.new("#{Rails.root.to_s}/db/seeds/users/images.jpg", 'r'),
+                                 :instructor_about => '<p>Charlie!</p>')
+u.update_attributes({:access_admin => true, :access_affiliate => true, :access_instructor => true}, :as => :admin)
+u.confirm!
+
+u = User.find_or_create_by_email(:firstname => 'Charlie', :lastname => 'Wilkins', :username => 'charlie-notadmin', :password => '123123123',
+                                 :email => 'charlie+notadmin@idealme.com', :tagline => 'Idealist - Coder - RoR', :affiliate_tag => 'charlieideal',
+                                 :avatar => File.new("#{Rails.root.to_s}/db/seeds/users/images.jpg", 'r'),
+                                 :instructor_about => '<p>Charlie!</p>')
+u.update_attributes({:access_admin => false, :access_affiliate => false, :access_instructor => false}, :as => :admin)
+u.confirm!
+
 unless Rails.env.production?
-	%w(alice bob charlie david eden frank george hilbert ida jack kelly liam mike nancy).each do |user|
+	%w(alice bob david eden frank george hilbert ida jack kelly liam mike nancy).each do |user|
 	  u = User.find_or_create_by_email(:firstname => user, :lastname => 'IdealMe', :username => user,
 	                   :password => 'passpass', :email => "#{user}@idealme.com",
 	                   :tagline => 'Idealist - User - RoR')
@@ -53,9 +67,9 @@ puts 'Seeding goals'
 ['Lose weight', 'Learn to cook', 'Build a business', 'Relax more', 'Be more productive', 'Write a book',
  'Travel the world', 'Learn to dance', 'Learn to surf', 'Automate my finances', 'Learn to play an instrument',
  'Meditate', 'Learn a language', 'Understand investing', 'Master photography'].each_with_index do |goal, i|
-  Goal.find_or_create_by_name( 
-    :name => goal, 
-    :welcome => true, 
+  Goal.find_or_create_by_name(
+    :name => goal,
+    :welcome => true,
     :ordering => i + 1,
     :avatar => File.new("#{Rails.root.to_s}/db/seeds/goals/#{goal.gsub(' ', '_').downcase}.png", 'r'))
 end
