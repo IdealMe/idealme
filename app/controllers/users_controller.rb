@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def welcome
+    flash[:notice] = nil
     @goals = Goal.is_welcome.visible.ordered
   end
 
