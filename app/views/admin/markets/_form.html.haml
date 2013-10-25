@@ -6,6 +6,7 @@
   = f.text_field :affiliate_tag
   = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
   = f.text_area :content, :class => 'tinymce'
+  = image_tag @market.avatar.url(:square), :height => '50', :width => '50'
   = f.file_field :avatar
 
   .control-group
@@ -14,12 +15,14 @@
       -#= render partial: 'feature', collection: @market.features
 
       = f.fields_for :features do |feature|
-        = feature.file_field :avatar
-        = feature.text_area :description, :rows => 3, :cols => 80
+        = image_tag(feature.object.avatar.url(:square), :height => '50', :width => '50')
+        = feature.file_field :avatar, :label => ''
+        = feature.text_area :description, :rows => 3, :cols => 80, :label => ''
         - if feature.object.persisted?
           = feature.hidden_field :_destroy, :class => 'delete-feature-field'
           %button.delete-feature
             delete
+        %br
 
 
 
