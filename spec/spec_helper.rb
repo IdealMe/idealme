@@ -12,6 +12,51 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'vcr'
 
+#poltergeist_log = File.open(Rails.root.join("log","poltergeist.log"), "a")
+#Capybara.register_driver :poltergeist do |app|
+#  Capybara::Poltergeist::Driver.new(app, {
+#    #logger: poltergeist_log,
+#    phantomjs_logger: poltergeist_log,
+#    debug: false
+#  })
+#end
+
+# https://gist.github.com/ericboehs/7125105
+module Capybara::Poltergeist
+  class Client
+    private
+    def redirect_stdout
+      prev = STDOUT.dup
+      prev.autoclose = false
+      $stdout = @write_io
+      STDOUT.reopen(@write_io)
+
+      prev = STDERR.dup
+      prev.autoclose = false
+      $stderr = @write_io
+      STDERR.reopen(@write_io)
+      yield
+    ensure
+      STDOUT.reopen(prev)
+      $stdout = STDOUT
+      STDERR.reopen(prev)
+      $stderr = STDERR
+    end
+  end
+end
+
+class WarningSuppressor
+  class << self
+    def write(message)
+      if message =~ /QFont::setPixelSize: Pixel size <= 0/ || message =~/CoreText performance note:/ then 0 else puts(message);1;end
+    end
+  end
+end
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor)
+end
+
 Capybara.javascript_driver = :poltergeist
 Capybara.default_wait_time = 5
 
@@ -20,7 +65,7 @@ Capybara.default_wait_time = 5
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 VCR.configure do |c|
-  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :faraday
 end
 

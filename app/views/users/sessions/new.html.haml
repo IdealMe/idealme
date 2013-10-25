@@ -11,7 +11,7 @@
         - if devise_mapping.recoverable? && controller_name != 'passwords'
           = link_to 'Forgot password?', new_password_path(resource_name), :class => "forgot-password"
         .control-box
-          = f.submit 'Sign in', :class => 'btn btn-red'
+          = f.submit 'Sign in', :class => 'btn btn-red', :id => 'sign-in-button'
   .footer
     .oauth
       Or:

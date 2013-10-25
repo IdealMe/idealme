@@ -24,7 +24,9 @@ class OrdersController < ApplicationController
 
   # create a paypal payment and send the user to the approval url
   def paypal_checkout
-    paypal = PayPal.new
+    #foo = cookies.signed[:zid]
+    #binding.pry
+    paypal = PayPal.new(paypal_endpoint, paypal_credentials)
 
     paypal.create_payment(@order.course.cost_in_dollars, "Ideal Me - #{@market.name}", paypal_return_url, paypal_cancel_url)
     session[:payment_id] = paypal.id
@@ -32,7 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def paypal_return
-    paypal = PayPal.new
+    paypal = PayPal.new(paypal_endpoint, paypal_credentials)
     result = paypal.execute_payment(session[:payment_id], params['PayerID'], params['token'])
     @order.parameters = result
     @order.gateway = Order::GATEWAY_PAYPAL
@@ -102,8 +104,6 @@ class OrdersController < ApplicationController
       flash[:alert] = 'There was a problem validating your information. Please ensure all your information are correct'
       render :new
     end
-
-
   end
 
   protected
@@ -157,5 +157,17 @@ class OrdersController < ApplicationController
   def paypal_cancel_url
     request.url.sub(/paypal$/,'paypal-cancel')
   end
+
+  def paypal_endpoint
+    ENV['IDEALME_PAYPAL_ENDPOINT']
+  end
+
+  def paypal_credentials
+    [
+      ENV['IDEALME_PAYPAL_AUTH_KEY'],
+      ENV['IDEALME_PAYPAL_AUTH_SECRET']
+    ]
+  end
+
 end
 

@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :supported_goal_users, :through => :goal_user_supporters, :source => :goal_user
 
   has_many :affiliate_sales
+  has_many :affiliate_links
 
   # == Paperclip ============================================================
   has_attached_file :avatar,

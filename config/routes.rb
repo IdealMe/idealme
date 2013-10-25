@@ -1,8 +1,11 @@
 Idealme::Application.routes.draw do
-  resources :affiliate_links
+
 
 
   root :to => 'landings#index'
+
+  match "now/:slug" => "affiliate_links#perform", :slug => /[^\/]+/
+
   resources :searches, :only => [:index]
   resources :lectures, :only => [:index, :show]
   resources :feedbacks, :only => [:index, :new, :create]
@@ -24,8 +27,8 @@ Idealme::Application.routes.draw do
   resources :markets, :only => [:index, :show] do
     resources :reviews
     collection do
-      get ':market_affiliate_tag/:user_affiliate_tag/:tracking_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate_tracking
-      get ':market_affiliate_tag/:user_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate
+      get ':market_affiliate_tag/:user_affiliate_tag/:tracking_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate_tracking, :user_affiliate_tag => /[^\/]+/
+      get ':market_affiliate_tag/:user_affiliate_tag' => 'markets#affiliate_init', :as => :markets_affiliate, :user_affiliate_tag => /[^\/]+/
     end
   end
   resources :courses, :only => [:index, :show]

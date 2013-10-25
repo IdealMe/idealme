@@ -5,6 +5,7 @@ class MarketsController < ApplicationController
 
 
   def affiliate_init
+
     tracking_affiliate_tag = params[:tracking_affiliate_tag]
     market_affiliate_tag = params[:market_affiliate_tag]
     user_affiliate_tag = params[:user_affiliate_tag]
