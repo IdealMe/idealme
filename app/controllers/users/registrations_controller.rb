@@ -20,3 +20,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
     { :scope => resource_name, :recall => "#{controller_path}#new" }
   end
 end
+
