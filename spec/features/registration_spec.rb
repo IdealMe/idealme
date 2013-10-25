@@ -9,7 +9,6 @@ describe 'registration' do
     fill_in 'user_email', :with => 'newguy@idealme.com'
     fill_in 'user_password', :with => 'passpass'
     page.find('input[name="commit"]').click
-    screenshot
     expect(current_path).to eq '/newguy/welcome'
   end
 
