@@ -104,8 +104,8 @@
     }
   }
   .menu-section {
-    border-bottom: 1px solid #ebeae5;
     @include m_b(18px);
+    @include m_l(8px);
     .user-menu {
       margin: 0;
       font-weight: 600;
