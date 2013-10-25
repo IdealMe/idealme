@@ -9,4 +9,8 @@ module GoalsHelper
       end
     end
   end
+
+  def goal_selected(goal)
+    @user_goals.include? goal
+  end
 end
