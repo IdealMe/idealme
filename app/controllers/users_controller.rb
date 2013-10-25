@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def welcome
     flash[:notice] = nil
     @goals = Goal.is_welcome.visible.ordered
+    render layout: "chromeless"
   end
 
   def welcome_save
