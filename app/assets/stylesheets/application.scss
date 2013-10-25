@@ -88,11 +88,17 @@
   .controls.inline .control-group {
     display: inline-block;
     vertical-align: top;
+    .help-inline {
+      display: block;
+    }
     .control-label {
-      width: 80px;
+      width: 90px;
     }
     .controls {
       margin-left: 100px;
+      input[type='text'] {
+        width: 150px;
+      }
       textarea {
         width: 400px;
       }

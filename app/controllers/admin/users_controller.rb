@@ -45,6 +45,7 @@ class Admin::UsersController < Admin::BaseController
   protected
   def load_user
     @user = User.where(:username => params[:id]).first
+    @user.affiliate_links.build
     @instructor = Course.where(owner_id: @user.id).exists?
   rescue ActiveRecord::RecordNotFound
     redirect_to admin_users_path, :alert => "User not found"
@@ -56,6 +57,7 @@ class Admin::UsersController < Admin::BaseController
 
   def build_user
     @user = User.new(params[:user])
+    @user.affiliate_links.build
     @user.password = SecureRandom.hex unless @user.password
   end
 

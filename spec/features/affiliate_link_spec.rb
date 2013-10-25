@@ -25,7 +25,7 @@ describe 'affiliate links' do
     fill_in "Email", with: 'normal@idealme.com'
     fill_in "Password", with: 'passpass'
     find('#sign-in-button').click
-    screenshot
+    expect(current_path).to eq '/orders'
   end
 
 end
