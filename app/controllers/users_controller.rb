@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def welcome
     flash[:notice] = nil
+    @suppress_header = true
     @goals = Goal.is_welcome.visible.ordered
   end
 

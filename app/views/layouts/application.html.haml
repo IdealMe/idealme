@@ -23,7 +23,7 @@
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
   %body{:class => body_class}
     %header
-      = render 'header'
+      = render 'header' unless !!@suppress_header
     %section.body_content.body-content
       = render 'flash_message'
       - c = params[:controller].split('/')
