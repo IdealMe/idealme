@@ -41,9 +41,9 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .courses-wp .vendor_name { line-height: 26px; }
 .courses-wp .offer_card { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; overflow: hidden; }
 
-.goal-box-long { height: 270px; 
-	.avatar { padding-top: 65px; }
-	.goal-name { font-size: 16px; }
+.goal-box-long { height: 180px; 
+	.avatar { padding-top: 16px; }
+	.goal-name { font-size: 16px; font-weight: 400;}
 }
 
 .bottom-join-wp { background: #fbfbf3; padding: 25px 0; }

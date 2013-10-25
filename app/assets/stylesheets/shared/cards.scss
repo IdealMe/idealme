@@ -233,11 +233,12 @@
   }
   .plus {
     @include fs(48px);
+    font-weight: 800;
     @include p_b(15px);
   }
 }
 
-.goal-card-new { width: 228px;  height: 160px; @include p_t(110px); }
+.goal-card-new { width: 228px;  height: 113px; @include p_t(67px); }
 .course-card-new { width: 228px; height: 210px; @include p_t(130px); }
 
 .goal-card {
