@@ -2,6 +2,7 @@ class AffiliateLink < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :market_tag, :slug, :user
+  attr_accessible :slug, :market_tag, :tracking_tag, :market_id
 
 
   def path
@@ -14,5 +15,15 @@ class AffiliateLink < ActiveRecord::Base
     else
       ""
     end
+  end
+
+  def market_id
+    binding.pry
+    Market.where(affiliate_tag: market_tag).first.try(:id)
+  end
+
+  def market_id=(v)
+    binding.pry
+    self.market_tag = Market.where(id: v).first.try(:affiliate_tag)
   end
 end
