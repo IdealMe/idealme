@@ -70,7 +70,7 @@
         - @market.features.each do |feature|
           .media
             .pull-left
-              = image_tag feature.avatar.url(:square)
+              = image_tag feature.avatar.url(:square), :height => 50, :width => 50
             .media-body
               = feature.description
 

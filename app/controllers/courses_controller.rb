@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  before_filter :require_authentication, :only => [:show]
   before_filter :build_course, :only => [:show]
 
   # GET /courses

@@ -44,6 +44,7 @@ Idealme::Application.routes.draw do
     end
     collection do
       get :archived
+      post '' => 'goals#choose'
     end
   end
 
