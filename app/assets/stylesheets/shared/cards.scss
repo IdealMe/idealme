@@ -1,9 +1,6 @@
 .course-card {
   width: 252px;
-  @include m_t(10px);
-  @include m_b(10px);
-  @include m_l(29px);
-  @include m_r(29px);
+  margin: 10px 40px 10px 18px;
   @include bg(white);
   border: 1px solid #ebebeb;
   @include left;
