@@ -2,12 +2,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_authorization_check
   layout 'minimal'
 
+  def create
+    set_username_param
+    super
+  end
+
   def new
     flash[:alert] = nil if params[:quick] == '1'
     super
   end
 
   protected
+
+  def set_username_param
+    params[:user][:username] = params[:user][:email].split('@').first.parameterize('-') if params[:user][:username].nil?
+  end
+
   def after_update_path_for(resource)
     user_path(resource)
   end

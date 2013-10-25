@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
   #
   # The callback will set the user's profile pic to a random avatar if one was not provided
   def after_create
-    if self.avatar_file_name.nil?
+    if self.avatar_file_name.nil? && !Rails.env.test?
       avatars = Dir.glob("#{Rails.root.to_s}/db/seeds/users/avatars/anon*.png")
       self.avatar = File.new(avatars.sample, 'r')
       self.save!

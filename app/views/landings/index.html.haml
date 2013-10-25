@@ -16,7 +16,7 @@
           %p
             Join me in the Ideal Me Challenge: 12 goals, 1 a month for max results in minimum time and discover what really works!
         .join-box
-          = form_for :user, url: user_session_path do |f|
+          = form_for :user, url: user_registration_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
             .or-text
               %span.line &nbsp;

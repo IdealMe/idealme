@@ -4,8 +4,8 @@
       .account-box
         .message-box
           Create your FREE Ideal Me account
-        = f.input :username, :autofocus => true
-        = f.input :email
+        -#= f.input :username, :autofocus => true
+        = f.input :email, :autofocus => true
         = f.input :password
         .control-box
           = f.submit 'Sign up with email ➝', :class => 'btn btn-red'
@@ -14,5 +14,5 @@
       Or
       = link_to('Sign up with Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue')
     %p
-      Already have an account? 
+      Already have an account?
       = link_to 'Sign in', new_user_session_path

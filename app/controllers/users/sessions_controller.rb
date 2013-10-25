@@ -3,6 +3,10 @@ class Users::SessionsController < Devise::SessionsController
 
   skip_authorization_check
 
+  def create
+    super
+  end
+
   def destroy
     super
     flash[:notice] = nil
