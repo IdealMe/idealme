@@ -7,21 +7,21 @@
     /
       .dropdown
         = image_tag 'users/drop_down.png', :data => { :toggle => 'dropdown' }
-        %ul.dropdown-menu{:style=>'border-radius:0px'}      
+        %ul.dropdown-menu{:style=>'border-radius:0px'}
           %li
-            = link_to 'Mark as complete', complete_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}  
+            = link_to 'Mark as complete', complete_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}
           %li.divider
-          %li                                            
+          %li
             = link_to 'Archive', archive_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}
 
   .avatar
-    = link_to image_tag(goal_user.goal.avatar.url(:full)), goal_path(goal_user)
+    = image_tag(goal_user.goal.avatar.url(:full))
   .goal-name
     = goal_user.goal.name
   /
     .bottom_box
       .check-ins
-        .counter 
+        .counter
           = goal_user.checkins.length
         check ins
       .gems-collected
