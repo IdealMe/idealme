@@ -8,6 +8,7 @@ header {
       @include p_l(0);
       @include m_l(10);
       @include rel;
+      cursor: pointer;
       >.user-avatar {
         padding: 9px;
         width: 41px;
