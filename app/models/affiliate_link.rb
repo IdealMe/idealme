@@ -18,12 +18,10 @@ class AffiliateLink < ActiveRecord::Base
   end
 
   def market_id
-    binding.pry
     Market.where(affiliate_tag: market_tag).first.try(:id)
   end
 
   def market_id=(v)
-    binding.pry
     self.market_tag = Market.where(id: v).first.try(:affiliate_tag)
   end
 end
