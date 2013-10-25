@@ -162,7 +162,7 @@ class User < ActiveRecord::Base
   end
 
   def unsubscribe_goal(goal)
-    GoalUser.where(:user_id => self.id, :goal_id => goal.id).first.destroy
+    GoalUser.where(:user_id => self.id, :goal_id => goal.id).first.try :destroy
   end
 
   def subscribe_goal(goal)
