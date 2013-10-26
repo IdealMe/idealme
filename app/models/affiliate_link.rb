@@ -2,7 +2,9 @@ class AffiliateLink < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :market_tag, :slug, :user
-  attr_accessible :slug, :market_tag, :tracking_tag, :market_id
+  attr_accessible :slug, :market_tag, :tracking_tag, :market_id, :user_id
+
+  has_many :sales, class_name: 'AffiliateSale'
 
 
   def path

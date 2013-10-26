@@ -1,7 +1,5 @@
 Idealme::Application.routes.draw do
 
-
-
   root :to => 'landings#index'
 
   match "now/:slug" => "affiliate_links#perform", :slug => /[^\/]+/

@@ -5,7 +5,7 @@ module TestHelpers
       #Capybara::Screenshot.screen_shot_and_open_image
       save_screenshot('test.png', :full => true)
       # exec('open test.png')
-      x = `open -Fg test.png`
+      x = `open -F test.png`
     else
       save_and_open_page
     end

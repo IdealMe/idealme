@@ -71,6 +71,6 @@
   %p
     Or
     %p
-      = link_to paypal_checkout_order_path, method: :post do
+      = link_to paypal_checkout_order_path(@order.market), method: :post do
         = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
   .clear

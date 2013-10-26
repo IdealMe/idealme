@@ -43,12 +43,12 @@ class ApplicationController < ActionController::Base
   end
 
   # Get the current affiliate user's tracking campaign that is cookied on the customer's computer
-  # @return [AffiliateTracking] If the affiliate user's tracking campaign that is cookied on the customer's computer
+  # @return [AffiliateLink] If the affiliate user's link campaign that is cookied on the customer's computer
   # @return [nil] Otherwise
-  def get_affiliate_tracking
-    affiliate_tracking = AffiliateTracking.where(:affiliate_tag => cookies.signed[:tid]).first if cookies.signed[:tid]
-    if affiliate_tracking
-      affiliate_tracking
+  def get_affiliate_link
+    affiliate_link = AffiliateLink.where(:tracking_tag => cookies.signed[:tid]).first if cookies.signed[:tid]
+    if affiliate_link
+      affiliate_link
     else
       cookies.delete :tid
       nil
@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    root_path
+    session[:previous_url] || root_path
   end
 
   protected
@@ -138,7 +138,6 @@ class ApplicationController < ActionController::Base
 
     if current_user
       gon.current_user_toured = current_user.toured
-
     end
 
     # CSRF token
@@ -152,9 +151,9 @@ class ApplicationController < ActionController::Base
 
   # Get the current affiliate tracking profile that is cookied on the user's computer
   #
-  # @return [AffiliateTracking] The current affiliate tracking profile that is cookied on the user's computer
-  def get_affiliate_tracking
-    AffiliateTracking.where(:affiliate_tag => cookies.signed[:tid]).first
+  # @return [AffiliateLink] The current affiliate tracking profile that is cookied on the user's computer
+  def get_affiliate_link
+    AffiliateLink.where(:tracking_tag => cookies.signed[:tid]).first
   end
 
   # Get the current affiliate user that is cookied on the user's computer

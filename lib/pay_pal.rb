@@ -12,8 +12,10 @@ class PayPal
   end
 
   def get_token
-    # How to handle re-use of token?
-    # redis!
+    # cache the auth token in redis
+    
+    token = $redis.get(credentials.first)
+    return token if token
 
     conn.basic_auth(*credentials)
 
@@ -25,6 +27,9 @@ class PayPal
     end
 
     json = JSON.parse(response.body)
+    ttl = json["expires_in"] - 60
+    $redis.setex(credentials.first, ttl, json["access_token"])
+
     json["access_token"]
   end
 

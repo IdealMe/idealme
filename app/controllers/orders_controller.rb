@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
     @order.save!
 
     if get_affiliate_user
-      AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
+      AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
     end
     current_user.subscribe_course(@market.course)
     flash[:alert] = nil
@@ -83,6 +83,7 @@ class OrdersController < ApplicationController
 
 
       @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
+
       if @response.success?
         if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
          Rails.logger.info gateway.store(@order.cc, gateway_options)
@@ -92,7 +93,7 @@ class OrdersController < ApplicationController
         @order.save!
 
         if get_affiliate_user
-          AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_tracking)
+          AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
         end
         current_user.subscribe_course(@market.course)
         flash[:alert] = nil
@@ -110,7 +111,7 @@ class OrdersController < ApplicationController
   def init_order
     @market = Market.find(params[:id])
     @order = Order.create_order_by_market_and_user(@market, current_user)
-    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_tracking)
+    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
   end
@@ -119,7 +120,7 @@ class OrdersController < ApplicationController
   def build_order
     @order = Order.new(params[:order])
     @market = Market.where(:id => @order.market.id).first
-    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_tracking)
+    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
     raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
