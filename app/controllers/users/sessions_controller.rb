@@ -14,6 +14,8 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
 
+
+
   def auth_options
     if params[:quick] == '1'
       { :scope => resource_name, :recall => "users/registrations#new" }

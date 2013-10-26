@@ -49,7 +49,7 @@ module ApplicationHelper
   # This is displayed in the footer
   #
   # @return [String] The friendly cookie string
-  def get_friendly_affiliate_tracking
+  def get_friendly_affiliate_link
     friendly = nil
     zid = cookies.signed[:zid]
     if zid
@@ -57,8 +57,8 @@ module ApplicationHelper
       friendly = "#{last_affiliate_user.username}" if last_affiliate_user
       tid = cookies.signed[:tid]
       if tid
-        last_affiliate_tracking = AffiliateTracking.where(:affiliate_tag => tid).first
-        friendly = "#{friendly}/#{last_affiliate_tracking.name}" if last_affiliate_tracking
+        last_affiliate_link = AffiliateLink.where(:tracking_tag => tid).first
+        friendly = "#{friendly}/#{last_affiliate_link.slug}" if last_affiliate_link
       end
     end
     friendly

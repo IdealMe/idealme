@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024165415) do
+ActiveRecord::Schema.define(:version => 20131026003202) do
 
   create_table "activities", :force => true do |t|
     t.boolean  "read",           :default => false
@@ -53,12 +53,12 @@ ActiveRecord::Schema.define(:version => 20131024165415) do
   create_table "affiliate_sales", :force => true do |t|
     t.integer  "user_id"
     t.integer  "order_id"
-    t.integer  "affiliate_tracking_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.integer  "affiliate_link_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
-  add_index "affiliate_sales", ["affiliate_tracking_id"], :name => "index_affiliate_sales_on_affiliate_tracking_id"
+  add_index "affiliate_sales", ["affiliate_link_id"], :name => "index_affiliate_sales_on_affiliate_link_id"
   add_index "affiliate_sales", ["order_id"], :name => "index_affiliate_sales_on_order_id"
   add_index "affiliate_sales", ["user_id"], :name => "index_affiliate_sales_on_user_id"
 
