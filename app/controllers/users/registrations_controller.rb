@@ -15,7 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def set_username_param
-    params[:user][:username] = params[:user][:email].split('@').first.parameterize('-') if params[:user][:username].nil?
+    if params[:user][:username].nil? && params[:user][:email].present?
+      params[:user][:username] = params[:user][:email].split('@').first.parameterize('-')
+    end
   end
 
   def after_update_path_for(resource)
