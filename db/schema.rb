@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026003202) do
+ActiveRecord::Schema.define(:version => 20131029020915) do
 
   create_table "activities", :force => true do |t|
     t.boolean  "read",           :default => false
@@ -446,8 +446,9 @@ ActiveRecord::Schema.define(:version => 20131026003202) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "weight",              :default => 0
   end
 
   add_index "market_features", ["market_id"], :name => "index_market_features_on_market_id"
