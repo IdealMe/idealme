@@ -1,51 +1,72 @@
-= formatted_form_for(@course, :url => url, :html => {:class => 'form-horizontal'}) do |f|
-  %fieldset
-    #legend
-      %legend Course
-  - if @course.errors.any?
-    = @course.errors.full_messages.each do |msg|
-      %ul.alert.alert-error.unstyled
-        %li= msg
 
-  = f.text_field :name, :autofocus => true
-  = f.number_field :cost_in_dollars
-  = f.number_field :affiliate_commission
-  = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
-  = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, :class => 'select2'
-  = f.text_area :description, :class => 'tinymce', :rows => 4
-  = f.check_box :hidden
+.tabbable
+  %ul.nav.nav-tabs
+    %li{:class => course_details_active?}
+      %a{ :href => "#course-details-tab", 'data-toggle' => 'tab' } Course
+    %li{:class => course_previews_active?}
+      %a{ :href => "#course-previews-tab", 'data-toggle' => 'tab' } Previews
+    %li{:class => course_content_active?}
+      %a{ :href => "#course-content-tab", 'data-toggle' => 'tab' } Content
 
-  - if @course.persisted?
-    %fieldset
-      #legend
-        %legend Sections
+  .tab-content
+    .tab-pane{ :id => 'course-details-tab', :class => course_details_active? }
+      = formatted_form_for(@course, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+        = hidden_field_tag :active_view, :details
+        %fieldset
+          #legend
+            %legend Course
+        - if @course.errors.any?
+          = @course.errors.full_messages.each do |msg|
+            %ul.alert.alert-error.unstyled
+              %li= msg
 
-    %table.table
-      %tr
-        %th.span1
-          Sort
-        %th
-          Section
-      %tbody.sortable{:data => {:update_url => sort_admin_sections_path}}
-        - @course.sections.each do |section|
-          %tr{:id => "section_#{section.id}"}
-            %td.text-center
-              %i.icon-sort.handle
-            %td
-              = section.name
+        = f.text_field :name, :autofocus => true
+        = f.number_field :cost_in_dollars
+        = f.number_field :affiliate_commission
+        = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
+        = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, :class => 'select2'
+        = f.text_area :description, :class => 'tinymce', :rows => 4
+        = f.check_box :hidden
+
+        - if @course.persisted?
+          %fieldset
+            #legend
+              %legend Sections
+
+          %table.table
+            %tr
+              %th.span1
+                Sort
+              %th
+                Section
+            %tbody.sortable{:data => {:update_url => sort_admin_sections_path}}
+              - @course.sections.each do |section|
+                %tr{:id => "section_#{section.id}"}
+                  %td.text-center
+                    %i.icon-sort.handle
+                  %td= link_to section.name, edit_admin_section_path(section)
 
 
-  %fieldset
-    #legend
-      %legend Goal
-  .control-group
-    .controls
-      = hidden_field_tag "course[goal_ids][]", nil
-      - Goal.all.each do |goal|
-        %label
-          = check_box_tag "course[goal_ids][]", goal.id, @course.goal_ids.include?(goal.id)
-          = goal.name
+        %fieldset
+          #legend
+            %legend Goal
+        .control-group
+          .controls
+            = hidden_field_tag "course[goal_ids][]", nil
+            - Goal.all.each do |goal|
+              %label
+                = check_box_tag "course[goal_ids][]", goal.id, @course.goal_ids.include?(goal.id)
+                = goal.name
 
 
-  = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_courses_path, :class => 'btn'
+        = f.submit 'Save', :class => 'btn btn-success'
+        = link_to 'Back', admin_courses_path, :class => 'btn'
+
+    .tab-pane{ :id => 'course-previews-tab', :class => course_previews_active? }
+      previews
+
+      - @market = @course.default_market
+      = render :partial => 'admin/markets/form', :locals => {:url => admin_course_path}
+    .tab-pane{id: 'course-content-tab' }
+      content
+
