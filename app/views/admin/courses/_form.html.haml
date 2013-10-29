@@ -74,23 +74,23 @@
           = market.text_field :affiliate_tag
           = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
           = market.text_area :content, :class => 'tinymce'
-          -# = image_tag @market.avatar.url(:square), :height => '50', :width => '50'
+          = image_tag @course.default_market.avatar.url(:square), :height => '50', :width => '50'
           = market.file_field :avatar
 
           .control-group
             %label.control-label Features
             .controls.inline
-              -#= render partial: 'feature', collection: @market.features
 
-              -# = market.fields_for :features do |feature|
-                -# = image_tag(market.object.avatar.url(:square), :height => '50', :width => '50')
-                -# = feature.file_field :avatar, :label => ''
-                -# = feature.text_area :description, :rows => 3, :cols => 80, :label => ''
-                -# - if feature.object.persisted?
-                  -# = feature.hidden_field :_destroy, :class => 'delete-feature-field'
-                  -# %button.delete-feature
-                    -# delete
-                -# %br
+
+              = market.fields_for :features do |feature|
+                = image_tag(market.object.avatar.url(:square), :height => '50', :width => '50')
+                = feature.file_field :avatar, :label => ''
+                = feature.text_area :description, :rows => 3, :cols => 80, :label => ''
+                - if feature.object.persisted?
+                  = feature.hidden_field :_destroy, :class => 'delete-feature-field'
+                  %button.delete-feature
+                    delete
+                %br
 
 
 
