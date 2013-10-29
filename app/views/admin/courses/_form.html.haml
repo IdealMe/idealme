@@ -1,11 +1,11 @@
 
 .tabbable
   %ul.nav.nav-tabs
-    %li{:class => course_details_active?}
+    %li#details-tab{:class => course_details_active?}
       %a{ :href => "#course-details-tab", 'data-toggle' => 'tab' } Course
-    %li{:class => course_previews_active?}
+    %li#previews-tab{:class => course_previews_active?}
       %a{ :href => "#course-previews-tab", 'data-toggle' => 'tab' } Previews
-    %li{:class => course_content_active?}
+    %li#content-tab{:class => course_content_active?}
       %a{ :href => "#course-content-tab", 'data-toggle' => 'tab' } Content
 
   .tab-content
@@ -63,10 +63,41 @@
         = link_to 'Back', admin_courses_path, :class => 'btn'
 
     .tab-pane{ :id => 'course-previews-tab', :class => course_previews_active? }
-      previews
+      = formatted_form_for(@course, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+        = hidden_field_tag :active_view, :previews
+        = f.fields_for(:default_market, @course.default_market) do |market|
+          %fieldset
+            #legend
+              %legend Market
 
-      - @market = @course.default_market
-      = render :partial => 'admin/markets/form', :locals => {:url => admin_course_path}
+          = market.text_field :name, :autofocus => true
+          = market.text_field :affiliate_tag
+          = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
+          = market.text_area :content, :class => 'tinymce'
+          -# = image_tag @market.avatar.url(:square), :height => '50', :width => '50'
+          = market.file_field :avatar
+
+          .control-group
+            %label.control-label Features
+            .controls.inline
+              -#= render partial: 'feature', collection: @market.features
+
+              -# = market.fields_for :features do |feature|
+                -# = image_tag(market.object.avatar.url(:square), :height => '50', :width => '50')
+                -# = feature.file_field :avatar, :label => ''
+                -# = feature.text_area :description, :rows => 3, :cols => 80, :label => ''
+                -# - if feature.object.persisted?
+                  -# = feature.hidden_field :_destroy, :class => 'delete-feature-field'
+                  -# %button.delete-feature
+                    -# delete
+                -# %br
+
+
+
+          = f.submit 'Save', :class => 'btn btn-success'
+          = link_to 'Back', admin_markets_path, :class => 'btn'
+          - if @course.default_market.persisted?
+            = link_to 'Payloads', admin_market_payloads_path(@course.default_market), :class => 'btn'
     .tab-pane{id: 'course-content-tab' }
       content
 

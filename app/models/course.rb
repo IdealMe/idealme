@@ -9,7 +9,9 @@ class Course < ActiveRecord::Base
   # == Constants ============================================================
   # == Attributes ===========================================================
   attr_accessible :avatar, :hidden, :name, :slug, :owner_id, :cost, :default_market_id,
-                  :review_positive, :review_negative, :up_votes, :down_votes, :description, :goal_ids, :cost_in_dollars
+                  :review_positive, :review_negative, :up_votes, :down_votes, :description, :goal_ids, :cost_in_dollars, :default_market_attributes
+
+
 
 
   attr_accessible :affiliate_commission
@@ -28,6 +30,8 @@ class Course < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :replies, :through => :comments
   has_many :votes, :as => :votable
+
+  accepts_nested_attributes_for :default_market
 
   # == Paperclip ============================================================
   # == Validations ==========================================================

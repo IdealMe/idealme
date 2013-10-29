@@ -30,7 +30,9 @@ class Admin::CoursesController < Admin::BaseController
   # PUT /admin/courses/1
   def update
     @course.update_attributes!(params[:course])
-    redirect_to edit_admin_course_path(@course), :notice => 'Course was successfully updated.'
+    #redirect_to edit_admin_course_path(@course), :notice => 'Course was successfully updated.'
+    flash[:notice] = 'Course was successfully updated.'
+    render :action => :edit
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end
