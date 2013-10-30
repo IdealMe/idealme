@@ -8,7 +8,7 @@
   - @sections.each do |section|
     %tr
       %td= link_to section.name, edit_admin_section_path(section)
-      %td= link_to section.course.name, edit_admin_course_path(section.course)
+      %td= link_to section.course.try(:name), edit_admin_course_path(section.course)
 
 %br
 

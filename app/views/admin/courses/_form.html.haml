@@ -46,6 +46,8 @@
                     %i.icon-sort.handle
                   %td= link_to section.name, edit_admin_section_path(section)
 
+          %a{ :href => new_admin_section_path(course_id: @course.id), :class => 'btn' } New Section
+
 
         %fieldset
           #legend
@@ -68,7 +70,7 @@
         = f.fields_for(:default_market, @course.default_market) do |market|
           %fieldset
             #legend
-              %legend Market
+              %legend Course Preview page
 
           = market.text_field :name, :autofocus => true
           = market.text_field :affiliate_tag
@@ -98,6 +100,7 @@
           = link_to 'Back', admin_markets_path, :class => 'btn'
           - if @course.default_market.persisted?
             = link_to 'Payloads', admin_market_payloads_path(@course.default_market), :class => 'btn'
-    .tab-pane{id: 'course-content-tab' }
+
+    .tab-pane{ :id => 'course-content-tab', :class => course_content_active? }
       content
 

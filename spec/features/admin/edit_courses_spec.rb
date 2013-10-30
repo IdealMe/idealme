@@ -28,6 +28,12 @@ describe 'editing courses' do
     click_button "Save"
     find("#previews-tab.active")
     expect(find("#course_market_name").value).to eq 'New fancy market name'
+
+    # let's make a new section
+
+    click_link "New Section"
+    fill_in "Name", :with => "beans"
+    click_button "Save"
   end
 
 end

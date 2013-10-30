@@ -30,7 +30,7 @@ class Admin::SectionsController < Admin::BaseController
   # POST /admin/sections
   def create
     @section.save!
-    redirect_to edit_admin_section_path(@section), :notice => 'Section was successfully created.'
+    redirect_to edit_admin_course_path(@section.course), :notice => 'Section was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render :action => :new
   end
@@ -38,7 +38,7 @@ class Admin::SectionsController < Admin::BaseController
   # PUT /admin/sections/1
   def update
     @section.update_attributes!(params[:section])
-    redirect_to edit_admin_section_path(@section), :notice => 'Section was successfully updated.'
+    redirect_to edit_admin_course_path(@section.course), :notice => 'Section was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render :action => :edit
   end
@@ -61,6 +61,7 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def build_section
+    params[:section] ||= {}; params[:section][:course_id] = params[:course_id] if params[:course_id].present?
     @section = Section.new(params[:section])
   end
 

@@ -25,6 +25,7 @@
               %i.icon-sort.handle
             %td
               = lecture.name
+    %a{:href => new_admin_lecture_path(section_id: @section.id)}
 
 
   = f.submit 'Save', :class => 'btn btn-success'
