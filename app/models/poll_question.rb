@@ -9,18 +9,18 @@ class PollQuestion < ActiveRecord::Base
   has_many :poll_choices
   has_many :poll_results
 
-  accepts_nested_attributes_for :poll_choices, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :poll_choices, reject_if: lambda { |a| a[:name].blank? }, allow_destroy: true
   
   # == Paperclip ============================================================
   # == Validations ==========================================================
-  validates :name, :presence => true
+  validates :name, presence: true
 
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.compute_poll_question_tags
     payloads = Hash.new
-    PollQuestion.includes({:poll_choices => :poll_results}, :poll_results).find_each { |poll| payloads["{im:model:poll_question:#{poll.id}}"] = poll }
+    PollQuestion.includes({poll_choices: :poll_results}, :poll_results).find_each { |poll| payloads["{im:model:poll_question:#{poll.id}}"] = poll }
     payloads
   end
 

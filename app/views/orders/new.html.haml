@@ -12,7 +12,7 @@
             = @market.course.owner.fullname
           .price
             = penny_to_currency(@market.course.cost)
-    = render :partial => 'form'
+    = render partial: 'form'
   .sidebar
     .modal_title4 What you get
     .what_you_get

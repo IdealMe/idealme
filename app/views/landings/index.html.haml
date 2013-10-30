@@ -9,7 +9,7 @@
         Ideal Life?
       .cnt
         .video
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "231", :width => "370", :src => "//fast.wistia.net/embed/iframe/8cwpldg4xw", :width => "370", :allowtransparency => "true", :scrolling => "no", :class => "wistia_embed", :name => "wistia_embed" }
+          %iframe{allowfullscreen: "", frameborder: "0", height: "231", width: "370", src: "//fast.wistia.net/embed/iframe/8cwpldg4xw", width: "370", allowtransparency: "true", scrolling: "no", class: "wistia_embed", name: "wistia_embed" }
 
           %span.video-bg &nbsp;
         .text
@@ -17,21 +17,21 @@
             Join me in the Ideal Me Challenge: 12 goals, 1 a month for max results in minimum time and discover what really works!
         .join-box
           = form_for :user, url: user_registration_path do |f|
-            = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
+            = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
             .or-text
               %span.line &nbsp;
               %span.tx Or
             .field-wp
               %span.email-icon &nbsp;
-              = f.email_field :email, :placeholder => "Email", :class => "field"
+              = f.email_field :email, placeholder: "Email", class: "field"
             .field-wp
               %span.pass-icon &nbsp;
-              = f.password_field :password, :placeholder => "Password", :class => "field"
-              = f.hidden_field :remember_me, :value => '1'
+              = f.password_field :password, placeholder: "Password", class: "field"
+              = f.hidden_field :remember_me, value: '1'
               = hidden_field_tag :quick, '1'
             .join-btn-wp
               %span.strike &nbsp;
-              = f.submit "Join Now (It's Free)", :class => "join-btn"
+              = f.submit "Join Now (It's Free)", class: "join-btn"
         .clear &nbsp;
     .clear
 .courses-wp
@@ -42,21 +42,21 @@
   %p.top-text
     All courses backed by the
     = succeed "." do
-      %a{:href => "/static/about"} Ideal Me Seal
+      %a{href: "/static/about"} Ideal Me Seal
     If you're not satisfied you get a full refund.
 
   .offer-section
     .container
       - i = 0
       - @courses.each do |course|
-        = render :partial => 'partials/course_card', :locals => {:course => course}
+        = render partial: 'partials/course_card', locals: {course: course}
         - i = i + 1
         - if i % 4 == 0
           .clear
       .clear
 .testimonials-section
-  %h3.title{:title => "Dont just take our word for it"}
-    %img{:src => "assets/dont_just_txt.png"}/
+  %h3.title{title: "Dont just take our word for it"}
+    %img{src: "assets/dont_just_txt.png"}/
   %p We listen to our users, and so should you!
   .testimonial-container
     .testimonial.fleft
@@ -68,7 +68,7 @@
           .arrow
       .user_info
         .user_pic
-          %img{:src => "assets/user_1.jpg", :width => "32"}/
+          %img{src: "assets/user_1.jpg", width: "32"}/
         .user_name Shannon Thomas
     .testimonial.fright
       .testimonial-box
@@ -79,7 +79,7 @@
           .arrow
       .user_info
         .user_pic
-          %img{:src => "assets/user_2.png", :width => "32"}/
+          %img{src: "assets/user_2.png", width: "32"}/
         .user_name Desiree Patel
     .clear
     .testimonial.fleft
@@ -91,7 +91,7 @@
           .arrow
       .user_info
         .user_pic
-          %img{:src => "assets/user_3.jpg", :width => "32"}/
+          %img{src: "assets/user_3.jpg", width: "32"}/
         .user_name Tanya Mcdonald
     .testimonial.fright
       .testimonial-box
@@ -100,7 +100,7 @@
           .arrow
       .user_info
         .user_pic
-          %img{:src => "assets/user_4.png", :width => "32"}/
+          %img{src: "assets/user_4.png", width: "32"}/
         .user_name Laurie Williams
     .clear
 = render "join_up"

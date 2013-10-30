@@ -1,7 +1,7 @@
 module ApplicationHelper
   def render_activity(activity)
     render_key = "activities/#{activity.action.downcase.gsub('.', '/')}"
-    render :partial => render_key, :locals => {:activity => activity}
+    render partial: render_key, locals: {activity: activity}
   end
 
   # A wrapper for number_to_currency which converts pennies to currency
@@ -57,7 +57,7 @@ module ApplicationHelper
       friendly = "#{last_affiliate_user.username}" if last_affiliate_user
       tid = cookies.signed[:tid]
       if tid
-        last_affiliate_link = AffiliateLink.where(:tracking_tag => tid).first
+        last_affiliate_link = AffiliateLink.where(tracking_tag: tid).first
         friendly = "#{friendly}/#{last_affiliate_link.slug}" if last_affiliate_link
       end
     end

@@ -1,3 +1,3 @@
 .flex-video
-  %iframe{:src => "http://docs.google.com/viewer?url=#{u s3_expiring}&embedded=true"}
-= link_to_if(download, 'Download document', s3_expiring, :class => 'success button')
+  %iframe{src: "http://docs.google.com/viewer?url=#{u s3_expiring}&embedded=true"}
+= link_to_if(download, 'Download document', s3_expiring, class: 'success button')

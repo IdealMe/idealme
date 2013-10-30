@@ -9,7 +9,7 @@ class Ajax::PollResultsController < Ajax::BaseController
   end
 
   def destroy
-    @poll_result = PollResult.where(:id => params[:id]).first
+    @poll_result = PollResult.where(id: params[:id]).first
     @poll_result.destroy
   end
 end

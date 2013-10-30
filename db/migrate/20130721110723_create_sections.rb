@@ -9,7 +9,7 @@ class CreateSections < ActiveRecord::Migration
       
       t.references :course
 
-      t.integer :position, :default => 0
+      t.integer :position, default: 0
 
       t.timestamps
     end

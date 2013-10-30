@@ -2,7 +2,7 @@
 - user = goal_user.user    
 - checkin = activity.trackable 
 - comments = checkin.comments
-- comment = Comment.new(:commentable => checkin, :owner => current_user, :redirect_back_to => request.original_url )
+- comment = Comment.new(commentable: checkin, owner: current_user, redirect_back_to: request.original_url )
 %li                            
   .activity
     .arrow
@@ -14,9 +14,9 @@
     .body
       .title                   
         - if current_user == user
-          = link_to 'You', user_path(user), :class => 'user-name'
+          = link_to 'You', user_path(user), class: 'user-name'
         - else
-          = link_to user.fullname, user_path(user), :class => 'user-name'
+          = link_to user.fullname, user_path(user), class: 'user-name'
         checked in!
       - if checkin.thoughts && checkin.thoughts.present?
         .message
@@ -24,9 +24,9 @@
           = checkin.thoughts
       - if current_user
         .bottom
-          .like{:data => {:type => checkin.class, :id => checkin.id, :direction => 1, :voted => (checkin.up_voted?(current_user) ? '1':'0')}}
+          .like{data: {type: checkin.class, id: checkin.id, direction: 1, voted: (checkin.up_voted?(current_user) ? '1':'0')}}
             = checkin.up_votes
-          .dislike{:data => {:type => checkin.class, :id => checkin.id, :direction => -1, :voted => (checkin.down_voted?(current_user) ? '1':'0')}}
+          .dislike{data: {type: checkin.class, id: checkin.id, direction: -1, voted: (checkin.down_voted?(current_user) ? '1':'0')}}
             = checkin.down_votes
           .comment-count 
             = comments.length
@@ -38,14 +38,14 @@
             = checkin.down_votes
           .comment-count 
             = comments.length
-        %a.add-comment{:href => "#"} Add comment     
-      = form_for comment, :url => ajax_comments_path do |f|
+        %a.add-comment{href: "#"} Add comment     
+      = form_for comment, url: ajax_comments_path do |f|
         = f.hidden_field :commentable_id
         = f.hidden_field :commentable_type
         = f.hidden_field :owner_id
         = f.hidden_field :redirect_back_to    
         = f.text_field :content
-        = f.submit 'Submit', :class => 'btn'  
+        = f.submit 'Submit', class: 'btn'  
         .clear
       .comments
         - comments.each do |comment|

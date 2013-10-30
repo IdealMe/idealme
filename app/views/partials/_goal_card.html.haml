@@ -1,13 +1,13 @@
 .goal-card                                                    
   .avatar
     = link_to image_tag(goal.avatar.url(:full)), goal_path(goal)
-  = link_to goal.name, goal_path(goal), :class => 'goal-name'
+  = link_to goal.name, goal_path(goal), class: 'goal-name'
   .bottom-box       
     - if current_user
       .like-box
-        .like{:data => {:type => goal.class, :id => goal.id, :direction => 1, :voted => (goal.up_voted?(current_user) ? '1':'0')}}
+        .like{data: {type: goal.class, id: goal.id, direction: 1, voted: (goal.up_voted?(current_user) ? '1':'0')}}
           = goal.up_votes
-        .dislike{:data => {:type => goal.class, :id => goal.id, :direction => -1, :voted => (goal.down_voted?(current_user) ? '1':'0')}}
+        .dislike{data: {type: goal.class, id: goal.id, direction: -1, voted: (goal.down_voted?(current_user) ? '1':'0')}}
           = goal.down_votes
         .clear
     - else

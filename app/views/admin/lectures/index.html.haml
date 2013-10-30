@@ -1,12 +1,12 @@
 %h1 Lectures
 
-= search_form_for @q, :url => admin_lectures_path do |f|
+= search_form_for @q, url: admin_lectures_path do |f|
   = f.label :name_cont
   = f.text_field :name_cont
   = f.label :section_id_eq
-  = f.select :section_id_eq, Section.for_select, {:allow_blank => true}, :class => 'select2'  
+  = f.select :section_id_eq, Section.for_select, {allow_blank: true}, class: 'select2'  
   = f.label :section_course_id_eq
-  = f.select :section_course_id_eq, Course.for_select, {}, :class => 'select2'
+  = f.select :section_course_id_eq, Course.for_select, {}, class: 'select2'
   = f.submit
 
 %table.table
@@ -22,4 +22,4 @@
 
 %br
 
-= link_to 'New lecture', new_admin_lecture_path, :class => 'btn'
+= link_to 'New lecture', new_admin_lecture_path, class: 'btn'

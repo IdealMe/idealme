@@ -5,9 +5,9 @@
     - if @owner    
       - if @goal_user.archived?
         .goal-status
-          = link_to 'Reactivate', activate_goal_path(@goal_user), :class => 'btn', :method => :post, :data => {:confirm => 'Are you sure?'}
+          = link_to 'Reactivate', activate_goal_path(@goal_user), class: 'btn', method: :post, data: {confirm: 'Are you sure?'}
       .goal-privacy
-        %a.btn.goal-privacy-toggle{:href => '#', :data => { :goal_user_id => @goal_user.id, :goal_user_private => (@goal_user.private ? 1 : 0 )}} 
+        %a.btn.goal-privacy-toggle{href: '#', data: { goal_user_id: @goal_user.id, goal_user_private: (@goal_user.private ? 1 : 0 )}} 
           - if @goal_user.private?
             Private
           - else
@@ -15,23 +15,23 @@
     .clear
   .menu-section
     %ul.user-menu
-      %li{:class => active_tab?(@tab, 'activity')}
-        = link_to 'Activity', tab_goal_path(@goal_user, 'activity'), :class => 'activity-icon'
-      %li{:class => active_tab?(@tab, 'top-gem')}
-        = link_to 'Top gems', tab_goal_path(@goal_user, 'top-gem'), :class => 'top-gem-icon'
+      %li{class: active_tab?(@tab, 'activity')}
+        = link_to 'Activity', tab_goal_path(@goal_user, 'activity'), class: 'activity-icon'
+      %li{class: active_tab?(@tab, 'top-gem')}
+        = link_to 'Top gems', tab_goal_path(@goal_user, 'top-gem'), class: 'top-gem-icon'
       - if @goal_user.active? && @owner
-        %li{:class => active_tab?(@tab, 'my-gem')}
-          = link_to 'My gems', tab_goal_path(@goal_user, 'my-gem'), :class => 'my-gem-icon'
-      %li{:class => active_tab?(@tab, 'course')}
-        = link_to 'Courses', tab_goal_path(@goal_user, 'course'), :class => 'course-icon'
+        %li{class: active_tab?(@tab, 'my-gem')}
+          = link_to 'My gems', tab_goal_path(@goal_user, 'my-gem'), class: 'my-gem-icon'
+      %li{class: active_tab?(@tab, 'course')}
+        = link_to 'Courses', tab_goal_path(@goal_user, 'course'), class: 'course-icon'
     .clear
   .panes
     %div.active
       - if @tab == 'activity'
-        = render :partial => 'goals/partials/activity'
+        = render partial: 'goals/partials/activity'
       - elsif @tab == 'top-gem'
-        = render :partial => 'goals/partials/top_gem'
+        = render partial: 'goals/partials/top_gem'
       - elsif @tab == 'my-gem' && @goal_user.active? && @owner
-        = render :partial => 'goals/partials/my_gem'
+        = render partial: 'goals/partials/my_gem'
       - elsif @tab == 'course'
-        = render :partial => 'goals/partials/course'
+        = render partial: 'goals/partials/course'

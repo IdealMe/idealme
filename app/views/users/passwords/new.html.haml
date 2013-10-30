@@ -1,12 +1,12 @@
 .authentication-section
-  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => 'form-horizontal'}) do |f|
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, class: 'form-horizontal'}) do |f|
     .modal-box
       .account-box
         .message-box
           Recover your Ideal Me account
         .control-group
-          = f.label :email, 'Username', :class => 'control-label'
+          = f.label :email, 'Username', class: 'control-label'
           .controls
-            = f.email_field :email, :autofocus => true
+            = f.email_field :email, autofocus: true
         .control-box
-          = f.submit 'RESET MY PASSWORD', :class => 'btn btn-red'
+          = f.submit 'RESET MY PASSWORD', class: 'btn btn-red'

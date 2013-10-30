@@ -21,8 +21,8 @@ ComfortableMexicanSofa.configure do |config|
   # the upload method and appropriate settings based on Paperclip.  For S3 see:
   # http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/S3, and for 
   # filesystem see: http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/Filesystem
-  # If you are using S3 and HTTPS, pass :s3_protocol => '' to have URLs that use the protocol of the page
-  #   config.upload_file_options = {:url => '/system/:class/:id/:attachment/:style/:filename'}
+  # If you are using S3 and HTTPS, pass s3_protocol: '' to have URLs that use the protocol of the page
+  #   config.upload_file_options = {url: '/system/:class/:id/:attachment/:style/:filename'}
 
   # Sofa allows you to setup entire site from files. Database is updated with each
   # request (if necessary). Please note that database entries are destroyed if there's
@@ -51,8 +51,8 @@ ComfortableMexicanSofa.configure do |config|
   #   config.revisions_limit = 25
 
   # Locale definitions. If you want to define your own locale merge
-  # {:locale => 'Locale Title'} with this.
-  #   config.locales = {:en => 'English', :es => 'Español'}
+  # {locale: 'Locale Title'} with this.
+  #   config.locales = {en: 'English', es: 'Español'}
 
   # Admin interface will respect the locale of the site being managed. However you can
   # force it to English by setting this to `:en`

@@ -1,67 +1,67 @@
 %section.pay-method
   %p
     Pay with:
-    = image_tag 'icons/credit_cards_icon.png', :class => 'credit-cards-image'
+    = image_tag 'icons/credit_cards_icon.png', class: 'credit-cards-image'
   .clear
 
-= form_for(@order, :url => orders_path, :method => :post, :html => {:class => 'orders-payment-form'}) do |f|
+= form_for(@order, url: orders_path, method: :post, html: {class: 'orders-payment-form'}) do |f|
   = f.hidden_field :market_id
   = f.hidden_field :course_id
   = f.hidden_field :user_id
   = f.hidden_field :time
   = f.hidden_field :checksum
 
-  %section.first-name{:class => ('control-group error' if @order.errors[:firstname].length > 0)}
+  %section.first-name{class: ('control-group error' if @order.errors[:firstname].length > 0)}
     = f.label :card_firstname, 'First Name'
-    = f.text_field :card_firstname, :autofocus => true
+    = f.text_field :card_firstname, autofocus: true
 
-  %section.last-name{:class => ('control-group error' if @order.errors[:lastname].length > 0)}
+  %section.last-name{class: ('control-group error' if @order.errors[:lastname].length > 0)}
     = f.label :card_lastname, 'Last Name'
     = f.text_field :card_lastname
 
   .clear
 
-  %section.card-number{:class => ('control-group error' if @order.errors[:card_number].length > 0)}
+  %section.card-number{class: ('control-group error' if @order.errors[:card_number].length > 0)}
     = f.label :card_number
-    = f.text_field :card_number, :size => 16, :maxlength => 16
+    = f.text_field :card_number, size: 16, maxlength: 16
 
-  %section.card-type{:class => ('control-group error' if @order.errors[:card_type].length > 0)}
+  %section.card-type{class: ('control-group error' if @order.errors[:card_type].length > 0)}
     = f.label :card_type, 'Card Type'
     = f.select :card_type, options_for_select([["Visa", "visa"], ["Master Card", "master"]])
   .clear
 
-  %section.exp-date{:class => ('control-group error' if @order.errors[:card_exp_month].length > 0 || @order.errors[:card_exp_year].length > 0)}
+  %section.exp-date{class: ('control-group error' if @order.errors[:card_exp_month].length > 0 || @order.errors[:card_exp_year].length > 0)}
     = f.label :card_exp_month, 'Expiration Date'
-    = f.select(:card_exp_month, month_options_for_select(@order.card_exp_month), {}, { :class => 'exp-month' })
-    = f.select(:card_exp_year, Time.now.year..Time.now.year+10, {}, { :class => 'exp-year' })
+    = f.select(:card_exp_month, month_options_for_select(@order.card_exp_month), {}, { class: 'exp-month' })
+    = f.select(:card_exp_year, Time.now.year..Time.now.year+10, {}, { class: 'exp-year' })
 
     .clear
-  %section.security-code{:class => ('control-group error' if @order.errors[:cvv].length > 0)}
+  %section.security-code{class: ('control-group error' if @order.errors[:cvv].length > 0)}
     = f.label :card_cvv, 'Security Code (CVV/CSV)'
-    = f.text_field :card_cvv, :size => 4, :maxlength => 4
+    = f.text_field :card_cvv, size: 4, maxlength: 4
   .clear
-  %section.address1{:class => ('control-group error' if @order.errors[:billing_address1].length > 0)}
+  %section.address1{class: ('control-group error' if @order.errors[:billing_address1].length > 0)}
     = f.label :billing_address1, 'Address line 1'
     = f.text_field :billing_address1
-  %section.address2{:class => ('control-group error' if @order.errors[:billing_address2].length > 0)}
+  %section.address2{class: ('control-group error' if @order.errors[:billing_address2].length > 0)}
     = f.label :billing_address2, 'Address line 2'
     = f.text_field :billing_address2
-  %section.city{:class => ('control-group error' if @order.errors[:billing_city].length > 0)}
+  %section.city{class: ('control-group error' if @order.errors[:billing_city].length > 0)}
     = f.label :billing_city, 'City'
     = f.text_field :billing_city
-  %section.zip{:class => ('control-group error' if @order.errors[:billing_zip].length > 0)}
+  %section.zip{class: ('control-group error' if @order.errors[:billing_zip].length > 0)}
     = f.label :billing_zip, 'Zip / Postal Code'
     = f.text_field :billing_zip
   .clear
-  %section.state{:class => ('control-group error' if @order.errors[:billing_state].length > 0)}
+  %section.state{class: ('control-group error' if @order.errors[:billing_state].length > 0)}
     = f.label :billing_state, 'State / Province / Region'
     = f.text_field :billing_state
-  %section.country{:class => ('control-group error' if @order.errors[:billing_country].length > 0)}
+  %section.country{class: ('control-group error' if @order.errors[:billing_country].length > 0)}
     = f.label :billing_country, 'Country'
     = f.text_field :billing_country
   .clear
   %section.submit-box
-    = f.submit 'Complete Purchase', :class => 'btn btn-red'
+    = f.submit 'Complete Purchase', class: 'btn btn-red'
     .agreement-text
       By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy. 
       Note: you will be billed immediately.
@@ -72,5 +72,5 @@
     Or
     %p
       = link_to paypal_checkout_order_path(@order.market), method: :post do
-        = image_submit_tag('icons/paypal_icon.png', :class => 'paypal-image', :alt => 'Purchase')
+        = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
   .clear

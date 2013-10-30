@@ -14,7 +14,7 @@ module ActiveMerchant #:nodoc:
           service = service_class.new(order, account, options)
           result << capture(service, &proc)
           if encrypt
-            paypal_params = {:cert_id => ENV['PAYPAL_CERT_ID']}
+            paypal_params = {cert_id: ENV['PAYPAL_CERT_ID']}
             service.form_fields.each do |field, value|
               paypal_params.merge!(field => value)
             end

@@ -4,11 +4,11 @@ class Feedback < ActiveRecord::Base
   REQUEST_A_FEATURE = 2
   REPORT_A_PROBLEM = 3
 
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :owner, class_name: 'User'
 
-  validates :content, :presence => true
-  validates :feedback_type, :presence => true
-  validates :owner_id, :presence => true
+  validates :content, presence: true
+  validates :feedback_type, presence: true
+  validates :owner_id, presence: true
 
   def self.for_select
     [

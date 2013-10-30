@@ -12,16 +12,16 @@ module Votable
   end
 
   def up_voted?(owner)
-    !Vote.where(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id, :up_vote => true, :down_vote => false).first.nil?
+    !Vote.where(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id, up_vote: true, down_vote: false).first.nil?
   end
 
   def down_voted?(owner)
-    !Vote.where(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id, :up_vote => false, :down_vote => true).first.nil?
+    !Vote.where(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id, up_vote: false, down_vote: true).first.nil?
   end
 
   def un_vote(owner)
     ActiveRecord::Base.transaction do
-      vote = Vote.where(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id).first
+      vote = Vote.where(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id).first
       if vote
         if vote.up_vote
           self.up_votes -= 1
@@ -36,9 +36,9 @@ module Votable
 
   def up_vote(owner)
     ActiveRecord::Base.transaction do
-      vote = Vote.where(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id).first
+      vote = Vote.where(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id).first
       if vote.nil?
-        vote = Vote.create!(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id, :up_vote => true, :down_vote => false)
+        vote = Vote.create!(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id, up_vote: true, down_vote: false)
         self.up_votes += 1
         self.save!
       else
@@ -57,9 +57,9 @@ module Votable
 
   def down_vote(owner)
     ActiveRecord::Base.transaction do
-      vote = Vote.where(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id).first
+      vote = Vote.where(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id).first
       if vote.nil?
-        vote = Vote.create!(:votable_type => self.class.name, :votable_id => self.id, :owner_id => owner.id, :up_vote => false, :down_vote => true)
+        vote = Vote.create!(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id, up_vote: false, down_vote: true)
         self.down_votes += 1
         self.save!
       else

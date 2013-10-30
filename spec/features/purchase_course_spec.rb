@@ -23,8 +23,8 @@ describe 'purchase course' do
     visit new_user_session_path
     page.should have_content('Sign in to your Ideal Me account')
 
-    fill_in 'user_email', :with => 'normal@idealme.com'
-    fill_in 'user_password', :with => 'passpass'
+    fill_in 'user_email', with: 'normal@idealme.com'
+    fill_in 'user_password', with: 'passpass'
     page.find('input[name="commit"]').click
 
     click_link "Add courses"
@@ -36,7 +36,7 @@ describe 'purchase course' do
 
   end
 
-  it 'allows customers to purchase courses', :js => true do
+  it 'allows customers to purchase courses', js: true do
 
     firstname_value = find("#order_card_firstname").value
     expect(firstname_value).to eq @user.firstname

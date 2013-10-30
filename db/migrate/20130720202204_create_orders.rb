@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       
       t.text :parameters
       t.integer :status
-      t.integer :cost, :default => 0
+      t.integer :cost, default: 0
       t.references :course
       t.references :market
       t.references :user

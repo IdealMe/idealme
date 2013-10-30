@@ -7,11 +7,11 @@ class DiscoversController < ApplicationController
     sort = params[:sort] || 'popular'
     @discovers = Jewel
     if type == Jewel::GOAL
-      @discovers = @discovers.where(:kind => Jewel::GOAL)
+      @discovers = @discovers.where(kind: Jewel::GOAL)
     elsif type == Jewel::LINK
-      @discovers = @discovers.where(:kind => Jewel::LINK)
+      @discovers = @discovers.where(kind: Jewel::LINK)
     elsif type == Jewel::COURSE
-      @discovers = @discovers.where(:kind => Jewel::COURSE)
+      @discovers = @discovers.where(kind: Jewel::COURSE)
     end
 
     if sort == 'popular'
@@ -20,7 +20,7 @@ class DiscoversController < ApplicationController
       @discovers = @discovers.order('created_at DESC')
     end
 
-    @discovers = @discovers.paginate(:page => params[:page], :per_page => 36).all
+    @discovers = @discovers.paginate(page: params[:page], per_page: 36).all
   end
 
   # GET /discovers/1

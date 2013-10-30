@@ -97,13 +97,13 @@ class Order < ActiveRecord::Base
   def build_credit_card
     unless gateway == GATEWAY_PAYPAL
       self.cc ||= ActiveMerchant::Billing::CreditCard.new(
-          :brand => self.card_type,
-          :number => self.card_number,
-          :verification_value => self.card_cvv,
-          :month => self.card_exp_month,
-          :year => self.card_exp_year,
-          :first_name => self.card_firstname,
-          :last_name => self.card_lastname
+          brand: self.card_type,
+          number: self.card_number,
+          verification_value: self.card_cvv,
+          month: self.card_exp_month,
+          year: self.card_exp_year,
+          first_name: self.card_firstname,
+          last_name: self.card_lastname
       )
       self.card_number_4 = self.card_number[-4, 4]
     end

@@ -1,9 +1,9 @@
-= formatted_form_for(@goal, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+= formatted_form_for(@goal, url: url, html: {class: 'form-horizontal'}) do |f|
   %fieldset
     #legend
       %legend Goal
-  = f.text_field :name, :autofocus => true
-  = f.select :category_id, Category.for_select, {}, :class => 'select2'
+  = f.text_field :name
+  = f.select :category_id, Category.for_select, {}, class: 'select2'
   .control-group
     .control-label
       %p
@@ -24,5 +24,5 @@
         %label
           = check_box_tag "goal[course_ids][]", course.id, @goal.course_ids.include?(course.id)
           = course.name
-  = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_goals_path, :class => 'btn'
+  = f.submit 'Save', class: 'btn btn-success'
+  = link_to 'Back', admin_goals_path, class: 'btn'

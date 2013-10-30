@@ -3,8 +3,8 @@ class CreateJewels < ActiveRecord::Migration
     create_table :jewels do |t|
       t.string :name
       t.string :slug
-      t.integer :up_votes, :default => 0
-      t.integer :down_votes, :default => 0
+      t.integer :up_votes, default: 0
+      t.integer :down_votes, default: 0
       t.text :content
       t.text :url
       t.text :parameters

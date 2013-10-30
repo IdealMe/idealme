@@ -5,8 +5,8 @@ class CreateMarkets < ActiveRecord::Migration
       t.string :slug
       t.string :affiliate_tag
       t.text :content
-      t.boolean :hidden, :default => false
-      t.boolean :slider, :default => false
+      t.boolean :hidden, default: false
+      t.boolean :slider, default: false
       t.attachment :avatar
       t.references :course
       t.timestamps

@@ -1,12 +1,12 @@
 class GoalsController < ApplicationController
   before_filter :require_authentication
 
-  before_filter :load_goals, :only => [:index]
-  before_filter :load_goal_user, :only => [:show]
-  before_filter :load_active_goal_user, :only => [:share, :checkin, :archive, :complete]
-  before_filter :load_archived_goal_users, :only => [:archived]
-  before_filter :load_archived_goal_user, :only => [:activate]
-  #before_filter :ensure_owner, :only => [:show, :share, :checkin]
+  before_filter :load_goals, only: [:index]
+  before_filter :load_goal_user, only: [:show]
+  before_filter :load_active_goal_user, only: [:share, :checkin, :archive, :complete]
+  before_filter :load_archived_goal_users, only: [:archived]
+  before_filter :load_archived_goal_user, only: [:activate]
+  #before_filter :ensure_owner, only: [:show, :share, :checkin]
 
   # GET /goals
   def index
@@ -40,7 +40,7 @@ class GoalsController < ApplicationController
 
     @activities = Activity
     if @owner
-      supporting_activity_key = current_user.supported_goal_users.includes(:goal).where(:goals => {:id => @goal_user.goal_id}).map(&:to_activity_key)
+      supporting_activity_key = current_user.supported_goal_users.includes(:goal).where(goals: {id: @goal_user.goal_id}).map(&:to_activity_key)
       if supporting_activity_key && supporting_activity_key.length > 0
         @activities = @activities.where('(sender_id = ? AND sender_type = ?) OR share_key IN (?)', @goal_user.id, @goal_user.class.name, supporting_activity_key)
       else
@@ -49,7 +49,7 @@ class GoalsController < ApplicationController
     else
       @activities = @activities.where('(sender_id = ? AND sender_type = ?)', @goal_user.id, @goal_user.class.name)
     end
-    @activities = @activities.includes(:sender, :trackable, :comments => [:owner, :replies])
+    @activities = @activities.includes(:sender, :trackable, comments: [:owner, :replies])
     @activities = @activities.order('created_at DESC').all
   end
 
@@ -63,17 +63,17 @@ class GoalsController < ApplicationController
     #  response = request.request_head(uri.path)
     #  raise URI::InvalidURIError unless response.code.to_i == 200
     #rescue URI::InvalidURIError
-    #  redirect_to(goal_path(@goal_user), :alert => 'That was not a valid URL!') and return
+    #  redirect_to(goal_path(@goal_user), alert: 'That was not a valid URL!') and return
     #end
     gem = Jewel.mine(current_user, url)
     @goal_user.add_gem(gem)
-    redirect_to goal_path(@goal_user), :notice => 'Successfully shared your gem!'
+    redirect_to goal_path(@goal_user), notice: 'Successfully shared your gem!'
   end
 
   # POST /goals/1/checkin
   def checkin
     checkin = @goal_user.checkin(params[:thoughts])
-    redirect_to goal_path(@goal_user), :notice => 'Successfully checked in!'
+    redirect_to goal_path(@goal_user), notice: 'Successfully checked in!'
   end
 
   def activate
@@ -82,7 +82,7 @@ class GoalsController < ApplicationController
     return_path = goal_path(@goal_user)
     return_path = params[:return_path] if params[:return_path]
 
-    redirect_to return_path, :notice => 'Successfully activated!'
+    redirect_to return_path, notice: 'Successfully activated!'
   end
 
   def complete
@@ -90,7 +90,7 @@ class GoalsController < ApplicationController
     return_path = goal_path(@goal_user)
     return_path = params[:return_path] if params[:return_path]
 
-    redirect_to return_path, :notice => 'Successfully completed!'
+    redirect_to return_path, notice: 'Successfully completed!'
   end
 
   def archive
@@ -98,7 +98,7 @@ class GoalsController < ApplicationController
     return_path = goal_path(@goal_user)
     return_path = params[:return_path] if params[:return_path]
 
-    redirect_to return_path, :notice => 'Successfully archived!'
+    redirect_to return_path, notice: 'Successfully archived!'
   end
 
   def archived
@@ -113,26 +113,26 @@ class GoalsController < ApplicationController
 
   def load_goals
     @goals = Goal.all
-    @user_goals = GoalUser.where(:user_id => current_user.id).includes(:goal).all.map(&:goal)
+    @user_goals = GoalUser.where(user_id: current_user.id).includes(:goal).all.map(&:goal)
   end
 
   def load_goal_user
-    @goal_user = GoalUser.where(:id => params[:id]).includes(:goal, :checkins).first
+    @goal_user = GoalUser.where(id: params[:id]).includes(:goal, :checkins).first
     @owner = current_user && (@goal_user.user_id == current_user.id)
   end
 
   def load_active_goal_user
-    @goal_user = GoalUser.active.where(:id => params[:id]).includes(:goal, :checkins).first
+    @goal_user = GoalUser.active.where(id: params[:id]).includes(:goal, :checkins).first
     @owner = current_user && (@goal_user.user_id == current_user.id)
   end
 
   def load_archived_goal_user
-    @goal_user = GoalUser.archived.where(:id => params[:id]).includes(:goal, :checkins).first
+    @goal_user = GoalUser.archived.where(id: params[:id]).includes(:goal, :checkins).first
     @owner = current_user && (@goal_user.user_id == current_user.id)
   end
 
   # Ensure that the owner is browsing the curent profile
   def ensure_owner
-    redirect_to(user_path(current_user), :alert => 'That goal does not exist!') and return if (!@owner && @goal_user && @goal_user.private?)
+    redirect_to(user_path(current_user), alert: 'That goal does not exist!') and return if (!@owner && @goal_user && @goal_user.private?)
   end
 end

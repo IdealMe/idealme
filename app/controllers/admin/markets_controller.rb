@@ -1,7 +1,7 @@
 class Admin::MarketsController < Admin::BaseController
-  before_filter :load_market, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_markets, :only => :index
-  before_filter :build_market, :only => [:new, :create]
+  before_filter :load_market, only: [:show, :edit, :update, :destroy]
+  before_filter :load_markets, only: :index
+  before_filter :build_market, only: [:new, :create]
 
   # GET /admin/markets
   def index
@@ -22,23 +22,23 @@ class Admin::MarketsController < Admin::BaseController
   # POST /admin/markets
   def create
     @market.save!
-    redirect_to edit_admin_market_path(@market), :notice => 'Market was successfully created.'
+    redirect_to edit_admin_market_path(@market), notice: 'Market was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :new
+    render action: :new
   end
 
   # PUT /admin/markets/1
   def update
     @market.update_attributes!(params[:market])
-    redirect_to edit_admin_market_path(@market), :notice => 'Market was successfully updated.'
+    redirect_to edit_admin_market_path(@market), notice: 'Market was successfully updated.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :edit
+    render action: :edit
   end
 
   # DELETE /admin/markets/1
   def destroy
     @market.destroy
-    redirect_to admin_markets_url, :notice => 'Market was successfully deleted'
+    redirect_to admin_markets_url, notice: 'Market was successfully deleted'
   end
 
 
@@ -47,7 +47,7 @@ class Admin::MarketsController < Admin::BaseController
     @market = Market.find(params[:id])
     @market.features.build
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_markets_path, :alert => "Market not found"
+    redirect_to admin_markets_path, alert: "Market not found"
   end
 
   def load_markets

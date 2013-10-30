@@ -18,8 +18,8 @@
         (#{payload.payload_content_type})
       %td= number_to_human_size(payload.payload_file_size)
       %td= l payload.created_at
-      %td= link_to 'Download', payload.payload.expiring_url(1800), :class => 'btn btn-small'
+      %td= link_to 'Download', payload.payload.expiring_url(1800), class: 'btn btn-small'
       
 %br
 
-= link_to 'New payload', new_admin_payload_path, :class => 'btn'
+= link_to 'New payload', new_admin_payload_path, class: 'btn'

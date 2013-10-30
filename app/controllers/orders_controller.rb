@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
   before_filter :require_authentication
-  before_filter :init_order, :only => [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
-  before_filter :build_order, :only => [:create]
+  before_filter :init_order, only: [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
+  before_filter :build_order, only: [:create]
 
   before_filter :ensure_product_user_uniqueness
 
 
-  protect_from_forgery :except => :thanks
+  protect_from_forgery except: :thanks
 
 
   def thanks
@@ -119,7 +119,7 @@ class OrdersController < ApplicationController
 
   def build_order
     @order = Order.new(params[:order])
-    @market = Market.where(:id => @order.market.id).first
+    @market = Market.where(id: @order.market.id).first
     @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
     raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
@@ -129,14 +129,14 @@ class OrdersController < ApplicationController
 
   def load_active_merchant_validator_with_market
     @market = Market.find(params[:id])
-    @active_merchant_validator = ActiveMerchantValidator.new({:market => @market})
+    @active_merchant_validator = ActiveMerchantValidator.new({market: @market})
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
   end
 
   def build_active_merchant_validator_with_market
     @active_merchant_validator = ActiveMerchantValidator.new(params[:active_merchant_validator])
-    @market = Market.where(:id => @active_merchant_validator.market_id).first
+    @market = Market.where(id: @active_merchant_validator.market_id).first
     raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
@@ -144,9 +144,9 @@ class OrdersController < ApplicationController
 
   def ensure_product_user_uniqueness
     if current_user
-      market = Market.where(:id => @order.market.id).includes(:course).first
+      market = Market.where(id: @order.market.id).includes(:course).first
       raise(IdealMeException::RecordNotFound, 'That market does not exist') unless market
-      course_user = CourseUser.where(:course_id => market.course.id, :user_id => current_user.id).first
+      course_user = CourseUser.where(course_id: market.course.id, user_id: current_user.id).first
       redirect_to(course_path(market.course)) and return if course_user
     end
   end

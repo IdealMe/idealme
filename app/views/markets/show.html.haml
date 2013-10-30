@@ -6,7 +6,7 @@
       %p.owner
         %em by
         = @market.course.owner.fullname
-      = link_to subscribe_orders_path(@market), :class => 'btn btn-arrow', :id => 'top-take-this-course-link' do
+      = link_to subscribe_orders_path(@market), class: 'btn btn-arrow', id: 'top-take-this-course-link' do
         Take this course
         %span.price
           = penny_to_currency(@market.course.cost)
@@ -26,7 +26,7 @@
         = content.html_safe
 
 
-      = link_to subscribe_orders_path(@market), :class => 'btn btn-red btn-arrow' do
+      = link_to subscribe_orders_path(@market), class: 'btn btn-red btn-arrow' do
         Take this course
         %span.price
           = penny_to_currency(@market.course.cost)
@@ -44,9 +44,9 @@
       .bottom_box
         - if current_user
           .like_box
-            .like{:data => {:type => @market.course.class, :id => @market.course.id, :direction => 1, :voted => (@market.course.up_voted?(current_user) ? '1':'0')}}
+            .like{data: {type: @market.course.class, id: @market.course.id, direction: 1, voted: (@market.course.up_voted?(current_user) ? '1':'0')}}
               = @market.course.up_votes
-            .dislike{:data => {:type => @market.course.class, :id => @market.course.id, :direction => -1, :voted => (@market.course.down_voted?(current_user) ? '1':'0')}}
+            .dislike{data: {type: @market.course.class, id: @market.course.id, direction: -1, voted: (@market.course.down_voted?(current_user) ? '1':'0')}}
               = @market.course.down_votes
             .clear
         -#- else
@@ -70,7 +70,7 @@
         - @market.features.each do |feature|
           .media
             .pull-left
-              = image_tag feature.avatar.url(:square), :height => 50, :width => 50
+              = image_tag feature.avatar.url(:square), height: 50, width: 50
             .media-body
               = feature.description
 
@@ -99,7 +99,7 @@
               .review_msg
                 = review.content
             .clear
-        = link_to "See all #{@market.course.reviews.length} reviews", market_reviews_path(@market), :class => 'see_all'
+        = link_to "See all #{@market.course.reviews.length} reviews", market_reviews_path(@market), class: 'see_all'
       .modal_title3 CURRICULUM
       .cirriculum_box
         - @market.course.sections.each_with_index do |section, index|

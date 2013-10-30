@@ -6,7 +6,7 @@ class Jewel < ActiveRecord::Base
   include Votable
 
   # == Slug =================================================================
-  friendly_id :name, :use => [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged]
 
   # == Constants ============================================================
   EVERYTHING = 0
@@ -29,33 +29,33 @@ class Jewel < ActiveRecord::Base
   end
 
   # == Relationships ========================================================
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :owner, class_name: 'User'
   has_many :goal_user_jewel
-  has_many :goals, :through => :goal_user_jewel
+  has_many :goals, through: :goal_user_jewel
 
 
-  belongs_to :linked_course, :primary_key => :id, :foreign_key => :course_id, :class_name => 'Course'
+  belongs_to :linked_course, primary_key: :id, foreign_key: :course_id, class_name: 'Course'
 
-  belongs_to :linked_goal, :primary_key => :id, :foreign_key => :goal_id, :class_name => 'Goal'
+  belongs_to :linked_goal, primary_key: :id, foreign_key: :goal_id, class_name: 'Goal'
 
 
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :replies, :through => :comments
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :replies, through: :comments
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    :styles => {:full => '252x202#', :thumb => '80x64#'},
-                    :convert_options => {
-                        :full => '-gravity center -extent 252x202 -quality 75 -strip',
-                        :thumb => '-gravity center -extent 80x64 -quality 75 -strip'
+                    styles: {full: '252x202#', thumb: '80x64#'},
+                    convert_options: {
+                        full: '-gravity center -extent 252x202 -quality 75 -strip',
+                        thumb: '-gravity center -extent 80x64 -quality 75 -strip'
                     }
 
   # == Validations ==========================================================
 
   # == Scopes ===============================================================
-  scope :private_goal, lambda { |permission| joins(:goal_user_jewel => :goal_user).where(:goal_users => {:private => permission}) }
-  scope :for_goal, lambda { |goal| joins(:goal_user_jewel => :goal_user).where(:goal_user_jewels => {:goal_id => goal.id}) }
-  scope :for_user, lambda { |user| joins(:goal_user_jewel => :goal_user).where(:goal_users => {:user_id => user.id}) }
+  scope :private_goal, lambda { |permission| joins(goal_user_jewel: :goal_user).where(goal_users: {private: permission}) }
+  scope :for_goal, lambda { |goal| joins(goal_user_jewel: :goal_user).where(goal_user_jewels: {goal_id: goal.id}) }
+  scope :for_user, lambda { |user| joins(goal_user_jewel: :goal_user).where(goal_users: {user_id: user.id}) }
 
   # == Callbacks ============================================================
   before_validation :scrub_url
@@ -100,11 +100,11 @@ class Jewel < ActiveRecord::Base
     elsif parameters[:service] == :idealme
       if parameters[:kind]==:courses
         gem.kind = Jewel::COURSE
-        course = Course.where(:slug => parameters[:slug]).first
+        course = Course.where(slug: parameters[:slug]).first
         gem.course_id = course.id
       elsif parameters[:kind]==:goals
         gem.kind = Jewel::GOAL
-        goal = Goal.where(:id => parameters[:slug]).first
+        goal = Goal.where(id: parameters[:slug]).first
         gem.goal_id = goal.id
       end
     end
@@ -120,14 +120,14 @@ class Jewel < ActiveRecord::Base
     if uri.host.include?('idealme.dev') || uri.host.include?('idealme.com')
       segments = uri.path.split('/')
       if segments.second == 'markets' || segments.second == 'courses'
-        return {:service => :idealme, :kind => :courses, :slug => segments.third}
+        return {service: :idealme, kind: :courses, slug: segments.third}
       elsif segments.second == 'goals'
-        return {:service => :idealme, :kind => :goals, :slug => segments.third}
+        return {service: :idealme, kind: :goals, slug: segments.third}
       end
     elsif uri.host.include?('twitter.com')
       segments = uri.path.split('/')
       if segments.third == 'status' && segments.fourth.present?
-        return {:service => :twitter_status, :status_id => segments.fourth}
+        return {service: :twitter_status, status_id: segments.fourth}
       end
     elsif uri.host.include?('youtube.com')
       segments = uri.path.split('/')
@@ -135,12 +135,12 @@ class Jewel < ActiveRecord::Base
 
         queries = Rack::Utils.parse_nested_query(uri.query)
 
-        return {:service => :youtube, :url => url, :youtube_id => queries['v']}
+        return {service: :youtube, url: url, youtube_id: queries['v']}
       end
     end
 
 
-    {:service => :other, :url => url}
+    {service: :other, url: url}
   end
 
   # == Instance Methods =====================================================

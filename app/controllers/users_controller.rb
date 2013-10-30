@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :load_user
-  before_filter :ensure_owner, :only => [:ensure_owner]
+  before_filter :ensure_owner, only: [:ensure_owner]
   before_filter :require_authentication
 
   def profile
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def welcome_save
     goal_ids = params[:goal_ids].reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
     if goal_ids && goal_ids.length > 0
-      goals = Goal.where(:id => goal_ids).all
+      goals = Goal.where(id: goal_ids).all
       goals.each { |goal| current_user.subscribe_goal(goal) }
     end
     redirect_to user_path(current_user)
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     if current_user.username == params[:id]
       @user = current_user
     else
-      @user = User.where(:username => params[:id]).first
+      @user = User.where(username: params[:id]).first
     end
 
     # The requested user does not exist, redirect back to the user's page

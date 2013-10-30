@@ -7,7 +7,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_authorization_check
   # To call specific method based on the omniauth identity provider used
   def passthru
-    render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+    render file: "#{Rails.root}/public/404.html", status: 404, layout: false
     # Or alternatively,
     # raise ActionController::RoutingError.new('Not Found')
   end
@@ -18,7 +18,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if results[:result] == 1 && results[:identity] && results[:user]
       if session[:invite_registration_active_goal]
-        active_goal = ActiveGoal.where(:id => session[:invite_registration_active_goal]).first
+        active_goal = ActiveGoal.where(id: session[:invite_registration_active_goal]).first
         if active_goal
           user = results[:user]
           user.follow!(active_goal.owner) unless user.following?(active_goal.owner)
@@ -32,7 +32,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to(user_identity_path(current_user))
       else
         results[:user].confirm! if results[:user].email
-        sign_in_and_redirect results[:user], :event => :authentication #this will throw if @user is not activated
+        sign_in_and_redirect results[:user], event: :authentication #this will throw if @user is not activated
       end
 
 

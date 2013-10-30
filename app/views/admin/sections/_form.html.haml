@@ -1,11 +1,11 @@
-= formatted_form_for(@section, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+= formatted_form_for(@section, url: url, html: {class: 'form-horizontal'}) do |f|
   %fieldset
     #legend
       %legend Section
-  = f.text_field :name, :autofocus => true
-  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
-  = f.text_area :description, :class => 'tinymce', :rows => 4
-  = f.text_area :content, :class => 'tinymce'
+  = f.text_field :name
+  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
+  = f.text_area :description, class: 'tinymce', rows: 4
+  = f.text_area :content, class: 'tinymce'
                        
   - if @section.persisted?
     %fieldset
@@ -18,15 +18,18 @@
           Sort
         %th
           Lecture
-      %tbody.sortable{:data => {:update_url => sort_admin_lectures_path}}
+      %tbody.sortable{data: {update_url: sort_admin_lectures_path}}
         - @section.lectures.each do |lecture|
-          %tr{:id => "lecture_#{lecture.id}"}
+          %tr{id: "lecture_#{lecture.id}"}
             %td.text-center
               %i.icon-sort.handle
             %td
               = lecture.name
-    %a{:href => new_admin_lecture_path(section_id: @section.id)}
+    %a{href: new_admin_lecture_path(section_id: @section.id), class: 'btn'} New lecture
+
+    %br
+    %br
 
 
-  = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_sections_path, :class => 'btn'
+  = f.submit 'Save', class: 'btn btn-success'
+  = link_to 'Back', admin_sections_path, class: 'btn'

@@ -1,8 +1,8 @@
 class Ajax::UsersController < Ajax::BaseController
   before_filter :require_authentication
   before_filter :filter_params
-  before_filter :load_user, :only => [:update]
-  before_filter :ensure_user, :only => [:update]
+  before_filter :load_user, only: [:update]
+  before_filter :ensure_user, only: [:update]
 
   def set_timezone
 
@@ -24,7 +24,7 @@ class Ajax::UsersController < Ajax::BaseController
   end
 
   def load_user
-    @user = User.where(:username => params[:id]).first
+    @user = User.where(username: params[:id]).first
     @owner = (current_user.id == @user.id)
   end
 end

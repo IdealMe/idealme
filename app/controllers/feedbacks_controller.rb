@@ -1,8 +1,8 @@
 class FeedbacksController < ApplicationController
   before_filter :require_authentication
-  before_filter :load_feedback, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_feedbacks, :only => :index
-  before_filter :build_feedback, :only => [:new, :create]
+  before_filter :load_feedback, only: [:show, :edit, :update, :destroy]
+  before_filter :load_feedbacks, only: :index
+  before_filter :build_feedback, only: [:new, :create]
 
   # GET /feedbacks
   def index
@@ -24,25 +24,25 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   def create
     @feedback.save!
-    redirect_to new_feedback_path, :notice => 'Feedback was successfully created.'
+    redirect_to new_feedback_path, notice: 'Feedback was successfully created.'
   rescue ActiveRecord::RecordInvalid
 
     flash[:alert] = 'Feedback could not be saved. Please ensure you have filled everything out.'
-    render :action => :new
+    render action: :new
   end
 
   # PUT /feedbacks/1
   def update
     @feedback.update_attributes!(params[:feedback])
-    redirect_to feedbacks_path, :notice => 'Feedback was successfully updated.'
+    redirect_to feedbacks_path, notice: 'Feedback was successfully updated.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :edit
+    render action: :edit
   end
 
   # DELETE /feedbacks/1
   def destroy
     @feedback.destroy
-    redirect_to feedbacks_url, :notice => 'Feedback was successfully deleted'
+    redirect_to feedbacks_url, notice: 'Feedback was successfully deleted'
   end
 
   protected
@@ -50,7 +50,7 @@ class FeedbacksController < ApplicationController
   def load_feedback
     @feedback = Feedback.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to feedbacks_path, :alert => 'Feedback not found'
+    redirect_to feedbacks_path, alert: 'Feedback not found'
   end
 
   def load_feedbacks
