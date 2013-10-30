@@ -1,7 +1,7 @@
 .header-content
   - if current_user
     .user-box
-      =image_tag current_user.avatar(:thumb), :class => 'user-avatar'
+      =image_tag current_user.avatar(:thumb), class: 'user-avatar'
       %ul.user-menu
         %li
           = link_to 'Account Settings', user_edit_path(current_user)
@@ -20,24 +20,24 @@
           = link_to 'Sign out', destroy_user_session_path
     %ul.left-menu
       //%li
-      //  = link_to 'DISCOVER', discovers_path, :class => active_tab?('discovers', params[:controller])
+      //  = link_to 'DISCOVER', discovers_path, class: active_tab?('discovers', params[:controller])
       %li
-        = link_to 'MARKETPLACE', markets_path, :class => active_tab?('markets', params[:controller])
+        = link_to 'MARKETPLACE', markets_path, class: active_tab?('markets', params[:controller])
       %li
-        = link_to 'ME', user_path(current_user), :class => active_tab?('users', params[:controller])
-    = form_tag(searches_path, :method => 'get', :class => 'search-box') do
+        = link_to 'ME', user_path(current_user), class: active_tab?('users', params[:controller])
+    = form_tag(searches_path, method: 'get', class: 'search-box') do
       .input-append
-        = text_field_tag('q', @search, :class => 'search-field', :placeholder => 'Search courses and goals')                                                                                              
-        %button.btn{:type => 'submit'}   
+        = text_field_tag('q', @search, class: 'search-field', placeholder: 'Search courses and goals')                                                                                              
+        %button.btn{type: 'submit'}   
           %i.icon-search            
     .logo.logged-in
-      = link_to('', root_path, :title => 'Ideal Me')
+      = link_to('', root_path, title: 'Ideal Me')
     .clear
   - else
     .container
       .fb-social-box
         .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
       .sign-in-box
-        = link_to 'Sign in', new_user_session_path, :class => 'btn'
+        = link_to 'Sign in', new_user_session_path, class: 'btn'
       .logo
         = link_to('', root_path)

@@ -20,8 +20,8 @@
       %td= review.course
       %td= link_to 'Show', market_review_path(review)
       %td= link_to 'Edit', edit_review_path(review)
-      %td= link_to 'Destroy', review, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Review', new_market_review_path(@market), :class => 'btn'
+= link_to 'New Review', new_market_review_path(@market), class: 'btn'

@@ -2,7 +2,7 @@
   .thank-you-box
     .thank-you-message
       %div Thank you, your order has been placed and you are enrolled in this course!
-      = link_to 'GO TO COURSE', course_path(@market.course), :class => 'btn btn-red'
+      = link_to 'GO TO COURSE', course_path(@market.course), class: 'btn btn-red'
 
     .share-widget
       .share
@@ -54,5 +54,5 @@
 .container
   %h3.also-viewed Customers who took this course also viewed
   - Course.all.sample(4).each do |course|
-    = render :partial => 'partials/course_card', :locals => {:course => course}
+    = render partial: 'partials/course_card', locals: {course: course}
   .clear

@@ -1,16 +1,16 @@
 
 .tabbable
   %ul.nav.nav-tabs
-    %li#details-tab{:class => course_details_active?}
-      %a{ :href => "#course-details-tab", 'data-toggle' => 'tab' } Course
-    %li#previews-tab{:class => course_previews_active?}
-      %a{ :href => "#course-previews-tab", 'data-toggle' => 'tab' } Previews
-    %li#content-tab{:class => course_content_active?}
-      %a{ :href => "#course-content-tab", 'data-toggle' => 'tab' } Content
+    %li#details-tab{class: course_details_active?}
+      %a{ href: "#course-details-tab", 'data-toggle' => 'tab' } Course
+    %li#previews-tab{class: course_previews_active?}
+      %a{ href: "#course-previews-tab", 'data-toggle' => 'tab' } Previews
+    %li#content-tab{class: course_content_active?}
+      %a{ href: "#course-content-tab", 'data-toggle' => 'tab' } Content
 
   .tab-content
-    .tab-pane{ :id => 'course-details-tab', :class => course_details_active? }
-      = formatted_form_for(@course, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+    .tab-pane{ id: 'course-details-tab', class: course_details_active? }
+      = formatted_form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
         = hidden_field_tag :active_view, :details
         %fieldset
           #legend
@@ -20,12 +20,12 @@
             %ul.alert.alert-error.unstyled
               %li= msg
 
-        = f.text_field :name, :autofocus => true
+        = f.text_field :name, autofocus: true
         = f.number_field :cost_in_dollars
         = f.number_field :affiliate_commission
-        = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
-        = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, :class => 'select2'
-        = f.text_area :description, :class => 'tinymce', :rows => 4
+        = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
+        = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, class: 'select2'
+        = f.text_area :description, class: 'tinymce', rows: 4
         = f.check_box :hidden
 
         - if @course.persisted?
@@ -39,14 +39,14 @@
                 Sort
               %th
                 Section
-            %tbody.sortable{:data => {:update_url => sort_admin_sections_path}}
+            %tbody.sortable{data: {update_url: sort_admin_sections_path}}
               - @course.sections.each do |section|
-                %tr{:id => "section_#{section.id}"}
+                %tr{id: "section_#{section.id}"}
                   %td.text-center
                     %i.icon-sort.handle
                   %td= link_to section.name, edit_admin_section_path(section)
 
-          %a{ :href => new_admin_section_path(course_id: @course.id), :class => 'btn' } New Section
+          %a{ href: new_admin_section_path(course_id: @course.id), class: 'btn' } New Section
 
 
         %fieldset
@@ -61,22 +61,22 @@
                 = goal.name
 
 
-        = f.submit 'Save', :class => 'btn btn-success'
-        = link_to 'Back', admin_courses_path, :class => 'btn'
+        = f.submit 'Save', class: 'btn btn-success'
+        = link_to 'Back', admin_courses_path, class: 'btn'
 
-    .tab-pane{ :id => 'course-previews-tab', :class => course_previews_active? }
-      = formatted_form_for(@course, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+    .tab-pane{ id: 'course-previews-tab', class: course_previews_active? }
+      = formatted_form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
         = hidden_field_tag :active_view, :previews
         = f.fields_for(:default_market, @course.default_market) do |market|
           %fieldset
             #legend
               %legend Course Preview page
 
-          = market.text_field :name, :autofocus => true
+          = market.text_field :name, autofocus: true
           = market.text_field :affiliate_tag
-          = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
-          = market.text_area :content, :class => 'tinymce'
-          = image_tag @course.default_market.avatar.url(:square), :height => '50', :width => '50'
+          = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
+          = market.text_area :content, class: 'tinymce'
+          = image_tag @course.default_market.avatar.url(:square), height: '50', width: '50'
           = market.file_field :avatar
 
           .control-group
@@ -85,22 +85,22 @@
 
 
               = market.fields_for :features do |feature|
-                = image_tag(market.object.avatar.url(:square), :height => '50', :width => '50')
-                = feature.file_field :avatar, :label => ''
-                = feature.text_area :description, :rows => 3, :cols => 80, :label => ''
+                = image_tag(market.object.avatar.url(:square), height: '50', width: '50')
+                = feature.file_field :avatar, label: ''
+                = feature.text_area :description, rows: 3, cols: 80, label: ''
                 - if feature.object.persisted?
-                  = feature.hidden_field :_destroy, :class => 'delete-feature-field'
+                  = feature.hidden_field :_destroy, class: 'delete-feature-field'
                   %button.delete-feature
                     delete
                 %br
 
 
 
-          = f.submit 'Save', :class => 'btn btn-success'
-          = link_to 'Back', admin_markets_path, :class => 'btn'
+          = f.submit 'Save', class: 'btn btn-success'
+          = link_to 'Back', admin_markets_path, class: 'btn'
           - if @course.default_market.persisted?
-            = link_to 'Payloads', admin_market_payloads_path(@course.default_market), :class => 'btn'
+            = link_to 'Payloads', admin_market_payloads_path(@course.default_market), class: 'btn'
 
-    .tab-pane{ :id => 'course-content-tab', :class => course_content_active? }
+    .tab-pane{ id: 'course-content-tab', class: course_content_active? }
       content
 

@@ -1,9 +1,9 @@
 .container
   .row
     .span12
-      = formatted_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => {:method => :post, :class => 'form-horizontal'}) do |f|
+      = formatted_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: {method: :post, class: 'form-horizontal'}) do |f|
         %fieldset
           #legend
             %legend Resend unlock instructions
-        = f.email_field :email, :autofocus => true
-        = f.submit 'Resend unlock instructions', :class => 'btn btn-success'
+        = f.email_field :email, autofocus: true
+        = f.submit 'Resend unlock instructions', class: 'btn btn-success'

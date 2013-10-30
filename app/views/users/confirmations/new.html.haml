@@ -1,12 +1,12 @@
 .authentication-section
-  = formatted_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => {:method => :post, :class => 'form-horizontal'}) do |f|
+  = formatted_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, class: 'form-horizontal'}) do |f|
     .modal-box
       .account-box
         .message-box
           Confirm your Ideal Me account
-        = f.email_field :email, :autofocus => true            
+        = f.email_field :email, autofocus: true            
         .control-box
-          = f.submit 'Confirm', :class => 'btn btn-red'
+          = f.submit 'Confirm', class: 'btn btn-red'
   %p
     Need an account? 
     = link_to 'Sign up', new_user_registration_path

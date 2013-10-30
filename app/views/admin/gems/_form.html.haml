@@ -1,9 +1,9 @@
-= formatted_form_for(@gem, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+= formatted_form_for(@gem, url: url, html: {class: 'form-horizontal'}) do |f|
   %fieldset
     #legend
       %legend Gem
-  = f.text_field :name, :autofocus => true
-  = f.select :owner_id, User.for_select, {}, :class => 'select2'
+  = f.text_field :name, autofocus: true
+  = f.select :owner_id, User.for_select, {}, class: 'select2'
   .control-group
     .control-label
       %p
@@ -12,5 +12,5 @@
       - if @gem.avatar.exists?
         = image_tag(@gem.avatar.url)
   = f.file_field :avatar
-  = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_gems_path, :class => 'btn'
+  = f.submit 'Save', class: 'btn btn-success'
+  = link_to 'Back', admin_gems_path, class: 'btn'

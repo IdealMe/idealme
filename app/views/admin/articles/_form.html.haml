@@ -1,28 +1,28 @@
-= formatted_form_for(@article, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+= formatted_form_for(@article, url: url, html: {class: 'form-horizontal'}) do |f|
   %fieldset
     #legend
       %legend Article
-  = f.hidden_field :author_id, :value => current_user.id
+  = f.hidden_field :author_id, value: current_user.id
   = f.text_field :name
-  = f.text_area :content, :class => 'tinymce'
+  = f.text_area :content, class: 'tinymce'
   = f.check_box :hidden
-  = f.select :category_id, Category.all.collect { |category| [category.name, category.id] }, {}, :class => 'select2'
-  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, :class => 'select2'
-  = f.select :goal_id, Goal.all.collect { |goal| [goal.name, goal.id] }, {}, :class => 'select2'
-  = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'  
-  = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_articles_path, :class => 'btn'
+  = f.select :category_id, Category.all.collect { |category| [category.name, category.id] }, {}, class: 'select2'
+  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
+  = f.select :goal_id, Goal.all.collect { |goal| [goal.name, goal.id] }, {}, class: 'select2'
+  = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'  
+  = f.submit 'Save', class: 'btn btn-success'
+  = link_to 'Back', admin_articles_path, class: 'btn'
                                           
--#= form_for @article, :url => url do |f|
+-#= form_for @article, url: url do |f|
 -#
 -#  = f.label :permission
--#  = f.select :permission, Article::PERMISSION, {}, :class => 'select2'
+-#  = f.select :permission, Article::PERMISSION, {}, class: 'select2'
 -#  = f.label :slider
 -#  = f.check_box :slider
 -#  = f.label :display_type
--#  = f.select :display_type, Article::DISPLAY_TYPE, {}, :class => 'select2'
+-#  = f.select :display_type, Article::DISPLAY_TYPE, {}, class: 'select2'
 -#  = f.label :default_market_id
--#  = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
+-#  = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
 -#  = f.label :normal_avatar
 -#  = f.file_field :normal_avatar
 -#  = f.label :featured_avatar
@@ -43,5 +43,5 @@
 -#            = hidden_field_tag('unused_article_id[]', article.id)
 -#            = article.name
 -#  %ul.button-group
--#    %li= f.submit nil, :class => 'success button'
--#    %li= link_to 'Cancel', admin_articles_path, :class => 'secondary button'
+-#    %li= f.submit nil, class: 'success button'
+-#    %li= link_to 'Cancel', admin_articles_path, class: 'secondary button'

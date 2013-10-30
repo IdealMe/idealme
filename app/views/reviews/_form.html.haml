@@ -1,9 +1,9 @@
-= formatted_form_for(@review, :url => market_reviews_path(@market), :html => {:class => 'form-horizontal'}) do |f|
+= formatted_form_for(@review, url: market_reviews_path(@market), html: {class: 'form-horizontal'}) do |f|
   %fieldset
     #legend
       %legend Review
-  = f.text_area :content, :class => 'tinymce'
+  = f.text_area :content, class: 'tinymce'
   = f.check_box :recommended
   = f.hidden_field :owner_id
   = f.hidden_field :course_id
-  = f.submit 'Save', :class => 'btn'
+  = f.submit 'Save', class: 'btn'

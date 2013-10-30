@@ -1,11 +1,11 @@
-= formatted_form_for(@user, :url => url, :html => {:class => 'form-horizontal'}) do |f|
+= formatted_form_for(@user, url: url, html: {class: 'form-horizontal'}) do |f|
   %fieldset
     #legend
       %legend User
 
-  = image_tag @user.avatar.url(:square), :height => '50', :width => '50'
+  = image_tag @user.avatar.url(:square), height: '50', width: '50'
   = f.file_field :avatar, label: false
-  = f.text_field :username, :autofocus => true
+  = f.text_field :username, autofocus: true
   = f.text_field :tagline
   = f.text_field :firstname
   = f.text_field :lastname
@@ -21,10 +21,10 @@
           = link.text_field :slug
           = link.text_field :tracking_tag
           -#= link.text_field :market_tag
-          = link.select :market_id, Market.all.collect { |market| [market.name, market.id] }, {}, :class => 'select2'
+          = link.select :market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
           - if link.object.persisted?
-            = link.hidden_field :_destroy, :class => 'delete-link-field'
+            = link.hidden_field :_destroy, class: 'delete-link-field'
             %button.delete-link
               delete
-  = f.submit 'Save', :class => 'btn btn-success'
-  = link_to 'Back', admin_users_path, :class => 'btn'
+  = f.submit 'Save', class: 'btn btn-success'
+  = link_to 'Back', admin_users_path, class: 'btn'

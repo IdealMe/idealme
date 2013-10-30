@@ -1,18 +1,18 @@
 .goal-user-card.goal-box-long
   - unless @owner
-    %button.btn{:style => 'width:230px'}
+    %button.btn{style: 'width:230px'}
       support
   - if @owner
-    .options{:style=>'width: 16px;margin: 10px;position: absolute;'}
+    .options{style:'width: 16px;margin: 10px;position: absolute;'}
     /
       .dropdown
-        = image_tag 'users/drop_down.png', :data => { :toggle => 'dropdown' }
-        %ul.dropdown-menu{:style=>'border-radius:0px'}
+        = image_tag 'users/drop_down.png', data: { toggle: 'dropdown' }
+        %ul.dropdown-menu{style:'border-radius:0px'}
           %li
-            = link_to 'Mark as complete', complete_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}
+            = link_to 'Mark as complete', complete_goal_path(goal_user, {return_path: request.fullpath}), method: :post, data: {confirm: "Are you sure?"}
           %li.divider
           %li
-            = link_to 'Archive', archive_goal_path(goal_user, {:return_path => request.fullpath}), :method => :post, :data => {:confirm => "Are you sure?"}
+            = link_to 'Archive', archive_goal_path(goal_user, {return_path: request.fullpath}), method: :post, data: {confirm: "Are you sure?"}
 
   .avatar
     = image_tag(goal_user.goal.avatar.url(:full))

@@ -6,16 +6,16 @@
       dream life!
     .box
       = form_for :user, url: user_session_path do |f|
-        = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb-join-btn"
+        = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
         .or-text
           Or
         .field-wp
           %span.email-icon &nbsp;
-          = f.email_field :email, :placeholder => "Email", :class => "field"
+          = f.email_field :email, placeholder: "Email", class: "field"
         .field-wp
           %span.pass-icon &nbsp;
-          = f.text_field :password, :placeholder => "Password", :class => "field"
+          = f.text_field :password, placeholder: "Password", class: "field"
         .join-btn-wp
           %span.strike &nbsp;
-          = f.submit "Join Now (It's Free)", :class => "join-btn"
+          = f.submit "Join Now (It's Free)", class: "join-btn"
         .clear &nbsp;

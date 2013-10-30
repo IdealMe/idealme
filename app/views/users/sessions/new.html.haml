@@ -1,21 +1,21 @@
 .authentication-section
-  = formatted_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'}) do |f|
+  = formatted_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
     .modal-box
       .account-box
         .message-box
           Sign in to your Ideal Me account
-        = f.email_field :email, :autofocus => true, :placeholder => 'Email'
-        = f.password_field :password, :placeholder => 'Password'
+        = f.email_field :email, autofocus: true, placeholder: 'Email'
+        = f.password_field :password, placeholder: 'Password'
         - if devise_mapping.rememberable?
-          = f.check_box :remember_me, :label => 'Stay signed in'
+          = f.check_box :remember_me, label: 'Stay signed in'
         - if devise_mapping.recoverable? && controller_name != 'passwords'
-          = link_to 'Forgot password?', new_password_path(resource_name), :class => "forgot-password"
+          = link_to 'Forgot password?', new_password_path(resource_name), class: "forgot-password"
         .control-box
-          = f.submit 'Sign in', :class => 'btn btn-red', :id => 'sign-in-button'
+          = f.submit 'Sign in', class: 'btn btn-red', id: 'sign-in-button'
   .footer
     .oauth
       Or:
-      = link_to('Sign in with Facebook', user_omniauth_authorize_path(:facebook), :class => 'btn btn-blue' )
+      = link_to('Sign in with Facebook', user_omniauth_authorize_path(:facebook), class: 'btn btn-blue' )
     %p
       Need an account?
       = link_to 'Sign up', new_user_registration_path
