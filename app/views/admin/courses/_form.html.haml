@@ -20,7 +20,7 @@
             %ul.alert.alert-error.unstyled
               %li= msg
 
-        = f.text_field :name, autofocus: true
+        = f.text_field :name
         = f.number_field :cost_in_dollars
         = f.number_field :affiliate_commission
         = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
@@ -54,7 +54,7 @@
             #legend
               %legend Course Preview page
 
-          = market.text_field :name, autofocus: true
+          = market.text_field :name
           = market.text_field :affiliate_tag
           = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
           = market.text_area :content, class: 'tinymce'

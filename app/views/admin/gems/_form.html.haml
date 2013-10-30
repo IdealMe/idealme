@@ -2,7 +2,7 @@
   %fieldset
     #legend
       %legend Gem
-  = f.text_field :name, autofocus: true
+  = f.text_field :name
   = f.select :owner_id, User.for_select, {}, class: 'select2'
   .control-group
     .control-label
