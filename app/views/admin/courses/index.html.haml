@@ -10,8 +10,8 @@
 
   - @courses.each do |course|
     %tr
-      %td= link_to course.name, edit_admin_course_path(course)
-      %td= link_to course.default_market.name, edit_admin_market_path(course.default_market) if course.default_market
+      %td= link_to course.name.truncate(40), edit_admin_course_path(course), alt: course.name
+      %td= link_to course.default_market.name.truncate(40), edit_admin_market_path(course.default_market) if course.default_market
       %td= penny_to_currency(course.cost)
       %td= course.users.length
       %td= link_to course.owner.fullname, edit_admin_user_path(course.owner)
