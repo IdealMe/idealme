@@ -3,7 +3,7 @@
 .users-registrations-new, .users-registrations-create,
 .users-confirmations-new, .users-confirmations-create, .users-confirmations-show {
   .body-content {
-    padding-top: 100px;
+    //padding-top: 100px;
     .authentication-section {
       width: 500px;
       margin: 0 auto;
@@ -76,3 +76,15 @@
     }
   }
 }
+
+.logo {
+  margin: 30px 400px 0;
+    a {
+      @include sprite_css("logo_small");
+      @include block;
+      position: relative;
+      top: -8px;
+      margin: 10px auto;
+      background-position: 0 -396px;
+    }
+  }
