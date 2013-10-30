@@ -61,7 +61,8 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def build_section
-    params[:section] ||= {}; params[:section][:course_id] = params[:course_id] if params[:course_id].present?
+    params[:section] ||= {}
+    params[:section][:course_id] ||= params[:course_id] if params[:course_id].present?
     @section = Section.new(params[:section])
   end
 
