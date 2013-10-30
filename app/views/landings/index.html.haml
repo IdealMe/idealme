@@ -44,10 +44,15 @@
     = succeed "." do
       %a{:href => "/static/about"} Ideal Me Seal
     If you're not satisfied you get a full refund.
+
   .offer-section
     .container
+      - i = 0
       - @courses.each do |course|
         = render :partial => 'partials/course_card', :locals => {:course => course}
+        - i = i + 1
+        - if i % 4 == 0
+          .clear
       .clear
 .testimonials-section
   %h3.title{:title => "Dont just take our word for it"}
