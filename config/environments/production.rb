@@ -65,23 +65,23 @@ Idealme::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = {:host => 'idealme.com'}
+  config.action_mailer.default_url_options = {host: 'idealme.com'}
 
   Paperclip::Attachment.default_options[:storage] = :s3
   Paperclip::Attachment.default_options[:s3_credentials] = {
-    :bucket => ENV['AWS_S3_BUCKET'],
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    bucket: ENV['AWS_S3_BUCKET'],
+    access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   }
   Paperclip::Attachment.default_options[:s3_protocol] = :https
 
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_API_USERNAME'],
-    :password       => ENV['SENDGRID_API_PASSWORD'],
-    :domain         => 'idealme.com',
-    :enable_starttls_auto => true
+    address: 'smtp.sendgrid.net',
+    port: '587',
+    authentication: :plain,
+    user_name: ENV['SENDGRID_API_USERNAME'],
+    password: ENV['SENDGRID_API_PASSWORD'],
+    domain: 'idealme.com',
+    enable_starttls_auto: true
   }
 end

@@ -1,7 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
-  before_filter :load_article, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_articles, :only => :index
-  before_filter :build_article, :only => [:new, :create]
+  before_filter :load_article, only: [:show, :edit, :update, :destroy]
+  before_filter :load_articles, only: :index
+  before_filter :build_article, only: [:new, :create]
 
   # GET /admin/articles
   def index
@@ -22,30 +22,30 @@ class Admin::ArticlesController < Admin::BaseController
   # POST /admin/articles
   def create
     @article.save!
-    redirect_to edit_admin_article_path(@article), :notice => 'Article was successfully created.'
+    redirect_to edit_admin_article_path(@article), notice: 'Article was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :new
+    render action: :new
   end
 
   # PUT /admin/articles/1
   def update
     @article.update_attributes!(params[:article])
-    redirect_to edit_admin_article_path(@article), :notice => 'Article was successfully updated.'
+    redirect_to edit_admin_article_path(@article), notice: 'Article was successfully updated.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :edit
+    render action: :edit
   end
 
   # DELETE /admin/articles/1
   def destroy
     @article.destroy
-    redirect_to admin_articles_url, :notice => 'Article was successfully deleted'
+    redirect_to admin_articles_url, notice: 'Article was successfully deleted'
   end
 
   protected
   def load_article
     @article = Article.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_articles_path, :alert => "Article not found"
+    redirect_to admin_articles_path, alert: "Article not found"
   end
 
   def load_articles

@@ -7,7 +7,7 @@ class CreateLectures < ActiveRecord::Migration
       t.text :description
       t.text :content
 
-      t.integer :position, :default => 0
+      t.integer :position, default: 0
 
       t.references :section
 

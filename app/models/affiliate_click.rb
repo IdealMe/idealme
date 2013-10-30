@@ -19,18 +19,18 @@ class AffiliateClick < ActiveRecord::Base
   # == Class Methods ========================================================
   def self.track(affiliate_user, ip, ua, tracking_code, affiliate_tracking=nil)
     if affiliate_tracking
-      click = AffiliateClick.where(:user_id => affiliate_user.id, :affiliate_tracking_id => affiliate_tracking.id, :ip => ip, :user_agent => ua, :tracking_code => tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
+      click = AffiliateClick.where(user_id: affiliate_user.id, affiliate_tracking_id: affiliate_tracking.id, ip: ip, user_agent: ua, tracking_code: tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
     else
-      click = AffiliateClick.where(:user_id => affiliate_user.id, :affiliate_tracking_id => nil, :ip => ip, :user_agent => ua, :tracking_code => tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
+      click = AffiliateClick.where(user_id: affiliate_user.id, affiliate_tracking_id: nil, ip: ip, user_agent: ua, tracking_code: tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
     end
     if click
       click.clicks += 1
       click.save!
     else
       if affiliate_tracking
-        click = AffiliateClick.create!(:clicks => 1, :user_id => affiliate_user.id, :affiliate_tracking_id => affiliate_tracking.id, :ip => ip, :user_agent => ua, :tracking_code => tracking_code, :created_at => Time.now.beginning_of_day)
+        click = AffiliateClick.create!(clicks: 1, user_id: affiliate_user.id, affiliate_tracking_id: affiliate_tracking.id, ip: ip, user_agent: ua, tracking_code: tracking_code, created_at: Time.now.beginning_of_day)
       else
-        click = AffiliateClick.create!(:clicks => 1, :user_id => affiliate_user.id, :affiliate_tracking_id => nil, :ip => ip, :user_agent => ua, :tracking_code => tracking_code, :created_at => Time.now.beginning_of_day)
+        click = AffiliateClick.create!(clicks: 1, user_id: affiliate_user.id, affiliate_tracking_id: nil, ip: ip, user_agent: ua, tracking_code: tracking_code, created_at: Time.now.beginning_of_day)
       end
     end
     click

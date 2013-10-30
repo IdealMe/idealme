@@ -13,7 +13,7 @@ describe 'editing courses' do
   let!(:course)             { create(:course, owner: affiliate_user) }
 
   before :each do
-    login_as(admin, :scope => :user)
+    login_as(admin, scope: :user)
   end
 
   it 'editing a market from courses', js: true do
@@ -23,7 +23,7 @@ describe 'editing courses' do
 
     click_link "Previews"
 
-    fill_in "Name", :with => "New fancy market name"
+    fill_in "Name", with: "New fancy market name"
 
     click_button "Save"
     find("#previews-tab.active")
@@ -32,7 +32,7 @@ describe 'editing courses' do
     # let's make a new section
 
     click_link "New Section"
-    fill_in "Name", :with => "beans"
+    fill_in "Name", with: "beans"
     click_button "Save"
   end
 

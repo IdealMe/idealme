@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       #    redirect_to(markets_path)
       #  end
     else
-      redirect_to new_user_session_path, :alert => exception.message
+      redirect_to new_user_session_path, alert: exception.message
     end
   end
 
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   # @return [User] If the affiliate user that is cookied on the customer's computer
   # @return [nil] Otherwise
   def get_affiliate_user
-    user = User.where(:affiliate_tag => cookies.signed[:zid]).first if cookies.signed[:zid]
+    user = User.where(affiliate_tag: cookies.signed[:zid]).first if cookies.signed[:zid]
     if user && user.access_affiliate
       user
     else
@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   # @return [AffiliateLink] If the affiliate user's link campaign that is cookied on the customer's computer
   # @return [nil] Otherwise
   def get_affiliate_link
-    affiliate_link = AffiliateLink.where(:tracking_tag => cookies.signed[:tid]).first if cookies.signed[:tid]
+    affiliate_link = AffiliateLink.where(tracking_tag: cookies.signed[:tid]).first if cookies.signed[:tid]
     if affiliate_link
       affiliate_link
     else
@@ -113,10 +113,10 @@ class ApplicationController < ActionController::Base
     title = "Are You Ready To Take The Ideal Me 'Dream Life' Challenge?"
     description = "12 Goals, One A Month, The Best Celeb Experts, Info & Products & Testing It For Max Results In Minimal Time To See What Works, What Doesn't And How To Become Your Ideal Me"
     image = ''
-    set_meta_tags(:og => {:site_name => 'Ideal Me', :title => title, :description => description, :type => :website, :url => 'https://www.idealme.com', :image => image},
-                  :fb => {:admins => %w(100004702779319 278115168965598 470201106346280).join(',')},
-                  :twitter => {:card => 'summary', :title => title, :description => description, :image => image},
-                  :server => IM_HOSTNAME
+    set_meta_tags(og: {site_name: 'Ideal Me', title: title, description: description, type: :website, url: 'https://www.idealme.com', image: image},
+                  fb: {admins: %w(100004702779319 278115168965598 470201106346280).join(',')},
+                  twitter: {card: 'summary', title: title, description: description, image: image},
+                  server: IM_HOSTNAME
 
     )
   end
@@ -153,14 +153,14 @@ class ApplicationController < ActionController::Base
   #
   # @return [AffiliateLink] The current affiliate tracking profile that is cookied on the user's computer
   def get_affiliate_link
-    AffiliateLink.where(:tracking_tag => cookies.signed[:tid]).first
+    AffiliateLink.where(tracking_tag: cookies.signed[:tid]).first
   end
 
   # Get the current affiliate user that is cookied on the user's computer
   #
   # @return [User] The current affiliate user that is cookied on the user's computer
   def get_affiliate_user
-    User.where(:affiliate_tag => cookies.signed[:zid]).first
+    User.where(affiliate_tag: cookies.signed[:zid]).first
   end
 
   # Sets the current timezone based on the current user's preferences

@@ -26,8 +26,8 @@ class Ability
         can :read, Lecture do |lecture|
           user.subscribed_lecture?(lecture)
         end
-        can :manage, GoalUser, :user_id => user.id
-        can :read, GoalUser, :private => false
+        can :manage, GoalUser, user_id: user.id
+        can :read, GoalUser, private: false
       end
       if user.access_affiliate
       end

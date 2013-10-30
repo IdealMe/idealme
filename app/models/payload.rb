@@ -13,9 +13,9 @@ class Payload < ActiveRecord::Base
 
   # == Relationships ========================================================
 
-  belongs_to :payloadable, :polymorphic => true
+  belongs_to :payloadable, polymorphic: true
   # == Paperclip ============================================================
-  has_attached_file :payload, :s3_permissions => :private
+  has_attached_file :payload, s3_permissions: :private
 
   # == Validations ==========================================================
   # == Scopes ===============================================================

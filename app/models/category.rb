@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
   extend FriendlyId
 
   # == Slug =================================================================
-  friendly_id :name, :use => [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged]
 
   # == Constants ============================================================
   # == Attributes ===========================================================
@@ -16,14 +16,14 @@ class Category < ActiveRecord::Base
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    :styles => {:thumb => '30x30#'},
-                    :convert_options => {
-                        :thumb => ' -transparent white -gravity center -extent 30x30 -quality 75 -strip',
+                    styles: {thumb: '30x30#'},
+                    convert_options: {
+                        thumb: ' -transparent white -gravity center -extent 30x30 -quality 75 -strip',
                     }
   # == Validations ==========================================================
-  validates_length_of :name, :minimum => 2
-  validates :name, :presence => true
-  validates :name, :uniqueness => true
+  validates_length_of :name, minimum: 2
+  validates :name, presence: true
+  validates :name, uniqueness: true
 
   # == Scopes ===============================================================
   # == Callbacks ============================================================

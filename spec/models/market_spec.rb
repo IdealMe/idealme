@@ -6,8 +6,8 @@ describe Market do
   end
 
   it 'is invalid without a proper name' do
-    build(:market, {:name => nil}).should_not be_valid
-    build(:market, {:name => ''}).should_not be_valid
+    build(:market, {name: nil}).should_not be_valid
+    build(:market, {name: ''}).should_not be_valid
   end
 
   it 'can have features' do

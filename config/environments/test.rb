@@ -37,20 +37,20 @@ Idealme::Application.configure do
 
   Paperclip::Attachment.default_options[:storage] = :s3
   Paperclip::Attachment.default_options[:s3_credentials] = {
-    :bucket => ENV['AWS_S3_BUCKET'],
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    bucket: ENV['AWS_S3_BUCKET'],
+    access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   }
   Paperclip::Attachment.default_options[:s3_protocol] = :https
 
-  config.action_mailer.default_url_options = {:host => 'idealme.com'}
+  config.action_mailer.default_url_options = {host: 'idealme.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => 'idealme-391cd542169169ce',
-    :password => 'aacad647af45183f',
-    :address => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :plain
+    user_name: 'idealme-391cd542169169ce',
+    password: 'aacad647af45183f',
+    address: 'mailtrap.io',
+    port: '2525',
+    authentication: :plain
   }
 end
-STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(:login => ENV['STRIPE_SECRET_KEY'], :test => true)
+STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_SECRET_KEY'], test: true)

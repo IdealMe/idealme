@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :load_user, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_users, :only => :index
-  before_filter :build_user, :only => [:new, :create]
+  before_filter :load_user, only: [:show, :edit, :update, :destroy]
+  before_filter :load_users, only: :index
+  before_filter :build_user, only: [:new, :create]
 
   # GET /admin/users
   def index
@@ -23,32 +23,32 @@ class Admin::UsersController < Admin::BaseController
   def create
     @user.skip_confirmation!
     @user.save!
-    redirect_to edit_admin_user_path(@user), :notice => 'User was successfully created.'
+    redirect_to edit_admin_user_path(@user), notice: 'User was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :new
+    render action: :new
   end
 
   # PUT /admin/users/1
   def update
     @user.update_attributes!(params[:user])
-    redirect_to edit_admin_user_path(@user), :notice => 'User was successfully updated.'
+    redirect_to edit_admin_user_path(@user), notice: 'User was successfully updated.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :edit
+    render action: :edit
   end
 
   # DELETE /admin/users/1
   def destroy
     @user.destroy
-    redirect_to admin_users_url, :notice => 'User was successfully deleted'
+    redirect_to admin_users_url, notice: 'User was successfully deleted'
   end
 
   protected
   def load_user
-    @user = User.where(:username => params[:id]).first
+    @user = User.where(username: params[:id]).first
     @user.affiliate_links.build
     @instructor = Course.where(owner_id: @user.id).exists?
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_users_path, :alert => "User not found"
+    redirect_to admin_users_path, alert: "User not found"
   end
 
   def load_users

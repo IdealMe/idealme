@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def auth_options
-    { :scope => resource_name, :recall => "#{controller_path}#new" }
+    { scope: resource_name, recall: "#{controller_path}#new" }
   end
 end
 

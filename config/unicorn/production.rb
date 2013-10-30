@@ -11,7 +11,7 @@ preload_app true
 timeout 30
 
 # Listen on a Unix data socket
-listen '/tmp/unicorn.idealme.sock', :backlog => 2048
+listen '/tmp/unicorn.idealme.sock', backlog: 2048
 
 APP_PATH = '/home/idealme/apps/idealme/current'
 SHARED_PATH = '/home/idealme/apps/idealme/shared'

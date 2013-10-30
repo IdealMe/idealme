@@ -4,7 +4,7 @@ class Course < ActiveRecord::Base
   include Votable
 
   # == Slug =================================================================
-  friendly_id :name, :use => [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged]
 
   # == Constants ============================================================
   # == Attributes ===========================================================
@@ -17,31 +17,31 @@ class Course < ActiveRecord::Base
   attr_accessible :affiliate_commission
 
   # == Relationships ========================================================
-  has_many :markets, :dependent => :destroy
-  has_one :default_market, :class_name => 'Market', :foreign_key => 'id', :primary_key => 'default_market_id', :dependent => :destroy
-  belongs_to :owner, :class_name => 'User'
+  has_many :markets, dependent: :destroy
+  has_one :default_market, class_name: 'Market', foreign_key: 'id', primary_key: 'default_market_id', dependent: :destroy
+  belongs_to :owner, class_name: 'User'
   has_many :course_users
-  has_many :users, :through => :course_users
+  has_many :users, through: :course_users
   has_many :sections
-  has_many :lectures, :through => :sections
+  has_many :lectures, through: :sections
   has_many :reviews
   has_many :course_goals
-  has_many :goals, :through => :course_goals
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :replies, :through => :comments
-  has_many :votes, :as => :votable
+  has_many :goals, through: :course_goals
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :replies, through: :comments
+  has_many :votes, as: :votable
 
   accepts_nested_attributes_for :default_market
 
   # == Paperclip ============================================================
   # == Validations ==========================================================
-  validates :name, :presence => true
-  validates :name, :length => {:minimum => 1}
-  validates_inclusion_of :cost, :in => 0..999999
-  validates :default_market_id, :presence => true
+  validates :name, presence: true
+  validates :name, length: {minimum: 1}
+  validates_inclusion_of :cost, in: 0..999999
+  validates :default_market_id, presence: true
 
   # == Scopes ===============================================================
-  scope :with_sections_and_lectures, -> { includes(:sections => :lectures) }
+  scope :with_sections_and_lectures, -> { includes(sections: :lectures) }
 
   # == Callbacks ============================================================
   # == Class Methods ========================================================

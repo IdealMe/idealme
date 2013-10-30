@@ -3,9 +3,9 @@ class ReviewsController < ApplicationController
 
   before_filter :load_market
 
-  before_filter :load_review, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_reviews, :only => [:index]
-  before_filter :build_review, :only => [:new, :create]
+  before_filter :load_review, only: [:show, :edit, :update, :destroy]
+  before_filter :load_reviews, only: [:index]
+  before_filter :build_review, only: [:new, :create]
 
 
   # GET /reviews
@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     @review.save!
     redirect_to market_path(@market), notice: 'Review was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :new
+    render action: :new
   end
 
   # PUT /reviews/1
@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   def destroy
     @review.destroy
-    redirect_to market_path(@market), :notice => 'Review was successfully deleted'
+    redirect_to market_path(@market), notice: 'Review was successfully deleted'
   end
 
   protected
@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
   def load_market
     @market = Market.find(params[:market_id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to markets_path, :alert => "Market not found"
+    redirect_to markets_path, alert: "Market not found"
   end
 
   def load_reviews

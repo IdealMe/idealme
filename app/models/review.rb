@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
 
   # == Relationships ========================================================
   belongs_to :course
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :owner, class_name: 'User'
 
   # == Paperclip ============================================================
   # == Validations ==========================================================

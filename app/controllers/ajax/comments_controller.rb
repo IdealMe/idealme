@@ -1,5 +1,5 @@
 class Ajax::CommentsController < Ajax::BaseController
-  before_filter :build_comment, :only => [:create]
+  before_filter :build_comment, only: [:create]
   # GET /ajax/comments.json
   def index
     @comments = Comment.all
@@ -15,7 +15,7 @@ class Ajax::CommentsController < Ajax::BaseController
     @comment.save!
     redirect_to(@comment.redirect_back_to) and return if @comment.redirect_back_to
   rescue ActiveRecord::RecordInvalid
-    redirect_to(@comment.redirect_back_to, :alert => 'Comments can not be empty') and return if @comment.redirect_back_to
+    redirect_to(@comment.redirect_back_to, alert: 'Comments can not be empty') and return if @comment.redirect_back_to
   end
 
   # PUT /ajax/comments/1.json

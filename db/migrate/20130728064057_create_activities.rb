@@ -1,13 +1,13 @@
 class CreateActivities < ActiveRecord::Migration
   def change
     create_table :activities do |t|
-      t.boolean :read, :default => false
-      t.integer :count, :default => 1
+      t.boolean :read, default: false
+      t.integer :count, default: 1
       t.string :share_key
       t.string :action
       t.text :parameters
-      t.references :sender, :polymorphic => true
-      t.references :trackable, :polymorphic => true
+      t.references :sender, polymorphic: true
+      t.references :trackable, polymorphic: true
 
       t.timestamps
     end

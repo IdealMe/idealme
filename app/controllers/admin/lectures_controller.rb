@@ -1,7 +1,7 @@
 class Admin::LecturesController < Admin::BaseController
-  before_filter :load_lecture, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_lectures, :only => :index
-  before_filter :build_lecture, :only => [:new, :create]
+  before_filter :load_lecture, only: [:show, :edit, :update, :destroy]
+  before_filter :load_lectures, only: :index
+  before_filter :build_lecture, only: [:new, :create]
 
   def sort
     params[:lecture].each_with_index do |id, index|
@@ -13,7 +13,7 @@ class Admin::LecturesController < Admin::BaseController
   # GET /admin/lectures
   def index
     @q = Lecture.search(params[:q])
-    @lectures = @q.result(:distinct => true)
+    @lectures = @q.result(distinct: true)
   end
 
   # GET /admin/lectures/1
@@ -31,30 +31,30 @@ class Admin::LecturesController < Admin::BaseController
   # POST /admin/lectures
   def create
     @lecture.save!
-    redirect_to edit_admin_lecture_path(@lecture), :notice => 'Lecture was successfully created.'
+    redirect_to edit_admin_lecture_path(@lecture), notice: 'Lecture was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :new
+    render action: :new
   end
 
   # PUT /admin/lectures/1
   def update
     @lecture.update_attributes!(params[:lecture])
-    redirect_to edit_admin_lecture_path(@lecture), :notice => 'Lecture was successfully updated.'
+    redirect_to edit_admin_lecture_path(@lecture), notice: 'Lecture was successfully updated.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :edit
+    render action: :edit
   end
 
   # DELETE /admin/lectures/1
   def destroy
     @lecture.destroy
-    redirect_to admin_lectures_url, :notice => 'CLecture was successfully deleted'
+    redirect_to admin_lectures_url, notice: 'CLecture was successfully deleted'
   end
 
   protected
   def load_lecture
     @lecture = Lecture.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_lectures_path, :alert => 'Lecture not found'
+    redirect_to admin_lectures_path, alert: 'Lecture not found'
   end
 
   def load_lectures

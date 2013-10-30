@@ -2,7 +2,7 @@ class CreateReviews < ActiveRecord::Migration
   def change
     create_table :reviews do |t|
       t.text :content
-      t.boolean :recommended, :default => true
+      t.boolean :recommended, default: true
       t.integer :owner_id
       t.references :course
 

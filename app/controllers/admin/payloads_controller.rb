@@ -8,7 +8,7 @@ class Admin::PayloadsController < Admin::BaseController
 
   # Show a specific payload
   def show
-    @payload = Payload.where(:id => params[:id]).first
+    @payload = Payload.where(id: params[:id]).first
   end
 
   # Create a specific payload
@@ -18,14 +18,14 @@ class Admin::PayloadsController < Admin::BaseController
 
   # Edit a specific payload
   def edit
-    @payload = Payload.where(:id => params[:id]).first
+    @payload = Payload.where(id: params[:id]).first
   end
 
   # Create a specific payload
   def create
     @payload = Payload.new(params[:payload])
     if @payload.save
-      redirect_to @payload, :notice => 'Payload was successfully created.'
+      redirect_to @payload, notice: 'Payload was successfully created.'
     else
       render :new
     end
@@ -33,9 +33,9 @@ class Admin::PayloadsController < Admin::BaseController
 
   # Update a specific payload
   def update
-    @payload = Payload.where(:id => params[:id]).first
+    @payload = Payload.where(id: params[:id]).first
     if @payload.update_attributes(params[:payload])
-      redirect_to @payload, :notice => 'Payload was successfully updated.'
+      redirect_to @payload, notice: 'Payload was successfully updated.'
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class Admin::PayloadsController < Admin::BaseController
 
   # Destroy a specific payload
   def destroy
-    @payload = Payload.where(:id => params[:id]).first
+    @payload = Payload.where(id: params[:id]).first
     @payload.destroy
     redirect_to payloads_url
   end
@@ -92,11 +92,11 @@ class Admin::PayloadsController < Admin::BaseController
   def set_parent
     @payload_parent = nil
     if params[:market_id]
-      @payload_parent = ::Market.where(:slug => params[:market_id]).first
+      @payload_parent = ::Market.where(slug: params[:market_id]).first
     elsif params[:lecture_id]
-      @payload_parent = ::Lecture.where(:slug => params[:lecture_id]).first
+      @payload_parent = ::Lecture.where(slug: params[:lecture_id]).first
     elsif params[:article_id]
-      @payload_parent = ::Article.where(:slug => params[:article_id]).first
+      @payload_parent = ::Article.where(slug: params[:article_id]).first
     end
   end
 end

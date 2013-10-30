@@ -21,7 +21,7 @@ class AffiliateSale < ActiveRecord::Base
   def self.create_affiliate_sale(order, affiliate_user, affiliate_link=nil)
     affiliate_sale = nil
     if affiliate_user && order
-      affiliate_sale = AffiliateSale.create!(:order_id => order.id, :user_id => affiliate_user.id)
+      affiliate_sale = AffiliateSale.create!(order_id: order.id, user_id: affiliate_user.id)
       if affiliate_link
         affiliate_sale.affiliate_link_id = affiliate_link.id
         affiliate_sale.save!

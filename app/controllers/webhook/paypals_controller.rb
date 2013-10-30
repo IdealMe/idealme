@@ -19,7 +19,7 @@
 #
 class Webhook::PaypalsController < ApplicationController
   include ActiveMerchant::Billing::Integrations
-  protect_from_forgery :except => [:paypal_create, :paypal_return]
+  protect_from_forgery except: [:paypal_create, :paypal_return]
   # Paypal will redirect the user here after successful payment
   def paypal_return
     session[:paypal_ipn] = true
@@ -36,13 +36,13 @@ class Webhook::PaypalsController < ApplicationController
     control_code = invoice[0].to_i
     if control_code < 0 # New user for courses
       course_id = notify.item_id.to_i
-      course = Course.where(:id => course_id).first
+      course = Course.where(id: course_id).first
       email = post[:payer_email]
-      user = User.where(:email => email).first
+      user = User.where(email: email).first
 
       unless user
         password = rand(36**8).to_s(36)
-        user = User.create!(:email => email, :username => User.generate_unique_username(post[:first_name]), :firstname => post[:first_name], :lastname => post[:last_name], :password => password, :password_confirmation => password)
+        user = User.create!(email: email, username: User.generate_unique_username(post[:first_name]), firstname: post[:first_name], lastname: post[:last_name], password: password, password_confirmation: password)
         DeviseMailer.auto_registration_instructions(user, password)
       end
       user.subscribe_course(course)
@@ -54,8 +54,8 @@ class Webhook::PaypalsController < ApplicationController
         AffiliateSale.create_complete_affiliate_sale_raw(order, affiliate_user, affiliate_tracking)
       end
     elsif control_code > 0 # Existing user for course
-      order = Order.where(:id => control_code).first
-      course = Course.where(:id => order.course_id).first
+      order = Order.where(id: control_code).first
+      course = Course.where(id: order.course_id).first
       user = order.user
       user.subscribe_course(course)
       order.complete_order(notify.transaction_id, notify.status, post.to_json, IM_ORDER_PAID, post[:subscr_id])
@@ -68,8 +68,8 @@ class Webhook::PaypalsController < ApplicationController
     elsif control_code == 0 # Existing user for plan
       plan_id = invoice[1]
       user_id = invoice[2]
-      user = User.where(:id => user_id).first
-      plan = Plan.where(:id => plan_id).first
+      user = User.where(id: user_id).first
+      plan = Plan.where(id: plan_id).first
       #TODO Fix this shit
       if user && plan
         user.subscribe_plan(plan)
@@ -83,9 +83,9 @@ class Webhook::PaypalsController < ApplicationController
     invoice = notify.invoice.split(".")
     control_code = invoice[0].to_i
     if control_code == 0
-      SubscriptionService.create!(:subscriber_id => post[:subscr_id], :transaction_type => notify.type, :transaction_id => notify.transaction_id, :transaction_status => notify.status, :ipn => post.to_json, :payment_date => DateTime.strptime(post['payment_date'], "%H:%M:%S %b %d, %Y %z"), :status => IM_ORDER_PAID)
+      SubscriptionService.create!(subscriber_id: post[:subscr_id], transaction_type: notify.type, transaction_id: notify.transaction_id, transaction_status: notify.status, ipn: post.to_json, payment_date: DateTime.strptime(post['payment_date'], "%H:%M:%S %b %d, %Y %z"), status: IM_ORDER_PAID)
     else
-      SubscriptionOrder.create!(:subscriber_id => post[:subscr_id], :transaction_type => notify.type, :transaction_id => notify.transaction_id, :transaction_status => notify.status, :ipn => post.to_json, :payment_date => DateTime.strptime(post['payment_date'], "%H:%M:%S %b %d, %Y %z"), :status => IM_ORDER_PAID)
+      SubscriptionOrder.create!(subscriber_id: post[:subscr_id], transaction_type: notify.type, transaction_id: notify.transaction_id, transaction_status: notify.status, ipn: post.to_json, payment_date: DateTime.strptime(post['payment_date'], "%H:%M:%S %b %d, %Y %z"), status: IM_ORDER_PAID)
     end
   end
 
@@ -94,19 +94,19 @@ class Webhook::PaypalsController < ApplicationController
 
     if invoice['order_id'] < 0 # for new user
       course_id = invoice['course_id']
-      course = Course.where(:id => course_id).first
+      course = Course.where(id: course_id).first
       email = post[:payer_email]
-      user = User.where(:email => email).first
+      user = User.where(email: email).first
       unless user
         password = rand(36**8).to_s(36)
-        user = User.create!(:email => email, :username => User.generate_unique_username(post[:first_name], post[:last_name]), :firstname => post[:first_name], :lastname => post[:last_name], :password => password, :password_confirmation => password)
+        user = User.create!(email: email, username: User.generate_unique_username(post[:first_name], post[:last_name]), firstname: post[:first_name], lastname: post[:last_name], password: password, password_confirmation: password)
         DeviseMailer.auto_registration_instructions(user, password)
       end
       user.subscribe_course(course)
       order = Order.create_complete_order(course, user, notify.transaction_id, notify.status, post.to_json, IM_ORDER_PAID)
       AffiliateSale.create_complete_affiliate_sale_raw(order, invoice['affiliate_user_id'], invoice['affiliate_tracking_id'])
     elsif invoice['order_id'] > 0
-      order = Order.where(:id => invoice['order_id']).includes(:user, :course).first
+      order = Order.where(id: invoice['order_id']).includes(:user, :course).first
       order.user.subscribe_course(order.course)
       order.complete_order(notify.transaction_id, notify.status, post.to_json, IM_ORDER_PAID)
       AffiliateSale.create_complete_affiliate_sale_raw(order, invoice['affiliate_user_id'], invoice['affiliate_tracking_id'])
@@ -135,6 +135,6 @@ class Webhook::PaypalsController < ApplicationController
         end
       end
     end
-    render :nothing => true
+    render nothing: true
   end
 end

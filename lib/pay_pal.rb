@@ -80,7 +80,7 @@ class PayPal
   protected
 
   def conn
-    @conn ||= Faraday.new(:url => endpoint) do |faraday|
+    @conn ||= Faraday.new(url: endpoint) do |faraday|
       faraday.request  :url_encoded             # form-encode POST params
       #faraday.response :logger                  # log requests to STDOUT
       faraday.adapter  :typhoeus  # make requests with Net::HTTP

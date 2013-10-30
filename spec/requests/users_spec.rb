@@ -8,8 +8,8 @@
 #
 #      visit new_user_session_path
 #
-#      fill_in 'Email', :with => 'normal_idealme@idealme.com'
-#      fill_in 'Password', :with => 'passpass'
+#      fill_in 'Email', with: 'normal_idealme@idealme.com'
+#      fill_in 'Password', with: 'passpass'
 #
 #      click_button 'Sign in'
 #    end

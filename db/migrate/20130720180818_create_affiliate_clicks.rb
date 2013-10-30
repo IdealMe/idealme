@@ -1,7 +1,7 @@
 class CreateAffiliateClicks < ActiveRecord::Migration
   def change
     create_table :affiliate_clicks do |t|
-      t.integer :clicks, :default => 1
+      t.integer :clicks, default: 1
       t.string :ip
       t.string :user_agent
       t.string :tracking_code

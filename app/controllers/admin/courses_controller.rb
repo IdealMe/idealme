@@ -1,7 +1,7 @@
 class Admin::CoursesController < Admin::BaseController
-  before_filter :load_course, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_courses, :only => :index
-  before_filter :build_course, :only => [:new, :create]
+  before_filter :load_course, only: [:show, :edit, :update, :destroy]
+  before_filter :load_courses, only: :index
+  before_filter :build_course, only: [:new, :create]
 
   # GET /admin/courses
   def index
@@ -22,32 +22,32 @@ class Admin::CoursesController < Admin::BaseController
   # POST /admin/courses
   def create
     @course.save!
-    redirect_to edit_admin_course_path(@course), :notice => 'Course was successfully created.'
+    redirect_to edit_admin_course_path(@course), notice: 'Course was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    render :action => :new
+    render action: :new
   end
 
   # PUT /admin/courses/1
   def update
     @course.update_attributes!(params[:course])
-    #redirect_to edit_admin_course_path(@course), :notice => 'Course was successfully updated.'
+    #redirect_to edit_admin_course_path(@course), notice: 'Course was successfully updated.'
     flash[:notice] = 'Course was successfully updated.'
-    render :action => :edit
+    render action: :edit
   rescue ActiveRecord::RecordInvalid
-    render :action => :edit
+    render action: :edit
   end
 
   # DELETE /admin/courses/1
   def destroy
     @course.destroy
-    redirect_to admin_courses_url, :notice => 'Course was successfully deleted'
+    redirect_to admin_courses_url, notice: 'Course was successfully deleted'
   end
 
   protected
   def load_course
     @course = Course.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_courses_path, :alert => "Course not found"
+    redirect_to admin_courses_path, alert: "Course not found"
   end
 
   def load_courses

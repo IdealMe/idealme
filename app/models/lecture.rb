@@ -1,10 +1,10 @@
 class Lecture < ActiveRecord::Base
   # == Imports ==============================================================
   extend FriendlyId
-  acts_as_list :scope => :section
+  acts_as_list scope: :section
 
   # == Slug =================================================================
-  friendly_id :name, :use => [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged]
 
   # == Constants ============================================================
   # == Attributes ===========================================================
@@ -12,9 +12,9 @@ class Lecture < ActiveRecord::Base
 
   # == Relationships ========================================================
   belongs_to :section
-  delegate :course, :to => :section, :allow_nil => true
+  delegate :course, to: :section, allow_nil: true
 
-  has_many :payloads, :as => :payloadable, :dependent => :destroy
+  has_many :payloads, as: :payloadable, dependent: :destroy
 
   # == Paperclip ============================================================
   # == Validations ==========================================================

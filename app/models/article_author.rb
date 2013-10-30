@@ -7,7 +7,7 @@ class ArticleAuthor < ActiveRecord::Base
   
   # == Relationships ========================================================
   belongs_to :article
-  belongs_to :author, :class_name => 'User'
+  belongs_to :author, class_name: 'User'
   
   # == Paperclip ============================================================
   # == Validations ==========================================================
