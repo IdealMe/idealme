@@ -25,7 +25,10 @@
               %i.icon-sort.handle
             %td
               = lecture.name
-    %a{href: new_admin_lecture_path(section_id: @section.id)}
+    %a{href: new_admin_lecture_path(section_id: @section.id), class: 'btn'} New lecture
+
+    %br
+    %br
 
 
   = f.submit 'Save', class: 'btn btn-success'
