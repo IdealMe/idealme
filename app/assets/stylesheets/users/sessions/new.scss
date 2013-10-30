@@ -3,7 +3,6 @@
 .users-registrations-new, .users-registrations-create,
 .users-confirmations-new, .users-confirmations-create, .users-confirmations-show {
   .body-content {
-    //padding-top: 100px;
     .authentication-section {
       width: 500px;
       margin: 0 auto;
@@ -28,7 +27,7 @@
             text-align: center;
             .btn { @include upper; }
             .btn-red { 
-              padding: 15px 121px; 
+              width: 311px;
               margin-left: 88px; }
 
           }
@@ -55,6 +54,9 @@
           padding-top: 10px;
           width: 119px;
         }
+        abbr[title], abbr[data-original-title] {
+          display: none;
+        }
         input[type="text"], input[type="email"], input[type="password"] {
           width: 295px;
           height: 37px;
@@ -70,6 +72,9 @@
           margin-right: -51px;
           @include p_b(10px);
           .btn { width: 260px; margin-left: 10px; text-transform: uppercase;}
+        }
+        p {
+          @include m_t(16px);
         }
       }
       p { text-align: center; }
