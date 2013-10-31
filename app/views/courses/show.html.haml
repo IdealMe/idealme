@@ -6,8 +6,8 @@
       %p.autor 
         %em by 
         = @course.owner.fullname  
-      .progress
-        .bar{style: "width: 20%;"}
+      / .progress
+      /  .bar{style: "width: 20%;"}
     .btn-share.btn-group
       %button.btn.dropdown-toggle{"data-toggle" => "dropdown"} 
         Share (281)
@@ -70,8 +70,6 @@
     %ul.tab_menu
       %li
         %a.active{href: "#"} QUESTIONS
-      %li
-        %a{href: "#"} ACTIVITY
     .clear           
     = form_for @comment, url: ajax_comments_path,html:{ class:'new-comment'} do |f|
       = f.hidden_field :commentable_id

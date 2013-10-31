@@ -2,7 +2,6 @@
   @include bg(#faf9f5);
   .promo-section {
     min-width: 1250px;
-    @include bg(#c1e4de);
     margin-top: 10px;
     padding: 16px 0;
     .promo-wrapper {
@@ -108,7 +107,7 @@
         @include float-left;
         @include m_r(13px);
         a {
-          padding: 14px 16px 12px 16px;
+          padding: 14px 16px;
           @include block;
           @include hex(#424242);
           @include fs(14px);
@@ -116,7 +115,7 @@
           @include rel;
           top: 1px;
           &.active, &:hover {
-            border-bottom: 2px solid #ff6766;
+            border-bottom: 2px solid #ebebeb;
             text-decoration: none;
           }
         }
@@ -142,8 +141,9 @@
     }
     .btn {
       @include float-left;
-      padding: 11px 18px;
+      padding: 7px 13px;
       @include float-left;
+      background: white;
       border: 1px solid #ebebeb;
     }
   }
