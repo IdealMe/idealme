@@ -16,4 +16,4 @@
             = image_tag 'users/checkmark.png', class: 'goal-picker-checked hide', data: {goal_id: goal.id}
       = hidden_field_tag "goal_ids[#{goal.id}]", '0', {data: {goal_id: goal.id}}
     .clear
-    = submit_tag "I'm done ➝", class: 'btn btn-red'
+    = submit_tag "I'm done ➝", class: 'goals_index btn btn-red'
