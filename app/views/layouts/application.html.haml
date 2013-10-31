@@ -15,7 +15,7 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'https://js.stripe.com/v2/', 'application'
     = csrf_meta_tags
-    %link{href: 'https://fonts.googleapis.com/css?family=Open+Sans', rel: 'stylesheet', type: 'text/css'}/
+    -#%link{href: '//fonts.googleapis.com/css?family=Open+Sans', rel: 'stylesheet', type: 'text/css'}/
     = tinymce content_css: asset_path('application.css')
     = favicon_link_tag 'apple-touch-icon-144-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144'
     = favicon_link_tag 'apple-touch-icon-114-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '114x114'
@@ -42,11 +42,11 @@
     = get_friendly_affiliate_link
     #fb-root
 :javascript
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = '//connect.facebook.net/en_US/all.js#xfbml=1&appId=122762434513312';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+  //(function(d, s, id) {
+  //  var js, fjs = d.getElementsByTagName(s)[0];
+  //  if (d.getElementById(id)) return;
+  //  js = d.createElement(s); js.id = id;
+  //  js.src = '//connect.facebook.net/en_US/all.js#xfbml=1&appId=122762434513312';
+  //  fjs.parentNode.insertBefore(js, fjs);
+  //}(document, 'script', 'facebook-jssdk'));
   var idealme = "you";#{include_gon(namespace: "im_js", need_tag: false)}
