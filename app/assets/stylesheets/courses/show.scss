@@ -17,19 +17,17 @@
     .title {
       @include fs(30px);
       @include lh(40px);
-      @include hex(#424242);
-      @include centered;
+      @include hex(#4d4d4d);
       @include upper;
-      font-weight: normal;
+      font-weight: 600;
       margin-bottom: 8px;
       @include p_t(0);
       @include m_t(0);
     }
     .autor {
       @include fs(13px);
-      @include centered;
       margin-bottom: 19px;
-      @include hex(#666666);
+      @include hex(#777);
     }
     .progress {
       @include rel;
@@ -71,6 +69,14 @@
           padding: 6px 10px;
         }
       }
+      .module-lectures {
+        ul {
+          list-style-type: none;
+        }
+        li {
+          @include m_l(19px0;
+        }
+      }
       .progress {
         @include float-left;
         margin: 0;
@@ -109,7 +115,7 @@
         a {
           padding: 14px 16px;
           @include block;
-          @include hex(#424242);
+          @include hex(#777);
           @include fs(14px);
           @include upper;
           @include rel;
@@ -145,6 +151,7 @@
       background: #f2f2f2;
       border: 1px solid #ebebeb;
       text-transform: uppercase;
+      color:#777;
     }
   }
   .comments {
