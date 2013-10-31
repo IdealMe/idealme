@@ -6,7 +6,7 @@
     %li#previews-tab{class: course_previews_active?}
       %a{ href: "#course-previews-tab", 'data-toggle' => 'tab' } Previews
     %li#content-tab{class: course_content_active?}
-      %a{ href: "#course-content-tab", 'data-toggle' => 'tab' } Sections & Lectures
+      %a{ href: "#course-content-tab", 'data-toggle' => 'tab' } Sections
 
   .tab-content
     .tab-pane{ id: 'course-details-tab', class: course_details_active? }
@@ -82,6 +82,8 @@
           = link_to 'Back', admin_markets_path, class: 'btn'
           - if @course.default_market.persisted?
             = link_to 'Payloads', admin_market_payloads_path(@course.default_market), class: 'btn'
+          - else
+            %p Save this course preview to add payloads
 
     .tab-pane{ id: 'course-content-tab', class: course_content_active? }
       - if @course.persisted?

@@ -10,3 +10,5 @@
   = link_to 'Back', admin_lectures_path, class: 'btn'                     
   - if @lecture.persisted?
     = link_to 'Payloads', admin_lecture_payloads_path(@lecture), class: 'btn'
+  - else
+    %p Save this lecture to add payloads
