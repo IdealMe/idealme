@@ -127,12 +127,11 @@
     border-bottom: 1px solid #ebeae5;
     margin-bottom: 24px;
     .comment-content {
-      width: 323px;
+      width: 73%;
       height: 26px;
       @include bg(white);
       @include fs(12px);
       @include lh(26px);
-      @include m_r(20px);
       @include border-radius(0);
       border: 1px solid #ebebeb;
       @include box-shadow(none);
@@ -141,9 +140,9 @@
     }
     .btn {
       @include float-left;
-      padding: 7px 13px;
+      padding: 7px 30px;
       @include float-left;
-      background: white;
+      background: #f2f2f2;
       border: 1px solid #ebebeb;
     }
   }
