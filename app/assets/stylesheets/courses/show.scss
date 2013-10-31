@@ -3,7 +3,7 @@
   .promo-section {
     min-width: 1250px;
     margin-top: 10px;
-    padding: 16px 0;
+    @include p_t(16px);
     .promo-wrapper {
       width: 1024px;
       margin: 0 auto;
@@ -42,10 +42,11 @@
     }
   }
   .main-section {
-    width: 764px;
+    width: 740px;
     float: left;
     @include m_b(15px);
-    min-height: 450px;
+    @include m_r(20px);
+    min-height: 480px;
     .module_box {
       background: white;
       border: 1px solid #ebeae5;
@@ -91,14 +92,19 @@
         @include m_r(17px);
       }
       .numb {
+        font-size: 16px;
         @include float-left;
-        @include bold;
+        font-weight: 600;
         @include m_r(28px);
         @include p_t(2px);
       }
       .module_title {
         @include float-left;
         @include p_t(3px);
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        color: #4d4d4d;
       }
       .module_time {
         @include float-right;
@@ -119,7 +125,6 @@
         @include float-left;
         @include m_r(13px);
         a {
-          padding: 14px 16px;
           @include block;
           @include hex(#777);
           @include fs(18px);
@@ -128,7 +133,6 @@
           @include rel;
           top: 1px;
           &.active, &:hover {
-            border-bottom: 2px solid #ebebeb;
             text-decoration: none;
           }
         }
@@ -154,7 +158,7 @@
       @include float-left;
       padding: 7px 25px;
       @include float-left;
-      background: #f2f2f2;
+      background: #fafafa;
       border: 1px solid #ebebeb;
       text-transform: uppercase;
       color:#777;
