@@ -226,14 +226,15 @@ body {
 /* ******************************************** */
 .btn-share {
   @include float-right;
-  @include m_r(14px);
-  @include border-radius(0);
+  @include m_r(21px);
+  @include border-radius(6);
 
 
   .btn {
     @include bg(white);
     @include bg-pos(top, left);
     border: 1px solid #ebebeb;
+    @include border-radius(4px);
     @include box-shadow(none);
     @include fs(12px);
     @include lh(12px);
@@ -245,10 +246,10 @@ body {
     }
 
     height: 36px;
-    @include border-radius(0);
+    @include border-radius(4px);
     @include rel;
     padding: 5px 45px 5px 13px;
-    @include hex(#424242);
+    @include hex(#777777);
     &:hover, &:active {
       @include bg(white);
       @include hex(#424242);
@@ -269,12 +270,16 @@ body {
   .dropdown-menu {
     right: 0px;
     left: auto;
-    @include border-radius(0);
+    @include border-radius(6px);
     width: 470px;
     padding: 10px 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
     .social_box {
       border-bottom: 1px solid #eaeaea;
-      @include hex(#333333);
+      @include hex(#4d4d4d);
       @include fs(12px);
       @include lh(20px);
       @include upper;

@@ -26,7 +26,6 @@
     }
     .autor {
       @include fs(13px);
-      margin-bottom: 19px;
       @include hex(#777);
     }
     .progress {
@@ -46,7 +45,7 @@
     width: 764px;
     float: left;
     @include m_b(15px);
-
+    min-height: 450px;
     .module_box {
       background: white;
       border: 1px solid #ebeae5;
@@ -57,8 +56,9 @@
       @include fs(12px);
       @include hex(#333333);
       h3 {
-        @include fs(14px);
-        @include hex(#424242);
+        @include fs(18px);
+        font-weight: 600;
+        @include hex(#777);
         margin-bottom: 12px;
         margin-left: 10px;
       }
@@ -74,7 +74,13 @@
           list-style-type: none;
         }
         li {
-          @include m_l(19px0;
+          @include m_l(19px);
+        }
+        a {
+          color:#4d4d4d;
+        }
+        a:hover {
+          color: #08c;
         }
       }
       .progress {
@@ -103,7 +109,7 @@
   .sidebar {
     width: 450px;
     margin-top: 11px;
-    margin-left: 35px;
+    margin-left: 16px;
     float: left;
 
     .tab_menu {
@@ -116,7 +122,8 @@
           padding: 14px 16px;
           @include block;
           @include hex(#777);
-          @include fs(14px);
+          @include fs(18px);
+          font-weight: 600;
           @include upper;
           @include rel;
           top: 1px;
@@ -129,9 +136,9 @@
     }
   }
   .new-comment {
-    margin-top: 16px;
+    margin-top: 10px;
     border-bottom: 1px solid #ebeae5;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     .comment-content {
       width: 73%;
       height: 26px;
@@ -142,7 +149,6 @@
       border: 1px solid #ebebeb;
       @include box-shadow(none);
       @include float-left;
-      margin-bottom: 21px;
     }
     .btn {
       @include float-left;
@@ -156,7 +162,7 @@
   }
   .comments {
     .comment {
-      @include border-radius(2px);
+      @include border-radius(6px);
       @include bg(white);
       border: 1px solid #ebeae5;
       padding: 10px 10px 5px 10px;
