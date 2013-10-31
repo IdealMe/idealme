@@ -25,6 +25,7 @@
 //= require jquery.cookie
 //= require bootstrap-tour
 //= require users.js
+//= require flowplayer.min
 //= require_tree .
 
 

@@ -3,3 +3,9 @@
     = @lecture.name
                    
   = @lecture.content.html_safe if @lecture.content
+
+  - @lecture.payloads.each do |payload|
+    - if payload.intended_type == IM_PAYLOAD_VIDEO
+      .flowplayer{'data-swf' => '/assets/flowplayer.swf', 'data-key' => '$324032410720287', 'data-ratio' => '0.4167'}
+        %video
+          %source{type: 'video/mp4', src: "#{payload.payload.expiring_url(1000)}"}
