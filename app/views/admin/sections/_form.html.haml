@@ -24,7 +24,7 @@
             %td.text-center
               %i.icon-sort.handle
             %td
-              = lecture.name
+              = link_to lecture.name, edit_admin_lecture_path(lecture)
     %a{href: new_admin_lecture_path(section_id: @section.id), class: 'btn'} New lecture
 
     %br
