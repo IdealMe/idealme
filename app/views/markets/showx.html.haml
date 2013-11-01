@@ -1,0 +1,127 @@
+.promo-section
+  .promo-wrapper
+    .market-box
+      %h3.name
+        = @market.name
+      %p.owner
+        %em by
+        = @market.course.owner.fullname
+      = link_to subscribe_orders_path(@market), class: 'btn btn-arrow', id: 'top-take-this-course-link' do
+        Take this course
+        %span.price
+          = penny_to_currency(@market.course.cost)
+    .guarantee-box
+      = image_tag('icons/guarantee.png')
+    .clear
+
+
+
+.container
+  .main-section
+    .market-wrapper
+      - if @market.content
+        - content = @market.content
+        - content = render_payloads(@payloads,content)
+        - content = render_polls(@polls, content)
+        = content.html_safe
+
+
+      = link_to subscribe_orders_path(@market), class: 'btn btn-red btn-arrow' do
+        Take this course
+        %span.price
+          = penny_to_currency(@market.course.cost)
+  .sidebar
+    .modal_title2
+      TAKEN BY
+      = @course.users.length
+      MEMBERS
+    .member_box
+      - @course.users.first(16).each do |user|
+        .member_icon
+          = image_tag(user.avatar.url(:thumb))
+      .clear
+    .modal_footer
+      .bottom_box
+        - if current_user
+          .like_box
+            .like{data: {type: @market.course.class, id: @market.course.id, direction: 1, voted: (@market.course.up_voted?(current_user) ? '1':'0')}}
+              = @market.course.up_votes
+            .dislike{data: {type: @market.course.class, id: @market.course.id, direction: -1, voted: (@market.course.down_voted?(current_user) ? '1':'0')}}
+              = @market.course.down_votes
+            .clear
+        -#- else
+        -#  .like_box
+        -#    .like
+        -#      = @market.course.up_votes
+        -#    .dislike
+        -#      = @market.course.down_votes
+        -#    .clear
+
+        .comment_box
+          31
+        .add_me_box
+          .unchecked +
+          .checked
+        .clear
+    - unless @market.features.empty?
+      .modal_title3 WHAT YOU GET
+      .what_you_get_box
+
+        - @market.features.each do |feature|
+          .media
+            .pull-left
+              = image_tag feature.avatar.url(:square), height: 50, width: 50
+            .media-body
+              = feature.description
+
+    .modal_title3 YOUR INSTRUCTOR
+    .instructor_box
+      .instructor_head
+        .instructor_pic
+          = image_tag @market.course.owner.avatar.url(:square)
+        .instructor_name
+          = @market.course.owner.fullname
+        .clear
+      .instructor_description
+        = @market.course.owner.instructor_about.try :html_safe
+      .modal_title3 REVIEWS
+      .review_box
+        - @market.course.reviews.each do |review|
+          .review
+            .reviewer_pic
+              = image_tag review.owner.avatar.url(:thumb)
+            .review_body
+              .review_info
+                by
+                = link_to review.owner.fullname, user_path(review.owner)
+                %span 5 months ago
+              .review_title Worth every penny!!
+              .review_msg
+                = review.content
+            .clear
+        = link_to "See all #{@market.course.reviews.length} reviews", market_reviews_path(@market), class: 'see_all'
+      .modal_title3 CURRICULUM
+      .cirriculum_box
+        - @market.course.sections.each_with_index do |section, index|
+          .media
+            .pull-left
+              MODULE
+              = (index + 1).to_s
+            .media-body
+              = section.name
+
+      .modal_title3 FAQ
+      .foq_box
+        %ul.list_1
+          %li How long do I have access to the course materials?
+          .answer You can view and review the lecture materials indefinitely, like an on-demand channel.
+          %li What is the refund policy on the course?
+          .answer We'reall about keeping our members happy, so we have a 30-day no questions asked refund policy. Send an email to support@idealme.com for refund requests.
+          %li Can I take my courses with me wherever I go?
+          .answer Yes, you can log in to idealme.com wherever you are and get access to your course.
+      .modal_title3 AS SEEN IN
+      .partners_box
+        .elle_icon
+        .fab_icon
+        .oxygen_icon
+        .clear
