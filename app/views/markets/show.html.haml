@@ -45,7 +45,7 @@
           %span.anchor
       / Tabs
       .clear
-      %br
+      %brNO
       .tabs
         .tabs-nav
           %ul
@@ -53,8 +53,8 @@
               %a{href: "#tab-1"} About this course
             %li
               %a{href: "#tab-2"} Syllabus
-            %li
-              %a{href: "#tab-3"} Reviews
+            -#%li
+            -#  %a{href: "#tab-3"} Reviews
           .cl
         .tabs-cnt
           / Tab 1
@@ -69,75 +69,50 @@
           #tab-2.tab
             .modules
               %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
-                %tr
-                  %td.col-1 MODULE 1
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 2
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 2
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 3
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 4
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 5
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 6
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 7
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 8
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 9
-                  %td Goal Setting for Your Ideal Me
-                %tr
-                  %td.col-1 MODULE 10
-                  %td Goal Setting for Your Ideal Me
+                - @market.course.sections.each_with_index do |section, index|
+                  %tr
+                    %td.col-1
+                      MODULE
+                      = index + 1
+                    %td
+                      = section.name
+
           / End Tab 2
           / Tab 3
-          #tab-3.tab
-            .review
-              .image
-                %img{alt: "", src: "/assets/course-image-4.png"}/
-              .text
-                .top
-                  by
-                  = succeed "," do
-                    %a{href: "#"} Gökçe Çözen
-                  %span.moto Worth every penny!!
-                %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-              .cl
-            .review
-              .image
-                %img{alt: "", src: "/assets/course-image-5.png"}/
-              .text
-                .top
-                  by
-                  = succeed "," do
-                    %a{href: "#"} Olga Bereziuk
-                  %span.moto Worth every penny!!
-                %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-              .cl
-            .review
-              .image
-                %img{alt: "", src: "/assets/course-image-6.png"}/
-              .text
-                .top
-                  by
-                  = succeed "," do
-                    %a{href: "#"} Susanne Mumpitz
-                  %span.moto Worth every penny!!
-                %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-              .cl
+          -##tab-3.tab
+          -#  .review
+          -#    .image
+          -#      %img{alt: "", src: "/assets/course-image-4.png"}/
+          -#    .text
+          -#      .top
+          -#        by
+          -#        = succeed "," do
+          -#          %a{href: "#"} Gökçe Çözen
+          -#        %span.moto Worth every penny!!
+          -#      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+          -#    .cl
+          -#  .review
+          -#    .image
+          -#      %img{alt: "", src: "/assets/course-image-5.png"}/
+          -#    .text
+          -#      .top
+          -#        by
+          -#        = succeed "," do
+          -#          %a{href: "#"} Olga Bereziuk
+          -#        %span.moto Worth every penny!!
+          -#      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+          -#    .cl
+          -#  .review
+          -#    .image
+          -#      %img{alt: "", src: "/assets/course-image-6.png"}/
+          -#    .text
+          -#      .top
+          -#        by
+          -#        = succeed "," do
+          -#          %a{href: "#"} Susanne Mumpitz
+          -#        %span.moto Worth every penny!!
+          -#      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+          -#    .cl
           / End Tab 3
       / End Tabs
     / End C Col
