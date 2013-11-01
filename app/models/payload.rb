@@ -10,6 +10,7 @@ class Payload < ActiveRecord::Base
 
   # == Attributes ===========================================================
   attr_accessible :payload, :intended_type, :payloadable_id, :payloadable_type
+  attr_reader :payload_remote_url
 
   # == Relationships ========================================================
 
@@ -43,6 +44,16 @@ class Payload < ActiveRecord::Base
       when IM_PAYLOAD_ARCHIVE
         'Archive'
     end
+  end
+
+
+
+  def payload_remote_url=(url_value)
+    self.payload = URI.parse(url_value)
+    # Assuming url_value is http://example.com/photos/face.png
+    # avatar_file_name == "face.png"
+    # avatar_content_type == "image/png"
+    @payload_remote_url = url_value
   end
 
 
