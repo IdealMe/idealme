@@ -146,19 +146,16 @@
           %li
             %span.icon.icon-6
             Lifetime Access
-      %h4 RECOMMENDED FOR
-      .mode-item
-        .image
-          %img{alt: "", src: "/assets/course-image-3.png"}/
-        .text
-          Relax more
-        .cl
-      .mode-item
-        .image
-          %img{alt: "", src: "/assets/course-image-3.png"}/
-        .text
-          Get better sleep
-        .cl
+      - unless @market.course.goals.empty?
+        %h4 RECOMMENDED FOR
+        - @market.course.goals.each do |goal|
+          .mode-item
+            .image
+              = image_tag(goal.avatar.url(:full))
+            .text
+              = goal.name
+            .cl
+
     / End R Col
     .cl
   / End Course Wp
