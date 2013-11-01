@@ -87,8 +87,8 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .add_goal.add-2 a .plus { display: block; }
 .add_goal.add-2 a:hover { text-decoration: none; color: #4d4d4d; }
 
-.add_goal.add-3 { padding-top: 0; height: 328px; background: url(..//img/u369_normal.png) no-repeat center 0; }
-.add_goal.add-3:hover { background: url(..//img/u369_mouseover.png) no-repeat center 0; }
+.add_goal.add-3 { padding-top: 0; height: 328px; background: url(/assets/u369_normal.png) no-repeat center 0; }
+.add_goal.add-3:hover { background: url(/assets/u369_mouseover.png) no-repeat center 0; }
 .add_goal.add-3 a { display: block; margin: 0 auto; color: #cccccc; width: 100%; height: 170px; padding-top: 150px; font-size: 12px; font-style: normal; font-weight: 600; }
 .add_goal.add-3 a .plus { display: block; }
 .add_goal.add-3 a:hover { text-decoration: none; color: #4d4d4d; }
@@ -108,3 +108,90 @@ text-transform: uppercase;}
   width: 350px;
 }
 
+body.course_page { background: #faf9f4; }
+body.course_page footer { background: #faf9f4; }
+body.course_page footer .container { border: 0; }
+body.course_page .container { width: auto; max-width: 1250px; min-width: 768px; }
+body.course_page header,
+body.course_page footer { width: auto; min-width: 768px; }
+
+.course-wp { padding: 18px 0; font-family: 'Open Sans', sans-serif; }
+.course-wp p,
+.course-wp ul { margin: 0; }
+.course-wp .l-col { width: 242px; float: left; display: inline; }
+.course-wp .l-col .image { padding: 0 0 45px 0; display: block; width: 100%; }
+.course-wp .l-col .image img { width: 100%; }
+.course-wp .l-col h4 { font-size: 12px; line-height: 16px; color: #8B8B8B; text-transform: uppercase; padding: 0 0 10px 0; border-bottom: solid 1px #e4e4e4; margin: 0 0 10px 0; }
+.course-wp .l-col .teacher { padding: 0 0 10px 0; }
+.course-wp .l-col .teacher .image-t { float: left; display: inline; }
+.course-wp .l-col .teacher .name { display: block; font-size: 18px; line-height: 40px; color: #424242; margin: 0 0 0 55px; }
+.course-wp .l-col p { font-size: 14px; line-height: 22px; color: #555555; padding: 0 0 10px 0; }
+.course-wp .l-col a { color: #1D95CB; }
+.course-wp .l-col a:hover { text-decoration: underline; }
+
+.course-wp .c-col { padding: 40px 0 0 60px; width: 600px; float: left; display: inline; }
+.course-wp .c-col .c-top { position: relative; }
+.course-wp .c-col h2 { padding: 0 0 10px 0; font-size: 28px; line-height: 32px; color: #424242; display: block; }
+.course-wp .c-col p { padding: 0 0 10px 0; color: #333333; font-size: 16px; line-height: 20px; }
+.course-wp .c-col .actions { font-size: 12px; line-height: 35px; color: #4D4D4D; padding: 0 0 25px 0; }
+.course-wp .c-col .actions ul { list-style: none outside none; margin: 0; }
+.course-wp .c-col .actions ul li { padding: 0 25px 0 0; margin: 0 25px 0 0; height: 35px; line-height: 35px; border-right: solid 1px #e4e4e4; float: left; display: inline; }
+.course-wp .c-col .actions ul li.last { border: 0; }
+.course-wp .c-col .actions .likes { padding: 0 20px 0 15px; background: url(/assets/course-icon-2.png) no-repeat 0 center; background-size: 10px 10px; }
+.course-wp .c-col .actions .unlikes { padding: 0 0 0 15px; background: url(/assets/course-icon-3.png) no-repeat 0 center; background-size: 10px 10px; }
+.course-wp .c-col .actions a { color: #4D4D4D; }
+.course-wp .c-col .actions .enrolled { padding: 0 0 0 25px; background: url(/assets/course-icon-1.png) no-repeat 0 center; background-size: 17px 10px; }
+
+.course-wp .c-col .tabs-nav { border-bottom: solid 1px #e4e4e4; display: block; margin: 0; height: 30px; }
+.course-wp .c-col .tabs-nav ul { list-style: none outside none; margin: 0; }
+.course-wp .c-col .tabs-nav ul li { float: left; display: inline; padding: 0 15px 0 0; font-size: 14px; line-height: 29px; color: #424242; height: 29px; margin: 0; }
+.course-wp .c-col .tabs-nav ul li a { padding: 0 10px; height: 29px; line-height: 29px; position: relative; margin: 0 0 -1px 0; background: #fafafa; border: solid 1px #d4d4d4; border-bottom: solid 1px #e4e4e4; border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; color: #424242; display: block; }
+.course-wp .c-col .tabs-nav ul li a:hover { background: #ffffff; text-decoration: none; }
+.course-wp .c-col .tabs-nav ul li.active a { color: #424242; border: solid 1px #cccccc; border-bottom: solid 1px #faf9f4; background: #faf9f4; text-decoration: none; }
+.course-wp .c-col .tabs-cnt { padding: 15px 0; }
+.course-wp .c-col .tabs-cnt p { padding: 0 0 22px 0; }
+.course-wp .c-col .tabs-cnt a { color: #1D95CB; }
+.course-wp .c-col .tabs-cnt .modules { display: block; }
+.course-wp .c-col .tabs-cnt .modules table { border: solid 1px #e4e4e4; }
+.course-wp .c-col .tabs-cnt .modules table td { padding: 20px 0; font-size: 16px; line-height: 20px; color: #424242; background: #ffffff; border-bottom: solid 1px #e4e4e4; margin: 0; }
+.course-wp .c-col .tabs-cnt .modules table td.col-1 { width: 160px; text-align: center; text-transform: uppercase; }
+
+.course-wp .c-col .tabs-cnt { padding: 10px 0 0 0; }
+.course-wp .c-col .tabs-cnt .review { padding: 25px 35px; background: #ffffff; border: solid 1px #ebeae5; border-bottom: 0; display: block; }
+.course-wp .c-col .tabs-cnt .review:last-child { border-bottom: solid 1px #ebeae5; }
+.course-wp .c-col .tabs-cnt .review .image { width: 50px; float: left; display: inline; }
+.course-wp .c-col .tabs-cnt .review .image img { width: 100%; }
+.course-wp .c-col .tabs-cnt .review .text { margin: 0 0 0 65px; font-family: arial, sans-serif; }
+.course-wp .c-col .tabs-cnt .review .text .top { padding: 0 0 20px 0; font-size: 14px; line-height: 18px; color: #333333; }
+.course-wp .c-col .tabs-cnt .review .text .top a { color: #1D95CB; font-weight: bold; }
+.course-wp .c-col .tabs-cnt .review .text .top .moto { padding: 8px 0 0 0; display: block; font-weight: bold; }
+.course-wp .c-col .tabs-cnt .review .text p { font-size: 12px; line-height: 19px; color: #333333; padding: 0; }
+
+.course-wp .c-col .enroll-wp { display: none; position: absolute; top: 30px; right: -30px; width: 170px; padding: 12px 0 10px 0; background: #ffffff; border: solid 1px #ebebeb; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.course-wp .c-col .enroll-wp a.enroll-btn { margin: 0 auto; width: 100px; height: 45px; padding: 0 25px; display: block; background: #f16764; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #ffffff; font-weight: bold; font-size: 16px; line-height: 45px; }
+.course-wp .c-col .enroll-wp a.enroll-btn .price { float: right; display: inline; font-weight: 200; }
+.course-wp .c-col .enroll-wp .anchor { position: absolute; top: -36px; right: -20px; display: block; width: 50px; height: 50px; background: url(/assets/course-badge-1.png) no-repeat 0 0; background-size: 50px 50px; font-size: 0; line-height: 0; text-indent: -4000px; }
+.course-wp .c-col .enroll-wp .s-text { display: block; padding: 10px 0 0 0; font-size: 11px; line-height: 12px; color: #4D4D4D; text-align: center; }
+
+.course-wp .r-col { width: 280px; float: right; display: inline; padding: 25px 35px 0 0; }
+.course-wp .r-col .enroll-wp { position: relative; margin: 0 0 35px 0; padding: 15px; background: #ffffff; border: solid 1px #ebebeb; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.course-wp .r-col .enroll-wp a.enroll-btn { display: block; padding: 0 25px; width: 130px; height: 60px; background: #f16764; line-height: 60px; font-size: 20px; color: #ffffff; font-weight: bold; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.course-wp .r-col .enroll-wp a.enroll-btn .price { float: right; display: inline; font-weight: 200; }
+.course-wp .r-col .enroll-wp .anchor { position: absolute; top: 12px; right: 8px; display: block; width: 67px; height: 67px; background: url(/assets/course-badge-1.png) no-repeat 0 0; background-size: 67px 67px; font-size: 0; line-height: 0; text-indent: -4000px; }
+.course-wp .r-col .enroll-wp .s-text { display: block; padding: 10px 0 0 0; font-size: 12px; line-height: 14px; color: #4D4D4D; }
+
+.course-wp .r-col .widget-list { padding: 20px; background: #ffffff; border: solid 1px #ebebeb; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 0 0 40px 0; }
+.course-wp .r-col .widget-list ul { list-style: none outside none; }
+.course-wp .r-col .widget-list ul li { padding: 0 0 0 45px; font-size: 14px; line-height: 50px; color: #4D4D4D; position: relative; }
+.course-wp .r-col .widget-list ul li .icon { position: absolute; top: 50%; left: 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
+.course-wp .r-col .widget-list ul li .icon-1 { margin-top: -11px; background: url(/assets/course-icon-4.png) no-repeat 0 0; height: 22px; width: 24px; background-size: 24px 22px; }
+.course-wp .r-col .widget-list ul li .icon-2 { margin-top: -12px; background: url(/assets/course-icon-5.png) no-repeat 0 0; height: 24px; width: 24px; background-size: 24px 24px; }
+.course-wp .r-col .widget-list ul li .icon-3 { margin-top: -8px; background: url(/assets/course-icon-6.png) no-repeat 0 0; height: 15px; width: 22px; background-size: 22px 15px; }
+.course-wp .r-col .widget-list ul li .icon-4 { margin-top: -12px; background: url(/assets/course-icon-9.png) no-repeat 0 0; height: 24px; width: 21px; background-size: 21px 24px; }
+.course-wp .r-col .widget-list ul li .icon-5 { margin-top: -12px; background: url(/assets/course-icon-7.png) no-repeat 0 0; height: 23px; width: 25px; background-size: 25px 23px; }
+.course-wp .r-col .widget-list ul li .icon-6 { margin-top: -12px; background: url(/assets/course-icon-8.png) no-repeat 0 0; height: 25px; width: 25px; background-size: 25px 25px; }
+
+.course-wp .r-col h4 { font-size: 12px; line-height: 16px; color: #8B8B8B; text-transform: uppercase; padding: 0 0 10px 0; border-bottom: solid 1px #e4e4e4; margin: 0 0 10px 0; }
+.course-wp .r-col .mode-item { padding: 0 0 10px 0; display: block; }
+.course-wp .r-col .mode-item .image { float: left; display: inline; width: 80px; }
+.course-wp .r-col .mode-item .text { width: 175px; float: right; display: inline; font-size: 14px; line-height: 80px; color: #424242; }
