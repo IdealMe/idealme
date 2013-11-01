@@ -246,8 +246,8 @@
   width: 230px;
   @include bg(white);
   border: 1px solid #e4e4e4;
-  @include m_r(9px);
-  @include m_l(9px);
+  @include m_r(8px);
+  @include m_l(7px);
   @include m_b(18px);
   @include pointer;
   border-radius: 5px 5px 5px 5px;

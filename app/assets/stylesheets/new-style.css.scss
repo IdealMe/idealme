@@ -2,7 +2,7 @@
 .left { float: left; }
 .right { float: right; }
 
-header { padding: 0 0 0 0; }
+header { padding: 4px 0; }
 header .container { position: relative; }
 header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margin-left: -90px; width: 180px; display: block; }
 

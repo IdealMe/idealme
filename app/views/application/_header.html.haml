@@ -35,9 +35,11 @@
     .clear
   - else
     .container
-      .fb-social-box
-        .fb-like{'data-href' => 'http://www.idealme.com', 'data-layout' => 'button_count', 'data-send' => 'false', 'data-show-faces' => 'false', 'data-width' => '450'}
+      .left-menu.marketplace
+        = link_to 'MARKETPLACE', markets_path
       .sign-in-box
-        = link_to 'Sign in', new_user_session_path, class: 'btn'
+        = link_to 'Sign in', new_user_session_path
+      .sign-up-box
+        = link_to 'Sign up', new_user_registration_path
       .logo
-        = link_to('', root_path)
+        = link_to('', root_path, title: 'Ideal Me')
