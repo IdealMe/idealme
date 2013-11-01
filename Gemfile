@@ -59,6 +59,7 @@ gem 'gon'
 
 #Easy upload management for ActiveRecord
 gem 'paperclip', '~> 3.4.2'
+gem 'dropbox-sdk'
 
 #A Rails form builder that generates Twitter Bootstrap markup and helps keep your code clean
 gem 'formatted_form'
