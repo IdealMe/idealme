@@ -215,3 +215,9 @@
 .flowplayer.color-alt .fp-timeline,.flowplayer.color-alt .fp-volumeslider{background-color:#111}
 .flowplayer.color-alt2 .fp-progress{background-color:#900}
 .flowplayer.color-alt2.is-touch.is-mouseover .fp-progress:before{background-color:#900}
+
+.flowplayer .fp-controls { background-color: rgba(255, 255, 255, 0.4)}
+.flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
+.flowplayer .fp-progress { background-color: rgba(255, 103, 102, 1)}
+.flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
+.flowplayer .fp-ratio { padding-top: 41.7%}

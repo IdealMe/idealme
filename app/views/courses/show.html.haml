@@ -66,11 +66,7 @@
                 %div
                   = lecture.description.html_safe if lecture.description
         .clear                            
-  .sidebar
-    %ul.tab_menu
-      %li
-        %a.active{href: "#"} QUESTIONS
-    .clear           
+  .sidebar          
     = form_for @comment, url: ajax_comments_path,html:{ class:'new-comment'} do |f|
       = f.hidden_field :commentable_id
       = f.hidden_field :commentable_type

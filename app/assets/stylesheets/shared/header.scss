@@ -11,7 +11,7 @@ header {
       cursor: pointer;
       >.user-avatar {
         padding: 9px;
-        width: 41px;
+        width: 36px;
         @include rel;
         z-index: 500;
         @include bg(white);
