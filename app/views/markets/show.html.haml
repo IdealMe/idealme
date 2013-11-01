@@ -1,8 +1,6 @@
 .container
 
-  / Course Wp
   .course-wp
-    / L Col
     .l-col
       .image
         %img{alt: "", src: "/assets/course-image-1.png"}/
@@ -17,14 +15,12 @@
         = @market.course.owner.instructor_about.html_safe
         %br/
         %a{href: "#"} More
-    / End L Col
-    / C Col
     .c-col
       .c-top
         %h2
           = @market.name
         %p
-          -#= @market.subhead
+          = @market.subheader
         .actions
           %ul
             %li
@@ -43,7 +39,6 @@
             %span.cl
           %span.s-text 30 Day Money Back Guarantee
           %span.anchor
-      / Tabs
       .clear
       %brNO
       .tabs
