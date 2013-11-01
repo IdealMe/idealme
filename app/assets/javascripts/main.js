@@ -139,29 +139,3 @@ if (typeof jQuery !== 'undefined') {
     });
 	});
 };
-
-
-$(function(){
-
-    $('.goal_box').each(function(){
-        $(this).on('click', function(e){
-            $(this).find('.checked').toggle();
-            e.preventDefault();
-        })
-    });
-
-
-    $(".tabs .tab").hide();
-    $(".tabs .tabs-nav li:first").addClass("active").show();
-    $(".tabs .tab:first").show();
-
-    $(".tabs .tabs-nav li").click(function() {
-        $(".tabs .tabs-nav li").removeClass("active");
-        $(this).addClass("active");
-        $(".tabs .tab").hide();
-        var activeTab = $(this).find("a").attr("href");
-        $(activeTab).fadeIn();
-        return false;
-    });
-
-});
