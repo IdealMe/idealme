@@ -27,6 +27,7 @@ gem 'puma'
 gem 'pg'
 
 gem 'redis'
+gem 'sidekiq'
 
 #Flexible authentication solution for Rails with Warden
 gem 'devise'
