@@ -186,6 +186,15 @@ header {
     height: 60px;
   }
 }
+.users-sessions-new.logged-out, .users-registrations-new.logged-out {
+  header {
+    background: transparent;
+    border-bottom: none;
+  }
+  .header-content {
+    height: 60px;
+  }
+}
 
 header .container {
   padding-top: 0;
