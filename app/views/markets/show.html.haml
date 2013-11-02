@@ -25,11 +25,15 @@
           %ul
             %li
               %span.likes 352
-              %span.unlikes 1
+                = @market.course.up_votes
+              %span.unlikes
+                = @market.course.down_votes
             %li
               %a{href: "#"} 3 reviews
             %li.last
-              %span.enrolled 12 enrolled
+              %span.enrolled
+                = @course.users.length
+                enrolled
           .cl
         .enroll-wp
           %a.enroll-btn{href: "#"}
