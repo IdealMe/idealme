@@ -4,6 +4,7 @@
     #legend
       %legend Market
   = f.text_field :name
+  = f.text_field :subheader
   = f.text_field :affiliate_tag
   = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
   = f.text_area :content, class: 'tinymce'
