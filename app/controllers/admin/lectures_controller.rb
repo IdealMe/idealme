@@ -62,6 +62,8 @@ class Admin::LecturesController < Admin::BaseController
   end
 
   def build_lecture
+    params[:lecture] ||= {}
+    params[:lecture][:section_id] ||= params[:section_id] if params[:section_id].present?
     @lecture = Lecture.new(params[:lecture])
   end
 
