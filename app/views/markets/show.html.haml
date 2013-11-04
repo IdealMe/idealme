@@ -3,7 +3,7 @@
   .course-wp
     .l-col
       .image
-        %img{alt: "", src: "/assets/course-image-1.png"}/
+        = image_tag(@market.avatar.url(:full))
       %h4 Your Teacher
       .teacher
         .image-t
@@ -24,7 +24,7 @@
         .actions
           %ul
             %li
-              %span.likes 352
+              %span.likes
                 = @market.course.up_votes
               %span.unlikes
                 = @market.course.down_votes
