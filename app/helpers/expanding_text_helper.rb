@@ -6,7 +6,11 @@ module ExpandingTextHelper
       if text.length > limit
         concat(long_text(text))
         concat less_link
-        concat(short_text(text.truncate(limit)))
+
+        # let nokogiri fix up the fragment - close any open tags, etc.
+        text = Nokogiri::HTML text.truncate(limit)
+
+        concat(short_text(text))
         concat more_link
       else
         concat text
