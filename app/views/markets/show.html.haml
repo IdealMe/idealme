@@ -12,7 +12,7 @@
           = @market.course.owner.fullname
         .cl
       %p
-        = expandable_text @market.course.owner.instructor_about.html_safe
+        = expandable_text @market.course.owner.instructor_about.html_safe, 560
         %br/
         %a{href: "#"} More
     .c-col
@@ -62,7 +62,7 @@
               - content = @market.content
               - content = render_payloads(@payloads,content)
               - content = render_polls(@polls, content)
-              = expandable_text(content, 1000)
+              = expandable_text(content, 1300)
           / End Tab 1
           / Tab 2
           #tab-2.tab
