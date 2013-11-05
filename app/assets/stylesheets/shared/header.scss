@@ -63,13 +63,13 @@ header {
           @include hex(#777777);
           @include fs(14px);
           font-weight: 600;
-          @include lh(60px);
+          @include lh(67px);
           @include upper;
           @include block;
           text-decoration: none;
-          height: 60px;
+          height: 67px;
           &:hover, &.active {
-            border-bottom: 2px solid #ff6766;
+            border-bottom: 3px solid #ff6766;
           }
         }
       }
@@ -173,7 +173,7 @@ header {
     border-bottom: 1px solid #ebebeb;
   }
   .header-content {
-    height: 60px;
+    height: 62px;
   }
 }
 
