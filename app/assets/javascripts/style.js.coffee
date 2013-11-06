@@ -1,5 +1,28 @@
 $ ->
-  $(".select2").select2()
+  $(".select2").select2({
+    width: 'resolve'
+    matcher: (term, text) ->
+      text = text.toUpperCase()
+      term = term.toUpperCase()
+      aText = []
+      aTerm = []
+      for i in [0..(text.length-1)]
+        aText.push(text.charAt(i))
+      for i in [0..(term.length-1)]
+        aTerm.push(term.charAt(i))
+
+
+      aText = aText.sort()
+      aTerm = aTerm.sort()
+      if term.length <= 2
+        return true
+      for letter in aTerm
+        if aText.indexOf(letter) == -1
+          console.debug('early retunr')
+          return false
+      return true
+  })
+
   $(".goal-privacy-toggle").click ->
     self = $(this)
     data_goal_user_id = self.attr("data-goal-user-id")

@@ -9,6 +9,7 @@
       %th File size
       %th Created at
       %th Download
+      %th Remove
 
     - @lecture.payloads.each do |payload|
       %tr
@@ -20,6 +21,7 @@
         %td= number_to_human_size(payload.payload_file_size)
         %td= l payload.created_at
         %td= link_to 'Download', payload.payload.expiring_url(1800), class: 'btn btn-small'
+        %td= link_to 'Remove', remove_admin_lecture_payload_path(@lecture, payload), class: 'btn btn-small remove-lecture-payload-button', method: 'put', remote: true
 
   %br
 

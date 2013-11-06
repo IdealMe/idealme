@@ -21,6 +21,12 @@ class Admin::PayloadsController < Admin::BaseController
     @payload = Payload.where(id: params[:id]).first
   end
 
+  def remove
+    @payload = Payload.where(id: params[:id]).first
+    @payload.update_attributes!(payloadable_id: nil, payloadable_type: nil)
+    head :ok
+  end
+
   # Create a specific payload
   def create
     @payload = Payload.new(params[:payload])

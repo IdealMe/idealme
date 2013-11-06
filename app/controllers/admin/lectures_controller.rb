@@ -3,6 +3,7 @@ class Admin::LecturesController < Admin::BaseController
   before_filter :load_lectures, only: :index
   before_filter :build_lecture, only: [:new, :create]
 
+
   def sort
     params[:lecture].each_with_index do |id, index|
       Lecture.update_all({position: index+1}, {id: id})
@@ -25,10 +26,10 @@ class Admin::LecturesController < Admin::BaseController
     @payload = Payload.find(params[:payload_id])
     @lecture.payloads.push(@payload)
     @lecture.save!
+    @payload_parent = @lecture
     render "_payloads", layout: nil
   end
 
-  # GET /admin/lectures/new
   def new
   end
 
@@ -61,6 +62,7 @@ class Admin::LecturesController < Admin::BaseController
   protected
   def load_lecture
     @lecture = Lecture.find(params[:id])
+    @payload_parent = @lecture
   rescue ActiveRecord::RecordNotFound
     redirect_to admin_lectures_path, alert: 'Lecture not found'
   end
@@ -73,6 +75,7 @@ class Admin::LecturesController < Admin::BaseController
     params[:lecture] ||= {}
     params[:lecture][:section_id] ||= params[:section_id] if params[:section_id].present?
     @lecture = Lecture.new(params[:lecture])
+    @payload_parent = @lecture
   end
 
 end
