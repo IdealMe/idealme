@@ -77,5 +77,9 @@ class Payload < ActiveRecord::Base
     @payload_remote_url = url_value
   end
 
+  def download_url
+    payload.expiring_download_url(IM_S3_URL_TTL)
+  end
+
 
 end

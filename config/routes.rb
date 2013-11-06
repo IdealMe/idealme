@@ -1,5 +1,7 @@
 Idealme::Application.routes.draw do
 
+  get "payload/:id/download" => "payload#download", as: :download_payload
+
   root to: 'landings#index'
 
   match "now/:slug" => "affiliate_links#perform", slug: /[^\/]+/
