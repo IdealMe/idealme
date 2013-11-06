@@ -12,9 +12,8 @@
           = @market.course.owner.fullname
         .cl
       %p
-        = expandable_text @market.course.owner.instructor_about.html_safe, 560
-        %br/
-        %a{href: "#"} More
+        = expandable_text @market.course.owner.instructor_about.html_safe
+
     .c-col
       .c-top
         %h2
