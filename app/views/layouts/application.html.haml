@@ -43,7 +43,7 @@
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c.first)
         .container{style: 'background:#ffffff; padding:10px;min-height:900px'}
           %div{style:'margin:10px'}
-            = render 'admin_header'
+            = render "#{c.first}_header"
             %hr
             = yield
       - else

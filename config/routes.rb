@@ -82,6 +82,10 @@ Idealme::Application.routes.draw do
     resources :feedbacks
   end
 
+  namespace :dashboard do
+    root to: 'landings#index'
+  end
+
 
   namespace :ajax do
     resources :comments, only: [:create, :update, :destroy], defaults: {format: :json}
