@@ -20,6 +20,14 @@ class Admin::LecturesController < Admin::BaseController
   def show
   end
 
+  def attach_payload
+    @lecture = Lecture.find(params[:lecture_id])
+    @payload = Payload.find(params[:payload_id])
+    @lecture.payloads.push(@payload)
+    @lecture.save!
+    render "_payloads", layout: nil
+  end
+
   # GET /admin/lectures/new
   def new
   end

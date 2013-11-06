@@ -53,6 +53,8 @@ Idealme::Application.routes.draw do
       resources :payloads
     end
     resources :lectures do
+      get 'payloads_partial' => 'lectures#payloads_partial'
+      post 'attach_payload' => 'lectures#attach_payload'
       resources :payloads
       collection do
         post :sort

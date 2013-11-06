@@ -20,6 +20,7 @@ class Payload < ActiveRecord::Base
 
   # == Validations ==========================================================
   # == Scopes ===============================================================
+  scope :unattached, where(payloadable_id: nil)
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.compute_payload_tags(base)
@@ -46,6 +47,26 @@ class Payload < ActiveRecord::Base
     end
   end
 
+  def self.payload_from_path(path)
+    payload = Payload.new
+    payload.payload = File.open path
+    existing = Payload.where(payload_file_name: payload.payload_file_name).first
+    unless existing
+      payload.save!
+      payload
+    else
+      existing
+    end
+  end
+
+  def set_intended_type
+    self.intended_type = IM_PAYLOAD_DOCUMENT if payload_file_name.include?('.pdf')
+    self.intended_type = IM_PAYLOAD_ARCHIVE if payload_file_name.include?('.zip')
+    self.intended_type = IM_PAYLOAD_VIDEO if payload_file_name.include?('.mov')
+    self.intended_type = IM_PAYLOAD_VIDEO if payload_file_name.include?('.mp4')
+    self.intended_type = IM_PAYLOAD_VIDEO if payload_file_name.include?('.flv')
+    self.intended_type = IM_PAYLOAD_AUDIO if payload_file_name.include?('.mp3')
+  end
 
 
   def payload_remote_url=(url_value)
