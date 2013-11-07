@@ -1,0 +1,6 @@
+.container
+  = @lecture.content.html_safe if @lecture.content
+
+  - @lecture.payloads.each do |payload|
+    = render_payload(payload)
+

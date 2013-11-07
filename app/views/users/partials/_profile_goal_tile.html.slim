@@ -1,0 +1,17 @@
+.goal-card
+  .avatar
+    = link_to image_tag(goal_user.goal.avatar.url(:full)), goal_path(goal_user)
+  .name
+    = goal_user.goal.name
+  .bottom_box
+    .check-ins
+      .counter
+        = goal_user.checkins.length
+      | check ins
+    .gems-collected
+      .counter 0
+      | gems collected
+    .gems-created
+      .counter 0
+      | gems created
+    .clear

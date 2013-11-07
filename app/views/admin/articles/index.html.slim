@@ -1,0 +1,13 @@
+h1 Articles
+
+table.table
+  tr
+    th Article
+
+  - @articles.each do |article|
+    tr
+      td = link_to article.name, edit_admin_article_path(article)
+
+br
+
+= link_to 'New article', new_admin_article_path, class: 'btn'

@@ -1,6 +1,0 @@
-- id = "media_#{Digest::SHA1.hexdigest((0...50).map { ('a'..'z').to_a[rand(26)] }.join)}"
-.flex-video
-  <audio controls #{autoplay ? 'autoplay' : ''}>
-  %source{src: u s3_expiring, type: "audio/mpeg"}
-    Your browser does not support the audio tag.
-= link_to_if(download, 'Download audio', s3_expiring, class: 'success button')

@@ -1,0 +1,27 @@
+h1
+  | Reviews for
+  = @market.course.name
+
+table.table
+  tr
+    th Content
+    th Recommended
+    th Owner
+    th Course
+    th
+    th
+    th
+
+  - @reviews.each do |review|
+    tr
+      td = review.content
+      td = review.recommended
+      td = review.owner_id
+      td = review.course
+      td = link_to 'Show', market_review_path(review)
+      td = link_to 'Edit', edit_review_path(review)
+      td = link_to 'Destroy', review, :method => :delete, :"data-confirm" => 'Are you sure?'  
+
+br
+
+= link_to 'New Review', new_market_review_path(@market), class: 'btn'

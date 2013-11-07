@@ -138,9 +138,11 @@ gem 'twitter'
 gem 'faraday'
 gem 'typhoeus'
 
+gem 'slim'
+gem 'haml2slim'
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'haml-rails'
+  #gem 'haml-rails'
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'

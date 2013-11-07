@@ -1,0 +1,4 @@
+- if filename
+  p
+    |  :Attached => #{filename}
+= link_to_if(download, 'Download All Files', s3_expiring, class: 'success button')

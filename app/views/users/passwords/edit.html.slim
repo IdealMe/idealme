@@ -1,0 +1,11 @@
+.authentication-section
+  = formatted_form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: 'form-horizontal'}) do |f|
+    = f.hidden_field :reset_password_token
+    .modal-box
+      .account-box
+        .message-box
+          | Sign in to your Ideal Me account
+        = f.password_field :password, autofocus: true
+        = f.password_field :password_confirmation
+        .control-box
+          = f.submit 'CHANGE MY PASSWORD', class: 'btn btn-red'

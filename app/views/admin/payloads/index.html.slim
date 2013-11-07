@@ -1,0 +1,25 @@
+h1 Payloads
+
+table.table
+  tr
+    th ID
+    th File name
+    th File Type (MIME)
+    th File size
+    th Created at
+    th Download
+
+  - @payloads.each do |payload|
+    tr
+      td = payload.id
+      td = link_to(payload.payload_file_name, admin_payload_path(payload))
+      td
+        = payload.intended_type_to_s
+        | (#{payload.payload_content_type})
+      td = number_to_human_size(payload.payload_file_size)
+      td = l payload.created_at
+      td = link_to 'Download', payload.payload.expiring_url(1800), :class => 'btn btn-small'
+      
+br
+
+= link_to 'New payload', new_admin_payload_path, class: 'btn'

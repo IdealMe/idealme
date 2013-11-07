@@ -1,0 +1,11 @@
+.container
+  h1
+    | Archived goals
+  .archived-goals
+    - @goal_users.each do |goal_user|
+      .archived-goal
+        .name
+          = link_to goal_user.goal.name, goal_path(goal_user)
+        .control
+          = link_to 'Reactivate', activate_goal_path(goal_user), :class => 'btn btn-mini btn-red', :method => :post, { :"data-confirm" => 'Are you sure?' }
+        .clear

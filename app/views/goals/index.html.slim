@@ -1,0 +1,23 @@
+.top-message-box
+  | Add or remove goals
+
+.container
+  = form_tag goals_path do
+    - @goals.each do |goal|
+      .goal-card
+        .avatar
+          = image_tag goal.avatar.url(:full)
+        .goal-name
+          = goal.name
+        .bottom-box
+          .picker
+            - if selected = goal_selected(goal)
+              = image_tag 'users/plus.png', :class => 'goal-picker-unchecked hide', { :"data-goal_id" => goal.id }
+              = image_tag 'users/checkmark.png', :class => 'goal-picker-checked', { :"data-goal_id" => goal.id }
+            - else
+              = image_tag 'users/plus.png', :class => 'goal-picker-unchecked', { :"data-goal_id" => goal.id }
+              = image_tag 'users/checkmark.png', :class => 'goal-picker-checked hide', { :"data-goal_id" => goal.id }
+
+      = hidden_field_tag "goal_ids[#{ goal.id }]", (selected ? '1' : '0'), {{ :"data-goal_id" => goal.id } }
+    .clear
+    = submit_tag "I'm done ➝", class: 'btn btn-red'

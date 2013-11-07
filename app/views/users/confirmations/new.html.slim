@@ -1,0 +1,17 @@
+.authentication-section
+  = formatted_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, class: 'form-horizontal'}) do |f|
+    .modal-box
+      .account-box
+        .message-box
+          | Confirm your Ideal Me account
+        = f.email_field :email, autofocus: true
+        .control-box
+          = f.submit 'Confirm', class: 'btn btn-red'
+  p
+    | Need an account?
+    = link_to 'Sign up', new_user_registration_path
+    - if devise_mapping.recoverable? && controller_name != 'passwords'
+      | or
+      = link_to 'Recover my account', new_password_path(resource_name)
+  p
+    = link_to 'Confirm my account',new_user_confirmation_path

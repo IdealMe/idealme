@@ -211,6 +211,10 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    haml2slim (0.4.7)
+      haml (>= 3.0)
+      nokogiri
+      ruby_parser
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
@@ -575,7 +579,7 @@ DEPENDENCIES
   guard-bundler
   guard-livereload
   guard-rspec
-  haml-rails
+  haml2slim
   hipchat
   honeybadger
   jbuilder
@@ -614,6 +618,7 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq
   simple_form
+  slim
   stripe
   taps-taps
   therubyracer

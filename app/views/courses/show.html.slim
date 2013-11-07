@@ -1,0 +1,105 @@
+.promo-section
+  .container
+    .info-box
+      h3.title
+        = @course.name
+      p.autor
+        em by
+        = @course.owner.fullname
+      /! .progress
+      /!  .bar{style: "width: 20%;"}
+    .btn-share.btn-group
+      button.btn.dropdown-toggle data-toggle="dropdown" 
+        | Share (281)
+        span.caret
+      .dropdown-menu
+        .social_box
+          .social_icon.twitter_icon
+          .social_name twitter
+          .turquoise_bg.counter 261
+          .clear
+        .social_box
+          .social_icon.facebook_icon
+          .social_name facebook
+          .dark_blue_bg.counter 16
+          .clear
+        .social_box
+          .social_icon.google_plus_icon
+          .social_name google plus
+          .red_bg.counter 3
+          .clear
+        .social_box
+          .social_icon.pinterest_icon
+          .social_name pinterest
+          .soft_blue_bg.counter 3
+          .clear
+        .social_box
+          .social_icon.stumble_icon
+          .social_name stumble upon
+          .red_1_bg.counter 0
+          .clear
+        .social_box
+          .social_icon.twitter2_icon
+          .social_name twitter
+          .light_blue_bg.counter 0
+          .clear
+    .clear
+.container
+  .main-section
+    .module_box
+      h3 MODULES
+      - @course.sections.each_with_index do |section, index|
+        .module
+          /.progress
+          /  .bar{style: "width: 100%;"}
+          .numb
+            = index + 1
+          .module_title
+            = section.name
+          /.module_time 03:08
+          .clear
+        .module-lectures
+          ul
+            - section.lectures.each do |lecture|
+              li
+                = link_to lecture.name, lecture_path(lecture)
+                div
+                  = lecture.description.html_safe if lecture.description
+        .clear
+  .sidebar
+    = form_for @comment, url: ajax_comments_path,html:{ class:'new-comment'} do |f|
+      = f.hidden_field :commentable_id
+      = f.hidden_field :commentable_type
+      = f.hidden_field :owner_id
+      = f.hidden_field :redirect_back_to
+      = f.text_field :content, class: 'comment-content', placeholder: 'Questions? Ask here...'
+      = f.submit 'Submit', class: 'btn'
+      .clear
+    .comments
+      - @comments.each do |comment|
+        .comment
+          .owner-avatar
+            = image_tag comment.owner.avatar.url(:thumb)
+          .comment-body
+            .comment-card
+              .owner-name
+                = comment.owner.fullname
+              .comment-date
+                = distance_of_time_in_words_to_now comment.created_at
+              .clear
+              .comment-content
+                = comment.content
+            .replies-count
+              = comment.replies.length
+          .clear
+          .comment-replies
+            - comment.replies.each  do |reply|
+              .comment-reply
+                .owner-avatar
+                  = image_tag reply.owner.avatar.url(:thumb)
+                .comment-reply-body
+                  .owner-name
+                    = reply.owner.fullname
+                  .clear
+                  = reply.content
+          .clear

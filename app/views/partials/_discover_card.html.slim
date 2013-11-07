@@ -1,0 +1,169 @@
+.discover-card
+  - if discover.kind == Jewel::LINK
+    div.modal.hide id="gc#{discover.id}"
+      .modal-header
+        .gem-title
+          = discover.name
+        .fright
+          .add-me-box
+            .unchecked +
+            .checked
+          - if current_user
+            .like-box
+              .like  data-type=discover.class id=discover.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
+                = discover.up_votes
+              .dislike data-type=discover.class id=discover.id direction=-1 voted=(discover.down_voted?(current_user) ? '1':'0')
+                = discover.down_votes
+              .clear
+          - else
+            .like-box
+              .like
+                = discover.up_votes
+              .dislike
+                = discover.down_votes
+              .clear
+        .clear
+      .modal-body
+        - if discover.parameters[:service] == :youtube
+          /%iframe{allowfullscreen: true, frameborder: 0, width: 570, height: 400, src: "//www.youtube-nocookie.com/embed/#{discover.parameters[:youtube_id]}?rel=0"}
+        .text-center
+          = image_tag discover.avatar.url(:original)
+        .link
+          = link_to discover.url, discover.url, target: '_blank'
+
+
+        ul.comments
+          li
+            .comment
+              .arrow
+              .date
+                = distance_of_time_in_words_to_now discover.created_at
+                | ago
+              .user-avatar
+                = image_tag discover.owner.avatar.url(:thumb)
+              .body
+                .title
+                  = link_to discover.owner.fullname, user_path(discover.owner), class: 'user-name'
+                  | shared this gem
+                .bottom
+                  - if current_user
+                    .like data-type=discover.class id=discover.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
+                      = discover.up_votes
+                    .dislike data-type=discover.class id=discover.id direction=-1 voted=(discover.down_voted?(current_user) ? '1':'0')
+                      = discover.down_votes
+                    .clear
+                  - else
+                    .like
+                      = discover.up_votes
+                    .dislike
+                      = discover.down_votes
+                    .clear
+          - discover.comments.each do |comment|
+
+            li
+              .comment
+                .arrow
+                .date
+                  = distance_of_time_in_words_to_now comment.created_at
+                  | ago
+                .user-avatar
+                  = image_tag comment.owner.avatar.url(:thumb)
+                .body
+                  .title
+                    = link_to comment.owner.fullname, user_path(comment.owner), class: 'user-name'
+                  .message
+                    = comment.content
+
+
+      .modal-footer
+        button.btn aria-hidden="true" data-dismiss="modal"  Close
+
+
+    - if discover.avatar.exists?
+      = link_to image_tag(discover.avatar.url(:full)), "#gc#{ discover.id }", { :"data-title" => discover.name, :toggle => 'modal' }, :class => 'avatar discover-link'
+    - else
+      = link_to discover.content, "#gc#{ discover.id }", { :"data-title" => discover.name, :toggle => 'modal' }, :class => 'text discover-link'
+    .ruby-icon
+    .title
+      = link_to truncate(discover.name, :length => 50, :separator => '...'), "#gc#{ discover.id }", { :"data-title" => discover.name, :toggle => 'modal' }, :class => 'discover-link'
+    .clear
+    .bottom-box
+      - if current_user
+        .like-box
+          .like data-type=discover.class id=discover.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
+            = discover.up_votes
+          .dislike data-type=discover.class id=discover.id direction=-1 voted=(discover.down_voted?(current_user) ? '1':'0')
+            = discover.down_votes
+          .clear
+      - else
+        .like-box
+          .like
+            = discover.up_votes
+          .dislike
+            = discover.down_votes
+          .clear
+      .comment-box
+        = discover.comments.length
+      .add-me-box
+        .unchecked data-content='Collect Accelerated learning for an accelerated time and add the Speed Read goal?' original_title='Popover on right' placement='top'} href='#' title='' rel='popover'  +
+        .checked
+      .clear
+
+  - elsif discover.kind == Jewel::COURSE
+    - market = discover.linked_course.default_market
+    - course = discover.linked_course
+    = link_to image_tag(market.avatar.url(:full)), market_path(market), class: 'avatar discover-link'
+    .ruby-icon
+    .title
+      = link_to market.name, market_path(market), { :"data-title" => market.name }, :class => 'discover-link'
+    .clear
+    .bottom-box
+      - if current_user
+        .like-box
+          .like data-type=course.class id=course.id direction=1 voted=(course.up_voted?(current_user) ? '1':'0')
+            = course.up_votes
+          .dislike data-type=course.class id=course.id direction=-1 voted=(course.down_voted?(current_user) ? '1':'0')
+            = course.down_votes
+          .clear
+      - else
+        .like-box
+          .like
+            = course.up_votes
+          .dislike
+            = course.down_votes
+          .clear
+      .comment-box
+        = discover.comments.length
+      .add-me-box
+        .unchecked +
+        .checked
+      .clear
+
+  - elsif discover.kind == Jewel::GOAL
+    - goal = discover.linked_goal
+    = image_tag goal.avatar.url(:full), class: 'avatar discover-link'
+    .ruby-icon
+    .title
+      = goal.name
+    .clear
+    .bottom-box
+      - if current_user
+        .like-box
+          .like data-type=discover.class id=goal.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
+            = goal.up_votes
+          .dislike data-type=discover.class id=goal.id direction=-1 voted=(discover.down_voted?(current_user) ? '1':'0')
+            = goal.down_votes
+          .clear
+      - else
+        .like-box
+          .like
+            = goal.up_votes
+          .dislike
+            = goal.down_votes
+          .clear
+      .comment-box
+        = discover.comments.length
+      .add-me-box
+        .unchecked +
+        .checked
+      .clear

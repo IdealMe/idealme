@@ -1,0 +1,58 @@
+.container
+  .thank-you-box
+    .thank-you-message
+      div Thank you, your order has been placed and you are enrolled in this course!
+      = link_to 'GO TO COURSE', course_path(@market.course), class: 'btn btn-red'
+
+    .share-widget
+      .share
+        .user-avatar
+          = image_tag @market.avatar(:thumb)
+        .message
+          | I just enrolled:
+          = @market.course.name
+          | by
+          = @market.course.owner.fullname
+          | on IdealMe
+        .clear
+      .btn-share.btn-group
+        button.btn.dropdown-toggle data-toggle="dropdown" 
+          | SHARE
+          span.caret
+        .dropdown-menu
+          .social_box
+            .social_icon.twitter_icon
+            .social_name twitter
+            .turquoise_bg.counter 261
+            .clear
+          .social_box
+            .social_icon.facebook_icon
+            .social_name facebook
+            .dark_blue_bg.counter 16
+            .clear
+          .social_box
+            .social_icon.google_plus_icon
+            .social_name google plus
+            .red_bg.counter 3
+            .clear
+          .social_box
+            .social_icon.pinterest_icon
+            .social_name pinterest
+            .soft_blue_bg.counter 3
+            .clear
+          .social_box
+            .social_icon.stumble_icon
+            .social_name stumble upon
+            .red_1_bg.counter 0
+            .clear
+          .social_box
+            .social_icon.twitter2_icon
+            .social_name twitter
+            .light_blue_bg.counter 0
+            .clear
+    .clear
+.container
+  h3.also-viewed Customers who took this course also viewed
+  - Course.all.sample(4).each do |course|
+    = render partial: 'partials/course_card', locals: {course: course}
+  .clear

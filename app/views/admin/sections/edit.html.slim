@@ -1,0 +1,10 @@
+p
+  | Back to
+  a  href=edit_admin_course_path(@section.course)  
+    =  @section.course.name
+
+
+h1 Editing section
+
+= render partial: 'form', locals: {url: admin_section_path}
+

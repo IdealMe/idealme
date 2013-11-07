@@ -1,0 +1,14 @@
+.container
+
+  .menu-section
+    .user-menu
+      .li MY GOALS
+  .goals-section
+    = render partial: 'users/partials/goal'
+
+  - if @owner
+    .menu-section
+      .user-menu
+        .li MY COURSES
+    .offer-section
+      = render partial: 'users/partials/course'

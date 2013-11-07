@@ -1,0 +1,32 @@
+.course-card
+  = link_to image_tag(course.default_market.avatar.url(:full)), course_path(course)
+  = link_to course.default_market.name, course_path(course), class: 'course-name'
+  .owner
+    - if course.owner
+      .avatar
+        = link_to image_tag(course.owner.avatar.url(:thumb)), user_path(course.owner)
+      = link_to course.owner.fullname, user_path(course.owner), class: 'name'
+      .working-area
+        = course.owner.tagline
+    .clear
+  .bottom-box
+    - if current_user
+      .like-box
+        .like data-type=course.class id=course.id direction=1 voted=(course.up_voted?(current_user) ? '1':'0')
+          = course.up_votes
+        .dislike data-type=course.class id=course.id direction="-1" voted=(course.down_voted?(current_user) ? '1':'0')
+          = course.down_votes
+        .clear
+    - else
+      .like-box
+        .like
+          = course.up_votes
+        .dislike
+          = course.down_votes
+        .clear
+    .price-box
+      = penny_to_currency(course.cost)
+    .add-me-box
+      .unchecked +
+      .checked
+    .clear

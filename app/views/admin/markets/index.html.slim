@@ -1,0 +1,15 @@
+h1 Markets
+
+table.table
+  tr
+    th Market
+    th Course
+
+  - @markets.each do |market|
+    tr
+      td = link_to market.name, edit_admin_market_path(market)
+      td = link_to market.course.name, edit_admin_course_path(market.course) if market.course
+
+br
+
+= link_to 'New market', new_admin_market_path, class: 'btn'

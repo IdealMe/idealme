@@ -1,0 +1,31 @@
+.container
+  h1
+    = @search
+
+  - if @courses.length > 0
+    h2
+      | Courses
+    - @courses.each do |course|
+      = render partial: 'partials/course_card', locals: {course: course}
+    .clear
+
+  - if @discovers.length > 0
+    h2
+      | Gems
+    - @discovers.each do |discover|
+      = render partial: 'partials/discover_card', locals: {discover: discover}
+    .clear
+
+  - if @goals.length > 0
+    h2
+      | Goals
+    - @goals.each do |goal|
+      = render partial: 'partials/goal_card', locals: {goal: goal}
+    .clear
+
+  - if @users.length > 0
+    h2
+      | Users
+    - @users.each do |user|
+      = render partial: 'partials/user_card', locals: {user: user}
+    .clear

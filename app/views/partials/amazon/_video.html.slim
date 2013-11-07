@@ -1,0 +1,7 @@
+- id = "media_#{Digest::SHA1.hexdigest((0...50).map { ('a'..'z').to_a[rand(26)] }.join)}"
+- url = cloudfront_sign_paperclip_resource(s3_path)
+/.flex-video.flowplayer{"data-rtmp" => ENV['AWS_CF_STREAMING'], "data-swf" => asset_path 'flowplayer-5.3.2.swf'}
+/  %video{autoplay: ("true" if autoplay)}
+/    %source{src: "mp4:#{raw url}", type: "video/flash"}/
+/    %source{src: s3_expiring, type: "video/mp4"}/
+= link_to_if(download, 'Download video', s3_expiring, class: 'success button')

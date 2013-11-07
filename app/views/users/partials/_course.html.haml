@@ -1,9 +1,0 @@
-- unless @courses.blank?
-  - @courses.each do |course|
-    = render partial: 'partials/course_card', locals: {course: course}
-
-- if @owner
-  = link_to markets_path, class: "course-card-new" do
-    .plus +
-    Add courses
-  .clear

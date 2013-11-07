@@ -1,0 +1,61 @@
+- goal_user = activity.sender
+- user = goal_user.user
+- jewel = activity.trackable
+- comments = jewel.comments
+- comment = Comment.new(commentable: jewel, owner: current_user, redirect_back_to: request.original_url )
+li
+  .activity
+    .arrow
+    .date
+      = distance_of_time_in_words_to_now jewel.created_at
+      | ago
+    .user-avatar
+      = image_tag user.avatar.url(:thumb)
+    .body
+      .title
+        - if current_user == user
+          = link_to 'You', user_path(user), class: 'user-name'
+        - else
+          = link_to user.fullname, user_path(user), class: 'user-name'
+        | shared a gem:
+        a.post_link
+          = link_to jewel.name, jewel.url
+      /.message
+      /  .message-arrow
+      /  Check out these mixes, they are so awesome and you can't beat free!!!
+      - if current_user
+        .bottom
+          .like  :data => { type=jewel.class,  id=jewel.id,  direction=1  :voted => (jewel.up_voted?(current_user) ? '1':'0')} 
+            = jewel.up_votes
+          .dislike  :data => { type=jewel.class,  id=jewel.id,  :direction => -1,  :voted => (jewel.down_voted?(current_user) ? '1':'0')} 
+            = jewel.down_votes
+          .comment-count
+            = comments.length
+      - else
+        .bottom
+          .like
+            = jewel.up_votes
+          .dislike
+            = jewel.down_votes
+          .comment-count
+            = comments.length
+        a.add-comment  href="#"  Add comment
+      = form_for comment, url: ajax_comments_path do |f|
+        = f.hidden_field :commentable_id
+        = f.hidden_field :commentable_type
+        = f.hidden_field :owner_id
+        = f.hidden_field :redirect_back_to
+        = f.text_field :content
+        = f.submit 'Submit', class: 'btn'
+        .clear
+      .comments
+        - comments.each do |comment|
+          .comment
+            .user-avatar
+              = image_tag comment.owner.avatar.url(:thumb)
+            .content
+              strong
+                = comment.owner.fullname
+              | said:
+              = comment.content
+            .clear

@@ -1,0 +1,13 @@
+= form_for @feedback do |f|
+  = f.hidden_field :owner_id
+             
+  div
+    - Feedback.for_select.each do |feedback_type|
+      - title = feedback_type.first
+      - value = feedback_type.last
+      = radio_button_tag :feedback_type, value, value == @feedback.feedback_type
+      = label_tag "feedback_type_#{value}", title
+    .clear
+  div
+    = f.text_area :content, rows: 10
+  = f.submit 'Save changes', class: 'btn btn-red'
