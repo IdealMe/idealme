@@ -1,0 +1,29 @@
+<div class="panel">
+  <%= link_to 'New Affiliate tracking', new_dashboard_affiliate_path, :class => 'button' %>
+</div>
+<table class="twelve">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Tag</th>
+    <th>Total sales</th>
+    <th>Unique clicks</th>
+    <th>Conversion</th>
+    <th>Total gross</th>
+    <th>Total commission</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @affiliate_trackings.each do |affiliate_tracking| %>
+      <tr>
+        <td><%= link_to(affiliate_tracking.name, dashboard_affiliate_path(affiliate_tracking)) %></td>
+        <td><%= affiliate_tracking.affiliate_tag %></td>
+        <td><%= affiliate_tracking.affiliate_sales_list.length %></td>
+        <td><%= affiliate_tracking.unique_click %></td>
+        <td><%= number_to_percentage((affiliate_tracking.affiliate_sales.length * 1.00)/(affiliate_tracking.unique_click*1.00) * 100.00, :precision => 4) %></td>
+        <td><%= penny_to_currency(affiliate_tracking.sum_gross, :precision => 4) %></td>
+        <td><%= penny_to_currency(affiliate_tracking.sum_commission, :precision => 4) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

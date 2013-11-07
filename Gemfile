@@ -86,6 +86,10 @@ gem 'pry-nav'
 gem 'pry-remote'
 gem 'awesome_print'
 
+#A collection of geographic country and state names for Ruby. Also includes replacements for Rails' country_select and state_select plugins
+gem 'carmen'
+#Provides country_select and subregion_select form helpers.
+gem 'carmen-rails'
 
 #AWS SDK for Ruby
 gem 'aws-sdk'

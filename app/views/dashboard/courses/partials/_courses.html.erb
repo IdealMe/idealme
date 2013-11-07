@@ -1,0 +1,18 @@
+<table class="twelve">
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>Subscribers</th>
+    <th>In Market</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.name, dashboard_course_path(course) %></td>
+        <td><%= course.users.length %></td>
+        <td><%= !course.hidden %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

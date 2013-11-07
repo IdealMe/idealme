@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="twelve columns">
+    <h1>Upsells</h1>
+
+    <div class="panel">
+      <%= link_to 'New Upsell', dashboard_new_upsell_path, :class => 'success button' %>
+
+    </div>
+    <table class="twelve">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Course</th>
+        <th>Market</th>
+        <th>Sequence</th>
+        <th>Created at</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @upsells.each do |upsell| %>
+          <tr>
+            <td><%= link_to upsell.id, upsell_path(upsell) %></td>
+            <td><%= upsell.market.course.name %></td>
+            <td><%= link_to upsell.market.name, market_path(upsell.market) %></td>
+            <td><%= upsell.sequence %></td>
+            <td><%= l upsell.created_at %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

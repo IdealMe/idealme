@@ -1,0 +1,15 @@
+<p>
+  <strong>Total units sold:</strong> <%= @affiliate_sales.length %>
+</p>
+
+<p>
+  <strong>Total affiliates pay out:</strong> <%= penny_to_currency(@sum_commission, :precision => 4) %>
+</p>
+
+<p>
+  <strong>Unique clicks:</strong> <%= @sum_unique_click %>
+</p>
+
+<p>
+  <strong>Conversion:</strong> <%= number_to_percentage((@affiliate_sales.length * 1.00)/(@sum_unique_click*1.00) * 100.00, :precision => 4) %>
+</p>

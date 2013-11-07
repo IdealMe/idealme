@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="twelve columns">
+    <h1>Payment</h1>
+    <%= payment_format_address(@payment) %>
+    <%= link_to 'Back', dashboard_payments_path, :class => 'button' %>
+    <%= link_to 'Edit', edit_dashboard_payment_path(@payment), :class => 'secondary button' %>
+    <%= link_to 'Destroy', dashboard_payment_path(@payment), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'alert button' %>
+  </div>
+</div>
+

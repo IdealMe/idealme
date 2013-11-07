@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="twelve columns">
+    <h1>Upsell</h1>
+
+    <p><strong>Source Course:</strong> <%= @upsell.course.name %></p>
+
+    <p><strong>Target Market:</strong> <%= link_to @upsell.market.name, market_path(@upsell.market) %></p>
+
+    <p><strong>Target Course:</strong> <%= @upsell.market.course.name %></p>
+
+    <p><strong>Sequence:</strong> <%= @upsell.sequence %></p>
+
+
+    <div class="form-actions">
+      <%= link_to 'Back', upsells_path, :class => 'btn' %>
+      <%= link_to 'Edit', edit_upsell_path(@upsell), :class => 'btn' %>
+      <%= link_to 'Destroy', upsell_path(@upsell), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-danger' %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<table class="twelve">
+  <thead>
+  <tr>
+    <th>Course Name</th>
+    <th>Affiliate URL</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= markets_affiliate_markets_url(course.default_market.affiliate_tag, current_user.affiliate_tag) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,12 @@
+<%= form_for @upsell do |f| %>
+    <%= f.hidden_field :course_id, :value => @upsell_parent.id %>
+    <%= f.label(:market_id) %>
+    <%= f.select :market_id, Market.includes(:course).all.collect { |market| ["#{market.name}", market.id] } %>
+
+    <%= f.label :sequence %>
+    <%= f.number_field :sequence %>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'success button' %>
+      <%= link_to 'Cancel', dashboard_upsells_path, :class => 'secondary button' %>
+    </div>
+<% end %>

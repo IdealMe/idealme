@@ -1,0 +1,19 @@
+<%= form_for @affiliate_tracking, :url => url do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <%= f.label(:name) %>
+    <%= f.text_field(:name) %>
+
+    <% unless @affiliate_tracking.persisted? %>
+        <%= f.label :affiliate_tag %>
+        <%= f.text_field(:affiliate_tag, :size => 10, :maxlength => 10) %>
+    <% end %>
+
+    <%= f.label(:note) %>
+    <%= f.text_area(:note) %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'success button' %>
+      <%= link_to 'Cancel', dashboard_affiliates_path, :class => 'secondary button' %>
+    </div>
+<% end %>

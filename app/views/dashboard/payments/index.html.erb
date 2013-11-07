@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="twelve columns">
+    <h1>Payments</h1>
+
+    <div class="panel">
+      <%= link_to 'New Payment', new_dashboard_payment_path, :class => 'button' %>
+    </div>
+    <table class="twelve">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Address</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @payments.each do |payment| %>
+          <tr>
+            <td><%= payment.name %></td>
+            <td><%= Payment::PAYMENT_TYPES[payment.payment_type] %></td>
+            <td><%= payment_format_address(payment) %></td>
+            <td> <%= link_to 'Edit', edit_dashboard_payment_path(payment), :class => 'small button' %>
+              <% if current_user.affiliate_default_payment_id != payment.id %>
+                  <%= link_to 'Destroy', dashboard_payment_path(payment), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'small alert button' %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

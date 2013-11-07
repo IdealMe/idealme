@@ -1,0 +1,46 @@
+<%= form_for @redirection, :url => url do |f| %>
+    <% e = @redirection.errors[:name] %>
+    <%= f.label :name, :class => e&&e.length>0 ? 'error' : '' %>
+    <%= f.text_field :name, :autofocus => true, :class => e&&e.length>0 ? 'error' : '' %>
+    <% if e&&e.length > 0 %>
+        <small class="error"><%= e.join(", ") %></small>
+    <% end %>
+    <% e = nil %>
+
+    <% e = @redirection.errors[:key] %>
+    <%= f.label :key, :class => e&&e.length>0 ? 'error' : '' %>
+    <%= f.text_field :key, :autofocus => true, :class => e&&e.length>0 ? 'error' : '' %>
+    <% if e&&e.length > 0 %>
+        <small class="error"><%= e.join(", ") %></small>
+    <% end %>
+    <% e = nil %>
+
+    <% e = @redirection.errors[:external_url] %>
+    <%= f.label :external_url, :class => e&&e.length>0 ? 'error' : '' %>
+    <%= f.text_area :external_url, :autofocus => true, :class => e&&e.length>0 ? 'error' : '' %>
+    <% if e&&e.length > 0 %>
+        <small class="error"><%= e.join(", ") %></small>
+    <% end %>
+    <% e = nil %>
+
+    <% e = @redirection.errors[:publish_status] %>
+    <%= f.label :publish_status, :class => e&&e.length>0 ? 'error' : '' %>
+    <%= f.select :publish_status, Lecture::PUBLISH_TYPE, :include_blank => false, :class => e&&e.length>0 ? 'error' : '' %>
+    <% if e&&e.length > 0 %>
+        <small class="error"><%= e.join(", ") %></small>
+    <% end %>
+    <% e = nil %>
+
+    <% e = @redirection.errors[:publish_date] %>
+    <%= f.label :publish_date, :class => e&&e.length>0 ? 'error' : '' %>
+    <%= f.text_field :publish_date, :autofocus => true, :class => e&&e.length>0 ? 'error' : '' %>
+    <% if e&&e.length > 0 %>
+        <small class="error"><%= e.join(", ") %></small>
+    <% end %>
+    <% e = nil %>
+
+    <ul class="button-group">
+      <li><%= f.submit nil, :class => 'success button' %></li>
+      <li><%= link_to 'Cancel', dashboard_redirections_path, :class => 'button' %></li>
+    </ul>
+<% end %>

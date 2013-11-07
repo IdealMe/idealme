@@ -85,7 +85,17 @@ Idealme::Application.routes.draw do
   end
 
   namespace :dashboard do
-    root to: 'landings#index'
+    root :to => 'landings#index'
+    resources :swipes, :only => [:index, :show]
+    resources :affiliates
+    resources :redirections
+    resources :payments
+    resources :courses do
+      resources :upsells
+      member do
+        post 'add_student'
+      end
+    end
   end
 
 
