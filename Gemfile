@@ -179,14 +179,16 @@ group :development do
   #A rails plugin to kill N+1 queries and unused eager loading.
   gem 'bullet'
 
+  gem 'rack-mini-profiler'
+
   #Automatically generate an entity-relationship diagram (ERD) for your Rails models.
   gem 'rails-erd'
 
   #Provides a better error page for Rails and other Rack apps. Includes source code inspection, a live REPL and local/instance variable inspection for all stack frames.
-  # gem 'better_errors'
+  gem 'better_errors'
 
   #Retrieve the binding of a method's caller. Can also retrieve bindings even further up the stack.
-  # gem 'binding_of_caller'
+  gem 'binding_of_caller'
 
   #Request your request
   gem 'meta_request'

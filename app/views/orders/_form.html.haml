@@ -36,7 +36,7 @@
     = f.select(:card_exp_year, Time.now.year..Time.now.year+10, {}, { class: 'exp-year' })
 
     .clear
-  %section.security-code{class: ('control-group error' if @order.errors[:cvv].length > 0)}
+  %section.security-code{class: ('control-group error' if @order.errors[:card_cvv].length > 0)}
     = f.label :card_cvv, 'Security Code (CVV/CSV)'
     = f.text_field :card_cvv, size: 4, maxlength: 4
   .clear
@@ -61,9 +61,9 @@
     = f.text_field :billing_country
   .clear
   %section.submit-box
-    = f.submit 'Complete Purchase', class: 'btn btn-red'
+    = f.submit 'Complete Purchase', class: 'btn btn-red btn-complete-purchase'
     .agreement-text
-      By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy. 
+      By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy.
       Note: you will be billed immediately.
     .clear
 

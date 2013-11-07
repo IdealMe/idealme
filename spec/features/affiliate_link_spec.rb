@@ -14,7 +14,7 @@ describe 'affiliate links' do
     expect(current_path).to eq '/markets/sample-market'
     expect(page.text).to include 'affiliate_phil_9000'
 
-    find('#top-take-this-course-link').click
+    find('.enroll-btn').click
 
     fill_in "Email", with: 'normal@idealme.com'
     fill_in "Password", with: 'passpass'

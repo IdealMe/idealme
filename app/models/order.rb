@@ -112,7 +112,6 @@ class Order < ActiveRecord::Base
   def validate_credit_card
     unless gateway == GATEWAY_PAYPAL
       self.cc.valid?
-
       self.cc.errors.each do |error|
         next if error.last.length == 0
         field_name = error.first
@@ -120,6 +119,8 @@ class Order < ActiveRecord::Base
           mapped_field = :card_exp_year
         elsif field_name =='number'
           mapped_field = :card_number
+        elsif field_name =='verification_value'
+          mapped_field = :card_cvv
         else
           raise 'Uncaught credit card errors'
         end

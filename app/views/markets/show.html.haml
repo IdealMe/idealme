@@ -10,7 +10,6 @@
           = image_tag(@market.course.owner.avatar.url(:thumb))
         %span.name
           = @market.course.owner.fullname
-        .cl
       %p
         = expandable_text @market.course.owner.instructor_about.html_safe
 
@@ -27,21 +26,13 @@
                 = @market.course.up_votes
               %span.unlikes
                 = @market.course.down_votes
+            / TODO: are we doing reviews for MVP?
             %li
               %a{href: "#"} 3 reviews
             %li.last
               %span.enrolled
                 = @course.users.length
                 enrolled
-          .cl
-        .enroll-wp
-          %a.enroll-btn{href: "#"}
-            %span.left Enroll
-            %span.price
-              = penny_to_currency(@market.course.cost)
-            %span.cl
-          %span.s-text 30 Day Money Back Guarantee
-          %span.anchor
       .clear
       %brNO
       .tabs
@@ -53,17 +44,13 @@
               %a{href: "#tab-2"} Syllabus
             -#%li
             -#  %a{href: "#tab-3"} Reviews
-          .cl
         .tabs-cnt
-          / Tab 1
           #tab-1.tab
             - if @market.content
               - content = @market.content
               - content = render_payloads(@payloads,content)
               - content = render_polls(@polls, content)
               = expandable_text(content, 1300)
-          / End Tab 1
-          / Tab 2
           #tab-2.tab
             .modules
               %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
@@ -88,7 +75,6 @@
           -#          %a{href: "#"} Gökçe Çözen
           -#        %span.moto Worth every penny!!
           -#      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          -#    .cl
           -#  .review
           -#    .image
           -#      %img{alt: "", src: "/assets/course-image-5.png"}/
@@ -99,7 +85,6 @@
           -#          %a{href: "#"} Olga Bereziuk
           -#        %span.moto Worth every penny!!
           -#      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          -#    .cl
           -#  .review
           -#    .image
           -#      %img{alt: "", src: "/assets/course-image-6.png"}/
@@ -110,18 +95,17 @@
           -#          %a{href: "#"} Susanne Mumpitz
           -#        %span.moto Worth every penny!!
           -#      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          -#    .cl
           / End Tab 3
       / End Tabs
     / End C Col
     / R Col
     .r-col
       .enroll-wp
-        %a.enroll-btn{href: "#"}
+        %a.enroll-btn.top-enroll-btn{href: subscribe_orders_path(@market)}
           %span.left Enroll
           %span.price
             = penny_to_currency(@market.course.cost)
-          %span.cl
+          -# %span.cl
         %span.s-text 30 Day Money Back Guarantee
         %span.anchor
       .widget-list
@@ -152,8 +136,3 @@
               = image_tag(goal.avatar.url(:full))
             .text
               = goal.name
-            .cl
-
-    / End R Col
-    .cl
-  / End Course Wp
