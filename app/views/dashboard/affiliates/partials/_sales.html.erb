@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to("#{affiliate_sale.order.user.firstname} #{affiliate_sale.order.user.lastname}", user_path(affiliate_sale.order.user)) %></td>
         <td><%= link_to(affiliate_sale.order.course.name, course_path(affiliate_sale.order.course)) %></td>
-        <td><%= affiliate_sale.order.status.to_s %></td>
+        <td><%= Order::ORDER_STATUSES[affiliate_sale.order.status] %></td>
         <td><%= affiliate_sale.affiliate_link ? link_to(affiliate_sale.affiliate_link.slug, dashboard_affiliate_path(affiliate_sale.affiliate_link)) : 'None' %></td>
         <td><%= penny_to_currency(affiliate_sale.gross, :precision => 4) %></td>
         <td><%= number_to_percentage(affiliate_sale.course_commission_percent, :precision => 4) %></td>

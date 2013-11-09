@@ -7,6 +7,20 @@ FactoryGirl.define do
     email 'normal@idealme.com'
     confirmed_at Time.now
 
+    factory :user2 do
+      firstname 'jarblie'
+      lastname 'wagonkus'
+      username 'jarblie'
+      email 'jarblie@idealme.com'
+    end
+
+    factory :user3 do
+      firstname 'smirks'
+      lastname 'caggish'
+      username 'smirks'
+      email 'smirks@idealme.com'
+    end
+
     factory :user_admin do
       firstname 'admin'
       lastname 'idealme'

@@ -3,6 +3,23 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
+def buy_course_as(user)
+  login_as(user, scope: :user)
+  visit '/now/my-link'
+  find('.enroll-btn').click
+  fill_in "Card number", with: '1234123412341234'
+  fill_in "Security Code", with: '123'
+  fill_in "Address line 1", with: '123 Main St.'
+  fill_in "City", with: 'Nowheresville'
+  fill_in "Zip", with: '11111'
+  fill_in "State", with: 'CA'
+  fill_in "Country", with: 'US'
+  order_response = double(:success? => true)
+  ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
+  Order.any_instance.stub(:valid?).and_return(true)
+  click_button "Complete Purchase"
+end
+
 describe 'affiliate dashboard functionality' do
 
   let!(:user)               { create(:user) }
@@ -12,20 +29,7 @@ describe 'affiliate dashboard functionality' do
   let!(:course)             { create(:course, owner: affiliate_user) }
 
   before :each do
-    login_as(user, scope: :user)
-    visit '/now/my-link'
-    find('.enroll-btn').click
-    fill_in "Card number", with: '1234123412341234'
-    fill_in "Security Code", with: '123'
-    fill_in "Address line 1", with: '123 Main St.'
-    fill_in "City", with: 'Nowheresville'
-    fill_in "Zip", with: '11111'
-    fill_in "State", with: 'CA'
-    fill_in "Country", with: 'US'
-    order_response = double(:success? => true)
-    ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-    Order.any_instance.stub(:valid?).and_return(true)
-    click_button "Complete Purchase"
+    buy_course_as user
   end
 
   # it "shows affiliate dashboard index", js: true do
@@ -53,8 +57,13 @@ describe 'affiliate dashboard functionality' do
   # end
 
   it 'total sales', js: true do
+    user2 = create(:user2)
+    user3 = create(:user3)
+    buy_course_as user2
+    buy_course_as user3
     login_as(affiliate_user, scope: :user)
     visit "/dashboard/affiliates?tab=sale"
+    expect(page.text).to include 'normal idealme'
     screenshot
   end
 
