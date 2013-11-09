@@ -19,7 +19,7 @@ ComfortableMexicanSofa.configure do |config|
 
   # File uploads use Paperclip and can support filesystem or s3 uploads.  Override
   # the upload method and appropriate settings based on Paperclip.  For S3 see:
-  # http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/S3, and for 
+  # http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/S3, and for
   # filesystem see: http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/Filesystem
   # If you are using S3 and HTTPS, pass s3_protocol: '' to have URLs that use the protocol of the page
   #   config.upload_file_options = {url: '/system/:class/:id/:attachment/:style/:filename'}
@@ -29,11 +29,11 @@ ComfortableMexicanSofa.configure do |config|
   # no corresponding file. Fixtures are disabled by default.
   config.enable_fixtures = true
   # config.enable_fixtures = Rails.env.development?
-  
+
   # Path where fixtures can be located.
   #   config.fixtures_path = File.expand_path('db/cms_fixtures', Rails.root)
 
-  # Importing fixtures into Database  
+  # Importing fixtures into Database
   # To load fixtures into the database just run this rake task:
   #   local: $ rake comfortable_mexican_sofa:fixtures:import FROM=example.local TO=localhost
   #   Heroku: $ heroku run rake comfortable_mexican_sofa:fixtures:import FROM=example.local TO=yourapp.herokuapp.com
@@ -80,7 +80,7 @@ ComfortableMexicanSofa.configure do |config|
   # are accessible by default. Empty array will prevent rendering of all partials.
   #   config.allowed_partials = nil
 
-  # Site aliases, if you want to have aliases for your site. Good for harmonizing 
+  # Site aliases, if you want to have aliases for your site. Good for harmonizing
   # production env with dev/testing envs.
   # e.g. config.hostname_aliases = {'host.com' => 'host.inv', 'host_a.com' => ['host.lvh.me', 'host.dev']}
   # Default is nil (not used)
@@ -90,8 +90,8 @@ end
 
 # Default credentials for ComfortableMexicanSofa::HttpAuth
 # YOU REALLY WANT TO CHANGE THIS BEFORE PUTTING YOUR SITE LIVE
-ComfortableMexicanSofa::HttpAuth.username = 'username'
-ComfortableMexicanSofa::HttpAuth.password = 'password'
+ComfortableMexicanSofa::HttpAuth.username = ENV['SOFA_USERNAME']
+ComfortableMexicanSofa::HttpAuth.password = ENV['SOFA_PASSWORD']
 
 # If you need to inject some html in cms admin views you can define what partial
 # should be rendered into the following areas:
