@@ -92,9 +92,9 @@
               | Sort
             th
               | Section
-          tbody.sortable data-update_url=sort_admin_sections_path
-            - @course.sections.each do |section|
-              tr  id="section_#{section.id}"
+          tbody.sortable data-update-url=sort_sections_admin_course_path
+            - @course.sections.order("position ASC").each do |section|
+              tr id="section_#{section.id}"
                 td.text-center
                   i.icon-sort.handle
                 td = link_to section.name, edit_admin_section_path(section)

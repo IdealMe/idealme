@@ -17,7 +17,7 @@
           | Sort
         th
           | Lecture
-      tbody.sortable data-update_url=sort_admin_lectures_path
+      tbody.sortable data-update-url=sort_admin_lectures_path
         - @section.lectures.each do |lecture|
           tr  id="lecture_#{lecture.id}"
             td.text-center

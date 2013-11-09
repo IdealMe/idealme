@@ -75,4 +75,6 @@ $ ->
     handle: ".handle"
     update: ->
       console.log $(this).sortable("serialize")
-      $.post $(this).data("update-url"), $(this).sortable("serialize")
+      update_url = $(this).data("update-url")
+      console.error('bad update url') unless update_url
+      $.post update_url, $(this).sortable("serialize")

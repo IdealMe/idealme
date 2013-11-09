@@ -49,7 +49,6 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
           end
         end
       when 'sale'
-        binding.pry
         @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id).where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true).includes(:affiliate_link, {:order => [:course, :user]})
         @sum_commission = 0
         ::AffiliateSale.class_eval do

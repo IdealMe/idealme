@@ -3,6 +3,14 @@ class Admin::CoursesController < Admin::BaseController
   before_filter :load_courses, only: :index
   before_filter :build_course, only: [:new, :create]
 
+  def sort_sections
+    course = Course.find(params[:id])
+    params[:section].each_with_index do |id, index|
+      course.sections.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
+
   # GET /admin/courses
   def index
   end

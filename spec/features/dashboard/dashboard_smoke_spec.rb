@@ -52,7 +52,7 @@ describe 'affiliate dashboard functionality' do
   #   screenshot
   # end
 
-  it 'total sales', js: false do
+  it 'total sales', js: true do
     login_as(affiliate_user, scope: :user)
     visit "/dashboard/affiliates?tab=sale"
     screenshot

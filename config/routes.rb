@@ -70,7 +70,11 @@ Idealme::Application.routes.draw do
       resources :payloads
     end
 
-    resources :courses
+    resources :courses do
+      member do
+        post :sort_sections
+      end
+    end
     resources :sections do
       collection do
         post :sort
