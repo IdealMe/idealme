@@ -1,42 +1,28 @@
-<% content_for :date_picker do %>
-    <%= form_tag(dashboard_affiliates_path, :method => 'get') do %>
-        <p><strong>Filter date ranges</strong></p>
-        <%= label_tag('from', 'From:') %>
-        <%= text_field_tag('from', @from, :class => 'datepicker', :placeholder => 'From') %>
-        <%= label_tag('to', 'To:') %>
-        <%= text_field_tag('to', @to, :class => 'datepicker', :placeholder => 'To') %>
-        <%= submit_tag('Filter', :class => 'success button') %>
-    <% end %>
+<h4>Displaying statistics from <%= @from_date %> to <%= @to_date %></h4>
+
+
+<ul class="nav nav-tabs">
+  <li class="<%= active_tab?('stats', @tab, 'active', '') %>">
+    <%= link_to("Stats Overview", dashboard_affiliates_path(@base.merge({:tab => 'stats'}))) %>
+  </li>
+  <li class="<%= active_tab?('links', @tab, 'active', '') %>">
+    <%= link_to("Links", dashboard_affiliates_path(@base.merge({:tab => 'links'}))) %>
+  </li>
+  <li class="<%= active_tab?('sale', @tab, 'active', '') %>">
+    <%= link_to("Total Sales", dashboard_affiliates_path(@base.merge({:tab => 'sale'}))) %>
+  </li>
+  <li class="<%= active_tab?('urls', @tab, 'active', '') %>">
+    <%= link_to("Affiliate URLs", dashboard_affiliates_path(@base.merge({:tab => 'urls'}))) %>
+  </li>
+</ul>
+
+<% case @tab %>
+<% when 'stats' %>
+    <%= render(:partial => 'dashboard/affiliates/partials/stats') %>
+<% when 'links' %>
+    <%= render(:partial => 'dashboard/affiliates/partials/links') %>
+<% when 'sale' %>
+    <%= render(:partial => 'dashboard/affiliates/partials/sales') %>
+<% when 'urls' %>
+    <%= render(:partial => 'dashboard/affiliates/partials/urls') %>
 <% end %>
-
-<div class="row">
-  <div class="twelve columns">
-    <h4>Displaying statistics from <%= @from_date %> to <%= @to_date %></h4>
-    <dl class="sub-nav">
-      <dt>Filter:</dt>
-      <dd class="<%= active_tab?('stats', @tab, 'active', 'inactive') %>">
-        <%= link_to("Stats Overview", dashboard_affiliates_path(@base.merge({:tab => 'stats'}))) %>
-      </dd>
-      <dd class="<%= active_tab?('tracking', @tab, 'active', 'inactive') %>">
-        <%= link_to("Tracking", dashboard_affiliates_path(@base.merge({:tab => 'tracking'}))) %>
-      </dd>
-      <dd class="<%= active_tab?('sale', @tab, 'active', 'inactive') %>">
-        <%= link_to("Total Sales", dashboard_affiliates_path(@base.merge({:tab => 'sale'}))) %>
-      </dd>
-      <dd class="<%= active_tab?('urls', @tab, 'active', 'inactive') %>">
-        <%= link_to("Affiliate URLs", dashboard_affiliates_path(@base.merge({:tab => 'urls'}))) %>
-      </dd>
-    </dl>
-
-    <% case @tab %>
-    <% when 'stats' %>
-        <%= render(:partial => 'dashboard/affiliates/partials/stats') %>
-    <% when 'tracking' %>
-        <%= render(:partial => 'dashboard/affiliates/partials/trackings') %>
-    <% when 'sale' %>
-        <%= render(:partial => 'dashboard/affiliates/partials/sales') %>
-    <% when 'urls' %>
-        <%= render(:partial => 'dashboard/affiliates/partials/urls') %>
-    <% end %>
-  </div>
-</div>

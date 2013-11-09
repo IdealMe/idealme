@@ -1,46 +1,36 @@
-<% content_for :date_picker do %>
-    <%= form_tag(dashboard_affiliates_path, :method => 'get') do %>
-        <p><strong>Filter date ranges</strong></p>
-        <%= label_tag 'from', 'From:' %>
-        <%= text_field_tag('from', @from, :class => 'datepicker') %>
-        <%= label_tag 'to', 'To:' %>
-        <%= text_field_tag('to', @to, :class => 'datepicker') %>
-        <%= submit_tag('Filter', :class => 'success button') %>
-    <% end %>
-<% end %>
-
 <div class="row">
   <div class="twelve columns">
     <h1>Affiliate statistics from <%= @from_date %> to <%= @to_date %></h1>
 
-    <p>
-      <strong>Name:</strong> <%= @affiliate_tracking.name %>
-    </p>
+    <table class="table">
+      <tr>
+        <td width='200'><strong>Slug:</strong> </td>
+        <td><%= @affiliate_link.slug %></td>
+      </tr>
+      <tr>
+        <td><strong>Total units sold</strong>: </td>
+        <td><%= @affiliate_sales.length %></td>
+      </tr>
+      <tr>
+        <td><strong>Unique clicks:</strong> </td>
+        <td><%= @unique_click %></td>
+      </tr>
+      <tr>
+        <td><strong>Total clicks:</strong> </td>
+        <td><%= @total_click %></td>
+      </tr>
+      <tr>
+        <td><strong>Total unique users: </strong> </td>
+        <td><%= @unique_users.length %></td>
+      </tr>
+      <tr>
+        <td><strong>Total unique users signed up: </strong> </td>
+        <td><%= @unique_users_in_range.length %></td>
+      </tr>
+    </table>
 
-    <p>
-      <strong>Note:</strong> <%= simple_format(@affiliate_tracking.note) %>
-    </p>
 
-    <p>
-      <strong>Total units sold</strong>: <%= @affiliate_sales.length %>
-    </p>
-
-    <p>
-      <strong>Unique clicks:</strong> <%= @unique_click %>
-    </p>
-
-    <p>
-      <strong>Total clicks:</strong> <%= @total_click %>
-    </p>
-
-    <p>
-      <strong>Total unique users: </strong> <%= @unique_users.length %>
-    </p>
-
-    <p>
-      <strong>Total unique users signed up: </strong> <%= @unique_users_in_range.length %>
-    </p>
-    <table class="twelve">
+    <table class="table">
       <thead>
       <tr>
         <th>Order</th>
@@ -58,9 +48,7 @@
           <tr>
             <td><%= link_to("#{affiliate_sale.order.user.firstname} #{affiliate_sale.order.user.lastname}", user_path(affiliate_sale.order.user)) %></td>
             <td><%= link_to(affiliate_sale.order.course.name, course_path(affiliate_sale.order.course)) %></td>
-            <td><%= affiliate_sale.order.order_status_to_s %></td>
-            <td><%= affiliate_sale.affiliate_tracking ? link_to(affiliate_sale.affiliate_tracking.name, dashboard_affiliate_path(affiliate_sale.affiliate_tracking)) : 'None' %></td>
-            <td><%= penny_to_currency(affiliate_sale.gross, :precision => 4) %></td>
+
             <td><%= number_to_percentage(affiliate_sale.course_commission_percent, :precision => 4) %></td>
             <td><%= penny_to_currency(affiliate_sale.commission, :precision => 4) %></td>
             <td><%= l(affiliate_sale.order.created_at) %></td>
@@ -79,7 +67,7 @@
       </tbody>
     </table>
     <h2>Affiliate links</h2>
-    <table class="twelve">
+    <table class="table">
       <thead>
       <tr>
         <th>Affiliate Tracking Name</th>
@@ -90,8 +78,7 @@
       <% @courses.each do |course| %>
           <tr>
             <td><%= course.name %></td>
-            #TODO
-            <td><%= text_field_tag 'affiliate_tracking', markets_market_user_affiliate_tracking_url(course.default_market.affiliate_tag, current_user.affiliate_tag, @affiliate_tracking.affiliate_tag) %></td>
+            <td><%= course.id %>WRONG VALUE</td>
           </tr>
       <% end %>
       </tbody>

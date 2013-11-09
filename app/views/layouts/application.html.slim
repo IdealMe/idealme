@@ -32,11 +32,14 @@ html
       = render 'flash_message'
       - c = params[:controller].split('/')
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c.first)
-        .container style='background:#ffffff; padding:10px;min-height:900px'
-          div style='margin:10px'
+        .row-fluid.container style='background:#ffffff; padding:10px;min-height:900px'
+          .span2.left-nav
             = render "#{c.first}_header"
-            hr
+
+          .span10
             = yield
+
+
       - else
         = yield
     - if request.path == '/static/about'

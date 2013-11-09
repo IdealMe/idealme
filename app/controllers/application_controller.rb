@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_gon
   before_filter :set_meta
   before_filter :set_time_zone
-  before_filter :set_common_date
+  # before_filter :set_common_date
   before_filter :authenticate_staging
   before_filter :set_last_location
   #https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
@@ -56,6 +56,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
+    if session[:last_login_at].present? && session[:last_login_at] > 5.seconds.ago
+      session[:previous_url] = root_path
+    end
+    session[:last_login_at] = DateTime.now
     session[:previous_url] || root_path
   end
 
@@ -86,26 +90,26 @@ class ApplicationController < ActionController::Base
   def set_common_date
     # From date
     @from = params[:from]
-    @from = cookies.signed[:from] unless @from
+    @from = session[:from] unless @from
     @from = Date.today.beginning_of_month.to_s unless @from
     # To date
     @to = params[:to]
-    @to = cookies.signed[:to] unless @to
+    @to = session[:to] unless @to
     @to = Date.today.end_of_month.to_s unless @to
 
     begin
-      @from_date = Date.parse(@from) if @from
+      @from_date = Date.parse(@from.to_s) if @from
     rescue
       @from_date = Date.today.beginning_of_month.to_s
     end
     begin
-      @to_date = Date.parse(@to) if @to
+      @to_date = Date.parse(@to.to_s) if @to
     rescue
       @to_date = Date.today.end_of_month.to_s
     end
     @to_date, @from_date = @from_date, @to_date if @to_date < @from_date
-    cookies.signed[:from] = @from_date
-    cookies.signed[:to] = @to_date
+    session[:from] = @from_date
+    session[:to] = @to_date
   end
 
   # Sets the meta tag for Ideal Me

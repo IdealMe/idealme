@@ -46,6 +46,7 @@ class Admin::CoursesController < Admin::BaseController
   protected
   def load_course
     @course = Course.find(params[:id])
+    @course.default_market.features.build unless @course.default_market.nil?
   rescue ActiveRecord::RecordNotFound
     redirect_to admin_courses_path, alert: "Course not found"
   end

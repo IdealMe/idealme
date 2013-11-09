@@ -26,6 +26,7 @@
 //= require bootstrap-tour
 //= require users.js
 //= require flowplayer.min
+//= require bootstrap-datepicker
 //= require_tree .
 
 

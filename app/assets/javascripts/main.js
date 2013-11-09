@@ -163,4 +163,8 @@ $(function(){
         return false;
     });
 
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+
 });

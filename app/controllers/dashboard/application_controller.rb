@@ -1,8 +1,9 @@
 class Dashboard::ApplicationController < ::ApplicationController
   before_filter :authenticate
+  before_filter :set_common_date
 
   def authenticate
-    return if can?(:access, :affiliate_tracking) || can?(:access, :course_creation)
+    return if can?(:access, :affiliate_link) || can?(:access, :course_creation)
     raise CanCan::AccessDenied
   end
 end

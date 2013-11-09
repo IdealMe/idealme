@@ -29,6 +29,7 @@ describe 'editing courses' do
     find("#previews-tab.active")
     expect(find("#course_default_market_attributes_name").value).to eq 'New fancy market name'
 
+    click_link "Sections"
     # let's make a new section
     click_link "New Section"
     fill_in "Name", with: "beans"

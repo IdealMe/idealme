@@ -3,12 +3,12 @@ class AffiliateSale < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :user_id, :order_id, :affiliate_tracking_id
+  attr_accessible :user_id, :order_id, :affiliate_link_id
 
   # == Relationships ========================================================
 
 
-  belongs_to :affiliate_tracking
+  belongs_to :affiliate_link
   belongs_to :order
   belongs_to :user
 
@@ -22,6 +22,7 @@ class AffiliateSale < ActiveRecord::Base
     affiliate_sale = nil
     if affiliate_user && order
       affiliate_sale = AffiliateSale.create!(order_id: order.id, user_id: affiliate_user.id)
+      affiliate_sale.update_attribute(:completed, true) if order.status == Order::STATUS_SUCCESSFUL
       if affiliate_link
         affiliate_sale.affiliate_link_id = affiliate_link.id
         affiliate_sale.save!

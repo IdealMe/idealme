@@ -28,9 +28,6 @@
         = f.text_area :description, class: 'tinymce', rows: 4
         = f.check_box :hidden
 
-
-
-
         fieldset
           #legend
             legend Goal
@@ -43,9 +40,9 @@
                 '
                 = goal.name
 
-
-        = f.submit 'Save', class: 'btn btn-success'
-        = link_to 'Back', admin_courses_path, class: 'btn'
+        .buttons
+          = f.submit 'Save', class: 'btn btn-primary'
+          = link_to 'Back', admin_courses_path, class: 'btn'
 
     .tab-pane id='course-previews-tab' class=course_previews_active?
       = formatted_form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
@@ -64,27 +61,25 @@
 
           .control-group
             label.control-label Features
-            .controls.inline
-
-
+            .controls
               = market.fields_for :features do |feature|
                 = image_tag(market.object.avatar.url(:square), height: '50', width: '50')
                 = feature.file_field :avatar, label: ''
-                = feature.text_area :description, rows: 3, cols: 80, label: ''
+                = feature.text_field :description, label: ''
                 - if feature.object.persisted?
                   = feature.hidden_field :_destroy, class: 'delete-feature-field'
                   button.delete-feature
                     | delete
-                br
+                br/
 
 
-
-          = f.submit 'Save', class: 'btn btn-success'
-          = link_to 'Back', admin_markets_path, class: 'btn'
-          - if @course.default_market.persisted?
-            = link_to 'Payloads', admin_market_payloads_path(@course.default_market), class: 'btn'
-          - else
-            p Save this course preview to add payloads
+          .buttons
+            = f.submit 'Save', class: 'btn btn-primary'
+            = link_to 'Back', admin_markets_path, class: 'btn'
+            - if @course.default_market.persisted?
+              = link_to 'Payloads', admin_market_payloads_path(@course.default_market), class: 'btn'
+            - else
+              p Save this course preview to add payloads
 
     .tab-pane id='course-content-tab' class=course_content_active?
       - if @course.persisted?

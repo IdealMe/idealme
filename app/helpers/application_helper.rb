@@ -23,6 +23,7 @@ module ApplicationHelper
     classes = ["#{params[:controller].gsub('/', '-')}-#{params[:action]}"]
     classes << (user_signed_in? ? 'logged-in' : 'logged-out')
     classes << 'admin' if params[:controller].include?('admin/')
+    classes << 'dashboard' if params[:controller].include?('dashboard/')
     classes.join(" ")
   end
 

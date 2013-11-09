@@ -67,6 +67,9 @@
 
 @import "admin/lectures";
 @import "admin";
+@import "dashboard";
+
+@import "datepicker";
 //
 
 * {
@@ -80,20 +83,21 @@
 
 .admin {
   .btn {
-    border-radius: 0px;
-    //@include bg(white);
-    @include bg-pos(top, left);
-    border: 1px solid #ebebeb;
-    @include box-shadow(none);
-    padding: 4px 12px;
-    @include hex(#4d4d4d);
-    @include fs(12px);
-    @include lh(12px);
-    @include upper;
-    &:hover {
-      @include bg-pos(top, left);
-      border: 1px solid #bcbcbc;
-    }
+    margin-right: 10px;
+    // border-radius: 0px;
+    // //@include bg(white);
+    // @include bg-pos(top, left);
+    // border: 1px solid #ebebeb;
+    // @include box-shadow(none);
+    // padding: 4px 12px;
+    // @include hex(#4d4d4d);
+    // @include fs(12px);
+    // @include lh(12px);
+    // @include upper;
+    // &:hover {
+    //   @include bg-pos(top, left);
+    //   border: 1px solid #bcbcbc;
+    // }
   }
 
   .controls.inline .control-group {
@@ -115,6 +119,10 @@
         height: 600px;
       }
     }
+  }
+
+  .buttons {
+    margin-left: 180px;
   }
 }
 

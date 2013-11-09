@@ -20,25 +20,28 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
         @sum_commission = 0
         @affiliate_sales.each do |affiliate_sales_completed|
           order = affiliate_sales_completed.order
-          @sum_commission += (order.cost * (order.course.affiliate_commission/100.0)) if order.status == IM_ORDER_PAID
+          @sum_commission += (order.cost * (order.course.affiliate_commission/100.0)) if order.status == Order::STATUS_SUCCESSFUL
         end
-      when 'link'
-        @affiliate_links = ::AffiliateLink.where('affiliate_links.user_id = ?', current_user.id).includes(:affiliate_sales => {:order => :course})
+        @conversion = (@affiliate_sales.length * 1.00)/(@sum_unique_click*1.00) * 100.00
+        @conversion = 0 if @conversion.nan?
+      when 'links'
+        @affiliate_links = ::AffiliateLink.where('affiliate_links.user_id = ?', current_user.id).includes(:sales => {:order => :course})
+
         ::AffiliateLink.class_eval do
-          attr_accessor :affiliate_sales_list #affiliate_sales is taken
+          attr_accessor :sales_list #affiliate_sales is taken
           attr_accessor :sum_gross
           attr_accessor :sum_commission
           attr_accessor :unique_click
         end
         @affiliate_links.each do |affiliate_link|
-          affiliate_link.affiliate_sales_list = affiliate_link.affiliate_sales
+          affiliate_link.sales_list = affiliate_link.sales
           affiliate_link.unique_click = 0
           affiliate_link.affiliate_clicks.each { |affiliate_click| affiliate_link.unique_click += 1 }
           affiliate_link.sum_commission = 0
           affiliate_link.sum_gross = 0
-          affiliate_link.affiliate_sales_list.each do |affiliate_sale|
-            order = affiliate_sale.order
-            if order.status == IM_ORDER_PAID
+          affiliate_link.sales_list.each do |sale|
+            order = sale.order
+            if order.status == Order::STATUS_SUCCESSFUL
               gross = order.cost
               affiliate_link.sum_gross += gross
               affiliate_link.sum_commission += (gross * (order.course.affiliate_commission/100.0))
@@ -46,6 +49,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
           end
         end
       when 'sale'
+        binding.pry
         @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id).where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true).includes(:affiliate_link, {:order => [:course, :user]})
         @sum_commission = 0
         ::AffiliateSale.class_eval do
@@ -57,7 +61,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
           affiliate_sale.gross = affiliate_sale.order.cost
           affiliate_sale.course_commission_percent = affiliate_sale.order.course.affiliate_commission
           affiliate_sale.commission = affiliate_sale.gross * (affiliate_sale.order.course.affiliate_commission/100.0)
-          @sum_commission += affiliate_sale.commission if affiliate_sale.order.status == IM_ORDER_PAID
+          @sum_commission += affiliate_sale.commission if affiliate_sale.order.status == Order::STATUS_SUCCESSFUL
         end
       when 'urls'
         @courses = ::Course.includes(:default_market)
@@ -92,7 +96,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
       affiliate_sale.gross = order.cost
       affiliate_sale.course_commission_percent = order.course.affiliate_commission
       affiliate_sale.commission = affiliate_sale.gross * (affiliate_sale.course_commission_percent/100.0)
-      @sum_commission += affiliate_sale.commission if order.status == IM_ORDER_PAID
+      @sum_commission += affiliate_sale.commission if order.status == Order::STATUS_SUCCESSFUL
     end
   end
 
@@ -137,6 +141,6 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
 
   private
   def authenticate
-    authorize!(:access, :affiliate_link)
+    authorize!(:access, :affiliate)
   end
 end

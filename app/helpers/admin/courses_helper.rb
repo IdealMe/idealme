@@ -10,7 +10,7 @@ module Admin::CoursesHelper
   end
 
   def course_content_active?
-    (params[:active_view] == "content") ? "active" : ""
+    (params[:active_view] == "sections") ? "active" : ""
   end
 
 end

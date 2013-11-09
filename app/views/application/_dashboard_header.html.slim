@@ -1,17 +1,31 @@
 
-= yield :date_picker
+- tab = controller_name
 
-ul.left
-  li.has-dropdown
+ul.nav.nav-tabs.nav-stacked
+  li class="#{active_tab?('dashboard', tab, 'active', '')}"
     = link_to 'Dashboard', dashboard_root_path
-    ul.dropdown
-      - if can? :access, :affiliate_tracking
-        li = link_to('Affiliates', dashboard_affiliates_path)
-        li = link_to('Swipe Files', dashboard_swipes_path)
-      - if can? :access, :course_creation
-        li = link_to('Courses', dashboard_courses_path)
-      - if can? :access, :payment
-        li = link_to('Payments', dashboard_payments_path)
-      - if can? :access, :redirection
-        li = link_to('Redirections', dashboard_redirections_path)
-  li = link_to('Logout', destroy_user_session_path)
+  - if can? :access, :affiliate
+    li class="#{active_tab?('affiliates', tab, 'active', '')}"
+      = link_to('Affiliates', dashboard_affiliates_path)
+    li class="#{active_tab?('swipes', tab, 'active', '')}"
+      = link_to('Swipe Files', dashboard_swipes_path)
+  - if can? :access, :course_creation
+    li class="#{active_tab?('courses', tab, 'active', '')}"
+      = link_to('Courses', dashboard_courses_path)
+  - if can? :access, :payment
+    li class="#{active_tab?('payments', tab, 'active', '')}"
+      = link_to('Payments', dashboard_payments_path)
+  - if can? :access, :redirection
+    li class="#{active_tab?('redirections', tab, 'active', '')}"
+      = link_to('Redirections', dashboard_redirections_path)
+
+#date-filter-container
+  = form_tag(dashboard_affiliates_path, :method => 'get') do
+    p
+      strong Filter date range
+    = label_tag('from', 'From:')
+    = text_field_tag('from', @from, :class => 'datepicker', :placeholder => 'From', 'data-provide' => 'datepicker')
+    = label_tag('to', 'To:')
+    = text_field_tag('to', @to, :class => 'datepicker', :placeholder => 'To', 'data-provide' => 'datepicker')
+    = submit_tag('Filter', :class => 'btn')
+

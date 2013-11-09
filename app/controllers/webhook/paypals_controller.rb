@@ -75,7 +75,6 @@ class Webhook::PaypalsController < ApplicationController
         user.subscribe_plan(plan)
         Service.create_complete_service(plan, user, notify.transaction_id, notify.status, post.to_json, IM_ORDER_PAID, post[:subscr_id])
       end
-
     end
   end
 

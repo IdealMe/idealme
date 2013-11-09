@@ -55,11 +55,6 @@ GEM
     best_in_place (2.1.0)
       jquery-rails
       rails (~> 3.1)
-    better_errors (1.0.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     bluepill (0.0.66)
       activesupport (>= 3.0.0, < 4.0.0)
       daemons (~> 1.1.4)
@@ -145,7 +140,6 @@ GEM
     connection_pool (1.1.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
-    debug_inspector (0.0.2)
     deep_cloneable (1.5.5)
       activerecord (>= 3.1.0)
     devise (3.1.1)
@@ -549,8 +543,6 @@ DEPENDENCIES
   awesome_print
   aws-sdk
   best_in_place
-  better_errors
-  binding_of_caller
   bluepill
   brakeman
   browser

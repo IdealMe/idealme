@@ -30,7 +30,7 @@ class Admin::SectionsController < Admin::BaseController
   # POST /admin/sections
   def create
     @section.save!
-    redirect_to edit_admin_course_path(@section.course), notice: 'Section was successfully created.'
+    redirect_to edit_admin_course_path(@section.course, active_view: 'sections'), notice: 'Section was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render action: :new
   end

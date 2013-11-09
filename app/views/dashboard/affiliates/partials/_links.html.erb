@@ -1,0 +1,29 @@
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Slug</th>
+    <th>Tag</th>
+    <th>Total sales</th>
+    <th>Unique clicks</th>
+    <th>Conversion</th>
+    <th>Total gross</th>
+    <th>Total commission</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @affiliate_links.each do |affiliate_link| %>
+      <tr>
+        <td><%= link_to(affiliate_link.slug, dashboard_affiliate_path(affiliate_link.slug)) %></td>
+        <td><%#= affiliate_link.affiliate_tag %></td>
+        <td><%= affiliate_link.sales_list.length %></td>
+        <td><%= affiliate_link.unique_click %></td>
+        <td><%= number_to_percentage((affiliate_link.sales.length * 1.00)/(affiliate_link.unique_click*1.00) * 100.00, :precision => 4) %></td>
+        <td><%= penny_to_currency(affiliate_link.sum_gross, :precision => 4) %></td>
+        <td><%= penny_to_currency(affiliate_link.sum_commission, :precision => 4) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'New Affiliate link', new_dashboard_affiliate_path, :class => 'btn' %></p>

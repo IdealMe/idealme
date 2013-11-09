@@ -1,10 +1,10 @@
-<%= form_for @affiliate_tracking, :url => url do |f| %>
+<%= form_for @affiliate_link, :url => url do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
 
     <%= f.label(:name) %>
     <%= f.text_field(:name) %>
 
-    <% unless @affiliate_tracking.persisted? %>
+    <% unless @affiliate_link.persisted? %>
         <%= f.label :affiliate_tag %>
         <%= f.text_field(:affiliate_tag, :size => 10, :maxlength => 10) %>
     <% end %>

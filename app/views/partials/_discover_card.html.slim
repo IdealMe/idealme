@@ -10,7 +10,7 @@
             .checked
           - if current_user
             .like-box
-              .like  data-type=discover.class id=discover.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
+              .like data-type=discover.class id=discover.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
                 = discover.up_votes
               .dislike data-type=discover.class id=discover.id direction=-1 voted=(discover.down_voted?(current_user) ? '1':'0')
                 = discover.down_votes
@@ -24,8 +24,6 @@
               .clear
         .clear
       .modal-body
-        - if discover.parameters[:service] == :youtube
-          /%iframe{allowfullscreen: true, frameborder: 0, width: 570, height: 400, src: "//www.youtube-nocookie.com/embed/#{discover.parameters[:youtube_id]}?rel=0"}
         .text-center
           = image_tag discover.avatar.url(:original)
         .link
@@ -38,13 +36,13 @@
               .arrow
               .date
                 = distance_of_time_in_words_to_now discover.created_at
-                | ago
+                |  ago
               .user-avatar
                 = image_tag discover.owner.avatar.url(:thumb)
               .body
                 .title
                   = link_to discover.owner.fullname, user_path(discover.owner), class: 'user-name'
-                  | shared this gem
+                  |  shared this gem
                 .bottom
                   - if current_user
                     .like data-type=discover.class id=discover.id direction=1 voted=(discover.up_voted?(current_user) ? '1':'0')
@@ -105,7 +103,7 @@
       .comment-box
         = discover.comments.length
       .add-me-box
-        .unchecked data-content='Collect Accelerated learning for an accelerated time and add the Speed Read goal?' original_title='Popover on right' placement='top'} href='#' title='' rel='popover'  +
+        .unchecked data-content='Collect Accelerated learning for an accelerated time and add the Speed Read goal?' original_title='Popover on right' placement='top' href='#' title='' rel='popover'  +
         .checked
       .clear
 
@@ -115,7 +113,7 @@
     = link_to image_tag(market.avatar.url(:full)), market_path(market), class: 'avatar discover-link'
     .ruby-icon
     .title
-      = link_to market.name, market_path(market), { :"data-title" => market.name }, :class => 'discover-link'
+      = link_to market.name, market_path(market), :"data-title" => market.name, :class => 'discover-link'
     .clear
     .bottom-box
       - if current_user

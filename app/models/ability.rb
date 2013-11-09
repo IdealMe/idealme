@@ -30,6 +30,8 @@ class Ability
         can :read, GoalUser, private: false
       end
       if user.access_affiliate
+        can :access, :affiliate
+        can :access, :course_creation
       end
       if user.access_instructor
       end
