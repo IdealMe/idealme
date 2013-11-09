@@ -583,6 +583,7 @@ DEPENDENCIES
   meta-tags
   meta_request
   metainspector
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
