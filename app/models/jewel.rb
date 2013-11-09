@@ -6,7 +6,7 @@ class Jewel < ActiveRecord::Base
   include Votable
 
   # == Slug =================================================================
-  friendly_id :name, use: [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged, :finders]
 
   # == Constants ============================================================
   EVERYTHING = 0

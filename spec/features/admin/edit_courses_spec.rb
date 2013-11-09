@@ -18,6 +18,7 @@ describe 'editing courses' do
 
   it 'editing a market from courses', js: true do
     visit '/admin/courses'
+    screenshot
     click_link "Sample course"
     expect(find("#course_affiliate_commission").value).to eq '50.000'
 

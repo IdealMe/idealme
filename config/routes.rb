@@ -4,7 +4,7 @@ Idealme::Application.routes.draw do
 
   root to: 'landings#index'
 
-  match "now/:slug" => "affiliate_links#perform", slug: /[^\/]+/
+  get "now/:slug" => "affiliate_links#perform", slug: /[^\/]+/
 
   resources :searches, only: [:index]
   resources :lectures, only: [:index, :show]
@@ -21,8 +21,8 @@ Idealme::Application.routes.draw do
     end
   end
 
-  match "paypal/success" => "paypal#success"
-  match "paypal/cancel" => "paypal#cancel"
+  post "paypal/success" => "paypal#success"
+  post "paypal/cancel" => "paypal#cancel"
 
   resources :markets, only: [:index, :show] do
     resources :reviews
@@ -144,9 +144,7 @@ Idealme::Application.routes.draw do
     end
   end
 
-  ComfortableMexicanSofa::Routing.admin(path: '/admin/cms')
-  # Make sure this routeset is defined last
-  ComfortableMexicanSofa::Routing.content(path: '/static', sitemap: false)
+
 
   devise_for :users,
              path: '',
@@ -179,7 +177,7 @@ Idealme::Application.routes.draw do
 
       # Signup flow
       get ':id/welcome' => 'users#welcome', as: :user_welcome
-      post ':id/welcome' => 'users#welcome_save', as: :user_welcome
+      post ':id/welcome' => 'users#welcome_save'
       # Signup flow
 
 
@@ -191,5 +189,6 @@ Idealme::Application.routes.draw do
       get ':id/identity/:pid/revoke' => 'users#identity_revoke', as: :user_identity_revoke
     end
   end
-
+  # comfy_path :cms_admin, :path => '/admin/cms'
+  # comfy_path :cms, :path => '/static', :sitemap => false
 end

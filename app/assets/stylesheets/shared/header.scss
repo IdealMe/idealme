@@ -82,7 +82,7 @@ header {
       margin: 12px 53px 0 0;
       .search-field {
         width: 200px;
-        height: 28px;
+        height: 24px;
         border: 1px solid #ccc;
         @include bg(#f9f9f9);
         padding-left:10px;
@@ -146,7 +146,7 @@ header {
       a {
         color:#777;
         font-weight: 600;
-        text-transform: uppercase;        
+        text-transform: uppercase;
         &:hover {
           color: #0088cc;
         }
@@ -161,7 +161,7 @@ header {
         &:hover {
           color: #0088cc;
         }
-      }    
+      }
     }
   }
 

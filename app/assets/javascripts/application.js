@@ -14,14 +14,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require twitter/bootstrap
 //= require jquery.flexslider
+//= require twitter/bootstrap
 //= require formatted_form
 //= require tinymce-jquery
 //= require jquery.stayInWebApp.js
 //= require jstz-1.0.5.js
 //= require select2.js
-//= require best_in_place
 //= require jquery.cookie
 //= require bootstrap-tour
 //= require users.js

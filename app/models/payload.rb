@@ -20,7 +20,7 @@ class Payload < ActiveRecord::Base
 
   # == Validations ==========================================================
   # == Scopes ===============================================================
-  scope :unattached, where(payloadable_id: nil).order('payload_file_name ASC')
+  scope :unattached, -> { where(payloadable_id: nil).order('payload_file_name ASC') }
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.compute_payload_tags(base)

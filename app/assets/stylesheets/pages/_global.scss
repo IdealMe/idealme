@@ -8,6 +8,7 @@ body {
 .container {
   padding-top: 10px;
   width: 1250px;
+  max-width: 1250px;
   margin-left: auto;
   margin-right: auto;
   @include rel;

@@ -5,7 +5,7 @@ class Section < ActiveRecord::Base
   acts_as_list scope: :course
 
   # == Slug =================================================================
-  friendly_id :name, use: [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged, :finders]
 
   # == Constants ============================================================
   # == Attributes ===========================================================

@@ -6,7 +6,7 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'https://js.stripe.com/v2/', 'application'
     = csrf_meta_tags
-    / %link{href: '//fonts.googleapis.com/css?family=Open+Sans', rel: 'stylesheet', type: 'text/css'}/
+    link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'
     = tinymce content_css: asset_path('application.css')
     link href="/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" /
     link href="/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" /
@@ -25,10 +25,10 @@ html
     meta content="/mstile-70x70.png" name="msapplication-square70x70logo" /
     meta content="/mstile-150x150.png" name="msapplication-square150x150logo" /
     meta content="/mstile-310x310.png" name="msapplication-square310x310logo" /
-  body class=body_class
+  body class="#{body_class}"
     header
       = render 'header'
-    section.body_content.body-content
+    section.body_content.body-content.reset-box-sizing
       = render 'flash_message'
       - c = params[:controller].split('/')
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c.first)
@@ -44,10 +44,10 @@ html
         = yield
     - if request.path == '/static/about'
       = render "join_up"
+    #fb-root
+    javascript:
+      var idealme = "you";
+      #{include_gon(namespace: "im_js", need_tag: false)}
     footer
       = render 'footer'
-    = get_friendly_affiliate_link
-    #fb-root
-javascript:
-  var idealme = "you";
-  #{include_gon(namespace: "im_js", need_tag: false)}
+      = get_friendly_affiliate_link

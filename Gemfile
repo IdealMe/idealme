@@ -1,14 +1,26 @@
 source 'https://rubygems.org'
-
+gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem 'nokogiri'
+# gem 'nokogiri'
 
 #Ruby on Rails
-gem 'rails', '~> 3.2.15'
+gem 'rails'
+gem 'actionpack-action_caching', '~>1.0.0'
+gem 'actionpack-page_caching', '~>1.0.0'
+gem 'actionpack-xml_parser', '~>1.0.0'
+gem 'actionview-encoded_mail_to', '~>1.0.4'
+gem 'activerecord-session_store', '~>0.0.1'
+gem 'activeresource', '~>4.0.0.beta1'
+gem 'protected_attributes', '~>1.0.1'
+gem 'rails-observers', '~>0.1.1'
+gem 'rails-perftest', '~>0.0.2'
+
+
+
 
 gem 'json', '~> 1.8.1'
-gem 'bluepill'
+gem 'bluepill', github: 'bluepill-rb/bluepill'
 
 # A library for working with SendGrid's Newsletter API. The code is intended for managing and sending newletters.
 gem 'gatling_gun'
@@ -62,7 +74,7 @@ gem 'omniauth-twitter'
 gem 'gon'
 
 #Easy upload management for ActiveRecord
-gem 'paperclip', '~> 3.4.2'
+gem 'paperclip', '~> 3.5.2'
 
 #A Rails form builder that generates Twitter Bootstrap markup and helps keep your code clean
 gem 'formatted_form'
@@ -70,10 +82,10 @@ gem 'formatted_form'
 gem 'simple_form'
 
 #ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
-gem 'comfortable_mexican_sofa', '~> 1.8.0'
+gem 'comfortable_mexican_sofa', '~> 1.11.0'
 
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.
-gem 'friendly_id', '~> 4.0.10'
+gem 'friendly_id'
 
 #Seamlessly integrates TinyMCE into the Rails asset pipeline introduced in Rails 3.1.
 gem 'tinymce-rails'
@@ -109,7 +121,7 @@ gem 'will_paginate'
 
 #Extends the functionality of ActiveRecord::Base
 #clone to perform a deep clone that includes user specified associations.
-gem 'deep_cloneable'
+# gem 'deep_cloneable'
 
 # New Relic is a performance management system, developed by New Relic, Inc (http://www.newrelic.com). New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin, hosted on http://github.com/newrelic/rpm/
 # gem 'newrelic_rpm'
@@ -118,19 +130,16 @@ gem 'deep_cloneable'
 gem 'cloudfront-signer'
 
 #MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
-gem 'metainspector'
+# gem 'metainspector'
 
 #Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
 gem 'activemerchant'
 
 #Create JSON structures via a Builder-style DSL
-gem 'jbuilder'
+# gem 'jbuilder'
 
 #General ruby templating with json, bson, xml and msgpack support
-gem 'rabl'
-
-#BestInPlace is a jQuery script and a Rails 3 helper that provide the method best_in_place to display any object field easily editable for the user by just clicking on it.
-gem 'best_in_place'
+# gem 'rabl'
 
 #Ransack is the successor to the MetaSearch gem. It improves and expands upon MetaSearch's functionality, but does not have a 100%-compatible API.
 gem 'ransack'
@@ -144,31 +153,32 @@ gem 'typhoeus'
 
 gem 'slim'
 gem 'haml2slim'
-group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  #gem 'haml-rails'
-  gem 'therubyracer'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
 
-  #Sass adapter for the Rails asset pipeline.
-  gem 'sass-rails', '~> 3.2.6'
 
-  #Ruby wrapper for UglifyJS JavaScript compressor
-  gem 'uglifier', '>= 1.3.0'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                          :github => 'anjlab/bootstrap-rails',
+                          :branch => '3.0.0'
 
-  #jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+ asset pipeline
-  gem 'jquery-ui-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'coffee-rails'
 
-  #Integrate Compass into Rails 2.3 and up.
-  gem 'compass-rails'
-  gem 'font-awesome-rails'
-  # gem 'turbo-sprockets-rails3', git: 'https://github.com/spohlenz/turbo-sprockets-rails3.git'
-end
+#Sass adapter for the Rails asset pipeline.
+gem 'sass-rails'
+
+#Ruby wrapper for UglifyJS JavaScript compressor
+gem 'uglifier'
+
+#jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+ asset pipeline
+gem 'jquery-ui-rails'
+
+#Integrate Compass into Rails 2.3 and up.
+gem "compass-rails", "~> 2.0.alpha.0"
+# gem 'font-awesome-rails' # old
+gem 'font-awesome-sass-rails' # new
+# gem 'turbo-sprockets-rails3', git: 'https://github.com/spohlenz/turbo-sprockets-rails3.git'
+
 
 gem 'stripe'
-
-gem 'taps-taps'
 
 group :test do
   #gem 'simplecov', :require => false
@@ -182,7 +192,7 @@ group :development do
   #A rails plugin to kill N+1 queries and unused eager loading.
   gem 'bullet'
 
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
 
   #Automatically generate an entity-relationship diagram (ERD) for your Rails models.
   gem 'rails-erd'
@@ -211,7 +221,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '2.14.0'
+  gem 'rspec-rails'
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'capybara'
@@ -222,6 +232,3 @@ group :development, :test do
   gem 'database_cleaner'
 end
 
-group :production, :staging do
-  gem 'unicorn'
-end

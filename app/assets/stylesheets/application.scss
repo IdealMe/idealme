@@ -17,7 +17,45 @@
 // Import all compass sprites
 @import "icons/*.png";
 // Import Bootstrap
-@import "bootstrap_and_overrides";
+@import "twitter/bootstrap";
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+   background: #FBFAF4 !important;
+}
+
+
+strong {
+  font-weight: 600;
+}
+
+img {
+  border-radius: 4px;
+}
+
+
+.alert  {
+  margin: 8px 462px;
+}
+
+.reset-box-sizing,
+.reset-box-sizing *,
+.reset-box-sizing *:before,
+.reset-box-sizing *:after {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+// pulled in from old bootstrap_and_overrides
+
+
+
+
+
 // Element
 @import "elements/fonts";
 @import "elements/base";

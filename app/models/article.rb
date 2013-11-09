@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
   extend FriendlyId
 
   # == Slug =================================================================
-  friendly_id :name, use: [:history, :slugged]
+  friendly_id :name, use: [:history, :slugged, :finders]
 
   # == Constants ============================================================
   # == Attributes ===========================================================
