@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'nokogiri'
 
 #Ruby on Rails
@@ -165,9 +167,6 @@ group :assets do
 end
 
 gem 'stripe'
-
-#Simple Rails app configuration
-gem 'figaro'
 
 gem 'taps-taps'
 
