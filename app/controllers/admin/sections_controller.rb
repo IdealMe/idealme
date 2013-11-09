@@ -46,7 +46,7 @@ class Admin::SectionsController < Admin::BaseController
   # DELETE /admin/sections/1
   def destroy
     @section.destroy
-    redirect_to admin_sections_url, notice: 'CSection was successfully deleted'
+    redirect_to edit_admin_course_path(@section.course, active_view: 'sections'), notice: 'Section was successfully deleted.'
   end
 
   protected

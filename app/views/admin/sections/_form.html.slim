@@ -31,3 +31,4 @@
 
   = f.submit 'Save', class: 'btn btn-success'
   = link_to 'Back', admin_sections_path, class: 'btn'
+  = link_to 'Delete Section', admin_section_path, :class => 'btn btn-danger', :method => "delete", :confirm => "Delete this section?"
