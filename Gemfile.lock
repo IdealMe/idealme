@@ -186,9 +186,6 @@ GEM
     dotenv (0.9.0)
     dotenv-rails (0.9.0)
       dotenv (= 0.9.0)
-    em-websocket (0.5.0)
-      eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
     ethon (0.6.1)
       ffi (>= 1.3.0)
@@ -226,10 +223,6 @@ GEM
     guard-bundler (2.0.0)
       bundler (~> 1.0)
       guard (~> 2.2)
-    guard-livereload (2.0.0)
-      em-websocket (~> 0.5)
-      guard (~> 2.0)
-      multi_json (~> 1.8)
     guard-rspec (4.0.3)
       guard (>= 2.1.1)
       rspec (~> 2.14)
@@ -252,7 +245,6 @@ GEM
     honeybadger (1.9.3)
       faraday (~> 0.7)
       json
-    http_parser.rb (0.5.3)
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -366,10 +358,9 @@ GEM
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
-    rack-livereload (0.3.15)
-      rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.1)
     rails (4.0.1)
       actionmailer (= 4.0.1)
       actionpack (= 4.0.1)
@@ -385,7 +376,6 @@ GEM
       ruby-graphviz (~> 1.0.4)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
-    rails-perftest (0.0.3)
     rails_best_practices (1.14.4)
       activesupport
       awesome_print
@@ -565,7 +555,6 @@ DEPENDENCIES
   gatling_gun
   gon
   guard-bundler
-  guard-livereload
   guard-rspec
   haml2slim
   hipchat
@@ -589,11 +578,10 @@ DEPENDENCIES
   pry-remote
   puma
   quiet_assets
-  rack-livereload
+  railroady
   rails
   rails-erd
   rails-observers (~> 0.1.1)
-  rails-perftest (~> 0.0.2)
   rails4_upgrade!
   rails_best_practices
   ransack

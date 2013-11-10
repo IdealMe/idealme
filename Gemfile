@@ -14,7 +14,7 @@ gem 'activerecord-session_store', '~>0.0.1'
 gem 'activeresource', '~>4.0.0.beta1'
 gem 'protected_attributes', '~>1.0.1'
 gem 'rails-observers', '~>0.1.1'
-gem 'rails-perftest', '~>0.0.2'
+# gem 'rails-perftest', '~>0.0.2'
 
 
 
@@ -196,6 +196,7 @@ group :development do
 
   #Automatically generate an entity-relationship diagram (ERD) for your Rails models.
   gem 'rails-erd'
+  gem 'railroady'
 
   #Request your request
   gem 'meta_request'
@@ -215,9 +216,9 @@ group :development do
   # gem 'guard-rails'
   gem 'guard-bundler'
   gem 'guard-rspec'
-  gem 'guard-livereload'
+  # gem 'guard-livereload'
   # gem 'guard-rubocop'
-  gem 'rack-livereload'
+  # gem 'rack-livereload'
 end
 
 group :development, :test do
