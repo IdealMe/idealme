@@ -189,6 +189,6 @@ Idealme::Application.routes.draw do
       get ':id/identity/:pid/revoke' => 'users#identity_revoke', as: :user_identity_revoke
     end
   end
-  # comfy_path :cms_admin, :path => '/admin/cms'
-  # comfy_path :cms, :path => '/static', :sitemap => false
+  comfy_route :cms_admin, :path => '/admin/cms'
+  comfy_route :cms, :path => '/static', :sitemap => false
 end

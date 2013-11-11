@@ -39,8 +39,6 @@ GEM
       rack-test (~> 0.6.2)
     actionpack-action_caching (1.0.0)
       actionpack (>= 4.0.0.beta, < 5.0)
-    actionpack-page_caching (1.0.1)
-      actionpack (>= 4.0.0, < 5)
     actionpack-xml_parser (1.0.1)
       actionpack (>= 4.0.0.rc1)
     actionview-encoded_mail_to (1.0.4)
@@ -133,7 +131,6 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    choice (0.1.6)
     chunky_png (1.2.9)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -360,7 +357,6 @@ GEM
       rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
-    railroady (1.1.1)
     rails (4.0.1)
       actionmailer (= 4.0.1)
       actionpack (= 4.0.1)
@@ -369,11 +365,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.1)
       sprockets-rails (~> 2.0.0)
-    rails-erd (1.1.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      choice (~> 0.1.6)
-      ruby-graphviz (~> 1.0.4)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
     rails_best_practices (1.14.4)
@@ -428,7 +419,6 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    ruby-graphviz (1.0.9)
     ruby-progressbar (1.2.0)
     ruby2ruby (2.0.6)
       ruby_parser (~> 3.1)
@@ -520,7 +510,6 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching (~> 1.0.0)
-  actionpack-page_caching (~> 1.0.0)
   actionpack-xml_parser (~> 1.0.0)
   actionview-encoded_mail_to (~> 1.0.4)
   activemerchant
@@ -578,9 +567,7 @@ DEPENDENCIES
   pry-remote
   puma
   quiet_assets
-  railroady
   rails
-  rails-erd
   rails-observers (~> 0.1.1)
   rails4_upgrade!
   rails_best_practices

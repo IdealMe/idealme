@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+#ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
+gem 'comfortable_mexican_sofa', '~> 1.11.0'
+
 gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
 gem 'dotenv-rails', :groups => [:development, :test]
 
@@ -7,7 +10,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 #Ruby on Rails
 gem 'rails'
 gem 'actionpack-action_caching', '~>1.0.0'
-gem 'actionpack-page_caching', '~>1.0.0'
+#gem 'actionpack-page_caching', '~>1.0.0'
 gem 'actionpack-xml_parser', '~>1.0.0'
 gem 'actionview-encoded_mail_to', '~>1.0.4'
 gem 'activerecord-session_store', '~>0.0.1'
@@ -81,8 +84,7 @@ gem 'formatted_form'
 
 gem 'simple_form'
 
-#ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
-gem 'comfortable_mexican_sofa', '~> 1.11.0'
+
 
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.
 gem 'friendly_id'
@@ -195,8 +197,8 @@ group :development do
   # gem 'rack-mini-profiler'
 
   #Automatically generate an entity-relationship diagram (ERD) for your Rails models.
-  gem 'rails-erd'
-  gem 'railroady'
+  # gem 'rails-erd'
+  # gem 'railroady'
 
   #Request your request
   gem 'meta_request'
