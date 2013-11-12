@@ -5,7 +5,7 @@ gem 'comfortable_mexican_sofa', '~> 1.11.0'
 gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
 gem 'dotenv-rails'
 
-# gem 'nokogiri'
+gem 'nokogiri'
 
 #Ruby on Rails
 gem 'rails'

@@ -561,6 +561,7 @@ DEPENDENCIES
   launchy
   meta-tags
   meta_request
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
