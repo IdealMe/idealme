@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'comfortable_mexican_sofa', '~> 1.11.0'
 
 gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
 
 # gem 'nokogiri'
 
