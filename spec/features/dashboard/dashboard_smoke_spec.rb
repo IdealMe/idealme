@@ -64,7 +64,6 @@ describe 'affiliate dashboard functionality' do
     login_as(affiliate_user, scope: :user)
     visit "/dashboard/affiliates?tab=sale"
     expect(page.text).to include 'normal idealme'
-    screenshot
   end
 
   # it 'affiliate urls', js: true do
