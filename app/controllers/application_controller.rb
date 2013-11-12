@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   # Get the current affiliate user that is cookied on the customer's computer
   # @return [User] If the affiliate user that is cookied on the customer's computer
   # @return [nil] Otherwise

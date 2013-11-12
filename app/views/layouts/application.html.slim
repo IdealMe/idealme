@@ -32,12 +32,13 @@ html
       = render 'flash_message'
       - c = params[:controller].split('/')
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c.first)
-        .row-fluid.container style='background:#ffffff; padding:10px;min-height:900px'
-          .span2.left-nav
-            = render "#{c.first}_header"
+        .container
+          .row style='background:#ffffff; padding:10px;min-height:900px'
+            .col-md-2.left-nav
+              = render "#{c.first}_header"
 
-          .span10
-            = yield
+            .col-md-9
+              = yield
 
 
       - else

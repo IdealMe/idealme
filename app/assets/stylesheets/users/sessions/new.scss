@@ -18,7 +18,7 @@
             @include fs(18px);
             @include centered;
             font-weight: 700;
-            margin: 17px -63px 16px 0;
+            margin: 17px 0 16px 0;
           }
           .control-box {
             @include bg(#fdfaf9);
@@ -26,45 +26,45 @@
             padding: 13px 0;
             text-align: center;
             .btn { @include upper; }
-            .btn-red { 
+            .btn-red {
               width: 311px;
               margin-left: 88px; }
 
           }
           .forgot-password {
-          text-align: right;
-          float: right;
-          position: relative;
-          bottom: 35px;
-          right: 49px;
-          font-size: 14px;
+            text-align: right;
+            float: right;
+            position: relative;
+            bottom: 35px;
+            right: 49px;
+            font-size: 14px;
           }
           label {
-          margin-bottom: 0;
+            margin-bottom: 0;
           }
         }
       }
       .form-horizontal {
-        .control-group {
-          @include m_b(16px);
-        }
-        .control-label {
-          @include hex(#4d4d4d);
-          @include fs(16px);
-          padding-top: 10px;
-          width: 119px;
-        }
-        abbr[title], abbr[data-original-title] {
-          display: none;
-        }
-        input[type="text"], input[type="email"], input[type="password"] {
-          width: 295px;
-          height: 37px;
-          @include bg(#fafafa);
-        }
-        .controls {
-          @include m_l(139px);
-        }
+        // .form-group {
+        //   @include m_b(16px);
+        // }
+        // .control-label {
+        //   @include hex(#4d4d4d);
+        //   @include fs(16px);
+        //   padding-top: 10px;
+        //   width: 119px;
+        // }
+        // abbr[title], abbr[data-original-title] {
+        //   display: none;
+        // }
+        // input[type="text"], input[type="email"], input[type="password"] {
+        //   width: 295px;
+        //   height: 37px;
+        //   @include bg(#fafafa);
+        // }
+        // .controls {
+        //   @include m_l(139px);
+        // }
       }
       .footer {
         @include centered;

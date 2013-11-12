@@ -1,10 +1,10 @@
-= formatted_form_for(@gem, url: url, html: {class: 'form-horizontal'}) do |f|
+= form_for(@gem, url: url, html: {class: 'form-horizontal'}) do |f|
   fieldset
     #legend
       legend Gem
   = f.text_field :name
   = f.select :owner_id, User.for_select, {}, class: 'select2'
-  .control-group
+  .form-group
     .control-label
       p
         | Existing avatar

@@ -1,4 +1,4 @@
-= formatted_form_for(@market, url: url, html: {class: 'form-horizontal'}) do |f|
+= form_for(@market, url: url, html: {class: 'form-horizontal'}) do |f|
   = hidden_field_tag :active_view, :previews
   fieldset
     #legend
@@ -11,7 +11,7 @@
   = image_tag @market.avatar.url(:square), height: '50', width: '50'
   = f.file_field :avatar
 
-  .control-group
+  .form-group
     label.control-label Features
     .controls.inline
       /= render partial: 'feature', collection: @market.features

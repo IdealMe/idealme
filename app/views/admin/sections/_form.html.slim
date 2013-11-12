@@ -1,11 +1,23 @@
-= formatted_form_for(@section, url: url, html: {class: 'form-horizontal'}) do |f|
+= form_for(@section, url: url, html: {class: 'form-horizontal'}) do |f|
   fieldset
     #legend
       legend Section
-  = f.text_field :name
-  = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
-  = f.text_area :description, class: 'tinymce', rows: 4
-  = f.text_area :content, class: 'tinymce'
+  .form-group
+    label.control-label.col-md-2 Name:
+    .col-md-7
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    label.control-label.col-md-2 Course:
+    .col-md-7
+      = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
+  .form-group
+    label.control-label.col-md-2 Description:
+    .col-md-7
+      = f.text_area :description, class: 'tinymce'
+  .form-group
+    label.control-label.col-md-2 Content:
+    .col-md-7
+      = f.text_area :content, class: 'tinymce'
 
   - if @section.persisted?
     fieldset

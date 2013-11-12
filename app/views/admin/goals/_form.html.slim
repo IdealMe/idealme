@@ -1,10 +1,10 @@
-= formatted_form_for(@goal, url: url, html: {class: 'form-horizontal'}) do |f|
+= form_for(@goal, url: url, html: {class: 'form-horizontal'}) do |f|
   fieldset
     #legend
       legend Goal
   = f.text_field :name
   = f.select :category_id, Category.for_select, {}, class: 'select2'
-  .control-group
+  .form-group
     .control-label
       p
         | Existing avatar
@@ -17,7 +17,7 @@
   fieldset
     #legend
       legend Course
-  .control-group
+  .form-group
     .controls
       = hidden_field_tag "goal[course_ids][]", nil
       - Course.all.each do |course|

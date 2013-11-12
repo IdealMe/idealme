@@ -10,7 +10,7 @@
 
   .tab-content
     .tab-pane id='course-details-tab' class=course_details_active?
-      = formatted_form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
+      = form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
         = hidden_field_tag :active_view, :details
         fieldset
           #legend
@@ -20,56 +20,101 @@
             ul.alert.alert-error.unstyled
               li = msg
 
-        = f.text_field :name
-        = f.number_field :cost_in_dollars
-        = f.number_field :affiliate_commission
-        = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
-        = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, class: 'select2'
-        = f.text_area :description, class: 'tinymce', rows: 4
-        = f.check_box :hidden
+        .form-group
+          label.control-label.col-md-2 Name:
+          .col-md-7
+            = f.text_field :name, class: 'form-control'
+
+        .form-group
+          label.control-label.col-md-2 Cost:
+          .col-md-7
+            = f.number_field :cost_in_dollars, class: 'form-control'
+        .form-group
+          label.control-label.col-md-2 Commission:
+          .col-md-7
+            = f.number_field :affiliate_commission, class: 'form-control'
+        .form-group
+          label.control-label.col-md-2 Default Market:
+          .col-md-7
+            = f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
+        .form-group
+          label.control-label.col-md-2 Owner:
+          .col-md-7
+            = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, class: 'select2'
+        .form-group
+          label.control-label.col-md-2 Description:
+          .col-md-7
+            = f.text_area :description, class: 'tinymce', rows: 4
+        .form-group
+          .col-md-offset-2.col-md-7
+            .checkbox
+              label
+                = f.check_box :hidden
+                | hidden
 
         fieldset
           #legend
             legend Goal
-        .control-group
+        .form-group
           .controls
             = hidden_field_tag "course[goal_ids][]", nil
             - Goal.all.each do |goal|
-              label
-                = check_box_tag "course[goal_ids][]", goal.id, @course.goal_ids.include?(goal.id)
-                '
-                = goal.name
+              .form-group
+                .col-md-offset-2.col-md-7
+                  .checkbox
+                    label
+                      = check_box_tag "course[goal_ids][]", goal.id, @course.goal_ids.include?(goal.id)
+                      = goal.name
+
 
         .buttons
           = f.submit 'Save', class: 'btn btn-primary'
           = link_to 'Back', admin_courses_path, class: 'btn'
 
     .tab-pane id='course-previews-tab' class=course_previews_active?
-      = formatted_form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
+      = form_for(@course, url: url, html: {class: 'form-horizontal'}) do |f|
         = hidden_field_tag :active_view, :previews
         = f.fields_for(:default_market, @course.default_market) do |market|
           fieldset
             #legend
               legend Course Preview page
 
-          = market.text_field :name
-          = market.text_field :affiliate_tag
-          = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
-          = market.text_area :content, class: 'tinymce'
-          = image_tag @course.default_market.avatar.url(:square), height: '50', width: '50'
-          = market.file_field :avatar
+          .form-group
+            label.control-label.col-md-2 Name:
+            .col-md-7
+              = market.text_field :name, class: 'form-control'
+          .form-group
+            label.control-label.col-md-2 Affiliate tag:
+            .col-md-7
+              = market.text_field :affiliate_tag, class: 'form-control'
+          .form-group
+            label.control-label.col-md-2 Course:
+            .col-md-7
+              = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
+          .form-group
+            label.control-label.col-md-2 Content:
+            .col-md-7
+              = market.text_area :content, class: 'tinymce'
+          .form-group
+            label.control-label.col-md-2 Avatar:
+            .col-md-7
+              = image_tag @course.default_market.avatar.url(:square), height: '50', width: '50'
+              = market.file_field :avatar
 
-          .control-group
-            label.control-label Features
-            .controls
+          .form-group
+            label.control-label.col-md-2 Features
+            .col-md-7
               = market.fields_for :features do |feature|
+
                 = image_tag(market.object.avatar.url(:square), height: '50', width: '50')
                 = feature.file_field :avatar, label: ''
+
                 = feature.text_field :description, label: ''
                 - if feature.object.persisted?
                   = feature.hidden_field :_destroy, class: 'delete-feature-field'
                   button.delete-feature
                     | delete
+                hr
                 br/
 
 
@@ -88,7 +133,7 @@
             legend Sections
         table.table
           tr
-            th.span1
+            th.col-md-1
               | Sort
             th
               | Section

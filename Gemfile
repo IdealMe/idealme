@@ -79,13 +79,6 @@ gem 'gon'
 #Easy upload management for ActiveRecord
 gem 'paperclip', '~> 3.5.2'
 
-#A Rails form builder that generates Twitter Bootstrap markup and helps keep your code clean
-gem 'formatted_form'
-
-gem 'simple_form'
-
-
-
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.
 gem 'friendly_id'
 
@@ -218,9 +211,9 @@ group :development do
   # gem 'guard-rails'
   gem 'guard-bundler'
   gem 'guard-rspec'
-  # gem 'guard-livereload'
+  gem 'guard-livereload'
   # gem 'guard-rubocop'
-  # gem 'rack-livereload'
+  gem 'rack-livereload'
 end
 
 group :development, :test do
