@@ -53,7 +53,7 @@ describe 'affiliate dashboard functionality' do
   it 'links', js: true do
     login_as(affiliate_user, scope: :user)
     visit "/dashboard/affiliates?tab=links"
-    screenshot
+    # screenshot
   end
 
   it 'total sales', js: true do
@@ -69,7 +69,7 @@ describe 'affiliate dashboard functionality' do
   it 'affiliate urls', js: true do
     login_as(affiliate_user, scope: :user)
     visit "/dashboard/affiliates?tab=urls"
-    screenshot
+    # screenshot
   end
 
 end

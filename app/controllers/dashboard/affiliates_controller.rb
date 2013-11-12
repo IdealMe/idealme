@@ -9,8 +9,13 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
     @base = params.except(:controller, :action, :filter)
     case @tab
       when 'stats'
-        @affiliate_clicks = ::AffiliateClick.where('affiliate_clicks.user_id = ?', current_user.id).where('affiliate_clicks.created_at >= ? AND affiliate_clicks.created_at <= ?', @from_date, @to_date)
-        @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id).where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date).includes({:order => :course})
+        @affiliate_clicks = ::AffiliateClick.where('affiliate_clicks.user_id = ?', current_user.id)
+          .where('affiliate_clicks.created_at >= ? AND affiliate_clicks.created_at <= ?', @from_date, @to_date)
+          .references(:affiliate_clicks)
+        @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id)
+          .where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date)
+          .includes({:order => :course})
+          .references(:orders)
         @sum_unique_click = 0
         @sum_total_click = 0
         @affiliate_clicks.each do |affiliate_click|
