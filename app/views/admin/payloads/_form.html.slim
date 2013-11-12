@@ -4,8 +4,14 @@
       legend Payload
   = f.hidden_field :payloadable_id, value: @payload_parent.id
   = f.hidden_field :payloadable_type, value: @payload_parent.class.name.to_s
-  = f.file_field :payload
-  = f.select :intended_type, Payload::PAYLOAD_TYPE, {}, class: 'select2'
+  .form-group
+    label.control-label.col-md-2 Payload:
+    .col-md-7
+      = f.file_field :payload
+  .form-group
+    label.control-label.col-md-2 Type:
+    .col-md-7
+      = f.select :intended_type, Payload::PAYLOAD_TYPE, {}, class: 'select2'
   = f.submit 'Save', class: 'btn btn-success'
   = link_to 'Back', :back, class: 'btn'
 
