@@ -88,7 +88,7 @@ class Order < ActiveRecord::Base
 
 
     order.time = Time.now.to_i
-    order.checksum = Digest::SHA1.hexdigest("#{order.market.id}#{order.market.id}#{order.time}#{Idealme::Application.config.secret_token.reverse}")
+    order.checksum = Digest::SHA1.hexdigest("#{order.market.id}#{order.market.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
     order
   end
 
@@ -143,7 +143,7 @@ class Order < ActiveRecord::Base
 
 
   def valid_checksum?(validate_market_id, validate_course_id, validate_time)
-    self.checksum == Digest::SHA1.hexdigest("#{validate_market_id}#{validate_course_id}#{validate_time}#{Idealme::Application.config.secret_token.reverse}")
+    self.checksum == Digest::SHA1.hexdigest("#{validate_market_id}#{validate_course_id}#{validate_time}#{Idealme::Application.config.secret_key_base.reverse}")
   end
 
 end

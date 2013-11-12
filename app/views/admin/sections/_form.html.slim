@@ -3,7 +3,7 @@
     #legend
       legend Section
   .form-group
-    label.control-label.col-md-2 Name:
+    label.control-label.col-md-2 for="section_name" Name:
     .col-md-7
       = f.text_field :name, class: 'form-control'
   .form-group
@@ -43,4 +43,5 @@
 
   = f.submit 'Save', class: 'btn btn-success'
   = link_to 'Back', admin_sections_path, class: 'btn'
-  = link_to 'Delete Section', admin_section_path, :class => 'btn btn-danger', :method => "delete", :confirm => "Delete this section?"
+  - if @section.persisted?
+    = link_to 'Delete Section', admin_section_path, :class => 'btn btn-danger', :method => "delete", :confirm => "Delete this section?"

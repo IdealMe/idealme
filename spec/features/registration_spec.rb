@@ -9,6 +9,7 @@ describe 'registration' do
     fill_in 'user_email', with: 'newguy1000@idealme.com'
     fill_in 'user_password', with: 'passpass'
     page.find('input[name="commit"]').click
+    screenshot
     expect(current_path).to eq '/newguy1000/welcome'
   end
 

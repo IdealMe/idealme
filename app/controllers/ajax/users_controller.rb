@@ -11,6 +11,7 @@ class Ajax::UsersController < Ajax::BaseController
   # PUT /admin/users/1
   def update
     @user.update_attributes!(params[:user])
+    head :ok
   end
 
   protected

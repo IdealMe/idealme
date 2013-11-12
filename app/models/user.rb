@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   scope :get_affiliate_user, lambda { |code| where(affiliate_tag: code, access_affiliate: true) }
 
   # == Callbacks ============================================================
-  before_validation :reject_blank_affiliate_links
+  before_validation :set_username, :reject_blank_affiliate_links
   after_create :after_create
 
   # == Class Methods ========================================================
@@ -211,5 +211,12 @@ class User < ActiveRecord::Base
       link.market_tag.blank? && link.slug.blank?
     end
   end
+
+  def set_username
+    if self.username.nil?
+     self.username = email.split('@').first.parameterize('-')
+    end
+  end
+
 end
 

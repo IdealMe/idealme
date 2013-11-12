@@ -3,16 +3,16 @@ h1 Payload
 
 = link_to 'Back', admin_payloads_path, class: 'btn'
 = link_to 'Edit', edit_admin_payload_path(@payload), class: 'btn'
-= link_to 'Destroy', admin_payload_path(@payload), :method => 'delete', { :"data-confirm" => 'Are you sure?' }, :class => 'btn btn-danger'
+= link_to 'Destroy', admin_payload_path(@payload), :method => 'delete', :"data-confirm" => 'Are you sure?', :class => 'btn btn-danger'
 
 p
-  | File  :name => #{@payload.payload_file_name}
+  | File name: #{@payload.payload_file_name}
 p
-  | File Type (MIME)= #{@payload.intended_type_to_s} (#{@payload.payload_content_type})
+  | File Type (MIME): #{@payload.intended_type_to_s} (#{@payload.payload_content_type})
 p
-  | File  :Size => #{number_to_human_size(@payload.payload_file_size)} bytes
+  | File size: #{number_to_human_size(@payload.payload_file_size)} bytes
 p
-  | Created  :at => #{l @payload.created_at}
+  | Created at: #{l @payload.created_at}
 p Preview:
 p
   - case @payload.intended_type

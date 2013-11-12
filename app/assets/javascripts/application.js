@@ -26,6 +26,7 @@
 //= require users.js
 //= require flowplayer.min
 //= require bootstrap-datepicker
+//= require dropzone
 //= require_tree .
 
 

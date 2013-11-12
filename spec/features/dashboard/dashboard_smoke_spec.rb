@@ -32,29 +32,29 @@ describe 'affiliate dashboard functionality' do
     buy_course_as user
   end
 
-  # it "shows affiliate dashboard index", js: true do
-  #   login_as(affiliate_user, scope: :user)
-  #   visit "/dashboard"
-  #   expect(page.text).to include 'Total units sold: 1'
-  #   expect(page.text).to include 'Total affiliates pay out: $498.5000'
-  # end
+  it "shows affiliate dashboard index", js: true do
+    login_as(affiliate_user, scope: :user)
+    visit "/dashboard"
+    expect(page.text).to include 'Total units sold: 1'
+    expect(page.text).to include 'Total affiliates pay out: $498.5000'
+  end
 
-  # it "calculates conversions", js: true do
-  #   Capybara.reset_session!
-  #   visit '/now/my-link'
-  #   find('.enroll-btn').click
-  #   Capybara.reset_session!
-  #   login_as(affiliate_user, scope: :user)
-  #   visit "/dashboard"
-  #   expect(page.text).to include 'Conversion: 50'
-  #   expect(page.text).to include 'Total affiliates pay out: $498.5000'
-  # end
+  it "calculates conversions", js: true do
+    Capybara.reset_session!
+    visit '/now/my-link'
+    find('.enroll-btn').click
+    Capybara.reset_session!
+    login_as(affiliate_user, scope: :user)
+    visit "/dashboard"
+    expect(page.text).to include 'Conversion: 50'
+    expect(page.text).to include 'Total affiliates pay out: $498.5000'
+  end
 
-  # it 'links', js: true do
-  #   login_as(affiliate_user, scope: :user)
-  #   visit "/dashboard/affiliates?tab=links"
-  #   screenshot
-  # end
+  it 'links', js: true do
+    login_as(affiliate_user, scope: :user)
+    visit "/dashboard/affiliates?tab=links"
+    screenshot
+  end
 
   it 'total sales', js: true do
     user2 = create(:user2)
@@ -66,10 +66,10 @@ describe 'affiliate dashboard functionality' do
     expect(page.text).to include 'normal idealme'
   end
 
-  # it 'affiliate urls', js: true do
-  #   login_as(affiliate_user, scope: :user)
-  #   visit "/dashboard/affiliates?tab=urls"
-  #   screenshot
-  # end
+  it 'affiliate urls', js: true do
+    login_as(affiliate_user, scope: :user)
+    visit "/dashboard/affiliates?tab=urls"
+    screenshot
+  end
 
 end

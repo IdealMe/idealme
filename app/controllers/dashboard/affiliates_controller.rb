@@ -49,7 +49,11 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
           end
         end
       when 'sale'
-        @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id).where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true).includes(:affiliate_link, {:order => [:course, :user]})
+        @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id)
+          .where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true)
+          .includes(:affiliate_link, {:order => [:course, :user]})
+          .references(:orders)
+          .references(:affiliate_sales)
         @sum_commission = 0
         ::AffiliateSale.class_eval do
           attr_accessor :gross

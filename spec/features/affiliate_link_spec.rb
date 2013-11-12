@@ -40,7 +40,6 @@ describe 'affiliate links' do
     expect(AffiliateSale.count).to eq 1
     expect(AffiliateClick.count).to eq 1
     expect(link.sales).to include AffiliateSale.first
-
   end
 
 end

@@ -23,7 +23,7 @@ describe 'editing courses' do
 
     click_link "Previews"
 
-    fill_in "Name", with: "New fancy market name"
+    fill_in "Name:", with: "New fancy market name"
 
     click_button "Save"
     find("#previews-tab.active")
@@ -32,7 +32,8 @@ describe 'editing courses' do
     click_link "Sections"
     # let's make a new section
     click_link "New Section"
-    fill_in "Name", with: "beans"
+    screenshot
+    fill_in "Name:", with: "beans"
     click_button "Save"
     find("#course-content-tab.active")
 

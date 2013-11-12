@@ -42,7 +42,7 @@ describe 'purchase course' do
     expect(firstname_value).to eq @user.firstname
 
     find('.btn-complete-purchase').click
-
+    screenshot
     page.should have_content('There was a problem validating your information')
 
     fill_in "Card number", with: "4242424242424242"

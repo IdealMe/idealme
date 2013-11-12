@@ -1,4 +1,4 @@
-<table class="twelve">
+<table class="table">
   <thead>
   <tr>
     <th>Course Name</th>
@@ -9,7 +9,10 @@
   <% @courses.each do |course| %>
       <tr>
         <td><%= course.name %></td>
-        <td><%= markets_affiliate_markets_url(course.default_market.affiliate_tag, current_user.affiliate_tag) %></td>
+        <td>
+          <%- url = markets_affiliate_markets_url(course.default_market.affiliate_tag, current_user.affiliate_tag) %>
+          <%= link_to url, url, class: 'affiliate-url' %>
+        </td>
       </tr>
   <% end %>
   </tbody>

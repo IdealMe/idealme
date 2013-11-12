@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   def profile
     #@tab = params[:tab] || 'goal'
     if @owner
-      @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).all
-      @checkins = Checkin.for_user(@user).all
+      @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins)
+      @checkins = Checkin.for_user(@user)
       @courses = @user.courses
     else
-      @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).all
-      @checkins = Checkin.for_user(@user).private_goal(false).all
+      @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins)
+      @checkins = Checkin.for_user(@user).private_goal(false)
     end
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def welcome_save
     goal_ids = params[:goal_ids].reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
     if goal_ids && goal_ids.length > 0
-      goals = Goal.where(id: goal_ids).all
+      goals = Goal.where(id: goal_ids)
       goals.each { |goal| current_user.subscribe_goal(goal) }
     end
     redirect_to user_path(current_user)

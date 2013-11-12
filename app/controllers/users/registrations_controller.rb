@@ -3,7 +3,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout 'minimal'
 
   def create
-    set_username_param
     super
   end
 
@@ -14,11 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def set_username_param
-    if params[:user][:username].nil? && params[:user][:email].present?
-      params[:user][:username] = params[:user][:email].split('@').first.parameterize('-')
-    end
-  end
+  #def set_username_param
+  #  if sign_up_params[:username].nil? && sign_up_params[:email].present?
+  #    sign_up_params[:username] = sign_up_params[:email].split('@').first.parameterize('-')
+  #  end
+  #end
 
   def after_update_path_for(resource)
     user_path(resource)

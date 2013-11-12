@@ -28,7 +28,7 @@ html
   body class="#{body_class}"
     header
       = render 'header'
-    section.body_content.body-content.reset-box-sizing
+    section.body_content.body-content
       = render 'flash_message'
       - c = params[:controller].split('/')
       - if c.length == 2 && ['dashboard', 'admin', 'support'].include?(c.first)

@@ -6,11 +6,11 @@
         | Sign in to your Ideal Me account
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
         .form-group
-          label.control-label.col-md-4 Email:
+          label.control-label.col-md-4 for="user_email" Email:
           .col-md-7
             = f.text_field :email, class: 'form-control'
         .form-group
-          label.control-label.col-md-4 Password:
+          label.control-label.col-md-4 for="user_password" Password:
           .col-md-7
             = f.password_field :password, class: 'form-control'
 

@@ -1,7 +1,7 @@
 
 - tab = controller_name
 
-ul.nav.nav-tabs.nav-stacked
+ul.nav.nav-pills.nav-stacked
   li class="#{active_tab?('dashboard', tab, 'active', '')}"
     = link_to 'Dashboard', dashboard_root_path
   - if can? :access, :affiliate

@@ -21,7 +21,7 @@
               li = msg
 
         .form-group
-          label.control-label.col-md-2 Name:
+          label.control-label.col-md-2 for="course_name" Name:
           .col-md-7
             = f.text_field :name, class: 'form-control'
 
@@ -80,7 +80,7 @@
               legend Course Preview page
 
           .form-group
-            label.control-label.col-md-2 Name:
+            label.control-label.col-md-2 for="course_default_market_attributes_name" Name:
             .col-md-7
               = market.text_field :name, class: 'form-control'
           .form-group
@@ -99,17 +99,18 @@
             label.control-label.col-md-2 Avatar:
             .col-md-7
               = image_tag @course.default_market.avatar.url(:square), height: '50', width: '50'
-              = market.file_field :avatar
+              = market.file_field :avatar, class: 'form-control'
 
+          hr/
           .form-group
             label.control-label.col-md-2 Features
             .col-md-7
               = market.fields_for :features do |feature|
 
                 = image_tag(market.object.avatar.url(:square), height: '50', width: '50')
-                = feature.file_field :avatar, label: ''
+                = feature.file_field :avatar, label: '', class: 'form-control'
 
-                = feature.text_field :description, label: ''
+                = feature.text_field :description, label: '', class: 'form-control', placeholder: 'Description'
                 - if feature.object.persisted?
                   = feature.hidden_field :_destroy, class: 'delete-feature-field'
                   button.delete-feature

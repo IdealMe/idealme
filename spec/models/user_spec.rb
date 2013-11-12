@@ -20,6 +20,12 @@ describe User do
       user = create(:user)
       user.fullname.should == "#{user.firstname} #{user.lastname}"
     end
+
+    it "has affiliate urls for each course" do
+      course = create(:course)
+      user = create(:user)
+      expect(user.affiliate_urls).to eq "beasn"
+    end
   end
 
   describe 'Course authorization' do
