@@ -18,7 +18,7 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .intro-wp .text { float: left; display: inline; padding: 38px 0 0 42px; width: 272px; line-height: 29px; color: #ffffff; font-size: 22px; font-weight: 100 }
 .intro-wp .text ul { list-style: none outside none; }
 .intro-wp .text ul li { padding: 0 0 10px 0; display: block; }
-.intro-wp .join-box { width: 234px; float: right; display: inline; padding: 9px; background: #ff999a; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.intro-wp .join-box { width: 250px; float: right; display: inline; padding: 9px; background: #ff999a; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .intro-wp .join-box form { margin: 0; }
 .intro-wp .join-box a.fb-join-btn { width: 234px; height: 36px; line-height: 36px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; text-align: center; display: block; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
 .intro-wp .join-box a.fb-join-btn:hover { background: #3b5999; text-decoration: none; }
@@ -41,7 +41,7 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .courses-wp .vendor_name { line-height: 26px; }
 .courses-wp .offer_card { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; overflow: hidden; }
 
-.goal-box-long { height: 180px; 
+.goal-box-long { height: 180px;
 	.avatar { padding-top: 16px; }
 	.goal-name { font-size: 16px; font-weight: 400;}
 }
