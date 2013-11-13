@@ -37,7 +37,7 @@ class Admin::CoursesController < Admin::BaseController
 
   # PUT /admin/courses/1
   def update
-    @course.update_attributes!(params[:course])
+    @course.update_attributes!(course_params)
     #redirect_to edit_admin_course_path(@course), notice: 'Course was successfully updated.'
     flash[:notice] = 'Course was successfully updated.'
     render action: :edit
@@ -64,6 +64,10 @@ class Admin::CoursesController < Admin::BaseController
   end
 
   def build_course
-    @course = Course.new(params[:course])
+    @course = Course.new(course_params)
+  end
+
+  def course_params
+    params.require(:course).permit!
   end
 end

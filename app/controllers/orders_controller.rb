@@ -118,12 +118,16 @@ class OrdersController < ApplicationController
 
 
   def build_order
-    @order = Order.new(params[:order])
+    @order = Order.new(order_params)
     @market = Market.where(id: @order.market.id).first
     @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
     raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
+  end
+
+  def order_params
+    params.require(:order).permit!
   end
 
 

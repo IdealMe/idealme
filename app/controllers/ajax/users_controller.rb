@@ -10,7 +10,7 @@ class Ajax::UsersController < Ajax::BaseController
 
   # PUT /admin/users/1
   def update
-    @user.update_attributes!(params[:user])
+    @user.update_attributes!(user_params)
     head :ok
   end
 
@@ -27,5 +27,9 @@ class Ajax::UsersController < Ajax::BaseController
   def load_user
     @user = User.where(username: params[:id]).first
     @owner = (current_user.id == @user.id)
+  end
+
+  def user_params
+    params.require(:user).permit(:timezone)
   end
 end

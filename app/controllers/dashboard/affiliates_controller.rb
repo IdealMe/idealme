@@ -78,7 +78,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
 
   def show
     @affiliate_link = ::AffiliateLink.where('affiliate_links.slug = ?', params[:id]).first
-    raise(IdealMeException::RecordNotFound, 'That affiliate link does not exist') if @affiliate_link.nil?
+    raise('That affiliate link does not exist') if @affiliate_link.nil?
 
     authorize!(:read, @affiliate_link)
     @affiliate_clicks = ::AffiliateClick.where('affiliate_links.slug = ?', params[:id]).where('affiliate_clicks.created_at >= ? AND affiliate_clicks.created_at <= ?', @from_date, @to_date).includes(:affiliate_link)
@@ -118,9 +118,9 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
   end
 
   def create
-    @affiliate_link = ::AffiliateLink.new(params[:affiliate_link])
+    @affiliate_link = ::AffiliateLink.new(affiliate_link_params)
     if @affiliate_link.save
-      redirect_to dashboard_affiliate_path(@affiliate_link), notice: 'Affiliate link was successfully created.'
+      redirect_to dashboard_affiliate_path(@affiliate_link.slug), notice: 'Affiliate link was successfully created.'
     else
       render action: "new"
     end
@@ -150,5 +150,9 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
   private
   def authenticate
     authorize!(:access, :affiliate)
+  end
+
+  def affiliate_link_params
+    params.require(:affiliate_link).permit!
   end
 end
