@@ -42,6 +42,7 @@ class MarketsController < ApplicationController
     # Off to the market place
     redirect_to market_path market and return if market
 
+binding.pry
     # Redirect to the market place if the market if not found, but the affiliate cookies are still set
     redirect_to markets_path
   end
@@ -61,6 +62,7 @@ class MarketsController < ApplicationController
     @polls = PollQuestion.compute_poll_question_tags
 
   rescue ActiveRecord::RecordNotFound
+binding.pry
     redirect_to markets_path, alert: 'Market not found.'
   end
 
