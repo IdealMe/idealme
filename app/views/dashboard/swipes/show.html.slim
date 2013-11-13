@@ -1,31 +1,30 @@
 .row
-  .twelve.columns
-    dl.sub-nav
-      dt
-        | Filter:
-      |  <dd class="
-      = active_tab?('video', @tab, 'active', 'inactive')
-      | "> 
-      = link_to("Video", dashboard_swipe_path(@swipe, {:tab => 'video'}))
-      |  <dd class="
-      = active_tab?('email', @tab, 'active', 'inactive')
-      | "> 
-      = link_to("Emails", dashboard_swipe_path(@swipe, {:tab => 'email'}))
-      |  <dd class="
-      = active_tab?('banner', @tab, 'active', 'inactive')
-      | "> 
-      = link_to("Banners", dashboard_swipe_path(@swipe, {:tab => 'banner'}))
-      |  <dd class="
-      = active_tab?('social', @tab, 'active', 'inactive')
-      | "> 
-      = link_to("Social", dashboard_swipe_path(@swipe, {:tab => 'social'}))
-    - case @tab
+  dl.sub-nav
+    dt
+      | Filter:
+    |  <dd class="
+    = active_tab?('video', @tab, 'active', 'inactive')
+    | ">
+    = link_to("Video", dashboard_swipe_path(@swipe, {:tab => 'video'}))
+    |  <dd class="
+    = active_tab?('email', @tab, 'active', 'inactive')
+    | ">
+    = link_to("Emails", dashboard_swipe_path(@swipe, {:tab => 'email'}))
+    |  <dd class="
+    = active_tab?('banner', @tab, 'active', 'inactive')
+    | ">
+    = link_to("Banners", dashboard_swipe_path(@swipe, {:tab => 'banner'}))
+    |  <dd class="
+    = active_tab?('social', @tab, 'active', 'inactive')
+    | ">
+    = link_to("Social", dashboard_swipe_path(@swipe, {:tab => 'social'}))
+  - case @tab
 
-    - when 'video'
-      = render(:partial => 'dashboard/swipes/partials/video')
-    - when 'email'
-      = render(:partial => 'dashboard/swipes/partials/email')
-    - when 'banner'
-      = render(:partial => 'dashboard/swipes/partials/banner')
-    - when 'social'
-      = render(:partial => 'dashboard/swipes/partials/social')
+  - when 'video'
+    = render(:partial => 'dashboard/swipes/partials/video')
+  - when 'email'
+    = render(:partial => 'dashboard/swipes/partials/email')
+  - when 'banner'
+    = render(:partial => 'dashboard/swipes/partials/banner')
+  - when 'social'
+    = render(:partial => 'dashboard/swipes/partials/social')

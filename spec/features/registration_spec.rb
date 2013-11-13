@@ -7,6 +7,10 @@ describe 'registration' do
     page.should have_content('Create your FREE Ideal Me account')
     #fill_in 'user_username', with: 'newguy'
     fill_in 'user_email', with: 'newguy1000@idealme.com'
+    fill_in 'user_password', with: 'passpas'
+    page.should have_content('Invalid email or password')
+    page.find('input[name="commit"]').click
+    fill_in 'user_email', with: 'newguy1000@idealme.com'
     fill_in 'user_password', with: 'passpass'
     page.find('input[name="commit"]').click
     screenshot

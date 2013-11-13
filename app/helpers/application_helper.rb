@@ -66,9 +66,16 @@ module ApplicationHelper
   end
 
 
-  def month_options_for_select(selected_value = nil)
+  def cc_month_options_for_select(selected_value = nil)
     months = (1..12).map { |h| ["%02d"%h, h] }
-    options_for_select(months, selected_value)
+    # options_for_select(months, selected_value)
+    months
+  end
+
+  def cc_year_options_for_select(selected_value = nil)
+    years = (Time.now.year..Time.now.year+10).map { |h| ["%02d"%h, h] }
+    # options_for_select(years, selected_value)
+    years
   end
 
   def environment_info

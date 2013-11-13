@@ -1,14 +1,13 @@
 .row
-  .twelve.columns
-    h1
-      | Swipe Files
-    table.twelve
-      thead
+  h1
+    | Swipe Files
+  table.table
+    thead
+      tr
+        th
+          | Course
+    tbody
+      - @swipes.each do |swipe|
         tr
-          th
-            | Course
-      tbody
-        - @swipes.each do |swipe|
-          tr
-            td
-              = link_to swipe.name, dashboard_swipe_path(swipe)
+          td
+            = link_to swipe.name, dashboard_swipe_path(swipe)

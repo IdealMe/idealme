@@ -4,17 +4,10 @@
     .account-box
       .message-box
         | Sign in to your Ideal Me account
-      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
-        .form-group
-          label.control-label.col-md-4 for="user_email" Email:
-          .col-md-7
-            = f.text_field :email, class: 'form-control'
-        .form-group
-          label.control-label.col-md-4 for="user_password" Password:
-          .col-md-7
-            = f.password_field :password, class: 'form-control'
 
-
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :bootstrap_horizontal_with_offset, html: {class: 'form-horizontal'}) do |f|
+        = f.input :email
+        = f.input :password
         - if devise_mapping.rememberable?
           .form-group
             .col-md-offset-4.col-md-7
@@ -29,6 +22,7 @@
 
         .control-box
           = f.submit 'Sign in', class: 'btn btn-red', id: 'sign-in-button'
+
   .footer
     .oauth
       ' Or:

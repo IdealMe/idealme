@@ -25,6 +25,22 @@ GIT
       i18n (~> 0.5)
       state_machine (~> 1.1)
 
+GIT
+  remote: https://github.com/jim/carmen-rails.git
+  revision: 076dd251e075d07408e0b5268f886956ef2a347c
+  specs:
+    carmen-rails (1.0.0)
+      carmen (~> 1.0.0)
+      rails
+
+GIT
+  remote: https://github.com/plataformatec/simple_form.git
+  revision: 6b9e0f3d0ecde4311e511d90899f4192bea9b738
+  specs:
+    simple_form (3.0.0)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,9 +140,6 @@ GEM
       xpath (~> 2.0)
     carmen (1.0.0)
       unicode_utils (~> 1.4.0)
-    carmen-rails (1.0.0)
-      carmen (~> 1.0.0.beta2)
-      rails
     celluloid (0.15.2)
       timers (~> 1.1.0)
     childprocess (0.3.9)
@@ -534,7 +547,7 @@ DEPENDENCIES
   cane
   capybara
   carmen
-  carmen-rails
+  carmen-rails!
   cloudfront-signer
   coffee-rails
   comfortable_mexican_sofa (~> 1.11.0)
@@ -588,6 +601,7 @@ DEPENDENCIES
   sass-rails
   selenium-webdriver
   sidekiq
+  simple_form!
   slim
   stripe
   therubyracer

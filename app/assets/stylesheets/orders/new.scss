@@ -50,14 +50,14 @@
 
           .exp-date {
             @include float-left;
-            .exp-month, .exp-year {
+            .order_card_exp_month, .order_card_exp_year {
               @include float-left;
-              width: 120px;
+              width: 150px;
             }
-            .exp-month {
+            .order_card_exp_month {
               @include m_r(17px);
             }
-            .exp-year {
+            .order_card_exp_year {
               @include m_r(65px);
             }
           }

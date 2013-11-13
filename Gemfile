@@ -55,10 +55,6 @@ gem 'cancan'
 
 #Capistrano is a utility and framework for executing commands in parallel on multiple remote machines, via SSH.
 gem 'recap'
-#gem 'capistrano', '~> 2.0.0'
-#gem 'capistrano-rails'
-#gem 'capistrano-rvm', '~> 0.0.2'
-#gem 'capistrano-bundler'
 
 #A generalized Rack framework for multiple-provider authentication.
 gem 'omniauth'
@@ -74,6 +70,8 @@ gem 'omniauth-twitter'
 
 #If you need to send some data to your js files and you don't want to do this with long way trough views and parsing - use this force!
 gem 'gon'
+
+gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git'
 
 #Easy upload management for ActiveRecord
 gem 'paperclip', '~> 3.5.2'
@@ -98,8 +96,9 @@ gem 'awesome_print'
 
 #A collection of geographic country and state names for Ruby. Also includes replacements for Rails' country_select and state_select plugins
 gem 'carmen'
+
 #Provides country_select and subregion_select form helpers.
-gem 'carmen-rails'
+gem 'carmen-rails', git: 'https://github.com/jim/carmen-rails.git'
 
 #AWS SDK for Ruby
 gem 'aws-sdk'
