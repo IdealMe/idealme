@@ -1,5 +1,5 @@
 .container
-  .main-section.col-sm-6
+  .main-section.col-sm-7
     .product-info
       .media
         .pull-left
@@ -8,12 +8,12 @@
           h4.media-heading
             = @market.course.name
           .author
-            | by
+            ' by
             = @market.course.owner.fullname
           .price
             = penny_to_currency(@market.course.cost)
     = render partial: 'form'
-  .sidebar.col-sm-offset-1.col-sm-5
+  .sidebar.col-sm-5
     .modal_title4 What you get
     .what_you_get
       ul.list_1

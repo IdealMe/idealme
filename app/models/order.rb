@@ -122,6 +122,8 @@ class Order < ActiveRecord::Base
         field_name = error.first
         if field_name == 'year'
           mapped_field = :card_exp_year
+        elsif field_name =='month'
+          mapped_field = :card_exp_month
         elsif field_name =='number'
           mapped_field = :card_number
         elsif field_name =='verification_value'

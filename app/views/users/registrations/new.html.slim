@@ -2,7 +2,7 @@
   .modal-box
     .account-box
       .message-box
-        | Sign up for your Ideal Me account
+        | Create your FREE Ideal Me account
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), wrapper: :bootstrap_horizontal_with_offset, html: {class: 'form-horizontal'}) do |f|
         = f.input :email
         = f.input :password

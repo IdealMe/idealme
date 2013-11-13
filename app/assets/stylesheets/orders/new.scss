@@ -156,10 +156,11 @@
         float: left;
         text-align: left;
 
-        width: 500px;
+        width: 460px;
         @include bg(white);
         margin-top: 33px;
         border: 1px solid #ebeae8;
+        padding: 0;
         .modal_title4:first-child {
           border-top: 0px;
         }

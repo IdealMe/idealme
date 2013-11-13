@@ -1,6 +1,6 @@
 section.pay-method
   p
-    | Pay with:
+    ' Pay with:
     = image_tag 'icons/credit_cards_icon.png', class: 'credit-cards-image'
   .clear
 
@@ -11,38 +11,44 @@ section.pay-method
   = f.hidden_field :time
   = f.hidden_field :checksum
 
-  .form-group
+  .form-group.row
     = f.input :card_firstname, label: "First Name", wrapper_html: { class: "col-sm-6" }
     = f.input :card_lastname, label: "Last Name", wrapper_html: { class: "col-sm-6" }
 
-  .form-group
+  .form-group.row
     = f.input :card_number, size: 16, maxlength: 16, label: "Card Number", wrapper_html: { class: "col-sm-6" }
     = f.input :card_type, collection: [["Visa", "visa"], ["Master Card", "master"]], wrapper_html: { class: "col-sm-6" }
-  .form-group
-    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-5" })
-    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-5" })
-  .form-group
+
+  .form-group.row
+    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-3" })
+    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-4" })
     = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)', wrapper_html: { class: "col-sm-5" }
+  /.form-group.row
+
 
   .form-group
     = f.input :billing_address1, label: 'Address line 1'
     = f.input :billing_address2, label: 'Address line 2'
-    = f.input :billing_city, label: 'City'
-    = f.input :billing_zip, label: 'Zip / Postal Code'
-    = f.input :billing_state, label: 'State / Province / Region'
-    = f.input :billing_country, label: 'Country', priority: ['US'], as: :country
+  .form-group.row
+
+    = f.input :billing_city, label: 'City', wrapper_html: { class: "col-sm-6" }
+    = f.input :billing_zip, label: 'Zip / Postal Code', wrapper_html: { class: "col-sm-6" }
+  .form-group.row
+
+    = f.input :billing_state, label: 'State / Province / Region', wrapper_html: { class: "col-sm-6" }
+    = f.input :billing_country, label: 'Country', priority: ['US'], as: :country, wrapper_html: { class: "col-sm-6" }
 
   .clear
   section.submit-box
     = f.submit 'Complete Purchase', class: 'btn btn-red btn-complete-purchase'
     .agreement-text
-      | By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy.
-      |  Note=you will be billed immediately.
+      ' By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy.
+      '  Note=you will be billed immediately.
     .clear
 
 section.pay-method
   p
-    | Or
+    ' Or
     p
       = link_to paypal_checkout_order_path(@order.market), method: :post do
         = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')

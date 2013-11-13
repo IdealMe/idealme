@@ -7,13 +7,8 @@ def buy_course_as(user)
   login_as(user, scope: :user)
   visit '/now/my-link'
   find('.enroll-btn').click
-  fill_in "Card number", with: '1234123412341234'
+  fill_in "Card Number", with: '1234123412341234'
   fill_in "Security Code", with: '123'
-  fill_in "Address line 1", with: '123 Main St.'
-  fill_in "City", with: 'Nowheresville'
-  fill_in "Zip", with: '11111'
-  fill_in "State", with: 'CA'
-  fill_in "Country", with: 'US'
   order_response = double(:success? => true)
   ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
   Order.any_instance.stub(:valid?).and_return(true)

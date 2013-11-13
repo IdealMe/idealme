@@ -3,7 +3,7 @@ SimpleForm.setup do |config|
   config.error_notification_class = 'alert alert-error'
   config.label_class = 'control-label'
 
-  config.wrappers :bootstrap, tag: 'div', class: 'control-group', error_class: 'error' do |b|
+  config.wrappers :bootstrap, tag: 'div', class: 'control-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -14,7 +14,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :bootstrap_horizontal, :tag => 'div', :class => 'form-group', :error_class => 'error' do |b|
+  config.wrappers :bootstrap_horizontal, :tag => 'div', :class => 'form-group', :error_class => 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     # b.use :label, :label_html => { :class => 'col-sm-3' }
@@ -27,7 +27,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :bootstrap_horizontal_with_offset, :tag => 'div', :class => 'form-group', :error_class => 'error' do |b|
+  config.wrappers :bootstrap_horizontal_with_offset, :tag => 'div', :class => 'form-group', :error_class => 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label, wrap_with: { tag: 'div', class: 'col-sm-offset-1 col-sm-3' }
@@ -39,7 +39,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :bootstrap_horizontal_columns, :tag => 'div', :class => 'form-group', :error_class => 'error' do |b|
+  config.wrappers :bootstrap_horizontal_columns, :tag => 'div', :class => 'form-group', :error_class => 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label, wrap_with: { tag: 'div', class: 'col-sm-4' }
@@ -51,7 +51,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :prepend, tag: 'div', class: "control-group", error_class: 'error' do |b|
+  config.wrappers :prepend, tag: 'div', class: "control-group", error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -64,7 +64,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :append, tag: 'div', class: "control-group", error_class: 'error' do |b|
+  config.wrappers :append, tag: 'div', class: "control-group", error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label

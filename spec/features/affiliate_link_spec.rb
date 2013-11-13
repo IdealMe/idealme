@@ -23,13 +23,9 @@ describe 'affiliate links' do
     expect(current_path).to include '/orders'
 
 
-    fill_in "Card number", with: '1234123412341234'
+    fill_in "Card Number", with: '1234123412341234'
     fill_in "Security Code", with: '123'
-    fill_in "Address line 1", with: '123 Main St.'
-    fill_in "City", with: 'Nowheresville'
-    fill_in "Zip", with: '11111'
-    fill_in "State", with: 'CA'
-    fill_in "Country", with: 'US'
+
 
     order_response = double(:success? => true)
     ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
@@ -57,13 +53,9 @@ describe 'affiliate links' do
     expect(current_path).to include '/orders'
 
 
-    fill_in "Card number", with: '1234123412341234'
+    fill_in "Card Number", with: '1234123412341234'
     fill_in "Security Code", with: '123'
-    fill_in "Address line 1", with: '123 Main St.'
-    fill_in "City", with: 'Nowheresville'
-    fill_in "Zip", with: '11111'
-    fill_in "State", with: 'CA'
-    fill_in "Country", with: 'US'
+
 
     order_response = double(:success? => true)
     ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)

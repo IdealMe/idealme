@@ -32,7 +32,6 @@ describe 'editing courses' do
     click_link "Sections"
     # let's make a new section
     click_link "New Section"
-    screenshot
     fill_in "Name:", with: "beans"
     click_button "Save"
     find("#course-content-tab.active")
