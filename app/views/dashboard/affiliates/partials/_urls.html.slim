@@ -11,5 +11,5 @@ table.table
         td
           = course.name
         td
-          - - url = markets_affiliate_markets_url(course.default_market.affiliate_tag, current_user.affiliate_tag)
+          - url = markets_affiliate_markets_url(course.default_market.affiliate_tag, current_user.affiliate_tag)
           = link_to url, url, class: 'affiliate-url'

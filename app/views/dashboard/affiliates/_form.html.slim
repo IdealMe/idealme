@@ -1,16 +1,34 @@
-= form_for @affiliate_link, :url => url do |f|
+= form_for @affiliate_link, url: url, html: {class: 'form-horizontal'} do |f|
   = f.hidden_field :user_id, :value => current_user.id
-  = f.label(:name)
-  = f.text_field(:name)
-  = f.label(:slug)
-  = f.text_field(:slug)
+
+  - if @affiliate_link.errors.any?
+    - @affiliate_link.errors.full_messages.each do |msg|
+      = msg
+      br/
+  .form-group
+    label.control-label.col-md-2 for="affiliate_link_name" Name:
+    .col-md-7
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    label.control-label.col-md-2 for="affiliate_link_slug" Slug:
+    .col-md-7
+      = f.text_field :slug, class: 'form-control'
+
   - unless @affiliate_link.persisted?
-    = f.label(:tracking_tag)
-    = f.text_field(:tracking_tag)
-    = f.label :market_tag
-    = f.text_field(:market_tag, :size => 10, :maxlength => 10)
-  = f.label(:note)
-  = f.text_area(:note)
-  .form-actions
-    = f.submit nil, :class => 'success button'
-    = link_to 'Cancel', dashboard_affiliates_path, :class => 'secondary button'
+    .form-group
+      label.control-label.col-md-2 for="affiliate_link_tracking_tag" Tracking tag:
+      .col-md-7
+        = f.text_field :tracking_tag, class: 'form-control'
+    .form-group
+      label.control-label.col-md-2 for="affiliate_link_market_tag" Market:
+      .col-md-7
+        = f.text_field :market_tag, class: 'form-control'
+
+  .form-group
+    label.control-label.col-md-2 for="affiliate_link_note" Note:
+    .col-md-7
+      = f.text_area :name, class: 'form-control'
+
+  .form-actions.col-md-offset-2
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to 'Cancel', dashboard_affiliates_path, :class => 'btn'
