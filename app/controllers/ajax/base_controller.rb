@@ -6,7 +6,7 @@ class Ajax::BaseController < ::ApplicationController
 
 
   rescue_from IdealmeException::Ajax::EarlyBailout do |exception|
-    render :early_bailout and return
+    render json: :early_bailout and return
   end
 
   def set_status_and_error(status, error, exception=IdealmeException::Ajax::EarlyBailout)
