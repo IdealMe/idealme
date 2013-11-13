@@ -3,8 +3,6 @@ class AffiliateClick < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :clicks, :ip, :tracking_code, :user_agent, :user_id, :affiliate_link_id, :created_at
-
   # == Relationships ========================================================
   belongs_to :affiliate_link
   belongs_to :user

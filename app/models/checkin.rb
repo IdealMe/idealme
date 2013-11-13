@@ -1,17 +1,15 @@
 class Checkin < ActiveRecord::Base
-  # == Imports ============================================================== 
+  # == Imports ==============================================================
   include Votable
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :success, :goal_user_id, :thoughts, :up_votes, :down_votes
-
-  # == Relationships ======================================================== 
+  # == Relationships ========================================================
   belongs_to :goal_user
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :replies, through: :comments
-  
+
 
   # == Paperclip ============================================================
   # == Validations ==========================================================

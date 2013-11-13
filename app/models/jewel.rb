@@ -13,8 +13,6 @@ class Jewel < ActiveRecord::Base
   LINK = 1
   GOAL = 2
   COURSE = 3
-  # == Attributes ===========================================================
-  attr_accessible :name, :slug, :content, :url, :avatar, :owner_id, :up_votes, :down_votes, :kind, :course, :course_id, :parameters
 
   def kind_to_s
     if self.kind == Jewel::EVERYTHING

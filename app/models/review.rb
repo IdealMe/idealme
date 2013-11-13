@@ -3,8 +3,6 @@ class Review < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :content, :owner_id, :recommended, :course_id
-
   # == Relationships ========================================================
   belongs_to :course
   belongs_to :owner, class_name: 'User'

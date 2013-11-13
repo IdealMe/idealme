@@ -5,8 +5,6 @@ class Activity < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :action, :count, :share_key, :parameters, :read, :sender, :trackable, :sender_id, :sender_type
-
   # == Relationships ========================================================
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :replies, through: :comments

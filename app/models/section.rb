@@ -9,8 +9,6 @@ class Section < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :name, :slug, :course, :course_id, :content, :position, :description
-
   # == Relationships ========================================================
   belongs_to :course
   has_many :lectures

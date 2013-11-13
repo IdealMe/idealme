@@ -3,14 +3,12 @@ class PollQuestion < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :name, :display_results, :poll_choices_attributes
-
   # == Relationships ========================================================
   has_many :poll_choices
   has_many :poll_results
 
   accepts_nested_attributes_for :poll_choices, reject_if: lambda { |a| a[:name].blank? }, allow_destroy: true
-  
+
   # == Paperclip ============================================================
   # == Validations ==========================================================
   validates :name, presence: true

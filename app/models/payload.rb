@@ -9,7 +9,6 @@ class Payload < ActiveRecord::Base
                   ['Archive', IM_PAYLOAD_ARCHIVE]]
 
   # == Attributes ===========================================================
-  attr_accessible :payload, :intended_type, :payloadable_id, :payloadable_type
   attr_reader :payload_remote_url
 
   # == Relationships ========================================================

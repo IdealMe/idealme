@@ -7,7 +7,6 @@ class Market < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag, :course_id, :course, :features_attributes
 
   # == Relationships ========================================================
   has_many :payloads, as: :payloadable, dependent: :destroy

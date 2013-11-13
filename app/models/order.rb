@@ -18,13 +18,7 @@ class Order < ActiveRecord::Base
   }
 
   # == Attributes ===========================================================
-  attr_accessible :user_id, :market_id, :course_id, :card_firstname, :card_lastname, :card_type, :card_exp_month,
-                  :card_exp_year, :billing_address1, :billing_address2, :billing_city, :billing_zip, :billing_state, :billing_country, :parameters
-
-
   attr_accessor :time, :checksum, :card_number, :card_cvv, :cc
-  attr_accessible :time, :checksum, :card_number, :card_cvv, :cc
-
 
   # == Relationships ========================================================
   belongs_to :course
