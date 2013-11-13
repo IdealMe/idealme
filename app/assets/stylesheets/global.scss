@@ -27,7 +27,7 @@
   }
 }
 
-.btn-lightblue, .btn-blue, .btn-red { color: #FFFFFF; padding: 15px 25px; text-shadow: none; font-size: 18px; font-weight: 500; &:hover { color: white; } }
+.btn-lightblue, .btn-blue, .btn-red { color: #FFFFFF; padding: 8px 25px; text-shadow: none; font-size: 18px; font-weight: 500; &:hover { color: white; } }
 .btn-lightblue { background: none repeat scroll 0 0 #4099FF; &:hover, &:focus, &.active {background: none repeat scroll 0 0 #7099FF; } }
 .btn-blue { background: none repeat scroll 0 0 #3b5998; &:hover, &:focus, &.active {background: none repeat scroll 0 0 #3B59A0; } }
 .btn-red { background: none repeat scroll 0 0 #f16764; &:hover, &:focus, &.active {background: none repeat scroll 0 0 #FA7977; } }

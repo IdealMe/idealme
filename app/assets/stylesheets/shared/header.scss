@@ -55,7 +55,8 @@ header {
 
     .left-menu {
       @include float-left;
-      margin: 0px 0px 0 11px;
+      margin: 0;
+      padding-left: 0;
       li {
         @include float-left;
         margin: 0 10px;

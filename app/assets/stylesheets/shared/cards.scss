@@ -207,8 +207,8 @@
   @include bg(white);
   border: 1px solid #e4e4e4;
   @include border-radius(5px);
-  @include m_r(8px);
-  @include m_l(8px);
+  @include m_r(7px);
+  @include m_l(7px);
   @include m_b(18px);
   //@include pointer;
   height: 163px;
@@ -238,8 +238,8 @@
   }
 }
 
-.goal-card-new { width: 228px;  height: 113px; @include p_t(67px); }
-.course-card-new { width: 228px; height: 210px; @include p_t(130px); }
+.goal-card-new { width: 228px;  height: 180px; @include p_t(36px); }
+.course-card-new { width: 228px; height: 288px; @include p_t(98px); }
 
 .goal-card {
   @include float-left;

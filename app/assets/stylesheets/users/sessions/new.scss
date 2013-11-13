@@ -27,8 +27,8 @@
             text-align: center;
             .btn { @include upper; }
             .btn-red {
-              width: 311px;
-              margin-left: 88px; }
+              width: 281px; 
+              margin-left: 132px;}
 
           }
           .forgot-password {
@@ -69,9 +69,9 @@
       .footer {
         @include centered;
         .oauth {
-          margin-right: -51px;
+          margin-right: -94px;
           @include p_b(10px);
-          .btn { width: 260px; margin-left: 10px; text-transform: uppercase;}
+          .btn { width: 281px; margin-left: 10px; text-transform: uppercase;}
         }
         p {
           @include m_t(16px);

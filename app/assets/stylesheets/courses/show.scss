@@ -113,7 +113,7 @@
     }
   }
   .sidebar {
-    width: 450px;
+    width: 444px;
     margin-top: 11px;
     margin-left: 16px;
     float: left;
@@ -144,7 +144,9 @@
     margin-bottom: 10px;
     .comment-content {
       width: 73%;
-      height: 26px;
+      height: 36px;
+      padding-left: 10px;
+      margin-bottom: 10px;
       @include bg(white);
       @include fs(12px);
       @include lh(26px);
