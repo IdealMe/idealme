@@ -215,7 +215,7 @@ class User < ActiveRecord::Base
   end
 
   def set_username
-    if self.username.nil?
+    if username.nil? && email.present?
      self.username = email.split('@').first.parameterize('-')
     end
   end
