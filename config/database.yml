@@ -1,0 +1,17 @@
+defaults: &defaults
+  pool: 5
+  adapter: postgresql
+  host: localhost
+  port: 5432 # connect directly to postgres
+  timeout: 5000
+  database: idealme_development
+  username: idealme
+  password:
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  database: idealme_test
+
