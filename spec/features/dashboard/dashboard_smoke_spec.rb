@@ -37,6 +37,9 @@ describe 'affiliate dashboard functionality' do
     visit "/dashboard"
     expect(page.text).to include 'Total units sold: 1'
     expect(page.text).to include 'Total affiliates pay out: $498.5000'
+    expect(AffiliateSale.count).to eq 1
+    expect(AffiliateClick.count).to eq 1
+    AffiliateSale.first.user_id.should eq affiliate_user.id
   end
 
   it "calculates conversions", js: true do

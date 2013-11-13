@@ -15,7 +15,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
         @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id)
           .where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date)
           .includes({:order => :course})
-          .references(:orders)
+          .references(:orders, :affiliate_sales)
         @sum_unique_click = 0
         @sum_total_click = 0
         @affiliate_clicks.each do |affiliate_click|
@@ -55,7 +55,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
         end
       when 'sale'
         @affiliate_sales = ::AffiliateSale.where('affiliate_sales.user_id = ?', current_user.id)
-          .where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true)
+          .where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date)
           .includes(:affiliate_link, {:order => [:course, :user]})
           .references(:orders)
           .references(:affiliate_sales)
