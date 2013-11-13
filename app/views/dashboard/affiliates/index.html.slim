@@ -1,0 +1,33 @@
+h4
+  | Displaying statistics from 
+  = @from_date
+  |  to 
+  = @to_date
+ul.nav.nav-tabs
+  |  <li class="
+  = active_tab?('stats', @tab, 'active', '')
+  | "> 
+  = link_to("Stats Overview", dashboard_affiliates_path(@base.merge({:tab => 'stats'})))
+  |  <li class="
+  = active_tab?('links', @tab, 'active', '')
+  | "> 
+  = link_to("Links", dashboard_affiliates_path(@base.merge({:tab => 'links'})))
+  |  <li class="
+  = active_tab?('sale', @tab, 'active', '')
+  | "> 
+  = link_to("Total Sales", dashboard_affiliates_path(@base.merge({:tab => 'sale'})))
+  |  <li class="
+  = active_tab?('urls', @tab, 'active', '')
+  | "> 
+  = link_to("Affiliate URLs", dashboard_affiliates_path(@base.merge({:tab => 'urls'})))
+.dashboard-content
+  - case @tab
+
+  - when 'stats'
+    = render(:partial => 'dashboard/affiliates/partials/stats')
+  - when 'links'
+    = render(:partial => 'dashboard/affiliates/partials/links')
+  - when 'sale'
+    = render(:partial => 'dashboard/affiliates/partials/sales')
+  - when 'urls'
+    = render(:partial => 'dashboard/affiliates/partials/urls')

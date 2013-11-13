@@ -1,0 +1,25 @@
+table.table
+  tr
+    td[width="200"]
+      strong
+        | Total units sold:
+    td
+      = @affiliate_sales.length
+  tr
+    td
+      strong
+        | Total affiliates pay out:
+    td
+      = penny_to_currency(@sum_commission, :precision => 4)
+  tr
+    td
+      strong
+        | Unique clicks:
+    td
+      = @sum_unique_click
+  tr
+    td
+      strong
+        | Conversion:
+    td
+      = number_to_percentage(@conversion, :precision => 4)

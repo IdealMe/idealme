@@ -1,0 +1,48 @@
+h2
+  | Twitter
+- has_twitter = false
+- if !@swipe.swipe_twitter_1.nil? && @swipe.swipe_twitter_1.strip.length > 0
+  p
+    strong
+      | Twitter 1
+  = text_field_tag 'swipe_twitter_1', @swipe.swipe_twitter_1, :class => 'twelve'
+  - has_twitter = true
+- if !@swipe.swipe_twitter_2.nil? && @swipe.swipe_twitter_2.strip.length > 0
+  p
+    strong
+      | Twitter 2
+  = text_field_tag 'swipe_twitter_2', @swipe.swipe_twitter_2, :class => 'twelve'
+  - has_twitter = true
+- if !@swipe.swipe_twitter_3.nil? && @swipe.swipe_twitter_3.strip.length > 0
+  p
+    strong
+      | Twitter 3
+  = text_field_tag 'swipe_twitter_3', @swipe.swipe_twitter_3, :class => 'twelve'
+  - has_twitter = true
+- if !has_twitter
+  p
+    | The product owner did not upload any swipe Tweets.
+h2
+  | Facebook
+- has_facebook = false
+- if !@swipe.swipe_facebook_1.nil? && @swipe.swipe_facebook_1.strip.length > 0
+  p
+    strong
+      | Facebook 1
+  = text_area_tag 'swipe_facebook_1', @swipe.swipe_facebook_1, :class => 'twelve'
+  - has_facebook = true
+- if !@swipe.swipe_facebook_2.nil? && @swipe.swipe_facebook_2.strip.length > 0
+  p
+    strong
+      | Facebook 2
+  = text_area_tag 'swipe_facebook_2', @swipe.swipe_facebook_2, :class => 'twelve'
+  - has_facebook = true
+- if !@swipe.swipe_facebook_3.nil? && @swipe.swipe_facebook_3.strip.length > 0
+  p
+    strong
+      | Facebook 3
+  = text_area_tag 'swipe_facebook_3', @swipe.swipe_facebook_3, :class => 'twelve'
+  - has_facebook = true
+- if !has_facebook
+  p
+    | The product owner did not upload any swipe Facebook posts.

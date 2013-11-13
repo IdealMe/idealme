@@ -21,7 +21,7 @@ class AffiliateClick < ActiveRecord::Base
     if affiliate_link
       click = AffiliateClick.where(user_id: affiliate_user.id, affiliate_link_id: affiliate_link.id, ip: ip, user_agent: ua, tracking_code: tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
     else
-      click = AffiliateClick.where(user_id: affiliate_user.id, affiliate_link_id: nil, ip: ip, user_agent: ua, tracking_code: tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
+      click = AffiliateClick.where(user_id: affiliate_user.id, affiliate_link_id: nil,               ip: ip, user_agent: ua, tracking_code: tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
     end
     if click
       click.clicks += 1
@@ -30,7 +30,7 @@ class AffiliateClick < ActiveRecord::Base
       if affiliate_link
         click = AffiliateClick.create!(clicks: 1, user_id: affiliate_user.id, affiliate_link_id: affiliate_link.id, ip: ip, user_agent: ua, tracking_code: tracking_code, created_at: Time.now.beginning_of_day)
       else
-        click = AffiliateClick.create!(clicks: 1, user_id: affiliate_user.id, affiliate_link_id: nil, ip: ip, user_agent: ua, tracking_code: tracking_code, created_at: Time.now.beginning_of_day)
+        click = AffiliateClick.create!(clicks: 1, user_id: affiliate_user.id, affiliate_link_id: nil,               ip: ip, user_agent: ua, tracking_code: tracking_code, created_at: Time.now.beginning_of_day)
       end
     end
     click

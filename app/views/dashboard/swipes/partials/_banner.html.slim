@@ -1,0 +1,30 @@
+h2
+  | Banners
+- has_banner = false
+- if !@swipe.swipe_banner_1.path.nil?
+  .row
+    .nine.columns
+      = image_tag(@swipe.swipe_banner_1.url, :alt => @swipe.name)
+    .three.columns
+      = text_area_tag 'swipe_banner_1', (link_to(image_tag(@swipe.swipe_banner_1.url), "[AFFILIATE LINK]")), :rows => 7, :class => 'three'
+  hr
+  - has_banner = true
+- if !@swipe.swipe_banner_2.path.nil?
+  .row
+    .nine.columns
+      = image_tag(@swipe.swipe_banner_2.url, :alt => @swipe.name)
+    .three.columns
+      = text_area_tag 'swipe_banner_2', (link_to(image_tag(@swipe.swipe_banner_2.url), "[AFFILIATE LINK]")), :rows => 7, :class => 'three'
+  hr
+  - has_banner = true
+- if !@swipe.swipe_banner_3.path.nil?
+  .row
+    .nine.columns
+      = image_tag(@swipe.swipe_banner_3.url, :alt => @swipe.name)
+    .three.columns
+      = text_area_tag 'swipe_banner_3', (link_to(image_tag(@swipe.swipe_banner_3.url), "[AFFILIATE LINK]")), :rows => 7, :class => 'three'
+  hr
+  - has_banner = true
+- if !has_banner
+  p
+    | The product owner did not upload any swipe banners.

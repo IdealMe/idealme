@@ -1,0 +1,36 @@
+.row
+  .twelve.columns
+    h1
+      | Redirections
+    .panel
+      = link_to 'New Redirection', new_dashboard_redirection_path, :class => 'button'
+    table.twelve
+      thead
+        tr
+          th
+            | ID
+          th
+            | Name
+          th
+            | Key
+          th
+            | External URL
+          th
+            | Hits
+          th
+            | Publish Status
+      tbody
+        - @redirections.each do |redirection|
+          tr
+            td
+              = redirection.id
+            td
+              = link_to(redirection.name, dashboard_redirection_path(redirection))
+            td
+              = redirection.key
+            td
+              = redirection.external_url
+            td
+              = redirection.hits
+            td
+              = redirection.publish_status

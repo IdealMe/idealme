@@ -1,0 +1,24 @@
+.row
+  .twelve.columns
+    h1
+      | Upsell
+    p
+      strong
+        | Source Course:
+      = @upsell.course.name
+    p
+      strong
+        | Target Market:
+      = link_to @upsell.market.name, market_path(@upsell.market)
+    p
+      strong
+        | Target Course:
+      = @upsell.market.course.name
+    p
+      strong
+        | Sequence:
+      = @upsell.sequence
+    .form-actions
+      = link_to 'Back', upsells_path, :class => 'btn'
+      = link_to 'Edit', edit_upsell_path(@upsell), :class => 'btn'
+      = link_to 'Destroy', upsell_path(@upsell), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-danger'

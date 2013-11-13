@@ -9,13 +9,12 @@ class MarketsController < ApplicationController
     tracking_affiliate_tag = params[:tracking_affiliate_tag]
     market_affiliate_tag = params[:market_affiliate_tag]
     user_affiliate_tag = params[:user_affiliate_tag]
-
     # Find the affiliate user
     affiliate_user = User.get_affiliate_user(user_affiliate_tag).first
-
     if affiliate_user
       # Sets the cookie for affiliate
       cookies.signed[:zid] = {value: affiliate_user.affiliate_tag, expires: 30.day.from_now}
+
       # We are going to delete the cookies for affiliate tracking
       cookies.delete :tid
 
@@ -27,7 +26,7 @@ class MarketsController < ApplicationController
       end
 
       # Find the affiliate tracking if one is provided
-      affiliate_link = AffiliateLink.where(tracking_tag: tracking_affiliate_tag).first
+      affiliate_link = AffiliateLink.where(tracking_tag: tracking_affiliate_tag).first if tracking_affiliate_tag
 
       if affiliate_link
         cookies.signed[:tid] = {value: affiliate_link.tracking_tag, expires: 30.day.from_now}
