@@ -1,0 +1,18 @@
+table.twelve
+  thead
+    tr
+      th
+        | Product
+      th
+        | Subscribers
+      th
+        | In Market
+  tbody
+    - @courses.each do |course|
+      tr
+        td
+          = link_to course.name, dashboard_course_path(course)
+        td
+          = course.users.length
+        td
+          = !course.hidden

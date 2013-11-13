@@ -1,0 +1,42 @@
+table.twelve
+  thead
+    tr
+      th
+        | Order
+      th
+        | Product
+      th
+        | Status
+      th
+        | Cost
+      th
+        | Affiliate
+      th
+        | Affiliate Pay Out
+      th
+        | Owner Pay Out
+      th
+        | Ideal Me Pay Out
+      th
+        | Transaction Date
+  tbody
+    - @orders.each do |order|
+      tr
+        td
+          = link_to("#{order.user.firstname} #{order.user.lastname}", user_path(order.user))
+        td
+          = link_to(order.course.name, course_path(order.course))
+        td
+          = order.order_status_to_s
+        td
+          = penny_to_currency(order.gross, :precision => 4)
+        td
+          = order.affiliate_sale ? link_to("#{order.affiliate_sale.user.firstname} #{order.affiliate_sale.user.lastname}", user_path(order.affiliate_sale.user)) : ''
+        td
+          = penny_to_currency(order.affiliate_fee, :precision => 4)
+        td
+          = penny_to_currency(order.gross - order.fee - order.affiliate_fee, :precision => 4)
+        td
+          = penny_to_currency(order.fee, :precision => 4)
+        td
+          = l (order.created_at)

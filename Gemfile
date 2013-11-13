@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 #ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
 gem 'comfortable_mexican_sofa', '~> 1.11.0'
 
@@ -18,8 +19,6 @@ gem 'activeresource', '~>4.0.0.beta1'
 gem 'protected_attributes', '~>1.0.1'
 gem 'rails-observers', '~>0.1.1'
 # gem 'rails-perftest', '~>0.0.2'
-
-
 
 
 gem 'json', '~> 1.8.1'

@@ -1,0 +1,29 @@
+.row
+  .twelve.columns
+    h1
+      | Payments
+    .panel
+      = link_to 'New Payment', new_dashboard_payment_path, :class => 'button'
+    table.twelve
+      thead
+        tr
+          th
+            | Name
+          th
+            | Type
+          th
+            | Address
+          th
+      tbody
+        - @payments.each do |payment|
+          tr
+            td
+              = payment.name
+            td
+              = Payment::PAYMENT_TYPES[payment.payment_type]
+            td
+              = payment_format_address(payment)
+            td
+              = link_to 'Edit', edit_dashboard_payment_path(payment), :class => 'small button'
+              - if current_user.affiliate_default_payment_id != payment.id
+                = link_to 'Destroy', dashboard_payment_path(payment), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'small alert button'

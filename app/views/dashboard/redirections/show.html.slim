@@ -1,0 +1,19 @@
+.row
+  .twelve.columns
+    h1
+      | Redirection
+    p
+      | Name: 
+      = @redirection.name
+    p
+      | Short URL: http://j2i.me/
+      = @redirection.key
+    p
+      | Long URL: 
+      = @redirection.external_url
+    p
+      | Hits: 
+      = @redirection.hits
+    = link_to 'Back', dashboard_redirections_path, :class => 'button'
+    = link_to 'Edit', edit_dashboard_redirection_path(@redirection), :class => 'secondary button'
+    = link_to 'Destroy', dashboard_redirection_path(@redirection), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'alert button'
