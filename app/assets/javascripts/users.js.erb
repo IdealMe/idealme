@@ -24,6 +24,7 @@ $(function () {
 
   //Update the user's timezone, if it was on the default timezone of Etc/Zulu
   if (im_js.current_user_id != null && (im_js.timezone == 'Etc/Zulu' || im_js.timezone != jstz.determine().name())) {
+    console.debug("users.js - update tz")
     $.ajax({
       url: '/ajax/users/' + im_js.current_user_username,
       async: false,
