@@ -4,16 +4,10 @@
   >.body-content {
     >.container {
       >.main-section {
-        width: 781px;
-        padding-top: 10px;
-        display: inline;
-        float: left;
-        text-align: left;
-
         .product-info {
           @include m_l(7px);
           @include m_b(10px);
-          .autor {
+          .author {
             @include hex(#666666);
             @include fs(12px);
             @include m_b(3px);
@@ -162,7 +156,7 @@
         float: left;
         text-align: left;
 
-        width: 466px;
+        width: 500px;
         @include bg(white);
         margin-top: 33px;
         border: 1px solid #ebeae8;

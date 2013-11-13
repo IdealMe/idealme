@@ -11,44 +11,27 @@ section.pay-method
   = f.hidden_field :time
   = f.hidden_field :checksum
 
-  section.first-name class=('form-group error' if @order.errors[:firstname].length > 0)
-    / = f.label :card_firstname, 'First Name'
-    / = f.text_field :card_firstname, autofocus: true
-    = f.input :card_firstname, label: "First Name"
+  .form-group
+    = f.input :card_firstname, label: "First Name", wrapper_html: { class: "col-sm-6" }
+    = f.input :card_lastname, label: "Last Name", wrapper_html: { class: "col-sm-6" }
 
-  section.last-name class=('form-group error' if @order.errors[:lastname].length > 0)
-    = f.input :card_lastname, label: "Last Name"
+  .form-group
+    = f.input :card_number, size: 16, maxlength: 16, label: "Card Number", wrapper_html: { class: "col-sm-6" }
+    = f.input :card_type, collection: [["Visa", "visa"], ["Master Card", "master"]], wrapper_html: { class: "col-sm-6" }
+  .form-group
+    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-5" })
+    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-5" })
+  .form-group
+    = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)', wrapper_html: { class: "col-sm-5" }
 
-  .clear
-
-  section.card-number class=('form-group error' if @order.errors[:card_number].length > 0)
-    = f.input :card_number, size: 16, maxlength: 16, label: "Card Number"
-
-  section.card-type class=('form-group error' if @order.errors[:card_type].length > 0)
-    = f.input :card_type, collection: [["Visa", "visa"], ["Master Card", "master"]]
-  .clear
-
-  section.exp-date class=('form-group error' if @order.errors[:card_exp_month].length > 0 || @order.errors[:card_exp_year].length > 0)
-    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month' )
-    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year')
-
-  .clear
-  section.security-code class=('form-group error' if @order.errors[:card_cvv].length > 0)
-    = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)'
-  .clear
-  section.address1 class=('form-group error' if @order.errors[:billing_address1].length > 0)
+  .form-group
     = f.input :billing_address1, label: 'Address line 1'
-  section.address2 class=('form-group error' if @order.errors[:billing_address2].length > 0)
     = f.input :billing_address2, label: 'Address line 2'
-  section.city class=('form-group error' if @order.errors[:billing_city].length > 0)
     = f.input :billing_city, label: 'City'
-  section.zip class=('form-group error' if @order.errors[:billing_zip].length > 0)
     = f.input :billing_zip, label: 'Zip / Postal Code'
-  .clear
-  section.state class=('form-group error' if @order.errors[:billing_state].length > 0)
     = f.input :billing_state, label: 'State / Province / Region'
-  section.country class=('form-group error' if @order.errors[:billing_country].length > 0)
     = f.input :billing_country, label: 'Country', priority: ['US'], as: :country
+
   .clear
   section.submit-box
     = f.submit 'Complete Purchase', class: 'btn btn-red btn-complete-purchase'
