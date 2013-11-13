@@ -1,4 +1,6 @@
+require 'active_support/core_ext/string/inflections'
 class User < ActiveRecord::Base
+
   # == Imports ==============================================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable, :confirmable
