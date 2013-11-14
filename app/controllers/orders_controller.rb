@@ -24,8 +24,6 @@ class OrdersController < ApplicationController
 
   # create a paypal payment and send the user to the approval url
   def paypal_checkout
-    #foo = cookies.signed[:zid]
-    #binding.pry
     paypal = PayPal.new(paypal_endpoint, paypal_credentials)
 
     paypal.create_payment(@order.course.cost_in_dollars, "Ideal Me - #{@market.name}", paypal_return_url, paypal_cancel_url)

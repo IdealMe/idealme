@@ -1,13 +1,13 @@
 .row
   .twelve.columns
     h1
-      | Affiliate statistics from 
+      | Affiliate statistics from
       = @from_date
-      |  to 
+      |  to
       = @to_date
     table.table
       tr
-        td[width="200"]
+        td[width="300"]
           strong
             | Slug:
         td
@@ -16,7 +16,7 @@
         td
           strong
             | Total units sold
-          | : 
+          | :
         td
           = @affiliate_sales.length
       tr
@@ -34,13 +34,13 @@
       tr
         td
           strong
-            | Total unique users: 
+            | Total unique users:
         td
           = @unique_users.length
       tr
         td
           strong
-            | Total unique users signed up: 
+            | Total unique users signed up:
         td
           = @unique_users_in_range.length
     table.table
@@ -50,12 +50,6 @@
             | Order
           th
             | Product
-          th
-            | Status
-          th
-            | Tracking
-          th
-            | Cost
           th
             | Affiliate %
           th
@@ -80,9 +74,6 @@
           th
           th
           th
-          th
-          th
-          th
             = penny_to_currency(@sum_commission, :precision => 4)
           th
     h2
@@ -91,14 +82,14 @@
       thead
         tr
           th
-            | Affiliate Tracking Name
+            | Affiliate Tracking Link Name
           th
             | Affiliate Code
       tbody
-        - @courses.each do |course|
-          tr
-            td
-              = course.name
-            td
-              = course.id
-              | WRONG VALUE
+        tr
+          td
+            = @affiliate_link.name
+          td
+            - url = affiliate_link_url slug: @affiliate_link.slug
+            = link_to url, url
+

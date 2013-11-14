@@ -5,10 +5,9 @@ class MarketsController < ApplicationController
 
 
   def affiliate_init
-
-    tracking_affiliate_tag = params[:tracking_affiliate_tag]
-    market_affiliate_tag = params[:market_affiliate_tag]
-    user_affiliate_tag = params[:user_affiliate_tag]
+    tracking_affiliate_tag = params.permit(:tracking_affiliate_tag)[:tracking_affiliate_tag]
+    market_affiliate_tag = params.permit(:market_affiliate_tag)[:market_affiliate_tag]
+    user_affiliate_tag = params.permit(:user_affiliate_tag)[:user_affiliate_tag]
     # Find the affiliate user
     affiliate_user = User.get_affiliate_user(user_affiliate_tag).first
     if affiliate_user
@@ -27,7 +26,6 @@ class MarketsController < ApplicationController
 
       # Find the affiliate tracking if one is provided
       affiliate_link = AffiliateLink.where(tracking_tag: tracking_affiliate_tag).first if tracking_affiliate_tag
-
       if affiliate_link
         cookies.signed[:tid] = {value: affiliate_link.tracking_tag, expires: 30.day.from_now}
         AffiliateClick.track(affiliate_user, request.remote_ip, request.env['HTTP_USER_AGENT'], last_click, affiliate_link)

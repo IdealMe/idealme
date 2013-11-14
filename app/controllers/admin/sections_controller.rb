@@ -37,7 +37,7 @@ class Admin::SectionsController < Admin::BaseController
 
   # PUT /admin/sections/1
   def update
-    @section.update_attributes!(params[:section])
+    @section.update_attributes!(section_params)
     redirect_to edit_admin_course_path(@section.course), notice: 'Section was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render action: :edit
@@ -63,7 +63,11 @@ class Admin::SectionsController < Admin::BaseController
   def build_section
     params[:section] ||= {}
     params[:section][:course_id] ||= params[:course_id] if params[:course_id].present?
-    @section = Section.new(params[:section])
+    @section = Section.new(section_params)
+  end
+
+  def section_params
+    params.require(:section).permit!
   end
 
 end
