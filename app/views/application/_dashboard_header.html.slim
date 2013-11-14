@@ -19,15 +19,3 @@ ul.nav.nav-pills.nav-stacked
     li class="#{active_tab?('redirections', tab, 'active', '')}"
       = link_to('Redirections', dashboard_redirections_path)
 
-#date-filter-container
-  = form_tag(dashboard_affiliates_path, :method => 'get') do
-    p
-      strong
-        ' Filter date range
-    = label_tag('from', 'From:')
-    = text_field_tag('from', @from, :class => 'datepicker form-control', :placeholder => 'From', 'data-provide' => 'datepicker')
-    = label_tag('to', 'To:')
-    = text_field_tag('to', @to, :class => 'datepicker form-control', :placeholder => 'To', 'data-provide' => 'datepicker')
-    br/
-    = submit_tag('Filter', :class => 'btn')
-

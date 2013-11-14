@@ -8,10 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: addb7143365f97f938e3bdbb2ccfc52591230eda
-  branch: 3.0.0
+  revision: 3707d98b1f27bec87b1dd6de7129e3f52a72e413
   specs:
-    anjlab-bootstrap-rails (3.0.0.rc2)
+    anjlab-bootstrap-rails (3.0.2.0)
       railties (>= 3.0)
       sass (>= 3.2)
 
@@ -35,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/plataformatec/simple_form.git
-  revision: 6b9e0f3d0ecde4311e511d90899f4192bea9b738
+  revision: 18c3cecedc8a6ef09f56684fa8efb6e84ac9ea7e
   specs:
     simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
@@ -64,13 +63,13 @@ GEM
     active_utils (2.0.1)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.41.0)
+    activemerchant (1.42.2)
       active_utils (~> 2.0, >= 2.0.1)
       activesupport (>= 2.3.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
       i18n (~> 0.5)
       json (~> 1.7)
-      money (< 6.0.0)
+      money (< 7.0.0)
       nokogiri (~> 1.4)
     activemodel (4.0.1)
       activesupport (= 4.0.1)
@@ -155,7 +154,7 @@ GEM
       sexp_processor
     codemirror-rails (3.16)
       railties (>= 3.0, < 5)
-    coderay (1.0.9)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -186,7 +185,7 @@ GEM
     connection_pool (1.1.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
-    devise (3.2.0)
+    devise (3.2.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -240,7 +239,7 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
-    guard-rspec (4.0.3)
+    guard-rspec (4.0.4)
       guard (>= 2.1.1)
       rspec (~> 2.14)
     haml (4.0.4)
@@ -259,7 +258,7 @@ GEM
     hike (1.2.3)
     hipchat (0.12.0)
       httparty
-    honeybadger (1.9.3)
+    honeybadger (1.9.4)
       faraday (~> 0.7)
       json
     http_parser.rb (0.5.3)
@@ -280,7 +279,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kramdown (1.2.0)
-    launchy (2.3.0)
+    launchy (2.4.0)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
     listen (2.2.0)
@@ -301,8 +300,8 @@ GEM
     mime-types (1.25)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    money (5.1.1)
-      i18n (~> 0.6.0)
+    money (6.0.0)
+      i18n (~> 0.6.4)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -325,7 +324,7 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
-    omniauth-facebook (1.4.1)
+    omniauth-facebook (1.5.0)
       omniauth-oauth2 (~> 1.1.0)
     omniauth-google-oauth2 (0.2.1)
       omniauth (~> 1.0)
@@ -340,7 +339,7 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     open4 (1.3.0)
-    orm_adapter (0.4.0)
+    orm_adapter (0.5.0)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -356,8 +355,8 @@ GEM
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
-    pry (0.9.12.2)
-      coderay (~> 1.0.5)
+    pry (0.9.12.3)
+      coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
     pry-nav (0.2.3)
@@ -468,7 +467,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slop (3.4.6)
+    slop (3.4.7)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)

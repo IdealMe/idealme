@@ -1,8 +1,4 @@
-h4
-  ' Displaying statistics from
-  = @from_date
-  ' to
-  = @to_date
+= render partial: 'dashboard/partials/datefilter'
 ul.nav.nav-tabs
   |  <li class="
   = active_tab?('stats', @tab, 'active', '')

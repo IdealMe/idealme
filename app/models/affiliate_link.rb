@@ -7,16 +7,9 @@ class AffiliateLink < ActiveRecord::Base
   has_many :affiliate_clicks
 
 
-  def path
-    "/markets/#{market_tag}/#{user.affiliate_tag}#{tracking_tag_or_blank}"
-  end
-
-  def tracking_tag_or_blank
-    if tracking_tag
-      "/#{tracking_tag}"
-    else
-      ""
-    end
+  def path(market_tag = nil)
+    market_tag ||= self.market_tag
+    "/markets/#{market_tag}/#{user.affiliate_tag}/#{slug}"
   end
 
   def market_id

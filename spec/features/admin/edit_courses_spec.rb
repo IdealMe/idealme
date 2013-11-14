@@ -7,7 +7,7 @@ describe 'editing courses' do
 
   let!(:user)               { create(:user) }
   let!(:admin)              { create(:user_admin) }
-  let!(:link)               { create(:affiliate_link, tracking_tag: 'tracker-9000') }
+  let!(:link)               { create(:affiliate_link) }
   let!(:affiliate_user)     { link.user }
   let!(:market)             { create(:market, course: course) }
   let!(:course)             { create(:course, owner: affiliate_user) }
@@ -30,7 +30,6 @@ describe 'editing courses' do
     click_link "Sections"
     # let's make a new section
     click_link "New Section"
-    screenshot
     fill_in "Name", with: "beans"
     click_button "Save"
     find("#course-content-tab.active")

@@ -1,22 +1,14 @@
 .row
-
+  = render partial: 'dashboard/partials/datefilter'
   h1
     = @course.name
-  dl.sub-nav
-    dt
-      | Filter:
-    |  <dd class="
-    = active_tab?('student', @tab, 'active', 'inactive')
-    | ">
-    = link_to('Students', dashboard_course_path(@course, {:tab => 'student'}))
-    |  <dd class="
-    = active_tab?('sale', @tab, 'active', 'inactive')
-    | ">
-    = link_to('Sales', dashboard_course_path(@course, {:tab => 'sale'}))
-    |  <dd class="
-    = active_tab?('export_email', @tab, 'active', 'inactive')
-    | ">
-    = link_to('Export Email', dashboard_course_path(@course, {:tab => 'export_email'}))
+  ul.nav.nav-tabs
+    li class=active_tab?('student', @tab, 'active', 'inactive')
+      = link_to('Students', dashboard_course_path(@course, {:tab => 'student'}))
+    li class=active_tab?('sale', @tab, 'active', 'inactive')
+      = link_to('Sales', dashboard_course_path(@course, {:tab => 'sale'}))
+    li class=active_tab?('export_email', @tab, 'active', 'inactive')
+      = link_to('Export Email', dashboard_course_path(@course, {:tab => 'export_email'}))
   - case @tab
 
   - when 'student'

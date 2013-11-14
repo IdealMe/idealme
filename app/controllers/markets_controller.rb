@@ -25,9 +25,9 @@ class MarketsController < ApplicationController
       end
 
       # Find the affiliate tracking if one is provided
-      affiliate_link = AffiliateLink.where(tracking_tag: tracking_affiliate_tag).first if tracking_affiliate_tag
+      affiliate_link = AffiliateLink.where(slug: tracking_affiliate_tag).first if tracking_affiliate_tag
       if affiliate_link
-        cookies.signed[:tid] = {value: affiliate_link.tracking_tag, expires: 30.day.from_now}
+        cookies.signed[:tid] = {value: affiliate_link.slug, expires: 30.day.from_now}
         AffiliateClick.track(affiliate_user, request.remote_ip, request.env['HTTP_USER_AGENT'], last_click, affiliate_link)
       else
         AffiliateClick.track(affiliate_user, request.remote_ip, request.env['HTTP_USER_AGENT'], last_click, nil)

@@ -1,20 +1,20 @@
 if (typeof jQuery !== 'undefined') {
   jQuery(function($) {
 		$(document).ready(function(){
-        // ****************************************** PLACEHOLDER       
+        // ****************************************** PLACEHOLDER
         function placeholder() { // placeholder for inputs textarea
-          //placeholder for form    
+          //placeholder for form
           $('input, textarea').focus(function() {
             if($(this).attr('placeholder') == $(this).val()){
-                $(this).val('');  
+                $(this).val('');
                 $(this).data('placeholder', $(this).attr('placeholder'));
-                $(this).attr('placeholder','');  
+                $(this).attr('placeholder','');
             }
           });
           $('input, textarea').blur(function() {
             if ($(this).val() == '') {
               $(this).val($(this).data('placeholder'));
-              $(this).attr('placeholder',$(this).data('placeholder'));  
+              $(this).attr('placeholder',$(this).data('placeholder'));
             }
           });
         };
@@ -44,7 +44,7 @@ if (typeof jQuery !== 'undefined') {
       $("ul.tabs").tabs("div.panes > div"); // tabs - http://jquerytools.org/demos/tabs/index.html
 
       // GOAL ACTIVE LOSE WEIGHT PAGE
-      var date = new Date(), 
+      var date = new Date(),
           day_of_week=date.getDay()-1,
           days_row = $('.days_row').first(),
           not_passed_days= null;
@@ -55,7 +55,7 @@ if (typeof jQuery !== 'undefined') {
       });
 
       $('body').on('click', '.btn-checkin', function(){
-        var date = new Date(), 
+        var date = new Date(),
             day_of_week=date.getDay()-1,
             share_input = $('.share_input'),
             share_form = $('.share_section .input-append')
@@ -67,12 +67,12 @@ if (typeof jQuery !== 'undefined') {
             checkin_day = $('.today');
 
         share_form.fadeOut(300, function(){
-          checked_in_msg.fadeIn(300);              
+          checked_in_msg.fadeIn(300);
           checkin_day.addClass('checked');
           $(this).addClass('checkedIn')
         })
         no_checkins.fadeOut(300, function(){
-          checkined_in.fadeIn(300); 
+          checkined_in.fadeIn(300);
           checkined_numb_box.text(checkined_numb+1).addClass('red')
         });
       });
@@ -97,7 +97,7 @@ if (typeof jQuery !== 'undefined') {
             'top':'146px'
           });
         checked_in_msg.fadeOut(300, function(){
-          share_form.fadeIn(300);  
+          share_form.fadeIn(300);
         });
       });
       $('body').on('click', '.check_in_toggle', function(){
@@ -114,7 +114,7 @@ if (typeof jQuery !== 'undefined') {
         form_btn.text('CHECK IN').removeClass('btn-addgem open_pop_up').addClass('btn-checkin');
         if(share_form.hasClass("checkedIn")){
           share_form.fadeOut(300, function(){
-            checked_in_msg.fadeIn(300);  
+            checked_in_msg.fadeIn(300);
           });
         }
       });
@@ -164,7 +164,10 @@ $(function(){
     });
 
     $('.datepicker').datepicker({
-      format: 'yyyy-mm-dd'
+      format: 'yyyy-mm-dd',
+      autoclose: true
+    }).on('changeDate', function(evt){
+      $('#btn-update-datefilters').addClass("btn-success")
     });
 
 });

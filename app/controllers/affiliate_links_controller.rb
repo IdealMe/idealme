@@ -1,9 +1,10 @@
 class AffiliateLinksController < ApplicationController
-
   def perform
     link = AffiliateLink.where(slug: params[:slug]).first
-    redirect_to root_path unless link
-    redirect_to link.path if link
+    if link
+      redirect_to link.path(params[:market_tag])
+    else
+      redirect_to root_path
+    end
   end
-
 end

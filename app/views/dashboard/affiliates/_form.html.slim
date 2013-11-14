@@ -5,11 +5,9 @@
       = msg
       br/
 
-  = f.input :name
   = f.input :slug
 
   - unless @affiliate_link.persisted?
-    = f.input :tracking_tag
     = f.input :market_tag, collection: market_tags_for_select
 
   = f.input :note, as: :text

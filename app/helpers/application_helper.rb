@@ -58,7 +58,7 @@ module ApplicationHelper
       friendly = "#{last_affiliate_user.username}" if last_affiliate_user
       tid = cookies.signed[:tid]
       if tid
-        last_affiliate_link = AffiliateLink.where(tracking_tag: tid).first
+        last_affiliate_link = AffiliateLink.where(slug: tid).first
         friendly = "#{friendly}/#{last_affiliate_link.slug}" if last_affiliate_link
       end
     end

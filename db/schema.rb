@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112184706) do
+ActiveRecord::Schema.define(version: 20131114163628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,14 +46,15 @@ ActiveRecord::Schema.define(version: 20131112184706) do
 
   create_table "affiliate_links", force: true do |t|
     t.string   "slug"
-    t.string   "tracking_tag"
     t.string   "market_tag"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text     "note"
     t.string   "name"
   end
+
+  add_index "affiliate_links", ["slug"], name: "index_affiliate_links_on_slug", unique: true, using: :btree
 
   create_table "affiliate_sales", force: true do |t|
     t.integer  "user_id"
@@ -67,18 +68,6 @@ ActiveRecord::Schema.define(version: 20131112184706) do
   add_index "affiliate_sales", ["affiliate_link_id"], name: "index_affiliate_sales_on_affiliate_link_id", using: :btree
   add_index "affiliate_sales", ["order_id"], name: "index_affiliate_sales_on_order_id", using: :btree
   add_index "affiliate_sales", ["user_id"], name: "index_affiliate_sales_on_user_id", using: :btree
-
-  create_table "affiliate_trackings", force: true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.text     "note"
-    t.string   "affiliate_tag"
-    t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "affiliate_trackings", ["user_id"], name: "index_affiliate_trackings_on_user_id", using: :btree
 
   create_table "article_authors", force: true do |t|
     t.integer  "author_id"

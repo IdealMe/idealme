@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   # @return [AffiliateLink] If the affiliate user's link campaign that is cookied on the customer's computer
   # @return [nil] Otherwise
   def get_affiliate_link
-    affiliate_link = AffiliateLink.where(tracking_tag: cookies.signed[:tid]).first if cookies.signed[:tid]
+    affiliate_link = AffiliateLink.where(slug: cookies.signed[:tid]).first if cookies.signed[:tid]
     if affiliate_link
       affiliate_link
     else
@@ -156,7 +156,7 @@ class ApplicationController < ActionController::Base
   #
   # @return [AffiliateLink] The current affiliate tracking profile that is cookied on the user's computer
   def get_affiliate_link
-    AffiliateLink.where(tracking_tag: cookies.signed[:tid]).first
+    AffiliateLink.where(slug: cookies.signed[:tid]).first
   end
 
   # Get the current affiliate user that is cookied on the user's computer

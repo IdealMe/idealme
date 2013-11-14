@@ -3,9 +3,15 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-def buy_course_as(user, slug = 'my-link')
+def buy_course_as(user, slug = 'my-link', market = nil)
   login_as(user, scope: :user, run_callbacks: false)
-  visit "/now/#{slug}"
+
+  if market
+    visit "/now/#{slug}/#{market}"
+  else
+    visit "/now/#{slug}"
+  end
+
   find('.enroll-btn').click
   fill_in "Card Number", with: '1234123412341234'
   fill_in "Security Code", with: '123'
@@ -21,10 +27,12 @@ describe 'affiliate dashboard functionality' do
   let!(:user)               { create(:user) }
   let!(:user2)              { create(:user2) }
   let!(:user3)              { create(:user3) }
-  let!(:link)               { create(:affiliate_link, tracking_tag: 'tracker-9000') }
+  let!(:link)               { create(:affiliate_link) }
   let!(:affiliate_user)     { link.user }
   let!(:market)             { create(:market, course: course) }
   let!(:course)             { create(:course, owner: affiliate_user) }
+  let!(:market2)            { create(:market2, course: course2) }
+  let!(:course2)            { create(:course2, owner: affiliate_user) }
 
   before :each do
     Warden.test_reset!
@@ -57,15 +65,13 @@ describe 'affiliate dashboard functionality' do
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard/affiliates?tab=links"
     click_link "New Tracking Link"
-    fill_in "Name", with: "A tracking link"
     fill_in "Slug", with: "link-one"
-    fill_in "Tracking", with: "link-one"
     select "Sample market", from: "Market tag"
     fill_in "Note", with: "tracking link note"
     click_button 'Create'
 
     link = AffiliateLink.last
-    link.name.should eq 'A tracking link'
+    link.slug.should eq 'link-one'
 
     logout(:user)
 
@@ -76,7 +82,8 @@ describe 'affiliate dashboard functionality' do
     link.sales.count.should eq 1
 
     logout(:user)
-    buy_course_as(user3, link.slug)
+
+    buy_course_as(user3, link.slug, 'at-other-market-tag')
     logout(:user)
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard/affiliates"
