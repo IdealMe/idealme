@@ -1,27 +1,27 @@
 .row
-  .twelve.columns
-    h1
-      = @course.name
-    dl.sub-nav
-      dt
-        | Filter:
-      |  <dd class="
-      = active_tab?('student', @tab, 'active', 'inactive')
-      | "> 
-      = link_to('Students', dashboard_course_path(@course, {:tab => 'student'}))
-      |  <dd class="
-      = active_tab?('sale', @tab, 'active', 'inactive')
-      | "> 
-      = link_to('Sales', dashboard_course_path(@course, {:tab => 'sale'}))
-      |  <dd class="
-      = active_tab?('export_email', @tab, 'active', 'inactive')
-      | "> 
-      = link_to('Export Email', dashboard_course_path(@course, {:tab => 'export_email'}))
-    - case @tab
 
-    - when 'student'
-      = render(:partial => 'dashboard/courses/partials/show/students')
-    - when 'sale'
-      = render(:partial => 'dashboard/courses/partials/show/sales')
-    - when 'export_email'
-      = render(:partial => 'dashboard/courses/partials/show/export_emails')
+  h1
+    = @course.name
+  dl.sub-nav
+    dt
+      | Filter:
+    |  <dd class="
+    = active_tab?('student', @tab, 'active', 'inactive')
+    | ">
+    = link_to('Students', dashboard_course_path(@course, {:tab => 'student'}))
+    |  <dd class="
+    = active_tab?('sale', @tab, 'active', 'inactive')
+    | ">
+    = link_to('Sales', dashboard_course_path(@course, {:tab => 'sale'}))
+    |  <dd class="
+    = active_tab?('export_email', @tab, 'active', 'inactive')
+    | ">
+    = link_to('Export Email', dashboard_course_path(@course, {:tab => 'export_email'}))
+  - case @tab
+
+  - when 'student'
+    = render(:partial => 'dashboard/courses/partials/show/students')
+  - when 'sale'
+    = render(:partial => 'dashboard/courses/partials/show/sales')
+  - when 'export_email'
+    = render(:partial => 'dashboard/courses/partials/show/export_emails')

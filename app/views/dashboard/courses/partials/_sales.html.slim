@@ -1,4 +1,4 @@
-table.twelve
+table.table.table-condensed.table-bordered
   thead
     tr
       th
@@ -23,11 +23,11 @@ table.twelve
     - @orders.each do |order|
       tr
         td
-          = link_to("#{order.user.firstname} #{order.user.lastname}", user_path(order.user))
+          = link_to(order.user.fullname_or_username_or_id, user_path(order.user))
         td
-          = link_to(order.course.name, course_path(order.course))
+          = link_to(order.course.name.truncate(25), course_path(order.course))
         td
-          = order.order_status_to_s
+          = Order::ORDER_STATUSES[order.status]
         td
           = penny_to_currency(order.gross, :precision => 4)
         td
@@ -39,4 +39,4 @@ table.twelve
         td
           = penny_to_currency(order.fee, :precision => 4)
         td
-          = l (order.created_at)
+          = order.created_at.strftime('%F %H:%M')

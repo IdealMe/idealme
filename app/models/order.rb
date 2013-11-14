@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :market
 
-  has_many :affiliate_sales
+  has_one :affiliate_sale
 
   # == Paperclip ============================================================
   # == Validations ==========================================================

@@ -13,6 +13,7 @@ class Course < ActiveRecord::Base
   has_one :default_market, class_name: 'Market', foreign_key: 'id', primary_key: 'default_market_id', dependent: :destroy
   belongs_to :owner, class_name: 'User'
   has_many :course_users
+  has_many :orders
   has_many :users, through: :course_users
   has_many :sections
   has_many :lectures, through: :sections
@@ -22,6 +23,7 @@ class Course < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :replies, through: :comments
   has_many :votes, as: :votable
+  has_many :payloads, as: :payloadable, dependent: :destroy
 
   accepts_nested_attributes_for :default_market
 
@@ -48,6 +50,10 @@ class Course < ActiveRecord::Base
 
   def cost_in_dollars=(v)
     self.cost = (v.to_f*100).to_i
+  end
+
+  def swipe_files
+    self.payloads
   end
 
 end

@@ -1,4 +1,4 @@
-table.twelve
+table.table
   thead
     tr
       th
@@ -9,6 +9,6 @@ table.twelve
     - @users.each do |user|
       tr
         td
-          = link_to "#{user.firstname} #{user.lastname}", user_path(user)
+          = link_to user.fullname_or_username_or_id, user_path(user)
         td
           = user.email

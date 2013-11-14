@@ -145,6 +145,10 @@ class User < ActiveRecord::Base
     "#{self.firstname} #{self.lastname}"
   end
 
+  def fullname_or_username_or_id
+    "#{((fullname.present? ? fullname : nil) || (username.present? ? username : nil) || id)}"
+  end
+
   # After create callback
   #
   # The callback will set the user's profile pic to a random avatar if one was not provided

@@ -22,10 +22,12 @@ ul.nav.nav-pills.nav-stacked
 #date-filter-container
   = form_tag(dashboard_affiliates_path, :method => 'get') do
     p
-      strong Filter date range
+      strong
+        ' Filter date range
     = label_tag('from', 'From:')
-    = text_field_tag('from', @from, :class => 'datepicker', :placeholder => 'From', 'data-provide' => 'datepicker')
+    = text_field_tag('from', @from, :class => 'datepicker form-control', :placeholder => 'From', 'data-provide' => 'datepicker')
     = label_tag('to', 'To:')
-    = text_field_tag('to', @to, :class => 'datepicker', :placeholder => 'To', 'data-provide' => 'datepicker')
+    = text_field_tag('to', @to, :class => 'datepicker form-control', :placeholder => 'To', 'data-provide' => 'datepicker')
+    br/
     = submit_tag('Filter', :class => 'btn')
 
