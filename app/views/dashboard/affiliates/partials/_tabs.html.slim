@@ -1,0 +1,17 @@
+ul.nav.nav-tabs
+  |  <li class="
+  = active_tab?('stats', @tab, 'active', '')
+  | ">
+  = link_to("Stats Overview", dashboard_affiliates_path(@base.merge({:tab => 'stats'})))
+  |  <li class="
+  = active_tab?('links', @tab, 'active', '')
+  | ">
+  = link_to("Tracking Links", dashboard_affiliates_path(@base.merge({:tab => 'links'})))
+  |  <li class="
+  = active_tab?('sale', @tab, 'active', '')
+  | ">
+  = link_to("Total Sales", dashboard_affiliates_path(@base.merge({:tab => 'sale'})))
+  |  <li class="
+  = active_tab?('urls', @tab, 'active', '')
+  | ">
+  = link_to("Affiliate URLs", dashboard_affiliates_path(@base.merge({:tab => 'urls'})))

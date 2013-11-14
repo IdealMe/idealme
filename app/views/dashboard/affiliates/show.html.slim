@@ -1,6 +1,6 @@
 .row
   = render partial: 'dashboard/partials/datefilter'
-
+  / = render partial: 'dashboard/affiliates/partials/tabs'
   table.table
     tr
       td[width="300"]
@@ -77,15 +77,22 @@
   table.table
     thead
       tr
-        th
-          | Affiliate Tracking Link Name
+        th width="50%"
+          | Market
         th
           | Affiliate Code
     tbody
       tr
         td
-          = @affiliate_link.name
+          = @affiliate_link.market.name
         td
           - url = affiliate_link_url slug: @affiliate_link.slug
           = link_to url, url
+      - @other_markets.each do |market|
+        tr
+          td
+            = market.name
+          td
+            - url = affiliate_link_url slug: @affiliate_link.slug, market_tag: market.affiliate_tag
+            = link_to url, url
 

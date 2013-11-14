@@ -78,6 +78,7 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
 
   def show
     @affiliate_link = ::AffiliateLink.where('affiliate_links.slug = ?', params[:id]).first
+    @other_markets = Market.where("affiliate_tag != ?", @affiliate_link.market_tag)
     raise('That affiliate link does not exist') if @affiliate_link.nil?
 
     authorize!(:read, @affiliate_link)

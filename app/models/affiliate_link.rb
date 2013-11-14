@@ -19,4 +19,8 @@ class AffiliateLink < ActiveRecord::Base
   def market_id=(v)
     self.market_tag = Market.where(id: v).first.try(:affiliate_tag)
   end
+
+  def market
+    Market.find(market_id)
+  end
 end
