@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/alindeman/rails4_upgrade.git
-  revision: 6d71d4418891ef11243451481f28cbb3072c6019
-  specs:
-    rails4_upgrade (0.5.0)
-      bundler (>= 1.2.2)
-      terminal-table (>= 1.4.5)
-
-GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 3707d98b1f27bec87b1dd6de7129e3f52a72e413
   specs:
@@ -100,9 +92,9 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     awesome_print (1.2.0)
-    aws-sdk (1.11.1)
+    aws-sdk (1.26.0)
       json (~> 1.4)
-      nokogiri (>= 1.4.4)
+      nokogiri (>= 1.4.4, < 1.6.0)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     brakeman (2.2.0)
@@ -298,7 +290,6 @@ GEM
       railties
     method_source (0.8.2)
     mime-types (1.25)
-    mini_portile (0.5.2)
     minitest (4.7.5)
     money (6.0.0)
       i18n (~> 0.6.4)
@@ -312,8 +303,7 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.6.0)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.5.10)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -535,7 +525,7 @@ DEPENDENCIES
   acts_as_list
   anjlab-bootstrap-rails!
   awesome_print
-  aws-sdk
+  aws-sdk (~> 1.26.0)
   bluepill!
   brakeman
   browser
@@ -587,7 +577,6 @@ DEPENDENCIES
   rack-livereload
   rails
   rails-observers (~> 0.1.1)
-  rails4_upgrade!
   rails_best_practices
   ransack
   recap

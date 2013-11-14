@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 #ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
 gem 'comfortable_mexican_sofa', '~> 1.11.0'
 
-gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
 gem 'dotenv-rails'
 
 gem 'nokogiri'
@@ -100,7 +99,7 @@ gem 'carmen'
 gem 'carmen-rails', git: 'https://github.com/jim/carmen-rails.git'
 
 #AWS SDK for Ruby
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.26.0'
 
 #Do some browser detection with Ruby.
 gem 'browser'
