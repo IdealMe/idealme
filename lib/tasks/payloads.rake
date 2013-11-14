@@ -18,7 +18,8 @@ namespace :payloads do
         payload.payloadable_id = nil
         payload.payloadable_type = nil
 
-        binding.pry
+        new_payload.save!
+        payload.save!
       end
     }
   end
