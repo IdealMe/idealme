@@ -6,7 +6,7 @@ namespace :payloads do
   end
 
   desc "swap old payloads for new ones"
-  task :upload => :environment do
+  task :swap => :environment do
     Payload.where(dropbox_path: nil).where("payloadable_id is not null").each { |payload|
       new_payload = Payload.where(payload_file_name: payload.payload_file_name).where("dropbox_path is not null").last
       if new_payload
