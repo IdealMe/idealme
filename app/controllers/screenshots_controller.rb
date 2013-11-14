@@ -4,6 +4,9 @@ class ScreenshotsController < ApplicationController
     return unless Rails.env.test? || Rails.env.development?
 
     @screenshots = Dir.glob('public/screenshots/test-*.png').map{|path| path.sub(/^public/,'') }
+    @screenshots.sort!
+    @screenshots.reverse!
+
     ap @screenshots
   end
 

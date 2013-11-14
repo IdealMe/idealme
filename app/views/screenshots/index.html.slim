@@ -16,17 +16,23 @@ html
     css:
       body {
         background-color: #333;
+        color: white;
       }
+      .row {
+        padding: 10px;
+      }
+
     body
     .container
       .row
         .col-md-2
           br/
-          a.btn.btn-default href="reset" Clear
+          - unless @screenshots.empty?
+            a.btn.btn-default href="reset" Clear
         .col-md-10
-          | fasdfaskfjasljf
           - @screenshots.each do |img|
             div
+              p = img
               img src=img width="100%"
               br/
               br/
