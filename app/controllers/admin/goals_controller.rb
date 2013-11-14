@@ -57,7 +57,7 @@ class Admin::GoalsController < Admin::BaseController
   end
 
   def goal_params
-    params.require(:goal).permit!
+    params.fetch(:goal, {}).permit!
   end
 
 end
