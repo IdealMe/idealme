@@ -107,7 +107,7 @@ body {
   font-style: italic;
 }
 
-.goal-name { color: #666666; @include fs(14px);  @include centered; margin-bottom: 13px; margin-top: 5px; }
+.goal-name { color: #666666; @include fs(14px);  @include centered; margin-bottom: 13px; margin-top: 5px; font-weight: 700;}
 .bottom-box { border-top: 1px solid #EBEBEB; }
 .user-card, .goal-card, .goal-user-card { .avatar { @include p_t(5px); @include centered; } }
 .like-box { @include float-left; width: 90px; padding: 7px 5px 5px 5px;
