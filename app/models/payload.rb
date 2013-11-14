@@ -83,5 +83,13 @@ class Payload < ActiveRecord::Base
     payload.expiring_download_url(IM_S3_URL_TTL)
   end
 
+  def select_label
+    if dropbox_path.present?
+      "#{payload_file_name} - #{dropbox_path}"
+    else
+      "#{payload_file_name}"
+    end
+  end
+
 
 end

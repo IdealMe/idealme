@@ -14,18 +14,22 @@
     - @lecture.payloads.each do |payload|
       tr
         td = payload.id
-        td = link_to(payload.payload_file_name, admin_payload_path(payload))
+        td
+          - if payload.dropbox_path.present?
+            = link_to(payload.payload_file_name, admin_payload_path(payload), title: payload.dropbox_path)
+          - else
+            = link_to(payload.payload_file_name, admin_payload_path(payload))
         td
           = payload.intended_type_to_s
           '  (#{payload.payload_content_type})
         td = number_to_human_size(payload.payload_file_size)
-        td = l payload.created_at
+        td = payload.created_at.strftime('%F %H:%M')
         td = link_to 'Download', payload.payload.expiring_url(1800), :class => 'btn btn-primary btn-xs'
         td = link_to 'Remove', remove_admin_lecture_payload_path(@lecture, payload), :class => 'btn btn-danger btn-xs remove-lecture-payload-button', :method => 'put', :remote => true
 
   .attach-payload-container
     .select-payload-container
-      = select_tag :attach_payload_id, options_from_collection_for_select(Payload.unattached, "id", "payload_file_name"), class: 'select2'
+      = select_tag :attach_payload_id, options_from_collection_for_select(Payload.unattached, "id", "select_label"), class: 'select2'
     .attach-payload-buttons
       a class='btn btn-primary btn-xs attach-payload-button'  Attach Payload
 
