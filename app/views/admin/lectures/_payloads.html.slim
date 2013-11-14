@@ -16,7 +16,7 @@
         td = payload.id
         td
           - if payload.dropbox_path.present?
-            = link_to(payload.payload_file_name, admin_payload_path(payload), title: payload.dropbox_path)
+            = link_to(payload.payload_file_name, admin_payload_path(payload), title: payload.short_dropbox_path)
           - else
             = link_to(payload.payload_file_name, admin_payload_path(payload))
         td

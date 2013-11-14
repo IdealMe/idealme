@@ -85,10 +85,14 @@ class Payload < ActiveRecord::Base
 
   def select_label
     if dropbox_path.present?
-      "#{payload_file_name} - #{dropbox_path}"
+      "#{payload_file_name} - #{short_dropbox_path}"
     else
       "#{payload_file_name}"
     end
+  end
+
+  def short_dropbox_path
+    self.dropbox_path.sub('/Dropbox/upload/','')
   end
 
 
