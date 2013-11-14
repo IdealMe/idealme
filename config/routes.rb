@@ -1,5 +1,7 @@
 Idealme::Application.routes.draw do
 
+  get "screenshots/index" unless Rails.env.production?
+  get "screenshots/reset" unless Rails.env.production?
   get "payload/:id/download" => "payload#download", as: :download_payload
 
   root to: 'landings#index'
