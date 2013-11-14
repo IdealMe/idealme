@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114163628) do
+ActiveRecord::Schema.define(version: 20131114214453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -509,6 +509,7 @@ ActiveRecord::Schema.define(version: 20131114163628) do
     t.string   "payloadable_type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "dropbox_path"
   end
 
   create_table "poll_choices", force: true do |t|

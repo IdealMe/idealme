@@ -49,7 +49,7 @@ class Payload < ActiveRecord::Base
   def self.payload_from_path(path)
     payload = Payload.new
     payload.payload = File.open path
-    existing = Payload.where(payload_file_name: payload.payload_file_name).first
+    existing = Payload.where(dropbox_path: path).first
     unless existing
       payload.save!
       payload
