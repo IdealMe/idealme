@@ -49,8 +49,11 @@ class Payload < ActiveRecord::Base
   def self.payload_from_path(path)
     payload = Payload.new
     payload.payload = File.open path
-    existing = Payload.where(dropbox_path: path).first
+    home = `echo $HOME`.strip
+    dropbox_path = path.sub(home, '')
+    existing = Payload.where(dropbox_path: dropbox_path).first
     unless existing
+      payload.dropbox_path = dropbox_path
       payload.save!
       payload
     else
