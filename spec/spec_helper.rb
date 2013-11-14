@@ -118,4 +118,8 @@ RSpec.configure do |config|
     Capybara.reset_sessions!    # Forget the (simulated) browser state
     Capybara.use_default_driver # Revert Capybara.current_driver to Capybara.default_driver
   end
+
+  config.after(:suite) do
+    # need to get results of run here so we can send a summary to growl
+  end
 end
