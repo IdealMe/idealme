@@ -54,7 +54,7 @@ class WarningSuppressor
 end
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: 2.minutes)
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: 1.minutes)
 end
 
 Capybara.javascript_driver = :poltergeist
@@ -119,7 +119,8 @@ RSpec.configure do |config|
     Capybara.use_default_driver # Revert Capybara.current_driver to Capybara.default_driver
   end
 
-  config.after(:suite) do
-    # need to get results of run here so we can send a summary to growl
+  config.before(:suite) do
+    `rm -rf public/screenshots/*`
   end
+
 end
