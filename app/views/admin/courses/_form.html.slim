@@ -70,8 +70,9 @@
           = market.input :course_id do
             = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
           = market.input :content, input_html: { class: 'tinymce' }
-          = image_tag @course.default_market.avatar.url(:square), height: '50', width: '50'
-          = market.input :avatar, as: 'file'
+          = image_tag @course.default_market.avatar.expiring_url(:square), height: '50', width: '50'
+          = market.input :avatar do
+            = market.file_field :avatar
 
           hr/
           .form-group.row
