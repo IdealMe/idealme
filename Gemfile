@@ -209,6 +209,8 @@ group :development do
   gem 'guard-livereload'
   # gem 'guard-rubocop'
   gem 'rack-livereload'
+  gem 'guard-ctags-bundler'
+  gem 'gem-ctags'
 end
 
 group :development, :test do

@@ -215,6 +215,7 @@ GEM
       activerecord (~> 4.0.0)
     fssm (0.2.10)
     gatling_gun (0.0.3)
+    gem-ctags (1.0.6)
     gon (4.1.1)
       actionpack (>= 2.3.0)
       json
@@ -227,6 +228,8 @@ GEM
     guard-bundler (2.0.0)
       bundler (~> 1.0)
       guard (~> 2.2)
+    guard-ctags-bundler (1.0.1)
+      guard (~> 2.0)
     guard-livereload (2.0.0)
       em-websocket (~> 0.5)
       guard (~> 2.0)
@@ -548,8 +551,10 @@ DEPENDENCIES
   font-awesome-sass-rails
   friendly_id
   gatling_gun
+  gem-ctags
   gon
   guard-bundler
+  guard-ctags-bundler
   guard-livereload
   guard-rspec
   haml2slim
