@@ -9,7 +9,7 @@ namespace :users do
 
     goals = Goal.all
 
-    CSV.foreach('./fake_users.csv') do |row|
+    CSV.foreach('./spec/fixtures/fake_users.csv') do |row|
       next if row[0] == 'User'
       user = User.new
       user.fake = true

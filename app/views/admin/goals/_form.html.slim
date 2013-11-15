@@ -1,28 +1,40 @@
-= form_for(@goal, url: url, html: {class: 'form-horizontal'}) do |f|
+= simple_form_for(@goal, url: url, wrapper: :bootstrap) do |f|
   fieldset
     #legend
       legend Goal
-  = f.text_field :name
-  = f.select :category_id, Category.for_select, {}, class: 'select2'
-  .form-group
-    .control-label
-      p
-        | Existing avatar
-    .controls
-      - if @goal.avatar.exists?
-        = image_tag(@goal.avatar.url)
-  = f.file_field :avatar
-  = f.check_box :hidden
-  = f.check_box :welcome
+  = f.input :name
+  = f.input :category_id
+    = f.select :category_id, Category.for_select, {}, class: 'select2'
+  - if @goal.avatar.exists?
+    .form-group
+      .control-label
+        p
+          | Existing avatar
+      .controls
+          = image_tag(@goal.avatar.url)
+  = f.input :avatar, as: :file
+  .form-group.row
+    .col-md-10
+      .checkbox
+        label
+          = f.check_box :hidden
+          | hidden
+  .form-group.row
+    .col-md-10
+      .checkbox
+        label
+          = f.check_box :welcome
+          | welcome
+
   fieldset
     #legend
       legend Course
-  .form-group
-    .controls
-      = hidden_field_tag "goal[course_ids][]", nil
-      - Course.all.each do |course|
+  .form-group.row
+    = hidden_field_tag "goal[course_ids][]", nil
+    - Course.all.each do |course|
+      .col-md-10
         label
           = check_box_tag "goal[course_ids][]", course.id, @goal.course_ids.include?(course.id)
-          = course.name
-  = f.submit 'Save', class: 'btn btn-success'
+          = " #{course.name}"
+  = f.submit 'Save', class: 'btn btn-primary'
   = link_to 'Back', admin_goals_path, class: 'btn'

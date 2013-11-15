@@ -48,11 +48,7 @@
           .col-md-7
             = link.text_field :slug, class: 'form-control'
         .form-group
-          label.control-label.col-md-2 Tracking tag:
-          .col-md-7
-            = link.text_field :tracking_tag, class: 'form-control'
-        .form-group
-          label.control-label.col-md-2 Market:
+          label.control-label.col-md-2 Default Market:
           .col-md-7
             = link.select :market_id, Market.all.collect { |market| [market.name, market.id] }, {}, class: 'select2'
           - if link.object.persisted?

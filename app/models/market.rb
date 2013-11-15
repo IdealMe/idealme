@@ -7,7 +7,6 @@ class Market < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :avatar, :hidden, :name, :slug, :slider, :content, :affiliate_tag, :course_id, :course, :features_attributes
 
   # == Relationships ========================================================
   has_many :payloads, as: :payloadable, dependent: :destroy
@@ -19,6 +18,7 @@ class Market < ActiveRecord::Base
   # == Paperclip ============================================================
   has_attached_file :avatar,
                     styles: {full: '252x202#', thumb: '80x64#'},
+                    :s3_permissions => :public_read,
                     convert_options: {
                         full: '-gravity center -extent 252x202 -quality 75 -strip',
                         thumb: '-gravity center -extent 80x64 -quality 75 -strip'

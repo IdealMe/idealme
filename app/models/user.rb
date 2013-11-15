@@ -13,14 +13,7 @@ class User < ActiveRecord::Base
   # == Constants ============================================================
 
   # == Attributes ===========================================================
-  attr_accessible :login, :username, :firstname, :lastname, :email, :password, :password_confirmation,
-                  :remember_me, :avatar, :tagline, :affiliate_tag, :instructor_about, :timezone, :toured,
-                  :affiliate_links_attributes
-
-  attr_accessible :access_admin, :access_affiliate, :access_instructor, as: :admin
-
   attr_accessor :login
-  attr_accessible :login
 
   # == Relationships ========================================================
   has_many :owned_courses, class_name: 'Course', foreign_key: 'owner_id'
@@ -150,6 +143,10 @@ class User < ActiveRecord::Base
   # == Instance Methods =====================================================
   def fullname
     "#{self.firstname} #{self.lastname}"
+  end
+
+  def fullname_or_username_or_id
+    "#{((fullname.present? ? fullname : nil) || (username.present? ? username : nil) || id)}"
   end
 
   # After create callback

@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :affiliate_link do
     slug 'my-link'
-    market_tag 'market_tag'
+    market_tag 'at-market-tag'
     user { create(:affiliate_user) }
   end
 end

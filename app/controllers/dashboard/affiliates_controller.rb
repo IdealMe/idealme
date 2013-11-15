@@ -78,12 +78,20 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
 
   def show
     @affiliate_link = ::AffiliateLink.where('affiliate_links.slug = ?', params[:id]).first
-    raise(IdealMeException::RecordNotFound, 'That affiliate link does not exist') if @affiliate_link.nil?
+    @other_markets = Market.where("affiliate_tag != ?", @affiliate_link.market_tag)
+    raise('That affiliate link does not exist') if @affiliate_link.nil?
 
     authorize!(:read, @affiliate_link)
-    @affiliate_clicks = ::AffiliateClick.where('affiliate_links.slug = ?', params[:id]).where('affiliate_clicks.created_at >= ? AND affiliate_clicks.created_at <= ?', @from_date, @to_date).includes(:affiliate_link)
+    @affiliate_clicks = ::AffiliateClick.where('affiliate_links.slug = ?', params[:id])
+      .where('affiliate_clicks.created_at >= ? AND affiliate_clicks.created_at <= ?', @from_date, @to_date)
+      .includes(:affiliate_link)
+      .references(:affiliate_links)
 
-    @affiliate_sales = ::AffiliateSale.where('affiliate_links.slug = ?', params[:id]).where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true).includes(:affiliate_link, {:order => [:course, :user]})
+    @affiliate_sales = ::AffiliateSale.where('affiliate_links.slug = ?', params[:id])
+      .where('orders.created_at >= ? AND orders.created_at <= ? AND affiliate_sales.completed = ?', @from_date, @to_date, true)
+      .includes(:affiliate_link, {:order => [:course, :user]})
+      .references(:affiliate_links, :orders)
+
     @unique_users = @affiliate_sales.map(&:order).flatten.map(&:user).uniq
     @unique_users_in_range = @unique_users.keep_if { |i| i.created_at >= @from_date && i.created_at <= @to_date }
     @unique_click = 0
@@ -118,9 +126,9 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
   end
 
   def create
-    @affiliate_link = ::AffiliateLink.new(params[:affiliate_link])
+    @affiliate_link = ::AffiliateLink.new(affiliate_link_params)
     if @affiliate_link.save
-      redirect_to dashboard_affiliate_path(@affiliate_link), notice: 'Affiliate link was successfully created.'
+      redirect_to dashboard_affiliate_path(@affiliate_link.slug), notice: 'Affiliate link was successfully created.'
     else
       render action: "new"
     end
@@ -150,5 +158,9 @@ class Dashboard::AffiliatesController < Dashboard::ApplicationController
   private
   def authenticate
     authorize!(:access, :affiliate)
+  end
+
+  def affiliate_link_params
+    params.require(:affiliate_link).permit!
   end
 end

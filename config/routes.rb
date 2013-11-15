@@ -1,10 +1,12 @@
 Idealme::Application.routes.draw do
 
+  get "screenshots/index" unless Rails.env.production?
+  get "screenshots/reset" unless Rails.env.production?
   get "payload/:id/download" => "payload#download", as: :download_payload
 
   root to: 'landings#index'
 
-  get "now/:slug" => "affiliate_links#perform", slug: /[^\/]+/
+  get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
 
   resources :searches, only: [:index]
   resources :lectures, only: [:index, :show]

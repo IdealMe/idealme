@@ -1,0 +1,39 @@
+doctype
+html
+  head
+    title Screenshot
+    javascript:
+      WEB_SOCKET_SWF_LOCATION = "/__rack/WebSocketMain.swf";
+
+    script src="/__rack/swfobject.js" type="text/javascript"
+    script src="/__rack/web_socket.js" type="text/javascript"
+    javascript:
+      RACK_LIVERELOAD_PORT = 35729;
+    script src="http://0.0.0.0:35729/livereload.js?" type="text/javascript"
+
+    = stylesheet_link_tag 'screenshots'
+    = javascript_include_tag 'screenshots'
+    css:
+      body {
+        background-color: #333;
+        color: white;
+      }
+      .row {
+        padding: 10px;
+      }
+
+    body
+    .container
+      .row
+        .col-md-2
+          br/
+          - unless @screenshots.empty?
+            a.btn.btn-default href="reset" Clear
+        .col-md-10
+          - @screenshots.each do |img|
+            div
+              p = img
+              img src=img width="100%"
+              br/
+              br/
+

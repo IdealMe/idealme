@@ -7,7 +7,6 @@ class Article < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :content, :default_market_id, :hidden, :name, :slug, :author_id, :category_id, :course_id, :goal_id
   attr_accessor :author_id
 
   # == Relationships ========================================================

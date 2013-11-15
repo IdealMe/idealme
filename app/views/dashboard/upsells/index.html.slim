@@ -1,32 +1,31 @@
 .row
-  .twelve.columns
-    h1
-      | Upsells
-    .panel
-      = link_to 'New Upsell', dashboard_new_upsell_path, :class => 'success button'
-    table.twelve
-      thead
+  h1
+    | Upsells
+  .panel
+    = link_to 'New Upsell', dashboard_new_upsell_path, :class => 'success button'
+  table.table
+    thead
+      tr
+        th
+          | ID
+        th
+          | Course
+        th
+          | Market
+        th
+          | Sequence
+        th
+          | Created at
+    tbody
+      - @upsells.each do |upsell|
         tr
-          th
-            | ID
-          th
-            | Course
-          th
-            | Market
-          th
-            | Sequence
-          th
-            | Created at
-      tbody
-        - @upsells.each do |upsell|
-          tr
-            td
-              = link_to upsell.id, upsell_path(upsell)
-            td
-              = upsell.market.course.name
-            td
-              = link_to upsell.market.name, market_path(upsell.market)
-            td
-              = upsell.sequence
-            td
-              = l upsell.created_at
+          td
+            = link_to upsell.id, upsell_path(upsell)
+          td
+            = upsell.market.course.name
+          td
+            = link_to upsell.market.name, market_path(upsell.market)
+          td
+            = upsell.sequence
+          td
+            = l upsell.created_at

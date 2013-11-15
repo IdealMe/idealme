@@ -9,7 +9,6 @@ class Payload < ActiveRecord::Base
                   ['Archive', IM_PAYLOAD_ARCHIVE]]
 
   # == Attributes ===========================================================
-  attr_accessible :payload, :intended_type, :payloadable_id, :payloadable_type
   attr_reader :payload_remote_url
 
   # == Relationships ========================================================
@@ -50,8 +49,11 @@ class Payload < ActiveRecord::Base
   def self.payload_from_path(path)
     payload = Payload.new
     payload.payload = File.open path
-    existing = Payload.where(payload_file_name: payload.payload_file_name).first
+    home = `echo $HOME`.strip
+    dropbox_path = path.sub(home, '')
+    existing = Payload.where(dropbox_path: dropbox_path).first
     unless existing
+      payload.dropbox_path = dropbox_path
       payload.save!
       payload
     else
@@ -79,6 +81,18 @@ class Payload < ActiveRecord::Base
 
   def download_url
     payload.expiring_download_url(IM_S3_URL_TTL)
+  end
+
+  def select_label
+    if dropbox_path.present?
+      "#{short_dropbox_path}"
+    else
+      "#{payload_file_name}"
+    end
+  end
+
+  def short_dropbox_path
+    self.dropbox_path.sub('/Dropbox/upload/','')
   end
 
 

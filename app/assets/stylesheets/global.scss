@@ -34,8 +34,16 @@
 
 .form-horizontal .control-label {
   float: right;
+}
+
+.simple_form {
   abbr {
     display: none;
   }
+  .buttons {
+    padding: 30px 0;
+  }
 }
-
+.sort-grip-column {
+  width: 30px;
+}

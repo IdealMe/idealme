@@ -23,19 +23,19 @@ table.table
         td
           = link_to("#{affiliate_sale.order.user.firstname} #{affiliate_sale.order.user.lastname}", user_path(affiliate_sale.order.user))
         td
-          = link_to(affiliate_sale.order.course.name, course_path(affiliate_sale.order.course))
+          = link_to(affiliate_sale.order.course.name.truncate(25), course_path(affiliate_sale.order.course))
         td
           = Order::ORDER_STATUSES[affiliate_sale.order.status]
         td
           = affiliate_sale.affiliate_link ? link_to(affiliate_sale.affiliate_link.slug, dashboard_affiliate_path(affiliate_sale.affiliate_link)) : 'None'
-        td
+        td.values
           = penny_to_currency(affiliate_sale.gross, :precision => 4)
-        td
+        td.values
           = number_to_percentage(affiliate_sale.course_commission_percent, :precision => 4)
-        td
+        td.values
           = penny_to_currency(affiliate_sale.commission, :precision => 4)
-        td
-          = l(affiliate_sale.order.created_at)
+        td.values
+          = affiliate_sale.order.created_at.strftime('%F %H:%M')
     tr
       th
       th
@@ -43,6 +43,7 @@ table.table
       th
       th
       th
-      th
-        = penny_to_currency(@sum_commission, :precision => 4)
+      th.values
+        strong
+          = penny_to_currency(@sum_commission, :precision => 4)
       th

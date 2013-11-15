@@ -1,5 +1,4 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :commentable_id, :commentable_type, :content, :owner_id, :commentable, :owner
 
   has_many :replies, dependent: :destroy
 
@@ -9,8 +8,6 @@ class Comment < ActiveRecord::Base
 
 
   attr_accessor :redirect_back_to
-  attr_accessible :redirect_back_to
-
 
   validates_length_of :content, minimum: 1, allow_blank: false
 

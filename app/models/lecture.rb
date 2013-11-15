@@ -8,8 +8,6 @@ class Lecture < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :name, :slug, :section, :section_id, :content, :description, :position
-
   # == Relationships ========================================================
   belongs_to :section
   delegate :course, to: :section, allow_nil: true

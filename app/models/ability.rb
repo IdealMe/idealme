@@ -32,6 +32,7 @@ class Ability
       if user.access_affiliate
         can :access, :affiliate
         can :access, :course_creation
+        can :read, AffiliateLink, :user_id => user.id
       end
       if user.access_instructor
       end

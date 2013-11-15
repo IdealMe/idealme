@@ -24,8 +24,6 @@ class OrdersController < ApplicationController
 
   # create a paypal payment and send the user to the approval url
   def paypal_checkout
-    #foo = cookies.signed[:zid]
-    #binding.pry
     paypal = PayPal.new(paypal_endpoint, paypal_credentials)
 
     paypal.create_payment(@order.course.cost_in_dollars, "Ideal Me - #{@market.name}", paypal_return_url, paypal_cancel_url)
@@ -118,12 +116,16 @@ class OrdersController < ApplicationController
 
 
   def build_order
-    @order = Order.new(params[:order])
+    @order = Order.new(order_params)
     @market = Market.where(id: @order.market.id).first
     @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
     raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
+  end
+
+  def order_params
+    params.require(:order).permit!
   end
 
 

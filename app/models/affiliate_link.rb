@@ -2,22 +2,14 @@ class AffiliateLink < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :market_tag, :slug, :user
-  attr_accessible :slug, :market_tag, :tracking_tag, :market_id, :user_id
 
   has_many :sales, class_name: 'AffiliateSale'
   has_many :affiliate_clicks
 
 
-  def path
-    "/markets/#{market_tag}/#{user.affiliate_tag}#{tracking_tag_or_blank}"
-  end
-
-  def tracking_tag_or_blank
-    if tracking_tag
-      "/#{tracking_tag}"
-    else
-      ""
-    end
+  def path(market_tag = nil)
+    market_tag ||= self.market_tag
+    "/markets/#{market_tag}/#{user.affiliate_tag}/#{slug}"
   end
 
   def market_id
@@ -26,5 +18,9 @@ class AffiliateLink < ActiveRecord::Base
 
   def market_id=(v)
     self.market_tag = Market.where(id: v).first.try(:affiliate_tag)
+  end
+
+  def market
+    Market.find(market_id)
   end
 end

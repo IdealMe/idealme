@@ -5,8 +5,8 @@ $(function () {
 
   $(document).on('click', '.goal-card', function(evt){
     var self = $(this);
-    var goal_el = self.find('[data-goal-id]').first();
-    var goal_id = $(goal_el).attr('data-goal-id');
+    var goal_el = self.find('[data-goal_id]').first();
+    var goal_id = $(goal_el).attr('data-goal_id');
     var selected = self.find('.goal-picker-unchecked').first().hasClass('hide');
     self.find('.picker img').addClass('hide');
 

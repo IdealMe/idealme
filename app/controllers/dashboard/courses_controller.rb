@@ -9,13 +9,16 @@ class Dashboard::CoursesController < Dashboard::ApplicationController
     @base = params.except(:controller, :action, :filter)
     case @tab
       when 'stats'
-        @orders = ::Order.includes(:course, :affiliate_sale).where('orders.status != ?', IM_ORDER_CREATED).where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date).where(:course_id => ::Course.where(:owner_id => current_user.id)).all
+        @orders = ::Order.includes(:course, :affiliate_sale)
+          .where('orders.status = ?', Order::STATUS_SUCCESSFUL)
+          .where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date)
+          .where(:course_id => ::Course.where(:owner_id => current_user.id)).all
         @sum_sales_count = 0
         @sum_gross = 0
         @sum_fee = 0
         @sum_affiliate_fee = 0
         @orders.each do |order|
-          if order.status == IM_ORDER_PAID
+          if order.status == Order::STATUS_SUCCESSFUL
             @sum_sales_count += 1
             @sum_gross += order.cost
             @sum_fee += ((order.cost * order.course.affiliate_commission / 100) * IM_BUSINESS_SALE_HOUSE_PERCENT_TAKE_F + IM_BUSINESS_SALE_HOUSE_BASE_TAKE)
@@ -28,7 +31,7 @@ class Dashboard::CoursesController < Dashboard::ApplicationController
         @affiliate = Hash.new
         @orders = ::Order.includes(:course, {:affiliate_sale => :user}).where('courses.owner_id = ? AND orders.status != ?', current_user.id, IM_ORDER_CREATED).where('orders.created_at >= ? AND orders.created_at <= ?', @from_date, @to_date).all
         @orders.each do |order|
-          if (order.status == IM_ORDER_REFUND || order.status == IM_ORDER_PAID) && !order.affiliate_sale.nil?
+          if (order.status == Order::STATUS_SUCCESSFUL) && !order.affiliate_sale.nil?
             affiliate_user = order.affiliate_sale.user
             sum_affiliate = nil
             if @affiliate.has_key?(affiliate_user)
@@ -43,7 +46,7 @@ class Dashboard::CoursesController < Dashboard::ApplicationController
               sum_affiliate[:sum_affiliate_fee] = 0
               @affiliate[affiliate_user] = sum_affiliate
             end
-            if order.status == IM_ORDER_PAID
+            if order.status == Order::STATUS_SUCCESSFUL
               sum_affiliate[:orders_length] += 1
               sum_affiliate[:sum_gross] += order.cost
               sum_affiliate[:sum_fee] += order.cost * (order.course.affiliate_commission / 100) * IM_BUSINESS_SALE_HOUSE_PERCENT_TAKE_F + IM_BUSINESS_SALE_HOUSE_BASE_TAKE

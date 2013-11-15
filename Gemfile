@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 #ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
 gem 'comfortable_mexican_sofa', '~> 1.11.0'
 
-gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
 gem 'dotenv-rails'
 
 gem 'nokogiri'
@@ -16,7 +15,6 @@ gem 'actionpack-xml_parser', '~>1.0.0'
 gem 'actionview-encoded_mail_to', '~>1.0.4'
 gem 'activerecord-session_store', '~>0.0.1'
 gem 'activeresource', '~>4.0.0.beta1'
-gem 'protected_attributes', '~>1.0.1'
 gem 'rails-observers', '~>0.1.1'
 # gem 'rails-perftest', '~>0.0.2'
 
@@ -101,7 +99,7 @@ gem 'carmen'
 gem 'carmen-rails', git: 'https://github.com/jim/carmen-rails.git'
 
 #AWS SDK for Ruby
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.26.0'
 
 #Do some browser detection with Ruby.
 gem 'browser'
@@ -149,8 +147,7 @@ gem 'haml2slim'
 
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                          :github => 'anjlab/bootstrap-rails',
-                          :branch => '3.0.0'
+                          :github => 'anjlab/bootstrap-rails'
 
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'
@@ -212,6 +209,8 @@ group :development do
   gem 'guard-livereload'
   # gem 'guard-rubocop'
   gem 'rack-livereload'
+  gem 'guard-ctags-bundler'
+  gem 'gem-ctags'
 end
 
 group :development, :test do

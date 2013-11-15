@@ -1,0 +1,10 @@
+div.date-range-header
+  = form_tag(dashboard_affiliates_path, :method => 'get', :class => 'form-inline') do
+    ' Displaying statistics from
+    .form-group
+      = text_field_tag('from', @from, :class => 'datepicker form-control', :placeholder => 'From', 'data-provide' => 'datepicker')
+    '  to
+    .form-group
+      = text_field_tag('to', @to, :class => 'datepicker form-control', :placeholder => 'To', 'data-provide' => 'datepicker')
+    = submit_tag('Filter', :class => 'btn btn-default btn-sm', :id => 'btn-update-datefilters')
+

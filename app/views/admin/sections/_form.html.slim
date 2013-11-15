@@ -1,31 +1,18 @@
-= form_for(@section, url: url, html: {class: 'form-horizontal'}) do |f|
+= simple_form_for(@section, url: url, wrapper: :bootstrap) do |f|
   fieldset
     #legend
       legend Section
-  .form-group
-    label.control-label.col-md-2 for="section_name" Name:
-    .col-md-7
-      = f.text_field :name, class: 'form-control'
-  .form-group
-    label.control-label.col-md-2 Course:
-    .col-md-7
-      = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
-  .form-group
-    label.control-label.col-md-2 Description:
-    .col-md-7
-      = f.text_area :description, class: 'tinymce'
-  .form-group
-    label.control-label.col-md-2 Content:
-    .col-md-7
-      = f.text_area :content, class: 'tinymce'
+  = f.input :name
+  = f.input :course_id do
+    = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
+  = f.input :description, input_html: { class: 'tinymce' }
+  = f.input :content, input_html: { class: 'tinymce' }
 
   - if @section.persisted?
-    fieldset
-      #legend
-        legend Lecture
+    legend Lectures
     table.table
       tr
-        th.span1
+        th.span1.sort-grip-column
           | Sort
         th
           | Lecture
@@ -36,12 +23,11 @@
               i.icon-sort.handle
             td
               = link_to lecture.name, edit_admin_lecture_path(lecture)
-    a href=new_admin_lecture_path(:section_id => @section.id) class='btn' New lecture
-    br
-    br
+    a href=new_admin_lecture_path(:section_id => @section.id) class='btn btn-primary' New Lecture
 
 
-  = f.submit 'Save', class: 'btn btn-success'
-  = link_to 'Back', admin_sections_path, class: 'btn'
-  - if @section.persisted?
-    = link_to 'Delete Section', admin_section_path, :class => 'btn btn-danger', :method => "delete", :confirm => "Delete this section?"
+  .buttons
+    = f.submit 'Save Section', class: 'btn btn-primary'
+    = link_to 'Back', admin_sections_path, class: 'btn'
+    - if @section.persisted?
+      = link_to 'Delete Section', admin_section_path, :class => 'btn btn-danger', :method => "delete", :confirm => "Delete this section?"

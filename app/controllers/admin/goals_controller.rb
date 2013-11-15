@@ -29,7 +29,7 @@ class Admin::GoalsController < Admin::BaseController
 
   # PUT /admin/goals/1
   def update
-    @goal.update_attributes!(params[:goal])
+    @goal.update_attributes!(goal_params)
     redirect_to edit_admin_goal_path(@goal), notice: 'Goal was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render action: :edit
@@ -53,7 +53,11 @@ class Admin::GoalsController < Admin::BaseController
   end
 
   def build_goal
-    @goal = Goal.new(params[:goal])
+    @goal = Goal.new(goal_params)
+  end
+
+  def goal_params
+    params.fetch(:goal, {}).permit!
   end
 
 end

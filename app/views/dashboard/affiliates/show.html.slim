@@ -1,104 +1,98 @@
 .row
-  .twelve.columns
-    h1
-      | Affiliate statistics from 
-      = @from_date
-      |  to 
-      = @to_date
-    table.table
+  = render partial: 'dashboard/partials/datefilter'
+  / = render partial: 'dashboard/affiliates/partials/tabs'
+  table.table
+    tr
+      td[width="300"]
+        strong
+          | Slug:
+      td
+        = @affiliate_link.slug
+    tr
+      td
+        strong
+          | Total units sold
+        | :
+      td
+        = @affiliate_sales.length
+    tr
+      td
+        strong
+          | Unique clicks:
+      td
+        = @unique_click
+    tr
+      td
+        strong
+          | Total clicks:
+      td
+        = @total_click
+    tr
+      td
+        strong
+          | Total unique users:
+      td
+        = @unique_users.length
+    tr
+      td
+        strong
+          | Total unique users signed up:
+      td
+        = @unique_users_in_range.length
+  table.table
+    thead
       tr
-        td[width="200"]
-          strong
-            | Slug:
-        td
-          = @affiliate_link.slug
-      tr
-        td
-          strong
-            | Total units sold
-          | : 
-        td
-          = @affiliate_sales.length
-      tr
-        td
-          strong
-            | Unique clicks:
-        td
-          = @unique_click
-      tr
-        td
-          strong
-            | Total clicks:
-        td
-          = @total_click
-      tr
-        td
-          strong
-            | Total unique users: 
-        td
-          = @unique_users.length
-      tr
-        td
-          strong
-            | Total unique users signed up: 
-        td
-          = @unique_users_in_range.length
-    table.table
-      thead
+        th
+          | Order
+        th
+          | Product
+        th
+          | Affiliate %
+        th
+          | Affiliate Pay Out
+        th
+          | Transaction Date
+    tbody
+      - @affiliate_sales.each do |affiliate_sale|
         tr
-          th
-            | Order
-          th
-            | Product
-          th
-            | Status
-          th
-            | Tracking
-          th
-            | Cost
-          th
-            | Affiliate %
-          th
-            | Affiliate Pay Out
-          th
-            | Transaction Date
-      tbody
-        - @affiliate_sales.each do |affiliate_sale|
-          tr
-            td
-              = link_to("#{affiliate_sale.order.user.firstname} #{affiliate_sale.order.user.lastname}", user_path(affiliate_sale.order.user))
-            td
-              = link_to(affiliate_sale.order.course.name, course_path(affiliate_sale.order.course))
-            td
-              = number_to_percentage(affiliate_sale.course_commission_percent, :precision => 4)
-            td
-              = penny_to_currency(affiliate_sale.commission, :precision => 4)
-            td
-              = l(affiliate_sale.order.created_at)
+          td
+            = link_to("#{affiliate_sale.order.user.firstname} #{affiliate_sale.order.user.lastname}", user_path(affiliate_sale.order.user))
+          td
+            = link_to(affiliate_sale.order.course.name, course_path(affiliate_sale.order.course))
+          td.values
+            = number_to_percentage(affiliate_sale.course_commission_percent, :precision => 4)
+          td.values
+            = penny_to_currency(affiliate_sale.commission, :precision => 4)
+          td.values
+            = affiliate_sale.order.created_at.strftime('%F %H:%M')
+      tr
+        th
+        th
+        th
+        th.values
+          = penny_to_currency(@sum_commission, :precision => 4)
+        th
+  h2
+    | Affiliate links
+  table.table
+    thead
+      tr
+        th width="50%"
+          | Market
+        th
+          | Affiliate Code
+    tbody
+      tr
+        td
+          = @affiliate_link.market.name
+        td
+          - url = affiliate_link_url slug: @affiliate_link.slug
+          = link_to url, url
+      - @other_markets.each do |market|
         tr
-          th
-          th
-          th
-          th
-          th
-          th
-          th
-            = penny_to_currency(@sum_commission, :precision => 4)
-          th
-    h2
-      | Affiliate links
-    table.table
-      thead
-        tr
-          th
-            | Affiliate Tracking Name
-          th
-            | Affiliate Code
-      tbody
-        - @courses.each do |course|
-          tr
-            td
-              = course.name
-            td
-              = course.id
-              | WRONG VALUE
+          td
+            = market.name
+          td
+            - url = affiliate_link_url slug: @affiliate_link.slug, market_tag: market.affiliate_tag
+            = link_to url, url
+

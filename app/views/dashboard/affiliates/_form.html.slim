@@ -1,34 +1,17 @@
-= form_for @affiliate_link, url: url, html: {class: 'form-horizontal'} do |f|
+= simple_form_for(@affiliate_link, url: url, method: :post, wrapper: :bootstrap) do |f|
   = f.hidden_field :user_id, :value => current_user.id
-
   - if @affiliate_link.errors.any?
     - @affiliate_link.errors.full_messages.each do |msg|
       = msg
       br/
-  .form-group
-    label.control-label.col-md-2 for="affiliate_link_name" Name:
-    .col-md-7
-      = f.text_field :name, class: 'form-control'
-  .form-group
-    label.control-label.col-md-2 for="affiliate_link_slug" Slug:
-    .col-md-7
-      = f.text_field :slug, class: 'form-control'
+
+  = f.input :slug
 
   - unless @affiliate_link.persisted?
-    .form-group
-      label.control-label.col-md-2 for="affiliate_link_tracking_tag" Tracking tag:
-      .col-md-7
-        = f.text_field :tracking_tag, class: 'form-control'
-    .form-group
-      label.control-label.col-md-2 for="affiliate_link_market_tag" Market:
-      .col-md-7
-        = f.text_field :market_tag, class: 'form-control'
+    = f.input :market_tag, collection: market_tags_for_select
 
-  .form-group
-    label.control-label.col-md-2 for="affiliate_link_note" Note:
-    .col-md-7
-      = f.text_area :name, class: 'form-control'
+  = f.input :note, as: :text
 
-  .form-actions.col-md-offset-2
+  .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to 'Cancel', dashboard_affiliates_path, :class => 'btn'

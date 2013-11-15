@@ -27,10 +27,11 @@ table.table
         td
           = affiliate_link.unique_click
         td
-          = number_to_percentage((affiliate_link.sales.length * 1.00)/(affiliate_link.unique_click*1.00) * 100.00, :precision => 4)
+          - conversion_percentage = ((affiliate_link.sales.length * 1.00)/(affiliate_link.unique_click*1.00) * 100.00)
+          = number_to_percentage(conversion_percentage, :precision => 4) unless conversion_percentage.nan?
         td
           = penny_to_currency(affiliate_link.sum_gross, :precision => 4)
         td
           = penny_to_currency(affiliate_link.sum_commission, :precision => 4)
 p
-  = link_to 'New Affiliate link', new_dashboard_affiliate_path, :class => 'btn btn-primary'
+  = link_to 'New Tracking Link', new_dashboard_affiliate_path, :class => 'btn btn-primary'

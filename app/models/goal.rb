@@ -5,8 +5,6 @@ class Goal < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :hidden, :name, :user_count, :avatar, :welcome, :hidden, :ordering, :category_id, :course_ids
-
   # == Relationships ========================================================
   has_many :goal_users
   has_many :users, through: :goal_users

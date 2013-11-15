@@ -3,8 +3,6 @@ class GoalUser < ActiveRecord::Base
   # == Slug =================================================================
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :private, :user_id, :goal_id, :archived, :completed
-
   # == Relationships ========================================================
   belongs_to :user
   belongs_to :goal

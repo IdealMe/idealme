@@ -7,7 +7,6 @@ class Category < ActiveRecord::Base
 
   # == Constants ============================================================
   # == Attributes ===========================================================
-  attr_accessible :name, :slug, :avatar
 
   # == Relationships ========================================================
   has_many :courses

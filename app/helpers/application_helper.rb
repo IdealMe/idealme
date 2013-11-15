@@ -58,7 +58,7 @@ module ApplicationHelper
       friendly = "#{last_affiliate_user.username}" if last_affiliate_user
       tid = cookies.signed[:tid]
       if tid
-        last_affiliate_link = AffiliateLink.where(tracking_tag: tid).first
+        last_affiliate_link = AffiliateLink.where(slug: tid).first
         friendly = "#{friendly}/#{last_affiliate_link.slug}" if last_affiliate_link
       end
     end
@@ -84,5 +84,19 @@ module ApplicationHelper
         Rails.env
       end
     end
+  end
+
+  def guessed_media_type(file_name)
+    guess = IM_PAYLOAD_DOCUMENT if file_name.include?('.pdf')
+    guess = IM_PAYLOAD_ARCHIVE if file_name.include?('.zip')
+    guess = IM_PAYLOAD_VIDEO if file_name.include?('.mov')
+    guess = IM_PAYLOAD_VIDEO if file_name.include?('.mp4')
+    guess = IM_PAYLOAD_VIDEO if file_name.include?('.flv')
+    guess = IM_PAYLOAD_AUDIO if file_name.include?('.mp3')
+    guess
+  end
+
+  def image_or_video_tag(path)
+    render(partial: "partials/market_promo_media", locals: { url: path, media_type: guessed_media_type(path) })
   end
 end

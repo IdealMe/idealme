@@ -18,5 +18,4 @@ class Feedback < ActiveRecord::Base
     ]
   end
 
-  attr_accessible :content, :feedback_type, :owner_id, :owner
 end

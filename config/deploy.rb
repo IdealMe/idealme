@@ -30,7 +30,6 @@ set :hipchat_message_format, 'text' # Sets the deployment message format, see ht
 namespace :deploy do
   desc "Restart the application following a deploy"
   task :restart do
-    binding.pry
   end
 end
 

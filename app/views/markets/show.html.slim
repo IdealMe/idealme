@@ -2,7 +2,7 @@
   .course-wp
     .l-col
       .image
-        = image_tag(@market.avatar.url(:full))
+        = image_or_video_tag(@market.avatar.url)
       h4 Your Teacher
       .teacher
         .image-t
@@ -27,22 +27,24 @@
                 = @market.course.down_votes
             /! TODO: are we doing reviews for MVP?
             li
-              a  href="#"  3 reviews
+              a.reviews-link href="#tab-3" Reviews
             li.last
               span.enrolled
                 = @course.users.length
                 | enrolled
       .clear
-      brNO
+
+
+      br
       .tabs
         .tabs-nav
-          ul
+          ul.nav.nav-tabs
             li
-              a  href="#tab-1"  About this course
+              a href="#tab-1" About this course
             li
-              a  href="#tab-2"  Syllabus
-            /%li
-            /  %a{href: "#tab-3"} Reviews
+              a href="#tab-2" Syllabus
+            li
+              a href="#tab-3" Reviews
         .tabs-cnt
           #tab-1.tab
             - if @market.content
@@ -60,44 +62,35 @@
                       = index + 1
                     td
                       = section.name
+          #tab-3.tab
+            .review
+             .image
+               img alt="" src="/assets/course-image-4.png"/
+             .text
+               .top
+                 by
+                 a href="#" Gökçe Çözen
+                 span.moto Worth every penny!!
+               p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+            .review
+             .image
+               img alt="" src="/assets/course-image-5.png"/
+             .text
+               .top
+                 by
+                 a href="#" Olga Bereziuk
+                 span.moto Worth every penny!!
+               p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+            .review
+             .image
+               img alt="" src="/assets/course-image-6.png"/
+             .text
+               .top
+                 by
+                 a href="#" Susanne Mumpitz
+                 span.moto Worth every penny!!
+               p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
 
-          /! End Tab 2
-          /! Tab 3
-          /#tab-3.tab
-          /  .review
-          /    .image
-          /      %img{alt: "", src: "/assets/course-image-4.png"}/
-          /    .text
-          /      .top
-          /        by
-          /        = succeed "," do
-          /          %a{href: "#"} Gökçe Çözen
-          /        %span.moto Worth every penny!!
-          /      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          /  .review
-          /    .image
-          /      %img{alt: "", src: "/assets/course-image-5.png"}/
-          /    .text
-          /      .top
-          /        by
-          /        = succeed "," do
-          /          %a{href: "#"} Olga Bereziuk
-          /        %span.moto Worth every penny!!
-          /      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          /  .review
-          /    .image
-          /      %img{alt: "", src: "/assets/course-image-6.png"}/
-          /    .text
-          /      .top
-          /        by
-          /        = succeed "," do
-          /          %a{href: "#"} Susanne Mumpitz
-          /        %span.moto Worth every penny!!
-          /      %p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-          /! End Tab 3
-      /! End Tabs
-    /! End C Col
-    /! R Col
     .r-col
       .enroll-wp
         a.enroll-btn.top-enroll-btn  href=subscribe_orders_path(@market)

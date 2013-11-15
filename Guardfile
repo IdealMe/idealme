@@ -1,6 +1,12 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
+
+guard 'ctags-bundler', :src_path => ["app", "lib", "spec/support"] do
+  watch(/^(app|lib|spec\/support)\/.*\.rb$/)
+  watch('Gemfile.lock')
+end
+
 guard 'bundler' do
   watch('Gemfile')
   # Uncomment next line if Gemfile contain `gemspec' command
@@ -16,7 +22,7 @@ guard 'livereload' do
  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|sass|scss|less))).*}) { |m| "/assets/#{m[3]}" }
 end
 
-guard :rspec, cmd: 'rspec -f doc --fail-fast', all_on_start: true, run_all: { cmd: 'rspec -f doc' } do
+guard :rspec, cmd: 'rspec -f doc', all_on_start: true, all_after_pass: true, run_all: { cmd: 'rspec -f doc' } do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
