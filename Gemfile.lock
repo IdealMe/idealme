@@ -219,6 +219,10 @@ GEM
     gon (4.1.1)
       actionpack (>= 2.3.0)
       json
+    growl (1.0.3)
+    growl-rspec (0.0.1)
+      growl
+      rspec
     guard (2.2.3)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -553,6 +557,8 @@ DEPENDENCIES
   gatling_gun
   gem-ctags
   gon
+  growl
+  growl-rspec
   guard-bundler
   guard-ctags-bundler
   guard-livereload
