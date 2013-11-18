@@ -138,6 +138,34 @@
         }
       }
     }
+    #rate-this-course-container {
+      .expanded {
+        background: white;
+        .review-form-container {
+          display: block;
+          clear: both;
+          padding-top: 20px;
+        }
+      }
+      > * {
+        display: inline;
+      }
+      .icon-btn {
+        margin: 0 3px;
+        &.on {
+          color: blue;
+        }
+        &.upvote-icon-btn {
+          margin-left: 40px;
+        }
+        &.downvote-icon-btn {
+          margin-left: 20px;
+        }
+      }
+      .review-form-container {
+        display: none;
+      }
+    }
   }
   .new-comment {
     border-bottom: 1px solid #ebeae5;
@@ -209,7 +237,6 @@
           margin-right: 4px;
         }
       }
-
     }
     .comment-replies {
       margin-left: 35px;
@@ -226,7 +253,6 @@
 
         }
       }
-
     }
   }
 }
