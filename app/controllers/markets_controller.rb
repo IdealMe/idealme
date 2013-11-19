@@ -63,7 +63,7 @@ class MarketsController < ApplicationController
   end
 
   def load_markets
-    @courses = Course.all.sort do |a,b|
+    @courses = Course.where(hidden: false).all.sort do |a,b|
       b.users.count <=> a.users.count
     end
     @sliders = Market.slider.with_course_and_owner
