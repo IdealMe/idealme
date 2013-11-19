@@ -68,7 +68,23 @@
         .clear
   .sidebar
     #rate-this-course-container
-      ' Rate this course yo
+      ' Rate this course:
+      .icon-btn.upvote-icon-btn
+        i.icon-thumbs-up
+      .upvote-total
+        = @course.up_votes
+      .icon-btn.downvote-icon-btn
+        i.icon-thumbs-down
+      .downvote-total
+        = @course.down_votes
+
+      .review-form-container
+        | review this course in this form
+        = form_for @review, url: course_review_path(course_id: @course.id), html: { class: 'new-review' } do |f|
+          = f.text_field :title
+          = f.text_area  :content
+          = f.submit 'Submit', class: 'btn'
+
     = form_for @comment, url: ajax_comments_path,html:{ class:'new-comment'} do |f|
       = f.hidden_field :commentable_id
       = f.hidden_field :commentable_type

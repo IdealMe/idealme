@@ -3,25 +3,6 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-def buy_course_as(user, slug = 'my-link', market = nil)
-  login_as(user, scope: :user, run_callbacks: false)
-
-  if market
-    visit "/now/#{slug}/#{market}"
-  else
-    visit "/now/#{slug}"
-  end
-
-  find('.enroll-btn').click
-  fill_in "Card Number", with: '1234123412341234'
-  fill_in "Security Code", with: '123'
-  order_response = double(:success? => true)
-  ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-  Order.any_instance.stub(:valid?).and_return(true)
-  click_button "Complete Purchase"
-  logout(:user)
-end
-
 describe 'affiliate dashboard functionality' do
 
   let!(:user)               { create(:user) }
