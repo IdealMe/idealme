@@ -11,6 +11,14 @@ module Votable
     self.up_votes - self.down_votes
   end
 
+  def up_votes
+    Vote.where(votable_type: self.class.name, votable_id: self.id, up_vote: true, down_vote: false).count
+  end
+
+  def down_votes
+    Vote.where(votable_type: self.class.name, votable_id: self.id, up_vote: false, down_vote: true).count
+  end
+
   def up_voted?(owner)
     !Vote.where(votable_type: self.class.name, votable_id: self.id, owner_id: owner.id, up_vote: true, down_vote: false).first.nil?
   end

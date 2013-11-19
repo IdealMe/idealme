@@ -9,7 +9,7 @@ class Ajax::VotesController < Ajax::BaseController
       @vote = instance.up_vote(current_user)
       @vote
     end
-    head :ok
+    render json: success_payload(instance)
   end
 
   def down_vote
@@ -20,7 +20,7 @@ class Ajax::VotesController < Ajax::BaseController
       @vote = instance.down_vote(current_user)
       @vote
     end
-    head :ok
+    render json: success_payload(instance)
   end
 
   def un_vote
@@ -31,10 +31,15 @@ class Ajax::VotesController < Ajax::BaseController
       @vote = instance.un_vote(current_user)
       @vote
     end
-    head :ok
+    render json: success_payload(instance)
   end
 
   protected
+
+  def success_payload(instance)
+    { success: true, upvotes: instance.up_votes, downvotes: instance.down_votes, upvoted: instance.up_voted?(current_user), downvoted: instance.down_voted?(current_user) }
+  end
+
   def vote_params
     params.require(:vote).permit!
   end

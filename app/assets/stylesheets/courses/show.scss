@@ -156,7 +156,7 @@
       .icon-btn {
         margin: 0 3px;
         cursor: pointer;
-        &.on {
+        &[data-voted="1"] {
           color: blue;
         }
         &.upvote-icon-btn {

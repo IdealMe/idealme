@@ -7,10 +7,9 @@ class ReviewWidget
 
   handleVoteClick: ->
     $this = $(this)
-    $this.toggleClass('on')
 
     $container = $('#rate-this-course-container')
-    voted = $container.find('.on').length > 0
+    voted = $container.find('[data-voted="1"]').length > 0
     if voted
       $container.addClass('expanded')
     else
