@@ -9,6 +9,9 @@ class Review < ActiveRecord::Base
 
   # == Paperclip ============================================================
   # == Validations ==========================================================
+  validates_presence_of :title
+  validates_presence_of :content
+
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   after_create :after_create

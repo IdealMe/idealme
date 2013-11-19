@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   before_filter :require_authentication
 
-  before_filter :load_market
+  before_filter :load_course
 
   before_filter :load_review, only: [:show, :edit, :update, :destroy]
   before_filter :load_reviews, only: [:index]
@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   def create
     @review.save!
-    redirect_to market_path(@market), notice: 'Review was successfully created.'
+    redirect_to course_path(@course), notice: 'Review was successfully created.'
   rescue ActiveRecord::RecordInvalid
     render action: :new
   end
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1
   def update
     @review.update_attributes!(params[:review])
-    redirect_to market_path(@market), notice: 'Review was successfully updated.'
+    redirect_to course_path(@course), notice: 'Review was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render action => :edit
   end
@@ -44,24 +44,28 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   def destroy
     @review.destroy
-    redirect_to market_path(@market), notice: 'Review was successfully deleted'
+    redirect_to course_path(@course), notice: 'Review was successfully deleted'
   end
 
   protected
 
-  def load_market
-    @market = Market.find(params[:market_id])
+  def load_course
+    @course = Course.find(params[:course_id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to markets_path, alert: "Market not found"
+    redirect_to courses_path, alert: "course not found"
   end
 
   def load_reviews
-    @reviews = @market.course.reviews
+    @reviews = @course.reviews
   end
 
   def build_review
-    @review = Review.new(params[:review])
-    @review.course = @market.course
+    @review = Review.new(review_params)
+    @review.course = @course
     @review.owner = current_user
+  end
+
+  def review_params
+    params.require(:review).permit!
   end
 end

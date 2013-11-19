@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   def show
     @comment = Comment.new(commentable: @course, owner: current_user, redirect_back_to: course_path(@course))
-    @review = @course.reviews.build
+    @review  = @course.reviews.build
   end
 
   protected

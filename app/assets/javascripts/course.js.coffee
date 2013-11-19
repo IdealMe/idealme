@@ -1,10 +1,34 @@
 class ReviewWidget
   constructor: ->
-    $(document).on 'click', '.icon-btn', @handleBeginReview
+    $(document).on 'click', '.icon-btn', @handleVoteClick
+    $(document).on 'click', '.cancel-container', @handleCancelReview
+    #@vote('course', 'hatha-yoga', 'up')
 
 
-  handleBeginReview: ->
+  handleVoteClick: ->
     $this = $(this)
-    console.debug "handle review form state here"
+    $this.toggleClass('on')
+
+    $container = $('#rate-this-course-container')
+    voted = $container.find('.on').length > 0
+    if voted
+      $container.addClass('expanded')
+    else
+      $container.removeClass('expanded')
+
+    #debugger
+
+  handleCancelReview: ->
+    $this = $(this)
+    $container = $('#rate-this-course-container')
+    $container.removeClass('expanded')
+
+  vote: (votableType, votableId, vote) ->
+    $.post("/ajax/votes/#{vote}_vote", {
+      "vote": {
+        "votable_type": votableType
+        "votable_id": votableId
+      }
+    })
 
 new ReviewWidget
