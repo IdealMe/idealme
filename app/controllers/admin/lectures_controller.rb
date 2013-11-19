@@ -47,7 +47,7 @@ class Admin::LecturesController < Admin::BaseController
 
   # PUT /admin/lectures/1
   def update
-    @lecture.update_attributes!(params[:lecture])
+    @lecture.update_attributes!(lecture_params)
     redirect_to edit_admin_lecture_path(@lecture), notice: 'Lecture was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render action: :edit
@@ -74,8 +74,12 @@ class Admin::LecturesController < Admin::BaseController
   def build_lecture
     params[:lecture] ||= {}
     params[:lecture][:section_id] ||= params[:section_id] if params[:section_id].present?
-    @lecture = Lecture.new(params[:lecture])
+    @lecture = Lecture.new(lecture_params)
     @payload_parent = @lecture
+  end
+
+  def lecture_params
+    params.require(:lecture).permit!
   end
 
 end

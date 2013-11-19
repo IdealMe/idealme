@@ -59,11 +59,14 @@
               table border="0" cellpadding="0" cellspacing="0" width="100%"
                 - @market.course.sections.each_with_index do |section, index|
                   tr
-                    td.col-1
-                      | MODULE
-                      = index + 1
                     td
-                      = section.name
+                      h2
+                        ' MODULE
+                        = index + 1
+                      h3 = section.name
+                      - section.lectures.each do |lecture|
+                        h4 = lecture.name
+
           #tab-3.tab
             - @market.course.reviews.each do |review|
               .review
