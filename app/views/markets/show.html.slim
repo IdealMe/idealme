@@ -27,11 +27,13 @@
                 = @market.course.down_votes
             /! TODO: are we doing reviews for MVP?
             li
-              a.reviews-link href="#tab-3" Reviews
+              a.reviews-link href="#tab-3"
+                = @market.course.reviews.count
+                '  reviews
             li.last
               span.enrolled
                 = @course.users.length
-                | enrolled
+                '  enrolled
       .clear
 
 
@@ -49,7 +51,7 @@
           #tab-1.tab
             - if @market.content
               - content = @market.content
-              - content = render_payloads(@payloads,content)
+              - content = render_payloads(@payloads, content)
               - content = render_polls(@polls, content)
               = expandable_text(content, 1300)
           #tab-2.tab
@@ -57,39 +59,30 @@
               table border="0" cellpadding="0" cellspacing="0" width="100%"
                 - @market.course.sections.each_with_index do |section, index|
                   tr
-                    td.col-1
-                      | MODULE
-                      = index + 1
                     td
-                      = section.name
+                      h2
+                        ' MODULE
+                        = index + 1
+                      h3 = section.name
+                      - section.lectures.each do |lecture|
+                        h4 
+                          span.lecture-icon-container
+                            = lecture_icon lecture
+                          = lecture.name
+
           #tab-3.tab
-            .review
-             .image
-               img alt="" src="/assets/course-image-4.png"/
-             .text
-               .top
-                 by
-                 a href="#" Gökçe Çözen
-                 span.moto Worth every penny!!
-               p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-            .review
-             .image
-               img alt="" src="/assets/course-image-5.png"/
-             .text
-               .top
-                 by
-                 a href="#" Olga Bereziuk
-                 span.moto Worth every penny!!
-               p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
-            .review
-             .image
-               img alt="" src="/assets/course-image-6.png"/
-             .text
-               .top
-                 by
-                 a href="#" Susanne Mumpitz
-                 span.moto Worth every penny!!
-               p I loved all the information and the Sadie's showing how the pose is suppose to be done. Very inspiring and encouraging to complete the whole 14 day program. I was able to feel the benefits of the program from day one. I encourage people to try this
+            - @market.course.reviews.each do |review|
+              .review
+                .image
+                  = image_tag review.owner.avatar.url(:thumb)
+                .text
+                  .top
+                    ' by
+                    a href="#"
+                      = review.owner.fullname
+                    span.moto = review.title
+                  p
+                    = review.content
 
     .r-col
       .enroll-wp

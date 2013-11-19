@@ -7,11 +7,11 @@ class UsersController < ApplicationController
     #@tab = params[:tab] || 'goal'
     if @owner
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins)
-      @checkins = Checkin.for_user(@user)
-      @courses = @user.courses
+      @checkins   = Checkin.for_user(@user)
+      @courses    = @user.courses
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins)
-      @checkins = Checkin.for_user(@user).private_goal(false)
+      @checkins   = Checkin.for_user(@user).private_goal(false)
     end
   end
 

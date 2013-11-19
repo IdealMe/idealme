@@ -18,6 +18,7 @@
 @import "icons/*.png";
 // Import Bootstrap
 @import "twitter/bootstrap";
+@import "font-awesome";
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -91,7 +92,6 @@ img {
 @import "flexslider";
 @import "formatted_form";
 @import "jquery.ui.all";
-@import "font-awesome";
 @import "bootstrap-tour";
 //@import "responsive";
 @import "new-style";
@@ -175,7 +175,7 @@ img {
           float: left;
           padding-left: 10px;
           padding-right: 20px;
-          font-weight: bold;
+          font-weight: 600;
         }
         input[type="radio"] {
           float: left;
@@ -235,7 +235,7 @@ img {
   padding: 20px 0 20px 70px;
   font-size: 18px;
   color: #4d4d4d;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 16px;
 }
 
@@ -244,7 +244,7 @@ img {
   padding: 24px 0 22px 75px;
   font-size: 18px;
   color: #1d95cb;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 18px;
   display: block;
 }
@@ -293,7 +293,7 @@ img {
           >.name {
             width: 500px;
             float: left;
-            font-weight: bold;
+            font-weight: 600;
 
           }
           >.control {
@@ -363,10 +363,13 @@ img {
   position: fixed;
   bottom: 10px;
   right: 10px;
-  font-weight: bold;
+  font-weight: 600;
   background-color: yellow;
   color: red;
   padding: 10px;
   border: 1px solid black;
 }
 
+.lecture-icon-container {
+  margin-right: 5px;
+}

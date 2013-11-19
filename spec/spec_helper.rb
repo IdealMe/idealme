@@ -104,6 +104,8 @@ RSpec.configure do |config|
 
   config.include TestHelpers
 
+  config.formatter = 'Growl::RSpec::Formatter'
+
   DatabaseCleaner.strategy = :truncation
 
   config.before :each do

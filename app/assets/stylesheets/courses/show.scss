@@ -138,6 +138,72 @@
         }
       }
     }
+    #rate-this-course-container {
+      margin-bottom: 11px;
+      padding: 10px;
+      &.expanded {
+        border: 1px solid #ebeae5;
+        background: white;
+        #review-form-container {
+          display: block;
+          clear: both;
+          padding-top: 20px;
+        }
+      }
+      #rate-widget-container > * {
+        display: inline;
+      }
+      .icon-btn {
+        margin: 0 3px;
+        cursor: pointer;
+        &[data-voted="1"] {
+          color: blue;
+        }
+        &.upvote-icon-btn {
+          margin-left: 40px;
+        }
+        &.downvote-icon-btn {
+          margin-left: 20px;
+        }
+      }
+      #review-form-container {
+        display: none;
+        textarea, input[type="text"] {
+          width: 100%;
+        }
+        textarea {
+          height: 130px;
+        }
+        & form > div {
+          padding: 10px 0;
+        }
+        .btn-submit-review { 
+          display: block;
+          float: left;
+          padding: 0 25px;
+          width: 180px;
+          height: 34px;
+          background: #f16764;
+          line-height: 20px;
+          font-size: 14px;
+          color: #ffffff;
+          font-weight: 600;
+          border-radius: 5px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+        }
+        .cancel-container {
+          cursor: pointer;
+          float: left;
+          height: 34px;
+          line-height: 20px;
+          padding: 7px;
+          margin-left: 10px;
+          font-size: 18px;
+        }
+
+      }
+    }
   }
   .new-comment {
     border-bottom: 1px solid #ebeae5;
@@ -209,7 +275,6 @@
           margin-right: 4px;
         }
       }
-
     }
     .comment-replies {
       margin-left: 35px;
@@ -226,7 +291,6 @@
 
         }
       }
-
     }
   }
 }

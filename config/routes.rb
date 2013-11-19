@@ -27,13 +27,14 @@ Idealme::Application.routes.draw do
   post "paypal/cancel" => "paypal#cancel"
 
   resources :markets, only: [:index, :show] do
-    resources :reviews
     collection do
       get ':market_affiliate_tag/:user_affiliate_tag/:tracking_affiliate_tag' => 'markets#affiliate_init', as: :markets_affiliate_tracking, user_affiliate_tag: /[^\/]+/
       get ':market_affiliate_tag/:user_affiliate_tag' => 'markets#affiliate_init', as: :markets_affiliate, user_affiliate_tag: /[^\/]+/
     end
   end
-  resources :courses, only: [:index, :show]
+  resources :courses, only: [:index, :show] do
+    resources :reviews
+  end
   resources :discovers, only: [:index, :show]
   resources :goals, only: [:index, :show] do
     member do

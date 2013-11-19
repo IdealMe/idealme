@@ -65,7 +65,7 @@ binding.pry
   end
 
   def load_markets
-    @courses = Course.all.sort do |a,b|
+    @courses = Course.where(hidden: false).load.to_a.sort do |a,b|
       b.users.count <=> a.users.count
     end
     @sliders = Market.slider.with_course_and_owner

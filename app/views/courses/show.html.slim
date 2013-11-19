@@ -58,15 +58,39 @@
             = section.name
           /.module_time 03:08
           .clear
+        ' sdlfkjasdf;lkjasf;lkj
         .module-lectures
           ul
             - section.lectures.each do |lecture|
               li
+                span.lecture-icon-container
+                  = lecture_icon lecture
                 = link_to lecture.name, lecture_path(lecture)
                 div
                   = lecture.description.html_safe if lecture.description
         .clear
   .sidebar
+    #rate-this-course-container
+      #rate-widget-container.vote-controls
+        ' Rate this course:
+        .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@course, current_user) data-id=@course.id data-type=@course.class
+          i.icon-thumbs-up
+        .upvote-total
+          = @course.up_votes
+        .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@course, current_user) data-id=@course.id data-type=@course.class
+          i.icon-thumbs-down
+        .downvote-total
+          = @course.down_votes
+
+      #review-form-container
+        | Please tell others what you think of this course
+        = form_for @review, url: course_reviews_path(course_id: @course.slug), html: { class: 'new-review' } do |f|
+          div.review-title-container = f.text_field :title, placeholder: "Enter your review title here"
+          div.review-content-container = f.text_area  :content, placeholder: "Enter your review here"
+          div.review-buttons-container.clearfix
+            = f.submit 'Add Review', class: 'btn btn-submit-review'
+            div.cancel-container
+              i.icon-remove-sign
     = form_for @comment, url: ajax_comments_path,html:{ class:'new-comment'} do |f|
       = f.hidden_field :commentable_id
       = f.hidden_field :commentable_type

@@ -214,6 +214,8 @@ group :development do
 end
 
 group :development, :test do
+  gem 'growl-rspec'
+  gem 'growl'
   gem 'rspec-rails'
   gem 'factory_girl'
   gem 'factory_girl_rails'
