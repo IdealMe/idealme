@@ -27,7 +27,7 @@
                 = @market.course.down_votes
             /! TODO: are we doing reviews for MVP?
             li
-              a.reviews-link href="#tab-3" 
+              a.reviews-link href="#tab-3"
                 = @market.course.reviews.count
                 '  reviews
             li.last
@@ -51,7 +51,7 @@
           #tab-1.tab
             - if @market.content
               - content = @market.content
-              - content = render_payloads(@payloads,content)
+              - content = render_payloads(@payloads, content)
               - content = render_polls(@polls, content)
               = expandable_text(content, 1300)
           #tab-2.tab
@@ -72,7 +72,7 @@
                 .text
                   .top
                     ' by
-                    a href="#" 
+                    a href="#"
                       = review.owner.fullname
                     span.moto = review.title
                   p
