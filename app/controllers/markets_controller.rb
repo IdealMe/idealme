@@ -60,7 +60,6 @@ binding.pry
     @polls = PollQuestion.compute_poll_question_tags
 
   rescue ActiveRecord::RecordNotFound
-binding.pry
     redirect_to markets_path, alert: 'Market not found.'
   end
 
