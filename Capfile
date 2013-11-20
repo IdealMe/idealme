@@ -56,4 +56,4 @@ task :copy_nondigest_assets, roles: :app do
   as_app "cd /home/idealme/app && bundle exec rake RAILS_ENV=production ckeditor:copy_nondigest_assets"
 end
 after 'rails:assets:precompile', 'copy_nondigest_assets'
-before 'deploy:restart', 'copy_nondigest_assets'
+#before 'deploy:restart', 'copy_nondigest_assets'
