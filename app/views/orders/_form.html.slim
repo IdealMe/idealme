@@ -25,6 +25,8 @@ section.pay-method
     = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)', wrapper_html: { class: "col-sm-5" }
   /.form-group.row
 
+  .form-group
+    = f.input :card_email, label: 'Email Address'
 
   .form-group
     = f.input :billing_address1, label: 'Address line 1'

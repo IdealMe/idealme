@@ -89,7 +89,7 @@
         a.enroll-btn.top-enroll-btn  href=subscribe_orders_path(@market)
           span.left Enroll
           span.price
-            = penny_to_currency(@market.course.cost)
+            = @market.course.cost_in_dollars_without_cents
           / %span.cl
         span.s-text 30 Day Money Back Guarantee
         span.anchor

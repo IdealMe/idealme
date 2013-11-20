@@ -147,7 +147,9 @@ Idealme::Application.routes.draw do
     end
   end
 
-
+  as :user do
+    patch '/users/confirmation' => 'users/confirmations#update', :via => :patch, :as => :update_user_confirmation
+  end
 
   devise_for :users,
              path: '',

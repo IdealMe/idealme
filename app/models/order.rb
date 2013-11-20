@@ -30,8 +30,11 @@ class Order < ActiveRecord::Base
   # == Paperclip ============================================================
   # == Validations ==========================================================
 
-  validate :validate_credit_card
+  validates_presence_of :card_firstname
+  validates_presence_of :card_lastname
+  validates_presence_of :card_email
 
+  validate :validate_credit_card
 
   # == Scopes ===============================================================
   # == Callbacks ============================================================
@@ -122,7 +125,16 @@ class Order < ActiveRecord::Base
           mapped_field = :card_number
         elsif field_name =='verification_value'
           mapped_field = :card_cvv
+        elsif field_name =='first_name'
+          mapped_field = :card_firstname
+        elsif field_name =='last_name'
+          mapped_field = :card_lastname
+        elsif field_name =='email'
+          mapped_field = :card_email
+        elsif field_name =='brand'
+          mapped_field = :card_type
         else
+          ap field_name
           raise 'Uncaught credit card errors'
         end
 

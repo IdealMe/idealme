@@ -39,7 +39,7 @@ Idealme::Application.configure do
   Paperclip::Attachment.default_options[:s3_protocol] = :https
 
   config.action_mailer.default_url_options = {host: 'idealme.com'}
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :test
   config.action_mailer.smtp_settings = {
     user_name: 'idealme-391cd542169169ce',
     password: 'aacad647af45183f',

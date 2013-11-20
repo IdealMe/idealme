@@ -52,6 +52,10 @@ class Course < ActiveRecord::Base
     self.cost = (v.to_f*100).to_i
   end
 
+  def cost_in_dollars_without_cents
+    "$#{self.cost.to_i / 100}"
+  end
+
   def swipe_files
     self.payloads
   end

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :require_authentication
+  #before_filter :require_authentication
   before_filter :init_order, only: [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
   before_filter :build_order, only: [:create]
 
@@ -58,7 +58,14 @@ class OrdersController < ApplicationController
     time = @order.time
     redirect_to(markets_path) and return unless @order.valid_checksum?(market_id, course_id, time)
 
-    if @order.valid?
+    unless current_user
+      user = build_user
+      if user.valid?
+        create_user
+      end
+    end
+
+    if @order.valid? && current_user
       @order.cost = @market.course.cost
       #gateway = AUTHORIZED_NET_GATEWAY
       gateway = STRIPE_GATEWAY
@@ -108,10 +115,18 @@ class OrdersController < ApplicationController
   protected
   def init_order
     @market = Market.find(params[:id])
-    @order = Order.create_order_by_market_and_user(@market, current_user)
+    @order = Order.create_order_by_market_and_user(@market, order_user)
     @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
+  end
+
+  def order_user
+    if current_user
+      current_user
+    else
+      User.new
+    end
   end
 
 
@@ -170,6 +185,18 @@ class OrdersController < ApplicationController
       ENV['IDEALME_PAYPAL_AUTH_KEY'],
       ENV['IDEALME_PAYPAL_AUTH_SECRET']
     ]
+  end
+
+  def build_user
+    @build_user || User.new({
+      firstname: @order.card_firstname,
+      lastname: @order.card_lastname,
+      email: @order.card_email,
+    })
+  end
+
+  def create_user
+    user = build_user.save!
   end
 
 end

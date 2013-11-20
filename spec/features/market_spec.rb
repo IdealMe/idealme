@@ -1,11 +1,9 @@
-
-
 require 'spec_helper'
 
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe 'course show page' do
+describe 'market show page' do
   let!(:user)               { create(:user) }
   let!(:link)               { create(:affiliate_link) }
   let!(:affiliate_user)     { link.user }
@@ -18,13 +16,12 @@ describe 'course show page' do
     Warden.test_reset!
   end
 
-  it "show a syllabus on the course page", js: true do
-    buy_course_as user
-    login_as user, scope: :user
+  it "show a syllabus on the market page", js: true do
     visit course_path course
+    click_link "Syllabus"
     sleep 1
     screenshot
-    page.text.downcase.should include section.name.downcase
+    page.text.should include section.name
     page.text.should include lecture.name
   end
 end
