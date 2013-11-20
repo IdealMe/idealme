@@ -130,10 +130,7 @@ body.course_page footer { width: auto; min-width: 768px; }
 
 .course-wp .c-col { padding: 40px 0 0 60px; width: 600px; float: left; display: inline; }
 .course-wp .c-col .c-top { position: relative; margin-bottom: 20px;}
-.course-wp .c-col h2 { margin: 14px 0 0; padding: 0; font-size: 18px; line-height: 18px; color: #424242; display: block; }
-.course-wp .c-col p { padding: 0 0 10px 0; color: #333333; font-size: 16px; line-height: 20px; }
-.course-wp .c-col h3 {font-size: 16px; line-height: 16px; font-weight: 500; margin: 18px 0; }
-.course-wp .c-col h4 {font-size: 16px; font-weight: 400; }
+.course-wp .c-col h2 { margin: 20px 0 0; padding: 0; font-size: 34px; line-height: 18px; color: #424242; display: block; }
 .course-wp .c-col .actions { font-size: 12px; line-height: 35px; color: #4D4D4D; padding: 0 0 25px 0; }
 .course-wp .c-col .actions ul { list-style: none outside none; margin: 0; }
 .course-wp .c-col .actions ul li { padding: 0 25px 0 0; margin: 0 25px 0 0; height: 35px; line-height: 35px; border-right: solid 1px #e4e4e4; float: left; display: inline; }
@@ -157,7 +154,10 @@ body.course_page footer { width: auto; min-width: 768px; }
 .course-wp .c-col .tabs-cnt .modules table td { padding: 0 18px; font-size: 16px; line-height: 20px; color: #424242; background: #ffffff; border-bottom: solid 1px #e4e4e4; margin: 0; }
 .course-wp .c-col .tabs-cnt .modules table td.col-1 { width: 160px; text-align: center; text-transform: uppercase; }
 
-
+.course-wp .c-col .tabs-cnt .modules h2 { margin: 14px 0 0; padding: 0; font-size: 18px; line-height: 18px; color: #424242; display: block; }
+.course-wp .c-col .tabs-cnt .modules p { padding: 0 0 10px 0; color: #333333; font-size: 16px; line-height: 20px; }
+.course-wp .c-col .tabs-cnt .modules h3 {font-size: 16px; line-height: 16px; font-weight: 500; margin: 18px 0; }
+.course-wp .c-col .tabs-cnt .modules h4 {font-size: 16px; font-weight: 400; }
 
 .course-wp .c-col .tabs-cnt { padding: 10px 0 0 0; }
 .course-wp .c-col .tabs-cnt .review { padding: 25px 35px; background: #ffffff; border: solid 1px #ebeae5; border-bottom: 0; display: block; }
