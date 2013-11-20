@@ -4,6 +4,6 @@ class EmailProcessor
     # processing reports, etc
 
 
-    Rails.logger ap email
+    Rails.logger email.inspect
   end
 end
