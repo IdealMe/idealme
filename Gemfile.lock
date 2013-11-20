@@ -222,6 +222,9 @@ GEM
     gon (4.1.1)
       actionpack (>= 2.3.0)
       json
+    griddler (0.6.1)
+      htmlentities
+      rails (>= 3.2.0)
     growl (1.0.3)
     growl-rspec (0.0.1)
       growl
@@ -263,6 +266,7 @@ GEM
     honeybadger (1.9.4)
       faraday (~> 0.7)
       json
+    htmlentities (4.3.1)
     http_parser.rb (0.5.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -559,6 +563,7 @@ DEPENDENCIES
   gatling_gun
   gem-ctags
   gon
+  griddler
   growl
   growl-rspec
   guard-bundler

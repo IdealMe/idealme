@@ -9,10 +9,16 @@
       margin: 0 auto;
     }
     .info-box {
+      position: relative;
       @include float-left;
       width: 570px;
-      @include bg(image-url("icons/course_start_icon.png") no-repeat 28px 9px);
+      /*@include bg(image-url("icons/course_start_icon.png") no-repeat 28px 9px);*/
       @include p_l(170px);
+      img.course-image {
+        position: absolute;
+        top: 5px;
+        left: 60px;
+      }
     }
     .title {
       @include fs(30px);

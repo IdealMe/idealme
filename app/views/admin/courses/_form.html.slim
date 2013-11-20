@@ -30,6 +30,10 @@
         = f.input :owner_id do
           = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, class: 'select2'
 
+        - if @course.image.present?
+          = image_tag @course.image.expiring_url(:thumb), height: '50', width: '50'
+        = f.input :image do
+          = f.file_field :image
         /= f.input :description, input_html: { class: 'tinymce' }
         .control-group
           label.controls Description

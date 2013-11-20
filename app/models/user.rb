@@ -206,7 +206,6 @@ class User < ActiveRecord::Base
   end
 
   def reject_blank_affiliate_links
-    ap "rejecting blank aff links"
     self.affiliate_links = affiliate_links.reject do |link|
       link.market_tag.blank? && link.slug.blank?
     end

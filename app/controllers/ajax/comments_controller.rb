@@ -21,7 +21,7 @@ class Ajax::CommentsController < Ajax::BaseController
   # PUT /ajax/comments/1.json
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update_attributes(params[:comment])
+    if @comment.update_attributes(comment_params)
       head :no_content
     else
       render json: @comment.errors, status: :unprocessable_entity
@@ -37,8 +37,11 @@ class Ajax::CommentsController < Ajax::BaseController
 
   protected
   def build_comment
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
+  end
 
+  def comment_params
+    params.require(:comment).permit!
   end
 
 end

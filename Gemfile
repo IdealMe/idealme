@@ -18,6 +18,7 @@ gem 'activeresource', '~>4.0.0.beta1'
 gem 'rails-observers', '~>0.1.1'
 # gem 'rails-perftest', '~>0.0.2'
 
+gem 'griddler'
 
 gem 'json', '~> 1.8.1'
 gem 'bluepill', github: 'bluepill-rb/bluepill'
@@ -143,6 +144,7 @@ gem 'typhoeus'
 
 gem 'slim'
 gem 'haml2slim'
+
 
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
