@@ -17,7 +17,7 @@
 //= require jquery.flexslider
 //= require twitter/bootstrap
 //= require formatted_form
-//= require tinymce-jquery
+//= require ckeditor/init
 //= require jquery.stayInWebApp.js
 //= require jstz-1.0.5.js
 //= require select2.js

@@ -77,8 +77,7 @@ gem 'paperclip', '~> 3.5.2'
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.
 gem 'friendly_id'
 
-#Seamlessly integrates TinyMCE into the Rails asset pipeline introduced in Rails 3.1.
-gem 'tinymce-rails'
+gem 'ckeditor'
 
 #This gem provides jQuery and the jQuery-ujs driver for your Rails 3 application.
 gem 'jquery-rails'

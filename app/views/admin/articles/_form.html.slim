@@ -4,7 +4,7 @@
       legend Article
   = f.hidden_field :author_id, value: current_user.id
   = f.text_field :name
-  = f.text_area :content, class: 'tinymce'
+  = f.cktext_area :content
   = f.check_box :hidden
   = f.select :category_id, Category.all.collect { |category| [category.name, category.id] }, {}, class: 'select2'
   = f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'

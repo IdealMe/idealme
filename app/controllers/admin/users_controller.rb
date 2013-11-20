@@ -25,14 +25,16 @@ class Admin::UsersController < Admin::BaseController
     @user.save!
     redirect_to edit_admin_user_path(@user), notice: 'User was successfully created.'
   rescue ActiveRecord::RecordInvalid
+    ap @user.errors
     render action: :new
   end
 
   # PUT /admin/users/1
   def update
-    @user.update_attributes!(params[:user])
+    @user.update_attributes!(user_params)
     redirect_to edit_admin_user_path(@user), notice: 'User was successfully updated.'
   rescue ActiveRecord::RecordInvalid
+    ap @user.errors
     render action: :edit
   end
 
@@ -56,9 +58,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def build_user
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     @user.affiliate_links.build
     @user.password = SecureRandom.hex unless @user.password
+  end
+
+  def user_params
+    params.require(:user).permit!
   end
 
 end

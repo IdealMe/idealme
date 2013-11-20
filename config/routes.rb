@@ -1,5 +1,6 @@
 Idealme::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   get "screenshots/index" unless Rails.env.production?
   get "screenshots/reset" unless Rails.env.production?
   get "payload/:id/download" => "payload#download", as: :download_payload
@@ -76,6 +77,7 @@ Idealme::Application.routes.draw do
     resources :courses do
       member do
         post :sort_sections
+        post :update
       end
     end
     resources :sections do
@@ -83,8 +85,10 @@ Idealme::Application.routes.draw do
         post :sort
       end
     end
-    resources :users
-    get 'users/:id/edit' => "users#edit", id: /[^\/]+/
+    constraints(id: /[^\/]+/) do
+      resources :users
+      get 'users/:id/edit' => "users#edit", id: /[^\/]+/
+    end
     resources :goals
     resources :categories
     resources :polls

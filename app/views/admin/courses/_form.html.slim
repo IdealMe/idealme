@@ -30,7 +30,10 @@
         = f.input :owner_id do
           = f.select :owner_id, User.all.collect { |user| [user.fullname, user.id] }, {}, class: 'select2'
 
-        = f.input :description, input_html: { class: 'tinymce' }
+        /= f.input :description, input_html: { class: 'tinymce' }
+        .control-group
+          label.controls Description
+          = f.cktext_area :description
         .form-group.row
           .col-md-10
             .checkbox
@@ -69,7 +72,9 @@
           = market.input :affiliate_tag
           = market.input :course_id do
             = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
-          = market.input :content, input_html: { class: 'tinymce' }
+          .control-group
+            label.controls Content
+            = market.cktext_area :content
           = image_tag @course.default_market.avatar.expiring_url(:square), height: '50', width: '50'
           = market.input :avatar do
             = market.file_field :avatar
@@ -82,7 +87,6 @@
 
                 = image_tag(market.object.avatar.url(:square), height: '50', width: '50')
                 = feature.file_field :avatar, label: '', class: 'form-control'
-
                 = feature.text_field :description, label: '', class: 'form-control', placeholder: 'Description'
                 - if feature.object.persisted?
                   = feature.hidden_field :_destroy, class: 'delete-feature-field'
