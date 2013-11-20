@@ -101,12 +101,14 @@
           li
             span.icon.icon-2
             | Work at your own pace
-          li
-            span.icon.icon-3
-            | 99 Video Lessons
-          li
-            span.icon.icon-4
-            | 23 Documents
+          - if @market.course.video_count > 0
+            li
+              span.icon.icon-3
+              = "#{@market.course.video_count} Video Lessons"
+          - if @market.course.document_count > 0
+            li
+              span.icon.icon-4
+              = "#{@market.course.document_count} Documents"
           li
             span.icon.icon-5
             | Questions and Answers

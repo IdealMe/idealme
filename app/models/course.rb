@@ -60,4 +60,24 @@ class Course < ActiveRecord::Base
     self.payloads
   end
 
+  def audio_count
+    payloads_with_type(IM_PAYLOAD_AUDIO)
+  end
+
+  def video_count
+    payloads_with_type(IM_PAYLOAD_VIDEO)
+  end
+
+  def document_count
+    payloads_with_type(IM_PAYLOAD_DOCUMENT)
+  end
+
+  def archive_count
+    payloads_with_type(IM_PAYLOAD_ARCHIVE)
+  end
+
+  def payloads_with_type(payload_type)
+    payloads = self.lectures.map {|lecture| lecture.payloads.to_a }.flatten
+    payloads.select {|payload| payload.intended_type == payload_type }.count
+  end
 end
