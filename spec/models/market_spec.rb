@@ -16,6 +16,13 @@ describe Market do
     expect(market.reload.features.count).to eq 1
   end
 
+  it 'delegates video_count to course' do
+    market = create(:market)
+    course = create(:course, default_market_id: market.id)
+    market.update_attribute :course_id, course.id
+    expect(market.video_count).to eq 0
+  end
+
   it 'rejects blank features' do
     market = create(:market)
     market.features.build

@@ -1,7 +1,9 @@
 class Market < ActiveRecord::Base
   # == Imports ==============================================================
   extend FriendlyId
+  extend Forwardable
 
+  def_delegators :course, :video_count, :document_count, :audio_count, :archive_count
   # == Slug =================================================================
   friendly_id :name, use: [:history, :slugged, :finders]
 
