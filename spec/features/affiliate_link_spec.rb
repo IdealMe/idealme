@@ -18,15 +18,13 @@ describe 'affiliate links' do
 
     find('.enroll-btn').click
 
-    fill_in "Email", with: 'normal@idealme.com'
-    fill_in "Password", with: 'passpass'
-    find('#sign-in-button').click
-
+    screenshot
     expect(current_path).to include '/orders'
 
 
     fill_in "Card Number", with: '1234123412341234'
     fill_in "Security Code", with: '123'
+    fill_in "Email Address", with: 'lkjlkj@idealme.com'
 
 
     order_response = double(:success? => true)
@@ -35,6 +33,7 @@ describe 'affiliate links' do
 
     click_button "Complete Purchase"
 
+    screenshot
     expect(AffiliateSale.count).to eq 1
     expect(AffiliateClick.count).to eq 1
     expect(link.sales).to include AffiliateSale.first
@@ -78,15 +77,12 @@ describe 'affiliate links' do
 
     find('.enroll-btn').click
 
-    fill_in "Email", with: 'normal@idealme.com'
-    fill_in "Password", with: 'passpass'
-    find('#sign-in-button').click
-
     expect(current_path).to include '/orders'
 
 
     fill_in "Card Number", with: '1234123412341234'
     fill_in "Security Code", with: '123'
+    fill_in "Email Address", with: 'lkjlkj@idealme.com'
 
 
     order_response = double(:success? => true)

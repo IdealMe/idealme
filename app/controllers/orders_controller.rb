@@ -62,6 +62,7 @@ class OrdersController < ApplicationController
       user = build_user
       if user.valid?
         create_user
+      else
       end
     end
 
@@ -188,15 +189,22 @@ class OrdersController < ApplicationController
   end
 
   def build_user
-    @build_user || User.new({
-      firstname: @order.card_firstname,
-      lastname: @order.card_lastname,
-      email: @order.card_email,
-    })
+    if @build_user
+      @build_user
+    else
+      @build_user = User.new({
+        firstname: @order.card_firstname,
+        lastname: @order.card_lastname,
+        email: @order.card_email,
+      })
+      @build_user.set_username
+      @build_user
+    end
   end
 
   def create_user
     user = build_user.save!
+    sign_in(:user, build_user)
   end
 
 end
