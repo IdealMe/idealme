@@ -85,7 +85,7 @@
             .col-md-7
               = market.fields_for :features do |feature|
 
-                = image_tag(feature.object.avatar.url(:original), height: '50', width: '50')
+                = image_tag(feature.object.avatar.url(:thumb), height: '50', width: '50')
                 = feature.file_field :avatar, label: '', class: 'form-control'
                 = feature.text_field :description, label: '', class: 'form-control', placeholder: 'Description'
                 - if feature.object.persisted?
