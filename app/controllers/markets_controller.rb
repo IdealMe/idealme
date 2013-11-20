@@ -40,7 +40,6 @@ class MarketsController < ApplicationController
     # Off to the market place
     redirect_to market_path market and return if market
 
-binding.pry
     # Redirect to the market place if the market if not found, but the affiliate cookies are still set
     redirect_to markets_path
   end
