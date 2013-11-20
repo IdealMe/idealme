@@ -43,8 +43,8 @@ describe 'ordering' do
     visit "#{uri.path}?#{uri.query}"
     screenshot
 
-    fill_in "Choose a Password", with: "123123123"
-    fill_in "Password Confirmation", with: "123123123"
+    fill_in "Password", with: "123123123"
+    fill_in "Confirmation", with: "123123123"
     click_button "Activate"
     screenshot
   end
