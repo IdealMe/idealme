@@ -6,7 +6,7 @@ class EmailProcessor
     responder   = User.where(email: email.from).first
     course      = Course.where(slug: token_parts.first).first
 
-    if responder == course.owner
+    if responder == course.owner || responder.access_admin?
       reply = question.replies.build
       reply.content  = email.body
       reply.owner = responder
