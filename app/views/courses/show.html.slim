@@ -13,39 +13,10 @@
       /!  .bar{style: "width: 20%;"}
     .btn-share.btn-group
       button.btn.dropdown-toggle data-toggle="dropdown" 
-        | Share (281)
+        | Share 
         span.caret
       .dropdown-menu
-        .social_box
-          .social_icon.twitter_icon
-          .social_name twitter
-          .turquoise_bg.counter 261
-          .clear
-        .social_box
-          .social_icon.facebook_icon
-          .social_name facebook
-          .dark_blue_bg.counter 16
-          .clear
-        .social_box
-          .social_icon.google_plus_icon
-          .social_name google plus
-          .red_bg.counter 3
-          .clear
-        .social_box
-          .social_icon.pinterest_icon
-          .social_name pinterest
-          .soft_blue_bg.counter 3
-          .clear
-        .social_box
-          .social_icon.stumble_icon
-          .social_name stumble upon
-          .red_1_bg.counter 0
-          .clear
-        .social_box
-          .social_icon.twitter2_icon
-          .social_name twitter
-          .light_blue_bg.counter 0
-          .clear
+        = render partial: "partials/share_buttons"
     .clear
 .container
   .main-section
