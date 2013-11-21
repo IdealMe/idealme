@@ -6,13 +6,13 @@ class CommentMailer < ActionMailer::Base
   #
   #   en.comment_mailer.question.subject
   #
-  def question(course, user, question)
+  def question(course, user, question, qid)
     @greeting = "Hi"
     @course   = course
     @user     = user
     @question = question
 
     recipients = ["charlie@idealme.com"]
-    mail to: recipients, from: "#{course.slug}+#{question.id}@questions.idealme.com"
+    mail to: recipients, from: "#{course.slug}+#{qid}@questions.idealme.com"
   end
 end

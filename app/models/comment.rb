@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
   scope :for, lambda { |object| where(commentable_id: object.id, commentable_type: object.class) }
 
   def send_question
-    CommentMailer.question(commentable, owner, content).deliver
+    CommentMailer.question(commentable, owner, content, id).deliver
   end
 
 end
