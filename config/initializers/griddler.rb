@@ -6,6 +6,6 @@ Griddler.configure do |config|
   # :email  => 's13.6b2d13dc6a1d33db7644@mail.myapp.com'
   # :token  => 's13.6b2d13dc6a1d33db7644'
   # :hash   => { raw: [...], email: [...], token: [...], host: [...], name: [...] }
-  config.reply_delimiter = '-- REPLY ABOVE THIS LINE --'
+  #config.reply_delimiter = '-- REPLY ABOVE THIS LINE --'
   config.email_service = :sendgrid # :cloudmailin, :postmark, :mandrill, :mailgun
 end
