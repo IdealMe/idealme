@@ -13,6 +13,6 @@ class CommentMailer < ActionMailer::Base
     @question = question
 
     recipients = ["charlie@idealme.com"]
-    mail to: recipients, from: "#{course.slug}+#{question}@questions.idealme.com"
+    mail to: recipients, from: "#{course.slug}+#{question.id}@questions.idealme.com"
   end
 end
