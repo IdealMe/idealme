@@ -245,14 +245,14 @@
       padding: 10px 10px 5px 10px;
       @include m_b(5px);
       .owner-avatar {
-        width: 24px;
+        width: 35px;
         @include border-radius(2px);
         @include float-left;
       }
-      .comment-body {
+      .comment-body, .comment-reply-body {
         @include float-left;
         @include m_l(13px);
-        width: 380px;
+        width: 370px;
         .comment-card {
           @include float-left;
           @include fs(12px);
@@ -281,9 +281,12 @@
           margin-right: 4px;
         }
       }
+      .comment-reply-body {
+        width: 355px;
+      }
     }
     .comment-replies {
-      margin-left: 35px;
+      margin-left: 15px;
       margin-top: 10px;
       .comment-reply {
         @include fs(12px);
@@ -293,7 +296,6 @@
           @include m_r(13px);
           @include m_b(4px);
           @include bold;
-          @include m_l(20px);
 
         }
       }
