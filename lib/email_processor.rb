@@ -5,5 +5,6 @@ class EmailProcessor
 
 
     Rails.logger.debug email.inspect
+    Rails.logger.debug email.body
   end
 end
