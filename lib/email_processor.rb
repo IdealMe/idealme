@@ -6,5 +6,8 @@ class EmailProcessor
 
     Rails.logger.debug email.inspect
     Rails.logger.debug email.body
+    puts "\n\n"
+    ap email
+
   end
 end
