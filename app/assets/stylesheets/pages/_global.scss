@@ -242,7 +242,7 @@ body {
     @include upper;
     &:hover {
       @include bg-pos(top, left);
-      border: 1px solid #bcbcbc;
+      //border: 1px solid #bcbcbc;
       //@include background-image(linear-gradient(top, white, #fafafa));
     }
 
@@ -271,13 +271,17 @@ body {
   .dropdown-menu {
     right: 0px;
     left: auto;
-    @include border-radius(6px);
-    width: 470px;
+    @include border-radius(2px);
+    width: 263px;
     padding: 10px 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    .addthis_toolbox {
+      float: right;
+      margin-right: 12px;
+      }
     .social_box {
       border-bottom: 1px solid #eaeaea;
       @include hex(#4d4d4d);
