@@ -7,12 +7,18 @@ class CommentMailer < ActionMailer::Base
   #   en.comment_mailer.question.subject
   #
   def question(course, user, question, qid)
-    @greeting = "Hi"
     @course   = course
     @user     = user
     @question = question
 
     recipients = [course.owner.email, 'questions@idealme.com']
     mail to: recipients, from: "#{course.slug}+#{qid}@questions.idealme.com"
+  end
+
+  def activity_notification(emails, cid, rid)
+    comment = Comment.find cid
+    reply = Reply.find rid
+    @username = reply.owner.username
+    mail(to: "questions@idealme.com", bcc: emails, from: "#{course.slug}+#{cid}@questions.idealme.com")
   end
 end
