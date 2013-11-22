@@ -19,6 +19,7 @@ class CommentMailer < ActionMailer::Base
     comment = Comment.find cid
     reply = Reply.find rid
     @username = reply.owner.username
+    @course = comment.commentable
     mail(to: "questions@idealme.com", bcc: emails, from: "#{course.slug}+#{cid}@questions.idealme.com")
   end
 end
