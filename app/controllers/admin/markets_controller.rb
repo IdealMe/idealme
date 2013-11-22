@@ -1,4 +1,5 @@
 class Admin::MarketsController < Admin::BaseController
+  before_filter :redirect_to_course_admin
   before_filter :load_market, only: [:show, :edit, :update, :destroy]
   before_filter :load_markets, only: :index
   before_filter :build_market, only: [:new, :create]
@@ -43,6 +44,12 @@ class Admin::MarketsController < Admin::BaseController
 
 
   protected
+
+  def redirect_to_course_admin
+    market = Market.find(params[:id])
+    redirect_to edit_admin_course_path market.course, active_view: :previews
+  end
+
   def load_market
     @market = Market.find(params[:id])
     @market.features.build
