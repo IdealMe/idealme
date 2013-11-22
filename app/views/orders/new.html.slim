@@ -17,9 +17,20 @@
     .modal_title4 What you get
     .what_you_get
       ul.list_1
-        li Lifetime access to the online course complete with 136 lectures
-        li On demand access to complete the course
-        li An interactive discussion board where students can connect with the instructor & fellow students
+        li
+          | On-demand internet class
+        li
+          | Work at your own pace
+        - if @market.video_count > 0
+          li
+            = "#{@market.video_count} Video Lessons"
+        - if @market.document_count > 0
+          li
+            = "#{@market.document_count} Documents"
+        li
+          | Questions and Answers
+        li
+          | Lifetime Access
     .modal_title4 AS SEEN IN
     .partners_box
       .elle_icon
