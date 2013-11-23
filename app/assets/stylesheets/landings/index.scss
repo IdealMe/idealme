@@ -4,7 +4,6 @@
       width: 1250px;
     }
     >.promo-section {
-      background: #ff6f6e;
       >.container {
         padding-top: 5px;
         min-width: 960px;
@@ -14,21 +13,46 @@
         margin-right: auto;
         position: relative;
       }
-
     }
+    .worksheet-column {
+        float: left;
+        width: 33%;
+        margin: 0 -7.5% 0 15%;  
+    }
+    .worksheet {
+      //margin: 0 98px;
+        img {
+            border-radius: 2px;
+            float: left;
+            margin-right: 20px;
+            //border: 1px solid #eee;
+            padding: 3px;
+            background: #f1eae0;
+        }
+        p {
+            height: 224px;
+            font-size: 18px;
+        }
+    }
+    .worksheet-wp {
+      background: #fff;
+      padding-bottom: 4em;
+      }
+    .courses-wp {
+      background: #fffcf5;
+      }
     .course-name {
       min-height: 60px;
     }
-    .courses-wp {
+    .courses-wp .worksheet-wp {
       .offer-section {
         .course-card { margin: 10px 26px; }
       }
     }
-
     .testimonials-section {
-      @include bg(#ffffff);
+      @include bg(#fff);
       border-top: solid 1px #ebebe9;
-      border-bottom: solid 1px #ebebe9;
+      //border-bottom: solid 1px #ebebe9;
       padding: 44px 0 50px;
       >.title {
         @include centered;
