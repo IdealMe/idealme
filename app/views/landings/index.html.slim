@@ -2,21 +2,17 @@
   .container
     .intro-wp
       h2
-        | What's Stopping
-        em
-          '  You
-        '  From Living
-        em
-          ' Your
-        | Ideal Life?
+        | Live Your Ideal Life
       .cnt
         .video
-          iframe allowfullscreen="" frameborder="0" height="231" width="370" src="//fast.wistia.net/embed/iframe/8cwpldg4xw" allowtransparency="true" scrolling="no" class="wistia_embed" name="wistia_embed"
+          iframe allowfullscreen="" frameborder="0" height="231" width="325" src="//fast.wistia.net/embed/iframe/8cwpldg4xw" allowtransparency="true" scrolling="no" class="wistia_embed" name="wistia_embed"
 
           span.video-bg &nbsp;
         .text
           p
-            | Join me in the Ideal Me Challenge: 12 goals, 1 a month for max results in minimum time and discover what really works!
+            | Sign up now to follow along on the Ideal Me Challenge...
+          p
+            | PLUS get your free copy of Design Your Ideal Life.
         .join-box
           = form_for :user, url: user_registration_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
@@ -36,11 +32,79 @@
               = f.submit "Join Now (It's Free)", class: "join-btn"
         .clear &nbsp;
     .clear
+.worksheet-wp
+  .title-text
+    h2 Free Ebook: Design Your Ideal Life
+    h3 Get all 12 infographic worksheets and start planning your own Ideal Me Challenge today!
+  .offer-section
+    .container
+      .worksheet-column
+        .worksheet
+          img  src="assets/wksht01.png" width="160" /
+          h4 Vision Board
+          p
+            | A place you can create your vision of your ideal me using stickers, pictures, quotes and cut-outs that represent your ideal self
+        .worksheet
+          img  src="assets/wksht02.png" width="160" /
+          h4 Life Balance Worksheet
+          p
+            | Evaluate your commitments and refocus your time on the areas that matter most to you
+        .worksheet
+          img  src="assets/wksht03.png" width="160" /
+          h4 What Makes Me Happy?
+          p
+            | Remember the people, places and things that bring joy to your life and experience them more often
+        .worksheet
+          img  src="assets/wksht04.png" width="160" /
+          h4 If I Could…
+          p
+            | There are no limits – let yourself imagine the goals you wish to accomplish and plan to realize them sooner rather than later
+        .worksheet
+          img  src="assets/wksht05.png" width="160" /
+          h4 I Want, I Need
+          p
+            | Helping you realize what it is you truly want and need to better design your ideal life
+        .worksheet
+          img  src="assets/wksht06.png" width="160" /
+          h4 Words to Live By
+          p
+            | A place to store quotes that speak to you for long term inspiration that will keep you on track to reaching your ideal self
+      .worksheet-column
+        .worksheet
+          img  src="assets/wksht07.png" width="160" /
+          h4 The Ideal Me List
+          p
+            | Helps you to identify what is your Ideal Me and to maximize your chances of success in all areas of your life
+        .worksheet
+          img  src="assets/wksht08.png" width="160" /
+          h4 Ideal Me To Do List 
+          p
+            | A simple to do list that will free up mental space and allow you to remain focus on your progress rather than day-to-day tasks
+        .worksheet
+          img  src="assets/wksht09.png" width="160" /
+          h4 Top 3 Ideal Me Goals
+          p
+            | Identify your next steps through the use of highly effective Ideal Me reverse engineering strategies and life hacks
+        .worksheet
+          img  src="assets/wksht10.png" width="160" /
+          h4 Gamify Your Life
+          p
+            | Stay inspired to achieve success and allow yourself to indulge on guilty pleasures… because you’ve earned them!
+        .worksheet
+          img  src="assets/wksht11.png" width="160 " /
+          h4 Ideal Me Career Plan
+          p
+            | A dynamic way of defining and creating a clear, direct pathway to your dream career
+        .worksheet
+          img  src="assets/wksht12.png" width="160" /
+          h4 My Ideal Day
+          p
+            | Discover how to transform your current day into your ideal day through the power of reverse engineering
+      .clear
 .courses-wp
   .title-text
-    h2 The 1st 100% satisfaction guaranteed community of curated
-    br/
-    h2  products that actually get real results or your money back!
+    h2 Courses That Really Work
+    h3 The 1st 100% satisfaction guaranteed community of curated products that get results or your money back!
   p.top-text
     | All courses backed by the
     a href="/static/about"

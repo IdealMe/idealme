@@ -7,26 +7,26 @@ header .container { position: relative; }
 header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margin-left: -90px; width: 180px; display: block; }
 
 
-.promo_section { background: #ff716f; }
+.promo_section { background: #f1eae0; }
 
-.intro-wp { padding: 10px 0 36px 0; }
-.intro-wp h2 { padding: 0 0 35px 0; font-size: 44px; line-height: 28px; color: #ffffff; font-weight: 400; text-align: center; }
+.intro-wp { padding: 20px 0 54px 0; }
+.intro-wp h2 { padding: 16px 0 48px 0; font-size: 64px; color: #252422; font-weight: 100; text-align: center; text-transform: uppercase; letter-spacing: 0px;}
 .intro-wp .cnt { width: 1000px; margin: 0 auto; }
-.intro-wp .video { position: relative; float: left; display: inline; padding: 6px 12px 6px 11px; width: 370px; height: 225px; }
-.intro-wp .video .video-bg { position: absolute; top: 0; left: 0; display: block; transform: rotate(359deg); -moz-transform: rotate(359deg); -webkit-transform: rotate(359deg); width: 393px; height: 237px; background: url('video-bg.png') no-repeat 0 0; z-index: 1; }
+.intro-wp .video { position: relative; float: left; display: inline; padding: 6px 0 0 50px;; width: 370px; height: 225px; }
+.intro-wp .video .video-bg { position: absolute; top: 0; left: 0; display: block; transform: rotate(359deg); -moz-transform: rotate(359deg); -webkit-transform: rotate(359deg); width: 393px; height: 237px;  }
 .intro-wp .video iframe { z-index: 10; position: relative; }
-.intro-wp .text { float: left; display: inline; padding: 42px 0 0 61px; width: 338px; line-height: 29px; color: #ffffff; font-size: 22px; font-weight: 100 }
+.intro-wp .text { float: left; display: inline; padding: 42px 0 0 51px; width: 338px; line-height: 29px; color: #252422; font-size: 20px; text-align: center; }
 .intro-wp .text ul { list-style: none outside none; }
 .intro-wp .text ul li { padding: 0 0 10px 0; display: block; }
-.intro-wp .join-box { width: 250px; float: right; display: inline; padding: 9px; background: #ff999a; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.intro-wp .join-box { width: 250px; float: right; display: inline; padding: 9px; background: #fff; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border: 1px solid #ebebeb;}
 .intro-wp .join-box form { margin: 0; }
 .intro-wp .join-box a.fb-join-btn { width: 234px; height: 36px; line-height: 36px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; text-align: center; display: block; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
 .intro-wp .join-box a.fb-join-btn:hover { background: #3b5999; text-decoration: none; }
-.intro-wp .join-box .or-text { margin: 0 0 10px 0; display: block; position: relative; height: 35px; line-height: 35px; font-size: 16px; font-weight: 600; color: #ffffff; text-align: center; text-transform: uppercase; }
-.intro-wp .join-box .or-text .tx { padding: 0 8px; background: #ff999a; position: relative; z-index: 10; }
-.intro-wp .join-box .or-text .line { position: absolute; top: 50%; left: 0; width: 100%; background: #fec5c5; font-size: 0; line-height: 0; text-indent: -4000px; height: 1px; display: block; margin-top: -1px; }
-.intro-wp .join-box .field-wp { height: 37px; display: block; background: #ffffff; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 0 0 13px 0; position: relative; }
-.intro-wp .join-box .field-wp input.field { display: block; padding: 0 10px 0 40px; background: transparent; border: 0; height: 37px; line-height: 37px; color: #999999; font-size: 16px; width: 232px; }
+.intro-wp .join-box .or-text { margin: -4px 0 -6px 0; display: block; position: relative; height: 35px; line-height: 35px; font-size: 12px; font-weight: 600; color: #999; text-align: center; text-transform: uppercase; }
+.intro-wp .join-box .or-text .tx { padding: 0 8px; background: #fff; position: relative; z-index: 10; }
+.intro-wp .join-box .or-text .line { position: absolute; top: 50%; left: 0; width: 100%; background: #ebebeb; font-size: 0; line-height: 0; text-indent: -4000px; height: 1px; display: block; margin-top: -1px; }
+.intro-wp .join-box .field-wp { height: 37px; display: block; background: #ffffff; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 0 0 10px 0; position: relative; }
+.intro-wp .join-box .field-wp input.field { display: block; padding: 0 10px 0 40px; background: #f2f2f2; border: 1px solid #ebebeb; height: 37px; line-height: 37px; color: #999999; font-size: 16px; width: 232px; }
 .intro-wp .join-box .field-wp .email-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/mail-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .intro-wp .join-box .field-wp .pass-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/pass-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .intro-wp .join-box .join-btn-wp { background: #5cd3d0; width: 100%; height: 40px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; position: relative; display: block; }
@@ -34,10 +34,14 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .intro-wp .join-box .join-btn-wp input.join-btn { display: block; border: 0; background: transparent; text-transform: uppercase; position: relative; color: #FFFFFF; font-size: 16px; font-style: normal; font-weight: 500; padding: 0 13px 0 0; text-align: center; width: 100%; height: 40px; }
 .intro-wp .join-box .join-btn-wp .strike { width: 13px; height: 22px; background: url('icons/join-strike.png') no-repeat 0 0; position: absolute; top: 50%; margin-top: -11px; right: 28px; }
 
-.courses-wp { padding: 35px 0; border-top: solid 5px #f4f4ec; background: #fbfbf3; }
-.courses-wp .title-text { text-align: center; display: block; padding: 0 0 15px 0; }
-.courses-wp .title-text h2 {font-weight: 600; line-height: 8px; font-size: 30px; }
-.courses-wp .top-text { margin-top: 16px; padding: 15 0 0px 0; text-align: center; color: #4D4D4D;  font-size: 16px; font-style: normal; font-weight: 500; }
+.worksheet-wp .title-text { text-align: center; display: block; padding: 4em 0 15px 0; }
+.worksheet-wp .title-text h2 {font-weight: 100; line-height: 60px; font-size: 48px; text-transform: uppercase; color: #252422; letter-spacing: -1px;}
+.worksheet h4 {font-weight: 600; color: #252422;}
+
+.courses-wp { padding: 35px 0 4em 0; border-top: solid 1px #f4f4ec; background: #fbfbf3; }
+.courses-wp .title-text { text-align: center; display: block; padding: 4em 0 15px 0; }
+.courses-wp .title-text h2 {font-weight: 100; line-height: 60px; font-size: 48px; text-transform: uppercase; color: #252422; letter-spacing: -1px; }
+.courses-wp .top-text { text-align: center; color: #4D4D4D;  font-size: 18px; }
 .courses-wp .vendor_name { line-height: 26px; }
 .courses-wp .offer_card { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; overflow: hidden; }
 
@@ -45,15 +49,15 @@ header .container .logo.logged_in { position: absolute; top: 0; left: 50%; margi
 .goal-box-long .avatar { padding-top: 16px; }
 .goal-box-long .goal-name { font-size: 14px; font-weight: 400;}
 
-.bottom-join-wp { background: #fbfbf3; padding: 25px 0; }
-.bottom-join-wp .box { width: 940px; background: #edecde; margin: 0 auto; padding: 10px; }
-.bottom-join-wp h3 { padding: 0 0 10px 0; text-align: center; color: #4D4D4D;  font-size: 20px; font-style: normal; font-weight: 600; }
+.bottom-join-wp { background: #FBFAF4; padding: 25px 0; }
+.bottom-join-wp .box { width: 960px; background: #fff; border: 1px solid #ebebeb; margin: 0 auto; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+.bottom-join-wp h3 { padding: 0 0 25px 0; text-align: center; color: #4D4D4D;  font-size: 24px; font-style: normal; font-weight: 400; }
 .bottom-join-wp form { margin: 0px 0 -10px 0 }
 .bottom-join-wp a.fb-join-btn { float: left; display: inline; width: 200px; height: 37px; line-height: 37px; color: #FFFFFF; font-size: 14px; font-style: normal; font-weight: 600; text-align: center; background: #476bb7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-transform: uppercase; }
 .bottom-join-wp a.fb-join-btn:hover { background: #3b5999; text-decoration: none; }
 .bottom-join-wp .or-text { margin: 0 40px 10px 35px; display: block; position: relative; height: 38px; line-height: 38px; font-size: 16px; font-weight: 600; color: #4d4d4d; text-align: left; text-transform: uppercase; float: left; display: inline; }
 .bottom-join-wp .field-wp { height: 37px; float: left; display: inline; background: #ffffff; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 0 9px 0 0; position: relative; }
-.bottom-join-wp .field-wp input.field { display: block; padding: 0 10px 0 40px; background: transparent; border: 0; height: 37px; line-height: 37px; color: #999999; font-size: 16px; width: 150px; }
+.bottom-join-wp .field-wp input.field { display: block; padding: 0 10px 0 40px; background: #f2f2f2; border: 1px solid #ebebeb; height: 37px; line-height: 37px; color: #999999; font-size: 16px; width: 203px; }
 .bottom-join-wp .field-wp .email-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/mail-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .bottom-join-wp .field-wp .pass-icon { position: absolute; top: 4px; left: 5px; width: 28px; height: 28px; background: url('icons/pass-icon.png') no-repeat 0 0; font-size: 0; line-height: 0; text-indent: -4000px; display: block; }
 .bottom-join-wp .join-btn-wp { background: #5cd3d0; width: 215px; height: 37px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; position: relative; display: block; float: left; display: inline; }
