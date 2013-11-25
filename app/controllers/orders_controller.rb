@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    render layout: "minimal"
   end
 
   # create a paypal payment and send the user to the approval url
