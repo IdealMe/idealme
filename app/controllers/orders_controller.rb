@@ -68,32 +68,18 @@ class OrdersController < ApplicationController
 
     if @order.valid? && current_user
       @order.cost = @market.course.cost
-      #gateway = AUTHORIZED_NET_GATEWAY
       gateway = STRIPE_GATEWAY
-
       gateway_options = {}
-      if gateway.is_a?(ActiveMerchant::Billing::AuthorizeNetGateway)
-        @order.gateway = Order::GATEWAY_AUTHORIZE_NET
-        #gateway_options[:order_id] = Order.generate_invoice(@course.id)
-        gateway_options[:description] = @order.course.name
-        gateway_options[:email] = @order.card_email
-        gateway_options[:customer] = @order.user.id
-      end
-
       if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
         @order.gateway = Order::GATEWAY_STRIPE
         gateway_options[:description] = @order.course.name
         gateway_options[:email] = @order.card_email
         #metadata_options = [:description,:browser_ip,:user_agent,:referrer]
       end
-
-
       @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
 
       if @response.success?
-        if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
-         Rails.logger.info gateway.store(@order.cc, gateway_options)
-        end
+        Rails.logger.info gateway.store(@order.cc, gateway_options)
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
         @order.save!
