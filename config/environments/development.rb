@@ -56,4 +56,4 @@ end
 AUTHORIZED_NET_GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(login: ENV['AUTHORIZED_NET_LOGIN'], password: ENV['AUTHORIZED_NET_PASSWORD'], test: true)
 # not used
 #PAYPAL_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE'], test: true)
-STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_SECRET_KEY'], test: true)
+STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_PUBLIC_KEY'], password: ENV['STRIPE_SECRET_KEY'], test: true)

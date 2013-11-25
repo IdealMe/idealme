@@ -69,7 +69,11 @@ class OrdersController < ApplicationController
 
     if @order.valid? && current_user
       @order.cost = @market.course.cost
-      gateway = STRIPE_GATEWAY
+      if current_user.access_admin? && Rails.env.production?
+        gateway = TEST_STRIPE_GATEWAY
+      else
+        gateway = STRIPE_GATEWAY
+      end
       gateway_options = {}
       if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
         @order.gateway = Order::GATEWAY_STRIPE
@@ -165,14 +169,26 @@ class OrdersController < ApplicationController
   end
 
   def paypal_endpoint
-    ENV['IDEALME_PAYPAL_ENDPOINT']
+    if current_user.access_admin? && Rails.env.production?
+      ENV['TEST_IDEALME_PAYPAL_ENDPOINT']
+    else
+      ENV['IDEALME_PAYPAL_ENDPOINT']
+    end
   end
 
   def paypal_credentials
-    [
-      ENV['IDEALME_PAYPAL_AUTH_KEY'],
-      ENV['IDEALME_PAYPAL_AUTH_SECRET']
-    ]
+    if current_user.access_admin? && Rails.env.production?
+      [
+        ENV['TEST_IDEALME_PAYPAL_AUTH_KEY'],
+        ENV['TEST_IDEALME_PAYPAL_AUTH_SECRET']
+      ]
+    else
+      [
+        ENV['IDEALME_PAYPAL_AUTH_KEY'],
+        ENV['IDEALME_PAYPAL_AUTH_SECRET']
+      ]
+    end
+
   end
 
   def build_user
