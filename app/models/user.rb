@@ -158,6 +158,8 @@ class User < ActiveRecord::Base
       self.avatar = File.new(avatars.sample, 'r')
       self.save!
     end
+
+    # send welcome email?
   end
 
   def unsubscribe_goal(goal)
