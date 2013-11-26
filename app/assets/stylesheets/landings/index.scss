@@ -2,7 +2,10 @@
   >.body-content {
     .container {
       width: 1250px;
-      height: 490px;
+
+    }
+    >.promo-height {
+    height: 490px;
     }
     >.promo-section {
       >.container {
@@ -13,6 +16,7 @@
         margin-left: auto;
         margin-right: auto;
         position: relative;
+        height: 490px;
       }
     }
     .worksheet-column {
