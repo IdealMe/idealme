@@ -10,8 +10,9 @@
         .text
           p
             | Sign up now to follow along on the Ideal Me Challenge...
+            .divider
           p
-            | PLUS get your free copy of Design Your Ideal Life.
+            | PLUS get your free copy of <em>Design Your Ideal Life</em>.
         .join-box
           = form_for :user, url: user_registration_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
