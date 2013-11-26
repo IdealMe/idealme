@@ -183,6 +183,7 @@ Idealme::Application.routes.draw do
       get ':id/sdfsdf/:tab' => 'users#profile', constraints: {tab: /(goal)|(course)|(saved-course)/}, as: :user_tab
 
       get ':id/edit' => 'users/registrations#edit', as: :user_edit
+      get ':id/edit_password' => 'users/registrations#edit_password', as: :user_edit_password
 
       # Signup flow
       get ':id/welcome' => 'users#welcome', as: :user_welcome

@@ -2,11 +2,11 @@ require "spec_helper"
 
 describe CommentMailer do
   describe "question" do
-    let(:course) { create(:course, owner_id: affiliate_user.id) }
-    let(:user)   { create(:user) }
-    let(:affiliate_user)   { create(:affiliate_user) }
-    let(:comment) { create(:comment) }
-    let(:mail)   { CommentMailer.question(course, user, "I got a question", comment.id) }
+    let!(:course) { create(:course, owner_id: affiliate_user.id) }
+    let!(:user)   { create(:user) }
+    let!(:affiliate_user)   { create(:affiliate_user) }
+    let!(:comment) { create(:comment, commentable: course) }
+    let!(:mail)   { CommentMailer.question(course, user, "I got a question", comment.id) }
 
     it "renders the headers" do
       mail.subject.should eq("Question")

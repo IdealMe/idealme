@@ -31,6 +31,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def edit_password
+
+  end
+
   protected
 
   def after_update_path_for(resource)
