@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   # before_filter :set_common_date
   before_filter :authenticate_staging
   before_filter :set_last_location
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   #https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -177,6 +178,14 @@ class ApplicationController < ActionController::Base
   def do_not_check_authorization?
     # This is a defined method in the devise gem which will return true of the current controller is a devise controller.
     respond_to?(:devise_controller?)
+  end
+
+  protected
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) << :username
+    devise_parameter_sanitizer.for(:account_update) << :firstname
+    devise_parameter_sanitizer.for(:account_update) << :lastname
   end
 
 end

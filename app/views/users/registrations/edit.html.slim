@@ -11,19 +11,19 @@
             div
               = f.file_field :avatar, class: ''
         .form-group
-          label.control-label.col-md-2 Username:
+          label.control-label.col-md-2 for="user_username" Username:
           .col-md-4
             = f.text_field :username, class: 'form-control'
         .form-group
-          label.control-label.col-md-2 First name:
+          label.control-label.col-md-2 for="user_firstname" First name:
           .col-md-4
             = f.text_field :firstname, class: 'form-control'
         .form-group
-          label.control-label.col-md-2 Last name:
+          label.control-label.col-md-2 for="user_lastname" Last name:
           .col-md-4
             = f.text_field :lastname, class: 'form-control'
         .form-group
-          label.control-label.col-md-2 Email:
+          label.control-label.col-md-2 for="user_email" Email:
           .col-md-4
             = f.text_field :email, class: 'form-control'
         - if resource.access_instructor
