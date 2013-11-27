@@ -60,17 +60,16 @@ class OrdersController < ApplicationController
     redirect_to(markets_path) and return unless @order.valid_checksum?(market_id, course_id, time)
 
     unless current_user
-      @user = build_user
-      if @user.valid?
+      user = build_user
+      if user.valid?
         create_user
       else
       end
     end
-    @user ||= current_user
 
-    if @order.valid? && @user
+    if @order.valid? && current_user
       @order.cost = @market.course.cost
-      if @user.access_admin? && Rails.env.production?
+      if current_user.access_admin? && Rails.env.production?
         gateway = TEST_STRIPE_GATEWAY
       else
         gateway = STRIPE_GATEWAY
@@ -93,8 +92,8 @@ class OrdersController < ApplicationController
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
         end
-        @user.subscribe_course(@market.course)
-        flash[:alert] = nil
+        current_user.subscribe_course(@market.course)
+        #flash[:alert] = nil
       else
         flash[:alert] = @response.message
         render :new
@@ -207,8 +206,9 @@ class OrdersController < ApplicationController
   end
 
   def create_user
-    user = build_user.save!
-    sign_in(:user, build_user)
+    user = build_user
+    user.save!
+    sign_in(:user, user)
   end
 
 end
