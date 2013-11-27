@@ -83,6 +83,6 @@ Idealme::Application.configure do
     enable_starttls_auto: true
   }
 end
-STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_SECRET_KEY'], test: false)
 TEST_STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['TEST_STRIPE_PUBLIC_KEY'], password: ENV['TEST_STRIPE_SECRET_KEY'], test: true)
+STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_PUBLIC_KEY'], password: ENV['STRIPE_SECRET_KEY'], test: false)
 
