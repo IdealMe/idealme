@@ -64,16 +64,17 @@ class OrdersController < ApplicationController
       if user.valid?
         create_user
       else
+        if user.email.present?
+          flash[:alert] = 'Sign in to your idealme.com account before purchasing'
+          session[:previous_url] = "/orders/new/#{@order.market.slug}"
+          redirect_to new_user_session_path and return
+        end
       end
     end
 
     if @order.valid? && current_user
       @order.cost = @market.course.cost
-      if current_user.access_admin? && Rails.env.production?
-        gateway = TEST_STRIPE_GATEWAY
-      else
-        gateway = STRIPE_GATEWAY
-      end
+      gateway = STRIPE_GATEWAY
       gateway_options = {}
       if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
         @order.gateway = Order::GATEWAY_STRIPE
