@@ -125,6 +125,7 @@ gem 'cloudfront-signer'
 
 #Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
 gem 'activemerchant'
+#gem 'stripe'
 
 #Create JSON structures via a Builder-style DSL
 # gem 'jbuilder'
