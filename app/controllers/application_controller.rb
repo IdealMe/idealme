@@ -186,6 +186,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :username
     devise_parameter_sanitizer.for(:account_update) << :firstname
     devise_parameter_sanitizer.for(:account_update) << :lastname
+    devise_parameter_sanitizer.for(:account_update) << :password
+    devise_parameter_sanitizer.for(:account_update) << :password_confirmation
   end
 
 end

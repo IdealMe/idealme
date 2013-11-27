@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_authorization_check
-  layout 'minimal'
+  layout 'minimal', only: [:create, :new]
 
   def create
     super
@@ -22,7 +22,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in @user, :bypass => true
       redirect_to after_update_path_for(@user)
     else
-      render "edit"
+      if account_update_params[:password].blank? 
+        render "edit"
+      else
+        render "edit_password"
+      end
     end
   end
 
@@ -32,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit_password
-
+    @user = current_user
   end
 
   protected

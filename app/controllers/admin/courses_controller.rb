@@ -61,6 +61,7 @@ class Admin::CoursesController < Admin::BaseController
 
   def load_courses
     @courses = Course.all
+    @courses.sort! {|a, b| a.name <=> b.name }
   end
 
   def build_course
