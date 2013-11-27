@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_authorization_check
-  layout 'minimal'
+  layout 'minimal', only: [:create, :new]
 
   def create
     super
