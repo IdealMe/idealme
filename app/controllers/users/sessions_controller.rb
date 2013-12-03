@@ -5,6 +5,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def create
     super
+    flash[:notice] = nil
   end
 
   def destroy
