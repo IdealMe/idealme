@@ -10,6 +10,11 @@ class CoursesController < ApplicationController
   def show
     @comment = Comment.new(commentable: @course, owner: current_user, redirect_back_to: course_path(@course))
     @review  = @course.reviews.build
+    @course_image = if @course.image
+                      @course.image
+                    else
+                      @course.default_market.avatar
+                    end
   end
 
   protected
