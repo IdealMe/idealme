@@ -7,7 +7,7 @@
         em by
         | &nbsp;
         = @course.owner.fullname
-      - if @course.image.present?
+      - if @course_image.present?
         /= image_tag @course.image.url(:thumb), class: 'course-image'
         = image_tag @course_image.url(:thumb), class: 'course-image'
       /! .progress
