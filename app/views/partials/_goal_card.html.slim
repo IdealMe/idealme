@@ -13,4 +13,4 @@
         = image_tag 'users/plus.png', :class => 'goal-picker-unchecked', :"data-goal_id" => goal.id
         = image_tag 'users/checkmark.png', :class => 'goal-picker-checked hide', :"data-goal_id" => goal.id
 
-= hidden_field_tag "goal_ids[#{ goal.id }]", (selected ? '1' : '0'), :"data-goal_id" => goal.id
+= hidden_field_tag "goal_ids[#{ goal.id }]", (selected ? '1' : '0'), :"data-goal_id" => goal.id, :class => 'search-goal-card-input'

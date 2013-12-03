@@ -17,6 +17,8 @@ $(function () {
       $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').val('1');
       self.find('.picker img.goal-picker-checked').removeClass('hide');
     }
+    
+    $('input[type=hidden][name="goal_ids[' + goal_id + ']"]').trigger('search-input-goal')
   });
 
   //Update the register's timezone, during register page

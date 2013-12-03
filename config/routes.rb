@@ -45,6 +45,7 @@ Idealme::Application.routes.draw do
       post :activate
       post :complete
       post :archive
+      post :toggle
     end
     collection do
       get :archived

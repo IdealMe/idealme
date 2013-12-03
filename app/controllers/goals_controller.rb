@@ -105,6 +105,17 @@ class GoalsController < ApplicationController
 
   end
 
+  def toggle
+    goal_user = GoalUser.where(user: current_user, goal_id: params[:id]).first
+    if goal_user
+      goal_user.destroy
+      render json: {status: "destroyed"}
+    else
+      GoalUser.create(user: current_user, goal_id: params[:id])
+      render json: {status: "created"}
+    end
+  end
+
   protected
 
   def load_archived_goal_users

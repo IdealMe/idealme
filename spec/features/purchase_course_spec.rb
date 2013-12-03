@@ -52,6 +52,7 @@ describe 'purchase course' do
     find('.btn-complete-purchase').click
 
     page.should have_content('Sign in to your')
+    screenshot
     fill_in "Email", with: @user.email
     fill_in "Password", with: 'passpass'
     click_button "Sign in"
