@@ -29,7 +29,7 @@ class Admin::PayloadsController < Admin::BaseController
 
   # Create a specific payload
   def create
-    @payload = Payload.new(params[:payload])
+    @payload = Payload.new(payload_params)
     if @payload.save
       redirect_to @payload, notice: 'Payload was successfully created.'
     else
@@ -40,7 +40,7 @@ class Admin::PayloadsController < Admin::BaseController
   # Update a specific payload
   def update
     @payload = Payload.where(id: params[:id]).first
-    if @payload.update_attributes(params[:payload])
+    if @payload.update_attributes(payload_params)
       redirect_to @payload, notice: 'Payload was successfully updated.'
     else
       render :edit
@@ -104,5 +104,11 @@ class Admin::PayloadsController < Admin::BaseController
     elsif params[:article_id]
       @payload_parent = ::Article.where(slug: params[:article_id]).first
     end
+  end
+
+  private
+
+  def payload_params
+    params.require(:payload).permit!
   end
 end

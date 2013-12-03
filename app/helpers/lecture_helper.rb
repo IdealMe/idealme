@@ -3,7 +3,7 @@ module LectureHelper
   def lecture_icon(lecture)
     icon = case lecture.lecture_type
            when :document
-             "icon-file-text"
+             "icon-book"
            when :video
              "icon-film"
            when :archive
