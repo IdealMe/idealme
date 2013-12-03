@@ -36,12 +36,13 @@
         .module-lectures
           ul
             - section.lectures.each do |lecture|
-              li
-                span.lecture-icon-container
-                  = lecture_icon lecture
-                = link_to lecture.name, lecture_path(lecture)
-                div
-                  = lecture.description.html_safe if lecture.description
+              - unless lecture.payloads.empty?
+                li
+                  span.lecture-icon-container
+                    = lecture_icon lecture
+                  = link_to lecture.name, lecture_path(lecture)
+                  div
+                    = lecture.description.html_safe if lecture.description
         .clear
   .sidebar
     #rate-this-course-container
