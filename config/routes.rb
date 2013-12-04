@@ -1,5 +1,7 @@
 Idealme::Application.routes.draw do
 
+  get "challenge" => "challenge#index", :as => :challenge
+
   mount Ckeditor::Engine => '/ckeditor'
   get "screenshots/index" unless Rails.env.production?
   get "screenshots/reset" unless Rails.env.production?

@@ -22,7 +22,7 @@ header {
       }
       .user-menu {
         display: none;
-        @include abs_tl(58px, 0px);
+        @include abs_tl(53px, 0px);
         z-index: 200;
         margin: 0;
         list-style: none;
