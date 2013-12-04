@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def welcome
-    flash[:notice] = nil
+    flash[:notice] = 'Hi! Now what? On this page you can keep track of your goals. Drag your goals into the order you want to tackle them. Any courses you take will be kept here too. And <a href="http://idealme-prod.s3.amazonaws.com/Ideal%20Me%20Worksheet%20PDF%20v01.pdf">here\'s</a> (download ink) the link to download your free Ebook.'
     @goals = Goal.is_welcome.visible.ordered
     render layout: "chromeless"
   end

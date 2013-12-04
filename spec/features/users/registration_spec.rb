@@ -45,3 +45,36 @@ describe 'edit account settings' do
     page.text.should_not include "Invalid email"
   end
 end
+
+describe 'new registration' do
+  let!(:goal)   { create(:goal) }
+  let!(:market) { create(:market) }
+  let!(:course) { create(:course, default_market_id: market.id) }
+
+  it 'shows a special flash message for new users', js: true do
+    visit root_path
+    click_link "Sign up"
+    fill_in "Email", with: 'newuser@idealme.com'
+    fill_in "Password", with: "passpass"
+    find('.btn-sign-up').click
+    screenshot
+    expect(page.text).to include 'Hi! Now what? On this page you can keep track of your goals.'
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
