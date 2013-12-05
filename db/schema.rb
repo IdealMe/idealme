@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120225042) do
+ActiveRecord::Schema.define(version: 20131205001414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -385,6 +385,8 @@ ActiveRecord::Schema.define(version: 20131120225042) do
     t.integer  "goal_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "weight",     default: 0
+    t.integer  "position",   default: 0
   end
 
   add_index "goal_users", ["goal_id"], name: "index_goal_users_on_goal_id", using: :btree
