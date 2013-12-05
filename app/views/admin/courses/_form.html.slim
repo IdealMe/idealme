@@ -85,6 +85,7 @@
                       span.glyphicon.glyphicon-share
 
           = market.input :name
+          = market.input :subheader
           = market.input :affiliate_tag
           = market.input :course_id do
             = market.select :course_id, Course.all.collect { |course| [course.name, course.id] }, {}, class: 'select2'
