@@ -14,7 +14,13 @@
         = hidden_field_tag :active_view, :details
         fieldset
           #legend
-            legend Course
+            legend 
+              | Course
+              .pull-right
+                = link_to course_path(@course), target: '_blank' do
+                  span.btn.btn-success
+                    ' open
+                    span.glyphicon.glyphicon-share
         - if @course.errors.any?
           = @course.errors.full_messages.each do |msg|
             ul.alert.alert-error.unstyled
@@ -70,7 +76,13 @@
         = f.simple_fields_for(:default_market, @course.default_market) do |market|
           fieldset
             #legend
-              legend Course Preview page
+              legend 
+                | Course Preview page
+                .pull-right
+                  = link_to market_path(@course.default_market), target: '_blank' do
+                    span.btn.btn-success
+                      ' open
+                      span.glyphicon.glyphicon-share
 
           = market.input :name
           = market.input :affiliate_tag

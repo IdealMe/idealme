@@ -2,7 +2,14 @@
   = hidden_field_tag "hidden-lecture-id", @lecture.friendly_id
   fieldset
     #legend
-      legend Lecture
+      legend 
+        | Lecture
+        .pull-right
+          = link_to lecture_path(@lecture), target: '_blank' do
+            span.btn.btn-success
+              ' open
+              span.glyphicon.glyphicon-share
+
 
   = f.input :name
   = f.input :section_id do
