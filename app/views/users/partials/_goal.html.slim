@@ -1,5 +1,7 @@
-- @goal_users.each do |goal_user|
-  = render partial: 'partials/goal_user_card', locals: {goal_user: goal_user}
+
+.sortable-goal-cards
+  - @goal_users.each do |goal_user|
+    = render partial: 'partials/goal_user_card', locals: {goal_user: goal_user}
 
 
 - if @owner

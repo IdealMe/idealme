@@ -126,6 +126,7 @@ Idealme::Application.routes.draw do
     resources :goal_users, only: [], defaults: {format: :json} do
       collection do
         post 'set_privacy' => 'goal_users#set_privacy'
+        post 'set_order' => 'goal_users#set_order'
       end
     end
     resources :votes, only: [], defaults: {format: :json} do

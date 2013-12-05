@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   def profile
     #@tab = params[:tab] || 'goal'
     if @owner
-      @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("weight ASC")
+      @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user)
       @courses    = @user.courses
     else
-      @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).order("weight ASC")
+      @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user).private_goal(false)
     end
 
