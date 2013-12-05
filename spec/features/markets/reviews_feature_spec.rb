@@ -29,6 +29,7 @@ describe 'course preview page (market show)' do
   end
 
   it "allows a course customer to add a review", js: true do
+    review_count = Review.count
     # subscribe user to course
     user.subscribe_course(market.course)
     login_as(user, scope: :user, run_callbacks: false)
@@ -45,10 +46,10 @@ describe 'course preview page (market show)' do
     fill_in "review_content", with: "One of my kids decided to hide a plastic fork in our old toaster and we didn't realized until our senses were awaken by the smell of burning plastic. Our search for an inexpensive efficient toaster landed us here. This toaster works great. Any reviews that suggest that the heating shield interferes somehow with the toasters operation either has a faulty machine or there problems are a result of user error. This is a great value for the price. I eat Ezekiel bread which is highly perishable bread that keeps well in the freezer. Toast comes out perfectly, as do bagels and thicker breads. Darkness settings 1 - 5 are very accurate. Glad I went with this one. It is a very handsome appliance as well. P.S. I don't usually write reviews but I felt compelled. Get this toaster you won't be disappointed."
     click_button "Add Review"
     screenshot
-    Review.count.should eq 3
+    Review.count.should eq review_count + 1
 
     visit market_path course.default_market
-    click_link "3 reviews"
+    click_link " reviews"
     sleep 1
     screenshot
     Vote.count.should eq 1
