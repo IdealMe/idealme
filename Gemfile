@@ -180,7 +180,7 @@ end
 
 group :development do
   gem 'quiet_assets'
-  gem 'sprockets_better_errors'
+  #gem 'sprockets_better_errors'
 
   #A rails plugin to kill N+1 queries and unused eager loading.
   gem 'bullet'

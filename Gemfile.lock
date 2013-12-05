@@ -488,8 +488,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sprockets_better_errors (0.0.2)
-      sprockets-rails (>= 1.0.0)
     state_machine (1.2.0)
     stripe (1.8.8)
       multi_json (>= 1.0.4, < 2)
@@ -622,7 +620,6 @@ DEPENDENCIES
   sidekiq
   simple_form!
   slim
-  sprockets_better_errors
   stripe
   therubyracer
   thin
