@@ -1,0 +1,2 @@
+class JewelsController < ApplicationController
+end

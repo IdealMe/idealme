@@ -1,0 +1,2 @@
+module JewelsHelper
+end

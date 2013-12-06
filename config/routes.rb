@@ -48,6 +48,7 @@ Idealme::Application.routes.draw do
       post :complete
       post :archive
       post :toggle
+      resources :gems, controller: :jewels
     end
     collection do
       get :archived
