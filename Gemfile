@@ -179,6 +179,8 @@ group :test do
 end
 
 group :development do
+  gem 'spring'
+  gem "spring-commands-rspec"
   gem 'quiet_assets'
   #gem 'sprockets_better_errors'
 
