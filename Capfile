@@ -46,8 +46,8 @@ set(:asset_precompilation_triggers, %w(app/assets vendor/assets Gemfile.lock))
 namespace :deploy do
   desc "Restart the application following a deploy"
   task :restart do
-
-    as_app "kill -s USR2 $(cat /home/idealme/puma.idealme.pid)"
+    as_app "kill -s TERM $(cat /home/idealme/sidekiq.pid)"
+    as_app "bundle exec pumactl -P /home/idealme/puma.idealme.pid restart"
   end
 end
 
