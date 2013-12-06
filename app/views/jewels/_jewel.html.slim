@@ -1,0 +1,11 @@
+.gem-card
+  .avatar
+    = link_to jewel.url, target: '_blank' do
+      - if jewel.avatar.present?
+        = image_tag jewel.avatar.url(:full)
+      - else
+        img src="/missing/no-gem-link.jpg" 
+  .gem-name
+    = jewel.name
+  .bottom-box
+    .picker

@@ -42,9 +42,9 @@ class Jewel < ActiveRecord::Base
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    styles: {full: '252x202#', thumb: '80x64#'},
+                    styles: {full: '229x201#', thumb: '80x64#'},
                     convert_options: {
-                        full: '-gravity center -extent 252x202 -quality 75 -strip',
+                        full: '-gravity center -extent 229x201 -quality 75 -strip',
                         thumb: '-gravity center -extent 80x64 -quality 75 -strip'
                     }
 
@@ -60,56 +60,12 @@ class Jewel < ActiveRecord::Base
   before_save :inspect_and_set_meta
 
   # == Class Methods ========================================================
-  def self.mine(user, url)
-    gem = Jewel.new
-    gem.url = url
-    gem.owner_id = user.id
-    gem.scrub_url
-
-    parameters = Jewel.get_service(gem.url)
-    gem.parameters = parameters
-
-    if parameters[:service] == :twitter_status
-      twitter = Twitter.status(parameters[:status_id])
-      gem.name = "Tweet from #{twitter.user.name}"
-      gem.name = twitter.text
-      gem.content = twitter.text
-      tweet_media = twitter.media
-      if tweet_media.length > 0
-        gem.avatar = URI.parse(tweet_media.first.media_url)
-      end
-
-      gem.kind = Jewel::LINK
-    elsif parameters[:service] == :other
-      page = MetaInspector.new(url)
-      gem.name = page.title
-      gem.content = page.description
-      gem.avatar = URI.parse(page.image) if page.image
-      gem.kind = Jewel::LINK
-
-    elsif parameters[:service] == :youtube
-      page = MetaInspector.new(url)
-      gem.name = page.title
-      gem.content = page.description
-      gem.avatar = URI.parse(page.image) if page.image
-      gem.kind = Jewel::LINK
-
-
-    elsif parameters[:service] == :idealme
-      if parameters[:kind]==:courses
-        gem.kind = Jewel::COURSE
-        course = Course.where(slug: parameters[:slug]).first
-        gem.course_id = course.id
-      elsif parameters[:kind]==:goals
-        gem.kind = Jewel::GOAL
-        goal = Goal.where(id: parameters[:slug]).first
-        gem.goal_id = goal.id
-      end
-    end
-
-
-    gem.save!
-    gem
+  def self.mine(user, url, goal = nil)
+    gem             = Jewel.new
+    gem.url         = url
+    gem.owner_id    = user.id
+    gem.linked_goal = goal if goal
+    gem.fetch!
   end
 
   def self.get_service(url)
@@ -142,6 +98,51 @@ class Jewel < ActiveRecord::Base
   end
 
   # == Instance Methods =====================================================
+  def fetch!
+    self.scrub_url
+
+    parameters      = Jewel.get_service(self.url)
+    self.parameters  = parameters
+
+    if parameters[:service] == :twitter_status
+      twitter     = Twitter.status(parameters[:status_id])
+      self.name    = "Tweet from #{twitter.user.name}"
+      self.name    = twitter.text
+      self.content = twitter.text
+      tweet_media = twitter.media
+      if tweet_media.length > 0
+        self.avatar = URI.parse(tweet_media.first.media_url)
+      end
+      self.kind = Jewel::LINK
+    elsif parameters[:service] == :other
+      page        = MetaInspector.new(url)
+      self.name    = page.title
+      self.content = page.description
+      self.avatar  = URI.parse(page.image) if page.image
+      self.kind    = Jewel::LINK
+    elsif parameters[:service] == :youtube
+      page        = MetaInspector.new(url)
+      self.name    = page.title
+      self.content = page.description
+      self.avatar  = URI.parse(page.image) if page.image
+      self.kind    = Jewel::LINK
+    elsif parameters[:service] == :idealme
+      if parameters[:kind] ==:courses
+        self.kind      = Jewel::COURSE
+        course        = Course.where(slug: parameters[:slug]).first
+        self.course_id = course.id
+      elsif parameters[:kind] ==:goals
+        self.kind    = Jewel::GOAL
+        goal        = Goal.where(id: parameters[:slug]).first
+        self.goal_id = goal.id
+      end
+    end
+
+    self.save!
+    self
+
+  end
+
   def scrub_url
     scrub = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
     uri = URI(self.url)

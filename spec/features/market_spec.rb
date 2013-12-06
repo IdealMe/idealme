@@ -16,7 +16,7 @@ describe 'market show page' do
     Warden.test_reset!
   end
 
-  it "show a syllabus on the market page", js: true do
+  it "show a syllabus on the market page", js: true, vcr: true do
     visit course_path course
     click_link "Syllabus"
     sleep 1

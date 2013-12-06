@@ -121,7 +121,7 @@ gem 'will_paginate'
 gem 'cloudfront-signer'
 
 #MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
-# gem 'metainspector'
+gem 'metainspector'
 
 #Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
 gem 'activemerchant'
@@ -176,6 +176,7 @@ group :test do
   #gem 'simplecov', :require => false
   gem 'poltergeist'
   gem 'vcr'
+  gem 'webmock', '< 1.16'
 end
 
 group :development do

@@ -1,0 +1,18 @@
+.container
+  .gem-header.clearfix
+    .col-sm-4
+      = image_tag @goal.avatar.url(:thumb)
+      | &nbsp;
+      span.goal-name = @goal.name
+    .col-sm-4: .center-block: center
+      span 2
+    .col-sm-4: .pull-right
+      i Find something great?
+      | &nbsp;
+      a.btn.btn-red.btn-new-gem
+        i.glyphicon.glyphicon-cloud-upload
+        | &nbsp;
+        ' submit gem
+        
+  .gem-grid
+    = render partial: "jewel", collection: @jewels

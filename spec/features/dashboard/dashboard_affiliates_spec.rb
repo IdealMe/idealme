@@ -20,7 +20,7 @@ describe 'affiliate dashboard functionality' do
     buy_course_as user
   end
 
-  it "shows affiliate dashboard index", js: true do
+  it "shows affiliate dashboard index", js: true, vcr: true do
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard"
     expect(page.text).to include 'Total units sold: 1'
@@ -30,19 +30,17 @@ describe 'affiliate dashboard functionality' do
     AffiliateSale.first.user_id.should eq affiliate_user.id
   end
 
-  it "calculates conversions", js: true do
-    Capybara.reset_session!
-    visit '/now/my-link'
-    find('.enroll-btn').click
-    visit "/logout"
+  it "calculates conversions", vcr: true do
+    click = AffiliateClick.last.dup
+    click.save!
     Capybara.reset_session!
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard"
-    expect(page.text).to include 'Conversion: 50'
-    expect(page.text).to include 'Total affiliates pay out: $498.5000'
+    expect(page.text).to include 'Conversion:50'
+    expect(page.text).to include 'Total affiliates pay out:$498.5000'
   end
 
-  it 'allows affiliates to setup tracking links', js: true do
+  it 'allows affiliates to setup tracking links', js: true, vcr: true do
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard/affiliates?tab=links"
     click_link "New Tracking Link"
@@ -75,7 +73,7 @@ describe 'affiliate dashboard functionality' do
     expect(page.text).to include 'Total unique users signed up: 2'
   end
 
-  it 'total sales', js: true do
+  it 'total sales', js: true, vcr: true do
     buy_course_as user2
     buy_course_as user3
     login_as(affiliate_user, scope: :user, run_callbacks: false)
@@ -83,7 +81,7 @@ describe 'affiliate dashboard functionality' do
     expect(page.text).to include 'normal idealme'
   end
 
-  it 'affiliate urls', js: true do
+  it 'affiliate urls', js: true, vcr: true do
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard/affiliates?tab=urls"
   end

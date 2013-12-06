@@ -17,7 +17,7 @@ describe 'course show page' do
     Warden.test_reset!
   end
 
-  it "show a syllabus on the course page", js: true do
+  it "show a syllabus on the course page", js: true, vcr: true do
     lecture.payloads.stub(:empty?).and_return(false)
     buy_course_as user
     login_as user, scope: :user

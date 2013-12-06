@@ -28,7 +28,7 @@ describe 'purchase course' do
     #page.find('input[name="commit"]').click
   end
 
-  it 'allows customers to purchase courses', js: true do
+  it 'allows customers to purchase courses', js: true, vcr: true do
     visit root_path
     screenshot
     click_link "Sample market"
@@ -68,7 +68,7 @@ describe 'purchase course' do
 
     user = User.where(firstname: @user.firstname).last
     user.firstname.should eq @user.firstname
-    user.courses.all.should include Course.last
+    user.courses.load.to_a.should include Course.last
     screenshot
   end
 

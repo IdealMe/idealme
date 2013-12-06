@@ -1,13 +1,17 @@
 class Goal < ActiveRecord::Base
   # == Imports ==============================================================
   include Votable
+  extend FriendlyId
 
   # == Slug =================================================================
+  friendly_id :name, use: [:history, :slugged, :finders]
+
   # == Constants ============================================================
   # == Attributes ===========================================================
   # == Relationships ========================================================
   has_many :goal_users
   has_many :users, through: :goal_users
+  has_many :jewels
 
   belongs_to :category
 

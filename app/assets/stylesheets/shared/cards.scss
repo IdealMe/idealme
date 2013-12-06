@@ -202,7 +202,8 @@
 }
 
 .goal-user-card {
-  @include float-left;
+  /*@include float-left;*/
+  display: inline-block;
   width: 230px;
   @include bg(white);
   border: 1px solid #efefef;
@@ -241,19 +242,29 @@
 .goal-card-new { width: 228px;  height: 180px; @include p_t(36px); }
 .course-card-new { width: 228px; height: 288px; @include p_t(98px); }
 
-.goal-card {
-  @include float-left;
+.goal-card, .gem-card {
+  display: inline-block;
   width: 230px;
   @include bg(white);
   border: 1px solid #efefef;
-  @include m_r(8px);
-  @include m_l(7px);
+  @include m_r(7px);
+  @include m_l(6px);
   @include m_b(18px);
   @include pointer;
   border-radius: 5px 5px 5px 5px;
   &:hover {
     @include bg(white);
     border-color: #c9c9c9;
+  }
+
+  .avatar {
+    height: 201px;
+    width: 229px;
+    overflow: hidden;
+    img {
+      height: 201px;
+      width: 229px;
+    }
   }
 
   .bottom-box {

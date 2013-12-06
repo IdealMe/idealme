@@ -5,7 +5,7 @@ describe 'edit account settings' do
 
   let!(:user)               { create(:user) }
 
-  it "lets the user edit their account" do
+  it "lets the user edit their account", vcr: true do
     visit root_path
     click_link "Sign in"
     fill_in "Email", with: user.email
@@ -17,7 +17,7 @@ describe 'edit account settings' do
     user.reload.firstname.should eq "beansie"
   end
 
-  it "lets the user edit the password", js: true do
+  it "lets the user edit the password", js: true, vcr: true do
     visit root_path
     click_link "Sign in"
     fill_in "Email", with: user.email
@@ -51,7 +51,7 @@ describe 'new registration' do
   let!(:market) { create(:market) }
   let!(:course) { create(:course, default_market_id: market.id) }
 
-  it 'shows a special flash message for new users', js: true do
+  it 'shows a special flash message for new users', js: true, vcr: true do
     visit root_path
     click_link "Sign up"
     fill_in "Email", with: 'newuser@idealme.com'

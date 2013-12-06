@@ -66,14 +66,18 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  c.hook_into :faraday
+  c.hook_into :webmock, :faraday
+  c.allow_http_connections_when_no_cassette = false
+  c.configure_rspec_metadata!
+  c.ignore_localhost = true
 end
 
 RSpec.configure do |config|
-
+  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.include Capybara::DSL, type: :request
 
   config.include FactoryGirl::Syntax::Methods
+
 
   # ## Mock Framework
   #
@@ -104,7 +108,7 @@ RSpec.configure do |config|
 
   config.include TestHelpers
 
-  config.formatter = 'Growl::RSpec::Formatter'
+  #config.formatter = 'Growl::RSpec::Formatter'
 
   DatabaseCleaner.strategy = :truncation
 

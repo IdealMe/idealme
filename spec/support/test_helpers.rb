@@ -27,7 +27,7 @@ module TestHelpers
       outpath = "public/screenshots/test-#{"%02d" % count}.png"
       save_screenshot(outpath, full: true)
       # exec('open test.png')
-      # x = `open -F public/test.png`
+      #x = `open -F #{outpath}`
     else
       save_and_open_page
     end

@@ -18,7 +18,7 @@ describe 'course preview page (market show)' do
     buy_course_as user
   end
 
-  it "has some tabs, including a reviews tab", js: true do
+  it "has some tabs, including a reviews tab", js: true, vcr: true do
     visit market_path market
     click_link "2 reviews"
     sleep 1 # because there's an animated fade in on the tab content
@@ -28,7 +28,7 @@ describe 'course preview page (market show)' do
     screenshot
   end
 
-  it "allows a course customer to add a review", js: true do
+  it "allows a course customer to add a review", js: true, vcr: true do
     review_count = Review.count
     # subscribe user to course
     user.subscribe_course(market.course)

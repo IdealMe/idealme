@@ -16,12 +16,13 @@ describe 'market page shows number of enrolled users' do
     Warden.test_reset!
   end
 
-  it "show the number of enrolled users", js: true do
+  it "show the number of enrolled users", js: true, vcr: true do
     visit market_path market
     page.text.should include '0 enrolled'
     buy_course_as user
     buy_course_as user2
     visit market_path market
+    screenshot
     page.text.should include '2 enrolled'
   end
 end
