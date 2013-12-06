@@ -29,4 +29,5 @@ module Idealme
   end
 end
 
+I18n.enforce_available_locales = false
 OmniAuth.config.full_host = 'https://idealme.com'
