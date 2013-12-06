@@ -47,7 +47,7 @@ namespace :deploy do
   desc "Restart the application following a deploy"
   task :restart do
 
-    as_app "kill -s USR2 $(cat /tmp/pids/puma.idealme.pid)"
+    as_app "kill -s USR2 $(cat /home/idealme/puma.idealme.pid)"
   end
 end
 
