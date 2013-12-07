@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20131206165351) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_tracking_id", using: :btree
+  add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_link_id", using: :btree
   add_index "affiliate_clicks", ["user_id"], name: "index_affiliate_clicks_on_user_id", using: :btree
 
   create_table "affiliate_links", force: true do |t|
