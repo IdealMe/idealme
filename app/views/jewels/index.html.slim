@@ -16,3 +16,18 @@
         
   .gem-grid
     = render partial: "jewel", collection: @jewels
+
+
+
+.new-gem-modal.modal.fade: .modal-dialog: .modal-content
+  .modal-header
+    button.close aria-hidden="true" &times;
+    h4.modal-title Add a new gem!
+  .modal-body: .row
+    .col-sm-8
+      input.form-control.add-gem-url-input type="text" placeholder="enter a URL"
+    .col-sm-4.gem-submit-btn-container
+      button.btn.btn-primary.btn-post-gem GO
+  .modal-footer
+    p You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal 
+

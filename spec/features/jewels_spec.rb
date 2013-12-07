@@ -20,11 +20,12 @@ describe 'idealme gems', :vcr do
     expect(page.text).to include 'The Wind Waker - Hey Ash Whatcha Playin'
   end
 
-  it 'lets users create new gems' do
-
+  it 'lets users create new gems', js: true, vcr: true do
     login_as user, scope: :user
     visit goal_gems_path(goal)
     find('.btn-new-gem').click
+    screenshot
+    status_code.should_not eq 500
 
     expect(page.text).to include 'You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal'
   end

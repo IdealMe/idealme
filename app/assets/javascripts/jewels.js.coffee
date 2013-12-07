@@ -1,3 +1,29 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+class Jewels
+  constructor: ->
+    console.debug("Jewels")
+
+    $(document).on 'click', '.btn-new-gem', @showAddGemModal.bind(@)
+    $(document).on 'click', '.btn-post-gem', @postGem.bind(@)
+
+  showAddGemModal: ->
+    console.debug(@)
+    $('.new-gem-modal').modal()
+
+  postGem: ->
+    url = $('.add-gem-url-input').val()
+    console.debug("postGem: #{url}")
+    $.post(document.location.toString(), {
+      url: url
+    }).done(->
+      console.debug("done yo")
+
+    ).fail(->
+      console.debug("fail yo")
+
+    )
+
+  
+
+
+$ ->
+  jewels = new Jewels
