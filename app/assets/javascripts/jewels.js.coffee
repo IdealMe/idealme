@@ -16,14 +16,9 @@ class Jewels
       url: url
     }).done(->
       console.debug("done yo")
-
     ).fail(->
       console.debug("fail yo")
-
     )
-
-  
-
 
 $ ->
   jewels = new Jewels
