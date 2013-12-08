@@ -1,6 +1,8 @@
 - if flash[:alert]
-  .alert.alert-error
+  .alert.alert-error.alert-dismissable
+    button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
     = flash[:alert]
 - if flash[:notice]
-  .alert.alert-success
+  .alert.alert-success.alert-dismissable
+    button.close aria-hidden="true" data-dismiss="alert" type="button" &times;
     = flash[:notice]
