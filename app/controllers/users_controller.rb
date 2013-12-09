@@ -63,6 +63,7 @@ class UsersController < ApplicationController
   end
 
   def show_welcome_message?
-    current_user.created_at < 1.day.ago && !current_user.welcome_message_dismissed
+    current_user.created_at < 1.day.ago && 
+      !current_user.welcome_message_dismissed
   end
 end
