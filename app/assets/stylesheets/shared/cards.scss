@@ -258,12 +258,13 @@
   }
 
   .avatar {
-    height: 201px;
+    height: 150px;
     width: 229px;
+    padding: 22px;
     overflow: hidden;
     img {
-      height: 201px;
-      width: 229px;
+      height: 120px;
+      width: 120px;
     }
   }
 
