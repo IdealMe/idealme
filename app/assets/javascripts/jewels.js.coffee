@@ -1,6 +1,7 @@
 class Jewels
   constructor: ->
     $(document).on 'click', '.btn-new-gem', @showAddGemModal.bind(@)
+    $(document).on 'click', '.btn-edit-gem', @editGem.bind(@)
     $(document).on 'click', '.btn-post-gem', @postGem.bind(@)
 
   showAddGemModal: ->
@@ -13,17 +14,30 @@ class Jewels
     }).done((data) ->
       $('.new-gem-modal').modal('hide')
       $('.edit-gem-modal').modal()
-      $('.edit-gem-modal .modal-title').text(data.title)
+      $('.edit-gem-modal .modal-title').text(data.truncated_title)
       $img = $('.edit-gem-modal .gem-image').first()
       $img.attr('src', data.image)
 
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
-      $link.text(data.url)
+      $link.text(data.truncated_url)
 
     ).fail(->
       console.debug("fail yo")
     )
+
+  editGem: ->
+    url = $('.add-gem-url-input').val()
+    $.ajax({
+      data: 
+        title: 'gem title'
+        gemType: 'gem type'
+      url: document.location.toString()
+      type: "PUT"
+    }).done((data) ->
+      debugger
+    )
+
 
 $ ->
   jewels = new Jewels

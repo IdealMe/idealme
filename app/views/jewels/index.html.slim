@@ -35,8 +35,8 @@
   .modal-header
     button.close aria-hidden="true" &times;
     h4.modal-title
-  .modal-body: .row
-    .col-sm-12
+  .modal-body
+    .row: .col-sm-12
       ' This is a 
       input type="radio" name="gem-type" value="course" 
       '  Course
@@ -46,13 +46,17 @@
       '  Video
       input type="radio" name="gem-type" value="product" 
       '  Product
-    .col-sm-12
+    .row: .col-sm-12
       center: img.gem-image
-    .col-sm-12
+    .row: .col-sm-12
       p
         a.gem-link
-    .col-sm-12
-      ' add your comment
-  .modal-footer
-    p You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal 
+    .row
+      .col-sm-1
+        = image_tag current_user.avatar(:thumb), class: 'user-avatar'
+      .col-sm-11
+        p
+          ' blah blah blah
+    .row: .col-sm-12
+      button.btn.btn-primary.btn-edit-gem CREATE GEM
 
