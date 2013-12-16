@@ -25,9 +25,34 @@
     h4.modal-title Add a new gem!
   .modal-body: .row
     .col-sm-8
-      input.form-control.add-gem-url-input type="text" placeholder="enter a URL"
+      input.form-control.add-gem-url-input type="text" placeholder="enter a URL" value="http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga"
     .col-sm-4.gem-submit-btn-container
       button.btn.btn-primary.btn-post-gem GO
+  .modal-footer
+    p You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal 
+
+.edit-gem-modal.modal.fade: .modal-dialog: .modal-content
+  .modal-header
+    button.close aria-hidden="true" &times;
+    h4.modal-title
+  .modal-body: .row
+    .col-sm-12
+      ' This is a 
+      input type="radio" name="gem-type" value="course" 
+      '  Course
+      input type="radio" name="gem-type" value="article" 
+      '  Article
+      input type="radio" name="gem-type" value="video" 
+      '  Video
+      input type="radio" name="gem-type" value="product" 
+      '  Product
+    .col-sm-12
+      center: img.gem-image
+    .col-sm-12
+      p
+        a.gem-link
+    .col-sm-12
+      ' add your comment
   .modal-footer
     p You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal 
 

@@ -28,6 +28,12 @@ describe 'idealme gems', :vcr do
     status_code.should_not eq 500
 
     expect(page.text).to include 'You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal'
+    input = find('.add-gem-url-input')
+    input.set('http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga')
+    find('.btn-post-gem').click
+    sleep 2
+    screenshot
+    expect(page.text).to include "This is a"
   end
 
 end

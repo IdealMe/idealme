@@ -42,9 +42,10 @@ class Jewel < ActiveRecord::Base
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    styles: {full: '229x201#', thumb: '80x64#'},
+                    styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525#'},
                     convert_options: {
                         full: '-gravity center -extent 229x201 -quality 75 -strip',
+                        bigger: '-gravity center -extent 525x525 -quality 75 -strip',
                         thumb: '-gravity center -extent 80x64 -quality 75 -strip'
                     }
 
@@ -61,11 +62,15 @@ class Jewel < ActiveRecord::Base
 
   # == Class Methods ========================================================
   def self.mine(user, url, goal = nil)
-    gem             = Jewel.new
-    gem.url         = url
-    gem.owner_id    = user.id
-    gem.linked_goal = goal if goal
-    gem.fetch!
+    if gem = Jewel.where(visible: true, url: Jewel.scrub_url(url)).first
+      gem
+    else
+      gem             = Jewel.new
+      gem.url         = url
+      gem.owner_id    = user.id
+      gem.linked_goal = goal if goal
+      gem.fetch!
+    end
   end
 
   def self.get_service(url)
@@ -143,16 +148,20 @@ class Jewel < ActiveRecord::Base
 
   end
 
-  def scrub_url
+  def self.scrub_url(url)
     scrub = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
-    uri = URI(self.url)
+    uri = URI(url)
     clean = "#{uri.scheme}://#{uri.hostname}#{uri.path}"
 
     queries = Rack::Utils.parse_nested_query(uri.query).except(*scrub).to_query
 
     clean << "?#{queries}" if queries && queries.length > 0
 
-    self.url = clean
+    clean
+  end
+
+  def scrub_url
+    self.url = Jewel.scrub_url(self.url)
   end
 
   def inspect_and_set_meta
