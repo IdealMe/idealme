@@ -29,28 +29,7 @@ class GoalsController < ApplicationController
 
   # GET /goals/1
   def show
-    @checkins_this_week = Checkin.from_this_week.for_goal_user(@goal_user).all
-    @checkins_7_weeks = Checkin.last_n_week(7).for_goal_user(@goal_user).all
-    @checkins_7_weeks_dates = @checkins_7_weeks.collect { |x| x.created_at.strftime('%Y%m%d') }
-    @goal_mates = GoalUser.goal_mate_for(@goal_user.goal).all
-    @my_gems = Jewel.for_goal(@goal_user.goal).for_user(current_user).all
-    @top_gems = (Jewel.for_goal(@goal_user.goal).private_goal(false).all + @my_gems).uniq
-    @courses = @goal_user.goal.courses
-    @tab = params[:tab] || 'activity'
-
-    @activities = Activity
-    if @owner
-      supporting_activity_key = current_user.supported_goal_users.includes(:goal).where(goals: {id: @goal_user.goal_id}).map(&:to_activity_key)
-      if supporting_activity_key && supporting_activity_key.length > 0
-        @activities = @activities.where('(sender_id = ? AND sender_type = ?) OR share_key IN (?)', @goal_user.id, @goal_user.class.name, supporting_activity_key)
-      else
-        @activities = @activities.where('(sender_id = ? AND sender_type = ?)', @goal_user.id, @goal_user.class.name)
-      end
-    else
-      @activities = @activities.where('(sender_id = ? AND sender_type = ?)', @goal_user.id, @goal_user.class.name)
-    end
-    @activities = @activities.includes(:sender, :trackable, comments: [:owner, :replies])
-    @activities = @activities.order('created_at DESC').all
+    @jewels = @goal.jewels.where(visible: true)
   end
 
   # POST /goals/1/share

@@ -1,3 +1,7 @@
+class DuplicateJewel < Exception
+  attr_accessor :jewel
+end
+
 class Jewel < ActiveRecord::Base
   serialize :parameters
 
@@ -53,7 +57,9 @@ class Jewel < ActiveRecord::Base
   # == Class Methods ========================================================
   def self.mine(user, url, goal = nil)
     if gem = Jewel.where(visible: true, url: Jewel.scrub_url(url), linked_goal: goal).first
-      gem
+      e = DuplicateJewel.new('That jewel already exists')
+      e.jewel = gem
+      raise e
     else
       gem             = Jewel.new
       gem.url         = url

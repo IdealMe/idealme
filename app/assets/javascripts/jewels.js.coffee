@@ -6,13 +6,30 @@ class Jewels
     $(document).on 'click', '.btn-post-gem', @addGem.bind(@)
     $(document).on 'click', '.modal-gem-title, .edit-title-icon', @editGemTitle.bind(@)
 
-    window.setTimeout(@testRun.bind(@), 500)
+
+    $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
+
+    #window.setTimeout(@testRun.bind(@), 500)
 
   testRun: ->
     @showAddGemModal()
     window.setTimeout((=>
       @addGem.apply(@)
     ), 500)
+
+  showGemModal: (evt) ->
+    evt.preventDefault()
+    evt.stopImmediatePropagation()
+    $link = $(evt.currentTarget)
+    $path = $link.attr('href')
+    $.get($path).done((data) ->
+      $('.view-gem-modal .modal-title').text(data.name)
+      $('.view-gem-modal .gem-image').attr('src', data.image)
+      $('.view-gem-modal .gem-link').attr('href', data.link)
+      $('.view-gem-modal .gem-link-text').attr('href', data.link).text(data.truncated_link)
+      $('.view-gem-modal').modal()
+    )
+
 
   showAddGemModal: ->
     $('.new-gem-modal').modal()
@@ -44,8 +61,11 @@ class Jewels
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
       @publishGem()
-    ).fail(->
+    ).fail((xhr)->
       console.debug("fail yo")
+      if xhr.responseJSON.error == 'Duplicate gem'
+        $('.gem-exists-error').removeClass('hide')
+        $('.gem-exists-error a').attr('href', xhr.responseJSON.jewel_link)
     )
 
   publishGem: ->

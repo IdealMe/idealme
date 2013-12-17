@@ -4,6 +4,20 @@ class JewelsController < ApplicationController
     @jewels = @goal.jewels.where(visible: true)
   end
 
+  def show
+    @jewel = Jewel.find(params[:id])
+    respond_to do |format|
+      format.json {
+        render json: { 
+          name: @jewel.name, 
+          image: @jewel.avatar.url(:bigger), 
+          link: @jewel.url,
+          truncated_link: @jewel.url.truncate(50),
+        }
+      }
+    end
+  end
+
   def create
     url = params.require(:url)
     jewel = Jewel.mine(current_user, url, @goal)
@@ -17,11 +31,13 @@ class JewelsController < ApplicationController
     }
   rescue ActionController::ParameterMissing => e
     render json: {error: "Missing url"}, status: 500
+  rescue DuplicateJewel => e
+    render json: {error: "Duplicate gem", jewel_link: goal_gem_path(e.jewel.linked_goal, e.jewel)}, status: 500
   end
 
   def update
     jewel = Jewel.where(owner: current_user, slug: params[:id]).first
-    jewel.name = params["gemTitle"]
+    jewel.name = params["title"]
     jewel.kind = Jewel::TYPES[params["gemType"]]
     jewel.visible = true
     jewel.save!

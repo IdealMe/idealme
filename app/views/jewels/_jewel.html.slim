@@ -1,6 +1,6 @@
 .gem-card
   .avatar
-    = link_to jewel.url, target: '_blank' do
+    = link_to goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.id do
       - if jewel.avatar.present?
         = image_tag jewel.avatar.url(:full)
       - else
