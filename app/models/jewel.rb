@@ -9,22 +9,12 @@ class Jewel < ActiveRecord::Base
   friendly_id :name, use: [:history, :slugged, :finders]
 
   # == Constants ============================================================
-  EVERYTHING = 0
-  LINK = 1
-  GOAL = 2
-  COURSE = 3
-
-  def kind_to_s
-    if self.kind == Jewel::EVERYTHING
-      '???'
-    elsif self.kind == Jewel::LINK
-      'Link'
-    elsif self.kind == Jewel::GOAL
-      'Goal'
-    elsif self.kind == Jewel::COURSE
-      'Course'
-    end
-  end
+  TYPES = HashWithIndifferentAccess.new(
+    course: 0,
+    article: 1,
+    video: 2,
+    product: 3,
+  )
 
   # == Relationships ========================================================
   belongs_to :owner, class_name: 'User'
@@ -62,7 +52,7 @@ class Jewel < ActiveRecord::Base
 
   # == Class Methods ========================================================
   def self.mine(user, url, goal = nil)
-    if gem = Jewel.where(visible: true, url: Jewel.scrub_url(url)).first
+    if gem = Jewel.where(visible: true, url: Jewel.scrub_url(url), linked_goal: goal).first
       gem
     else
       gem             = Jewel.new
@@ -118,26 +108,26 @@ class Jewel < ActiveRecord::Base
       if tweet_media.length > 0
         self.avatar = URI.parse(tweet_media.first.media_url)
       end
-      self.kind = Jewel::LINK
+      self.kind = Jewel::TYPES[:link]
     elsif parameters[:service] == :other
       page        = MetaInspector.new(url)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
-      self.kind    = Jewel::LINK
+      self.kind    = Jewel::TYPES[:link]
     elsif parameters[:service] == :youtube
       page        = MetaInspector.new(url)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
-      self.kind    = Jewel::LINK
+      self.kind    = Jewel::TYPES[:link]
     elsif parameters[:service] == :idealme
       if parameters[:kind] ==:courses
-        self.kind      = Jewel::COURSE
+        self.kind      = Jewel::TYPES[:course]
         course        = Course.where(slug: parameters[:slug]).first
         self.course_id = course.id
       elsif parameters[:kind] ==:goals
-        self.kind    = Jewel::GOAL
+        self.kind    = Jewel::TYPES[:goal]
         goal        = Goal.where(id: parameters[:slug]).first
         self.goal_id = goal.id
       end

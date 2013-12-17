@@ -1,37 +1,67 @@
 .container
-  .top-section
-    .goal-name
-      = @goal_user.goal.name
-    - if @owner
-      - if @goal_user.archived?
-        .goal-status
-          = link_to 'Reactivate', activate_goal_path(@goal_user), :class => 'btn', :method => :post, :"data-confirm" => 'Are you sure?'
-      .goal-privacy
-        a.btn.goal-privacy-toggle href='#' data={ :goal_user_id => @goal_user.id, :goal_user_private => (@goal_user.private ? 1 : 0 )} 
-          - if @goal_user.private?
-            | Private
-          - else
-            | Public
-    .clear
-  .menu-section
-    ul.user-menu
-      li class=active_tab?(@tab, 'activity') 
-        = link_to 'Activity', tab_goal_path(@goal_user, 'activity'), class: 'activity-icon'
-      li class=active_tab?(@tab, 'top-gem') 
-        = link_to 'Top gems', tab_goal_path(@goal_user, 'top-gem'), class: 'top-gem-icon'
-      - if @goal_user.active? && @owner
-        li class=active_tab?(@tab, 'my-gem') 
-          = link_to 'My gems', tab_goal_path(@goal_user, 'my-gem'), class: 'my-gem-icon'
-      li class=active_tab?(@tab, 'course') 
-        = link_to 'Courses', tab_goal_path(@goal_user, 'course'), class: 'course-icon'
-    .clear
-  .panes
-    div.active
-      - if @tab == 'activity'
-        = render partial: 'goals/partials/activity'
-      - elsif @tab == 'top-gem'
-        = render partial: 'goals/partials/top_gem'
-      - elsif @tab == 'my-gem' && @goal_user.active? && @owner
-        = render partial: 'goals/partials/my_gem'
-      - elsif @tab == 'course'
-        = render partial: 'goals/partials/course'
+  .gem-header.clearfix
+    .col-sm-4
+      = image_tag @goal.avatar.url(:thumb)
+      | &nbsp;
+      span.goal-name = @goal.name
+    .col-sm-4: .center-block: center
+      span 2
+    .col-sm-4: .pull-right
+      i Find something great?
+      | &nbsp;
+      a.btn.btn-red.btn-new-gem
+        i.glyphicon.glyphicon-cloud-upload
+        | &nbsp;
+        ' submit gem
+
+  .gem-grid
+    = render partial: "jewels/jewel", collection: @jewels
+
+.new-gem-modal.modal.fade: .modal-dialog: .modal-content
+  .modal-header
+    button.close aria-hidden="true" &times;
+    h4.modal-title Add a new gem!
+  .modal-body: .row
+    .col-sm-8
+      input.form-control.add-gem-url-input type="text" placeholder="enter a URL" value="http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga"
+    .col-sm-4.gem-submit-btn-container
+      button.btn.btn-primary.btn-post-gem GO
+  .modal-footer
+    p You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal 
+
+.edit-gem-modal.modal.fade: .modal-dialog: .modal-content
+  .modal-header
+    button.close aria-hidden="true" &times;
+    .not-editing-title
+      .row
+        .col-sm-10
+          h4.modal-gem-title
+          /i.glyphicon.glyphicon-edit
+        .col-sm-1.edit-title-icon: i.glyphicon.glyphicon-edit
+    .editing-title.hide
+      input#gem-title-input type="text" name="gem-title"
+  .modal-body
+    .row: .col-sm-12
+      ' This is a 
+      input type="radio" name="gem-type" value="course" 
+      '  Course
+      input type="radio" name="gem-type" value="article" checked="true"
+      '  Article
+      input type="radio" name="gem-type" value="video" 
+      '  Video
+      input type="radio" name="gem-type" value="product" 
+      '  Product
+    .row: .col-sm-12
+      center: img.gem-image
+    .row: .col-sm-12
+      p
+        a.gem-link
+    .row
+      .col-sm-1
+        = image_tag current_user.avatar(:thumb), class: 'user-avatar'
+      .col-sm-11
+        p Add a comment:
+        input#gem-title-input type="text" name="gem-comment"
+    .row: .col-sm-12
+      button.btn.btn-primary.btn-edit-gem CREATE GEM
+

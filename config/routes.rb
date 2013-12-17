@@ -40,7 +40,11 @@ Idealme::Application.routes.draw do
   end
   resources :discovers, only: [:index, :show]
   resources :goals, only: [:index, :show] do
-    resources :gems, controller: :jewels
+    resources :gems, controller: :jewels do
+      member do
+        put "" => 'jewels#update'
+      end
+    end
     member do
       get ':tab' => 'goals#show', constraints: {tab: /(activity)|(top-gem)|(my-gem)|(course)/}, as: :tab
       post :share

@@ -129,6 +129,7 @@ class GoalsController < ApplicationController
 
   def load_goal_user
     @goal_user = GoalUser.find_or_initialize_by(user: current_user, goal: Goal.find(params[:id]))
+    @goal = @goal_user.goal
     @owner = current_user && (@goal_user.user_id == current_user.id)
   end
 
