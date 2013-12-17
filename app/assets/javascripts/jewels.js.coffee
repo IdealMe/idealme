@@ -7,7 +7,7 @@ class Jewels
     $(document).on 'click', '.modal-gem-title, .edit-title-icon', @editGemTitle.bind(@)
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
 
-    window.setTimeout(@testOpenGem.bind(@), 500)
+    #window.setTimeout(@testOpenGem.bind(@), 500)
 
   testOpenGem: ->
     $('.view-gem-link').first().trigger('click')
