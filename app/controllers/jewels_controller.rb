@@ -13,9 +13,15 @@ class JewelsController < ApplicationController
           image: @jewel.avatar.url(:bigger), 
           link: @jewel.url,
           truncated_link: @jewel.url.truncate(50),
+          comments_path: comments_goal_gem_path(@jewel.linked_goal, @jewel),
         }
       }
     end
+  end
+
+  def comments
+    @jewel = Jewel.find(params[:id])
+    render layout: nil
   end
 
   def create

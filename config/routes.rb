@@ -43,6 +43,7 @@ Idealme::Application.routes.draw do
     resources :gems, controller: :jewels do
       member do
         put "" => 'jewels#update'
+        get :comments
       end
     end
     member do

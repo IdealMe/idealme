@@ -9,7 +9,10 @@ class Jewels
 
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
 
-    #window.setTimeout(@testRun.bind(@), 500)
+    window.setTimeout(@testOpenGem.bind(@), 500)
+    
+  testOpenGem: ->
+    $('.view-gem-link').first().trigger('click')
 
   testRun: ->
     @showAddGemModal()
@@ -27,6 +30,7 @@ class Jewels
       $('.view-gem-modal .gem-image').attr('src', data.image)
       $('.view-gem-modal .gem-link').attr('href', data.link)
       $('.view-gem-modal .gem-link-text').attr('href', data.link).text(data.truncated_link)
+      $('.view-gem-modal .gem-comments').load(data.comments_path)
       $('.view-gem-modal').modal()
     )
 
