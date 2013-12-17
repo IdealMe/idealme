@@ -34,7 +34,14 @@
 .edit-gem-modal.modal.fade: .modal-dialog: .modal-content
   .modal-header
     button.close aria-hidden="true" &times;
-    h4.modal-title
+    .not-editing-title
+      .row
+        .col-sm-10
+          h4.modal-gem-title
+          i.glyphicon.glyphicon-edit
+        .col-sm-2: i.glyphicon.glyphicon-edit
+    .editing-title
+      input#gem-title-input.hide type="text" name="gem-title"
   .modal-body
     .row: .col-sm-12
       ' This is a 

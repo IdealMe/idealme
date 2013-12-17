@@ -2,10 +2,10 @@
   - if @owner && @goal_user.active?
     .share-section
       .toggle-box
-        a.checkin-toggle  href='#checkin',  :data => { toggle='tab'}  Checkin
-        a.share-toggle  href='#share',  :data => { toggle='tab'}  Share gem
+        a.checkin-toggle  href='#checkin' data={ toggle: 'tab'} Checkin
+        a.share-toggle  href='#share' data={ toggle: 'tab'} Share gem
       .tab-content
-        #checkin.tab-pane  :class => ('active' unless @goal_user.checkedin?) 
+        #checkin.tab-pane class=('active' unless @goal_user.checkedin?) 
           - if @goal_user.checkedin?
             .already-checkin-message
               | You checked in today. Come back tomorrow!
@@ -17,7 +17,7 @@
                 = text_field_tag :thoughts, '', {placeholder: 'Say how you make progress today...', class: 'input'}
                 = submit_tag 'Checkin', class: 'btn btn-red'
           
-        #share.tab-pane  :class => ('active' if @goal_user.checkedin?) 
+        #share.tab-pane class=('active' if @goal_user.checkedin?) 
           .share-arrow
             = image_tag 'goal_arrow.png'
           .input-append
@@ -87,5 +87,5 @@
             .days-row
               - start_date = end_date - 6.days
               - (0..6).each do |offset|
-                div  class=checkin_class(@checkins_7_weeks_dates, (start_date + offset).strftime('%Y%m%d') ),  :data => { :date => (start_date + offset).strftime('%Y%m%d')} 
+                div class=checkin_class(@checkins_7_weeks_dates, (start_date + offset).strftime('%Y%m%d') ) data={ :date => (start_date + offset).strftime('%Y%m%d')} 
             - end_date = start_date - 1.day

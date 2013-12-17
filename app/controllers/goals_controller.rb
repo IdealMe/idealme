@@ -128,7 +128,7 @@ class GoalsController < ApplicationController
   end
 
   def load_goal_user
-    @goal_user = GoalUser.where(id: params[:id]).includes(:goal, :checkins).first
+    @goal_user = GoalUser.find_or_initialize_by(user: current_user, goal: Goal.find(params[:id]))
     @owner = current_user && (@goal_user.user_id == current_user.id)
   end
 
