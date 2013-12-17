@@ -5,12 +5,10 @@ class Jewels
     $(document).on 'click', '.btn-edit-gem', @publishGem.bind(@)
     $(document).on 'click', '.btn-post-gem', @addGem.bind(@)
     $(document).on 'click', '.modal-gem-title, .edit-title-icon', @editGemTitle.bind(@)
-
-
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
 
     window.setTimeout(@testOpenGem.bind(@), 500)
-    
+
   testOpenGem: ->
     $('.view-gem-link').first().trigger('click')
 
@@ -64,7 +62,6 @@ class Jewels
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
-      @publishGem()
     ).fail((xhr)->
       console.debug("fail yo")
       if xhr.responseJSON.error == 'Duplicate gem'
