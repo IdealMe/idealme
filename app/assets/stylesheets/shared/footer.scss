@@ -2,7 +2,8 @@ footer {
   background: #fff;
   margin-top: 20px;
   border-top: solid 1px #e4e4e4;
-  .container { padding: 25px 0; }
+  max-height: 75px;
+  .container { padding: 25px 0 !important; }
   .footer-menu { position: static; display: block; margin: 0 auto; width: 420px; }
   .footer-menu li { display: inline; float: left; margin-right: 26px; &.last { margin: 0; } }
   .footer-menu li a { color: #C9C9C9; font-size: 13px; font-style: normal; font-weight: normal; &:hover { color: #1d95cb; } }
