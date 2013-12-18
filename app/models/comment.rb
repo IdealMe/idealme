@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  include Votable
 
   has_many             :replies, dependent: :destroy
   belongs_to           :owner, class_name: 'User'

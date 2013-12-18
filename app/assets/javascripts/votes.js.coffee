@@ -16,7 +16,7 @@ $ ->
     $container.find('.like').attr('data-voted', boolInt(data.upvoted))
     $container.find('.dislike').attr('data-voted', boolInt(data.downvoted))
 
-  $(".like").click (e) ->
+  $(document).on 'click', '.like', (e) ->
     self = $(this)
     voted = self.attr("data-voted")
     votable_id = self.attr("data-id")
@@ -55,7 +55,7 @@ $ ->
             update_votes.apply(self, [data])
 
 
-  $(".dislike").click (e) ->
+  $(document).on 'click', '.dislike', (e) ->
     self = $(this)
     voted = self.attr("data-voted")
     votable_id = self.attr("data-id")

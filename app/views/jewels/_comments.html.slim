@@ -6,7 +6,15 @@
         .comment-content 
           p = comment.owner.fullname
           p = comment.content
-          p Upvote/Downvote
+          .boxes.vote-controls
+            .box
+              .icon-btn.upvote-icon-btn.like data-voted=upvoted?(comment, current_user) data-id=comment.id data-type=comment.class
+                i.icon-thumbs-up
+                span.vote-count.upvote-total = comment.up_votes
+            .box
+              .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(comment, current_user) data-id=comment.id data-type=comment.class
+                i.icon-thumbs-down
+                span.vote-count.downvote-total = comment.down_votes
   .jewel-comment
     .row
       .thumb = image_tag current_user.avatar(:thumb), class: 'user-avatar'

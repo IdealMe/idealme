@@ -56,7 +56,10 @@
       border-top: none
       background-color: #FBFAF4
 
-  .gem-card .bottom-box
+  .gem-card .bottom-box .box
+    min-width: 25%
+
+  .gem-card .bottom-box, .comment-content
     .boxes
       a
         text-decoration: none
@@ -64,10 +67,8 @@
       .br
         border-right: 1px solid #efefef
       .box
-        min-width: 25%
         float: left
         padding: 0 10px
-        
         span.vote-count, span.comment-count
           padding-left: 4px
         [data-voted="1"] i

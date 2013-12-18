@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216184102) do
+ActiveRecord::Schema.define(version: 20131218225152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20131216184102) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_link_id", using: :btree
+  add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_tracking_id", using: :btree
   add_index "affiliate_clicks", ["user_id"], name: "index_affiliate_clicks_on_user_id", using: :btree
 
   create_table "affiliate_links", force: true do |t|
@@ -279,10 +279,12 @@ ActiveRecord::Schema.define(version: 20131216184102) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "owner_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.text     "response"
     t.integer  "responder_id"
+    t.integer  "up_votes",         default: 0
+    t.integer  "down_votes",       default: 0
   end
 
   create_table "course_goals", force: true do |t|
