@@ -35,7 +35,13 @@ class Jewel < ActiveRecord::Base
   has_many :replies, through: :comments
 
   # == Paperclip ============================================================
+  if Rails.env.development? || Rails.env.test?
+    storage = :filesystem
+  else
+    storage = :s3
+  end
   has_attached_file :avatar,
+                    storage: storage,
                     styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525#'},
                     convert_options: {
                         full: '-gravity center -extent 229x201 -quality 75 -strip',

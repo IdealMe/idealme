@@ -26,7 +26,7 @@ class Jewels
     $path = $link.attr('href')
     $path = "#{$path}.json"
     $.get($path).done((data) ->
-      $('.view-gem-modal .modal-title').text(data.name)
+      $('.view-gem-modal .modal-title').text(data.truncated_name)
       $('.view-gem-modal .gem-image').attr('src', data.image)
       $('.view-gem-modal .gem-link').attr('href', data.link)
       $('.view-gem-modal .gem-link-text').attr('href', data.link).text(data.truncated_link)
@@ -53,6 +53,7 @@ class Jewels
       @editURL = data.edit_path
       $('.new-gem-modal').modal('hide')
       $('.edit-gem-modal').modal()
+      $('.edit-gem-modal .gem-comments').load(data.comments_path)
       $('.edit-gem-modal .modal-gem-title').text(data.truncated_title)
       $('#gem-title-input').val(data.title)
       $img = $('.edit-gem-modal .gem-image').first()
@@ -61,7 +62,9 @@ class Jewels
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
-    ).fail((xhr, status, error)->
+    ).fail((xhr, status, error) ->
+      console.debug(xhr.responseText)
+
       if xhr.responseJSON.error == 'Duplicate gem'
         $('.gem-exists-error').removeClass('hide')
         $('.gem-exists-error a').attr('href', xhr.responseJSON.jewel_link)
@@ -81,6 +84,7 @@ class Jewels
       type: "PUT"
     }).done((data) ->
       $('.edit-gem-modal').modal('hide')
+      document.location = document.location.toString()
     )
 
 

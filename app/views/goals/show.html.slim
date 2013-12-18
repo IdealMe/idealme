@@ -73,12 +73,7 @@
     .row: .col-sm-12
       p
         a.gem-link
-    .row
-      .col-sm-1
-        = image_tag current_user.avatar(:thumb), class: 'user-avatar'
-      .col-sm-11
-        p Add a comment:
-        input#gem-title-input type="text" name="gem-comment"
+    .row.gem-comments
     .row: .col-sm-12
       button.btn.btn-primary.btn-edit-gem CREATE GEM
   .modal-footer

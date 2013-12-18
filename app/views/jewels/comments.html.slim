@@ -1,13 +1,1 @@
-p jewel comments partial
-
-.jewel-comments
-  - @jewel.comments.each do |comment|
-    .jewel-comment
-      .row
-        .thumb = image_tag comment.owner.avatar.url(:thumb)
-        .comment-content 
-          p = comment.owner.fullname
-          p = comment.content
-          p Upvote/Downvote
-
-
+= render partial: "jewels/comments"

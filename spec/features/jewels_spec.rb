@@ -33,9 +33,16 @@ describe 'idealme gems', :vcr do
     find('.btn-post-gem').click
     sleep 3
     expect(page.text).to include "This is a"
+    find('#gem-comment').set('This page is the greatest')
     screenshot
-    
-
+    find('.btn-edit-gem').click
+    sleep 3
+    screenshot
+    expect(page.text).to include 'wunder'
+    find('.view-gem-link').click
+    sleep 3
+    screenshot
+    expect(page.text).to include 'This page is the greatest'
   end
 
 end

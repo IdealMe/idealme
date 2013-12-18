@@ -10,6 +10,7 @@ class JewelsController < ApplicationController
       format.json {
         render json: { 
           name: @jewel.name, 
+          truncated_name: @jewel.name.truncate(50), 
           image: @jewel.avatar.url(:bigger), 
           link: @jewel.url,
           truncated_link: @jewel.url.truncate(50),
@@ -25,7 +26,6 @@ class JewelsController < ApplicationController
   end
 
   def create
-    Jewel.destroy_all if Rails.env.development?
     url = params.require(:url)
     jewel = Jewel.mine(current_user, url, @goal)
     render json: {
@@ -34,7 +34,8 @@ class JewelsController < ApplicationController
       image: jewel.avatar.url(:bigger),
       title: jewel.name,
       truncated_title: jewel.name.try(:truncate, 50),
-      edit_path: goal_gem_path(@goal, jewel)
+      edit_path: goal_gem_path(@goal, jewel),
+      comments_path: comments_goal_gem_path(@goal, jewel),
     }
   rescue ActionController::ParameterMissing => e
     render json: {error: "Missing url"}, status: 500
@@ -48,8 +49,13 @@ class JewelsController < ApplicationController
     jewel.kind = Jewel::TYPES[params["gemType"]]
     jewel.visible = true
     jewel.save!
-    ap params
+
     # add comment to jewel if present
+    comment_content = params["gemComment"]
+    unless comment_content.blank?
+      comment = jewel.comments.build(owner: current_user, content: comment_content)
+      comment.save!
+    end
     head :ok
   end
 
