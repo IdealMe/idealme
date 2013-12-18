@@ -1,0 +1,17 @@
+.boxes.vote-controls
+  .box
+    .icon-btn.upvote-icon-btn.like data-voted=upvoted?(jewel, current_user) data-id=jewel.id data-type=jewel.class
+      i.icon-thumbs-up
+      span.vote-count.upvote-total = jewel.up_votes
+  .box.br
+    .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(jewel, current_user) data-id=jewel.id data-type=jewel.class
+      i.icon-thumbs-down
+      span.vote-count.downvote-total = jewel.down_votes
+  = link_to goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.id do
+    .box.br
+      .icon-btn
+        i.icon-comment-alt
+        span.comment-count = jewel.comments.count
+  .box
+    .icon-btn
+      i.icon-plus

@@ -25,24 +25,26 @@ describe 'idealme gems', :vcr do
     login_as user, scope: :user
     visit goal_path(goal)
     find('.btn-new-gem').click
-    sleep 3
+    sleep 2
     status_code.should_not eq 500
     expect(page.text).to include 'You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal'
+
     input = find('.add-gem-url-input')
     input.set('http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga')
     find('.btn-post-gem').click
-    sleep 3
+    sleep 2
     expect(page.text).to include "This is a"
+
     find('#gem-comment').set('This page is the greatest')
-    screenshot
     find('.btn-edit-gem').click
-    sleep 3
-    screenshot
+    sleep 2
     expect(page.text).to include 'wunder'
+
     find('.view-gem-link').click
-    sleep 3
+    sleep 2
     screenshot
     expect(page.text).to include 'This page is the greatest'
+
   end
 
 end

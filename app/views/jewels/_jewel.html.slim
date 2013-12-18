@@ -1,6 +1,6 @@
 .gem-card
-  .avatar
-    = link_to goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.id do
+  = link_to goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.id do
+    .avatar
       - if jewel.avatar.present?
         = image_tag jewel.avatar.url(:full)
       - else
@@ -9,3 +9,4 @@
     = jewel.name.truncate(30)
   .bottom-box
     .picker
+      = render partial: "jewels/vote_buttons", locals: { jewel: jewel }
