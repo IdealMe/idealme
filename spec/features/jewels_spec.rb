@@ -40,7 +40,7 @@ describe 'idealme gems', :vcr do
     sleep 2
     expect(page.text).to include 'wunder'
 
-    find('.view-gem-link').click
+    find('.gem-card > .view-gem-link').click
     sleep 2
     screenshot
     expect(page.text).to include 'This page is the greatest'
