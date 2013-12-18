@@ -48,9 +48,6 @@ class Jewels
     $.post(action, {
       url: url
     }).done((data) =>
-      console.debug(@)
-      console.debug(data.edit_path)
-
       @editURL = data.edit_path
       $('.new-gem-modal').modal('hide')
       $('.edit-gem-modal').modal()
@@ -62,8 +59,7 @@ class Jewels
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
-    ).fail((xhr)->
-      console.debug("fail yo")
+    ).fail((xhr, status, error)->
       if xhr.responseJSON.error == 'Duplicate gem'
         $('.gem-exists-error').removeClass('hide')
         $('.gem-exists-error a').attr('href', xhr.responseJSON.jewel_link)
@@ -74,7 +70,6 @@ class Jewels
     updatedGemType = $('input[name="gem-type"]:checked').val()
     gemComment= $('input[name="gem-comment"]').val()
     putURL = @editURL
-    console.debug('asdf' + putURL)
     $.ajax({
       data:
         title: updatedGemTitle
