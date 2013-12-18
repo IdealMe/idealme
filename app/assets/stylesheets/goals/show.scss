@@ -1,438 +1,84 @@
 .goals-show {
-  >.body-content {
-    >.container {
-      >.top-section {
-        @include m_b(20px);
-        >.goal-status {
-          @include abs_tr(36px, 100px);
-          >.btn {
-            padding: 5px 10px;
-            @include bg(white);
-            @include bg-pos(top, left);
-            @include border-radius(2px);
-            @include box-shadow(none);
-            @include fs(12px);
-            @include lh(12px);
-            border: 1px solid #cccccc;
-            @include hex(#666666);
-            @include fs(12px);
-            &:hover, &.flex-active {
-              border: 1px solid #cccccc;
-              @include bg(#ff6766);
-              @include hex(white);
-              @include text-shadow(none);
-            }
-          }
-        }
-        >.goal-privacy {
-          @include abs_tr(36px, 25px);
-          >.btn {
-            padding: 5px 10px;
-            @include bg(white);
-            @include bg-pos(top, left);
-            @include border-radius(2px);
-            @include box-shadow(none);
-            @include fs(12px);
-            @include lh(12px);
-            border: 1px solid #cccccc;
-            @include hex(#666666);
-            @include fs(12px);
-            &:hover, &.flex-active {
-              border: 1px solid #cccccc;
-              @include bg(#ff6766);
-              @include hex(white);
-              @include text-shadow(none);
-            }
-          }
-        }
-      }
+}
 
-      >.menu-section {
-        border-bottom: 1px solid #ebeae5;
-        @include m_b(20px);
-        >.user-menu {
-          margin: 0;
-          @include float-left;
-          >li {
-            @include float-left;
-            margin-right: 10px;
-            &.active, &:hover {
-              border-bottom: 2px solid #ff6766;
-            }
-            >a {
-              padding: 14px 28px;
-              @include block;
-              @include hex(#424242);
-              @include fs(14px);
-              @include upper;
-              &:hover {
-                text-decoration: none;
-              }
-            }
-            >.activity-icon {
-              @include bg(image-url('icons/activity_icon.png') no-repeat);
-              @include bg_pos(0px, 50%);
-              @include p_l(49px);
-              @include m_r(22px);
-            }
-            >.top-gem-icon {
-              @include bg(image-url('icons/ruby25x25.png') no-repeat);
-              @include bg_pos(0px, 50%);
-              @include p_l(37px);
-              @include m_r(13px);
-            }
-            >.my-gem-icon {
-              @include bg(image-url('icons/ruby25x25.png') no-repeat);
-              @include bg_pos(0px, 50%);
-              @include p_l(37px);
-              @include m_r(35px);
-            }
-            >.course-icon {
-              @include bg(image-url('icons/course_icon.png') no-repeat);
-              @include bg_pos(0, 50%);
-              @include p_l(41px);
-              @include m_r(19px);
-            }
+.goals-show .container {padding:0;}
 
-          }
-        }
-      }
+.goals-show .gem-header {
+  margin: 20px 0 !important;
+}
 
-      >.panes {
-        >.active {
+.goals-show .gem-header .col-sm-4 {
+  padding-left: 10px !important;
+}
 
-          .main-section {
-            width: 820px;
-            float: left;
+.goals-show .gem-header .col-sm-4 .goal-name {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-left: 6px;
+  vertical-align: middle;
+  color: #4d4d4d;
+}
 
-            .share-section {
-              @include m_b(20px);
+.goals-show .gem-header .col-sm-4 img {
+  border: 1px solid #ebebeb;
+  width: 40px;
+  height: 40px;  
+}
 
-              .checkin-arrow {
-                margin-bottom: -7px;
-                margin-left: 20px;
-              }
-              .share-arrow {
-                margin-bottom: -7px;
-                margin-left: 120px;
-              }
+.goals-show .gem-header .col-sm-4 i {
+  color:#999;
+  font-weight: 100;
+  vertical-align: middle;
+}
 
-              .toggle-box {
-                @include fs(12px);
-                @include p_l(10px);
-                a {
-                  @include hex(#1d95cb);
-                  text-decoration: underline;
-                  &.on {
-                    @include hex(#777777);
-                    text-decoration: none;
-                  }
-                }
+.goals-show .gem-header .btn-new-gem {
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-left: 8px;
+  padding: 8px 10px; 
+}
 
-                .checkin-toggle {
-                  border-right: 1px solid #e4e4e4;
-                  padding-right: 20px;
-                }
-                .share-toggle {
-                  padding-left: 20px;
-                }
-              }
-              .input-append {
-                @include p_l(10px);
-                .input {
-                  border: 2px solid #e4e4e4;
-                  width: 541px;
-                  height: 30px;
-                  @include fs(12px);
-                  @include hex(#aaaaaa);
-                }
-                .btn {
-                  padding: 14px 81px;
-                  @include fs(12px);
+.goals-show .gem-header .btn-new-gem i {
+  color: #fff; 
+  vertical-align: top;
+}
 
-                  @include bg(white);
-                  @include bg-pos(top, left);
-                  @include border-radius(2px);
-                  border: 1px solid #ebebeb;
-                  @include box-shadow(none);
-                  @include hex(#4d4d4d);
-                  @include lh(12px);
-                  @include upper;
-                  &:hover {
-                    @include bg-pos(top, left);
-                    border: 1px solid #bcbcbc;
-                    //@include background-image(linear-gradient(top, white, #fafafa));
-                  }
-                }
+.goals-show .gem-header .center-block {
+   margin-top: 8px;  
+}
 
-                .btn-red {
-                  border: none;
-                  @include bg(#f16764);
-                  @include fs(14px);
-                  @include lh(14px);
-                  @include upper;
-                  @include centered;
-                  @include hex(white);
-                  @include text-shadow(none);
-                  &:hover {
-                    border: none;
-                    @include bg(#fa7977);
-                    @include hex(white);
-                  }
 
-                }
+.new-gem-modal .modal-dialog {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
 
-              }
-              .already-checkin-message {
-                padding: 10px 0 22px 10px;
-                @include hex(#999999);
-                @include fs(12px);
-              }
-            }
-            .activities-section {
-              @include rel;
-              @include m_b(35px);
-              overflow: hidden;
-              .vertical-line {
-                @include bg(white);
-                @include wxh(4px, 100%);
-                @include abs_tl(26px, 15px);
-                z-index: 100;
-              }
+.new-gem-modal .modal {
+  opacity: 0.9 !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)" !important;
+  background-color: #e2e4e4;  
+}
 
-              .activities {
-                margin: 0;
-                list-style: none;
-                @include rel;
-                z-index: 100;
-                li {
-                  padding: 0 0 0 47px;
-                  @include bg(image-url('icons/post_mark.png') no-repeat);
-                  @include bg_pos(10px, 22px);
-                  @include m_b(8px);
-                  &:last-child {
-                    @include m_b(0px);
-                  }
-                  .activity {
-                    @include m_r(35px);
-                    .arrow {
-                      @include sprite_css(arrow_left_icon);
-                      width: 13px;
-                      @include abs_tl(18px, -13px);
-                    }
-                    @include rel;
-                    @include bg(white);
-                    @include border-radius(5px);
-                    border: 1px solid #ebeae5;
-                    padding: 15px;
-                    .date {
-                      @include abs_tr(17px, 24px);
-                      @include bg(image-url('icons/time_icon.png') no-repeat 0 2px);
-                      @include hex(#cccccc);
-                      @include fs(10px);
-                      @include bold;
-                      @include p_l(17px);
-                    }
-                    .user-avatar {
-                      @include float-left;
-                      @include wxh(30px, 30px);
-                      img {
-                        @include border-radius(10px);
-                      }
-                    }
-                    .body {
-                      @include m_l(41px);
-                      .title {
-                        @include hex(#424242);
-                        @include fs(12px);
-                        @include m_b(12px);
-                        .user-name {
-                          @include bold;
-                          @include hex(#666666);
-                        }
-                      }
-                      .message {
-                        @include bg(#f2f2f2);
-                        padding: 6px 10px;
-                        @include fs(10px);
-                        @include rel;
-                        @include m_b(8px);
-                      }
-                      .message-arrow {
-                        @include sprite_css(grey_arrow_top_icon);
-                        @include abs_tl(-8px, 10px);
-                      }
-                      .bottom {
-                        .like {
-                          @include bg(image-url('icons/like.png') no-repeat);
-                          @include float-left;
-                          @include fs(10px);
-                          @include hex(#999999);
-                          @include pointer;
-                          padding: 0 5px 0 20px;
-                        }
-                        .dislike {
-                          @include bg(image-url('icons/dislike.png') no-repeat);
-                          @include float-left;
-                          @include fs(10px);
-                          @include hex(#999999);
-                          @include pointer;
-                          padding: 0 5px 0 20px;
-                          @include m_r(6px);
-                        }
-                        .comment-count {
-                          @include float-left;
-                          @include bg(image-url('icons/comment.png') no-repeat 100% 1px);
-                          padding: 0px 20px 0px 0px;
-                          @include fs(10px);
-                          @include hex(#999999);
-                          margin-right: 13px;
-                        }
-                        .add-comment {
-                          @include fs(10px);
-                          @include hex(#999999);
-                          &:hover {
-                            @include hex(#1d95cb);
-                          }
-                        }
-                      }
-                      .comments {
-                        @include p_t(19px);
-                        .comment {
-                          @include bg(#fafafa);
-                          padding: 10px;
-                          @include m_b(8px);
-                          .user-avatar {
-                            @include m_r(20px);
-                          }
-                          .content {
-                            @include m_l(50px);
-                            @include p_t(5px);
-                            @include fs(12px);
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+.new-gem-modal .modal-dialog .modal-content {
+  opacity: 1 !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
 
-            }
-          }
+.new-gem-modal .modal-dialog .modal-content .modal-body {
+  padding: 10px 0 10px 15px;
+   background-color: #f7f5f1;
+}
 
-          .sidebar {
-            width: 425px;
-            float: left;
-            border-left: 1px solid #ebeae8;
-            @include hex(#999999);
-            .checkin-widget {
-              @include p_l(25px);
-              .checkin-status {
-                border-bottom: 1px solid #ebeae8;
-                width: 345px;
-                @include p_b(15px);
-                @include m_b(15px);
-                .checkin-today-no-checkin {
-                  @include fs(12px);
-                  margin: 6px 0 0 3px;
-                  display: none;
-                  border-right: 1px solid #ebeae8;
-                  @include float-left;
-                  width: 234px;
-                  height: 46px;
-                  @include lh(46px);
-                }
-                .checkin-today-has-checkin {
-                  border-right: 1px solid #ebeae8;
-                  @include float-left;
-                  width: 197px;
-                  @include bg(image-url('icons/checked2.png') no-repeat 0 0px);
-                  @include p_l(40px);
-                  @include fs(10px);
-                  @include hex(#424242);
-                  .checkin-title {
-                    @include hex(#4fbe56);
-                    @include fs(12px);
-                    @include lh(16px);
-                    @include bold;
-                    margin: 0;
-                  }
-                }
-                .checkin-this-week {
-                  @include float-left;
-                  @include fs(10px);
-                  @include hex(#999999);
-                  padding: 15px 0 0 12px;
-                  .checkin-this-week-icon {
-                    @include sprite_css(numb_bg_icon);
-                    @include float-left;
-                    padding: 4px 0 0 11px;
-                    @include wxh(15px, 22px);
-                    &.red {
-                      @include hex(#f16764);
-                    }
-                  }
-                  .checkin-this-week-copy {
-                    @include float-left;
-                    @include p_t(4px);
-                    @include m_l(4px);
-                  }
-                }
-              }
-              .checkin-calendar {
-                .checkin-calendar-time-log {
-                  @include float-left;
-                  @include fs(11px);
-                  @include p_r(10px);
-                  @include p_t(15px);
-                  div {
-                    height: 22px;
-                    @include lh(22px);
-                  }
-                }
-                .days-section {
-                  @include float-left;
-                }
-                .days-header {
-                  div {
-                    @include float-left;
-                    @include fs(9px);
-                    @include centered;
-                    width: 30px;
-                    @include m_r(10px);
-                  }
-                }
-                .days-row {
-                  clear: both;
-                  div {
-                    @include float-left;
-                    @include wxh(28px, 10px);
-                    @include bg(white);
-                    border: 1px solid #e4e4e4;
-                    @include border-radius(28px);
-                    margin: 0 10px 10px 0;
-                    &.grey {
-                      @include bg(#faf9f4);
-                    }
-                    &.checked {
-                      @include bg(#4fbe56);
-                    }
-                  }
-                }
-              }
-            }
-          }
+.new-gem-modal .modal-dialog .modal-content .modal-body .row {
+  margin: 0;
+}
 
-        }
-      }
-    }
-  }
-  @include bg(#faf9f4);
-
-  .discover-card {
-    @include m_l(9px);
-    @include m_r(9px);
-    @include m_b(9px);
-  }
-
+.new-gem-modal .modal-dialog .modal-content .modal-body .col-sm-8 {
+  padding: 0;
 }
