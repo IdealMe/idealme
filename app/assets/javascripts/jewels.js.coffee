@@ -19,10 +19,12 @@ class Jewels
     ), 500)
 
   showGemModal: (evt) ->
+    $('.new-gem-modal, .edit-gem-modal').modal('hide')
     evt.preventDefault()
     evt.stopImmediatePropagation()
     $link = $(evt.currentTarget)
     $path = $link.attr('href')
+    $path = "#{$path}.json"
     $.get($path).done((data) ->
       $('.view-gem-modal .modal-title').text(data.name)
       $('.view-gem-modal .gem-image').attr('src', data.image)

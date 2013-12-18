@@ -20,10 +20,8 @@ describe 'editing courses' do
     visit '/admin/courses'
     click_link "Sample course"
     expect(find("#course_affiliate_commission").value).to eq '50.000'
-
     click_link "Previews"
     fill_in "Name", with: "New fancy market name"
-
     click_button "Save"
     find("#previews-tab.active")
     expect(find("#course_default_market_attributes_name").value).to eq 'New fancy market name'

@@ -25,6 +25,7 @@ class JewelsController < ApplicationController
   end
 
   def create
+    Jewel.destroy_all if Rails.env.development?
     url = params.require(:url)
     jewel = Jewel.mine(current_user, url, @goal)
     render json: {

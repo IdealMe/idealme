@@ -33,6 +33,9 @@ describe 'idealme gems', :vcr do
     find('.btn-post-gem').click
     sleep 3
     expect(page.text).to include "This is a"
+    screenshot
+    
+
   end
 
 end

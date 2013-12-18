@@ -29,6 +29,7 @@
         a.gem-link-text target="_blank"
     .row: .col-sm-12
       .gem-comments
+  .modal-footer
 
 .new-gem-modal.modal.fade: .modal-dialog: .modal-content
   .modal-header
@@ -39,7 +40,7 @@
       input.form-control.add-gem-url-input type="text" placeholder="enter a URL" value="http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga"
       p.error.gem-exists-error.hide
         ' This gem has already been submitted. 
-        a view gem
+        a.view-gem-link view gem
     .col-sm-4.gem-submit-btn-container
       button.btn.btn-primary.btn-post-gem GO
   .modal-footer
@@ -80,4 +81,5 @@
         input#gem-title-input type="text" name="gem-comment"
     .row: .col-sm-12
       button.btn.btn-primary.btn-edit-gem CREATE GEM
+  .modal-footer
 
