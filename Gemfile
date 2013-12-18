@@ -21,7 +21,6 @@ gem 'rails-observers', '~>0.1.1'
 gem 'griddler'
 
 gem 'json', '~> 1.8.1'
-gem 'bluepill', github: 'bluepill-rb/bluepill'
 
 # A library for working with SendGrid's Newsletter API. The code is intended for managing and sending newletters.
 gem 'gatling_gun'
