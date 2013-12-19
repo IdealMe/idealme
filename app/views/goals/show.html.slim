@@ -42,7 +42,9 @@
     h4.modal-title Submit Gem
   .modal-body: .row
     .col-sm-10
-      input.form-control.add-gem-url-input type="text" placeholder="htpp://..." 
+      input.form-control.add-gem-url-input type="text" placeholder="http://..."
+      p.error.gem-unknown-error.hide
+        ' An error has occurred
       p.error.gem-exists-error.hide
         ' This gem has already been submitted. 
         a.view-gem-link View gem

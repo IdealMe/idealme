@@ -123,13 +123,13 @@ class Jewel < ActiveRecord::Base
       end
       self.kind = Jewel::TYPES[:link]
     elsif parameters[:service] == :other
-      page        = MetaInspector.new(url)
+      page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
       self.kind    = Jewel::TYPES[:link]
     elsif parameters[:service] == :youtube
-      page        = MetaInspector.new(url)
+      page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image

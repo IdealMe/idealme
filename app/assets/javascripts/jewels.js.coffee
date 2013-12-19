@@ -7,6 +7,12 @@ class Jewels
     $(document).on 'click', '.modal-gem-title, .edit-title-icon', @editGemTitle.bind(@)
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
 
+    $(document).on 'keypress', '.add-gem-url-input', (evt) =>
+      @addGem() if evt.keyCode == 13
+
+    $(document).on 'keypress', '.gem-comment', (evt) =>
+      @publishGem() if evt.keyCode == 13
+
 
     #window.setTimeout(@testOpenGem.bind(@), 500)
 
@@ -66,10 +72,12 @@ class Jewels
     ).fail((xhr, status, error) ->
       console.debug(xhr.responseText)
 
-      if xhr.responseJSON.error == 'Duplicate gem'
+      if !xhr.responseJSON
+        $('.gem-unknown-error').removeClass('hide')
+      else if xhr.responseJSON.error == 'Duplicate gem'
         $('.gem-exists-error').removeClass('hide')
         $('.gem-exists-error a').attr('href', xhr.responseJSON.jewel_link)
-      if xhr.responseJSON.error == 'Missing url'
+      else if xhr.responseJSON.error == 'Missing url'
         $('.missing-url-error').removeClass('hide')
     )
 
