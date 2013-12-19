@@ -25,14 +25,15 @@
   .modal-header
     button.close aria-hidden="true" &times;
     h4.modal-title
+    p
+      a.gem-link-text target="_blank"
   .modal-body: .row
-    .row: .col-sm-12
+    .col-sm-6
       center: a.gem-link target="_blank": img.gem-image
-    .row: .col-sm-12
-      p
-        a.gem-link-text target="_blank"
-    .row: .col-sm-12
+    .col-sm-6
       .gem-comments
+    .row
+
   .modal-footer
 
 .new-gem-modal.modal.fade: .modal-dialog: .modal-content
