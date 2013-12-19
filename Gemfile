@@ -216,6 +216,8 @@ group :development do
   gem 'rack-livereload'
   gem 'guard-ctags-bundler'
   gem 'gem-ctags'
+  gem 'guard-rails'
+  gem 'guard-sidekiq'
 end
 
 group :development, :test do

@@ -44,3 +44,19 @@ guard :rspec, cmd: 'rspec -f doc', all_on_start: false, all_after_pass: false, r
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
+#guard 'rails' do
+ #watch('Gemfile.lock')
+ #watch(%r{^(config|lib)/.*})
+#end
+
+### Guard::Sidekiq
+#  available options:
+#  - :verbose
+#  - :queue (defaults to "default") can be an array
+#  - :concurrency (defaults to 1)
+#  - :timeout
+#  - :environment (corresponds to RAILS_ENV for the Sidekiq worker)
+guard 'sidekiq', :environment => 'development', :concurrency => 1 do
+  watch(%r{^workers/(.+)\.rb$})
+end
+

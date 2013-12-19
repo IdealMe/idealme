@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   #https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
 
+
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug("CanCan: Access denied on #{exception.action} #{exception.subject.inspect}")
     if exception.subject.is_a?(Course) && exception.action == :read
