@@ -62,6 +62,7 @@ class Jewel < ActiveRecord::Base
 
   # == Class Methods ========================================================
   def self.mine(user, url, goal = nil)
+    url = "http://#{url}" unless url.start_with? "http"
     if gem = Jewel.where(visible: true, url: Jewel.scrub_url(url), linked_goal: goal).first
       e = DuplicateJewel.new('That jewel already exists')
       e.jewel = gem
