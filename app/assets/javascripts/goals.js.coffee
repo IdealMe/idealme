@@ -11,7 +11,7 @@ class Goals
       btn
         .removeClass('goal-add-btn')
         .addClass('goal-remove-btn')
-        .text('Remove Goal')
+        .text('Remove')
 
 
   removeGoal: (evt) ->
@@ -21,7 +21,7 @@ class Goals
       btn
         .removeClass('goal-remove-btn')
         .addClass('goal-add-btn')
-        .text('Add Goal')
+        .text('Add')
 
 
 new Goals
