@@ -4,6 +4,10 @@
       = image_tag @goal.avatar.url(:thumb)
       | &nbsp;
       span.goal-name = @goal.name
+      - if @goal_user.persisted?
+        span.goal-remove-btn.btn.btn-default data-goal-id=@goal.id Remove Goal
+      - else
+        span.goal-add-btn.btn.btn-default data-goal-id=@goal.id Add Goal
     .col-sm-4: .center-block: center
       span all courses articles videos products saved
     .col-sm-4: .pull-right

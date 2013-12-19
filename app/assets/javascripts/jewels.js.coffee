@@ -8,13 +8,7 @@ class Jewels
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
 
 
-    $(document).on 'click', '.gem-card .upvote-icon-btn', @upvoteGem.bind(@)
-    $(document).on 'click', '.gem-card .downvote-icon-btn', @downvoteGem.bind(@)
-
     #window.setTimeout(@testOpenGem.bind(@), 500)
-
-  upvoteGem: ->
-  downvoteGem: ->
 
   testOpenGem: ->
     $('.view-gem-link').first().trigger('click')
