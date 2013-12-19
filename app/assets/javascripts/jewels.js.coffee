@@ -69,6 +69,8 @@ class Jewels
       if xhr.responseJSON.error == 'Duplicate gem'
         $('.gem-exists-error').removeClass('hide')
         $('.gem-exists-error a').attr('href', xhr.responseJSON.jewel_link)
+      if xhr.responseJSON.error == 'Missing url'
+        $('.missing-url-error').removeClass('hide')
     )
 
   publishGem: ->
