@@ -5,9 +5,9 @@
       | &nbsp;
       span.goal-name = @goal.name
       - if @goal_user.persisted?
-        span.goal-remove-btn.btn.btn-default data-goal-id=@goal.id Remove Goal
+        a.goal-remove-btn data-goal-id=@goal.id Remove Goal
       - else
-        span.goal-add-btn.btn.btn-default data-goal-id=@goal.id Add Goal
+        a.goal-add-btn data-goal-id=@goal.id Add Goal
     .col-sm-4: .center-block: center
       span all courses articles videos products saved
     .col-sm-4: .pull-right
@@ -45,11 +45,12 @@
       input.form-control.add-gem-url-input type="text" placeholder="htpp://..." 
       p.error.gem-exists-error.hide
         ' This gem has already been submitted. 
-        a.view-gem-link view gem
+        a.view-gem-link View gem
     .col-sm-1.gem-submit-btn-container
       button.btn.btn-red.btn-post-gem GO
   .modal-footer
-    p HINT: Found something that really works? Make a 'Gem' by submitting a web link for any course, article, video, app, product or service that helped you with this goal.
+    i.glyphicon.glyphicon-info-sign 
+    p Share what works. Submit a web link for any course, article, video, app, product or service that helped with this goal.
 
 .edit-gem-modal.modal.fade: .modal-dialog: .modal-content
   .modal-header

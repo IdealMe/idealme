@@ -83,19 +83,19 @@ header {
       margin: 12px 53px 0 0;
       .search-field {
         width: 200px;
-        height: 24px;
-        border: 1px solid #ccc;
+        height: 22px;
+        border: 1px solid #ddd;
         @include bg(#fcfcfc);
         padding-left:10px;
-        @include lh(28px);
+        @include lh(26px);
       }
 
       .btn {
         @include bg(white);
         @include bg-pos(top, left);
-        border: 1px solid #ccc;
+        border: 1px solid #ddd;
         @include box-shadow(none);
-        padding: 12px 15px;
+        padding: 11px 15px;
         @include hex(#4d4d4d);
         @include fs(12px);
         @include lh(12px);

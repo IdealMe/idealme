@@ -30,7 +30,7 @@
         = link_to 'ME', user_path(current_user), class: active_tab?('users', params[:controller])
     = form_tag(searches_path, method: 'get', class: 'search-box') do
       .input-group
-        = text_field_tag('q', @search, class: 'form-control search-field', placeholder: 'Search courses and goals')
+        = text_field_tag('q', @search, class: 'form-control search-field')
         span.input-group-btn
           button.btn.btn-default type="submit"
             i.icon-search
