@@ -58,8 +58,6 @@ img {
 
 
 
-
-
 // Element
 @import "elements/fonts";
 @import "elements/base";
@@ -114,6 +112,7 @@ img {
 @import "datepicker";
 @import "forms";
 @import "vote-controls";
+
 //
 
 * {
@@ -130,23 +129,14 @@ h1, h2, h3, h4, h5, h6,
   filter: alpha(opacity=20);
 }
 
+.btn {
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.2));
+}
+
 .admin {
   .btn {
     margin-right: 10px;
-    // border-radius: 0px;
-    // //@include bg(white);
-    // @include bg-pos(top, left);
-    // border: 1px solid #ebebeb;
-    // @include box-shadow(none);
-    // padding: 4px 12px;
-    // @include hex(#4d4d4d);
-    // @include fs(12px);
-    // @include lh(12px);
-    // @include upper;
-    // &:hover {
-    //   @include bg-pos(top, left);
-    //   border: 1px solid #bcbcbc;
-    // }
+    
   }
 
   .controls.inline .form-group {

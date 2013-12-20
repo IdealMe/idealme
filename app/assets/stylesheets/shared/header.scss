@@ -172,6 +172,7 @@ header {
   header {
     @include bg(white);
     border-bottom: 1px solid #ebebeb;
+    @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.05));
   }
   .header-content {
     height: 62px;
@@ -182,6 +183,7 @@ header {
   header {
     @include bg(white);
     border-bottom: 1px solid #ebebeb;
+    @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.05));
   }
   .header-content {
     height: 60px;

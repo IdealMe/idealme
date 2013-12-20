@@ -56,23 +56,22 @@
     .editing-title.hide
       input#gem-title-input type="text" name="gem-title"
   .modal-body
-    .row: .col-sm-12
-      ' This is a 
+    .row: .col-sm-12.edit-gem-type
+      ' What kind of gem?
       input type="radio" name="gem-type" value="course" 
       '  Course
-      input type="radio" name="gem-type" value="article" checked="true"
+      input type="radio" name="gem-type" value="article"
       '  Article
       input type="radio" name="gem-type" value="video" 
       '  Video
+      input type="radio" name="gem-type" value="video" 
+      '  App
       input type="radio" name="gem-type" value="product" 
       '  Product
     .row: .col-sm-12
       center: img.gem-image
-    .row: .col-sm-12
-      p
-        a.gem-link
-    .row.gem-comments
-    .row: .col-sm-12
-      button.btn.btn-primary.btn-edit-gem CREATE GEM
+    .row.gem-comments.edit-gem-comment
   .modal-footer
+    .row: .col-sm-12.create-gem
+      button.btn.btn-red.btn-edit-gem CREATE GEM
 

@@ -5,6 +5,7 @@
   border: 1px solid #efefef;
   @include left;
   float: left;
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));
   .course-name {
     font-weight: 600;
     @include hex(#555);
@@ -213,6 +214,7 @@
   @include m_b(18px);
   //@include pointer;
   height: 163px;
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));
 }
 
 .goal-card-new, .course-card-new {
@@ -227,6 +229,7 @@
   //@include m_b(18px);
   @include centered;
   cursor: pointer;
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));
   &:hover {
     background: white;
     @include hex(#4d4d4d);
@@ -239,8 +242,8 @@
   }
 }
 
-.goal-card-new { width: 228px;  height: 180px; @include p_t(36px); }
-.course-card-new { width: 228px; height: 288px; @include p_t(98px); }
+.goal-card-new { width: 228px;  height: 180px; @include p_t(36px); @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));}
+.course-card-new { width: 228px; height: 288px; @include p_t(98px); @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));}
 
 .goal-card, .gem-card {
   display: inline-block;
@@ -252,7 +255,7 @@
   @include m_b(18px);
   @include pointer;
   border-radius: 5px 5px 5px 5px;
-  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.15));
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.1));
   &:hover {
     @include bg(white);
     border-color: #c9c9c9;
