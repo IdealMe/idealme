@@ -14,13 +14,13 @@ guard 'bundler' do
 end
 
 guard 'livereload' do
- watch(%r{app/views/.+\.(erb|haml|slim)$})
- watch(%r{app/helpers/.+\.rb})
+ #watch(%r{app/views/.+\.(erb|haml|slim)$})
+ #watch(%r{app/helpers/.+\.rb})
  watch(%r{public/.+\.(css|js|html)})
  watch(%r{config/locales/.+\.yml})
- watch(%r{app/.*})
+ watch(%r{(app|vendor)/.*})
  # Rails Assets Pipeline
- watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|sass|scss|less))).*}) { |m| "/assets/#{m[3]}" }
+ #watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|sass|scss|less))).*}) { |m| "/assets/#{m[3]}" }
 end
 
 guard :rspec, cmd: 'rspec -f doc', all_on_start: false, all_after_pass: false, run_all: { cmd: 'rspec -f doc' } do
@@ -56,7 +56,7 @@ end
 #  - :concurrency (defaults to 1)
 #  - :timeout
 #  - :environment (corresponds to RAILS_ENV for the Sidekiq worker)
-guard 'sidekiq', :environment => 'development', :concurrency => 1 do
-  watch(%r{^workers/(.+)\.rb$})
-end
+#guard 'sidekiq', :environment => 'development', :concurrency => 1 do
+  #watch(%r{^workers/(.+)\.rb$})
+#end
 
