@@ -6,7 +6,7 @@ Warden.test_mode!
 describe 'idealme gems', :vcr do
   let!(:user)               { create(:user) }
   let!(:goal)               { create(:goal) }
-  let!(:jewel)               { create(:jewel, linked_goal: goal) }
+  let!(:jewel)               { create(:jewel, linked_goal: goal, owner: user) }
 
   before :each do
     Warden.test_reset!
@@ -26,7 +26,7 @@ describe 'idealme gems', :vcr do
     find('.btn-new-gem').click
     sleep 2
     status_code.should_not eq 500
-    expect(page.text).to include 'You can add any web page, article, image, video, Tweet or Facebook post that has heped you with the weight loss goal'
+    expect(page.text).to include 'Submit a web link for any course, article, video, app, product or service'
 
     input = find('.add-gem-url-input')
     input.set('http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga')
@@ -54,7 +54,7 @@ describe 'idealme gems', :vcr do
     visit goal_path(goal)
 
     find('.gem-card > .view-gem-link').click
-    sleep 2
+    sleep 3
     screenshot
     page.should have_css('.comment-content .vote-controls')
     find('.comment-content .like').click

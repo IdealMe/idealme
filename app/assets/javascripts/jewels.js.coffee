@@ -14,7 +14,7 @@ class Jewels
       @publishGem() if evt.keyCode == 13
 
 
-    #window.setTimeout(@testOpenGem.bind(@), 500)
+    #window.setTimeout(@testOpenGem.bind(@), 200)
 
   testOpenGem: ->
     $('.view-gem-link').first().trigger('click')
@@ -31,15 +31,8 @@ class Jewels
     evt.stopImmediatePropagation()
     $link = $(evt.currentTarget)
     $path = $link.attr('href')
-    $path = "#{$path}.json"
-    $.get($path).done((data) ->
-      $('.view-gem-modal .modal-title').text(data.truncated_name)
-      $('.view-gem-modal .gem-image').attr('src', data.image)
-      $('.view-gem-modal .gem-link').attr('href', data.link)
-      $('.view-gem-modal .gem-link-text').attr('href', data.link).text(data.truncated_link)
-      $('.view-gem-modal .gem-comments').load(data.comments_path)
-      $('.view-gem-modal').modal()
-    )
+    $('.view-gem-modal .modal-content').load($path)
+    $('.view-gem-modal').modal()
 
 
   showAddGemModal: ->

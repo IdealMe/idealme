@@ -25,6 +25,11 @@ class JewelsController < ApplicationController
     render layout: nil
   end
 
+  def modal_content
+    @jewel = Jewel.find(params[:id])
+    render layout: nil
+  end
+
   def create
     url = params.require(:url)
     jewel = Jewel.mine(current_user, url, @goal)

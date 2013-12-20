@@ -1,0 +1,26 @@
+.modal-header
+  button.close aria-hidden="true" &times;
+  h4.modal-title = @jewel.name.truncate(50)
+  p
+    a.gem-link-text target="_blank" href=@jewel.url
+.modal-body: .row
+  .col-sm-6
+    center: a.gem-link target="_blank": img.gem-image src=@jewel.avatar.url(:bigger)
+    .gem-submitter-and-vote-controls
+      span.submitter.pull-left #{@jewel.owner.fullname} shared this gem
+      .boxes.vote-controls.pull-right
+        .box
+          .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
+            i.icon-thumbs-up
+            span.vote-count.upvote-total = @jewel.up_votes
+        .box
+          .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
+            i.icon-thumbs-down
+            span.vote-count.downvote-total = @jewel.down_votes
+  .col-sm-6
+    .gem-comments
+      = render partial: "comments"
+  .row
+
+.modal-footer
+

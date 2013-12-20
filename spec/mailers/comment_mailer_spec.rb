@@ -5,7 +5,7 @@ describe CommentMailer do
     let!(:course) { create(:course, owner_id: affiliate_user.id) }
     let!(:user)   { create(:user) }
     let!(:affiliate_user)   { create(:affiliate_user) }
-    let!(:comment) { create(:comment, commentable: course) }
+    let!(:comment) { create(:comment, commentable: course, owner: user) }
     let!(:mail)   { CommentMailer.question(course, user, "I got a question", comment.id) }
 
     it "renders the headers" do

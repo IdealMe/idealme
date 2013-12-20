@@ -1,6 +1,5 @@
 class Goals
   constructor: ->
-    console.debug("Goals js")
     $(document).on 'click', '.goal-add-btn', @addGoal.bind(@)
     $(document).on 'click', '.goal-remove-btn', @removeGoal.bind(@)
 
