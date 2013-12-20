@@ -245,13 +245,14 @@
 .goal-card, .gem-card {
   display: inline-block;
   width: 232px;
-  @include bg(white);
-  border: 1px solid #efefef;
+  @include bg(#fcfcfc);
+  border: 1px solid #e2e2e2;
   @include m_r(11px);
   @include m_l(6px);
   @include m_b(18px);
   @include pointer;
   border-radius: 5px 5px 5px 5px;
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.15));
   &:hover {
     @include bg(white);
     border-color: #c9c9c9;
