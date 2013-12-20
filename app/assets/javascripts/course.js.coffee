@@ -1,6 +1,6 @@
 class ReviewWidget
   constructor: ->
-    $(document).on 'click', '.icon-btn', @handleVoteClick
+    $(document).on 'vote_changed', '#rate-this-course-container .vote-controls', @handleVoteClick
     $(document).on 'click', '.cancel-container', @handleCancelReview
     #@vote('course', 'hatha-yoga', 'up')
 
