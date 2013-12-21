@@ -2,21 +2,21 @@
   button.close aria-hidden="true" &times;
   h4.modal-title = @jewel.name.truncate(50)
   .gem-submitter-and-vote-controls
-  .boxes.vote-controls.pull-right
-    .box
+  .boxes.vote-controls
+    .box.btn.btn-default
+      .icon-btn
+        i.icon-plus
+    .box.btn.btn-default
       .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
         i.icon-thumbs-up
         span.vote-count.upvote-total = @jewel.up_votes
-    .box
+    .box.btn.btn-default
       .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
         i.icon-thumbs-down
         span.vote-count.downvote-total = @jewel.down_votes
-  span.submitter.pull-left #{@jewel.owner.fullname} shared this
+    span.submitter #{@jewel.owner.fullname} shared this | 1 of 123 gems
   br
-    span.gem-count.pull-left 1 of 123 highest voted videos in Lose Weight
-
-  p
-    a.gem-link-text target="_blank" href=@jewel.url
+    span.gem-count.pull-left
 .modal-body: .row
   .col-sm-6.gem-image-container
     center: a.gem-link target="_blank": img.gem-image src=@jewel.avatar.url(:bigger)
