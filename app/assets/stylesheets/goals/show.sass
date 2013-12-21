@@ -115,41 +115,45 @@
       text-align: center
     .btn-red
       padding: 8px 56px
-.view-gem-modal
+.view-gem-modal.modal
+  background-color: #000
   .modal-dialog
-    -webkit-transition: none !important
-    -moz-transition: none !important
-    -ms-transition: none !important
-    -o-transition: none !important
-    transition: none !important
-    width: 88vw
-  .modal
-    opacity: 1 !important
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important
-    background-color: #f7f5f1 !important
-  .modal-dialog .modal-content
-    opacity: 1 !important
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" none !important
-    -webkit-box-shadow: none !important
-    box-shadow: none !important
-    .modal-header .img
-      float: left
-      margin-right: 5px
-    .modal-title
-      font-weight: 600
-      margin: 1% 0 0 1.1%
-    .modal-body
-      padding: 0
-      background-color: #f7f5f1
-      .gem-comments
-        margin: 7% 7% 0 0
-      .row
-        margin: 0
-      .gem-link img
-        margin: 7%
-        width: 80%
-        border: 1px solid #ebebeb
-      .submitter
-        margin-left: 1.2%
-    .modal-footer
-      background-color: #f7f5f1
+    -webkit-transition: none
+    -moz-transition: none
+    -ms-transition: none
+    -o-transition: none
+    transition: none
+    -webkit-transform: none
+    -ms-transform: none
+    transform: none
+    width: 100vw
+    margin: 0
+  .modal-content
+    border: none
+    border-radius: 0
+  .modal-header
+    padding: .75% 4% 1% 5%
+    margin: 0% 0 0 1.1%
+    .close
+      font-size: 50px
+    .submitter, .gem-count
+      color: #999    
+  .modal-header .img
+    float: left
+    margin-right: 5px
+  .modal-title
+    font-weight: 100
+    font-size: 3vw
+  .modal-body
+    padding: 0
+    background-color: #f7f5f1
+    .gem-comments
+      margin: 7% 7% 0 0
+    .row
+      margin: 0 !important
+    .gem-link img
+      margin: 7%
+      width: 80%
+      border: 1px solid #ebebeb
+  .modal-footer
+    background-color: #f7f5f1
