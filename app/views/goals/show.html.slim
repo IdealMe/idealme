@@ -1,15 +1,12 @@
 .container
   .gem-header.clearfix
-    .col-sm-4
+    .col-sm-4: .btn.btn-goal.btn-default.pull-left
       = image_tag @goal.avatar.url(:thumb)
-      | &nbsp;
       span.goal-name = @goal.name
-      - if @goal_user.persisted?
-        a.goal-remove-btn data-goal-id=@goal.id Remove
-      - else
-        a.goal-add-btn data-goal-id=@goal.id Add
+      span.picker
+        img.goal-picker-checked alt="Quit goal" src="/assets/users/checkmark-edf3c7dac2055f8ac5429ed14033f459.png"
     .col-sm-4: .center-block: center
-      span All&nbsp;&nbsp;&nbsp;Course&nbsp;&nbsp;&nbsp;Article&nbsp;&nbsp;&nbsp;Video&nbsp;&nbsp;&nbsp;App&nbsp;&nbsp;&nbsp;Product&nbsp;&nbsp;&nbsp;Saved
+      span All&nbsp;&nbsp;&nbsp;Courses&nbsp;&nbsp;&nbsp;Articles&nbsp;&nbsp;&nbsp;Videos&nbsp;&nbsp;&nbsp;Apps&nbsp;&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;Saved
     .col-sm-4: .pull-right
       i Find something great?
       | &nbsp;
@@ -17,6 +14,7 @@
         i.glyphicon.glyphicon-cloud-upload
         | &nbsp;
         ' submit gem
+  
 
   .gem-grid
     = render partial: "jewels/jewel", collection: @jewels
