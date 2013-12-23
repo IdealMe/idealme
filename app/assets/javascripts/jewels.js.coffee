@@ -6,6 +6,7 @@ class Jewels
     $(document).on 'click', '.btn-post-gem', @addGem.bind(@)
     $(document).on 'click', '.modal-gem-title, .edit-title-icon', @editGemTitle.bind(@)
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
+    $(document).on 'click', '.save-link', @saveGem.bind(@)
 
     $(document).on 'keypress', '.add-gem-url-input', (evt) =>
       @addGem() if evt.keyCode == 13
@@ -24,6 +25,16 @@ class Jewels
     window.setTimeout((=>
       @addGem.apply(@)
     ), 500)
+
+  saveGem: (evt) ->
+    evt.preventDefault()
+
+    target = $(evt.currentTarget)
+    id = target.closest('[data-id]').data('id')
+    path = target.closest('a').attr('href')
+    console.debug(id)
+    $.post(path).done (response) ->
+      target.find('.icon-btn').toggleClass('hidden')
 
   showGemModal: (evt) ->
     $('.new-gem-modal, .edit-gem-modal').modal('hide')

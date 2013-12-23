@@ -1,10 +1,10 @@
-.boxes.vote-controls
+.boxes.vote-controls data-id=jewel.id data-type=jewel.class
   .box
-    .icon-btn.upvote-icon-btn.like data-voted=upvoted?(jewel, current_user) data-id=jewel.id data-type=jewel.class
+    .icon-btn.upvote-icon-btn.like data-voted=upvoted?(jewel, current_user)
       i.icon-thumbs-up
       span.vote-count.upvote-total = jewel.up_votes
   .box.br
-    .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(jewel, current_user) data-id=jewel.id data-type=jewel.class
+    .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(jewel, current_user)
       i.icon-thumbs-down
       span.vote-count.downvote-total = jewel.down_votes
   = link_to goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.id do
@@ -12,6 +12,10 @@
       .icon-btn
         i.icon-comment-alt
         span.comment-count = jewel.comments.count
-  .box
-    .icon-btn
-      i.icon-plus
+  a.box.save-link href=save_goal_gem_path(goal_id: jewel.goal_id, id: jewel.slug)
+    - if jewel.saved_by current_user
+      .icon-btn.unsave-link-icon: i.icon-ok
+      .icon-btn.save-link-icon.hidden: i.icon-plus
+    - else
+      .icon-btn.unsave-link-icon.hidden: i.icon-ok
+      .icon-btn.save-link-icon: i.icon-plus

@@ -7,13 +7,13 @@
           p.pull-right = abbreviated_time_ago comment.created_at
           p = comment.owner.fullname
           p = comment.content
-          .boxes.vote-controls
+          .boxes.vote-controls data-id=comment.id data-type=comment.class
             .box
-              .icon-btn.upvote-icon-btn.like data-voted=upvoted?(comment, current_user) data-id=comment.id data-type=comment.class
+              .icon-btn.upvote-icon-btn.like data-voted=upvoted?(comment, current_user)
                 i.icon-thumbs-up
                 span.vote-count.upvote-total = comment.up_votes
             .box
-              .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(comment, current_user) data-id=comment.id data-type=comment.class
+              .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(comment, current_user)
                 i.icon-thumbs-down
                 span.vote-count.downvote-total = comment.down_votes
   .jewel-comment

@@ -21,6 +21,16 @@ describe 'idealme gems', :vcr do
     expect(page.text).to include 'The Wind Waker'
   end
 
+  it 'lets users save gems', js: true, vcr: true do
+    jewel.fetch!
+    jewel.update_attribute :visible, true
+    visit goal_path(goal)
+    screenshot
+    find('.save-link').click
+    sleep 1
+    expect(user.jewels.length).to eq 1
+  end
+
   it 'lets users create new gems', js: true, vcr: true do
     visit goal_path(goal)
     find('.btn-new-gem').click

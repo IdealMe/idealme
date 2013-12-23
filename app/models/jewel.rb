@@ -188,6 +188,10 @@ class Jewel < ActiveRecord::Base
     self.url = Jewel.scrub_url(self.url)
   end
 
+  def saved_by(user)
+    SavedJewel.where(user: user, jewel: self).exists?
+  end
+
   def inspect_and_set_meta
 
   end

@@ -20,8 +20,8 @@ $ ->
     self = $(this)
     $vote_controls = self.closest('.vote-controls')
     voted = self.attr("data-voted")
-    votable_id = self.attr("data-id")
-    votable_type = self.attr("data-type")
+    votable_id = self.closest('[data-id]').attr("data-id")
+    votable_type = self.closest('[data-type]').attr("data-type")
     like_counter = $vote_controls.find('.upvote-total')
     dislike_counter = $vote_controls.find('.downvote-total')
     if typeof votable_id isnt "undefined" and typeof votable_type isnt "undefined"
@@ -60,8 +60,8 @@ $ ->
     self = $(this)
     $vote_controls = self.closest('.vote-controls')
     voted = self.attr("data-voted")
-    votable_id = self.attr("data-id")
-    votable_type = self.attr("data-type")
+    votable_id = self.closest('[data-id]').attr("data-id")
+    votable_type = self.closest('[data-type]').attr("data-type")
     like_counter = $vote_controls.find('.upvote-total')
     dislike_counter = $vote_controls.find('.downvote-total')
     if typeof votable_id isnt "undefined" and typeof votable_type isnt "undefined"

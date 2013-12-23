@@ -2,16 +2,16 @@
   button.close aria-hidden="true" &times;
   h4.modal-title = @jewel.name.truncate(50)
   .gem-submitter-and-vote-controls
-  .boxes.vote-controls
+  .boxes.vote-controls data-id=@jewel.id data-type=@jewel.class
     .box.btn.btn-default
       .icon-btn
         i.icon-plus
     .box.btn.btn-default
-      .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
+      .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@jewel, current_user)
         i.icon-thumbs-up
         span.vote-count.upvote-total = @jewel.up_votes
     .box.btn.btn-default
-      .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
+      .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@jewel, current_user)
         i.icon-thumbs-down
         span.vote-count.downvote-total = @jewel.down_votes
     span.submitter #{@jewel.owner.fullname} shared this | 1 of 123 gems

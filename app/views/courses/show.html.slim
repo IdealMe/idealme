@@ -46,13 +46,13 @@
         .clear
   .sidebar
     #rate-this-course-container
-      #rate-widget-container.vote-controls
+      #rate-widget-container.vote-controls data-id=@course.id data-type=@course.class
         ' Rate this course:
-        .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@course, current_user) data-id=@course.id data-type=@course.class
+        .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@course, current_user)
           i.icon-thumbs-up
         .upvote-total
           = @course.up_votes
-        .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@course, current_user) data-id=@course.id data-type=@course.class
+        .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@course, current_user)
           i.icon-thumbs-down
         .downvote-total
           = @course.down_votes

@@ -39,6 +39,7 @@ class GoalsController < ApplicationController
     else
       @jewels = @goal.jewels.filter(params[:filter_name])
     end
+    @jewels.order('up_votes DESC')
     render :show
   end
 

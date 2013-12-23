@@ -45,6 +45,7 @@ Idealme::Application.routes.draw do
         put "" => 'jewels#update'
         get :comments
         get :modal_content
+        post :save
       end
     end
     member do

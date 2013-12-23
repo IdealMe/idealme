@@ -20,6 +20,17 @@ class JewelsController < ApplicationController
     end
   end
 
+  def save
+    @jewel = Jewel.find(params[:id])
+    if SavedJewel.where(jewel: @jewel, user: current_user).exists?
+      SavedJewel.where(jewel: @jewel, user: current_user).destroy_all
+      render json: { status: :destroyed }
+    else
+      SavedJewel.create(jewel: @jewel, user: current_user)
+      render json: { status: :created }
+    end
+  end
+
   def comments
     @jewel = Jewel.find(params[:id])
     render layout: nil
