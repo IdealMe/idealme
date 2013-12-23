@@ -32,7 +32,7 @@ describe 'idealme gems', :vcr do
     input.set('http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga')
     find('.btn-post-gem').click
     sleep 2
-    expect(page.text).to include "This is a"
+    expect(page.text).to include "What kind of gem?"
 
     find('#gem-comment').set('This page is the greatest')
     find('.btn-edit-gem').click
