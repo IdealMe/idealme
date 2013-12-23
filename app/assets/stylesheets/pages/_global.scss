@@ -14,6 +14,17 @@ body {
 //  @include rel;
 }
 
+.goals-index {
+  .container {
+  width: 1255px;
+  max-width: 1255px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0 0 10px;
+  }
+}
+
+
 .main_section {
   @include float-left;
   width: 872px;
@@ -107,7 +118,7 @@ body {
   font-style: italic;
 }
 
-.goal-name { color: #666666; @include fs(14px);  @include centered; margin-bottom: 13px; margin-top: 5px; font-weight: 700;}
+.goal-name { color: #666666; @include fs(14px);  @include centered; margin-bottom: 13px; margin-top: 5px; }
 .bottom-box { border-top: 1px solid #EBEBEB; }
 
 .user-card, .goal-card, .goal-user-card, .gem-card { 

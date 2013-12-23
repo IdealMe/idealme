@@ -4,7 +4,7 @@
 .container
   = form_tag goals_path do
     - @goals.each do |goal|
-      .goal-card
+      .goal-card.edit
         .avatar
           = image_tag goal.avatar.url(:full)
         .goal-name

@@ -286,6 +286,28 @@
   }
 }
 
+.goal-card.edit {
+  display: inline-block;
+  width: 224px;
+  margin-right: 23px;
+  margin-left: 2px;
+  .avatar {
+    height: 115px;
+    img {
+      height: 115px;
+      width: 115px;
+    }
+  }
+
+  .bottom-box {
+    border-radius: 0 0 5px 5px;
+    background: none repeat scroll 0 0 #FAFAFA;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+  }
+}
+
 .user-card {
   @include float-left;
   width: 230px;
