@@ -4,7 +4,9 @@
       = image_tag @goal.avatar.url(:thumb)
       span.goal-name = @goal.name
       span.picker
-        img.goal-picker-checked alt="Quit goal" src="/assets/users/checkmark-edf3c7dac2055f8ac5429ed14033f459.png"
+        img.goal-picker-checked.hide alt="Quit goal" src="/assets/users/checkmark-edf3c7dac2055f8ac5429ed14033f459.png"
+      span.picker
+        img.goal-picker-unchecked alt="Add goal to your list" src="/assets/users/plus-c885fd44946c4d768ff402f5eed9452a.png"
     .col-sm-4: .center-block: center
       span All&nbsp;&nbsp;&nbsp;Courses&nbsp;&nbsp;&nbsp;Articles&nbsp;&nbsp;&nbsp;Videos&nbsp;&nbsp;&nbsp;Apps&nbsp;&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;Saved
     .col-sm-4: .pull-right
