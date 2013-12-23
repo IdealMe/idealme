@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   has_many :goal_users
   has_many :goals, through: :goal_users
 
+  has_many :saved_jewels
+  has_many :jewels, through: :saved_jewels
+
   has_many :course_users
   has_many :courses, through: :course_users
 

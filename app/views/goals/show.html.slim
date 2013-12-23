@@ -8,7 +8,14 @@
       span.picker
         img.goal-picker-unchecked alt="Add goal to your list" src="/assets/users/plus-c885fd44946c4d768ff402f5eed9452a.png"
     .col-sm-4: .center-block: center
-      span All&nbsp;&nbsp;&nbsp;Courses&nbsp;&nbsp;&nbsp;Articles&nbsp;&nbsp;&nbsp;Videos&nbsp;&nbsp;&nbsp;Apps&nbsp;&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;Saved
+      span 
+        | #{filter_link('All', :all)}&nbsp;&nbsp;&nbsp;
+        | #{filter_link('Courses', :course)}&nbsp;&nbsp;&nbsp;
+        | #{filter_link('Articles', :article)}&nbsp;&nbsp;&nbsp;
+        | #{filter_link('Videos', :video)}&nbsp;&nbsp;&nbsp;
+        | #{filter_link('Apps', :app)}&nbsp;&nbsp;&nbsp;
+        | #{filter_link('Products', :product)}&nbsp;&nbsp;&nbsp;
+        | #{filter_link('Saved', :saved)}&nbsp;&nbsp;&nbsp;
     .col-sm-4: .pull-right
       i Find something great?
       | &nbsp;

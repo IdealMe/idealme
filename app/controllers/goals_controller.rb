@@ -2,7 +2,7 @@ class GoalsController < ApplicationController
   before_filter :require_authentication
 
   before_filter :load_goals, only: [:index]
-  before_filter :load_goal_user, only: [:show]
+  before_filter :load_goal_user, only: [:show, :filter]
   before_filter :load_active_goal_user, only: [:share, :checkin, :archive, :complete]
   before_filter :load_archived_goal_users, only: [:archived]
   before_filter :load_archived_goal_user, only: [:activate]
@@ -29,7 +29,17 @@ class GoalsController < ApplicationController
 
   # GET /goals/1
   def show
-    @jewels = @goal.jewels.where(visible: true)
+    #@jewels = @goal.jewels.where(visible: true)
+    @jewels = @goal.jewels.filter(:all)
+  end
+
+  def filter
+    if params[:filter_name] == 'saved'
+      @jewels = current_user.jewels.where(visible: true, goal_id: @goal.id)
+    else
+      @jewels = @goal.jewels.filter(params[:filter_name])
+    end
+    render :show
   end
 
   # POST /goals/1/share

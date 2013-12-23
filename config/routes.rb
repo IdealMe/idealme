@@ -55,6 +55,7 @@ Idealme::Application.routes.draw do
       post :complete
       post :archive
       post :toggle
+      get 'filter/:filter_name' => 'goals#filter', as: :filter
     end
     collection do
       get :archived

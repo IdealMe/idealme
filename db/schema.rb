@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218225152) do
+ActiveRecord::Schema.define(version: 20131223212455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20131218225152) do
     t.datetime "updated_at",                    null: false
   end
 
-  add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_link_id", using: :btree
+  add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_tracking_id", using: :btree
   add_index "affiliate_clicks", ["user_id"], name: "index_affiliate_clicks_on_user_id", using: :btree
 
   create_table "affiliate_links", force: true do |t|
@@ -590,6 +590,13 @@ ActiveRecord::Schema.define(version: 20131218225152) do
 
   add_index "reviews", ["course_id"], name: "index_reviews_on_course_id", using: :btree
   add_index "reviews", ["owner_id"], name: "index_reviews_on_owner_id", using: :btree
+
+  create_table "saved_jewels", force: true do |t|
+    t.integer  "jewel_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sections", force: true do |t|
     t.string   "name"
