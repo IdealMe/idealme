@@ -9,16 +9,15 @@
         img.goal-picker-unchecked alt="Add goal to your list" src="/assets/users/plus-c885fd44946c4d768ff402f5eed9452a.png"
     .col-sm-4: .center-block: center
       span 
-        | #{filter_link('All', :all)}&nbsp;&nbsp;&nbsp;
-        | #{filter_link('Courses', :course)}&nbsp;&nbsp;&nbsp;
-        | #{filter_link('Articles', :article)}&nbsp;&nbsp;&nbsp;
-        | #{filter_link('Videos', :video)}&nbsp;&nbsp;&nbsp;
-        | #{filter_link('Apps', :app)}&nbsp;&nbsp;&nbsp;
-        | #{filter_link('Products', :product)}&nbsp;&nbsp;&nbsp;
-        | #{filter_link('Saved', :saved)}&nbsp;&nbsp;&nbsp;
+        | All
+        | #{filter_link('Courses', :course)}
+        | #{filter_link('Articles', :article)}
+        | #{filter_link('Videos', :video)}
+        | #{filter_link('Apps', :app)}
+        | #{filter_link('Products', :product)}
+        | <span class="divider">|</span>
+        | #{filter_link('Saved', :saved)}
     .col-sm-4: .pull-right
-      i Find something great?
-      | &nbsp;
       a.btn.btn-red.btn-new-gem
         i.glyphicon.glyphicon-cloud-upload
         | &nbsp;
