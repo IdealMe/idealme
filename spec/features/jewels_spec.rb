@@ -54,10 +54,10 @@ describe 'idealme gems', :vcr do
     find('[value="article"]').click
     find('.btn-edit-gem').click
     sleep 2
-    expect(page.text).to include 'wunder'
-
     find('.gem-card > .view-gem-link[data-jewel-id="' + Jewel.last.slug + '"]').click
+
     sleep 2
+    screenshot
     expect(page.text).to include 'This page is the greatest'
 
   end

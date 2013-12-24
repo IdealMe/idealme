@@ -13,7 +13,7 @@ describe GoalsController do
   let!(:product_jewel) { create(:product_jewel, goal_id: goal.id) }
   let!(:video_jewel)   { create(:video_jewel, goal_id: goal.id) }
 
-  let!(:saved_jewel)   { create(:saved_jewel, jewel: app_jewel) }
+  let!(:saved_jewel)   { create(:saved_jewel, jewel: app_jewel, user: user) }
 
   it 'filters by all' do
     get :filter, filter_name: :all, id: goal.slug

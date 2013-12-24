@@ -81,7 +81,7 @@ class JewelsController < ApplicationController
       comment = jewel.comments.build(owner: current_user, content: comment_content)
       comment.save!
     end
-    head :ok
+    render json: { success: true }
   end
 
   protected
