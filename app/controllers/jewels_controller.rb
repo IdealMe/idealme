@@ -60,7 +60,6 @@ class JewelsController < ApplicationController
   end
 
   def update
-    ap params
     unless params["gemType"].present?
       render json: { success: false, error: "Gem type is missing" }
       return
@@ -73,7 +72,6 @@ class JewelsController < ApplicationController
     jewel.name = params["title"]
 
     jewel.kind = Jewel::TYPES[params["gemType"]]
-    binding.pry
     jewel.visible = true
     jewel.save!
 
