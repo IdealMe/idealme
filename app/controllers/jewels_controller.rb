@@ -52,6 +52,8 @@ class JewelsController < ApplicationController
       truncated_title: jewel.name.try(:truncate, 50),
       edit_path: goal_gem_path(@goal, jewel),
       comments_path: comments_goal_gem_path(@goal, jewel),
+      embed_content: jewel.embed_content,
+      kind: Jewel::TYPES.invert[jewel.kind]
     }
   rescue ActionController::ParameterMissing => e
     render json: {error: "Missing url"}, status: 500
@@ -73,6 +75,7 @@ class JewelsController < ApplicationController
 
     jewel.kind = Jewel::TYPES[params["gemType"]]
     jewel.visible = true
+    jewel.slug = nil
     jewel.save!
 
     # add comment to jewel if present

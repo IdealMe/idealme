@@ -19,7 +19,10 @@
     span.gem-count.pull-left
 .modal-body: .row
   .col-sm-6.gem-image-container
-    center: a.gem-link target="_blank": img.gem-image src=@jewel.avatar.url(:bigger)
+    - if @jewel.embed_content.present?
+      center: .gem-embed == @jewel.embed_content
+    - else
+      center: a.gem-link target="_blank": img.gem-image src=@jewel.avatar.url(:bigger)
 
   .col-sm-6
     .gem-comments

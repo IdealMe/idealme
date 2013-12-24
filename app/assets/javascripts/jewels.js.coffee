@@ -46,6 +46,7 @@ class Jewels
 
 
   showAddGemModal: ->
+    $('.add-gem-url-input').val('')
     $('.new-gem-modal').modal().one 'shown.bs.modal', ->
       $('.new-gem-modal .add-gem-url-input').focus()
 
@@ -58,22 +59,34 @@ class Jewels
   addGem: ->
     url = $('.add-gem-url-input').val()
     action = document.location.toString() + "/gems"
+
+    #$('.btn-post-gem').html('<i class="icon-spinner"></i>')
+
     $.post(action, {
       url: url
     }).done((data) =>
       @editURL = data.edit_path
       $('.new-gem-modal').modal('hide')
-      $('.edit-gem-modal').modal()
       $('.edit-gem-modal .gem-comments').load(data.comments_path)
       $('.edit-gem-modal .modal-gem-title').text(data.truncated_title)
       $('#gem-title-input').val(data.title)
       $img = $('.edit-gem-modal .gem-image').first()
-      $img.attr('src', data.image)
+      $embed = $('.edit-gem-modal .gem-embed').first()
+      $img.addClass('hidden')
+      $embed.addClass('hidden')
+      if data.embed_content?
+        $embed.html(data.embed_content)
+        $embed.removeClass('hidden')
+      else if data.image?
+        $img.attr('src', data.image)
+        $embed.removeClass('hidden')
 
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
       @editGemTitle() unless data.title.length > 0
+      $('input[type="radio"][value="'+data.kind+'"]').attr('checked', true)
+      $('.edit-gem-modal').modal()
     ).fail((xhr, status, error) ->
       console.debug(xhr.responseText)
 

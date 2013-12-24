@@ -142,19 +142,21 @@ class Jewel < ActiveRecord::Base
       if tweet_media.length > 0
         self.avatar = URI.parse(tweet_media.first.media_url)
       end
-      self.kind = Jewel::TYPES[:link]
+      self.kind = Jewel::TYPES[:other]
     elsif parameters[:service] == :other
       page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
-      self.kind    = Jewel::TYPES[:link]
+      self.kind    = Jewel::TYPES[:other]
+      self.fetch_embed!
     elsif parameters[:service] == :youtube
       page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
-      self.kind    = Jewel::TYPES[:link]
+      self.kind    = Jewel::TYPES[:video]
+      self.fetch_embed!
     elsif parameters[:service] == :idealme
       if parameters[:kind] ==:courses
         self.kind      = Jewel::TYPES[:course]
@@ -170,6 +172,21 @@ class Jewel < ActiveRecord::Base
     self.save!
     self
 
+  end
+
+  def fetch_embed!
+    embedly = Embedly::API.new :key => 'afb72ff295f0459286495f3a2483cea1', :user_agent => 'Mozilla/5.0 (compatible; idealme.com/1.0; info@idealme.com)'
+    obj = embedly.oembed(
+      url: self.url,
+      maxwidth: 525,
+      maxheight: 525,
+    )
+    if obj.first
+      obj = obj.first
+      self.kind    = Jewel::TYPES[:video] if obj.type == "video"
+      self.embed_content = obj.html if obj.type == "video"
+    end
+    
   end
 
   def self.scrub_url(url)
