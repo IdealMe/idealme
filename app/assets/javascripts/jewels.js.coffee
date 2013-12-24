@@ -38,7 +38,6 @@ class Jewels
 
   showGemModal: (evt) ->
     evt.preventDefault()
-    #evt.stopImmediatePropagation()
     $('.new-gem-modal, .edit-gem-modal').modal('hide')
     $link = $(evt.currentTarget)
     $path = $link.attr('href')

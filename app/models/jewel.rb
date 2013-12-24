@@ -59,20 +59,20 @@ class Jewel < ActiveRecord::Base
   scope :for_user, lambda { |user| joins(goal_user_jewel: :goal_user).where(goal_users: {user_id: user.id}) }
 
   scope :filter, lambda { |filter_name| 
-    case filter_name
-    when :all.to_s
+    case filter_name.to_sym
+    when :all
       where(visible: true)
-    when :course.to_s
+    when :course
       where(visible: true, kind: Jewel::TYPES[:course])
-    when :article.to_s
+    when :article
       where(visible: true, kind: Jewel::TYPES[:article])
-    when :video.to_s
+    when :video
       where(visible: true, kind: Jewel::TYPES[:video])
-    when :app.to_s
+    when :app
       where(visible: true, kind: Jewel::TYPES[:app])
-    when :product.to_s
+    when :product
       where(visible: true, kind: Jewel::TYPES[:product])
-    when :saved.to_s
+    when :saved
       where(visible: true)
     end
   }
