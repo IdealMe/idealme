@@ -46,7 +46,8 @@ class Jewels
 
 
   showAddGemModal: ->
-    $('.new-gem-modal').modal()
+    $('.new-gem-modal').modal().one 'shown.bs.modal', ->
+      $('.new-gem-modal .add-gem-url-input').focus()
 
   editGemTitle: ->
     $('.not-editing-title').hide()
