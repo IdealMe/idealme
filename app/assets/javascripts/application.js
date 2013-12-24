@@ -28,6 +28,8 @@
 //= require flowplayer.min
 //= require bootstrap-datepicker
 //= require dropzone
+//= require spin.min
+//= require spinner
 //= require_tree .
 
 
