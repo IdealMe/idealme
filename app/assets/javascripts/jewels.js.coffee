@@ -37,12 +37,12 @@ class Jewels
       target.find('.icon-btn').toggleClass('hidden')
 
   showGemModal: (evt) ->
-    $('.new-gem-modal, .edit-gem-modal').modal('hide')
     evt.preventDefault()
-    evt.stopImmediatePropagation()
+    #evt.stopImmediatePropagation()
+    $('.new-gem-modal, .edit-gem-modal').modal('hide')
     $link = $(evt.currentTarget)
     $path = $link.attr('href')
-    $('.view-gem-modal .modal-content').load($path)
+    $('.view-gem-modal .modal-content').load("#{$path}/modal_content")
     $('.view-gem-modal').modal()
 
 
