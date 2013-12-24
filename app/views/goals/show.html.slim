@@ -3,10 +3,9 @@
     .col-sm-4: .btn.btn-goal.btn-default.pull-left
       = image_tag @goal.avatar.url(:thumb)
       span.goal-name = @goal.name
-      span.picker
-        img.goal-picker-checked.hide alt="Quit goal" src="/assets/users/checkmark-edf3c7dac2055f8ac5429ed14033f459.png"
-      span.picker
-        img.goal-picker-unchecked alt="Add goal to your list" src="/assets/users/plus-c885fd44946c4d768ff402f5eed9452a.png"
+      span.picker data-goal-id=@goal.id
+        = image_tag "users/checkmark.png", class: "picker-btn goal-picker-checked goal-remove-btn #{@goal_user.persisted? ? '':'hidden'}", alt: 'Quit Goal'
+        = image_tag "users/plus.png", class: "picker-btn goal-picker-unchecked goal-add-btn #{@goal_user.persisted? ? 'hidden':''}", alt: 'Add goal to your list'
     .col-sm-4: .center-block: center
       span 
         - if params[:action] == "show"
