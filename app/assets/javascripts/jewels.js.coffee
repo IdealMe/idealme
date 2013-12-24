@@ -32,9 +32,8 @@ class Jewels
     target = $(evt.currentTarget)
     id = target.closest('[data-id]').data('id')
     path = target.closest('a').attr('href')
-    console.debug(id)
     $.post(path).done (response) ->
-      target.find('.icon-btn').toggleClass('hidden')
+      target.find('.icon-btn, .icon').toggleClass('hidden')
 
   showGemModal: (evt) ->
     evt.preventDefault()
