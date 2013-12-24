@@ -60,8 +60,9 @@
           /i.glyphicon.glyphicon-edit
         .col-sm-1.edit-title-icon: i.glyphicon.glyphicon-edit
     .editing-title.hide
-      input#gem-title-input type="text" name="gem-title"
+      input#gem-title-input type="text" name="gem-title" placeholder="Gem name"
   .modal-body
+    p.error.gem-error.hide
     .row: .col-sm-12.edit-gem-type
       ' What kind of gem?
       input type="radio" name="gem-type" value="course" 

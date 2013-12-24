@@ -72,6 +72,7 @@ class Jewels
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
+      @editGemTitle() unless data.title.length > 0
     ).fail((xhr, status, error) ->
       console.debug(xhr.responseText)
 
@@ -97,9 +98,14 @@ class Jewels
       url: putURL
       type: "PUT"
     }).done((data) ->
-      $('.edit-gem-modal').modal('hide')
-      document.location = document.location.toString()
+      if data.success == true
+        $('.edit-gem-modal').modal('hide')
+        #document.location = document.location.toString()
+      else
+        $('.gem-error').removeClass('hide').text(data.error)
+    ).fail(->
     )
+    
 
 
 $ ->

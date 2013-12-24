@@ -45,6 +45,13 @@ describe 'idealme gems', :vcr do
     expect(page.text).to include "What kind of gem?"
 
     find('#gem-comment').set('This page is the greatest')
+    screenshot
+    find('.btn-edit-gem').click
+    sleep 2
+    expect(page.text).to include 'Gem type is missing'
+    screenshot
+
+    find('[value="article"]').click
     find('.btn-edit-gem').click
     sleep 2
     expect(page.text).to include 'wunder'
