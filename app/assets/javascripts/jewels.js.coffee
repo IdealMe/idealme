@@ -60,7 +60,6 @@ class Jewels
     action = document.location.toString() + "/gems"
 
     new IdealmeSpinner().insert $('.btn-post-gem').css('color', 'transparent').first().get()[0]
-    return
 
     $.post(action, {
       url: url
