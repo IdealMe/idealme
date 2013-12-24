@@ -44,7 +44,7 @@ class Jewel < ActiveRecord::Base
   end
   has_attached_file :avatar,
                     storage: storage,
-                    styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525#'},
+                    styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525'},
                     convert_options: {
                         full: '-gravity center -extent 229x201 -quality 75 -strip',
                         bigger: '-gravity center -extent 525x525 -quality 75 -strip',
@@ -147,7 +147,11 @@ class Jewel < ActiveRecord::Base
       page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
-      self.avatar  = URI.parse(page.image) if page.image
+      if page.image
+        self.avatar  = URI.parse(page.image)
+      elsif !page.images.empty?
+        self.avatar  = URI.parse(page.images.first)
+      end
       self.kind    = Jewel::TYPES[:other]
       self.fetch_embed!
     elsif parameters[:service] == :youtube

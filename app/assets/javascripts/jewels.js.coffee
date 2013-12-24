@@ -78,7 +78,7 @@ class Jewels
         $embed.removeClass('hidden')
       else if data.image?
         $img.attr('src', data.image)
-        $embed.removeClass('hidden')
+        $img.removeClass('hidden')
 
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
