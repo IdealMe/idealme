@@ -85,3 +85,10 @@
     .row: .col-sm-12.create-gem
       button.btn.btn-red.btn-edit-gem CREATE GEM
 
+- if @open_gem
+  script
+    ' $(function() {
+    '   var $path = "#{@open_gem}";
+    '   $('.view-gem-modal .modal-content').load($path + "/modal_content");
+    '   $('.view-gem-modal').modal();
+    ' })

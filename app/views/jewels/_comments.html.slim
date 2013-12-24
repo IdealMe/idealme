@@ -16,11 +16,12 @@
               .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(comment, current_user)
                 i.icon-thumbs-down
                 span.vote-count.downvote-total = comment.down_votes
-  .jewel-comment
-    .row
-      .thumb = image_tag current_user.avatar(:thumb), class: 'user-avatar'
-      .comment-content
-        p Why this is awesome:
-        input#gem-comment type="text" name="gem-comment"
+  - if current_user
+    .jewel-comment
+      .row
+        .thumb = image_tag current_user.avatar(:thumb), class: 'user-avatar'
+        .comment-content
+          p Why this is awesome:
+          input#gem-comment type="text" name="gem-comment"
 
 

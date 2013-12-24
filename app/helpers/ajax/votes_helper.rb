@@ -1,7 +1,7 @@
 module Ajax::VotesHelper
 
   def downvoted?(instance, user)
-    if instance.down_voted?(user)
+    if user && instance.down_voted?(user) 
       1
     else
       0
@@ -9,7 +9,7 @@ module Ajax::VotesHelper
   end
 
   def upvoted?(instance, user)
-    if instance.up_voted?(user)
+    if user && instance.up_voted?(user)
       1
     else
       0

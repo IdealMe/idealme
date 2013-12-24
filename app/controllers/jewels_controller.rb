@@ -17,6 +17,19 @@ class JewelsController < ApplicationController
           comments_path: comments_goal_gem_path(@jewel.linked_goal, @jewel),
         }
       }
+      format.html {
+        #redirect_to goal_path(@jewel.linked_goal, gem: @jewel.slug)
+        if current_user
+          @goal_user = GoalUser.find_or_initialize_by(user: current_user, goal: @jewel.linked_goal)
+        else
+          @goal_user = GoalUser.find_or_initialize_by(goal: @jewel.linked_goal)
+        end
+
+        @goal = @goal_user.goal
+        @jewels = @goal.jewels.filter(:all)
+        @open_gem = goal_gem_path(@jewel.linked_goal, @jewel)
+        render "goals/show"
+      }
     end
   end
 

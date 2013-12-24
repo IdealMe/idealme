@@ -13,7 +13,7 @@
         i.icon-comment-alt
         span.comment-count = jewel.comments.count
   a.box.save-link href=save_goal_gem_path(goal_id: jewel.goal_id, id: jewel.slug)
-    - if jewel.saved_by current_user
+    - if current_user && jewel.saved_by(current_user)
       .icon-btn.unsave-link-icon: i.icon-ok
       .icon-btn.save-link-icon.hidden: i.icon-plus
     - else
