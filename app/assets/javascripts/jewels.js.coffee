@@ -100,7 +100,7 @@ class Jewels
     }).done((data) ->
       if data.success == true
         $('.edit-gem-modal').modal('hide')
-        #document.location = document.location.toString()
+        document.location = document.location.toString()
       else
         $('.gem-error').removeClass('hide').text(data.error)
     ).fail(->
