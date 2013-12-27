@@ -29,7 +29,23 @@
   .gem-grid
     = render partial: "jewels/jewel", collection: @jewels
 
-.view-gem-modal.modal.fade: .modal-dialog: .modal-content
+.view-gem-modal.modal.fade
+  div#gem-carousel.carousel.slide data-ride="xcarousel"
+    .carousel-inner
+      .item
+        .modal-dialog
+          .gem-1.modal-content
+      .item.active
+        .modal-dialog
+          .gem-2.modal-content
+      .item
+        .modal-dialog
+          .gem-3.modal-content
+
+    a.left.carousel-control data-slide="prev" href="#gem-carousel"
+      span.glyphicon.glyphicon-chevron-left
+    a.right.carousel-control data-slide="next" href="#gem-carousel"
+      span.glyphicon.glyphicon-chevron-right
 
 .new-gem-modal.modal.fade: .modal-dialog: .modal-content
   .modal-header

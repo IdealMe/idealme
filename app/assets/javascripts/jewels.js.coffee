@@ -40,7 +40,12 @@ class Jewels
     $('.new-gem-modal, .edit-gem-modal').modal('hide')
     $link = $(evt.currentTarget)
     $path = $link.attr('href')
-    $('.view-gem-modal .modal-content').load("#{$path}/modal_content")
+    $next_path = "#{$path}&rel=next"
+    $previous_path = "#{$path}&rel=prev"
+    $('.view-gem-modal .modal-content').empty()
+    $('.view-gem-modal .gem-2.modal-content').load("#{$path}")
+    $('.view-gem-modal .gem-3.modal-content').load("#{$next_path}")
+    $('.view-gem-modal .gem-1.modal-content').load("#{$previous_path}")
     $('.view-gem-modal').modal()
 
 

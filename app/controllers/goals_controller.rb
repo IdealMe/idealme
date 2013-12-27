@@ -31,6 +31,7 @@ class GoalsController < ApplicationController
   def show
     #@jewels = @goal.jewels.where(visible: true)
     @jewels = @goal.jewels.filter(:all)
+    @filter_name = "all"
   end
 
   def filter
@@ -40,6 +41,7 @@ class GoalsController < ApplicationController
       @jewels = @goal.jewels.filter(params[:filter_name])
     end
     @jewels.order('up_votes DESC')
+    @filter_name = params[:filter_name]
     render :show
   end
 
