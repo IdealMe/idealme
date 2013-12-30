@@ -43,10 +43,35 @@ class Jewels
     $next_path = "#{$path}&rel=next"
     $previous_path = "#{$path}&rel=prev"
     $('.view-gem-modal .modal-content').empty()
-    $('.view-gem-modal .gem-2.modal-content').load("#{$path}")
-    $('.view-gem-modal .gem-3.modal-content').load("#{$next_path}")
-    $('.view-gem-modal .gem-1.modal-content').load("#{$previous_path}")
+    $('.view-gem-modal .modal-content').load("#{$path}")
+    #$('.view-gem-modal .gem-2.modal-content').load("#{$next_path}")
+    #$('.view-gem-modal .gem-1.modal-content').load("#{$previous_path}")
     $('.view-gem-modal').modal()
+    $('.carousel-control').on 'click', @slideGemModal.bind(@)
+
+  slideGemModal: (evt) ->
+    evt.preventDefault()
+    evt.stopImmediatePropagation()
+    $header = $('.view-gem-modal .modal-header')
+    $content = $('.view-gem-modal .modal-content')
+    $path = $header.data('href')
+
+    if ($(evt.currentTarget).hasClass('left'))
+      $next_path = "#{$path}&rel=prev"
+    else
+      $next_path = "#{$path}&rel=next"
+    $.ajax({
+      url: $next_path
+      context: @
+      success: (content) ->
+        $content.fadeOut
+          complete: ->
+            $content.empty()
+            $content.html(content)
+            $content.fadeIn()
+      error: (xhr, status, error) ->
+        $('.view-gem-modal').modal('hide')
+    })
 
 
   showAddGemModal: ->

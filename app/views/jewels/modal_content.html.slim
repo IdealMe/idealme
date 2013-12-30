@@ -1,4 +1,4 @@
-.modal-header
+.modal-header data-href=modal_content_goal_gem_path(@jewel.linked_goal, @jewel, filter: @filter_name)
   button.close aria-hidden="true" &times;
   h4.modal-title = @jewel.name.truncate(50)
   .gem-submitter-and-vote-controls

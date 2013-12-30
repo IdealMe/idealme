@@ -5,7 +5,6 @@ class JewelsController < ApplicationController
   end
 
   def show
-
     @jewel = Jewel.find(params[:id])
     respond_to do |format|
       format.json {
@@ -51,16 +50,25 @@ class JewelsController < ApplicationController
   end
 
   def modal_content
+    @filter_name = params[:filter]
+    jewels = @goal.jewels.filter(params[:filter]).to_a
+    ref = jewels.detect{|jewel| jewel.slug == params[:id] }
     if params[:rel] == "next"
-      jewels = @goal.jewels.filter(params[:filter]).to_a
-      ref = jewels.detect{|jewel| jewel.slug == params[:id] }
       @jewel = jewels.fetch(jewels.index(ref)+1,nil)
     elsif params[:rel] == "prev"
-      jewels = @goal.jewels.filter(params[:filter]).to_a
-      ref = jewels.detect{|jewel| jewel.slug == params[:id] }
       @jewel = jewels.fetch(jewels.index(ref)-1,nil)
     else
       @jewel = Jewel.find(params[:id])
+    end
+    if @jewel.nil?
+      if params[:rel] == "next"
+        @jewel = jewels.first
+      elsif params[:rel] == "prev"
+        @jewel = jewels.last
+      else
+        @jewel = Jewel.find(params[:id])
+      end
+
     end
     render layout: nil
   end
