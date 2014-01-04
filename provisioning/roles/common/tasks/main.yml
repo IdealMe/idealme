@@ -1,0 +1,24 @@
+---
+## Install Oh-my-zsh
+
+- name: Install git and zsh 
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+   - git
+   - zsh
+   - git-core
+   - tmux
+
+- name: Clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh
+
+- copy: src=.zshrc dest=/home/$user/.zshrc owner=$user
+- copy: src=aliases.sh dest=/home/$user/.oh-my-zsh/custom/aliases.sh owner=$user
+- copy: src=cwilkins.zsh-theme dest=/home/$user/.oh-my-zsh/custom/cwilkins.zsh-theme owner=$user
+- copy: src=functions.sh dest=/home/$user/.oh-my-zsh/custom/functions.sh owner=$user
+
+- name: Set zsh as default shell
+  user: name={{ user }} shell=/bin/zsh
+
+- include: ruby.yml tags=ruby
+- include: gems.yml tags=gems

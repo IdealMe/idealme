@@ -1,0 +1,8 @@
+
+#- include: apt.yml tags=sidekiq
+  #sudo: yes
+  #sudo_user: root
+
+- include: postgresql.yml tags=postgres
+  sudo: yes
+  sudo_user: postgres

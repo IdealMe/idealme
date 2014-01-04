@@ -1,0 +1,13 @@
+---
+- hosts: all
+  user: vagrant
+  vars_files:
+    - vars/defaults.yml
+    
+  roles:
+    - common
+    - webserver
+    - database
+    - sidekiq
+
+
