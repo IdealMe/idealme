@@ -165,7 +165,7 @@ gem 'uglifier'
 gem 'jquery-ui-rails'
 
 #Integrate Compass into Rails 2.3 and up.
-gem "compass-rails", "~> 2.0.alpha.0"
+gem "compass-rails"
 # gem 'font-awesome-rails' # old
 gem 'font-awesome-sass-rails' # new
 # gem 'turbo-sprockets-rails3', git: 'https://github.com/spohlenz/turbo-sprockets-rails3.git'
@@ -226,8 +226,8 @@ group :development, :test do
   gem 'growl-rspec'
   gem 'growl'
   gem 'rspec-rails'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_girl', require: false
+  gem 'factory_girl_rails', require: false
   gem 'capybara'
   gem 'launchy'
   gem 'selenium-webdriver'
