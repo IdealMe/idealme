@@ -267,6 +267,9 @@ class User < ActiveRecord::Base
     list = aweber.account.lists.find_by_name('idealmeoptin')
     subscriber = {"email" => self.email}
     list.subscribers.create(subscriber)
+    self.update_attribute :added_to_aweber, true
+  rescue AWeber::CreationError => e
+    Rails.logger.info "Failed to add #{self.email} to aweber mailing list"
   end
 
 end

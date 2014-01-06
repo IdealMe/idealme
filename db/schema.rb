@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131224191931) do
+ActiveRecord::Schema.define(version: 20140106233158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -670,6 +670,7 @@ ActiveRecord::Schema.define(version: 20131224191931) do
     t.datetime "updated_at",                                                   null: false
     t.boolean  "fake",                         default: false
     t.boolean  "welcome_message_dismissed",    default: false
+    t.boolean  "added_to_aweber"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
