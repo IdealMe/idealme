@@ -147,6 +147,7 @@ gem 'typhoeus'
 gem 'slim'
 gem 'haml2slim'
 
+gem 'aweber'
 
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
@@ -181,8 +182,8 @@ group :test do
 end
 
 group :development do
-  gem 'spring'
-  gem "spring-commands-rspec"
+  #gem 'spring'
+  #gem "spring-commands-rspec"
   gem 'quiet_assets'
   #gem 'sprockets_better_errors'
 

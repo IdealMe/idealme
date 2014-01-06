@@ -81,6 +81,9 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
+    aweber (1.6.1)
+      json
+      oauth
     awesome_print (1.2.0)
     aws-sdk (1.26.0)
       json (~> 1.4)
@@ -486,9 +489,6 @@ GEM
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     slop (3.4.7)
-    spring (1.0.0)
-    spring-commands-rspec (1.0.1)
-      spring (>= 0.9.1)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -563,6 +563,7 @@ DEPENDENCIES
   activeresource (~> 4.0.0.beta1)
   acts_as_list
   anjlab-bootstrap-rails!
+  aweber
   awesome_print
   aws-sdk (~> 1.26.0)
   brakeman
@@ -634,8 +635,6 @@ DEPENDENCIES
   sidekiq
   simple_form!
   slim
-  spring
-  spring-commands-rspec
   stripe
   therubyracer
   thin

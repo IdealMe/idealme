@@ -163,6 +163,8 @@ class User < ActiveRecord::Base
     end
 
     # send welcome email?
+    # add to aweber
+    self.add_to_aweber!
   end
 
   def unsubscribe_goal(goal)
@@ -222,7 +224,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  # new function to set the password without knowing the current password used in our confirmation controller. 
+  # new function to set the password without knowing the current password used in our confirmation controller.
   def attempt_set_password(params)
     p = {}
     p[:password] = params[:password]
@@ -241,11 +243,30 @@ class User < ActiveRecord::Base
 
   def password_required?
     # Password is required if it is being set, but not for new records
-    if !persisted? 
+    if !persisted?
       false
     else
       !password.nil? || !password_confirmation.nil?
     end
+  end
+
+  def aweber
+    if @aweber
+      @aweber
+    else
+      require 'aweber'
+      oauth = AWeber::OAuth.new(ENV['AWEBER_CONSUMER_KEY'], ENV['AWEBER_CONSUMER_SECRET'])
+      #Rather than authorizing with the verification code, we use the token and secret
+      oauth.authorize_with_access(ENV['AWEBER_TOKEN'], ENV['AWEBER_SECRET'])
+      @aweber = AWeber::Base.new(oauth)
+    end
+  end
+
+  def add_to_aweber!
+    return unless Rails.env.production?
+    list = aweber.account.lists.find_by_name('idealmeoptin')
+    subscriber = {email: self.email}
+    list.subscribers.create(subscriber)
   end
 
 end
