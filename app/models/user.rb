@@ -265,7 +265,7 @@ class User < ActiveRecord::Base
   def add_to_aweber!
     return unless Rails.env.production?
     list = aweber.account.lists.find_by_name('idealmeoptin')
-    subscriber = {email: self.email}
+    subscriber = {"email" => self.email}
     list.subscribers.create(subscriber)
   end
 
