@@ -21,6 +21,16 @@ describe 'idealme gems', :vcr do
     expect(page.text).to include 'The Wind Waker'
   end
 
+  it 'lets users save gems', js: true, vcr: true do
+    jewel.fetch!
+    jewel.update_attribute :visible, true
+    visit goal_path(goal)
+    screenshot
+    find('.save-link').click
+    sleep 1
+    expect(user.jewels.length).to eq 1
+  end
+
   it 'lets users create new gems', js: true, vcr: true do
     visit goal_path(goal)
     find('.btn-new-gem').click
@@ -35,12 +45,19 @@ describe 'idealme gems', :vcr do
     expect(page.text).to include "What kind of gem?"
 
     find('#gem-comment').set('This page is the greatest')
+    screenshot
     find('.btn-edit-gem').click
     sleep 2
-    expect(page.text).to include 'wunder'
+    expect(page.text).to include 'Gem type is missing'
+    screenshot
 
-    find('.gem-card > .view-gem-link[data-jewel-id="' + Jewel.last.slug + '"]').click
+    find('[value="article"]').click
+    find('.btn-edit-gem').click
     sleep 2
+    find('.gem-card > .view-gem-link[data-jewel-id="' + Jewel.last.slug + '"]').click
+
+    sleep 2
+    screenshot
     expect(page.text).to include 'This page is the greatest'
 
   end

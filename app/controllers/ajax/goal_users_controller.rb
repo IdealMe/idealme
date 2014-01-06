@@ -16,15 +16,15 @@ class Ajax::GoalUsersController < Ajax::BaseController
     head :ok
   end
 
-  def add_goal
-    @goal_user = GoalUser.find_or_create_by(user: current_user, goal_id: params[:goal_id])
-    render json: { success: true }
-  end
-
-  def remove_goal
-    @goal_user = GoalUser.where(user: current_user, goal_id: params[:goal_id]).first
-    @goal_user.destroy if @goal_user
-    render json: { success: true }
+  def toggle_goal
+    @goal_user = GoalUser.find_or_initialize_by(user: current_user, goal_id: params[:goal_id])
+    if @goal_user.persisted?
+      GoalUser.where(user: current_user, goal: @goal_user.goal).destroy_all
+      render json: { success: true, status: 'destroyed' }
+    else
+      @goal_user.save
+      render json: { success: true, status: 'created' }
+    end
   end
 
 end

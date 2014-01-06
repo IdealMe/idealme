@@ -1,26 +1,13 @@
 class Goals
   constructor: ->
-    $(document).on 'click', '.goal-add-btn', @addGoal.bind(@)
-    $(document).on 'click', '.goal-remove-btn', @removeGoal.bind(@)
+    $(document).on 'click', '.picker-btn', @toggleGoal.bind(@)
 
-  addGoal: (evt) ->
+  toggleGoal: (evt) ->
     btn = $(evt.currentTarget)
-    gid = btn.data('goal-id')
-    $.post("/ajax/goal_users/add_goal", {goal_id: gid}).done =>
-      btn
-        .removeClass('goal-add-btn')
-        .addClass('goal-remove-btn')
-        .text('Remove')
-
-
-  removeGoal: (evt) ->
-    btn = $(evt.currentTarget)
-    gid = btn.data('goal-id')
-    $.post("/ajax/goal_users/remove_goal", {goal_id: gid}).done =>
-      btn
-        .removeClass('goal-remove-btn')
-        .addClass('goal-add-btn')
-        .text('Add')
-
+    picker = btn.closest('.picker')
+    btns = picker.find('.picker-btn')
+    gid = picker.data('goal-id')
+    $.post("/ajax/goal_users/toggle_goal", {goal_id: gid}).done =>
+      btns.toggleClass('hidden')
 
 new Goals

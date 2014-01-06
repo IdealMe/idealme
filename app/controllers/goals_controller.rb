@@ -30,7 +30,8 @@ class GoalsController < ApplicationController
   # GET /goals/1
   def show
     #@jewels = @goal.jewels.where(visible: true)
-    @jewels = @goal.jewels.filter(:all)
+    @jewels = @goal.jewels.filter(:all).order("up_votes DESC")
+    @filter_name = "all"
   end
 
   def filter
@@ -39,6 +40,8 @@ class GoalsController < ApplicationController
     else
       @jewels = @goal.jewels.filter(params[:filter_name])
     end
+    @jewels.order('up_votes DESC')
+    @filter_name = params[:filter_name]
     render :show
   end
 

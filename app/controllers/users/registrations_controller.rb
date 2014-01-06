@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in @user, :bypass => true
       redirect_to after_update_path_for(@user)
     else
-      if account_update_params[:password].blank? 
+      if account_update_params[:password].blank?
         render "edit"
       else
         render "edit_password"
@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    user_welcome_path(resource)
+    user_welcome_path
   end
 
   def auth_options

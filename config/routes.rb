@@ -45,6 +45,7 @@ Idealme::Application.routes.draw do
         put "" => 'jewels#update'
         get :comments
         get :modal_content
+        post :save
       end
     end
     member do
@@ -135,8 +136,7 @@ Idealme::Application.routes.draw do
       collection do
         post 'set_privacy' => 'goal_users#set_privacy'
         post 'set_order' => 'goal_users#set_order'
-        post 'add_goal' => 'goal_users#add_goal'
-        post 'remove_goal' => 'goal_users#remove_goal'
+        post 'toggle_goal' => 'goal_users#toggle_goal'
       end
     end
     resources :votes, only: [], defaults: {format: :json} do
@@ -200,7 +200,8 @@ Idealme::Application.routes.draw do
       get ':id/edit_password' => 'users/registrations#edit_password', as: :user_edit_password
 
       # Signup flow
-      get ':id/welcome' => 'users#welcome', as: :user_welcome
+      #get ':id/welcome' => 'users#welcome', as: :user_welcome
+      get 'user/welcome' => 'users#welcome', as: :user_welcome
       post ':id/welcome' => 'users#welcome_save'
       post ':id/dismiss-welcome-message' => 'users#dismiss_welcome_message'
       # Signup flow

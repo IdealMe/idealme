@@ -122,6 +122,8 @@ gem 'cloudfront-signer'
 #MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
 gem 'metainspector'
 
+gem 'embedly'
+
 #Active Merchant is a simple payment abstraction library used in and sponsored by Shopify.
 gem 'activemerchant'
 #gem 'stripe'
@@ -145,6 +147,7 @@ gem 'typhoeus'
 gem 'slim'
 gem 'haml2slim'
 
+gem 'aweber'
 
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
@@ -163,7 +166,7 @@ gem 'uglifier'
 gem 'jquery-ui-rails'
 
 #Integrate Compass into Rails 2.3 and up.
-gem "compass-rails", "~> 2.0.alpha.0"
+gem "compass-rails"
 # gem 'font-awesome-rails' # old
 gem 'font-awesome-sass-rails' # new
 # gem 'turbo-sprockets-rails3', git: 'https://github.com/spohlenz/turbo-sprockets-rails3.git'
@@ -179,8 +182,8 @@ group :test do
 end
 
 group :development do
-  gem 'spring'
-  gem "spring-commands-rspec"
+  #gem 'spring'
+  #gem "spring-commands-rspec"
   gem 'quiet_assets'
   #gem 'sprockets_better_errors'
 
@@ -224,8 +227,8 @@ group :development, :test do
   gem 'growl-rspec'
   gem 'growl'
   gem 'rspec-rails'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_girl', require: false
+  gem 'factory_girl_rails', require: false
   gem 'capybara'
   gem 'launchy'
   gem 'selenium-webdriver'

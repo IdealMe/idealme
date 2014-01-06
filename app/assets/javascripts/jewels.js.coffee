@@ -6,6 +6,7 @@ class Jewels
     $(document).on 'click', '.btn-post-gem', @addGem.bind(@)
     $(document).on 'click', '.modal-gem-title, .edit-title-icon', @editGemTitle.bind(@)
     $(document).on 'click', '.view-gem-link', @showGemModal.bind(@)
+    $(document).on 'click', '.save-link', @saveGem.bind(@)
 
     $(document).on 'keypress', '.add-gem-url-input', (evt) =>
       @addGem() if evt.keyCode == 13
@@ -25,18 +26,58 @@ class Jewels
       @addGem.apply(@)
     ), 500)
 
-  showGemModal: (evt) ->
-    $('.new-gem-modal, .edit-gem-modal').modal('hide')
+  saveGem: (evt) ->
     evt.preventDefault()
-    evt.stopImmediatePropagation()
+
+    target = $(evt.currentTarget)
+    id = target.closest('[data-id]').data('id')
+    path = target.closest('a').attr('href')
+    $.post(path).done (response) ->
+      target.find('.icon-btn, .icon').toggleClass('hidden')
+
+  showGemModal: (evt) ->
+    evt.preventDefault()
+    $('.new-gem-modal, .edit-gem-modal').modal('hide')
     $link = $(evt.currentTarget)
     $path = $link.attr('href')
-    $('.view-gem-modal .modal-content').load($path)
+    $next_path = "#{$path}&rel=next"
+    $previous_path = "#{$path}&rel=prev"
+    $('.view-gem-modal .modal-content').empty()
+    $('.view-gem-modal .modal-content').load("#{$path}")
+    #$('.view-gem-modal .gem-2.modal-content').load("#{$next_path}")
+    #$('.view-gem-modal .gem-1.modal-content').load("#{$previous_path}")
     $('.view-gem-modal').modal()
+    $('.carousel-control').on 'click', @slideGemModal.bind(@)
+
+  slideGemModal: (evt) ->
+    evt.preventDefault()
+    evt.stopImmediatePropagation()
+    $header = $('.view-gem-modal .modal-header')
+    $content = $('.view-gem-modal .modal-content')
+    $path = $header.data('href')
+
+    if ($(evt.currentTarget).hasClass('left'))
+      $next_path = "#{$path}&rel=prev"
+    else
+      $next_path = "#{$path}&rel=next"
+    $.ajax({
+      url: $next_path
+      context: @
+      success: (content) ->
+        $content.fadeOut
+          complete: ->
+            $content.empty()
+            $content.html(content)
+            $content.fadeIn()
+      error: (xhr, status, error) ->
+        $('.view-gem-modal').modal('hide')
+    })
 
 
   showAddGemModal: ->
-    $('.new-gem-modal').modal()
+    $('.add-gem-url-input').val('')
+    $('.new-gem-modal').modal().one 'shown.bs.modal', ->
+      $('.new-gem-modal .add-gem-url-input').focus()
 
   editGemTitle: ->
     $('.not-editing-title').hide()
@@ -47,21 +88,34 @@ class Jewels
   addGem: ->
     url = $('.add-gem-url-input').val()
     action = document.location.toString() + "/gems"
+
+    new IdealmeSpinner().insert $('.btn-post-gem').css('color', 'transparent').first().get()[0]
+
     $.post(action, {
       url: url
     }).done((data) =>
       @editURL = data.edit_path
       $('.new-gem-modal').modal('hide')
-      $('.edit-gem-modal').modal()
       $('.edit-gem-modal .gem-comments').load(data.comments_path)
       $('.edit-gem-modal .modal-gem-title').text(data.truncated_title)
       $('#gem-title-input').val(data.title)
       $img = $('.edit-gem-modal .gem-image').first()
-      $img.attr('src', data.image)
+      $embed = $('.edit-gem-modal .gem-embed').first()
+      $img.addClass('hidden')
+      $embed.addClass('hidden')
+      if data.embed_content?
+        $embed.html(data.embed_content)
+        $embed.removeClass('hidden')
+      else if data.image?
+        $img.attr('src', data.image)
+        $img.removeClass('hidden')
 
       $link = $('.edit-gem-modal .gem-link').first()
       $link.attr('href', data.url)
       $link.text(data.truncated_url)
+      @editGemTitle() unless data.title.length > 0
+      $('input[type="radio"][value="'+data.kind+'"]').attr('checked', true)
+      $('.edit-gem-modal').modal()
     ).fail((xhr, status, error) ->
       console.debug(xhr.responseText)
 
@@ -87,9 +141,14 @@ class Jewels
       url: putURL
       type: "PUT"
     }).done((data) ->
-      $('.edit-gem-modal').modal('hide')
-      document.location = document.location.toString()
+      if data.success == true
+        $('.edit-gem-modal').modal('hide')
+        document.location = document.location.toString()
+      else
+        $('.gem-error').removeClass('hide').text(data.error)
+    ).fail(->
     )
+    
 
 
 $ ->

@@ -44,7 +44,7 @@ class Jewel < ActiveRecord::Base
   end
   has_attached_file :avatar,
                     storage: storage,
-                    styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525#'},
+                    styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525'},
                     convert_options: {
                         full: '-gravity center -extent 229x201 -quality 75 -strip',
                         bigger: '-gravity center -extent 525x525 -quality 75 -strip',
@@ -59,20 +59,20 @@ class Jewel < ActiveRecord::Base
   scope :for_user, lambda { |user| joins(goal_user_jewel: :goal_user).where(goal_users: {user_id: user.id}) }
 
   scope :filter, lambda { |filter_name| 
-    case filter_name
-    when :all.to_s
+    case filter_name.to_sym
+    when :all
       where(visible: true)
-    when :course.to_s
+    when :course
       where(visible: true, kind: Jewel::TYPES[:course])
-    when :article.to_s
+    when :article
       where(visible: true, kind: Jewel::TYPES[:article])
-    when :video.to_s
+    when :video
       where(visible: true, kind: Jewel::TYPES[:video])
-    when :app.to_s
+    when :app
       where(visible: true, kind: Jewel::TYPES[:app])
-    when :product.to_s
+    when :product
       where(visible: true, kind: Jewel::TYPES[:product])
-    when :saved.to_s
+    when :saved
       where(visible: true)
     end
   }
@@ -142,19 +142,25 @@ class Jewel < ActiveRecord::Base
       if tweet_media.length > 0
         self.avatar = URI.parse(tweet_media.first.media_url)
       end
-      self.kind = Jewel::TYPES[:link]
+      self.kind = Jewel::TYPES[:other]
     elsif parameters[:service] == :other
       page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
-      self.avatar  = URI.parse(page.image) if page.image
-      self.kind    = Jewel::TYPES[:link]
+      if page.image
+        self.avatar  = URI.parse(page.image)
+      elsif !page.images.empty?
+        self.avatar  = URI.parse(page.images.first)
+      end
+      self.kind    = Jewel::TYPES[:other]
+      self.fetch_embed!
     elsif parameters[:service] == :youtube
       page        = MetaInspector.new(url, :allow_redirections => :safe)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
-      self.kind    = Jewel::TYPES[:link]
+      self.kind    = Jewel::TYPES[:video]
+      self.fetch_embed!
     elsif parameters[:service] == :idealme
       if parameters[:kind] ==:courses
         self.kind      = Jewel::TYPES[:course]
@@ -172,6 +178,21 @@ class Jewel < ActiveRecord::Base
 
   end
 
+  def fetch_embed!
+    embedly = Embedly::API.new :key => 'afb72ff295f0459286495f3a2483cea1', :user_agent => 'Mozilla/5.0 (compatible; idealme.com/1.0; info@idealme.com)'
+    obj = embedly.oembed(
+      url: self.url,
+      maxwidth: 525,
+      maxheight: 525,
+    )
+    if obj.first
+      obj = obj.first
+      self.kind    = Jewel::TYPES[:video] if obj.type == "video"
+      self.embed_content = obj.html if obj.type == "video"
+    end
+    
+  end
+
   def self.scrub_url(url)
     scrub = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
     uri = URI(url)
@@ -186,6 +207,10 @@ class Jewel < ActiveRecord::Base
 
   def scrub_url
     self.url = Jewel.scrub_url(self.url)
+  end
+
+  def saved_by(user)
+    SavedJewel.where(user: user, jewel: self).exists?
   end
 
   def inspect_and_set_meta

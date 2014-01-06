@@ -1,5 +1,5 @@
 .gem-card
-  = link_to modal_content_goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.slug do
+  = link_to modal_content_goal_gem_path(jewel.linked_goal, jewel, filter: @filter_name), :class => 'view-gem-link', 'data-jewel-id' => jewel.slug do
     .avatar
       - if jewel.avatar.present?
         = image_tag jewel.avatar.url(:full)

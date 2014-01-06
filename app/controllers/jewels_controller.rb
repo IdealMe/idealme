@@ -17,6 +17,30 @@ class JewelsController < ApplicationController
           comments_path: comments_goal_gem_path(@jewel.linked_goal, @jewel),
         }
       }
+      format.html {
+        #redirect_to goal_path(@jewel.linked_goal, gem: @jewel.slug)
+        if current_user
+          @goal_user = GoalUser.find_or_initialize_by(user: current_user, goal: @jewel.linked_goal)
+        else
+          @goal_user = GoalUser.find_or_initialize_by(goal: @jewel.linked_goal)
+        end
+
+        @goal = @goal_user.goal
+        @jewels = @goal.jewels.filter(:all)
+        @open_gem = goal_gem_path(@jewel.linked_goal, @jewel)
+        render "goals/show"
+      }
+    end
+  end
+
+  def save
+    @jewel = Jewel.find(params[:id])
+    if SavedJewel.where(jewel: @jewel, user: current_user).exists?
+      SavedJewel.where(jewel: @jewel, user: current_user).destroy_all
+      render json: { status: :destroyed }
+    else
+      SavedJewel.create(jewel: @jewel, user: current_user)
+      render json: { status: :created }
     end
   end
 
@@ -26,7 +50,26 @@ class JewelsController < ApplicationController
   end
 
   def modal_content
-    @jewel = Jewel.find(params[:id])
+    @filter_name = params[:filter]
+    jewels = @goal.jewels.filter(params[:filter]).to_a
+    ref = jewels.detect{|jewel| jewel.slug == params[:id] }
+    if params[:rel] == "next"
+      @jewel = jewels.fetch(jewels.index(ref)+1,nil)
+    elsif params[:rel] == "prev"
+      @jewel = jewels.fetch(jewels.index(ref)-1,nil)
+    else
+      @jewel = Jewel.find(params[:id])
+    end
+    if @jewel.nil?
+      if params[:rel] == "next"
+        @jewel = jewels.first
+      elsif params[:rel] == "prev"
+        @jewel = jewels.last
+      else
+        @jewel = Jewel.find(params[:id])
+      end
+
+    end
     render layout: nil
   end
 
@@ -41,6 +84,8 @@ class JewelsController < ApplicationController
       truncated_title: jewel.name.try(:truncate, 50),
       edit_path: goal_gem_path(@goal, jewel),
       comments_path: comments_goal_gem_path(@goal, jewel),
+      embed_content: jewel.embed_content,
+      kind: Jewel::TYPES.invert[jewel.kind]
     }
   rescue ActionController::ParameterMissing => e
     render json: {error: "Missing url"}, status: 500
@@ -49,10 +94,20 @@ class JewelsController < ApplicationController
   end
 
   def update
+    unless params["gemType"].present?
+      render json: { success: false, error: "Gem type is missing" }
+      return
+    end
+    unless params["title"].present?
+      render json: { success: false, error: "Gem title is missing" }
+      return
+    end
     jewel = Jewel.where(owner: current_user, slug: params[:id]).first
     jewel.name = params["title"]
+
     jewel.kind = Jewel::TYPES[params["gemType"]]
     jewel.visible = true
+    jewel.slug = nil
     jewel.save!
 
     # add comment to jewel if present
@@ -61,7 +116,7 @@ class JewelsController < ApplicationController
       comment = jewel.comments.build(owner: current_user, content: comment_content)
       comment.save!
     end
-    head :ok
+    render json: { success: true }
   end
 
   protected

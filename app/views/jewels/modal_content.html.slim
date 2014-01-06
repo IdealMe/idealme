@@ -1,17 +1,22 @@
-.modal-header
+.modal-header data-href=modal_content_goal_gem_path(@jewel.linked_goal, @jewel, filter: @filter_name)
   button.close aria-hidden="true" &times;
   h4.modal-title = @jewel.name.truncate(50)
   .gem-submitter-and-vote-controls
-  .boxes.vote-controls
+  .boxes.vote-controls data-id=@jewel.id data-type=@jewel.class
     .box.btn.btn-default
-      .icon-btn
-        i.icon-plus
+      a href="#{save_goal_gem_path(@jewel.linked_goal, @jewel)}": .icon-btn.save-link
+        - if current_user && @jewel.saved_by(current_user)
+          i.icon.icon-plus.hidden
+          i.icon.icon-ok
+        - else
+          i.icon.icon-plus
+          i.icon.icon-ok.hidden
     .box.btn.btn-default
-      .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
+      .icon-btn.upvote-icon-btn.like data-voted=upvoted?(@jewel, current_user)
         i.icon-thumbs-up
         span.vote-count.upvote-total = @jewel.up_votes
     .box.btn.btn-default
-      .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@jewel, current_user) data-id=@jewel.id data-type=@jewel.class
+      .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(@jewel, current_user)
         i.icon-thumbs-down
         span.vote-count.downvote-total = @jewel.down_votes
     span.submitter #{@jewel.owner.fullname} shared this | 1 of 123 gems
@@ -19,7 +24,10 @@
     span.gem-count.pull-left
 .modal-body: .row
   .col-sm-6.gem-image-container
-    center: a.gem-link target="_blank": img.gem-image src=@jewel.avatar.url(:bigger)
+    - if @jewel.embed_content.present?
+      center: .gem-embed == @jewel.embed_content
+    - else
+      center: a.gem-link target="_blank": img.gem-image src=@jewel.avatar.url(:bigger)
 
   .col-sm-6
     .gem-comments

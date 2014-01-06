@@ -3,13 +3,15 @@
     .col-sm-4: .btn.btn-goal.btn-default.pull-left
       = image_tag @goal.avatar.url(:thumb)
       span.goal-name = @goal.name
-      span.picker
-        img.goal-picker-checked.hide alt="Quit goal" src="/assets/users/checkmark-edf3c7dac2055f8ac5429ed14033f459.png"
-      span.picker
-        img.goal-picker-unchecked alt="Add goal to your list" src="/assets/users/plus-c885fd44946c4d768ff402f5eed9452a.png"
+      span.picker data-goal-id=@goal.id
+        = image_tag "users/checkmark.png", class: "picker-btn goal-picker-checked goal-remove-btn #{@goal_user.persisted? ? '':'hidden'}", alt: 'Quit Goal'
+        = image_tag "users/plus.png", class: "picker-btn goal-picker-unchecked goal-add-btn #{@goal_user.persisted? ? 'hidden':''}", alt: 'Add goal to your list'
     .col-sm-4: .center-block: center
       span 
-        | All
+        - if params[:action] == "show"
+          span.active All
+        - else
+          | #{filter_link('All', :all)}
         | #{filter_link('Courses', :course)}
         | #{filter_link('Articles', :article)}
         | #{filter_link('Videos', :video)}
@@ -27,12 +29,19 @@
   .gem-grid
     = render partial: "jewels/jewel", collection: @jewels
 
-.view-gem-modal.modal.fade: .modal-dialog: .modal-content
+.view-gem-modal.modal.fade
+  .modal-dialog
+    .modal-content
+
+  a.left.carousel-control href="#gem-carousel"
+    span.glyphicon.glyphicon-chevron-left
+  a.right.carousel-control href="#gem-carousel"
+    span.glyphicon.glyphicon-chevron-right
 
 .new-gem-modal.modal.fade: .modal-dialog: .modal-content
   .modal-header
     button.close aria-hidden="true" &times;
-    img#u87_img.img.b src="http://d2t44wh9rnwl5y.cloudfront.net/gsc/H07GJH/75/a5/1c/75a51c4d66ad4149b1bd51191729075e/images/me/u17.png?token=040b00d8085ff66c1faaf75053669b8b"
+    = image_tag "gem-icon.png", class: 'img b'
     h4.modal-title Submit Gem
   .modal-body: .row
     .col-sm-10
@@ -60,8 +69,9 @@
           /i.glyphicon.glyphicon-edit
         .col-sm-1.edit-title-icon: i.glyphicon.glyphicon-edit
     .editing-title.hide
-      input#gem-title-input type="text" name="gem-title"
+      input#gem-title-input type="text" name="gem-title" placeholder="Gem name"
   .modal-body
+    p.error.gem-error.hide
     .row: .col-sm-12.edit-gem-type
       ' What kind of gem?
       input type="radio" name="gem-type" value="course" 
@@ -70,14 +80,22 @@
       '  Article
       input type="radio" name="gem-type" value="video" 
       '  Video
-      input type="radio" name="gem-type" value="video" 
+      input type="radio" name="gem-type" value="app" 
       '  App
       input type="radio" name="gem-type" value="product" 
       '  Product
     .row: .col-sm-12
       center: img.gem-image
+      center: .gem-embed
     .row.gem-comments.edit-gem-comment
   .modal-footer
     .row: .col-sm-12.create-gem
       button.btn.btn-red.btn-edit-gem CREATE GEM
 
+- if @open_gem
+  script
+    ' $(function() {
+    '   var $path = "#{@open_gem}";
+    '   $('.view-gem-modal .modal-content').load($path + "/modal_content");
+    '   $('.view-gem-modal').modal();
+    ' })

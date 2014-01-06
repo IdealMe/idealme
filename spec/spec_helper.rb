@@ -11,6 +11,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'vcr'
+require 'factory_girl_rails'
 
 #poltergeist_log = File.open(Rails.root.join("log","poltergeist.log"), "a")
 #Capybara.register_driver :poltergeist do |app|
