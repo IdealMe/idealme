@@ -24,6 +24,8 @@ html
     meta content="/mstile-70x70.png" name="msapplication-square70x70logo" /
     meta content="/mstile-150x150.png" name="msapplication-square150x150logo" /
     meta content="/mstile-310x310.png" name="msapplication-square310x310logo" /
+
+    = render 'visual_website_optimizer' if @vwo == true
   body class="#{body_class}"
     header
       = render 'header'
