@@ -3,7 +3,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout 'minimal', only: [:create, :new]
 
   def create
-    @vwo = true
     super
   end
 
