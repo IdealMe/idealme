@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :load_user, except: [:welcome]
+  before_filter :load_user, except: [:welcome, :welcome_save, :dismiss_welcome_message]
   before_filter :ensure_owner, only: [:ensure_owner]
   before_filter :require_authentication
 

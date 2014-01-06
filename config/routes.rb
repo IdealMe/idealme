@@ -202,8 +202,8 @@ Idealme::Application.routes.draw do
       # Signup flow
       #get ':id/welcome' => 'users#welcome', as: :user_welcome
       get 'user/welcome' => 'users#welcome', as: :user_welcome
-      post ':id/welcome' => 'users#welcome_save'
-      post ':id/dismiss-welcome-message' => 'users#dismiss_welcome_message'
+      post 'user/welcome' => 'users#welcome_save'
+      post 'user/dismiss-welcome-message' => 'users#dismiss_welcome_message'
       # Signup flow
 
 

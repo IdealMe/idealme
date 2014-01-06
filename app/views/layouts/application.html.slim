@@ -25,7 +25,7 @@ html
     meta content="/mstile-150x150.png" name="msapplication-square150x150logo" /
     meta content="/mstile-310x310.png" name="msapplication-square310x310logo" /
 
-    = render 'partials/visual_website_optimizer' if @vwo == true
+    = render 'partials/visual_website_optimizer' if @vwo == true && !Rails.env.test?
   body class="#{body_class}"
     header
       = render 'header'
