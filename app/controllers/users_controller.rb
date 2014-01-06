@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :load_user
+  before_filter :load_user, except: [:welcome]
   before_filter :ensure_owner, only: [:ensure_owner]
   before_filter :require_authentication
 
   WELCOME_MESSAGE = 'Hi! Now what? On this page you can keep track of your goals. Drag your goals into the order you want to tackle them. Any courses you take will be kept here too. And <a href="http://idealme-prod.s3.amazonaws.com/Ideal%20Me%20Worksheet%20PDF%20v01.pdf">here\'s</a> the link to download your free Ebook.'
 
   def profile
-    
+
     #@tab = params[:tab] || 'goal'
     if @owner
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("position ASC")
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def welcome
-      flash[:notice] = WELCOME_MESSAGE.html_safe if show_welcome_message?
+    flash[:notice] = WELCOME_MESSAGE.html_safe if show_welcome_message?
     @goals = Goal.is_welcome.visible.ordered
     render layout: "chromeless"
   end

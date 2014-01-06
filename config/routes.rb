@@ -200,7 +200,8 @@ Idealme::Application.routes.draw do
       get ':id/edit_password' => 'users/registrations#edit_password', as: :user_edit_password
 
       # Signup flow
-      get ':id/welcome' => 'users#welcome', as: :user_welcome
+      #get ':id/welcome' => 'users#welcome', as: :user_welcome
+      get 'user/welcome' => 'users#welcome', as: :user_welcome
       post ':id/welcome' => 'users#welcome_save'
       post ':id/dismiss-welcome-message' => 'users#dismiss_welcome_message'
       # Signup flow
