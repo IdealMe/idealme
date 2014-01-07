@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# c-ares
+cd /usr/local/src/
+wget http://c-ares.haxx.se/download/c-ares-1.10.0.tar.gz -O c-ares-1.10.0.tar.gz
+tar -xzvf c-ares-1.10.0.tar.gz
+cd c-ares-1.10.0
+./configure --prefix=/usr/local
+make
+make install
+
+# install curl 7.31
+cd /usr/local/src/
+wget http://curl.haxx.se/download/curl-7.34.0.tar.gz -O curl-7.34.0.tar.gz
+tar -xzvf curl-7.34.0.tar.gz
+cd curl-7.34.0
+./configure --enable-ares --with-ssl --prefix=/usr/local
+make
+make install
+

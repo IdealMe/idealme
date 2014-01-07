@@ -1,0 +1,32 @@
+---
+- hosts: all
+  user: vagrant
+  remote_user: vagrant
+  vars_files:
+    - vars/defaults.yml
+
+  roles:
+    - common
+    - curl
+    # - deploy-user
+    # - ssh
+    - ruby-2.0.0
+    - nodejs
+    - database
+    # - webserver
+    - sidekiq
+    - tmux
+    - vim
+    - phantomjs
+
+  tasks:
+  - name: Run bundle install
+    shell: 'cd /vagrant && bundle install'
+
+  - name: Run rake db:create
+    shell: 'cd /vagrant && rake db:create'
+
+  - name: Run rake db:migrate
+    shell: 'cd /vagrant && rake db:migrate'
+  - name: Run rake db:test:prepare
+    shell: 'cd /vagrant && rake db:test:prepare'

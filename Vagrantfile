@@ -41,9 +41,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provisioning/playbook.yml"
+    ansible.playbook = "provisioning/vagrant-playbook.yml"
     #ansible.verbose = "vvvv"
-    ansible.sudo = true
-    ansible.tags = 'postgres'
+    # ansible.sudo = true
+    # ansible.tags = 'postgres'
   end
 end

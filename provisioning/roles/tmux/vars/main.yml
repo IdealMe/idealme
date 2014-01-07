@@ -1,0 +1,1 @@
+ruby_location: "/opt/{{ ruby_version }}"

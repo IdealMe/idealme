@@ -1,0 +1,47 @@
+---
+- name: Install Ruby dependencies
+  apt: pkg={{ item }} state=present
+  sudo: true
+  with_items: ruby_dependencies
+
+- name: Download the Ruby source code
+  sudo: true
+  get_url: url={{ ruby_download_location }}
+           dest=/usr/local/src/
+           sha256sum={{ ruby_checksum }}
+
+- name: Generate the Ruby installation script on the server
+  sudo: true
+  template: src=install-ruby.j2
+            dest=/usr/local/src/install-ruby.sh
+            owner=root
+            group=root
+            mode=700
+
+- name: Run the Ruby installation script
+  sudo: true
+  command: /usr/local/src/install-ruby.sh
+           creates={{ ruby_location }}/bin/ruby
+
+- name: Generate the script that allows us to easily run Rake tasks with RAILS_ENV set to production, and the wrapper script that contains GC settings
+  sudo: true
+  template: src={{ item }}.j2
+            dest=/usr/local/bin/{{ item }}
+            owner=root
+            group=root
+            mode=755
+  with_items:
+    - rake-production
+    - ruby-gc-wrapper
+
+- name: Install Bundler
+  sudo: true
+  command: "{{ ruby_location }}/bin/gem install bundler
+            creates={{ ruby_location }}/bin/bundle"
+
+- name: Make Ruby symlinks
+  sudo: true
+  file: path=/usr/local/bin/{{ item }}
+        src={{ ruby_location }}/bin/{{ item }}
+        state=link
+  with_items: ruby_symlinks

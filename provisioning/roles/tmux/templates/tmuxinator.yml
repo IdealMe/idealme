@@ -1,0 +1,22 @@
+# ~/.tmuxinator/{{ app_name }}.yml
+
+name: {{ app_name }}
+root: /vagrant
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+#pre: unset BUNDLE_GEMFILE BUNDLE_BIN_PATH
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+#tmux_options: -2
+
+windows:
+  - rails: rails server
+  - guard: guard
+  - logs: tail -f log/*
+  - term:

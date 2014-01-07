@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /usr/local/src/
+wget http://downloads.sourceforge.net/tmux/tmux-1.8.tar.gz
+tar -xzvf tmux-1.8.tar.gz
+cd tmux-1.8
+./configure --prefix=/usr/local
+make
+make install

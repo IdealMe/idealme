@@ -1,0 +1,49 @@
+# if tmux isn't working, check the tmux sockets under /tmp
+---
+- name: Generate the tmux installation script on the server
+  tags: ['tmux']
+  sudo: true
+  template: src=install-tmux.j2
+            dest=/usr/local/src/install-tmux.sh
+            owner=root
+            group=root
+            mode=700
+
+- name: Run the tmux installation script
+  tags: ['tmux']
+  sudo: true
+  command: /usr/local/src/install-tmux.sh
+           creates=/usr/local/bin/tmux
+
+- name: Hook up the libs
+  tags: ['tmux']
+  command: ldconfig
+  sudo: true
+
+- name: add tmux config
+  tags: ['tmux']
+  copy: src=.tmux.conf dest=/home/{{ user }}/.tmux.conf owner={{ user }}
+
+- name: install tmuxinator gem
+  sudo: true
+  tags: ['tmux']
+  command: "{{ ruby_location }}/bin/gem install tmuxinator
+            creates={{ ruby_location }}/bin/tmuxinator"
+
+- name: create tmuxinator config directory
+  tags: ['tmux']
+  shell: mkdir /home/{{ user }}/.tmuxinator creates=/home/{{ user }}/.tmuxinator
+
+- name: create user home bin directory
+  tags: ['tmux']
+  shell: mkdir /home/{{ user }}/.bin creates=/home/{{ user }}/.bin
+
+- name: copy over mux completions
+  tags: ['tmux']
+  copy: src=tmuxinator.zsh dest=/home/{{ user }}/.bin/tmuxinator.zsh owner=$user
+
+- name: add project tmuxinator file
+  tags: ['tmux']
+  template: src=tmuxinator.yml
+            dest=/home/{{ user }}/.tmuxinator/{{ app_name }}.yml
+

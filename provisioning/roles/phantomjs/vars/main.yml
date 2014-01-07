@@ -1,0 +1,4 @@
+phantomjs_version: "1.9.2"
+phantomjs_tarball: "phantomjs-1.9.2-linux-x86_64.tar.bz2"
+phantomjs_tardir: "phantomjs-1.9.2-linux-x86_64"
+phantomjs_path: "/usr/local"

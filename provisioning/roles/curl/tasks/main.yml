@@ -1,0 +1,17 @@
+---
+- name: Generate the Curl installation script on the server
+  sudo: true
+  template: src=install-curl.j2
+            dest=/usr/local/src/install-curl.sh
+            owner=root
+            group=root
+            mode=700
+
+- name: Run the Curl installation script
+  sudo: true
+  command: /usr/local/src/install-curl.sh
+           creates=/usr/local/bin/curl
+
+- name: Hook up the libs
+  command: ldconfig
+  sudo: true

@@ -1,0 +1,25 @@
+- name: install dependencies
+  sudo: true
+  action: apt pkg={{ item }} state=installed
+  with_items:
+    - vim
+    - git-core
+    - curl
+  sudo: yes
+
+- name: install janus
+  remote_user: vagrant
+  shell: cd && curl -Lo- https://bit.ly/janus-bootstrap | bash
+         creates=/home/{{ user }}/.vimrc.after
+
+- git: repo=https://github.com/godlygeek/tabular.git dest=/home/{{ user }}/.janus/tabular
+- git: repo=https://github.com/heartsentwined/vim-ember-script.git dest=/home/{{ user }}/.janus/vim-ember-script
+- git: repo=https://github.com/heartsentwined/vim-emblem.git dest=/home/{{ user }}/.janus/vim-emblem
+- git: repo=https://github.com/jistr/vim-nerdtree-tabs.git dest=/home/{{ user }}/.janus/vim-nerdtree-tabs
+- git: repo=https://github.com/tpope/vim-vinegar.git dest=/home/{{ user }}/.janus/vim-vinegar
+
+- name: add .vimrc.before
+  copy: src=.vimrc.before dest=/home/{{ user }}/.vimrc.before owner={{ user }}
+
+- name: add .vimrc.after
+  copy: src=.vimrc.after dest=/home/{{ user }}/.vimrc.after owner={{ user }}

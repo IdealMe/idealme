@@ -1,0 +1,30 @@
+# Ruby from source playbook (https://github.com/jgrowl/ansible-playbook-ruby-from-src)
+- name: upgrade
+  action: apt update_cache=yes upgrade=yes
+  sudo: true
+
+- name: install dependencies
+  sudo: true
+  action: apt pkg={{ item }} state=installed
+  with_items:
+    - build-essential
+    - automake
+    - bison
+    - autoconf
+    - pkg-config
+    - libreadline6
+    - libreadline6-dev
+    - openssl
+    - libssl-dev
+    - git-core
+    - subversion
+    - zlib1g
+    - zlib1g-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - vim
+    - libevent-dev
+    - libncurses5-dev
+    - imagemagick

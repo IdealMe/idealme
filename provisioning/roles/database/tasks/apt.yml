@@ -1,6 +1,8 @@
-- name: install dependencies 
-  action: apt pkg=$item state=installed
+- name: install dependencies
+  sudo: true
+  action: apt pkg={{ item }} state=installed
   with_items:
     - python-psycopg2
+    - libpq-dev
   sudo: yes
 

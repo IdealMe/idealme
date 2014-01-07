@@ -1,26 +1,36 @@
+
+- name: Install python-psycopg2
+  apt: pkg=python-psycopg2 state=latest
+  sudo: yes
+  sudo_user: root
+
 - name: Install python-pycurl
   apt: pkg=python-pycurl state=latest
-  
+  sudo: yes
+  sudo_user: root
+
 - name: Add PostgreSQL repo key
   apt_key: url=http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc
   sudo: yes
   sudo_user: root
-  
+
 - name: Add PostgreSQL repo
   apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main'
+  sudo: yes
+  sudo_user: root
 
 - name: Install PostgreSQL
   apt: pkg=postgresql-9.3 state=latest update_cache=true
   sudo: yes
   sudo_user: root
-  
+
 - name: Copy valid pg_hba.conf
   template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
-  
+
 - name: Copy valid postgresql.conf
   template: src=postgresql.conf.j2 dest=/etc/postgresql/9.3/main/postgresql.conf
 
 - name: Restart PostgreSQL
   command: service postgresql restart
 
-- postgresql_user: name=idealme password=secret role_attr_flags=CREATEDB,SUPERUSER login_user=postgres
+- postgresql_user: name={{ app_name }} password=secret role_attr_flags=CREATEDB,NOSUPERUSER login_user=postgres

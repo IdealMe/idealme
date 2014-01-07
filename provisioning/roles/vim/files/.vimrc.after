@@ -1,0 +1,73 @@
+cabbrev help tab help
+colorscheme molokai
+let mapleader=" "
+"set shell=zsh\ -i
+
+set nocompatible  " Use Vim settings, rather then Vi settings
+set nobackup
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set relativenumber
+
+" set colorcolumn=120
+
+set number
+set numberwidth=6
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+set autowrite
+set wrap
+
+set scrolloff=3
+
+nmap <leader>f :Ack <c-r>=expand("<cword>")<CR>
+nmap <leader>d :Ack "def (self\.)?<c-r>=expand("<cword>")<CR>"
+nmap <C-f> /<c-r>=expand("<cword>")<CR>
+
+nmap <Left> <c-w>h
+nmap <Down> <c-w>j
+nmap <Up> <c-w>k
+nmap <Right> <c-w>l
+" nmap <leader>r :NERDTreeFind<CR>
+nmap <leader>n :NERDTreeTabsToggle<CR>
+vmap <leader>= :Tabularize /
+
+nnoremap ; :
+
+set tags+=gems.tags
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+let g:syntastic_quiet_warnings=1
+let g:ctrlp_max_height = 50
+
+let g:vroom_use_colors = 1
+let g:ctrlp_working_path_mode = 0
+
+set clipboard=unnamed
+
+let g:ctrlp_show_hidden = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:nerdtree_tabs_open_on_console_startup = 0
+let g:nerdtree_tabs_open_on_new_tab = 0
+
+autocmd BufWritePre * :%s/\s\+$//e
+
+
+
+
+
+
+
+
+
+
+

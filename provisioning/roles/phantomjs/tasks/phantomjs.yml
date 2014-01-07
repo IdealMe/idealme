@@ -1,0 +1,19 @@
+---
+- name: Download phantomjs
+  sudo: true
+  get_url: url=https://phantomjs.googlecode.com/files/{{ phantomjs_tarball }}
+           dest=/usr/local/src/
+
+- name: Generate the phantomjs installation script on the server
+  sudo: true
+  template: src=install-phantomjs.sh
+            dest=/usr/local/src/install-phantomjs.sh
+            owner=root
+            group=root
+            mode=700
+
+- name: Run the phantomjs installation script
+  sudo: true
+  command: /usr/local/src/install-phantomjs.sh
+           creates=/usr/local/bin/phantomjs
+

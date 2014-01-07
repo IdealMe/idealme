@@ -1,0 +1,11 @@
+- name: install phantomjs dependencies
+  sudo: true
+  action: apt pkg={{ item }} state=installed
+  with_items:
+    - build-essential
+    - chrpath
+    - git-core
+    - libssl-dev
+    - libfontconfig1-dev
+  sudo: yes
+

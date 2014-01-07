@@ -2,12 +2,14 @@
 
 user: vagrant
 webserver_name: idealme.com
-deploy_directory: /webapps/idealme
+deploy_directory: /webapps/idealme.com
 app_name: idealme
+
+ruby: 2.0.0
 
 ## stolen from https://github.com/jgrowl/ansible-playbook-ruby-from-src
 rubyTmpDir: /usr/local/src
-rubyUrl: http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz
-rubyCompressedFile: ruby-2.0.0-p247.tar.gz
-rubyName: ruby-2.0.0-p247
+rubyUrl: http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p353.tar.gz
+rubyCompressedFile: ruby-2.0.0-p353.tar.gz
+rubyName: ruby-2.0.0-p353
 tmpRubyPath: $rubyTmpDir/$rubyName

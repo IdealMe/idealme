@@ -1,9 +1,0 @@
-
----
-## Install some utility gems
-
-- name: Install some utility gems
-  #command: gem install tmuxinator
-  command: gem install bundler creates=/usr/local/bin/bundle
-  command: gem install tmuxinator creates=/usr/local/bin/tmuxinator
-  sudo: yes
