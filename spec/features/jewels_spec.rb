@@ -39,7 +39,7 @@ describe 'idealme gems', :vcr do
     expect(page.text).to include 'Submit a web link for any course, article, video, app, product or service'
 
     input = find('.add-gem-url-input')
-    input.set('http://shop.lululemon.com/products/clothes-accessories/pants-yoga/Wunder-Under-Pant-Reversible-31552?cc=12457&skuId=3528843&catId=pants-yoga')
+    input.set('http://jondot.github.io/sneakers/')
     find('.btn-post-gem').click
     sleep 2
     expect(page.text).to include "What kind of gem?"
@@ -54,7 +54,8 @@ describe 'idealme gems', :vcr do
     find('[value="article"]').click
     find('.btn-edit-gem').click
     sleep 2
-    find('.gem-card > .view-gem-link[data-jewel-id="' + Jewel.last.slug + '"]').click
+    screenshot
+    find('.gem-card > .view-gem-link[data-jewel-id="' + Jewel.order('created_at DESC').first.slug + '"]').click
 
     sleep 2
     screenshot
