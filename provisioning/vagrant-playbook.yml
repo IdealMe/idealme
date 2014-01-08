@@ -28,5 +28,9 @@
 
   - name: Run rake db:migrate
     shell: 'cd /vagrant && rake db:migrate'
+
   - name: Run rake db:test:prepare
     shell: 'cd /vagrant && rake db:test:prepare'
+
+  - name: Run rake db:seed
+    shell: 'cd /vagrant && rake db:seed'

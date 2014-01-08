@@ -6,7 +6,7 @@ defaults: &defaults
   timeout: 5000
   database: idealme_development
   username: idealme
-  password:
+  password: secret
 
 development:
   <<: *defaults

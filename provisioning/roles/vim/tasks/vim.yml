@@ -13,8 +13,6 @@
          creates=/home/{{ user }}/.vimrc.after
 
 - git: repo=https://github.com/godlygeek/tabular.git dest=/home/{{ user }}/.janus/tabular
-- git: repo=https://github.com/heartsentwined/vim-ember-script.git dest=/home/{{ user }}/.janus/vim-ember-script
-- git: repo=https://github.com/heartsentwined/vim-emblem.git dest=/home/{{ user }}/.janus/vim-emblem
 - git: repo=https://github.com/jistr/vim-nerdtree-tabs.git dest=/home/{{ user }}/.janus/vim-nerdtree-tabs
 - git: repo=https://github.com/tpope/vim-vinegar.git dest=/home/{{ user }}/.janus/vim-vinegar
 

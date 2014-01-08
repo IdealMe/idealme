@@ -28,3 +28,4 @@
     - libevent-dev
     - libncurses5-dev
     - imagemagick
+    - htop
