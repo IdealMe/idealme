@@ -1,5 +1,6 @@
 require 'active_support/core_ext/string/inflections'
 class User < ActiveRecord::Base
+  acts_as_taggable_on :interests
 
   # == Imports ==============================================================
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,

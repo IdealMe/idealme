@@ -78,6 +78,8 @@ GEM
       tzinfo (~> 0.3.37)
     acts_as_list (0.3.0)
       activerecord (>= 3.0)
+    acts_as_taggable_on (3.0.0.rc2)
+      rails (>= 3, < 5)
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
@@ -562,6 +564,7 @@ DEPENDENCIES
   activerecord-session_store (~> 0.0.1)
   activeresource (~> 4.0.0.beta1)
   acts_as_list
+  acts_as_taggable_on (~> 3.0.0.rc2)
   anjlab-bootstrap-rails!
   aweber
   awesome_print

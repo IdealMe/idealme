@@ -152,6 +152,7 @@ Idealme::Application.routes.draw do
 
 
   namespace :webhook do
+    post 'sendgrid/notify' => 'send_grid#notify'
     resources :paypals, only: [] do
       collection do
         post 'paypal_return' => 'paypals#paypal_return'

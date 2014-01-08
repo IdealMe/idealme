@@ -174,6 +174,8 @@ gem 'font-awesome-sass-rails' # new
 
 gem 'stripe'
 
+gem 'acts_as_taggable_on', '~> 3.0.0.rc2'
+
 group :test do
   #gem 'simplecov', :require => false
   gem 'poltergeist'
