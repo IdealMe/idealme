@@ -7,7 +7,7 @@
     .icon-btn.downvote-icon-btn.dislike data-voted=downvoted?(jewel, current_user)
       i.icon-thumbs-down
       span.vote-count.downvote-total = jewel.down_votes
-  = link_to goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.id do
+  = link_to modal_content_goal_gem_path(jewel.linked_goal, jewel), :class => 'view-gem-link', 'data-jewel-id' => jewel.slug do
     .box.br
       .icon-btn
         i.icon-comment-alt
