@@ -1,7 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
   before_filter :load_article, only: [:show, :edit, :update, :destroy]
   before_filter :load_articles, only: :index
-  before_filter :build_article, only: [:new, :create]
+  before_filter :build_article, only: [:create]
 
   # GET /admin/articles
   def index
@@ -13,6 +13,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   # GET /admin/articles/new
   def new
+    @article = Article.new
   end
 
   # GET /admin/articles/1/edit
@@ -29,7 +30,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   # PUT /admin/articles/1
   def update
-    @article.update_attributes!(params[:article])
+    @article.update_attributes!(article_params)
     redirect_to edit_admin_article_path(@article), notice: 'Article was successfully updated.'
   rescue ActiveRecord::RecordInvalid
     render action: :edit
@@ -53,7 +54,11 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def build_article
-    @article = Article.new(params[:article])
+    @article = Article.new(article_params)
+  end
+
+  def article_params
+    params.require(:article).permit!
   end
 
 end
