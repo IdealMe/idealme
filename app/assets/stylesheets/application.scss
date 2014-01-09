@@ -112,6 +112,7 @@ img {
 @import "datepicker";
 @import "forms";
 @import "vote-controls";
+@import "resources";
 
 //
 
@@ -136,7 +137,6 @@ h1, h2, h3, h4, h5, h6,
 .admin {
   .btn {
     margin-right: 10px;
-    
   }
 
   .controls.inline .form-group {

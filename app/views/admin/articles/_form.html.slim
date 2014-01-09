@@ -13,6 +13,10 @@
 
 
 
+  - if @article.image.present?
+    = image_tag @article.image.expiring_url(:thumb), height: '50', width: '50'
+  = f.input :image do
+    = f.file_field :image
 
 
   = f.input :course_id do

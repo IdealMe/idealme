@@ -1,0 +1,31 @@
+
+#masthead
+  .container
+    .row
+      .col-md-7
+        h1
+          | Storystrap
+          p.lead
+      .col-md-5
+        .well.well-lg
+          .row
+            .col-sm-12
+  .container
+    .row
+      .col-md-12
+        .top-spacer
+
+.container
+  .row
+    .col-md-3
+      ul.left-menu
+        li
+          = link_to resources_path, class: (@active_tab == :all ? 'active' : '')
+            | All resources
+        li
+          = link_to my_goals_resources_path, class: (@active_tab == :my_goals ? 'active' : '')
+            | Only my goals
+    .col-md-9
+
+
+  = render partial: "article_summary", collection: @articles

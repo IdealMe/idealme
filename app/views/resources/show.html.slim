@@ -1,0 +1,25 @@
+#masthead
+  .container
+    .row
+      .col-md-7
+        h1
+          | Storystrap
+          p.lead
+      .col-md-5
+        .well.well-lg
+          .row
+            .col-sm-12
+  .container
+    .row
+      .col-md-12
+        .top-spacer
+
+.container
+  .row
+    .col-md-3
+      | Resources / #{@article.goal.name}
+    .col-md-9
+      h1 = @article.name
+      == @article.content
+
+

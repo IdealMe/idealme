@@ -1,0 +1,10 @@
+- article = article_summary
+.row.offset
+  .col-md-3
+    center
+      = image_tag article.image.url(:thumb), class: 'article-image'
+  .col-md-9
+    = link_to resource_path(article) do
+      h2 = article.name
+    == article.summary
+hr

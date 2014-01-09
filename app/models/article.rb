@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
   # == Imports ==============================================================
   extend FriendlyId
+  include ActionView::Helpers::SanitizeHelper
 
   # == Slug =================================================================
   friendly_id :name, use: [:history, :slugged, :finders]
@@ -26,6 +27,13 @@ class Article < ActiveRecord::Base
   has_many :article_sources, through: :i_article_sources, source: :article_source
 
   # == Paperclip ============================================================
+  has_attached_file :image,
+                    styles: {full: '252x202#', thumb: '126x93#'},
+                    :s3_permissions => :public_read,
+                    convert_options: {
+                        full: '-gravity center -extent 252x202 -quality 75 -strip',
+                        thumb: '-gravity center -extent 80x64 -quality 75 -strip'
+                    }
   # == Validations ==========================================================
   validates_length_of :name, :content, minimum: 2
 
@@ -43,6 +51,12 @@ class Article < ActiveRecord::Base
   def update_author
     user = User.where(id: self.author_id).first
     self.authors << user if user && !self.authors.include?(user)
+  end
+
+  def summary
+    value = strip_tags(self.content)
+    value.truncate(250)
+
   end
 
 end

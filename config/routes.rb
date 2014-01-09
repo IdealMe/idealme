@@ -39,6 +39,11 @@ Idealme::Application.routes.draw do
     resources :reviews
   end
   resources :discovers, only: [:index, :show]
+  resources :resources do
+    collection do
+      get "my-goals" => :my_goals, as: :my_goals
+    end
+  end
   resources :goals, only: [:index, :show] do
     resources :gems, controller: :jewels do
       member do
