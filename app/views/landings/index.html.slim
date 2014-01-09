@@ -9,10 +9,10 @@
           span.video-bg &nbsp;
         .text
           p
-            | Sign up now to follow along on the Ideal Me Challenge...
+            | Sign up now to start your Ideal Me adventure...
             .divider
           p
-            | Get the <em>Your Ideal Life</em> ebook, free.
+            | Get the <em>Design Your Ideal Life</em> workbook, free. A $47 value!
         .join-box
           = form_for :user, url: user_registration_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
@@ -34,7 +34,7 @@
     .clear
 .worksheet-wp
   .title-text
-    h2 Free Ebook: Design Your Ideal Life
+    h2 Get Your Free "Design Your Ideal Life" Workbook
     h3 Get all 12 infographic worksheets and start planning your own Ideal Me Challenge today!
   .offer-section
     .container
@@ -43,7 +43,7 @@
           = image_tag "wksht01.png", width: 160
           h4 Vision Board
           p
-            | A place you can create your vision of your ideal me using stickers, pictures, quotes and cut-outs that represent your ideal self
+            | A place where you can create your Ideal Me vision using stickers, pictures, quotes and cut-outs that represent your ideal self
         .worksheet
           = image_tag "wksht02.png", width: 160
           h4 Life Balance Worksheet
@@ -71,15 +71,15 @@
             | A place to store quotes that speak to you for long term inspiration that will keep you on track to reaching your ideal self
       .worksheet-column
         .worksheet
-          = image_tag "wksht07.png", width: 160
-          h4 The Ideal Me List
-          p
-            | Helps you to identify what is your Ideal Me and to maximize your chances of success in all areas of your life
-        .worksheet
           = image_tag "wksht08.png", width: 160
-          h4 Ideal Me To Do List
+          h4 Ideal Me To-Do List
           p
-            | A simple to do list that will free up mental space and allow you to remain focus on your progress rather than day-to-day tasks
+            | A simple to-do list that will free up mental space and allow you to remain focus on your progress rather than day-to-day tasks
+        .worksheet
+          = image_tag "your-values.jpg", width: 160
+          h4 What Do I Value?
+          p
+            | Identify what truly matters to you so you can focus on goals that bring you the most satisfaction
         .worksheet
           = image_tag "wksht09.png", width: 160
           h4 Top 3 Ideal Me Goals
