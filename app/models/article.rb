@@ -56,7 +56,6 @@ class Article < ActiveRecord::Base
   def summary
     value = strip_tags(self.content)
     value.truncate(250)
-
   end
 
 end
