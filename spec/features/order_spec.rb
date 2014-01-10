@@ -9,7 +9,7 @@ describe 'ordering' do
   before :each do
   end
 
-  it "enroll in course without a user account", js: true do
+  it "enroll in course without a user account", vcr: true, js: true do
     User.count.should eq 1
     visit market_path market
     find('.top-enroll-btn').click
@@ -25,7 +25,7 @@ describe 'ordering' do
     page.text.should include "First Name can't be blank"
     page.text.should include "Last Name can't be blank"
     page.text.should include "Email Address can't be blank"
-    
+
     fill_in "First Name", with: "Bean"
     fill_in "Last Name", with: "Salad"
     fill_in "Email Address", with: "beansalad@idealme.com"
@@ -35,10 +35,12 @@ describe 'ordering' do
 
     click_button "Complete Purchase"
 
+    Order.count.should eq 1
+
     User.count.should eq 2
     emails.count.should eq 1
     confirm_link = URI.extract(emails.last.body.to_s, :http).first
-    
+
     uri = URI.parse(confirm_link)
     visit "#{uri.path}?#{uri.query}"
     screenshot

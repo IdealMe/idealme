@@ -39,6 +39,7 @@ class OrdersController < ApplicationController
     @order.gateway = Order::GATEWAY_PAYPAL
     @order.status = Order::STATUS_SUCCESSFUL
     @order.save!
+    NewOrderNotification.perform_in(5.seconds, @order.id)
 
     if get_affiliate_user
       AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
@@ -89,6 +90,7 @@ class OrdersController < ApplicationController
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
         @order.save!
+        NewOrderNotification.perform_in(5.seconds, @order.id)
 
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)

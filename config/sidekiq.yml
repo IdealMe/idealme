@@ -6,3 +6,6 @@ staging:
   :concurrency: 10
 production:
   :concurrency: 10
+
+:queues:
+  - notifications
