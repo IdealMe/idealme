@@ -4,4 +4,7 @@ class LandingsController < ApplicationController
     @courses = Course.includes(:owner).limit(12)
     @vwo = true
   end
+  def workbook
+    @courses = Course.includes(:owner).limit(12)
+  end
 end
