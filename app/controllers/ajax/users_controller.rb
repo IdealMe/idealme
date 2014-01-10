@@ -26,7 +26,7 @@ class Ajax::UsersController < Ajax::BaseController
 
   def load_user
     @user = User.where(username: params[:id]).first
-    @owner = (current_user.id == @user.id)
+    @owner = (current_user.try(:id) == @user.id)
   end
 
   def user_params
