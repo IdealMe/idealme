@@ -6,5 +6,6 @@ class LandingsController < ApplicationController
   end
   def workbook
     @courses = Course.includes(:owner).limit(12)
+    @vwo = true
   end
 end
