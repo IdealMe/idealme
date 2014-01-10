@@ -2,17 +2,16 @@
   .container.promo-height
     .intro-wp
       h2.workbook
-        | Live Your Ideal Life
+        | Get Your Ideal Body In 2014
       .cnt
         .video
           iframe allowfullscreen="" frameborder="0" height="346" width="510" src="//fast.wistia.net/embed/iframe/8cwpldg4xw" allowtransparency="true" scrolling="no" class="wistia_embed" name="wistia_embed"
           span.video-bg &nbsp;
-        .text
+        .text.getinshape
           p
-            | Sign up now to start your Ideal Me adventure...
-            .divider
+            | Start 2014 out with a bang and plan out your dream life with the Design Your Ideal Body workbook and worksheets.
           p
-            | Get the <em>Design Your Ideal Life</em> workbook, free. A $47 value!
+            | Regularly $47 but sign up before January 16th and get it free!
         .join-box
           = form_for :user, url: user_registration_path do |f|
             = link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
