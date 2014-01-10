@@ -50,10 +50,13 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true
 
-
   validates :username, uniqueness: true
   validates :email, uniqueness: true
 
+  after_create -> {
+    return unless Rails.env.production?
+    NewUserNotification.perform_in(10.seconds, self.id)
+  }
 
   # == Scopes ===============================================================
   scope :get_affiliate_user, lambda { |code| where(affiliate_tag: code, access_affiliate: true) }
