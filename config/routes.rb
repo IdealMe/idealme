@@ -9,6 +9,7 @@ Idealme::Application.routes.draw do
 
   root to: 'landings#index'
   get 'workbook' => 'landings#workbook'
+  get 'getinshape' => 'landings#getinshape'
 
   get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
 
