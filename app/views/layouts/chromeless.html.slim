@@ -12,6 +12,7 @@ html.no-js lang='en'
     = favicon_link_tag 'apple-touch-icon-72-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '72x72'
     = favicon_link_tag 'apple-touch-icon-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png'
     = render 'partials/visual_website_optimizer' if @vwo == true && !Rails.env.test?
+    = render 'partials/google_analytics'
     = yield :head
   body class=body_class
     header
