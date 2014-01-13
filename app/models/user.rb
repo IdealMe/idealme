@@ -141,7 +141,6 @@ class User < ActiveRecord::Base
       end
     else
       # This can not happen...
-      binding.pry
       result[:result] = 0
     end
     result
