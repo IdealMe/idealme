@@ -5,7 +5,7 @@
 #Skips device authorization check
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_authorization_check
-  #skip_before_filter :authenticate
+  skip_before_filter :authenticate
   # To call specific method based on the omniauth identity provider used
   def passthru
     render file: "#{Rails.root}/public/404.html", status: 404, layout: false
@@ -30,8 +30,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
 
       if current_user
+        ap "### is current_user"
         redirect_to(user_identity_path(current_user))
       else
+        ap "### is not current_user"
         results[:user].confirm! if results[:user].email
         sign_in_and_redirect results[:user], event: :authentication #this will throw if @user is not activated
       end

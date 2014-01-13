@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
       session[:previous_url] = root_path
     end
     session[:last_login_at] = DateTime.now
+    session[:previous_url] = nil if session[:previous_url] =~ /\/auth\//
     session[:previous_url] || root_path
   end
 
@@ -182,7 +183,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) << :username
     devise_parameter_sanitizer.for(:account_update) << :firstname
