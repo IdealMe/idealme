@@ -58,7 +58,7 @@ gem 'recap'
 gem 'omniauth'
 
 #Facebook strategy for OmniAuth
-gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-facebook', github: 'cmer/omniauth-facebook'
 
 #A Google oauth2 strategy for OmniAuth 1.0
 gem 'omniauth-google-oauth2'
