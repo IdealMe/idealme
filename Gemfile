@@ -56,9 +56,10 @@ gem 'recap'
 
 #A generalized Rack framework for multiple-provider authentication.
 gem 'omniauth'
+gem 'omniauth-oauth2', '1.0.2'
 
 #Facebook strategy for OmniAuth
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '1.4.0'
 
 #A Google oauth2 strategy for OmniAuth 1.0
 gem 'omniauth-google-oauth2'
