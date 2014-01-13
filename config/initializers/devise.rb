@@ -226,7 +226,7 @@ Devise.setup do |config|
                   ENV['FACEBOOK_API_SECRET'],
                   {
                     scope: 'email,offline_access,publish_stream,user_activities,user_likes,user_interests,xmpp_login',
-                    #provider_ignores_state: true
+                    provider_ignores_state: true
                   }
 
   #config.omniauth :google_oauth2, ENV['GOOGLE_API_KEY'], ENV['GOOGLE_API_SECRET'], {scope: 'userinfo.email,userinfo.profile,plus.me', approval_prompt: 'auto'}
