@@ -6,7 +6,7 @@
     .options style='width: 16px;margin: 10px;position: absolute;'
 
   .avatar
-    = link_to goal_path(goal_user.goal_id) do
+    = link_to goal_resources_path(goal_user.goal.slug) do
       = image_tag(goal_user.goal.avatar.url(:full))
   .goal-name
     span.goal-position
