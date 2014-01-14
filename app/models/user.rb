@@ -109,9 +109,6 @@ class User < ActiveRecord::Base
     result = Hash.new
     identity = Identity.where(provider: omniauth.provider, uid: omniauth.uid).includes(:owner).first
     # Logged in user with new identity
-    #if target_user && identity
-      #result = {identity: identity, user: target_user, result: 1}
-    #els
     if target_user && identity.nil?
       identity = Identity.create!(identifier: omniauth.uid, provider: omniauth.provider, access_token: omniauth.credentials.to_json, uid: omniauth.uid, owner_id: target_user.id)
       result = {identity: identity, user: identity.owner, result: 1}
