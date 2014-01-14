@@ -44,7 +44,7 @@ Idealme::Application.routes.draw do
   resources :resources do
     collection do
       get "my-goals" => :my_goals, as: :my_goals
-      get ":goal_id" => :goal, as: :goal
+      get "goal/:goal_id" => :goal, as: :goal
     end
   end
   resources :goals, only: [:index, :show] do
