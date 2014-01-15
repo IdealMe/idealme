@@ -613,7 +613,7 @@ DEPENDENCIES
   metainspector
   nokogiri
   omniauth
-  omniauth-facebook (= 1.4.0)
+  omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
   paperclip (~> 3.5.2)
