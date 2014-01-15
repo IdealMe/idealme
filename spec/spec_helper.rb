@@ -11,7 +11,11 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'vcr'
+require 'sidekiq/testing'
 require 'factory_girl_rails'
+
+
+Sidekiq::Testing.inline!
 
 #poltergeist_log = File.open(Rails.root.join("log","poltergeist.log"), "a")
 #Capybara.register_driver :poltergeist do |app|
@@ -81,7 +85,6 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
 
-
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -120,6 +123,7 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries = []
     Capybara.reset_sessions!
     Warden.test_mode!
+    Sidekiq::Worker.clear_all
   end
 
   config.after :each do
