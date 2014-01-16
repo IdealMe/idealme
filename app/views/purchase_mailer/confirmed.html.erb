@@ -1,0 +1,19 @@
+Hello <%= @salutation %>,<br/>
+Thanks for your recent purchase.
+<p>
+Order Details
+</p>
+
+<p>
+Order #<%= @order_number %><br/>
+Placed on Tuesday, May 14, 2013
+</p>
+
+<p>
+<%= @course_name %><br/>
+<%= @course_price %><br/>
+<%= link_to(course_url(@course), "Click here to access your course") %>
+</p>
+<p>
+This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.
+</p>

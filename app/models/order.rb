@@ -11,10 +11,12 @@ class Order < ActiveRecord::Base
 
   STATUS_CREATED = 1
   STATUS_SUCCESSFUL = 2
+  STATUS_DECLINED = 3
 
   ORDER_STATUSES = {
     1 => "created",
-    2 => "completed"
+    2 => "completed",
+    3 => "declined",
   }
 
   # == Attributes ===========================================================
@@ -91,9 +93,17 @@ class Order < ActiveRecord::Base
 
   # == Instance Methods =====================================================
 
-  def purchase
+  def complete!
+    NewOrderNotification.perform_in(5.seconds, self.id)
+    self.save!
+    self.send_course_purchase_complete_mail
+  end
 
-
+  def send_course_purchase_complete_mail
+    if course.roger_love?
+      PurchaseMailer.roger_love(user).deliver
+    else
+    end
   end
 
   def build_credit_card

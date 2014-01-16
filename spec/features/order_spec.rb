@@ -50,5 +50,35 @@ describe 'ordering' do
     click_button "Activate"
     screenshot
   end
+
+  it "handles a card declined", vcr: true, js: true do
+    User.count.should eq 1
+    visit market_path market
+    find('.top-enroll-btn').click
+    current_path.should eq '/orders/new/sample-market'
+
+    screenshot
+    fill_in "Card Number", with: '4000000000000002'
+    fill_in "Security Code", with: '123'
+    #order_response = double(:success? => true)
+    #ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
+    ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
+    #Order.any_instance.stub(:valid?).and_return(true)
+
+    fill_in "First Name", with: "Bean"
+    fill_in "Last Name", with: "Salad"
+    fill_in "Email Address", with: "beansalad@idealme.com"
+    select "01", from: "Card exp month"
+    select "2017", from: "Card exp year"
+    select "Master Card", from: "Card type"
+
+    click_button "Complete Purchase"
+    screenshot
+
+    page.text.should include "Your card was declined"
+    Order.count.should eq 0
+
+
+  end
 end
 

@@ -8,7 +8,7 @@ module TestHelpers
     else
       visit "/now/#{slug}"
     end
-
+    screenshot
     find('.enroll-btn').click
     fill_in "Card Number", with: '1234123412341234'
     fill_in "Security Code", with: '123'
