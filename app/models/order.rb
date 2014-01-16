@@ -103,6 +103,7 @@ class Order < ActiveRecord::Base
     if course.roger_love?
       PurchaseMailer.roger_love(user).deliver
     else
+      PurchaseMailer.confirmed(self).deliver
     end
   end
 
