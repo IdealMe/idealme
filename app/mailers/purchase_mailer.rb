@@ -20,7 +20,7 @@ class PurchaseMailer < ActionMailer::Base
     @salutation   = order.user.fullname_or_username_or_id
     @order_number = order.id
     @course_name  = order.course.name
-    @course_price = order.course.price_in_dollars
+    @course_price = order.course.cost_in_dollars
     @course       = order.course
 
     mail to: "#{order.user.email}"

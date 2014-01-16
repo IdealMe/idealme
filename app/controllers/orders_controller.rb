@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
     @order.parameters = result
     @order.gateway = Order::GATEWAY_PAYPAL
     @order.status = Order::STATUS_SUCCESSFUL
+    @order.user = current_user
     @order.complete!
 
     if get_affiliate_user
@@ -88,6 +89,7 @@ class OrdersController < ApplicationController
         Rails.logger.info gateway.store(@order.cc, gateway_options)
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
+        @order.user = current_user
         @order.complete!
 
         if get_affiliate_user

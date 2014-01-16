@@ -36,10 +36,12 @@ describe 'ordering' do
     click_button "Complete Purchase"
 
     Order.count.should eq 1
+    Order.last.user.should eq User.last
+    email = last_email
 
     User.count.should eq 2
-    emails.count.should eq 1
-    confirm_link = URI.extract(emails.last.body.to_s, :http).first
+    emails.count.should eq 2
+    confirm_link = URI.extract(emails.first.body.to_s, :http).first
 
     uri = URI.parse(confirm_link)
     visit "#{uri.path}?#{uri.query}"
@@ -57,7 +59,6 @@ describe 'ordering' do
     find('.top-enroll-btn').click
     current_path.should eq '/orders/new/sample-market'
 
-    screenshot
     fill_in "Card Number", with: '4000000000000002'
     fill_in "Security Code", with: '123'
     #order_response = double(:success? => true)
@@ -73,7 +74,6 @@ describe 'ordering' do
     select "Master Card", from: "Card type"
 
     click_button "Complete Purchase"
-    screenshot
 
     page.text.should include "Your card was declined"
     Order.count.should eq 0
