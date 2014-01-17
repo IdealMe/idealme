@@ -38,7 +38,6 @@ describe 'roger love course purchase' do
     click_link "GO TO COURSE"
     screenshot
     email = last_email
-    binding.pry
   end
 
 end
