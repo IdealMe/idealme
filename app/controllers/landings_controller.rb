@@ -16,4 +16,8 @@ class LandingsController < ApplicationController
   def getinshape
     @vwo = true
   end
+
+  def aweber_callback
+    binding.pry
+  end
 end
