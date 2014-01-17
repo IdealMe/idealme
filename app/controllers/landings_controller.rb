@@ -9,6 +9,10 @@ class LandingsController < ApplicationController
     @vwo = true
   end
 
+  def upsell
+    @vwo = true
+  end
+
   def getinshape
     @vwo = true
   end
