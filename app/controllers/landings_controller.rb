@@ -9,7 +9,7 @@ class LandingsController < ApplicationController
     @vwo = true
   end
 
-  def upsell
+  def getthebook
     @vwo = true
   end
 
