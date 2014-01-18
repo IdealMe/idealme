@@ -32,7 +32,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
     flash[:alert] = nil if params[:quick] == '1'
-    super
+    build_resource({})
+    self.resource.email = session[:email] if session[:email]
+    respond_with self.resource
   end
 
   def edit_password
