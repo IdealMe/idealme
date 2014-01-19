@@ -227,8 +227,7 @@ background-size: auto 100%;}
 .related .featured-goals li a {color:#999;}
 .related .episode-references {background: white; -webkit-border-radius: 6px;-moz-border-radius: 6px; border-radius: 6px; margin-bottom:10px;}
 
-li.check {
-list-style-type: none;
+li.check { list-style-type: none;
 background: url(<%= asset_path 'check.png' %>) no-repeat top left;
 height: 32px;
 margin: 0 0 62px;
@@ -239,8 +238,9 @@ font-size: 20px;
 .jumbotron h1 {
 font-size: 32px;
 line-height: 46px;
-margin: 20px 220px;
-font-weight: 600;
+margin: 20px 148px;
+font-weight: 700;
+text-align: center;
 }
 
 .getthebook img {
@@ -254,4 +254,51 @@ font-weight: 600;
 .upsell {
 	font-size: 20px;
 }
+
+.delivery-date {
+	text-transform: uppercase;
+	font-size: 36px;
+	text-align: center;
+			margin-bottom: 2em;
+}
+
+.order-now {
+	text-align: center;
+	margin-top: 2em;
+}
+
+.prompt {
+	text-align: center;
+	font-weight: 700;
+	font-size: 36px;
+
+}
+
+.footnote {color: #999;
+	margin-top: 2em;
+	text-align: center;
+}
+
+.btn-skip {
+
+}
+
+.btn-special {
+	background-color: #fce359;
+	background-image: -webkit-linear-gradient(#fce359, #fed231);
+	background-image: linear-gradient(#fce359, #fed231);
+	border: 1px solid #e5b50f;
+	color: #393c3d;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.32);
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.11),inset 0 0 1px 1px rgba(255,255,255,0.12);	
+	text-transform: uppercase;
+	font-size: 36px
+}
+
+.btn-special:hover, .btn-special:focus {
+	background-color: #fde861;
+	background-image: -webkit-linear-gradient(#fde861, #fedb33);
+	background-image: linear-gradient(#fde861, #fedb33);
+}
+
 
