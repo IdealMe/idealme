@@ -4,7 +4,7 @@ section.pay-method
     = image_tag 'icons/credit_cards_icon.png', class: 'credit-cards-image'
   .clear
 
-= simple_form_for(@order, url: orders_path, method: :post, wrapper: :bootstrap, html: {class: 'orders-payment-form'}) do |f|
+= simple_form_for(@order, url: @form_post_path, method: :post, wrapper: :bootstrap, html: {class: 'orders-payment-form'}) do |f|
   = f.hidden_field :market_id
   = f.hidden_field :course_id
   = f.hidden_field :user_id
@@ -50,8 +50,9 @@ section.pay-method
 
 section.pay-method
   p
-    ' Or
     p
-      = link_to paypal_checkout_order_path(@order.market), method: :post do
-        = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
+      - if @order.market
+        ' Or
+        = link_to paypal_checkout_order_path(@order.market), method: :post do
+          = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
   .clear

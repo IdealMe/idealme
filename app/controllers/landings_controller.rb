@@ -18,6 +18,8 @@ class LandingsController < ApplicationController
   end
 
   def aweber_callback
-    binding.pry
+    session[:email] = params[:email]
+    redirect_to '/getthebook'
+    #redirect_to new_user_registration_path
   end
 end

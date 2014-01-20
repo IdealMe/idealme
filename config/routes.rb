@@ -20,6 +20,8 @@ Idealme::Application.routes.draw do
   resources :feedbacks, only: [:index, :new, :create]
   resources :orders, only: [:new, :create] do
     collection do
+      get 'new/workbook' => 'orders#new_workbook', as: :order_workbook
+      post 'create/workbook-order' => 'orders#create_workbook_order', as: :create_workbook_order
       get 'new/:id' => 'orders#new', as: :subscribe
       post 'thanks/:id' => 'orders#thanks', as: :paypal_return
     end
