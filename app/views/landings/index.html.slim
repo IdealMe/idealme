@@ -15,23 +15,6 @@
             | Get the <em>Design Your Ideal Life</em> workbook, free. A $47 value!
         .join-box
           = render partial: "partials/aweber_form"
-        /.join-box
-          /= form_for :user, url: user_registration_path do |f|
-            /= link_to "Join with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-join-btn"
-            /.or-text
-              /span.line &nbsp;
-              /span.tx Or
-            /.field-wp
-              /span.email-icon &nbsp;
-              /= f.email_field :email, placeholder: "Email", class: "field"
-            /.field-wp
-              /span.pass-icon &nbsp;
-              /= f.password_field :password, placeholder: "Password", class: "field"
-              /= f.hidden_field :remember_me, value: '1'
-              /= hidden_field_tag :quick, '1'
-            /.join-btn-wp
-              /span.strike &nbsp;
-              /= f.submit "Join Now (It's Free)", class: "join-btn"
         .clear &nbsp;
     .clear
 .worksheet-wp
