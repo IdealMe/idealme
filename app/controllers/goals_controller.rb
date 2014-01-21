@@ -13,7 +13,8 @@ class GoalsController < ApplicationController
   end
 
   def choose
-    goal_ids = params[:goal_ids].reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
+    goal_ids = params[:goal_ids] || {}
+    goal_ids = goal_ids.reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
     if goal_ids && goal_ids.length > 0
       goals = Goal.all
       goals.each do |goal|
@@ -24,7 +25,7 @@ class GoalsController < ApplicationController
         end
       end
     end
-    redirect_to user_path(current_user)
+    redirect_to session[:after_goals_path] || user_path(current_user)
   end
 
   # GET /goals/1

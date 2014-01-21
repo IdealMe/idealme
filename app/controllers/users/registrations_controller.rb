@@ -48,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    user_welcome_path
+    session[:after_sign_up_path] || user_welcome_path
   end
 
   def auth_options

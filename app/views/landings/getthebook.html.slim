@@ -27,9 +27,9 @@
           |  we’re working around the clock to connect you with gifted experts and carefully curated, high-quality content to help YOU reach your personal goals. We are the first
           strong 100% satisfaction-guaranteed
           | marketplace of curated personal development resources.
-        img.book alt="Cover of book" src="/assets/cover.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/p2-3.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/p4-5.jpg" width="850px"
+        img.book alt="Cover of book"  src="/assets/cover.jpg" width="850px"
+        img.book alt="Page from book" src="/assets/p2-3.jpg"  width="850px"
+        img.book alt="Page from book" src="/assets/p4-5.jpg"  width="850px"
         p.upsell If you are not satisfied with the “Design Your Ideal Life” Workbook, we’ll give you a full refund on the shipping cost. That’s our promise!
 
         p.upsell
@@ -44,7 +44,8 @@
           = link_to order_workbook_orders_path do
             button#getthebook-btn.btn.btn-special.btn-block type="button" Extremely Large Button →
         p
-          button.btn.btn-default.btn-block type="button" Skip this step
+          = link_to new_user_registration_path do
+            button#skip-btn.btn.btn-default.btn-block type="button" Skip this step
         p
           img.trust alt="Money Back Gurantee" height="90px" src="/assets/trust.png" width="860px" 
         p.footnote 1. University of Scranton. Journal of Clinical Psychology, January 1, 2014 <br>http://www.statisticbrain.com/new-years-resolution-statistics/

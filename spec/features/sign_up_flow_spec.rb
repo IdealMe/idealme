@@ -47,11 +47,22 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     select "Master Card", from: "Card type"
 
     screenshot
-    save_and_open_page
     click_button "Complete Purchase"
 
     screenshot
+    Order.count.should eq 1
 
   end
 
+  it 'create account for user that skips workbook order', js: true, vcr: true do
+    visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
+    page.current_path.should eq '/getthebook'
+    find('#skip-btn').click
+    fill_in 'user_password', with: 'passpass'
+    page.find('input[name="commit"]').click
+    # goals page
+    page.find('input[name="commit"]').click
+    screenshot
+    page.current_path.should eq '/resources'
+  end
 end
