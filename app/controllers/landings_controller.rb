@@ -10,6 +10,8 @@ class LandingsController < ApplicationController
   end
 
   def getthebook
+    session[:after_sign_up_path] = goals_path
+    session[:after_goals_path]   = resources_path
     @vwo = true
   end
 
@@ -18,7 +20,7 @@ class LandingsController < ApplicationController
   end
 
   def aweber_callback
-    session[:email] = params[:email]
+    session[:email]              = params[:email]
     redirect_to '/getthebook'
     #redirect_to new_user_registration_path
   end
