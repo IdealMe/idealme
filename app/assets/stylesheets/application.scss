@@ -217,6 +217,23 @@ h1, h2, h3, h4, h5, h6,
             @include hex(white);
           }
         }
+        .btn-white {
+          border: none;
+          @include border-radius(4px);
+          @include bg(#eeeeee);
+          @include fs(14px);
+          @include lh(14px);
+          @include upper;
+          @include centered;
+          padding: 12px 95px;
+          @include hex(white);
+          @include text-shadow(none);
+          &:hover {
+            border: none;
+            @include bg(#fa7977);
+            @include hex(white);
+          }
+        }
       }
 
     }
@@ -317,6 +334,20 @@ h1, h2, h3, h4, h5, h6,
             .btn-red {
               border: none;
               @include bg(#f16764);
+              @include lh(14px);
+              @include centered;
+              padding: 2px 5px;
+              @include hex(white);
+              @include text-shadow(none);
+              &:hover {
+                border: none;
+                @include bg(#fa7977);
+                @include hex(white);
+              }
+            }
+            .btn-white {
+              border: none;
+              @include bg(#eee);
               @include lh(14px);
               @include centered;
               padding: 2px 5px;
