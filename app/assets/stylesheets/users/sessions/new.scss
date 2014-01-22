@@ -27,7 +27,7 @@
             text-align: center;
             .btn { @include upper; }
             .btn-red {
-              width: 281px; 
+              width: 281px;
               margin-left: 132px;}
 
           }
@@ -83,13 +83,13 @@
 }
 
 .logo {
-  margin: 30px 400px 0;
+  margin: 0 400px 0;
     a {
       @include sprite_css("logo_small");
       @include block;
       position: relative;
       top: -8px;
-      margin: 10px auto;
+      margin: 0 auto;
       background-position: 0 -396px;
     }
   }
