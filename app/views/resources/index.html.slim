@@ -6,14 +6,14 @@
         h1
           | Resources
           p.lead
-      .col-md-5
-        .well.well-lg
-          .row
-            .col-sm-12
-              a.download-cover href="/"
+      a.download-cover href="http://idealme.s3.amazonaws.com/Design%20Your%20Ideal%20Life.pdf"
+        .col-md-5
+          .well.well-lg
+            .row
+              .col-sm-12
                 img alt="Design Your Ideal Life Book Cover" border="0" height="107" src="assets/bk-cover-small.png" width="100"
-              .download-cta href="/"
-                | Download your FREE<br>Ideal Me workbook ⬇
+                .download-cta href="/"
+                  | Download your FREE<br>Ideal Me workbook ⬇
 .container
   .row
     .col-md-9
@@ -24,7 +24,7 @@
         li
           = link_to my_goals_resources_path, class: (@active_tab == :my_goals ? 'active' : '')
             | Only my goals
-    
+
 
 
   = render partial: "article_summary", collection: @articles

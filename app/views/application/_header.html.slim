@@ -28,6 +28,8 @@
         = link_to 'MARKETPLACE', markets_path, class: active_tab?('markets', params[:controller])
       li
         = link_to 'ME', user_path(current_user), class: active_tab?('users', params[:controller])
+      li
+        = link_to 'RESOURCES', resources_path, class: active_tab?('resources', params[:controller])
     = form_tag(searches_path, method: 'get', class: 'search-box') do
       .input-group
         = text_field_tag('q', @search, class: 'form-control search-field')
