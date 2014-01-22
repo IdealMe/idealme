@@ -27,6 +27,8 @@
       li
         = link_to 'MARKETPLACE', markets_path, class: active_tab?('markets', params[:controller])
       li
+        = link_to 'RESOURCES', resources_path, class: active_tab?('resources', params[:controller])
+      li
         = link_to 'ME', user_path(current_user), class: active_tab?('users', params[:controller])
     = form_tag(searches_path, method: 'get', class: 'search-box') do
       .input-group
@@ -46,9 +48,11 @@
     .container
       .left-menu.marketplace
         = link_to 'MARKETPLACE', markets_path
+      .left-menu.resources
+        = link_to 'RESOURCES', resources_path, class: active_tab?('resources', params[:controller])
       .sign-in-box
         = link_to 'Sign in', new_user_session_path
       .sign-up-box
-        = link_to 'Sign up', new_user_registration_path
+        = link_to 'Sign up', root_path
       .logo
         = link_to('', root_path, title: 'Ideal Me')

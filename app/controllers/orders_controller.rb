@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   #before_filter :require_authentication
   before_filter :init_order, only: [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
-  before_filter :build_order, only: [:create]
+  before_filter :build_order, only: [:create, :create_workbook_order]
 
   before_filter :ensure_product_user_uniqueness
 
@@ -20,6 +20,14 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    @form_post_path = orders_path
+    render layout: "minimal"
+  end
+
+  def new_workbook
+    @form_post_path = create_workbook_order_orders_path
+    @order = Order.create_workbook_order_by_user(order_user)
+    @invoice = Order.generate_workbook_invoice(@order)
     render layout: "minimal"
   end
 
@@ -51,6 +59,50 @@ class OrdersController < ApplicationController
 
   def paypal_cancel
     redirect_to action: :new and return
+  end
+
+  def create_workbook_order
+    time = @order.time
+
+    unless current_user
+      user = build_user
+      if user.valid?
+        create_user
+      else
+        if user.email.present?
+          flash[:alert] = 'Sign in to your idealme.com account before purchasing'
+          session[:previous_url] = "/orders/new/workbook"
+          redirect_to new_user_session_path and return
+        end
+      end
+    end
+
+    if @order.valid? && current_user
+      @order.cost = 700
+      gateway = STRIPE_GATEWAY
+      gateway_options = {}
+      if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
+        @order.gateway = Order::GATEWAY_STRIPE
+        gateway_options[:description] = "Idealme Workbook Postage"
+        gateway_options[:email] = @order.card_email
+      end
+      @response = gateway.purchase(@order.cost, @order.cc, gateway_options)
+
+      if @response.success?
+        Rails.logger.info gateway.store(@order.cc, gateway_options)
+        @order.parameters = @response
+        @order.status = Order::STATUS_SUCCESSFUL
+        @order.user = current_user
+        @order.complete!
+        HipchatNotification.perform_async("Workbook ordered - #{current_user.email}")
+      else
+        flash[:alert] = @response.message
+        render :new
+      end
+    else
+      flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
+      render :new
+    end
   end
 
   # POST /orders
@@ -127,9 +179,13 @@ class OrdersController < ApplicationController
 
   def build_order
     @order = Order.new(order_params)
-    @market = Market.where(id: @order.market.id).first
-    @invoice = Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
-    raise ActiveRecord::RecordInvalid unless @market
+    @market = Market.where(id: @order.market.id).first if @order.market
+    @invoice = if @market
+                 Order.generate_invoice(@market.course, get_affiliate_user, get_affiliate_link)
+               else
+                 Order.generate_workbook_invoice(@order)
+               end
+    #raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
   end

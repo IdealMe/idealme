@@ -32,7 +32,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
     flash[:alert] = nil if params[:quick] == '1'
-    super
+    build_resource({})
+    self.resource.email = session[:email] if session[:email]
+    respond_with self.resource
   end
 
   def edit_password
@@ -46,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    user_welcome_path
+    session[:after_sign_up_path] || user_welcome_path
   end
 
   def auth_options

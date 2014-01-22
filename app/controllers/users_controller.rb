@@ -31,12 +31,13 @@ class UsersController < ApplicationController
   end
 
   def welcome_save
-    goal_ids = params[:goal_ids].reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
+    goal_ids = params[:goal_ids] || {}
+    goal_ids = goal_ids.reject { |key, value| value.to_i == 0 }.keys.map(&:to_i)
     if goal_ids && goal_ids.length > 0
       goals = Goal.where(id: goal_ids)
       goals.each { |goal| current_user.subscribe_goal(goal) }
     end
-    redirect_to user_path(current_user)
+    redirect_to session[:after_goals_path] || user_path(current_user)
   end
 
   def dismiss_welcome_message

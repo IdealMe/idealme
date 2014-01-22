@@ -58,6 +58,11 @@ class Order < ActiveRecord::Base
     invoice
   end
 
+  def self.generate_workbook_invoice(order)
+    invoice = "#{order.id}.#{rand(36**8).to_s(36)}"
+    invoice
+  end
+
   # Parse the given invoice and populate an invoice hash
   #
   # @param [String] invoice the invoice returned by PayPal
@@ -91,6 +96,20 @@ class Order < ActiveRecord::Base
     order
   end
 
+  def self.create_workbook_order_by_user(user)
+    order = Order.new
+    order.user = user
+    order.cost = 700
+    order.card_firstname = user.firstname
+    order.card_lastname = user.lastname
+    order.card_email = user.email
+
+
+    order.time = Time.now.to_i
+    order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
+    order
+  end
+
   # == Instance Methods =====================================================
 
   def complete!
@@ -100,10 +119,12 @@ class Order < ActiveRecord::Base
   end
 
   def send_course_purchase_complete_mail
-    if course.roger_love?
+    if course && course.roger_love?
       PurchaseMailer.roger_love(user).deliver
-    else
+    elsif course
       PurchaseMailer.confirmed(self).deliver
+    else
+      # workbook order
     end
   end
 

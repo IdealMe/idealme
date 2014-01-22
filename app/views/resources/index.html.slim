@@ -4,20 +4,19 @@
     .row
       .col-md-7
         h1
-          | Storystrap
+          | Resources
           p.lead
-      .col-md-5
-        .well.well-lg
-          .row
-            .col-sm-12
-  .container
-    .row
-      .col-md-12
-        .top-spacer
-
+      a.download-cover href="http://idealme.s3.amazonaws.com/Design%20Your%20Ideal%20Life.pdf"
+        .col-md-5
+          .well.well-lg
+            .row
+              .col-sm-12
+                img alt="Design Your Ideal Life Book Cover" border="0" height="107" src="assets/bk-cover-small.png" width="100"
+                .download-cta href="/"
+                  | Download your FREE<br>Ideal Me workbook ⬇
 .container
   .row
-    .col-md-3
+    .col-md-9
       ul.left-menu
         li
           = link_to resources_path, class: (@active_tab == :all ? 'active' : '')
@@ -25,7 +24,7 @@
         li
           = link_to my_goals_resources_path, class: (@active_tab == :my_goals ? 'active' : '')
             | Only my goals
-    .col-md-9
+
 
 
   = render partial: "article_summary", collection: @articles
