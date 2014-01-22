@@ -3,7 +3,7 @@
     .row-fluid
         h1 Get the “Design Your Ideal Life” Workbook shipped right to your front door for FREE…you just pay shipping!
     .row-fluid.getthebook
-        img.pages alt="Design Your Ideal LifeBook" height="413px" src="/assets/pages.png" width="1074px"
+        = image_tag "pages.png", width: 1047, height: 413, alt: "Design Your Ideal Lifebook"
 
 .container
   .row-fluid.benefits
@@ -24,22 +24,22 @@
           sup> 2
         p.upsell The “Design Your Ideal Life” workbook gives you 18-interactive worksheets you can dive into right away!
         p.upsell Here’s just a sampling:
-        img.book alt="Cover of book" src="/assets/cover.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp1.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp2.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp3.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp4.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp5.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp6.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp7.jpg" width="850px"
-        img.book alt="Page from book" src="/assets/bp8.gif" width="850px"
+        = image_tag "cover.jpg", height: 850, alt: "Cover of book", class: "book"
+        = image_tag "bp1.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp2.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp3.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp4.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp5.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp6.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp7.jpg", height: 850, alt: "Page from book", class: "book"
+        = image_tag "bp8.jpg", height: 850, alt: "Page from book", class: "book"
         p.upsell
           | Here at Ideal Me we’re working around the clock to help you reach your Ideal Me by connecting you with the right resources and content. We’re the first
           strong  100% satisfaction-guaranteed
           |  destination for self-improvement.
         p.upsell What does that mean?
         p.upsell Simply put...
-        img.book alt="Page from book" src="/assets/bp9.gif" width="850px"
+        = image_tag "bp9.jpg", height: 850, alt: "Page from book", class: "book"
         p.upsell Get the “Design Your Ideal Life” Workbook, risk-free on us, and if you aren't as happy and excited about the potential then feel protected with our 100% Money Back Guarantee.
         p.upsell If you aren't as in love with the “Design Your Ideal Life” workbook as much as we are then ask for every dime you spent on shipping back. We take the risk, you get the reward. Isn't that how it's supposed to be in business?
         .order-now
@@ -55,7 +55,7 @@
           = link_to new_user_registration_path, class: "btn-link" do
             button#skip-btn.btn.btn-default.btn-block.btn-skip type="button" Skip this step
         p
-          img.trust alt="Money Back Gurantee" height="90px" src="/assets/trust.png" width="860px"
+          = image_tag "trust.png", height: 90, width: 860, class: "trust"
         p.footnote 1. University of Scranton. Journal of Clinical Psychology, January 1, 2014 <br>http://www.statisticbrain.com/new-years-resolution-statistics/
         p.footnote  2. “The Effects of Mental Imagery on Athletic Performance”, Annie Plessenger.  <br>http://www.tnbjj.com/linkedpages/visualization.html
 
