@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       goals = Goal.where(id: goal_ids)
       goals.each { |goal| current_user.subscribe_goal(goal) }
     end
-    redirect_to user_path(current_user)
+    redirect_to session[:after_goals_path] || user_path(current_user)
   end
 
   def dismiss_welcome_message
