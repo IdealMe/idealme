@@ -9,8 +9,21 @@
   h1, h2, h3, .highlight, .navbar a, #masthead h4
     font-family: 'Oswald',arial narrow,sans-serif
 
+  h1
+    font-weight: 600
+    font-size: 36px
+    margin-left: 10px
+
   h2
-    margin-top: 0
+    font-weight: 600
+    color: #4d4d4d
+    font-size: 36px
+    line-height: 44px
+
+  .article-summary
+    margin-left: 7px
+    color: #4d4d4d
+    font-size: 18px
 
   .cover
     position: absolute
@@ -26,20 +39,31 @@
 
   #masthead
     min-height: 199px
-    //background: url(<%= asset_path '1250.jpg' %>) center no-repeat;
-    color: #aaaacc
+    background-image: url(<%= asset_path 'ripples.jpg' %>)
+    height: 203px
     h1
       font-size: 55px
       line-height: 1
-      color: #fefeff
+      color: #fff
       margin-top: 50px
+      font-weight: 700
     .well
-      margin-top: 31px
-      background-color: #111166
-      border-color: #000022
-      color: #efefff
+      margin-top: 12px
+      background-color: #fAFAFA
       min-height: 127px
-
+      .download-cta
+        float: right
+        position: relative
+        top: 15px
+        right: 25px
+        font-size: 28px
+        font-weight: 600
+        height: 0px
+        color: #4d4d4d
+    .well:hover
+      background: #fff
+      cursor: pointer 
+      
   #topPanel
     padding-top: 0px
     padding-left: 22px
@@ -157,6 +181,14 @@
         height: 64px
         &:hover, &.active
           border-bottom: 3px solid #ff6766
+
+
+
+
+
+
+
+
 
 
 
