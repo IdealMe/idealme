@@ -24,6 +24,7 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
   let!(:course)             { create(:course, owner: affiliate_user) }
   let!(:market2)            { create(:market2, course: course2) }
   let!(:course2)            { create(:course2, owner: affiliate_user) }
+  let!(:goal)               { create(:goal) }
 
   it 'send the user to the create account screen', js: true, vcr: true do
     visit '/getthebook'
@@ -76,7 +77,7 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     page.find('input[name="commit"]').click
     # goals page
     screenshot
-    page.find('input[name="commit"]').click
+    page.find('.btn-white').click
     screenshot
     page.current_path.should eq '/resources'
   end
