@@ -43,8 +43,10 @@
         p.upsell Get the “Design Your Ideal Life” Workbook, risk-free on us, and if you aren't as happy and excited about the potential then feel protected with our 100% Money Back Guarantee.
         p.upsell If you aren't as in love with the “Design Your Ideal Life” workbook as much as we are then ask for every dime you spent on shipping back. We take the risk, you get the reward. Isn't that how it's supposed to be in business?
         .order-now
-          .order-date-month JANUARY
-          .order-date-day 23
+          .order-date-month
+            = next_delivery_date_month
+          .order-date-day
+            = next_delivery_date_day
         p.prompt So get on this now!
         p
           = link_to order_workbook_orders_path, class: "btn-link" do
