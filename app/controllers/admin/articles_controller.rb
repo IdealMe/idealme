@@ -44,7 +44,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   protected
   def load_article
-    @article = Article.find(params[:id])
+    @article = Article.where(slug: params[:id]).first
   rescue ActiveRecord::RecordNotFound
     redirect_to admin_articles_path, alert: "Article not found"
   end
