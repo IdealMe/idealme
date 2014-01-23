@@ -46,10 +46,11 @@
     .clear
   - else
     .container
-      .left-menu.marketplace
-        = link_to 'MARKETPLACE', markets_path
-      .left-menu.resources
-        = link_to 'RESOURCES', resources_path, class: active_tab?('resources', params[:controller])
+      ul.left-menu
+        li.marketplace
+          = link_to 'MARKETPLACE', markets_path
+        li.resources
+          = link_to 'RESOURCES', resources_path, class: active_tab?('resources', params[:controller])
       .sign-in-box
         = link_to 'Sign in', new_user_session_path
       .sign-up-box
