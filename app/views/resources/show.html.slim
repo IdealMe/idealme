@@ -1,7 +1,8 @@
-style
-  ' .resources-index #masthead, .resources-my_goals #masthead, .resources-show #masthead, .resources-goal #masthead {
-  '   background-image: url(#{@article.image.url});
-  ' }
+- if @article.image.present?
+  style
+    ' .resources-index #masthead, .resources-my_goals #masthead, .resources-show #masthead, .resources-goal #masthead {
+    '   background-image: url(#{@article.image.url});
+    ' }
 
 #masthead
   .container
