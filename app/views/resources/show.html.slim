@@ -1,17 +1,18 @@
+
 - if @article.image.present?
   style
-    ' .resources-index #masthead, .resources-my_goals #masthead, .resources-show #masthead, .resources-goal #masthead {
+    ' .resources-show #masthead {
     '   background-image: url(#{@article.image.url});
     ' }
 
-#masthead
+  #masthead
+    .container
+      .row
+        .col-md-12
+          h1 = @article.name
   .container
-    .row
-      .col-md-7
-        h1 = @article.name
-.container
-  .row
-    .col-md-12
-      == @article.content
+    .row.post-body
+      .col-md-12
+        == @article.content
 
 
