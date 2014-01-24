@@ -4,6 +4,8 @@
       legend Article
   = f.hidden_field :author_id, value: current_user.id
   = f.input :name
+  = f.input :author
+  = f.input :original_url
   .control-group
     label.controls Content
     = f.cktext_area :content

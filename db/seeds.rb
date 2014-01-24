@@ -1,5 +1,5 @@
 puts 'Seeding users'
-u = User.find_or_create_by_email(firstname: 'Admin', lastname: 'User', username: 'adminuser', password: '123123123',
+u = User.find_or_create_by_email(firstname: 'Admin', lastname: 'User', username: 'adminuser', password: '123123123', password_confirmation: '123123123',
                                  email: 'admin@idealme.com', tagline: '', affiliate_tag: 'adminideal',
                                  avatar: File.new("#{Rails.root.to_s}/db/seeds/users/images.jpg", 'r'),
                                  instructor_about: '<p>Admin User!</p>')
@@ -135,4 +135,6 @@ end
 end
 
 Jewel.all.each { |jewel| jewel.update_column(:visible, true) }
+
+
 
