@@ -8,12 +8,10 @@
   .container
     .row
       .col-md-7
-        h1
-          | HEY NOW
+        h1 = @article.name
 .container
   .row
     .col-md-12
-      h1 = @article.name
       == @article.content
 
 
