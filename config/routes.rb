@@ -10,6 +10,7 @@ Idealme::Application.routes.draw do
   root to: 'landings#index'
   get 'aweber_callback' => 'landings#aweber_callback'
   get 'workbook' => 'landings#workbook'
+  get 'workbook-thanks' => 'landings#workbook_thanks', as: :workbook_thanks
   get 'getthebook' => 'landings#getthebook'
   get 'getinshape' => 'landings#getinshape'
 

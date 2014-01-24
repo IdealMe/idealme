@@ -60,6 +60,7 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     click_button "Complete Purchase"
 
     screenshot
+    page.current_path.should eq '/workbook-thanks'
     Order.count.should eq 1
 
   end

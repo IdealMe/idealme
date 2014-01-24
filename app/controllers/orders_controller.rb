@@ -95,6 +95,7 @@ class OrdersController < ApplicationController
         @order.user = current_user
         @order.complete!
         HipchatNotification.perform_async("Workbook ordered - #{current_user.email}")
+        redirect_to(workbook_thanks_path)
       else
         flash[:alert] = @response.message
         render :new

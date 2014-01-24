@@ -19,6 +19,10 @@ class LandingsController < ApplicationController
     @vwo = true
   end
 
+  def workbook_thanks
+    @vwo = true
+  end
+
   def aweber_callback
     session[:email]              = params[:email]
     redirect_to '/getthebook'
