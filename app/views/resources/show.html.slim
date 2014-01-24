@@ -5,14 +5,14 @@
     '   background-image: url(#{@article.image.url});
     ' }
 
-  #masthead
-    .container
-      .row
-        .col-md-12
-          h1 = @article.name
+#masthead
   .container
-    .row.post-body
+    .row
       .col-md-12
-        == @article.content
+        h1 = @article.name
+.container
+  .row.post-body
+    .col-md-12
+      == @article.content
 
 
