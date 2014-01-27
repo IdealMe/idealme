@@ -15,7 +15,7 @@
         background: white;
         .account-box {
           .message-box {
-            @include fs(18px);
+            @include fs(14px);
             @include centered;
             font-weight: 700;
             margin: 17px 0 16px 0;
