@@ -35,4 +35,8 @@ class LandingsController < ApplicationController
     redirect_to '/getthebook'
     #redirect_to new_user_registration_path
   end
+
+  def ping
+    render text: :ok, layout: nil
+  end
 end
