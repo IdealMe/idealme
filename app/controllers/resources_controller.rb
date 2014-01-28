@@ -13,6 +13,8 @@ class ResourcesController < ApplicationController
 
   def my_goals
     @active_tab = :my_goals
+    @goals = []
+    @goals = current_user.goals if current_user
     @articles = Article.where("goal_id IS NOT NULL").all
     render :index
   end
