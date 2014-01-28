@@ -26,4 +26,10 @@
 
 
 
-  = render partial: "article_summary", collection: @articles
+  - unless @articles.empty?
+    = render partial: "article_summary", collection: @articles
+  - if @articles.empty?
+    .row.offset
+      .col-md-9.article-summary
+        ' You don't have any goals.
+        = link_to "Add Some", goals_path
