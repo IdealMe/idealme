@@ -30,3 +30,4 @@ fix_sequences.sql
 public/screenshots
 gems.tags
 vagrant_ansible_inventory_default
+production.log
