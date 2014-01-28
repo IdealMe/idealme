@@ -15,7 +15,8 @@ class ResourcesController < ApplicationController
     @active_tab = :my_goals
     @goals = []
     @goals = current_user.goals if current_user
-    @articles = Article.where("goal_id IS NOT NULL").all
+    goal_ids = @goals.map {|goal| goal.id }
+    @articles = Article.where(goal_id: goal_ids).all
     render :index
   end
 
