@@ -25,6 +25,7 @@ class LandingsController < ApplicationController
 
   def aweber_callback
     session[:email]              = params[:email]
+    SendHipchatMessage.send("New email optin: #{params[:email]}")
     redirect_to '/getthebook'
     #redirect_to new_user_registration_path
   end
