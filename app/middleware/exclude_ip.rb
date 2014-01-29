@@ -14,7 +14,7 @@ class ExcludeIp
     elsif path == '/__exclude_ip'
       remote_ip = env["HTTP_X_FORWARDED_FOR"]
       if remote_ip
-        remote_ip = split(',').first
+        remote_ip = remote_ip.split(',').first
         Rails.logger.info "Exclude #{remote_ip} from analytics"
         $redis.sadd("im_excluded_ips", remote_ip) unless remote_ip.blank?
       end
