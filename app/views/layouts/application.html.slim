@@ -25,8 +25,8 @@ html
     meta content="/mstile-150x150.png" name="msapplication-square150x150logo" /
     meta content="/mstile-310x310.png" name="msapplication-square310x310logo" /
 
-    = render 'partials/visual_website_optimizer' if @vwo == true && !Rails.env.test?
-    = render 'partials/google_analytics'
+    = render 'partials/visual_website_optimizer' if Rails.env.production?
+    = render 'partials/google_analytics' if Rails.env.production?
     = yield :head
   body class="#{body_class}"
     header
