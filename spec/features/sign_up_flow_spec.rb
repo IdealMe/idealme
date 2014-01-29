@@ -42,6 +42,7 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     screenshot
     fill_in "Security Code", with: '123'
     screenshot
+    SendHipchatMessage.any_instance.stub(:send)
     ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
 
     fill_in "First Name", with: "Bean"

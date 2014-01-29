@@ -2,6 +2,50 @@
 http_interactions:
 - request:
     method: post
+    uri: https://api.hipchat.com/v1/rooms/message?auth_token=2876c736673caf9c04fd310cdb2e47
+    body:
+      encoding: UTF-8
+      string: room_id=notifications&from=idealme.com&message=New%20email%20optin%3A%20charlie%2B22%40idealme.com&message_format=html&color=yellow&notify=1
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache="set-cookie"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Jan 2014 01:00:53 GMT
+      Server:
+      - nginx
+      Set-Cookie:
+      - AWSELB=4B417D29167379B88359E270231A3CFDBDD5CC2E9A32B7E02C6763C433C4A3A6BE4A3BC1CB7DF7B3E58A08644EAD422B2D7D62ADDCF5649B9A6B89443B86C57737A1FDD1F5;PATH=/
+      X-Hipchat-Jobs:
+      - Want to help make HipChat better? Apply at hipchat.com/jobs and mention this
+        header.
+      X-Ratelimit-Limit:
+      - '100'
+      X-Ratelimit-Remaining:
+      - '99'
+      X-Ratelimit-Reset:
+      - '1390957260'
+      Content-Length:
+      - '17'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\":\"sent\"}"
+    http_version: 
+  recorded_at: Wed, 29 Jan 2014 01:00:53 GMT
+- request:
+    method: post
     uri: https://sk_test_McolaUo3frJYYalxTTjg0Au1:@api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
@@ -28,37 +72,37 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 20 Jan 2014 20:49:09 GMT
+      - Wed, 29 Jan 2014 01:00:58 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
       - '1007'
       Connection:
       - keep-alive
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Max-Age:
-      - '300'
-      Access-Control-Allow-Credentials:
-      - 'true'
       Cache-Control:
       - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_3LW0NZ7lnu8g4S",
+          "id": "ch_3OZsxgl2EW3IGb",
           "object": "charge",
-          "created": 1390250949,
+          "created": 1390957257,
           "livemode": false,
           "paid": true,
           "amount": 700,
           "currency": "usd",
           "refunded": false,
           "card": {
-            "id": "card_3LW0SaXvQiVb3p",
+            "id": "card_3OZsIdLNpoDW2H",
             "object": "card",
             "last4": "4242",
             "type": "Visa",
@@ -80,7 +124,7 @@ http_interactions:
           },
           "captured": true,
           "refunds": [],
-          "balance_transaction": "txn_3LW0GAkd9WQvCU",
+          "balance_transaction": "txn_3OZsDfLh2pbYtR",
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
@@ -93,7 +137,7 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 20:49:13 GMT
+  recorded_at: Wed, 29 Jan 2014 01:00:58 GMT
 - request:
     method: post
     uri: https://sk_test_McolaUo3frJYYalxTTjg0Au1:@api.stripe.com/v1/customers
@@ -122,19 +166,19 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 20 Jan 2014 20:49:10 GMT
+      - Wed, 29 Jan 2014 01:00:59 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
       - '1086'
       Connection:
       - keep-alive
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Max-Age:
-      - '300'
       Access-Control-Allow-Credentials:
       - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
       Cache-Control:
       - no-cache, no-store
       Strict-Transport-Security:
@@ -144,8 +188,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1390250950,
-          "id": "cus_3LW0lHD43f5m83",
+          "created": 1390957258,
+          "id": "cus_3OZsjCb3xf9VRV",
           "livemode": false,
           "description": "Idealme Workbook Postage",
           "email": "beansalad@idealme.com",
@@ -158,17 +202,17 @@ http_interactions:
           "cards": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3LW0lHD43f5m83/cards",
+            "url": "/v1/customers/cus_3OZsjCb3xf9VRV/cards",
             "data": [
               {
-                "id": "card_3LW0heiJgPzNgV",
+                "id": "card_3OZsSwCgibIWfu",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 1,
                 "exp_year": 2017,
                 "fingerprint": "0FJgJUWQopgJgoZs",
-                "customer": "cus_3LW0lHD43f5m83",
+                "customer": "cus_3OZsjCb3xf9VRV",
                 "country": "US",
                 "name": "Bean Salad",
                 "address_line1": null,
@@ -183,8 +227,8 @@ http_interactions:
               }
             ]
           },
-          "default_card": "card_3LW0heiJgPzNgV"
+          "default_card": "card_3OZsSwCgibIWfu"
         }
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 20:49:13 GMT
+  recorded_at: Wed, 29 Jan 2014 01:00:59 GMT
 recorded_with: VCR 2.8.0
