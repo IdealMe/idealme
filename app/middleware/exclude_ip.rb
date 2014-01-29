@@ -12,10 +12,13 @@ class ExcludeIp
       $redis.del('im_excluded_ips')
       [200, {"Content-Type" => "text/plain"}, ["Exclude list cleared"]]
     elsif path == '/__exclude_ip'
+      remote_ip = env["HTTP_X_FORWARDED_FOR"]
+      if remote_ip
+        remote_ip = split(',').first
+        Rails.logger.info "Exclude #{remote_ip} from analytics"
+        $redis.sadd("im_excluded_ips", remote_ip) unless remote_ip.blank?
+      end
       Rails.logger.info env
-      ip = env["action_dispatch.remote_ip"]
-      Rails.logger.info "Exclude #{ip} from analytics"
-      $redis.sadd("im_excluded_ips", ip) unless ip.blank?
       [200, {"Content-Type" => "text/plain"}, ["Your IP has been added to the analytics exclude list"]]
     else
       # forward the request
