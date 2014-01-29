@@ -1,4 +1,5 @@
 class Webhook::SendGridController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   def notify
     events.each do |event|
       if event["event"] == "clicked"
@@ -35,6 +36,6 @@ class Webhook::SendGridController < ApplicationController
   end
 
   def events
-    params[:_json]
+     params[:_json]
   end
 end
