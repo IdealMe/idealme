@@ -13,7 +13,7 @@ class ExcludeIp
       [200, {"Content-Type" => "text/plain"}, ["Exclude list cleared"]]
     elsif path == '/__exclude_ip'
       Rails.logger.info env
-      ip = env['X-Real-IP']
+      ip = env["action_dispatch.remote_ip"]
       Rails.logger.info "Exclude #{ip} from analytics"
       $redis.sadd("im_excluded_ips", ip) unless ip.blank?
       [200, {"Content-Type" => "text/plain"}, ["Your IP has been added to the analytics exclude list"]]
