@@ -212,7 +212,7 @@ class OrdersController < ApplicationController
   end
 
   def ensure_product_user_uniqueness
-    if current_user
+    if current_user && @order.market
       market = Market.where(id: @order.market.id).includes(:course).first
       raise(IdealMeException::RecordNotFound, 'That market does not exist') unless market
       course_user = CourseUser.where(course_id: market.course.id, user_id: current_user.id).first
