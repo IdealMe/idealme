@@ -14,6 +14,13 @@ class Users::SessionsController < Devise::SessionsController
     flash[:notice] = nil
   end
 
+  def new
+    self.resource = resource_class.new(sign_in_params)
+    clean_up_passwords(resource)
+    self.resource.email = session[:email] if session[:email]
+    respond_with(resource, serialize_options(resource))
+  end
+
   protected
 
 

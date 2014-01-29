@@ -26,7 +26,11 @@ class OrdersController < ApplicationController
 
   def new_workbook
     @form_post_path = create_workbook_order_orders_path
-    @order = Order.create_workbook_order_by_user(order_user)
+    if session[:order_params]
+      @order = Order.new(session[:order_params])
+    else
+      @order = Order.create_workbook_order_by_user(order_user)
+    end
     @invoice = Order.generate_workbook_invoice(@order)
     render layout: "minimal"
   end
@@ -72,6 +76,7 @@ class OrdersController < ApplicationController
         if user.email.present?
           flash[:alert] = 'Sign in to your idealme.com account before purchasing'
           session[:previous_url] = "/orders/new/workbook"
+          session[:order_params] = order_params
           redirect_to new_user_session_path and return
         end
       end

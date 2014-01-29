@@ -59,7 +59,7 @@ class WarningSuppressor
 end
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: 1.minutes)
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: 3.minutes)
 end
 
 Capybara.javascript_driver = :poltergeist
@@ -124,6 +124,7 @@ RSpec.configure do |config|
     Capybara.reset_sessions!
     Warden.test_mode!
     Sidekiq::Worker.clear_all
+    SendHipchatMessage.stub(:send)
   end
 
   config.after :each do

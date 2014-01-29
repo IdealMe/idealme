@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Webhook::SendGridController do
   let!(:user) {create(:user, email: "john.doe@sendgrid.com")}
   it "receives notifications from sendgrid and tags users if imtags are found in query params" do
-    post :notify, body: <<-HEREDOC
+    post :notify, _json: <<-HEREDOC
 [
     {
         "email": "john.doe@sendgrid.com",
