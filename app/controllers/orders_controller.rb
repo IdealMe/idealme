@@ -98,11 +98,11 @@ class OrdersController < ApplicationController
         redirect_to(workbook_thanks_path)
       else
         flash[:alert] = @response.message
-        render :new
+        render :new_workbook
       end
     else
       flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
-      render :new
+      render :new_workbook
     end
   end
 
