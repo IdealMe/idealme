@@ -12,6 +12,7 @@ class ExcludeIp
       $redis.del('im_excluded_ips')
       [200, {"Content-Type" => "text/plain"}, ["Exclude list cleared"]]
     elsif path == '/__exclude_ip'
+      Rails.logger.info env
       ip = env['X-Real-IP']
       Rails.logger.info "Exclude #{ip} from analytics"
       $redis.sadd("im_excluded_ips", ip) unless ip.blank?
