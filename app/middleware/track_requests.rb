@@ -1,4 +1,3 @@
-
 class TrackRequests
   def initialize(app)
     @app = app
