@@ -18,7 +18,6 @@ class ExcludeIp
         Rails.logger.info "Exclude #{remote_ip} from analytics"
         $redis.sadd("im_excluded_ips", remote_ip) unless remote_ip.blank?
       end
-      Rails.logger.info env
       [200, {"Content-Type" => "text/plain"}, ["Your IP has been added to the analytics exclude list"]]
     else
       # forward the request
