@@ -6,7 +6,7 @@ describe 'registration' do
 
   it 'testing registration', js: true do
     visit new_user_registration_path
-    page.should have_content('Create your FREE Ideal Me account')
+    page.should have_content('workbook')
     fill_in 'user_email', with: 'newguy1000@idealme.com'
     fill_in 'user_password', with: 'passpas'
     page.find('input[name="commit"]').click

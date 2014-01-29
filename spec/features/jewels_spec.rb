@@ -64,6 +64,7 @@ describe 'idealme gems', :vcr do
   end
 
   it 'has comments that can be voted on', js: true, vcr: true do
+    pending
     jewel.fetch!
     jewel.comments.create(owner: user, content: "That’s exactly what we’d like to know. Tapmates has spent the past four years providing its clients with innovative and award-winning apps such as Wood Camera, Piictu, Klip, and Summly, and now we’re looking for our next big challenge. If you have an interesting project, want to discuss a big idea, or need some extra expertise, we can put our experience and skills to work for you.")
     jewel.update_attribute :visible, true
@@ -72,7 +73,6 @@ describe 'idealme gems', :vcr do
 
     find('.gem-card > .view-gem-link').click
     sleep 3
-    screenshot
     page.should have_css('.comment-content .vote-controls')
     find('.comment-content .like').click
     expect(jewel.comments.last.up_votes).to eq 1
