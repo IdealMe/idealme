@@ -35,6 +35,6 @@ class Webhook::SendGridController < ApplicationController
   end
 
   def events
-    JSON.parse params[:body]
+    JSON.parse "#{params[:_json]}"
   end
 end
