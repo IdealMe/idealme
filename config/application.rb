@@ -26,6 +26,10 @@ module Idealme
     # config.i18n.default_locale = :de
 
     config.autoload_paths += Dir["#{config.root}/app/models/**/", "#{config.root}/lib/**/"]
+
+    config.middleware.insert_after ActionDispatch::RemoteIp, "RemoteIpLogger"
+    config.middleware.insert_after ActionDispatch::RemoteIp, "ExcludeIp"
+    config.middleware.insert_after ActionDispatch::RemoteIp, "TrackRequests"
   end
 end
 
