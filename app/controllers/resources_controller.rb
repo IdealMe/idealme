@@ -21,6 +21,8 @@ class ResourcesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new(commentable: @article, owner: current_user, redirect_back_to: resource_path(@article))
+    @comments = Comment.for(@article).includes(:owner, replies: :owner)
   end
 
   def set_goals

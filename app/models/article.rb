@@ -9,23 +9,13 @@ class Article < ActiveRecord::Base
   # == Constants ============================================================
   # == Attributes ===========================================================
   attr_accessor :author_id
-
   # == Relationships ========================================================
-  belongs_to :category
-  belongs_to :course
-
   has_many :payloads, as: :payloadable
   has_many :article_authors
   has_many :authors, through: :article_authors
   has_many :article_goals
   has_many :goals, through: :article_goals
-  has_many :article_courses
-  has_many :courses, through: :article_courses
-  has_one :default_market, class_name: 'Market', foreign_key: 'id', primary_key: 'default_market_id'
-  has_many :i_article_targets, foreign_key: 'article_source_id', class_name: 'ArticleVolume'
-  has_many :article_targets, through: :i_article_targets, source: :article_target
-  has_many :i_article_sources, foreign_key: 'article_target_id', class_name: 'ArticleVolume'
-  has_many :article_sources, through: :i_article_sources, source: :article_source
+  has_many :comments, as: :commentable, dependent: :destroy
 
   # == Paperclip ============================================================
   has_attached_file :image,
@@ -41,17 +31,11 @@ class Article < ActiveRecord::Base
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   before_validation :clean_content
-  after_save :update_author
 
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
   def clean_content
     self.content = self.content.gsub('<p>&nbsp;</p>', '') if self.content
-  end
-
-  def update_author
-    user = User.where(id: self.author_id).first
-    self.authors << user if user && !self.authors.include?(user)
   end
 
   def summary

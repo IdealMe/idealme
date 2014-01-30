@@ -16,3 +16,27 @@
       == @article.content
 
 
+  .row.post-comments
+    = form_for @comment, url: ajax_comments_path,html:{ class:'new-comment'} do |f|
+      = f.hidden_field :commentable_id
+      = f.hidden_field :commentable_type
+      = f.hidden_field :owner_id
+      = f.hidden_field :redirect_back_to
+      = f.text_area :content, class: 'comment-content', placeholder: 'Add your thoughts!'
+      = f.submit 'Submit', class: 'btn btn-default'
+      .clear
+    .comments
+      - @comments.each do |comment|
+        .comment
+          .owner-avatar
+            = image_tag comment.owner.avatar.url(:thumb)
+          .comment-body
+            .comment-card
+              .owner-name
+                = comment.owner.fullname
+              .comment-date
+                = distance_of_time_in_words_to_now comment.created_at
+              .clear
+              .comment-content
+                = comment.content
+          .clear
