@@ -4,7 +4,6 @@ class RemoteIpLogger
   end
 
   def call(env)
-    Rails.logger.info env
     #remote_ip = env["HTTP_X_FORWARDED_FOR"]
     remote_ip = env["action_dispatch.remote_ip"]
     if remote_ip
