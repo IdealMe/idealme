@@ -1,0 +1,9 @@
+machine:
+  environment:
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+
+database:
+  override:
+    # replace CircleCI's generated database.yml
+    - cp config/database.circle.yml config/database.yml
+    - bundle exec rake db:create db:schema:load
