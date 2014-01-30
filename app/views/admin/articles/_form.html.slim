@@ -10,23 +10,17 @@
     label.controls Content
     = f.cktext_area :content
   = f.input :hidden
-  /= f.input :category_id do
-    /= f.select :category_id, Category.all.collect { |category| [category.name, category.id] }, { include_blank: true }, class: 'select2', placeholder: 'Select a category'
-
-
 
   - if @article.image.present?
     = image_tag @article.image.expiring_url(:thumb), height: '50', width: '50'
+
   = f.input :image do
     = f.file_field :image
 
-
-  /= f.input :course_id do
-    /= f.select :course_id, Course.all.collect { |course| [course.name, course.id] }, { include_blank: true }, class: 'select2', placeholder: 'Select a course'
-  = f.input :goal_id do
-    = f.select :goal_id, Goal.all.collect { |goal| [goal.name, goal.id] }, { include_blank: true }, class: 'select2', placeholder: 'Select a goal'
-  /= f.input :default_market_id do
-    /= f.select :default_market_id, Market.all.collect { |market| [market.name, market.id] }, { include_blank: true }, class: 'select2', placeholder: 'Select a market'
+  - @article.article_goals.each do |article_goal|
+    = f.simple_fields_for article_goal do |g|
+      = g.input "goal" do
+        = g.select "goal", available_goals_for(@article, g.object.goal), { include_blank: true }, class: 'select2', placeholder: 'Select a goal', name: "article[goals][]"
 
   = f.submit 'Save', class: 'btn btn-success'
   = link_to 'Back', admin_articles_path, class: 'btn'

@@ -12,6 +12,7 @@ class Goal < ActiveRecord::Base
   has_many :goal_users
   has_many :users, through: :goal_users
   has_many :jewels
+  has_many :articles
 
   belongs_to :category
 

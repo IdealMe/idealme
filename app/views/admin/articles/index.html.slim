@@ -1,10 +1,10 @@
 h1 Articles
 
 .filter
-  label
-    ' Filter by goal&nbsp;
+  /label
+    /' Filter by goal&nbsp;
 
-  = select_tag :goal_id, options_for_select(Goal.all.collect { |goal| [goal.name, goal.id] }), { include_blank: true, class: 'select2', placeholder: 'Select a goal' }
+  /= select_tag :goal_id, options_for_select(Goal.all.collect { |goal| [goal.name, goal.id] }), { include_blank: true, class: 'select2', placeholder: 'Select a goal' }
 
 table.table
   tr
@@ -15,7 +15,7 @@ table.table
     tr
       td = link_to article.name, edit_admin_article_path(article)
       td
-        = article.goal.name if article.goal
+        = article.goals.map(&:name).join(", ")
 
 br
 

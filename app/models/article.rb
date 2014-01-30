@@ -13,11 +13,12 @@ class Article < ActiveRecord::Base
   # == Relationships ========================================================
   belongs_to :category
   belongs_to :course
-  belongs_to :goal
 
   has_many :payloads, as: :payloadable
   has_many :article_authors
   has_many :authors, through: :article_authors
+  has_many :article_goals
+  has_many :goals, through: :article_goals
   has_many :article_courses
   has_many :courses, through: :article_courses
   has_one :default_market, class_name: 'Market', foreign_key: 'id', primary_key: 'default_market_id'
@@ -56,6 +57,12 @@ class Article < ActiveRecord::Base
   def summary
     value = strip_tags(self.content)
     value.truncate(250)
+  end
+
+  def goals=(goal_ids)
+    self.article_goals = goal_ids.reject(&:blank?)
+      .map{|gid| Goal.where(id: gid).take }.compact
+      .map{|goal| ArticleGoal.find_or_create_by(goal_id: goal.id, article_id: self.id) }
   end
 
 end
