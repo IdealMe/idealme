@@ -6,7 +6,7 @@ require './config/boot'
 set :application, 'idealme'
 set :repository, 'git@github.com:flingbob/idealme.git'
 
-server 'mvp', :app
+server 'charlie@mvp', :app
 
 set :application, 'idealme'
 set :repo_url, 'git@github.com:flingbob/idealme.git'

@@ -23,7 +23,6 @@
 //= require jstz-1.0.5.js
 //= require select2.js
 //= require jquery.cookie
-//= require bootstrap-tour
 //= require users.js
 //= require flowplayer.min
 //= require bootstrap-datepicker
