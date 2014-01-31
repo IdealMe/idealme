@@ -8,3 +8,17 @@ database:
     # replace CircleCI's generated database.yml
     - cp config/database.circle.yml config/database.yml
     - bundle exec rake db:create db:schema:load
+
+test:
+  override:
+    - bundle exec rspec --color spec --format documentation --profile
+  environment:
+    - RAILS_ENV="test"
+    - RACK_ENV="test"
+
+#deployment:
+  #production:
+    #branch: master
+    #commands:
+      #- bundle exec cap deploy
+
