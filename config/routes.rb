@@ -139,7 +139,9 @@ Idealme::Application.routes.draw do
 
   namespace :ajax do
     resources :comments, only: [:create, :update, :destroy], defaults: {format: :json}
-    resources :users, only: [:update], defaults: {format: :json}
+    constraints(id: /[0-9A-Za-z\-\.\_]+/) do
+      resources :users, only: [:update], defaults: {format: :json}
+    end
     resources :goals, only: [:index], defaults: {format: :json}
     resources :categories, only: [:index], defaults: {format: :json}
     resources :checkins, only: [:index, :show], defaults: {format: :json} do
