@@ -171,6 +171,7 @@ gem "compass-rails"
 gem 'font-awesome-sass-rails' # new
 # gem 'turbo-sprockets-rails3', git: 'https://github.com/spohlenz/turbo-sprockets-rails3.git'
 
+gem 'asset_sync'
 
 gem 'stripe'
 
