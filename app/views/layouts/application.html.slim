@@ -1,12 +1,9 @@
 doctype html
 html
   head
-    script src="//cdn.optimizely.com/js/585912477.js"
     = display_meta_tags site: 'Ideal Me'
     meta content='width=1300' name='viewport' /
     = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'https://js.stripe.com/v2/', 'application'
-    = javascript_include_tag('admin') if params[:controller].include?('admin')
     = csrf_meta_tags
     link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'
     link href="/apple-touch-icon-57x57.png" rel="apple-touch-icon" sizes="57x57" /
@@ -27,6 +24,9 @@ html
     meta content="/mstile-150x150.png" name="msapplication-square150x150logo" /
     meta content="/mstile-310x310.png" name="msapplication-square310x310logo" /
 
+    script src="//cdn.optimizely.com/js/585912477.js"
+    = javascript_include_tag 'https://js.stripe.com/v2/', 'application'
+    = javascript_include_tag('admin') if params[:controller].include?('admin')
     = render 'partials/visual_website_optimizer' if Rails.env.production?
     = render 'partials/google_analytics' if Rails.env.production?
     = yield :head
