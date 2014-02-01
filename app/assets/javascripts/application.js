@@ -17,18 +17,29 @@
 //= require jquery.flexslider
 //= require twitter/bootstrap
 //= require formatted_form
-//= require ckeditor/override
-//= require ckeditor/init
 //= require jquery.stayInWebApp.js
 //= require jstz-1.0.5.js
 //= require select2.js
 //= require jquery.cookie
-//= require users.js
+//= require users
 //= require flowplayer.min
 //= require bootstrap-datepicker
 //= require dropzone
 //= require spin.min
 //= require spinner
-//= require_tree .
-
+//= require bootstrap
+//= require course
+//= require expanding-text
+//= require goal-dragger
+//= require goals
+//= require jewels
+//= require main
+//= require market
+//= require modals
+//= require polls
+//= require pop_up
+//= require search_goals
+//= require style
+//= require users/welcome
+//= require votes
 
