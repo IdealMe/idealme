@@ -93,21 +93,21 @@ class ApplicationController < ActionController::Base
     # From date
     @from = params[:from]
     @from = session[:from] unless @from
-    @from = Date.today.beginning_of_month.to_s unless @from
+    @from = DateTime.current.to_date.beginning_of_month.to_s unless @from
     # To date
     @to = params[:to]
     @to = session[:to] unless @to
-    @to = Date.today.end_of_month.to_s unless @to
+    @to = DateTime.current.to_date.end_of_month.to_s unless @to
 
     begin
       @from_date = Date.parse(@from.to_s) if @from
     rescue
-      @from_date = Date.today.beginning_of_month.to_s
+      @from_date = DateTime.current.to_date.beginning_of_month.to_s
     end
     begin
       @to_date = Date.parse(@to.to_s) if @to
     rescue
-      @to_date = Date.today.end_of_month.to_s
+      @to_date = DateTime.current.to_date.end_of_month.to_s
     end
     @to_date, @from_date = @from_date, @to_date if @to_date < @from_date
     session[:from] = @from_date
