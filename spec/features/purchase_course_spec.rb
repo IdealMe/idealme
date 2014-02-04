@@ -44,7 +44,7 @@ describe 'purchase course' do
     fill_in "Security Code", with: "123"
     select "2017"
     select "01"
-    
+
     fill_in "First Name", with: @user.firstname
     fill_in "Last Name", with: @user.lastname
     fill_in "Email", with: @user.email
@@ -56,7 +56,7 @@ describe 'purchase course' do
     fill_in "Email", with: @user.email
     fill_in "Password", with: 'passpass'
     click_button "Sign in"
-    
+
     screenshot
     fill_in "Card Number", with: "4242424242424242"
     select "2017"
