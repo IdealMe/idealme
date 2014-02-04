@@ -72,6 +72,8 @@ Idealme::Application.configure do
   Paperclip::Attachment.default_options[:s3_credentials] = {
     bucket: ENV['AWS_S3_BUCKET'],
     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    url: ':s3_alias_url',
+    s3_host_alias: 'd13lmyn0z90wuo.cloudfront.net',
     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   }
   Paperclip::Attachment.default_options[:s3_protocol] = :https
