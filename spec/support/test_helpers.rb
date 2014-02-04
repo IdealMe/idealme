@@ -18,7 +18,8 @@ module TestHelpers
     logout(:user)
   end
 
-  def screenshot
+  def screenshot(preview = false)
+    return if ENV['CI']
     if Capybara.current_driver == :poltergeist
       #Capybara::Screenshot.screen_shot_and_open_image
 
@@ -26,9 +27,9 @@ module TestHelpers
       outpath = "public/screenshots/test-#{"%02d" % count}.png"
       save_screenshot(outpath, full: true)
       # exec('open test.png')
-      #x = `open -F #{outpath}`
+      x = `open -F #{outpath}` if preview
     else
-      #save_and_open_page
+      save_and_open_page if preview
     end
   end
 
