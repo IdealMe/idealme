@@ -124,7 +124,7 @@ class Order < ActiveRecord::Base
     elsif course
       PurchaseMailer.confirmed(self).deliver
     else
-      # workbook order
+      PurchaseMailer.workbook(self).deliver
     end
   end
 

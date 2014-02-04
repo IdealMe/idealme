@@ -1,19 +1,15 @@
 Hello <%= @salutation %>,<br/>
-Thanks for your recent purchase.
+Thanks for your recent order for the <i><b>Design Your Ideal Life</b></i> workbook
 <p>
 Order Details
 </p>
 
 <p>
 Order #<%= @order_number %><br/>
+
 Placed on <%= @order_date %>
 </p>
 
-<p>
-<%= @course_name %><br/>
-<%= @course_price %><br/>
-<%= link_to("Click here to access your course", course_url(@course)) %>
-</p>
 <p>
 This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.
 </p>
