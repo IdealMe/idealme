@@ -2,13 +2,13 @@ class ResourcesController < ApplicationController
   before_action :set_goals
   def index
     @active_tab = :all
-    @articles = ArticleGoal.where("article_id is not null").map(&:article)
+    @articles = ArticleGoal.where("article_id is not null").map(&:article).uniq
   end
 
   def goal
     @active_tab = :all
     @goal = Goal.find(params[:goal_id])
-    @articles = ArticleGoal.where(goal: @goal).map(&:article).compact
+    @articles = ArticleGoal.where(goal: @goal).map(&:article).uniq.compact
     render :index
   end
 
