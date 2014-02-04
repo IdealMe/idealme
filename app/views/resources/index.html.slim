@@ -27,7 +27,7 @@
 
 
   = render partial: "article_summary", collection: @articles
-  - if @goals.empty? && params[:action] == :my_goals
+  - if @goals.empty? && params[:action] == "my_goals"
     .row.offset
       .col-md-9.article-summary
         ' You don't have any goals.
