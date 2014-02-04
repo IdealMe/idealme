@@ -66,6 +66,8 @@ class OrdersController < ApplicationController
   end
 
   def create_workbook_order
+    @form_post_path = create_workbook_order_orders_path
+
     time = @order.time
 
     unless current_user
