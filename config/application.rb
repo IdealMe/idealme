@@ -30,6 +30,9 @@ module Idealme
     config.middleware.insert_after ActionDispatch::RemoteIp, "RemoteIpLogger"
     config.middleware.insert_after ActionDispatch::RemoteIp, "ExcludeIp"
     config.middleware.insert_after ActionDispatch::RemoteIp, "TrackRequests"
+
+
+    config.filter_parameters << [:password, :card_number, :card_cvv, :card_type, :card_exp_year, :card_exp_month]
   end
 end
 
