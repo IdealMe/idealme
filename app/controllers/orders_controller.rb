@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_filter :build_order, only: [:create, :create_workbook_order]
 
   before_filter :ensure_product_user_uniqueness
+  before_filter :ensure_user, only: [:create, :create_workbook_order]
 
 
   protect_from_forgery except: :thanks
@@ -67,22 +68,7 @@ class OrdersController < ApplicationController
 
   def create_workbook_order
     @form_post_path = create_workbook_order_orders_path
-
     time = @order.time
-
-    unless current_user
-      user = build_user
-      if user.valid?
-        create_user
-      else
-        if user.email.present?
-          flash[:alert] = 'Sign in to your idealme.com account before purchasing'
-          session[:previous_url] = "/orders/new/workbook"
-          session[:order_params] = order_params
-          redirect_to new_user_session_path and return
-        end
-      end
-    end
 
     if @order.valid? && current_user
       @order.cost = 700
@@ -119,19 +105,6 @@ class OrdersController < ApplicationController
     course_id = @order.course.id
     time = @order.time
     redirect_to(markets_path) and return unless @order.valid_checksum?(market_id, course_id, time)
-
-    unless current_user
-      user = build_user
-      if user.valid?
-        create_user
-      else
-        if user.email.present?
-          flash[:alert] = 'Sign in to your idealme.com account before purchasing'
-          session[:previous_url] = "/orders/new/#{@order.market.slug}"
-          redirect_to new_user_session_path and return
-        end
-      end
-    end
 
     if @order.valid? && current_user
       @order.cost = @market.course.cost
@@ -184,6 +157,30 @@ class OrdersController < ApplicationController
     end
   end
 
+  def ensure_user
+    unless current_user
+      user = build_user
+      if user.valid?
+        user.save!
+        sign_in(:user, user)
+      else
+        if user.email.present?
+          flash[:alert] = 'Sign in to your idealme.com account before purchasing'
+          session[:previous_url] = return_url
+          session[:order_params] = order_params
+          redirect_to new_user_session_path and return
+        end
+      end
+    end
+  end
+
+  def return_url
+    if @order.market
+      "/orders/new/#{@order.market.slug}"
+    else
+      "/orders/new/workbook"
+    end
+  end
 
   def build_order
     @order = Order.new(order_params)
