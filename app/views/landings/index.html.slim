@@ -108,7 +108,7 @@
       .clear
 .testimonials-section
   h3.title  title="Dont just take our word for it"
-    img  src="assets/dont_just_txt.png" /
+    = image_tag "dont_just_txt.png"
   p We listen to our users, and so should you!
   .testimonial-container
     .testimonial.fleft
@@ -120,7 +120,7 @@
           .arrow
       .user_info
         .user_pic
-          img  src="assets/user_1.jpg" width="32" /
+          = image_tag "user_1.jpg", width: 32
         .user_name Shannon Thomas
     .testimonial.fright
       .testimonial-box
@@ -131,7 +131,7 @@
           .arrow
       .user_info
         .user_pic
-          img  src="assets/user_2.png" width="32" /
+          = image_tag "user_2.jpg", width: 32
         .user_name Desiree Patel
     .clear
     .testimonial.fleft
@@ -143,7 +143,7 @@
           .arrow
       .user_info
         .user_pic
-          img  src="assets/user_3.jpg" width="32" /
+          = image_tag "user_3.jpg", width: 32
         .user_name Tanya Mcdonald
     .testimonial.fright
       .testimonial-box
@@ -152,7 +152,7 @@
           .arrow
       .user_info
         .user_pic
-          img  src="assets/user_4.png" width="32" /
+          = image_tag "user_4.jpg", width: 32
         .user_name Laurie Williams
     .clear
 = render "join_up"
