@@ -118,6 +118,13 @@ RSpec.configure do |config|
 
   DatabaseCleaner.strategy = :truncation
 
+  config.before(:all) do
+    if self.respond_to? :visit
+      visit '/assets/application.css'
+      visit '/assets/application.js'
+    end
+  end
+
   config.before :each do
     DatabaseCleaner.clean
     ActionMailer::Base.deliveries = []
