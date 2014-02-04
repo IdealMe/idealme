@@ -41,6 +41,18 @@ describe User do
   end
 
   describe 'User creation' do
+    context 'username validation' do
+      it 'disallows certain usernames that may conflict with top level routes' do
+        user = build(:user, username: 'lkjljlkjlkjlkjii')
+        expect(user.valid?).to eq true
+        user = build(:user, username: 'admin.joe')
+        expect(user.valid?).to eq false
+        user = build(:user, username: 'admin')
+        expect(user.valid?).to eq false
+        user = build(:user, username: 'resources')
+        expect(user.valid?).to eq false
+      end
+    end
     context 'within the admin tool' do
       it 'skips confirmation' do
         user = build(:user)

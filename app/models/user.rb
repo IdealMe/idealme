@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :email, uniqueness: true
 
+  validate :allowed_username
+
   after_create -> {
     return unless Rails.env.production?
     NewUserNotification.perform_in(10.seconds, self.id)
@@ -274,6 +276,14 @@ class User < ActiveRecord::Base
     self.update_attribute :added_to_aweber, true
   rescue AWeber::CreationError => e
     Rails.logger.info "Failed to add #{self.email} to aweber mailing list"
+  end
+
+  def allowed_username
+    path = Rails.application.routes.recognize_path "/#{self.username}"
+    unless path[:controller] == "users" &&
+       path[:action] == "profile"
+      errors.add(:username, "not allowed")
+    end
   end
 
 end
