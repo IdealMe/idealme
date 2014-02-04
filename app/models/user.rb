@@ -226,7 +226,8 @@ class User < ActiveRecord::Base
 
   def set_username
     if username.nil? && email.present?
-     self.username = email.split('@').first.parameterize('-')
+      self.username = email.split('@').first.parameterize('-')
+      self.username = "#{SecureRandom.urlsafe_base64(5)}_#{self.username}" unless self.valid?
     end
   end
 
