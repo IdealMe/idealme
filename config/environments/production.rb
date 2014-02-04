@@ -75,9 +75,9 @@ Idealme::Application.configure do
     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   }
   Paperclip::Attachment.default_options[:s3_protocol] = :https
-  Paperclip::Attachment.default_options[:url] = ':s3_alias_url'
-  Paperclip::Attachment.default_options[:s3_host_alias] = 'd13lmyn0z90wuo.cloudfront.net'
-  Paperclip::Attachment.default_options[:path] = "images/:class/:id.:style.:extension"
+  #Paperclip::Attachment.default_options[:url] = ':s3_alias_url'
+  #Paperclip::Attachment.default_options[:s3_host_alias] = 'd13lmyn0z90wuo.cloudfront.net'
+  #Paperclip::Attachment.default_options[:path] = "images/:class/:id.:style.:extension"
 
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.sendgrid.net',
