@@ -5,7 +5,13 @@ class ExcludeIp
 
   def call(env)
     path = env['ORIGINAL_FULLPATH']
-    if path == '/__exclude_ip?list'
+    if path == '/__headers'
+      headers = env.select {|k,v| k.start_with? 'HTTP_'}
+        .collect {|pair| [pair[0].sub(/^HTTP_/, ''), pair[1]]}
+        .collect {|pair| pair.join(": ") << "<br>"}
+        .sort
+      [200, {'Content-Type' => 'text/html'}, headers]
+    elsif path == '/__exclude_ip?list'
       ips = $redis.smembers("im_excluded_ips").join("\n")
       [200, {"Content-Type" => "text/plain"}, [ips]]
     elsif path == '/__exclude_ip?clear'
