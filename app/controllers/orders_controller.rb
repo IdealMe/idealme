@@ -82,6 +82,7 @@ class OrdersController < ApplicationController
       @response = gateway.purchase(@order.cost, @order.cc, gateway_options)
 
       if @response.success?
+        flash[:alert] = nil
         Rails.logger.info gateway.store(@order.cc, gateway_options)
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
@@ -119,6 +120,7 @@ class OrdersController < ApplicationController
       @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
 
       if @response.success?
+        flash[:alert] = nil
         Rails.logger.info gateway.store(@order.cc, gateway_options)
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
