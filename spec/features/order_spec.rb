@@ -6,9 +6,6 @@ describe 'ordering' do
   let!(:market)             { create(:market, course: course) }
   let!(:course)             { create(:course, owner: affiliate_user) }
 
-  before :each do
-  end
-
   it "enroll in course without a user account", vcr: true, js: true do
     User.count.should eq 1
     visit market_path market
@@ -20,7 +17,6 @@ describe 'ordering' do
     order_response = double(:success? => true)
     ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
     ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
-    #Order.any_instance.stub(:valid?).and_return(true)
     click_button "Complete Purchase"
     page.text.should include "First Name can't be blank"
     page.text.should include "Last Name can't be blank"
