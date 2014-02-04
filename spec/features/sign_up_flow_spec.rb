@@ -137,6 +137,7 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     screenshot
     click_button "Complete Purchase"
     screenshot
+    page.text.should_not include "declined"
     Order.count.should eq 1
   end
 end
