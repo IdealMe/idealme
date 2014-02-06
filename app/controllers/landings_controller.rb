@@ -17,6 +17,7 @@ class LandingsController < ApplicationController
       @order = Order.create_workbook_order_by_user(order_user)
     end
     @invoice = Order.generate_workbook_invoice(@order)
+    render layout: "chromeless"
   end
 
   def getthebook
