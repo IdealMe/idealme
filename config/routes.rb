@@ -13,6 +13,7 @@ Idealme::Application.routes.draw do
   get '__ping' => 'landings#ping'
   get 'workbook-thanks' => 'landings#workbook_thanks', as: :workbook_thanks
   get 'getthebook' => 'landings#getthebook'
+  get 'get-the-body' => 'landings#get_the_body'
   get 'get-the-book' => 'landings#get_the_book'
   get 'get-the-book2' => 'landings#get_the_book2'
   get 'getinshape' => 'landings#getinshape'
@@ -189,51 +190,51 @@ Idealme::Application.routes.draw do
   end
 
   devise_for :users,
-             path: '',
-             path_names: {
-                 sign_in: 'login',
-                 sign_out: 'logout',
-                 password: 'forgot_password',
-                 confirmation: 'verification',
-                 unlock: 'unblock',
-                 registration: 'register',
-                 sign_up: 'sign_up'},
-             controllers: {
-                 omniauth_callbacks: 'users/omniauth_callbacks',
-                 confirmations: 'users/confirmations',
-                 passwords: 'users/passwords',
-                 registrations: 'users/registrations',
-                 sessions: 'users/sessions',
-                 unlocks: 'users/unlocks',
-                 invitations: 'users/invitations'}
-  devise_scope :user do
-    get 'users/auth/:provider' => 'users/omniauth_callbacks#passthru'
-    get 'register/affiliate_sign_up' => 'users/registrations#new_affiliate', as: :new_affiliate_registration
-    post 'register/affiliate_sign_up' => 'users/registrations#create_affiliate', as: :affiliate_registration
-    constraints(id: /[0-9A-Za-z\-\.\_]+/) do
-      get ':id' => 'users#profile', as: :user
+    path: '',
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      password: 'forgot_password',
+      confirmation: 'verification',
+      unlock: 'unblock',
+      registration: 'register',
+      sign_up: 'sign_up'},
+      controllers: {
+        omniauth_callbacks: 'users/omniauth_callbacks',
+        confirmations: 'users/confirmations',
+        passwords: 'users/passwords',
+        registrations: 'users/registrations',
+        sessions: 'users/sessions',
+        unlocks: 'users/unlocks',
+        invitations: 'users/invitations'}
+      devise_scope :user do
+        get 'users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+        get 'register/affiliate_sign_up' => 'users/registrations#new_affiliate', as: :new_affiliate_registration
+        post 'register/affiliate_sign_up' => 'users/registrations#create_affiliate', as: :affiliate_registration
+        constraints(id: /[0-9A-Za-z\-\.\_]+/) do
+          get ':id' => 'users#profile', as: :user
 
-      get ':id/sdfsdf/:tab' => 'users#profile', constraints: {tab: /(goal)|(course)|(saved-course)/}, as: :user_tab
+          get ':id/sdfsdf/:tab' => 'users#profile', constraints: {tab: /(goal)|(course)|(saved-course)/}, as: :user_tab
 
-      get ':id/edit' => 'users/registrations#edit', as: :user_edit
-      get ':id/edit_password' => 'users/registrations#edit_password', as: :user_edit_password
+          get ':id/edit' => 'users/registrations#edit', as: :user_edit
+          get ':id/edit_password' => 'users/registrations#edit_password', as: :user_edit_password
 
-      # Signup flow
-      #get ':id/welcome' => 'users#welcome', as: :user_welcome
-      get 'user/welcome' => 'users#welcome', as: :user_welcome
-      post 'user/welcome' => 'users#welcome_save'
-      post 'user/dismiss-welcome-message' => 'users#dismiss_welcome_message'
-      # Signup flow
+          # Signup flow
+          #get ':id/welcome' => 'users#welcome', as: :user_welcome
+          get 'user/welcome' => 'users#welcome', as: :user_welcome
+          post 'user/welcome' => 'users#welcome_save'
+          post 'user/dismiss-welcome-message' => 'users#dismiss_welcome_message'
+          # Signup flow
 
 
-      get ':id/friend' => 'users#friend', as: :user_friend
-      get ':id/stuff' => 'users#stuff', as: :user_stuff
-      get ':id/feed' => 'users#feed', as: :user_feed
-      get ':id/notification' => 'users#notification', as: :user_notification
-      get ':id/identity' => 'users#identity', as: :user_identity
-      get ':id/identity/:pid/revoke' => 'users#identity_revoke', as: :user_identity_revoke
-    end
-  end
-  comfy_route :cms_admin, :path => '/admin/cms'
-  comfy_route :cms, :path => '/static', :sitemap => false
+          get ':id/friend' => 'users#friend', as: :user_friend
+          get ':id/stuff' => 'users#stuff', as: :user_stuff
+          get ':id/feed' => 'users#feed', as: :user_feed
+          get ':id/notification' => 'users#notification', as: :user_notification
+          get ':id/identity' => 'users#identity', as: :user_identity
+          get ':id/identity/:pid/revoke' => 'users#identity_revoke', as: :user_identity_revoke
+        end
+      end
+      comfy_route :cms_admin, :path => '/admin/cms'
+      comfy_route :cms, :path => '/static', :sitemap => false
 end

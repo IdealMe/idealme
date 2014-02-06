@@ -1,5 +1,13 @@
 # encoding: utf-8
 
+module CmsDeviseAuth
+  def authenticate
+    unless current_user && current_user.access_admin?
+      redirect_to new_user_session_path
+    end
+  end
+end
+
 ComfortableMexicanSofa.configure do |config|
   # Title of the admin area
   config.cms_title = 'Ideal Me'
@@ -27,7 +35,7 @@ ComfortableMexicanSofa.configure do |config|
   # Sofa allows you to setup entire site from files. Database is updated with each
   # request (if necessary). Please note that database entries are destroyed if there's
   # no corresponding file. Fixtures are disabled by default.
-  config.enable_fixtures = true
+  config.enable_fixtures = false
   # config.enable_fixtures = Rails.env.development?
 
   # Path where fixtures can be located.
@@ -86,12 +94,9 @@ ComfortableMexicanSofa.configure do |config|
   # Default is nil (not used)
   #   config.hostname_aliases = nil
 
-end
+  config.admin_auth = 'CmsDeviseAuth'
 
-# Default credentials for ComfortableMexicanSofa::HttpAuth
-# YOU REALLY WANT TO CHANGE THIS BEFORE PUTTING YOUR SITE LIVE
-ComfortableMexicanSofa::HttpAuth.username = ENV['SOFA_USERNAME']
-ComfortableMexicanSofa::HttpAuth.password = ENV['SOFA_PASSWORD']
+end
 
 # If you need to inject some html in cms admin views you can define what partial
 # should be rendered into the following areas:

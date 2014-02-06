@@ -34,9 +34,9 @@ section.pay-method
     = f.input :billing_city, label: 'City', wrapper_html: { class: "col-sm-6" }
     = f.input :billing_zip, label: 'Zip / Postal Code', wrapper_html: { class: "col-sm-6" }
   .form-group.row
-
-    = f.input :billing_state, label: 'State / Province / Region', wrapper_html: { class: "col-sm-6" }
-    = f.input :billing_country, label: 'Country', priority: ['US'], as: :country, wrapper_html: { class: "col-sm-6" }
+    = f.input :billing_state, label: 'State / Province / Region', wrapper_html: { class: "col-sm-12" }
+  .form-group.row
+    = f.input :billing_country, label: 'Country', priority: ['US'], as: :country, wrapper_html: { class: "col-sm-12" }
 
   section.submit-box
     = f.submit 'Complete Purchase', class: 'btn btn-red btn-complete-purchase'

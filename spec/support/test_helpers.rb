@@ -1,5 +1,9 @@
 module TestHelpers
 
+  def visit(*args)
+    super
+  end
+
   def buy_course_as(user, slug = 'my-link', market = nil)
     login_as(user, scope: :user, run_callbacks: false)
 

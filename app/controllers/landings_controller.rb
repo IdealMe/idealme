@@ -1,7 +1,9 @@
 class LandingsController < ApplicationController
+  before_filter :setup_form, only: [:get_the_book, :get_the_body]
+
   def index
     redirect_to user_path(current_user) and return if current_user
-    @courses = Course.includes(:owner).limit(12)
+    @courses = Course.includes(:owner, :default_market).limit(12)
   end
 
   def workbook
@@ -10,13 +12,6 @@ class LandingsController < ApplicationController
   def get_the_book
     session[:after_sign_up_path] = user_welcome_path
     session[:after_goals_path]   = resources_path
-    @form_post_path = create_workbook_order_orders_path
-    if session[:order_params]
-      @order = Order.new(session[:order_params])
-    else
-      @order = Order.create_workbook_order_by_user(order_user)
-    end
-    @invoice = Order.generate_workbook_invoice(@order)
     render layout: "chromeless"
   end
 
@@ -28,6 +23,15 @@ class LandingsController < ApplicationController
     session[:after_goals_path]   = resources_path
   end
 
+  def get_the_body
+    session[:landing] = request.path
+    if session[:email].present? || true
+      render layout: "chromeless"
+    else
+      redirect_to root_path
+    end
+  end
+
   def getinshape
   end
 
@@ -37,8 +41,7 @@ class LandingsController < ApplicationController
   def aweber_callback
     session[:email]              = params[:email]
     SendHipchatMessage.send("New email optin: #{params[:email]}")
-    redirect_to '/getthebook'
-    #redirect_to new_user_registration_path
+    redirect_to session[:landing] || '/getthebook'
   end
 
   def ping
@@ -46,6 +49,17 @@ class LandingsController < ApplicationController
   end
 
   private
+
+  def setup_form
+    @form_post_path = create_workbook_order_orders_path
+    if session[:order_params]
+      @order = Order.new(session[:order_params])
+    else
+      @order = Order.create_workbook_order_by_user(order_user)
+    end
+    @invoice = Order.generate_workbook_invoice(@order)
+  end
+
   def order_user
     if current_user
       current_user
