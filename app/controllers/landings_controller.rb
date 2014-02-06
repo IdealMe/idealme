@@ -25,7 +25,7 @@ class LandingsController < ApplicationController
 
   def get_the_body
     session[:landing] = request.path
-    if session[:email].present? || true
+    if session[:email].present? || current_user
       render layout: "chromeless"
     else
       redirect_to root_path
@@ -57,6 +57,7 @@ class LandingsController < ApplicationController
     else
       @order = Order.create_workbook_order_by_user(order_user)
     end
+    @order.card_email = session[:email] unless @order.card_email.present?
     @invoice = Order.generate_workbook_invoice(@order)
   end
 
