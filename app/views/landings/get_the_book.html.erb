@@ -1,10 +1,10 @@
 
   <div id="column">
     <div id="outer">
-      <img src="/assets/headline-workbook.png" width="900" height="100">
+      <%= image_tag('headline-workbook.png', :height => 100, :width => 900) %>
       <div id="container">
         <div class="upsell-hero">
-         <img border="0" src="/assets/upsell-2-cover.jpg" width="535" height="383">
+         <%= image_tag('upsell-2-cover.jpg', :height => 383, :width => 535) %>
         </div>
         <div class="upsell-cta">
           <div id="stocknotice">
@@ -18,8 +18,8 @@
             <p><b>Claim yours now:</b></p>
             <div class="price-area">
               Each Printed Workbook&nbsp;-  FREE + $7 S&amp;H</div>
-              <p> <a href="/"><img src="./assets/nextpage-button3.png"></a></p>
-              <p><img src="/assets/secure-privacy.png" width="300" height="97"></p>
+              <p> <a href="#order"><%= image_tag('nextpage-button3.png') %></a></p>
+              <p><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
             </div>
           <div>
         </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="what-theyre-saying">
       <h2>Here's What People Are Saying:  </h2>
-        <img src="/assets/cardsharp-social.jpg" width="375" height="353" style="margin-bottom:8px;">
+        <%= image_tag('cardsharp-social.jpg', :style => 'margin-bottom:8px;', :height => 353, :width => 375) %>
     </div>
     <div class="book-features">
       <h2>Features</h2>
@@ -45,6 +45,7 @@
       </ul>
       <p>Your BONUS worksheets include the <strong>“Life Balance Wheel”</strong>, <strong>“Ideal Me To-Do List”</strong>, <strong>“What Do I Value?”</strong>, <strong>“My Ideal Day”</strong>, <strong>“Ideal Me Career Plan”</strong>, <strong>“Gamify Your Life”</strong>, and MORE!</p>
     </div>
+    <a id="order"></a>
     <div class="claim">
       <h1 align="center"> Claim Your Design Your Ideal Life Workbook <span class="red1">FREE</span><br>Right Now (just pay $7 S/H)</h1>
     </div>
@@ -54,7 +55,7 @@
     </div>
 
     <div id="rightcol" class="col-sm-6">
-      <p align="center"><img src="/assets/secure-privacy.png" alt="" width="300" height="97"></p>
+      <p align="center"><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
       <blockquote>
         <p><span class="bqstart">“</span>&nbsp;Awesome deal!! Just ordered another two... both for newly commissioned 2Lt's in the Army,  one being my son. Excellent tools to be in any "go bag"!! The knife and survival tool came in about two weeks, and I couldn't be happier!! Sarge (US Army-Ret. 81-06)</p>
         <p class="name"> — George P.<span class="bqend">”</span></p>
@@ -77,17 +78,17 @@
           <a href="/" onclick="">30 Day Money Back Guarantee</a>
         </p>
         <p align="center">
-          <a href="/" onclick=""><img src="/assets/100-guarantee-seal.png" width="264" height="193" class=""></a>&nbsp;
+          <a href="/" onclick=""><%= image_tag('100-guarantee-seal.png', :height => 193, :width => 264) %></a>&nbsp;
         </p>
         <h3 align="center">30-Day Risk-Free<br>100% Money-Back Guarantee</h3>
       </div>
     </div>
 
     <div class="trusts">
-      <a href="/"><img src="/assets/NRABAlogo-lrg.jpg" alt="" name="nra" width="198" height="64" id="nra"></a>
-      <a href="/" name="Business ID Trust Seal" id="Business ID Trust Seal"><img src="/assets/identity.html" alt="Identity Verified" border="0"></a>
-      <a href="/" name="Security Trust Seal" id="Security Trust Seal"><img src="/assets/identity(1).html" alt="Security Verified" border="0"></a>
-      <a href="/" name="Privacy Trust Seal" id="Privacy Trust Seal"><img src="/assets/identity(2).html" alt="Privacy Verified" border="0"></a>
+      <a href="/"><%= image_tag('NRABAlogo-lrg.jpg', :height => 64, :width => 198) %></a>
+      <a href="/" name="Business ID Trust Seal" id="Business ID Trust Seal"><%= image_tag('identity.html', :alt => 'Identity Verified') %></a>
+      <a href="/" name="Security Trust Seal" id="Security Trust Seal"><%= image_tag('identity(1).html', :alt => 'Security Verified') %></a>
+      <a href="/" name="Privacy Trust Seal" id="Privacy Trust Seal"><%= image_tag('identity(2).html', :alt => 'Privacy Verified') %></a>
     </div>
 
     <div class="phone">
