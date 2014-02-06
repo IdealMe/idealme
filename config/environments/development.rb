@@ -27,22 +27,29 @@ Idealme::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.middleware.use(Rack::LiveReload,
-    :min_delay        => 500,    # default 1000
-    :max_delay        => 10_000, # default 60_000
-    :live_reload_port => 35729,  # default 35729
-    :host             => '0.0.0.0',
-    :ignore           => [ %r{dont/modify\.html$} ],
-    :source           => :vendored,
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
 
-  )
+  config.middleware.use(Rack::LiveReload,
+                        :min_delay        => 500,    # default 1000
+                        :max_delay        => 10_000, # default 60_000
+                        :live_reload_port => 35729,  # default 35729
+                        :host             => '0.0.0.0',
+                        :ignore           => [ %r{dont/modify\.html$} ],
+                        :source           => :vendored,
+
+                       )
 
 
   #Paperclip::Attachment.default_options[:storage] = :s3
   #Paperclip::Attachment.default_options[:s3_credentials] = {
-    #bucket: ENV['AWS_S3_BUCKET'],
-    #access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-    #secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+  #bucket: ENV['AWS_S3_BUCKET'],
+  #access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+  #secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   #}
   #Paperclip::Attachment.default_options[:s3_protocol] = :https
 
