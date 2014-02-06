@@ -36,6 +36,5 @@ describe 'get the body flow', js: true, vcr: true do
 
     expect(page.current_path).to eq '/workbook-thanks'
     expect(emails.length).to eq 2
-    screenshot true
   end
 end
