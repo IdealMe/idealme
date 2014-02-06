@@ -10,6 +10,13 @@ class LandingsController < ApplicationController
   def get_the_book
     session[:after_sign_up_path] = user_welcome_path
     session[:after_goals_path]   = resources_path
+    @form_post_path = create_workbook_order_orders_path
+    if session[:order_params]
+      @order = Order.new(session[:order_params])
+    else
+      @order = Order.create_workbook_order_by_user(order_user)
+    end
+    @invoice = Order.generate_workbook_invoice(@order)
   end
 
   def getthebook
@@ -33,4 +40,14 @@ class LandingsController < ApplicationController
   def ping
     render text: :ok, layout: nil
   end
+
+  private
+  def order_user
+    if current_user
+      current_user
+    else
+      User.new
+    end
+  end
+
 end

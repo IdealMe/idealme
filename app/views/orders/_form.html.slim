@@ -20,11 +20,10 @@ section.pay-method
     = f.input :card_type, collection: [["Visa", "visa"], ["Master Card", "master"]], wrapper_html: { class: "col-sm-6" }
 
   .form-group.row
-    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-3" })
-    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-4" })
-    = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)', wrapper_html: { class: "col-sm-5" }
-  /.form-group.row
-
+    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-6" })
+    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-6" })
+  .form-group.row
+    = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)', wrapper_html: { class: "col-sm-6" }
   .form-group
     = f.input :card_email, label: 'Email Address'
 
