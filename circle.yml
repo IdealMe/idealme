@@ -11,7 +11,8 @@ database:
 
 test:
   override:
-    - bundle exec rspec --color spec --format documentation --profile
+    - bundle exec rspec --color spec --format documentation --profile --profile:
+        timeout: 600 #10 minutes
   environment:
     - RAILS_ENV="test"
     - RACK_ENV="test"
