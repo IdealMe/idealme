@@ -20,6 +20,9 @@ class LandingsController < ApplicationController
     render layout: "chromeless"
   end
 
+  def get_the_book2
+  end
+
   def getthebook
     session[:after_sign_up_path] = user_welcome_path
     session[:after_goals_path]   = resources_path

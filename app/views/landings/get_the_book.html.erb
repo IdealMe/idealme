@@ -1,98 +1,105 @@
-
+<div class="container">
   <div id="column">
     <div id="outer">
       <%= image_tag('headline-workbook.png', :height => 100, :width => 900) %>
       <div id="container">
         <div class="upsell-hero">
-         <%= image_tag('upsell-2-cover.jpg', :height => 383, :width => 535) %>
+          <%= image_tag('upsell-2-cover.jpg', :height => 383, :width => 535) %>
         </div>
         <div class="upsell-cta">
           <div id="stocknotice">
-            <h3> <strong>Ideal Me Print Edition Workbook</strong></h3>
+            <h3><strong>Ideal Me Print Edition Workbook</strong></h3>
           </div>
-          <p><strong>For a Limited Time:
-            FREE with  Shipping</strong><br>
+          <p>
+            <strong>For a Limited Time: FREE with Shipping</strong><br>
             Tell Us Where We Can Send Yours Below:
           </p>
           <div align="center">
             <p><b>Claim yours now:</b></p>
-            <div class="price-area">
-              Each Printed Workbook&nbsp;-  FREE + $7 S&amp;H</div>
-              <p> <a href="#order"><%= image_tag('nextpage-button3.png') %></a></p>
-              <p><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
-            </div>
-          <div>
+            <div class="price-area">Each Printed Workbook&nbsp;-  FREE + $7 S&amp;H</div>
+            <p><a href="#order"><%= image_tag('nextpage-button3.png') %></a></p>
+            <p><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
+          </div>
         </div>
       </div>
-    <div class="vid-player">
-      <iframe src="//fast.wistia.net/embed/iframe/i3lfb6jgkp" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="556"></iframe>
-    </div>
-    <div class="what-theyre-saying">
-      <h2>Here's What People Are Saying:  </h2>
-        <%= image_tag('cardsharp-social.jpg', :style => 'margin-bottom:8px;', :height => 353, :width => 375) %>
-    </div>
-    <div class="book-features">
-      <h2>Features</h2>
-      <ul class="smallchecks">
-        <li><strong>Ideal Me Vision Board</strong> - Create your “ideal me” vision using pictures, quotes, and cut-outs. (<strong>*BONUS*</strong>: For a limited time, you’ll receive a <strong> collection of Ideal Me stickers</strong> to help you map out your dream life. Just hurry, this bonus is only available with the print-edition, so get yours while supplies last!)</li>
-        <li><strong>Fitness Goals</strong> - To be successful, you must measure your progress. This worksheet will help you keep track of inches lost around your thighs, arms, stomach, so you’ll <strong>stay motivated and reach your desired results</strong>.</li>
-        <li><strong>A Daily Food Journal</strong> - Studies show that keeping a food log can help you lose weight and keep it off. <strong>Transform your diet and your health with this simple, yet powerful system</strong>.</li>
-        <li><strong>Workout Calendar</strong> - This is not your ordinary calendar! You’ll be able to track your daily water intake, and plan out your cardio and strength-training routines, so you <strong>never get bored</strong>.</li>
-        <li><strong>Shopping List</strong> - Make meal-planning a <strong>no-brainer</strong> with this <strong>handy grocery shopping checklist</strong> you can take wherever you go!</li>
-        <li><strong>Goal Tracker</strong> - Create an encouraging exercise and diet <strong>system that works for you</strong> with this <strong>reward-based weekly planner</strong>.</li>
-        <li><span class="highlight"><strong>UNADVERTISED BONUS -</strong></span> Complete your order for the ‘Design Your Ideal Life” workbook and you’ll get <strong>ELEVEN BONUS WORKSHEETS</strong> designed to help you reach your Ideal YOU—not just your body and health, but in <strong>ALL areas of your life</strong>.
-          </li>
-      </ul>
-      <p>Your BONUS worksheets include the <strong>“Life Balance Wheel”</strong>, <strong>“Ideal Me To-Do List”</strong>, <strong>“What Do I Value?”</strong>, <strong>“My Ideal Day”</strong>, <strong>“Ideal Me Career Plan”</strong>, <strong>“Gamify Your Life”</strong>, and MORE!</p>
-    </div>
-    <a id="order"></a>
-    <div class="claim">
-      <h1 align="center"> Claim Your Design Your Ideal Life Workbook <span class="red1">FREE</span><br>Right Now (just pay $7 S/H)</h1>
-    </div>
 
-    <div class="pay-section col-sm-6">
-      <%= render partial: "orders/form" %>
-    </div>
 
-    <div id="rightcol" class="col-sm-6">
-      <p align="center"><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
-      <blockquote>
-        <p><span class="bqstart">“</span>&nbsp;Awesome deal!! Just ordered another two... both for newly commissioned 2Lt's in the Army,  one being my son. Excellent tools to be in any "go bag"!! The knife and survival tool came in about two weeks, and I couldn't be happier!! Sarge (US Army-Ret. 81-06)</p>
-        <p class="name"> — George P.<span class="bqend">”</span></p>
-      </blockquote>
-      <blockquote>
-        <p><span class="bqstart">“</span>&nbsp;I was unsure when it first arrived in the mail but have since grown to love it. It may not chop wood, or do heavy duty tasks but it has already come in handy a few times and have ordered three more as back ups.</p>
-        <p class="name">— Luke H.<span class="bqend">”</span></p>
-      </blockquote>
-      <blockquote>
-        <p><span class="bqstart">“</span> Truly a cool little knife than be carried in a wallet, hip pocket, shirt pocket....easily...no bulk at all.</p>
-        <p class="name">—David N.<span class="bqend">”</span></p>
-      </blockquote>
-      <blockquote>
-        <p><span class="bqstart">“</span>I have one and it is AWESOME!</p>
-        <p class="name">—Chuck L.<span class="bqend">”</span></p>
-      </blockquote>
-
-      <div id="guarantees">
-        <p align="center">
-          <a href="/" onclick="">30 Day Money Back Guarantee</a>
-        </p>
-        <p align="center">
-          <a href="/" onclick=""><%= image_tag('100-guarantee-seal.png', :height => 193, :width => 264) %></a>&nbsp;
-        </p>
-        <h3 align="center">30-Day Risk-Free<br>100% Money-Back Guarantee</h3>
+      <div class="vid-player">
+        <iframe src="//fast.wistia.net/embed/iframe/i3lfb6jgkp" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="556"></iframe>
       </div>
-    </div>
 
-    <div class="trusts">
-      <a href="/"><%= image_tag('NRABAlogo-lrg.jpg', :height => 64, :width => 198) %></a>
-      <a href="/" name="Business ID Trust Seal" id="Business ID Trust Seal"><%= image_tag('identity.html', :alt => 'Identity Verified') %></a>
-      <a href="/" name="Security Trust Seal" id="Security Trust Seal"><%= image_tag('identity(1).html', :alt => 'Security Verified') %></a>
-      <a href="/" name="Privacy Trust Seal" id="Privacy Trust Seal"><%= image_tag('identity(2).html', :alt => 'Privacy Verified') %></a>
-    </div>
+      <div class="what-theyre-saying">
+        <h2>Here's What People Are Saying:  </h2>
+        <%= image_tag('cardsharp-social.jpg', :style => 'margin-bottom:8px;', :height => 353, :width => 375) %>
+      </div>
 
-    <div class="phone">
-     <h2>Have Questions? Need Help? Call Us: 1-844-IDEAL ME</h2>
+      <div class="book-features">
+        <h2>Features</h2>
+        <ul class="smallchecks">
+          <li><strong>Ideal Me Vision Board</strong> - Create your “ideal me” vision using pictures, quotes, and cut-outs. (<strong>*BONUS*</strong>: For a limited time, you’ll receive a <strong> collection of Ideal Me stickers</strong> to help you map out your dream life. Just hurry, this bonus is only available with the print-edition, so get yours while supplies last!)</li>
+          <li><strong>Fitness Goals</strong> - To be successful, you must measure your progress. This worksheet will help you keep track of inches lost around your thighs, arms, stomach, so you’ll <strong>stay motivated and reach your desired results</strong>.</li>
+          <li><strong>A Daily Food Journal</strong> - Studies show that keeping a food log can help you lose weight and keep it off. <strong>Transform your diet and your health with this simple, yet powerful system</strong>.</li>
+          <li><strong>Workout Calendar</strong> - This is not your ordinary calendar! You’ll be able to track your daily water intake, and plan out your cardio and strength-training routines, so you <strong>never get bored</strong>.</li>
+          <li><strong>Shopping List</strong> - Make meal-planning a <strong>no-brainer</strong> with this <strong>handy grocery shopping checklist</strong> you can take wherever you go!</li>
+          <li><strong>Goal Tracker</strong> - Create an encouraging exercise and diet <strong>system that works for you</strong> with this <strong>reward-based weekly planner</strong>.</li>
+          <li><span class="highlight"><strong>UNADVERTISED BONUS -</strong></span> Complete your order for the ‘Design Your Ideal Life” workbook and you’ll get <strong>ELEVEN BONUS WORKSHEETS</strong> designed to help you reach your Ideal YOU—not just your body and health, but in <strong>ALL areas of your life</strong>.</li>
+        </ul>
+        <p>Your BONUS worksheets include the <strong>“Life Balance Wheel”</strong>, <strong>“Ideal Me To-Do List”</strong>, <strong>“What Do I Value?”</strong>, <strong>“My Ideal Day”</strong>, <strong>“Ideal Me Career Plan”</strong>, <strong>“Gamify Your Life”</strong>, and MORE!</p>
+      </div>
+
+      <div class="claim col-sm-12">
+        <a id="order"></a>
+        <h1 align="center">Claim Your Design Your Ideal Life Workbook <span class="red1">FREE</span><br/>Right Now (just pay $7 S/H)</h1>
+      </div>
+
+      <div class="row">
+      <div class="pay-section col-sm-6">
+        <%= render partial: "orders/form" %>
+      </div>
+
+      <div id="rightcol" class="col-sm-6">
+        <p align="center"><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
+        <blockquote>
+          <p><span class="bqstart">“</span>&nbsp;Awesome deal!! Just ordered another two... both for newly commissioned 2Lt's in the Army,  one being my son. Excellent tools to be in any "go bag"!! The knife and survival tool came in about two weeks, and I couldn't be happier!! Sarge (US Army-Ret. 81-06)</p>
+          <p class="name"> — George P.<span class="bqend">”</span></p>
+        </blockquote>
+        <blockquote>
+          <p><span class="bqstart">“</span>&nbsp;I was unsure when it first arrived in the mail but have since grown to love it. It may not chop wood, or do heavy duty tasks but it has already come in handy a few times and have ordered three more as back ups.</p>
+          <p class="name">— Luke H.<span class="bqend">”</span></p>
+        </blockquote>
+        <blockquote>
+          <p><span class="bqstart">“</span> Truly a cool little knife than be carried in a wallet, hip pocket, shirt pocket....easily...no bulk at all.</p>
+          <p class="name">—David N.<span class="bqend">”</span></p>
+        </blockquote>
+        <blockquote>
+          <p><span class="bqstart">“</span>I have one and it is AWESOME!</p>
+          <p class="name">—Chuck L.<span class="bqend">”</span></p>
+        </blockquote>
+
+        <div id="guarantees">
+          <p align="center">
+            <a href="/" onclick="">30 Day Money Back Guarantee</a>
+          </p>
+          <p align="center">
+            <a href="/" onclick=""><%= image_tag('100-guarantee-seal.png', :height => 193, :width => 264) %></a>&nbsp;
+          </p>
+          <h3 align="center">30-Day Risk-Free<br>100% Money-Back Guarantee</h3>
+        </div>
+      </div>
+      </div>
+
+
+      <div class="trusts col-sm-12">
+        <a href="/"><%= image_tag('NRABAlogo-lrg.jpg', :height => 64, :width => 198) %></a>
+        <a href="/"><%= image_tag('identity.html', :alt => 'Identity Verified') %></a>
+        <a href="/"><%= image_tag('identity(1).html', :alt => 'Security Verified') %></a>
+        <a href="/"><%= image_tag('identity(2).html', :alt => 'Privacy Verified') %></a>
+      </div>
+
+      <div class="phone col-sm-12">
+        <h2>Have Questions? Need Help? Call Us: 1-844-IDEAL ME</h2>
+      </div>
+
     </div>
   </div>
-
+</div>

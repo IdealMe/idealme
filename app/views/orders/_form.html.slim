@@ -2,7 +2,6 @@ section.pay-method
   p
     ' Pay with:
     = image_tag 'icons/credit_cards_icon.png', class: 'credit-cards-image'
-  .clear
 
 = simple_form_for(@order, url: @form_post_path, method: :post, wrapper: :bootstrap, html: {class: 'orders-payment-form'}) do |f|
   = f.hidden_field :market_id
@@ -39,19 +38,14 @@ section.pay-method
     = f.input :billing_state, label: 'State / Province / Region', wrapper_html: { class: "col-sm-6" }
     = f.input :billing_country, label: 'Country', priority: ['US'], as: :country, wrapper_html: { class: "col-sm-6" }
 
-  .clear
   section.submit-box
     = f.submit 'Complete Purchase', class: 'btn btn-red btn-complete-purchase'
     .agreement-text
       ' By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy.
       '  Note=you will be billed immediately.
-    .clear
 
 section.pay-method
-  p
-    p
-      - if @order.market
-        ' Or
-        = link_to paypal_checkout_order_path(@order.market), method: :post do
-          = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
-  .clear
+  - if @order.market
+    ' Or
+    = link_to paypal_checkout_order_path(@order.market), method: :post do
+      = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
