@@ -1,1 +1,13 @@
-// Overwrite this file in your application /app/assets/javascripts/comfortable_mexican_sofa/admin/application.js 
+//= require ckeditor/override
+//= require ckeditor/init
+
+window.CMS.wysiwyg = function() {
+  $els = $('textarea[data-cms-rich-text]');
+  els = $els.get();
+  for (var i = 0; i < els.length; i++) {
+    CKEDITOR.replace( els[i] );
+  }
+}
+
+
+
