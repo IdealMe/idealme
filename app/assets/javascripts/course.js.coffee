@@ -15,7 +15,6 @@ class ReviewWidget
     else
       $container.removeClass('expanded')
 
-    #debugger
 
   handleCancelReview: ->
     $this = $(this)
