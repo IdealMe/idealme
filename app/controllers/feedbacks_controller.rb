@@ -58,9 +58,18 @@ class FeedbacksController < ApplicationController
   end
 
   def build_feedback
-    @feedback = Feedback.new(params[:feedback])
+    begin
+      @feedback = Feedback.new(feedback_params)
+    rescue ActionController::ParameterMissing => e
+      @feedback = Feedback.new
+    end
+
     @feedback.owner = current_user
     @feedback.feedback_type = Feedback::GENERAL_FEEDBACK unless @feedback.feedback_type
+  end
+
+  def feedback_params
+    params.require(:feedback).permit!
   end
 
 end
