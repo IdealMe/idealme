@@ -1,6 +1,8 @@
 //= require ckeditor/override
 //= require ckeditor/init
 
+window.CMS = window.CMS || {};
+
 window.CMS.wysiwyg = function() {
   $els = $('textarea[data-cms-rich-text]');
   els = $els.get();
