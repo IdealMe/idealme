@@ -31,6 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new
+    HipchatNotification.perform_async("Skip workbook order - #{session[:email]}") if params[:skip].present?
     flash[:alert] = nil if params[:quick] == '1'
     build_resource({})
     self.resource.email = session[:email] if session[:email]

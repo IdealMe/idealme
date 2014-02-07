@@ -55,7 +55,7 @@
           = link_to order_workbook_orders_path, class: "btn-link" do
             button#getthebook-btn.btn.btn-special.btn-block type="button" Order your FREE “Design Your Ideal Body” workbook! →
         p
-          = link_to new_user_registration_path, class: "btn-link" do
+          = link_to new_user_registration_path(skip: true), class: "btn-link" do
             button#skip-btn.btn.btn-default.btn-block.btn-skip type="button" Skip this step
         p
           = image_tag "trust.png", height: 90, width: 860, class: "trust"
