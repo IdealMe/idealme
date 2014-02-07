@@ -36,5 +36,8 @@ module Idealme
   end
 end
 
+# Log SQL separately
+ActiveRecord::Base.logger = ActiveSupport::Logger.new("log/#{Rails.env}.sql.log")
+
 I18n.enforce_available_locales = false
 OmniAuth.config.full_host = 'https://idealme.com'

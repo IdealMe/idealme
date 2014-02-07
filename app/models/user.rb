@@ -170,7 +170,7 @@ class User < ActiveRecord::Base
 
     # send welcome email?
     # add to aweber
-    self.add_to_aweber!
+    #self.add_to_aweber!
   end
 
   def unsubscribe_goal(goal)

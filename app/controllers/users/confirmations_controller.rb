@@ -1,22 +1,9 @@
-#Users::ConfirmationsController
-
-#Overloads the default devise confirmations controller
-
-#Skips device authorization check
-#class Users::ConfirmationsController < Devise::ConfirmationsController
-  #skip_authorization_check
-#end
-#
-#
-#
-
-# app/controllers/confirmations_controller.rb
 class Users::ConfirmationsController < Devise::ConfirmationsController
   # Remove the first skip_before_filter (:require_no_authentication) if you
   # don't want to enable logged users to access the confirmation page.
   skip_before_filter :require_no_authentication
   skip_before_filter :authenticate_user!
-  layout "minimal" 
+  layout "minimal"
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do
@@ -34,12 +21,13 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
 
     if !@confirmable.errors.empty?
-      render 'users/confirmations/new' #Change this if you don't have the views on default path
+      render 'users/confirmations/show' #Change this if you don't have the views on default path
     end
   end
 
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
+    sign_out(:user)
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
         do_show
@@ -49,13 +37,12 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
     if !@confirmable.errors.empty?
       self.resource = @confirmable
-      render 'users/confirmations/new' #Change this if you don't have the views on default path 
+      render 'users/confirmations/show' #Change this if you don't have the views on default path
     end
   end
-  
 
   def after_sign_in_path_for(user)
-    root_path
+    user_path(user)
   end
 
   protected
@@ -79,7 +66,16 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   def do_confirm
     @confirmable.confirm!
     set_flash_message :notice, :confirmed
-    sign_in_and_redirect(resource_name, @confirmable)
+
+    if current_user
+      current_user.confirm!
+      redirect_to after_sign_in_path_for(current_user)
+    else
+      sign_in_and_redirect(resource_name, @confirmable)
+    end
+
   end
 
 end
+
+

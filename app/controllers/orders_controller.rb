@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
     @form_post_path = create_workbook_order_orders_path
     time = @order.time
 
-    if @order.valid? && current_user
+    if @order.valid? && @user
       @order.cost = 700
       gateway = STRIPE_GATEWAY
       gateway_options = {}
@@ -86,9 +86,10 @@ class OrdersController < ApplicationController
         Rails.logger.info gateway.store(@order.cc, gateway_options)
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
-        @order.user = current_user
+        @order.user = @user
         @order.complete!
-        HipchatNotification.perform_async("Workbook ordered - #{current_user.email}")
+        HipchatNotification.perform_async("Workbook ordered - #{@user.email}")
+        sign_in(:user, @user)
         redirect_to(workbook_thanks_path)
       else
         flash[:alert] = @response.message
@@ -107,7 +108,7 @@ class OrdersController < ApplicationController
     time = @order.time
     redirect_to(markets_path) and return unless @order.valid_checksum?(market_id, course_id, time)
 
-    if @order.valid? && current_user
+    if @order.valid? && @user
       @order.cost = @market.course.cost
       gateway = STRIPE_GATEWAY
       gateway_options = {}
@@ -124,13 +125,14 @@ class OrdersController < ApplicationController
         Rails.logger.info gateway.store(@order.cc, gateway_options)
         @order.parameters = @response
         @order.status = Order::STATUS_SUCCESSFUL
-        @order.user = current_user
+        @order.user = @user
         @order.complete!
 
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
         end
-        current_user.subscribe_course(@market.course)
+        @user.subscribe_course(@market.course)
+        sign_in(:user, @user)
         #flash[:alert] = nil
       else
         flash[:alert] = @response.message
@@ -160,17 +162,26 @@ class OrdersController < ApplicationController
   end
 
   def ensure_user
-    unless current_user
+    if current_user
+      @user = current_user
+    else
       user = build_user
       if user.valid?
         user.save!
-        sign_in(:user, user)
+        @user = user
+        #sign_in(:user, user)
       else
         if user.email.present?
-          flash[:alert] = 'Sign in to your idealme.com account before purchasing'
-          session[:previous_url] = return_url
-          session[:order_params] = order_params
-          redirect_to new_user_session_path and return
+          user = User.where(email: user.email).first
+          if user.confirmed?
+            flash[:alert] = 'Sign in to your idealme.com account before purchasing'
+            session[:previous_url] = return_url
+            session[:order_params] = order_params
+            redirect_to new_user_session_path and return
+          else
+            # set user to unconfirmed user
+            @user = user
+          end
         end
       end
     end

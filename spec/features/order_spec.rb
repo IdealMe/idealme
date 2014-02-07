@@ -6,6 +6,70 @@ describe 'ordering' do
   let!(:market)             { create(:market, course: course) }
   let!(:course)             { create(:course, owner: affiliate_user) }
 
+  it "be logged in after set password", vcr: true, js: true do
+    user = create(:user)
+    user.update_attributes({
+      :has_password => false,
+      :identity_unlocked_at => 1.day.ago,
+      :about => nil,
+      :instructor_about => "",
+      :notes => nil,
+      :firstname => "Bean",
+      :lastname => "Salad",
+      :username => "beansalad",
+      :timezone => "Etc/Zulu",
+      :tagline => "",
+      :affiliate_tag => nil,
+      :affiliate_default_payment_id => nil,
+      :affiliate_payment_frequency => nil,
+      :access_normal => true,
+      :access_affiliate => false,
+      :access_instructor => false,
+      :access_support => false,
+      :access_admin => false,
+      :avatar_file_name => nil,
+      :avatar_content_type => nil,
+      :avatar_file_size => nil,
+      :avatar_updated_at => nil,
+      :toured => false,
+      :goal_count => 0,
+      :course_count => 0,
+      :email => "beansalad@idealme.com",
+      :encrypted_password => "",
+      :reset_password_token => nil,
+      :reset_password_sent_at => nil,
+      :remember_created_at => nil,
+      :sign_in_count => 1,
+      :current_sign_in_at => 1.day.ago,
+      :last_sign_in_at => 1.day.ago,
+      :current_sign_in_ip => "127.0.0.1",
+      :last_sign_in_ip => "127.0.0.1",
+      :confirmation_token => "437404a21d3788f98d1ef7b23aa63fd03786e7704d43bf2c79e6cbc4fec616d5",
+      :confirmed_at => nil,
+      :confirmation_sent_at => 1.day.ago,
+      :unconfirmed_email => nil,
+      :failed_attempts => 0,
+      :unlock_token => nil,
+      :locked_at => nil,
+      :authentication_token => nil,
+      :created_at => 1.day.ago,
+      :updated_at => 1.day.ago,
+      :fake => false,
+      :welcome_message_dismissed => false,
+      :added_to_aweber => nil
+    })
+    confirm_link = 'http://idealme.com/verification?confirmation_token=cAYhHTTLrPoBjqyUK72Q'
+
+    uri = URI.parse(confirm_link)
+    visit "#{uri.path}?#{uri.query}"
+
+    fill_in "Password", with: "123123123"
+    fill_in "Confirmation", with: "123123123"
+    click_button "Activate"
+
+    expect(current_path).to eq user_path(User.last)
+  end
+
   it "enroll in course without a user account", vcr: true, js: true do
     User.count.should eq 1
     visit market_path market
@@ -31,22 +95,29 @@ describe 'ordering' do
 
     click_button "Complete Purchase"
 
-    Order.count.should eq 1
-    Order.last.user.should eq User.last
-    email = last_email
+    visit course_path(course)
+    expect(current_path).to eq course_path(course)
 
+    user = User.last
+    Order.count.should eq 1
+    Order.last.user.should eq user
+
+    # open email, get link, go to confirm
+    email = last_email
     User.count.should eq 2
     emails.count.should eq 2
     confirm_link = URI.extract(emails.first.body.to_s, :http).first
-
     uri = URI.parse(confirm_link)
     visit "#{uri.path}?#{uri.query}"
-    screenshot
+    fill_in "Password", with: "123123123"
+    fill_in "Confirmation", with: "12312312"
+    click_button "Activate"
+    expect(current_path).to eq '/users/confirmation'
 
     fill_in "Password", with: "123123123"
     fill_in "Confirmation", with: "123123123"
     click_button "Activate"
-    screenshot
+    expect(current_path).to eq user_path(user)
   end
 
   it "handles a card declined", vcr: true, js: true do
@@ -57,10 +128,7 @@ describe 'ordering' do
 
     fill_in "Card Number", with: '4000000000000002'
     fill_in "Security Code", with: '123'
-    #order_response = double(:success? => true)
-    #ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
     ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
-    #Order.any_instance.stub(:valid?).and_return(true)
 
     fill_in "First Name", with: "Bean"
     fill_in "Last Name", with: "Salad"
@@ -73,8 +141,6 @@ describe 'ordering' do
 
     page.text.should include "Your card was declined"
     Order.count.should eq 0
-
-
   end
 end
 

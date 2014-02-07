@@ -23,7 +23,6 @@ describe 'editing articles/resources' do
     select(goal.name)
     click_button "Save"
     article.goals.to_a.should include goal
-    screenshot
   end
 
 end
