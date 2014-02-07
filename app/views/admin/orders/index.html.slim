@@ -1,16 +1,16 @@
 h1 Listing admin_orders
 
-table
+table.table
   tr
-    th
+    th Email
     th
     th
 
-  - @admin_orders.each do |admin_order|
+  - @orders.each do |order|
     tr
-      td = link_to 'Show', admin_order
-      td = link_to 'Edit', edit_admin_order_path(admin_order)
-      td = link_to 'Destroy', admin_order, :method => :delete, :"data-confirm" => 'Are you sure?'  
+      td = link_to order.card_email, admin_order_path(order)
+      td = link_to 'Edit', edit_admin_order_path(order)
+      td = link_to 'Destroy', admin_order_path(order), :method => :delete, :"data-confirm" => 'Are you sure?'
 
 br
 

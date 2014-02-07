@@ -118,6 +118,7 @@ Idealme::Application.routes.draw do
       resources :users
       get 'users/:id/edit' => "users#edit", id: /[^\/]+/
     end
+    resources :orders
     resources :goals
     resources :categories
     resources :polls
