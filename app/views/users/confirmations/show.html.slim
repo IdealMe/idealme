@@ -4,7 +4,7 @@
       .message-box
         | Activate your account
 
-      = simple_form_for(resource, as: resource_name, url: update_user_confirmation_path, wrapper: :bootstrap_horizontal_with_offset, html: {class: 'form-horizontal', method: 'patch'}) do |f|
+      = simple_form_for(@confirmable, as: resource_name, url: update_user_confirmation_path, wrapper: :bootstrap_horizontal_with_offset, html: {class: 'form-horizontal', method: 'patch'}) do |f|
 
         /= devise_error_messages!
         - if @requires_password
