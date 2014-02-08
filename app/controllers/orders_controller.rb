@@ -68,14 +68,29 @@ class OrdersController < ApplicationController
 
   def create_workbook_order
     @form_post_path = create_workbook_order_orders_path
-    time = @order.time
+    create_order(:new_workbook, 700, "Idealme Workbook Postage") do |response|
+      sign_in(:user, @user)
+      redirect_to(workbook_thanks_path)
+    end
+  end
 
+  # POST /orders
+  def create
+    create_order(:new, @market.course.cost, @order.course.name) do |response|
+      @user.subscribe_course(@market.course)
+      sign_in(:user, @user)
+    end
+  end
+
+  protected
+
+  def create_order(form_controller_action, cost, description)
     if @order.valid? && @user
-      @order.cost = 700
+      @order.cost = cost
       gateway = STRIPE_GATEWAY
       gateway_options = {}
       @order.gateway = Order::GATEWAY_STRIPE
-      gateway_options[:description] = "Idealme Workbook Postage"
+      gateway_options[:description] = description
       gateway_options[:email] = @order.card_email
 
       @response = gateway.purchase(@order.cost, @order.cc, gateway_options)
@@ -87,66 +102,24 @@ class OrdersController < ApplicationController
         @order.status = Order::STATUS_SUCCESSFUL
         @order.user = @user
         @order.complete!
-        HipchatNotification.perform_async("Workbook ordered - #{@user.email}")
-        sign_in(:user, @user)
-        redirect_to(workbook_thanks_path)
-      else
-        HipchatNotification.perform_async("Payment declined - #{@response.message} - #{@user.email}")
-        flash[:alert] = @response.message
-        render :new_workbook
-      end
-    else
-      HipchatNotification.perform_async("Order form validation error - \n#{@order.to_yaml}")
-      flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
-      render :new_workbook
-    end
-  end
-
-  # POST /orders
-  def create
-    market_id = @order.market.id
-    course_id = @order.course.id
-    time = @order.time
-    redirect_to(markets_path) and return unless @order.valid_checksum?(market_id, course_id, time)
-
-    if @order.valid? && @user
-      @order.cost = @market.course.cost
-      gateway = STRIPE_GATEWAY
-      gateway_options = {}
-      @order.gateway = Order::GATEWAY_STRIPE
-      gateway_options[:description] = @order.course.name
-      gateway_options[:email] = @order.card_email
-
-      @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
-
-      if @response.success?
-        flash[:alert] = nil
-        Rails.logger.info gateway.store(@order.cc, gateway_options)
-        @order.parameters = @response
-        @order.status = Order::STATUS_SUCCESSFUL
-        @order.user = @user
-        @order.complete!
-        HipchatNotification.perform_async("Course ordered - #{@order.market.name} - #{@user.email}")
+        HipchatNotification.perform_async("Order success - #{description} - #{@user.email}")
 
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
         end
-        @user.subscribe_course(@market.course)
-        sign_in(:user, @user)
-        #flash[:alert] = nil
+        yield(@response) if block_given?
       else
         HipchatNotification.perform_async("Payment declined - #{@response.message} - #{@user.email}")
         flash[:alert] = @response.message
-        render :new
+        render form_controller_action
       end
     else
       HipchatNotification.perform_async("Order form validation error - \n#{@order.to_yaml}")
       flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
-      render :new
+      render form_controller_action
     end
   end
 
-  protected
   def init_order
     @market = Market.find(params[:id])
     @order = Order.create_order_by_market_and_user(@market, order_user)
