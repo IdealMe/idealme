@@ -124,17 +124,7 @@ describe 'ordering' do
     find('.top-enroll-btn').click
     current_path.should eq '/orders/new/sample-market'
 
-    fill_in "Card Number", with: '4000000000000002'
-    fill_in "Security Code", with: '123'
-    ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
-
-    fill_in "First Name", with: "Bean"
-    fill_in "Last Name", with: "Salad"
-    fill_in "Email Address", with: "beansalad@idealme.com"
-    fill_in "Card exp month", with: '01'
-    fill_in "Card exp year", with: '2020'
-
-    click_button "Complete Purchase"
+    submit_order_form(card_number: '4000000000000002')
 
     page.text.should include "Your card was declined"
     Order.count.should eq 0

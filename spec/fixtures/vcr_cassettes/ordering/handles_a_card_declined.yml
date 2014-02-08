@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_3SPWjs09eT4mhW&description=beansalad%40idealme.com
+      string: card=tok_3SPVNS7ePtn99s&description=beansalad%40idealme.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -32,7 +32,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 08 Feb 2014 06:34:29 GMT
+      - Sat, 08 Feb 2014 06:33:24 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -41,12 +41,12 @@ http_interactions:
       - keep-alive
       Access-Control-Max-Age:
       - '300'
-      Access-Control-Allow-Credentials:
-      - 'true'
       Cache-Control:
       - no-cache, no-store
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
     body:
       encoding: UTF-8
       string: |
@@ -58,5 +58,5 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Sat, 08 Feb 2014 06:34:29 GMT
+  recorded_at: Sat, 08 Feb 2014 06:33:24 GMT
 recorded_with: VCR 2.8.0

@@ -10,7 +10,7 @@ section.pay-method
   = f.hidden_field :time
   = f.hidden_field :checksum
 
-  .form-group.row
+  .form-group.row.order-errors
     span.payment-errors
   .form-group.row
     = f.input :card_firstname, label: "First Name", wrapper_html: { class: "col-sm-6" }
