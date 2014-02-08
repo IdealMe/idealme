@@ -76,6 +76,7 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
+    @form_post_path = orders_path
     create_order(:new, @market.course.cost, @order.course.name) do |response|
       @user.subscribe_course(@market.course)
       sign_in(:user, @user)
