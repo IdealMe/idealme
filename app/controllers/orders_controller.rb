@@ -74,11 +74,10 @@ class OrdersController < ApplicationController
       @order.cost = 700
       gateway = STRIPE_GATEWAY
       gateway_options = {}
-      if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
-        @order.gateway = Order::GATEWAY_STRIPE
-        gateway_options[:description] = "Idealme Workbook Postage"
-        gateway_options[:email] = @order.card_email
-      end
+      @order.gateway = Order::GATEWAY_STRIPE
+      gateway_options[:description] = "Idealme Workbook Postage"
+      gateway_options[:email] = @order.card_email
+
       @response = gateway.purchase(@order.cost, @order.cc, gateway_options)
 
       if @response.success?
@@ -92,10 +91,12 @@ class OrdersController < ApplicationController
         sign_in(:user, @user)
         redirect_to(workbook_thanks_path)
       else
+        HipchatNotification.perform_async("Payment declined - #{@response.message} - #{@user.email}")
         flash[:alert] = @response.message
         render :new_workbook
       end
     else
+      HipchatNotification.perform_async("Order form validation error - \n#{@order.to_yaml}")
       flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
       render :new_workbook
     end
@@ -112,12 +113,10 @@ class OrdersController < ApplicationController
       @order.cost = @market.course.cost
       gateway = STRIPE_GATEWAY
       gateway_options = {}
-      if gateway.is_a?(ActiveMerchant::Billing::StripeGateway)
-        @order.gateway = Order::GATEWAY_STRIPE
-        gateway_options[:description] = @order.course.name
-        gateway_options[:email] = @order.card_email
-        #metadata_options = [:description,:browser_ip,:user_agent,:referrer]
-      end
+      @order.gateway = Order::GATEWAY_STRIPE
+      gateway_options[:description] = @order.course.name
+      gateway_options[:email] = @order.card_email
+
       @response = gateway.purchase(@market.course.cost, @order.cc, gateway_options)
 
       if @response.success?
@@ -127,6 +126,7 @@ class OrdersController < ApplicationController
         @order.status = Order::STATUS_SUCCESSFUL
         @order.user = @user
         @order.complete!
+        HipchatNotification.perform_async("Course ordered - #{@order.market.name} - #{@user.email}")
 
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
@@ -135,10 +135,12 @@ class OrdersController < ApplicationController
         sign_in(:user, @user)
         #flash[:alert] = nil
       else
+        HipchatNotification.perform_async("Payment declined - #{@response.message} - #{@user.email}")
         flash[:alert] = @response.message
         render :new
       end
     else
+      HipchatNotification.perform_async("Order form validation error - \n#{@order.to_yaml}")
       flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
       render :new
     end
