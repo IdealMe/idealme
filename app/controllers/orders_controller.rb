@@ -87,19 +87,23 @@ class OrdersController < ApplicationController
 
   def create_order(form_controller_action, cost, description)
     if @order.valid? && @user
-      @order.cost = cost
-      gateway = STRIPE_GATEWAY
-      gateway_options = {}
-      @order.gateway = Order::GATEWAY_STRIPE
-      gateway_options[:description] = description
-      gateway_options[:email] = @order.card_email
-
-      @response = gateway.purchase(@order.cost, @order.cc, gateway_options)
-
-      if @response.success?
+      token = params[:stripeToken]
+      @user.update_attribute(:stripe_token, token)
+      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+      begin
+        customer = Stripe::Customer.create(
+          :card => token,
+          :description => @user.email,
+        )
+        @user.update_attribute(:stripe_customer_id, customer.id)
+        charge = Stripe::Charge.create(
+          :amount => cost,
+          :currency => "usd",
+          :customer => customer.id,
+          #:description => description,
+        )
         flash[:alert] = nil
-        Rails.logger.info gateway.store(@order.cc, gateway_options)
-        @order.parameters = @response
+        @order.parameters = charge.to_json
         @order.status = Order::STATUS_SUCCESSFUL
         @order.user = @user
         @order.complete!
@@ -109,11 +113,13 @@ class OrdersController < ApplicationController
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
         end
         yield(@response) if block_given?
-      else
-        HipchatNotification.perform_async("Payment declined - #{@response.message} - #{@user.email}")
-        flash[:alert] = @response.message
+      rescue Stripe::CardError => e
+        # The card has been declined
+        HipchatNotification.perform_async("Payment declined - #{e.message} - #{@user.email}")
+        flash[:alert] = e.message
         render form_controller_action
       end
+
     else
       HipchatNotification.perform_async("Order form validation error - \n#{@order.to_yaml}")
       flash[:alert] = 'There was a problem validating your information. Please ensure all your information is correct'
@@ -186,22 +192,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit!
-  end
-
-
-  def load_active_merchant_validator_with_market
-    @market = Market.find(params[:id])
-    @active_merchant_validator = ActiveMerchantValidator.new({market: @market})
-  rescue ActiveRecord::RecordInvalid
-    redirect_to markets_path and return
-  end
-
-  def build_active_merchant_validator_with_market
-    @active_merchant_validator = ActiveMerchantValidator.new(params[:active_merchant_validator])
-    @market = Market.where(id: @active_merchant_validator.market_id).first
-    raise ActiveRecord::RecordInvalid unless @market
-  rescue ActiveRecord::RecordInvalid
-    redirect_to markets_path and return
   end
 
   def ensure_product_user_uniqueness

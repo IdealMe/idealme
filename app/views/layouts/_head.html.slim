@@ -23,6 +23,9 @@ meta content=asset_path("mstile-70x70.png") name="msapplication-square70x70logo"
 meta content=asset_path("mstile-150x150.png") name="msapplication-square150x150logo" /
 meta content=asset_path("mstile-310x310.png") name="msapplication-square310x310logo" /
 
+script src="https://js.stripe.com/v2/"
+/script type="text/javascript"
+  /' Stripe.setPublishableKey('#{ENV['STRIPE_PUBLIC_KEY']}');
 script src="//cdn.optimizely.com/js/585912477.js"
 = javascript_include_tag 'application'
 = javascript_include_tag('admin') if params[:controller].include?('admin')

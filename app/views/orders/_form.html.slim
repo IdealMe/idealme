@@ -3,7 +3,7 @@ section.pay-method
     ' Pay with:
     = image_tag 'icons/credit_cards_icon.png', class: 'credit-cards-image'
 
-= simple_form_for(@order, url: @form_post_path, method: :post, wrapper: :bootstrap, html: {class: 'orders-payment-form'}) do |f|
+= simple_form_for(@order, url: @form_post_path, method: :post, wrapper: :bootstrap, html: {class: 'orders-payment-form', id: "idealme-order-form"}) do |f|
   = f.hidden_field :market_id
   = f.hidden_field :course_id
   = f.hidden_field :user_id
@@ -11,18 +11,22 @@ section.pay-method
   = f.hidden_field :checksum
 
   .form-group.row
+    span.payment-errors
+  .form-group.row
     = f.input :card_firstname, label: "First Name", wrapper_html: { class: "col-sm-6" }
     = f.input :card_lastname, label: "Last Name", wrapper_html: { class: "col-sm-6" }
 
   .form-group.row
-    = f.input :card_number, size: 16, maxlength: 16, label: "Card Number", wrapper_html: { class: "col-sm-6" }
-    = f.input :card_type, collection: [["Visa", "visa"], ["Master Card", "master"]], wrapper_html: { class: "col-sm-6" }
+    = f.input :card_number, size: 16, maxlength: 16, label: "Card Number", wrapper_html: { class: "col-sm-6" } do
+      = tag :input, :id => "order_card_number", :type => "text", 'data-stripe' => "number", :class => 'string required form-control', :size => 16, :maxlength => 16
+    = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code', wrapper_html: { class: "col-sm-6" } do
+      = tag :input, :id => "order_card_cvv", :type => "text", 'data-stripe' => "cvc", :class => 'string required form-control', :size => 4, :maxlength => 4
 
   .form-group.row
-    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-6" })
-    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-6" })
-  .form-group.row
-    = f.input :card_cvv, size: 4, maxlength: 4, label: 'Security Code (CVV/CSV)', wrapper_html: { class: "col-sm-6" }
+    = f.input(:card_exp_month, collection: cc_month_options_for_select(@order.card_exp_month), class: 'exp-month', wrapper_html: { class: "col-sm-6" }) do
+      = tag :input, :id => "order_card_exp_month", :type => "text", 'data-stripe' => "exp-month", :class => 'string required form-control', :size => 2, :maxlength => 2
+    = f.input(:card_exp_year, collection: cc_year_options_for_select(@order.card_exp_year), class: 'exp-year', wrapper_html: { class: "col-sm-6" }) do
+      = tag :input, :id => "order_card_exp_year", :type => "text", 'data-stripe' => "exp-year", :class => 'string required form-control', :size => 4, :maxlength => 4
   .form-group
     = f.input :card_email, label: 'Email Address'
 

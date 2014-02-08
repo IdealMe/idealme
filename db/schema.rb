@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130013426) do
+ActiveRecord::Schema.define(version: 20140208041835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "sender_type"
     t.integer  "trackable_id"
     t.string   "trackable_type"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "affiliate_clicks", force: true do |t|
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "tracking_code"
     t.integer  "user_id"
     t.integer  "affiliate_link_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "affiliate_clicks", ["affiliate_link_id"], name: "index_affiliate_clicks_on_affiliate_link_id", using: :btree
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "slug"
     t.string   "market_tag"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "note"
     t.string   "name"
   end
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "user_id"
     t.integer  "order_id"
     t.integer  "affiliate_link_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "completed",         default: false
   end
 
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
   create_table "article_authors", force: true do |t|
     t.integer  "author_id"
     t.integer  "article_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "article_authors", ["article_id"], name: "index_article_authors_on_article_id", using: :btree
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "sequence"
     t.integer  "article_id"
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "article_courses", ["article_id"], name: "index_article_courses_on_article_id", using: :btree
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "article_source_id"
     t.integer  "article_target_id"
     t.integer  "sequence"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "article_volumes", ["article_source_id"], name: "index_article_volumes_on_article_source_id", using: :btree
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "category_id"
     t.integer  "course_id"
     t.integer  "default_market_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "checkins", force: true do |t|
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.text     "thoughts"
     t.integer  "up_votes",     default: 0
     t.integer  "down_votes",   default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "checkins", ["goal_user_id"], name: "index_checkins_on_goal_user_id", using: :btree
@@ -170,8 +170,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "page_id",    null: false
     t.string   "identifier", null: false
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "cms_blocks", ["page_id", "identifier"], name: "index_cms_blocks_on_page_id_and_identifier", using: :btree
@@ -201,8 +201,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "file_file_size",                             null: false
     t.string   "description",       limit: 2048
     t.integer  "position",                       default: 0, null: false
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "cms_files", ["site_id", "block_id"], name: "index_cms_files_on_site_id_and_block_id", using: :btree
@@ -221,8 +221,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.text     "js"
     t.integer  "position",   default: 0,     null: false
     t.boolean  "is_shared",  default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "cms_layouts", ["parent_id", "position"], name: "index_cms_layouts_on_parent_id_and_position", using: :btree
@@ -241,8 +241,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "children_count", default: 0,     null: false
     t.boolean  "is_published",   default: true,  null: false
     t.boolean  "is_shared",      default: false, null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "cms_pages", ["parent_id", "position"], name: "index_cms_pages_on_parent_id_and_position", using: :btree
@@ -276,8 +276,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.text     "content"
     t.integer  "position",   default: 0,     null: false
     t.boolean  "is_shared",  default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "cms_snippets", ["site_id", "identifier"], name: "index_cms_snippets_on_site_id_and_identifier", unique: true, using: :btree
@@ -288,8 +288,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "owner_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "response"
     t.integer  "responder_id"
     t.integer  "up_votes",         default: 0
@@ -299,8 +299,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
   create_table "course_goals", force: true do |t|
     t.integer  "course_id"
     t.integer  "goal_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "course_goals", ["course_id"], name: "index_course_goals_on_course_id", using: :btree
@@ -309,8 +309,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
   create_table "course_users", force: true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "course_users", ["course_id"], name: "index_course_users_on_course_id", using: :btree
@@ -334,8 +334,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",                                                         null: false
-    t.datetime "updated_at",                                                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -350,8 +350,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "feedback_type", default: 1
     t.integer  "owner_id"
     t.text     "content"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "feedbacks", ["owner_id"], name: "index_feedbacks_on_owner_id", using: :btree
@@ -371,8 +371,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "goal_id"
     t.integer  "goal_user_id"
     t.integer  "jewel_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "goal_user_jewels", ["goal_id"], name: "index_goal_user_jewels_on_goal_id", using: :btree
@@ -382,8 +382,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
   create_table "goal_user_supporters", force: true do |t|
     t.integer  "goal_user_id"
     t.integer  "supporter_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "goal_user_supporters", ["goal_user_id"], name: "index_goal_user_supporters_on_goal_user_id", using: :btree
@@ -395,8 +395,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.boolean  "completed",  default: false
     t.integer  "user_id"
     t.integer  "goal_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "weight",     default: 0
     t.integer  "position",   default: 0
   end
@@ -417,8 +417,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "up_votes",            default: 0
     t.integer  "down_votes",          default: 0
     t.integer  "category_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "slug"
   end
 
@@ -430,8 +430,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "provider"
     t.string   "identifier"
     t.integer  "owner_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "identities", ["owner_id"], name: "index_identities_on_owner_id", using: :btree
@@ -452,8 +452,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "kind"
     t.integer  "goal_id"
     t.integer  "course_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "visible"
     t.text     "embed_content"
   end
@@ -467,8 +467,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.text     "content"
     t.integer  "position",    default: 0
     t.integer  "section_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "lectures", ["section_id"], name: "index_lectures_on_section_id", using: :btree
@@ -480,8 +480,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "weight",              default: 0
   end
 
@@ -499,8 +499,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "course_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "subheader"
   end
 
@@ -531,8 +531,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "billing_city"
     t.string   "billing_country"
     t.string   "billing_state"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "orders", ["course_id"], name: "index_orders_on_course_id", using: :btree
@@ -546,16 +546,16 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.integer  "intended_type"
     t.integer  "payloadable_id"
     t.string   "payloadable_type"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "dropbox_path"
   end
 
   create_table "poll_choices", force: true do |t|
     t.string   "name"
     t.integer  "poll_question_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "poll_choices", ["poll_question_id"], name: "index_poll_choices_on_poll_question_id", using: :btree
@@ -563,16 +563,16 @@ ActiveRecord::Schema.define(version: 20140130013426) do
   create_table "poll_questions", force: true do |t|
     t.string   "name"
     t.boolean  "display_results", default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "poll_results", force: true do |t|
     t.integer  "poll_question_id"
     t.integer  "poll_choice_id"
     t.integer  "owner_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "poll_results", ["owner_id"], name: "index_poll_results_on_owner_id", using: :btree
@@ -583,8 +583,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.text     "content"
     t.integer  "comment_id"
     t.integer  "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "replies", ["comment_id"], name: "index_replies_on_comment_id", using: :btree
@@ -594,8 +594,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.boolean  "recommended", default: true
     t.integer  "owner_id"
     t.integer  "course_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
   end
 
@@ -616,8 +616,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.text     "content"
     t.integer  "course_id"
     t.integer  "position",    default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sections", ["course_id"], name: "index_sections_on_course_id", using: :btree
@@ -625,8 +625,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
     t.text     "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
@@ -694,11 +694,13 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "fake",                         default: false
     t.boolean  "welcome_message_dismissed",    default: false
     t.boolean  "added_to_aweber"
+    t.string   "stripe_token"
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
@@ -713,8 +715,8 @@ ActiveRecord::Schema.define(version: 20140130013426) do
     t.boolean  "up_vote"
     t.boolean  "down_vote"
     t.integer  "owner_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "votes", ["votable_id"], name: "index_votes_on_votable_id", using: :btree

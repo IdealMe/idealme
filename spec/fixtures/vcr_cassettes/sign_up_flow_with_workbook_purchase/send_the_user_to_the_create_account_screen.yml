@@ -2,68 +2,28 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.hipchat.com/v1/rooms/message?auth_token=2876c736673caf9c04fd310cdb2e47
-    body:
-      encoding: UTF-8
-      string: room_id=notifications&from=idealme.com&message=New%20email%20optin%3A%20charlie%2B22%40idealme.com&message_format=html&color=yellow&notify=1
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - no-cache="set-cookie"
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 29 Jan 2014 01:00:53 GMT
-      Server:
-      - nginx
-      Set-Cookie:
-      - AWSELB=4B417D29167379B88359E270231A3CFDBDD5CC2E9A32B7E02C6763C433C4A3A6BE4A3BC1CB7DF7B3E58A08644EAD422B2D7D62ADDCF5649B9A6B89443B86C57737A1FDD1F5;PATH=/
-      X-Hipchat-Jobs:
-      - Want to help make HipChat better? Apply at hipchat.com/jobs and mention this
-        header.
-      X-Ratelimit-Limit:
-      - '100'
-      X-Ratelimit-Remaining:
-      - '99'
-      X-Ratelimit-Reset:
-      - '1390957260'
-      Content-Length:
-      - '17'
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: "{\"status\":\"sent\"}"
-    http_version: 
-  recorded_at: Wed, 29 Jan 2014 01:00:53 GMT
-- request:
-    method: post
-    uri: https://sk_test_McolaUo3frJYYalxTTjg0Au1:@api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: amount=700&currency=usd&card[number]=4242424242424242&card[exp_month]=1&card[exp_year]=2017&card[cvc]=123&card[name]=Bean+Salad&description=Idealme+Workbook+Postage&payment_user_agent=Stripe%2Fv1+ActiveMerchantBindings%2F1.42.4&metadata[email]=beansalad%40idealme.com
+      string: card=tok_3SO71T3VlpyuGw&description=beansalad%40idealme.com
     headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.10.1
+      Authorization:
+      - Bearer sk_test_McolaUo3frJYYalxTTjg0Au1
       Content-Type:
       - application/x-www-form-urlencoded
-      User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.42.4
       X-Stripe-Client-User-Agent:
-      - "{\"bindings_version\":\"1.42.4\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
-        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"active_merchant\"}"
-      X-Stripe-Client-User-Metadata:
-      - "{\"ip\":null}"
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
+      - "{\"bindings_version\":\"1.10.1\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
+        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"stripe\",\"uname\":\"Darwin
+        charlie.local 13.0.2 Darwin Kernel Version 13.0.2: Sun Sep 29 19:38:57 PDT
+        2013; root:xnu-2422.75.4~1/RELEASE_X86_64 x86_64\"}"
+      Content-Length:
+      - '59'
   response:
     status:
       code: 200
@@ -72,115 +32,21 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 Jan 2014 01:00:58 GMT
+      - Sat, 08 Feb 2014 05:07:54 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '1007'
+      - '1172'
       Connection:
       - keep-alive
-      Cache-Control:
-      - no-cache, no-store
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Max-Age:
-      - '300'
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "id": "ch_3OZsxgl2EW3IGb",
-          "object": "charge",
-          "created": 1390957257,
-          "livemode": false,
-          "paid": true,
-          "amount": 700,
-          "currency": "usd",
-          "refunded": false,
-          "card": {
-            "id": "card_3OZsIdLNpoDW2H",
-            "object": "card",
-            "last4": "4242",
-            "type": "Visa",
-            "exp_month": 1,
-            "exp_year": 2017,
-            "fingerprint": "0FJgJUWQopgJgoZs",
-            "customer": null,
-            "country": "US",
-            "name": "Bean Salad",
-            "address_line1": null,
-            "address_line2": null,
-            "address_city": null,
-            "address_state": null,
-            "address_zip": null,
-            "address_country": null,
-            "cvc_check": "pass",
-            "address_line1_check": null,
-            "address_zip_check": null
-          },
-          "captured": true,
-          "refunds": [],
-          "balance_transaction": "txn_3OZsDfLh2pbYtR",
-          "failure_message": null,
-          "failure_code": null,
-          "amount_refunded": 0,
-          "customer": null,
-          "invoice": null,
-          "description": "Idealme Workbook Postage",
-          "dispute": null,
-          "metadata": {
-            "email": "beansalad@idealme.com"
-          }
-        }
-    http_version: 
-  recorded_at: Wed, 29 Jan 2014 01:00:58 GMT
-- request:
-    method: post
-    uri: https://sk_test_McolaUo3frJYYalxTTjg0Au1:@api.stripe.com/v1/customers
-    body:
-      encoding: US-ASCII
-      string: description=Idealme+Workbook+Postage&email=beansalad%40idealme.com&card[number]=4242424242424242&card[exp_month]=1&card[exp_year]=2017&card[cvc]=123&card[name]=Bean+Salad
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.42.4
-      X-Stripe-Client-User-Agent:
-      - "{\"bindings_version\":\"1.42.4\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
-        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"active_merchant\"}"
-      X-Stripe-Client-User-Metadata:
-      - "{\"ip\":null}"
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Wed, 29 Jan 2014 01:00:59 GMT
-      Content-Type:
-      - application/json;charset=utf-8
-      Content-Length:
-      - '1086'
-      Connection:
-      - keep-alive
       Access-Control-Allow-Credentials:
       - 'true'
-      Access-Control-Max-Age:
-      - '300'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
       Cache-Control:
       - no-cache, no-store
+      Access-Control-Max-Age:
+      - '300'
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
@@ -188,33 +54,38 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1390957258,
-          "id": "cus_3OZsjCb3xf9VRV",
+          "created": 1391836073,
+          "id": "cus_3SO7507bdZpOZC",
           "livemode": false,
-          "description": "Idealme Workbook Postage",
-          "email": "beansalad@idealme.com",
+          "description": "beansalad@idealme.com",
+          "email": null,
           "delinquent": false,
           "metadata": {},
-          "subscription": null,
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "url": "/v1/customers/cus_3SO7507bdZpOZC/subscriptions",
+            "data": []
+          },
           "discount": null,
           "account_balance": 0,
           "currency": null,
           "cards": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3OZsjCb3xf9VRV/cards",
+            "url": "/v1/customers/cus_3SO7507bdZpOZC/cards",
             "data": [
               {
-                "id": "card_3OZsSwCgibIWfu",
+                "id": "card_3SO7iOPuXd5NSo",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 1,
-                "exp_year": 2017,
+                "exp_year": 2020,
                 "fingerprint": "0FJgJUWQopgJgoZs",
-                "customer": "cus_3OZsjCb3xf9VRV",
+                "customer": "cus_3SO7507bdZpOZC",
                 "country": "US",
-                "name": "Bean Salad",
+                "name": null,
                 "address_line1": null,
                 "address_line2": null,
                 "address_city": null,
@@ -227,8 +98,104 @@ http_interactions:
               }
             ]
           },
-          "default_card": "card_3OZsSwCgibIWfu"
+          "default_card": "card_3SO7iOPuXd5NSo"
         }
     http_version: 
-  recorded_at: Wed, 29 Jan 2014 01:00:59 GMT
+  recorded_at: Sat, 08 Feb 2014 05:07:54 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=700&currency=usd&customer=cus_3SO7507bdZpOZC
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.10.1
+      Authorization:
+      - Bearer sk_test_McolaUo3frJYYalxTTjg0Au1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - "{\"bindings_version\":\"1.10.1\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
+        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"stripe\",\"uname\":\"Darwin
+        charlie.local 13.0.2 Darwin Kernel Version 13.0.2: Sun Sep 29 19:38:57 PDT
+        2013; root:xnu-2422.75.4~1/RELEASE_X86_64 x86_64\"}"
+      Content-Length:
+      - '51'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 08 Feb 2014 05:07:54 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '969'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "ch_3SO7vIAvlhyF3O",
+          "object": "charge",
+          "created": 1391836074,
+          "livemode": false,
+          "paid": true,
+          "amount": 700,
+          "currency": "usd",
+          "refunded": false,
+          "card": {
+            "id": "card_3SO7iOPuXd5NSo",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2020,
+            "fingerprint": "0FJgJUWQopgJgoZs",
+            "customer": "cus_3SO7507bdZpOZC",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": "pass",
+            "address_line1_check": null,
+            "address_zip_check": null
+          },
+          "captured": true,
+          "refunds": [],
+          "balance_transaction": "txn_3SO7TARsSS4qCN",
+          "failure_message": null,
+          "failure_code": null,
+          "amount_refunded": 0,
+          "customer": "cus_3SO7507bdZpOZC",
+          "invoice": null,
+          "description": null,
+          "dispute": null,
+          "metadata": {}
+        }
+    http_version: 
+  recorded_at: Sat, 08 Feb 2014 05:07:55 GMT
 recorded_with: VCR 2.8.0

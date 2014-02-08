@@ -17,22 +17,14 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     page.current_path.should eq '/getthebook'
     find('#getthebook-btn').click
     page.current_path.should eq '/orders/new/workbook'
-    fill_in "Card Number", with: '4242424242424242'
-    fill_in "Security Code", with: '123'
-    ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
-    fill_in "First Name", with: "Bean"
-    fill_in "Last Name", with: "Salad"
-    fill_in "Email Address", with: user.email
-    select "01", from: "Card exp month"
-    select "2017", from: "Card exp year"
-    select "Master Card", from: "Card type"
-    click_button "Complete Purchase"
+    submit_order_form(email: user.email)
     page.current_path.should eq '/login'
     fill_in "Email", with: user.email
     fill_in "Password", with: "passpass"
     click_button "Sign in"
     page.current_path.should eq '/orders/new/workbook'
-    click_button "Complete Purchase"
+    submit_order_form(email: user.email)
+    screenshot true
     Order.count.should eq 1
   end
 
@@ -42,21 +34,9 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     page.current_path.should eq '/getthebook'
     find('#getthebook-btn').click
     page.current_path.should eq '/orders/new/workbook'
-    fill_in "Card Number", with: '4242424242424242'
-    fill_in "Security Code", with: '123'
-    SendHipchatMessage.any_instance.stub(:send)
-    ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
-
-    fill_in "First Name", with: "Bean"
-    fill_in "Last Name", with: "Salad"
-    fill_in "Email Address", with: "beansalad@idealme.com"
-    select "01", from: "Card exp month"
-    select "2017", from: "Card exp year"
-    select "Master Card", from: "Card type"
-    click_button "Complete Purchase"
-
-    page.current_path.should eq '/workbook-thanks'
-    Order.count.should eq 1
+    submit_order_form
+    expect(current_path).to eq '/workbook-thanks'
+    expect(Order.count).to eq 1
 
     user = User.where(email: "beansalad@idealme.com").last
     Order.last.user.should eq user
@@ -98,18 +78,9 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
 
     find('#getthebook-btn').click
     page.current_path.should eq '/orders/new/workbook'
-    fill_in "Card Number", with: '4000000000000002'
-    fill_in "Security Code", with: '123'
-    ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(false)
-    fill_in "First Name", with: "Bean"
-    fill_in "Last Name", with: "Salad"
-    fill_in "Email Address", with: 'leamsdaf@example.com'
-    select "01", from: "Card exp month"
-    select "2017", from: "Card exp year"
-    select "Master Card", from: "Card type"
-    click_button "Complete Purchase"
-    fill_in "Card Number", with: '4242424242424242'
-    click_button "Complete Purchase"
+    submit_order_form(card_number: '4000000000000002')
+    page.text.should include "declined"
+    submit_order_form(card_number: '4242424242424242')
     page.text.should_not include "declined"
     Order.count.should eq 1
   end

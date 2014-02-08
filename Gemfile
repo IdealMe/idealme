@@ -173,7 +173,7 @@ gem 'font-awesome-sass-rails' # new
 
 gem 'asset_sync'
 
-gem 'stripe'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem 'acts_as_taggable_on', '~> 3.0.0.rc2'
 
@@ -185,8 +185,8 @@ group :test do
 end
 
 group :development do
-  #gem 'spring'
-  #gem "spring-commands-rspec"
+  gem 'spring'
+  gem "spring-commands-rspec"
   gem 'quiet_assets'
   #gem 'sprockets_better_errors'
 

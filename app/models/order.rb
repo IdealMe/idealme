@@ -36,12 +36,10 @@ class Order < ActiveRecord::Base
   validates_presence_of :card_lastname
   validates_presence_of :card_email
 
-  validate :validate_credit_card
+  #validate :validate_credit_card
 
   # == Scopes ===============================================================
   # == Callbacks ============================================================
-  before_validation :build_credit_card
-
   # == Class Methods ========================================================
 
   # Generate invoice based on *course_id* and *order_id*
@@ -127,60 +125,6 @@ class Order < ActiveRecord::Base
       PurchaseMailer.workbook(self).deliver
     end
   end
-
-  def build_credit_card
-    unless gateway == GATEWAY_PAYPAL
-      self.cc ||= ActiveMerchant::Billing::CreditCard.new(
-          brand: self.card_type,
-          number: self.card_number,
-          verification_value: self.card_cvv,
-          month: self.card_exp_month,
-          year: self.card_exp_year,
-          first_name: self.card_firstname,
-          last_name: self.card_lastname
-      )
-      self.card_number_4 = self.card_number[-4, 4]
-    end
-  end
-
-  def validate_credit_card
-    unless gateway == GATEWAY_PAYPAL
-      self.cc.valid?
-      self.cc.errors.each do |error|
-        next if error.last.length == 0
-        field_name = error.first
-        if field_name == 'year'
-          mapped_field = :card_exp_year
-        elsif field_name =='month'
-          mapped_field = :card_exp_month
-        elsif field_name =='number'
-          mapped_field = :card_number
-        elsif field_name =='verification_value'
-          mapped_field = :card_cvv
-        elsif field_name =='first_name'
-          mapped_field = :card_firstname
-        elsif field_name =='last_name'
-          mapped_field = :card_lastname
-        elsif field_name =='email'
-          mapped_field = :card_email
-        elsif field_name =='brand'
-          mapped_field = :card_type
-        else
-          ap field_name
-          raise 'Uncaught credit card errors'
-        end
-
-        if mapped_field
-          field_errors = error.last
-          field_errors.each do |error|
-            errors.add(mapped_field, error)
-          end
-        end
-
-      end
-    end
-  end
-
 
   def valid_checksum?(validate_market_id, validate_course_id, validate_time)
     self.checksum == Digest::SHA1.hexdigest("#{validate_market_id}#{validate_course_id}#{validate_time}#{Idealme::Application.config.secret_key_base.reverse}")

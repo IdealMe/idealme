@@ -78,10 +78,9 @@ describe 'ordering' do
 
     fill_in "Card Number", with: '1234123412341234'
     fill_in "Security Code", with: '123'
-    order_response = double(:success? => true)
-    ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-    ActiveMerchant::Billing::CreditCard.any_instance.stub(:valid?).and_return(true)
     click_button "Complete Purchase"
+    sleep 5
+    screenshot true
     page.text.should include "First Name can't be blank"
     page.text.should include "Last Name can't be blank"
     page.text.should include "Email Address can't be blank"
@@ -89,9 +88,8 @@ describe 'ordering' do
     fill_in "First Name", with: "Bean"
     fill_in "Last Name", with: "Salad"
     fill_in "Email Address", with: "beansalad@idealme.com"
-    select "01", from: "Card exp month"
-    select "2017", from: "Card exp year"
-    select "Master Card", from: "Card type"
+    fill_in "Card exp month", with: '01'
+    fill_in "Card exp year", with: '2020'
 
     click_button "Complete Purchase"
 
@@ -133,9 +131,8 @@ describe 'ordering' do
     fill_in "First Name", with: "Bean"
     fill_in "Last Name", with: "Salad"
     fill_in "Email Address", with: "beansalad@idealme.com"
-    select "01", from: "Card exp month"
-    select "2017", from: "Card exp year"
-    select "Master Card", from: "Card type"
+    fill_in "Card exp month", with: '01'
+    fill_in "Card exp year", with: '2020'
 
     click_button "Complete Purchase"
 
