@@ -48,6 +48,22 @@ class LandingsController < ApplicationController
     render text: :ok, layout: nil
   end
 
+  def optin
+  end
+  def upsell
+  end
+  def continuity_offer
+  end
+  def trial
+  end
+  def thanks
+  end
+
+
+
+
+
+
   private
 
   def setup_form
