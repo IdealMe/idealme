@@ -29,10 +29,11 @@ describe 'get the body flow', js: true, vcr: true do
     fill_in "First Name", with: "Bean"
     fill_in "Last Name", with: "Salad"
 
-    select "01", from: "Card exp month"
-    select "2017", from: "Card exp year"
-    select "Master Card", from: "Card type"
+    fill_in "Card exp month", with: "01"
+    fill_in "Card exp year", with: "2020"
     click_button "Complete Purchase"
+    sleep 1
+    screenshot true
 
     expect(page.current_path).to eq '/workbook-thanks'
     expect(emails.length).to eq 2

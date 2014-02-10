@@ -26,7 +26,9 @@ meta content=asset_path("mstile-310x310.png") name="msapplication-square310x310l
 script src="https://js.stripe.com/v2/"
 script type="text/javascript"
   ' Stripe.setPublishableKey('#{ENV['STRIPE_PUBLIC_KEY']}');
-script src="//cdn.optimizely.com/js/585912477.js"
+
+- unless Rails.env.test?
+  script src="//cdn.optimizely.com/js/585912477.js"
 = javascript_include_tag 'application'
 = javascript_include_tag('admin') if params[:controller].include?('admin')
 = render 'partials/google_analytics' if Rails.env.production?
