@@ -35,7 +35,7 @@ describe 'course preview page (market show)' do
     login_as(user, scope: :user, run_callbacks: false)
 
     visit course_path course
-    screenshot
+    sleep 1
 
     page.text.should include "Rate this course:"
     page.text.should_not include "Please tell others what you think of this course"
