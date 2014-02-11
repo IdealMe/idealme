@@ -76,11 +76,10 @@ describe 'ordering' do
     find('.top-enroll-btn').click
     current_path.should eq '/orders/new/sample-market'
 
-    fill_in "Card Number", with: '1234123412341234'
+    fill_in "Card Number", with: '4242424242424242'
     fill_in "Security Code", with: '123'
     click_button "Complete Purchase"
     sleep 5
-    screenshot true
     page.text.should include "First Name can't be blank"
     page.text.should include "Last Name can't be blank"
     page.text.should include "Email Address can't be blank"
@@ -93,6 +92,9 @@ describe 'ordering' do
 
     click_button "Complete Purchase"
 
+    Timeout.timeout(10) do
+      loop until current_path == '/orders'
+    end
     visit course_path(course)
     expect(current_path).to eq course_path(course)
 

@@ -39,11 +39,11 @@ describe 'purchase course' do
     find('.btn-complete-purchase').click
     page.should have_content('There was a problem validating your information')
 
-    fill_in "Card Number", with: "4242424242424242"
-    select "2017"
-    fill_in "Security Code", with: "123"
-    select "2017"
-    select "01"
+    fill_in "Card Number", with: '4242424242424242'
+    fill_in "Security Code", with: '123'
+
+    fill_in "Card exp month", with: "01"
+    fill_in "Card exp year", with: "2020"
 
     fill_in "First Name", with: @user.firstname
     fill_in "Last Name", with: @user.lastname
@@ -59,10 +59,10 @@ describe 'purchase course' do
 
     screenshot
     fill_in "Card Number", with: "4242424242424242"
-    select "2017"
     fill_in "Security Code", with: "123"
-    select "2017"
-    select "01"
+    fill_in "Card exp month", with: "01"
+    fill_in "Card exp year", with: "2020"
+
     find('.btn-complete-purchase').click
     page.should have_content('Thank you, your order has been placed and you are enrolled in this course!')
 

@@ -1,7 +1,6 @@
 module TestHelpers
 
   def stripe_js_finished?
-    ap page.html.include? "stripeFailed"
     page.has_css?("input[name='stripeToken']") || page.has_css?("input[name='stripeFailed']")
   end
 
@@ -38,12 +37,15 @@ module TestHelpers
       visit "/now/#{slug}"
     end
     find('.enroll-btn').click
-    fill_in "Card Number", with: '1234123412341234'
+    fill_in "Card Number", with: '4242424242424242'
     fill_in "Security Code", with: '123'
-    order_response = double(:success? => true)
-    ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-    Order.any_instance.stub(:valid?).and_return(true)
+    fill_in "Card exp month", with: '01'
+    fill_in "Card exp year", with: '2020'
     click_button "Complete Purchase"
+
+    Timeout.timeout(10.seconds) do
+      loop until page.current_path == '/orders'
+    end
     logout(:user)
   end
 

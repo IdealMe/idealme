@@ -13,7 +13,6 @@ jQuery(function($) {
         var token = response.id;
         // Insert the token into the form so it gets submitted to the server
         $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        console.log("stripe js complete and happy times")
         // and submit
         $form.get(0).submit();
       }

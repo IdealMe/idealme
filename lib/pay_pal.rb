@@ -13,7 +13,7 @@ class PayPal
 
   def get_token
     # cache the auth token in redis
-    
+    binding.pry
     token = $redis.get(credentials.first)
     return token if token
 
