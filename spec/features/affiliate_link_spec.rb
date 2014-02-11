@@ -34,28 +34,15 @@ describe 'affiliate links' do
     expect(current_path).to eq '/markets/another-market'
     expect(page.text).to include 'affiliate_phil_9000'
 
-    # find('.enroll-btn').click
+    find('.enroll-btn').click
 
-    # fill_in "Email", with: 'normal@idealme.com'
-    # fill_in "Password", with: 'passpass'
-    # find('#sign-in-button').click
+    expect(current_path).to eq '/orders/new/another-market'
 
-    # expect(current_path).to include '/orders'
+    submit_order_form
 
-
-    # fill_in "Card Number", with: '1234123412341234'
-    # fill_in "Security Code", with: '123'
-
-
-    # order_response = double(:success? => true)
-    # ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-    # Order.any_instance.stub(:valid?).and_return(true)
-
-    # click_button "Complete Purchase"
-
-    # expect(AffiliateSale.count).to eq 1
-    # expect(AffiliateClick.count).to eq 1
-    # expect(link.sales).to include AffiliateSale.first
+    expect(AffiliateSale.count).to eq 1
+    expect(AffiliateClick.count).to eq 1
+    expect(link.sales).to include AffiliateSale.first
   end
 
   it 'credits affiliates with sales', js: true, vcr: true do
@@ -69,16 +56,7 @@ describe 'affiliate links' do
     expect(current_path).to include '/orders'
 
 
-    fill_in "Card Number", with: '1234123412341234'
-    fill_in "Security Code", with: '123'
-    fill_in "Email Address", with: 'lkjlkj@idealme.com'
-
-
-    order_response = double(:success? => true)
-    ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-    Order.any_instance.stub(:valid?).and_return(true)
-
-    click_button "Complete Purchase"
+    submit_order_form
 
     expect(AffiliateSale.count).to eq 1
     expect(AffiliateClick.count).to eq 1

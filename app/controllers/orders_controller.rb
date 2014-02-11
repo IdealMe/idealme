@@ -110,6 +110,7 @@ class OrdersController < ApplicationController
         @order.complete!
         HipchatNotification.perform_async("Order success - #{description} - #{@user.email}")
 
+
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
         end
