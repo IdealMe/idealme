@@ -18,6 +18,8 @@ describe 'affiliate dashboard functionality' do
   before :each do
     Warden.test_reset!
     buy_course_as user
+    expect(Order.count).to eq 1
+
   end
 
   it "shows affiliate dashboard index", js: true, vcr: true do
@@ -30,15 +32,14 @@ describe 'affiliate dashboard functionality' do
     AffiliateSale.first.user_id.should eq affiliate_user.id
   end
 
-  it "calculates conversions", vcr: true do
+  it "calculates conversions", js: true, vcr: true do
     click = AffiliateClick.last.dup
     click.save!
     Capybara.reset_session!
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard"
-    screenshot true
-    expect(page.text).to include 'Conversion:50'
-    expect(page.text).to include 'Total affiliates pay out:$498.5000'
+    expect(page.text).to include 'Conversion: 50'
+    expect(page.text).to include 'Total affiliates pay out: $498.5000'
   end
 
   it 'allows affiliates to setup tracking links', js: true, vcr: true do
