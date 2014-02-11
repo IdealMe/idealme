@@ -48,8 +48,8 @@ section.pay-method
       ' By clicking "Complete purchase" I agree to the Terms of Service and Privacy Policy.
       '  Note=you will be billed immediately.
 
-section.pay-method
-  - if @order.market
-    ' Or
-    = link_to paypal_checkout_order_path(@order.market), method: :post do
-      = image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
+/section.pay-method
+  /- if @order.market
+    /' Or
+    /= link_to paypal_checkout_order_path(@order.market), method: :post do
+      /= image_submit_tag('icons/paypal_icon.png', class: 'paypal-image', alt: 'Purchase')
