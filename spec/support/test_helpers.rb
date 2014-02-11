@@ -1,7 +1,15 @@
 module TestHelpers
 
   def stripe_js_finished?
+    ap page.html.include? "stripeFailed"
     page.has_css?("input[name='stripeToken']") || page.has_css?("input[name='stripeFailed']")
+  end
+
+  def wait_for_stripe
+    Timeout.timeout(10.seconds) do
+      loop until stripe_js_finished?
+    end
+    sleep 1
   end
 
   def submit_order_form(options = {})
@@ -13,11 +21,12 @@ module TestHelpers
     fill_in "Card exp month", with: '01'
     fill_in "Card exp year", with: '2020'
     click_button "Complete Purchase"
-    Timeout.timeout(10.seconds) do
-      loop until stripe_js_finished?
-    end
-    sleep 1
 
+    sleep 2
+    ap stripe_js_finished?
+
+
+    #wait_for_stripe
   end
 
   def buy_course_as(user, slug = 'my-link', market = nil)

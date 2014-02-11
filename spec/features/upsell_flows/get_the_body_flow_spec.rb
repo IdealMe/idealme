@@ -32,9 +32,10 @@ describe 'get the body flow', js: true, vcr: true do
     fill_in "Card exp month", with: "01"
     fill_in "Card exp year", with: "2020"
     click_button "Complete Purchase"
-    sleep 1
-    screenshot true
 
+    Timeout.timeout(10.seconds) do
+      loop until page.current_path == '/workbook-thanks'
+    end
     expect(page.current_path).to eq '/workbook-thanks'
     expect(emails.length).to eq 2
   end

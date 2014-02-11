@@ -15,7 +15,6 @@ Idealme::Application.routes.draw do
   get 'getthebook' => 'landings#getthebook'
   get 'get-the-body' => 'landings#get_the_body'
   get 'get-the-book' => 'landings#get_the_book'
-  get 'get-the-book2' => 'landings#get_the_book2'
   get 'getinshape' => 'landings#getinshape'
 
   get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
