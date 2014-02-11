@@ -86,6 +86,7 @@ class OrdersController < ApplicationController
   protected
 
   def create_order(form_controller_action, cost, description)
+    @order.cost = cost
     if @order.valid? && @user
       token = params[:stripeToken]
       @user.update_attribute(:stripe_token, token)

@@ -21,11 +21,7 @@ module TestHelpers
     fill_in "Card exp year", with: '2020'
     click_button "Complete Purchase"
 
-    sleep 2
-    ap stripe_js_finished?
-
-
-    #wait_for_stripe
+    sleep 3
   end
 
   def buy_course_as(user, slug = 'my-link', market = nil)

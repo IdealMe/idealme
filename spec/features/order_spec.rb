@@ -95,7 +95,9 @@ describe 'ordering' do
     Timeout.timeout(10) do
       loop until current_path == '/orders'
     end
+
     visit course_path(course)
+    sleep 0.3
     expect(current_path).to eq course_path(course)
 
     user = User.last

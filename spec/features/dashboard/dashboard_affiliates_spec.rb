@@ -23,8 +23,6 @@ describe 'affiliate dashboard functionality' do
   it "shows affiliate dashboard index", js: true, vcr: true do
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard"
-
-    screenshot true
     expect(page.text).to include 'Total units sold: 1'
     expect(page.text).to include 'Total affiliates pay out: $498.5000'
     expect(AffiliateSale.count).to eq 1
@@ -38,6 +36,7 @@ describe 'affiliate dashboard functionality' do
     Capybara.reset_session!
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard"
+    screenshot true
     expect(page.text).to include 'Conversion:50'
     expect(page.text).to include 'Total affiliates pay out:$498.5000'
   end
