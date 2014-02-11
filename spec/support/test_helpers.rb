@@ -47,6 +47,7 @@ module TestHelpers
       loop until page.current_path == '/orders'
     end
     logout(:user)
+    sleep 1
   end
 
   def screenshot(preview = false)
