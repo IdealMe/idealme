@@ -22,18 +22,7 @@ describe 'affiliate links' do
     expect(current_path).to include '/orders'
 
 
-    fill_in "Card Number", with: '1234123412341234'
-    fill_in "Security Code", with: '123'
-    fill_in "Email Address", with: 'lkjlkj@idealme.com'
-
-
-    order_response = double(:success? => true)
-    ActiveMerchant::Billing::StripeGateway.any_instance.stub(:purchase).and_return(order_response)
-    Order.any_instance.stub(:valid?).and_return(true)
-
-    click_button "Complete Purchase"
-
-    screenshot
+    submit_order_form
     expect(AffiliateSale.count).to eq 1
     expect(AffiliateClick.count).to eq 1
     expect(link.sales).to include AffiliateSale.first

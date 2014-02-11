@@ -22,6 +22,7 @@ module TestHelpers
     click_button "Complete Purchase"
 
     sleep 3
+
   end
 
   def buy_course_as(user, slug = 'my-link', market = nil)

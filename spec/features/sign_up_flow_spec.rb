@@ -24,7 +24,6 @@ describe 'sign up flow with workbook purchase', js: true, vcr: true do
     click_button "Sign in"
     page.current_path.should eq '/orders/new/workbook'
     submit_order_form(email: user.email)
-    screenshot true
     Order.count.should eq 1
   end
 
