@@ -24,15 +24,18 @@ describe 'roger love course purchase' do
     find('.top-enroll-btn').click
 
     fill_in "Card Number", with: "4242424242424242"
-    select "2017"
     fill_in "Security Code", with: "123"
-    select "2017"
-    select "01"
+
     fill_in "First Name", with: user.firstname
     fill_in "Last Name", with: user.lastname
     fill_in "Email", with: user.email
-    find('.btn-complete-purchase').click
-    page.should have_content('Thank you, your order has been placed and you are enrolled in this course!')
+    fill_in "Card exp month", with: "01"
+    fill_in "Card exp year", with: "2020"
+    click_button "Complete Purchase"
+
+    Timeout.timeout(10.seconds) do
+      loop until page.text.include?('Thank you, your order has been placed and you are enrolled in this course!')
+    end
 
     user.courses.load.to_a.should include Course.last
     click_link "GO TO COURSE"
