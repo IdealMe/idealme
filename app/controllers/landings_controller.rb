@@ -1,5 +1,5 @@
 class LandingsController < ApplicationController
-  before_filter :setup_form, only: [:get_the_book, :get_the_body]
+  before_filter :setup_form, only: [:get_the_book, :get_the_body, :upsell]
 
   def index
     redirect_to user_path(current_user) and return if current_user
@@ -46,7 +46,9 @@ class LandingsController < ApplicationController
   end
 
   def optin
-    render layout: "chromeless"
+    @courses = []
+    session[:landing] = "/upsell"
+    render template: "landings/index", layout: "chromeless"
   end
   def upsell
     render layout: "chromeless"
