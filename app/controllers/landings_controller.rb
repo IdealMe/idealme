@@ -45,6 +45,27 @@ class LandingsController < ApplicationController
     render text: :ok, layout: nil
   end
 
+  def optin
+    render layout: "chromeless"
+  end
+  def upsell
+    render layout: "chromeless"
+  end
+  def continuity_offer
+    render layout: "chromeless"
+  end
+  def trial
+    render layout: "chromeless"
+  end
+  def thanks
+    render layout: "chromeless"
+  end
+
+
+
+
+
+
   private
 
   def setup_form

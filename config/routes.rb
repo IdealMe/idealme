@@ -17,6 +17,12 @@ Idealme::Application.routes.draw do
   get 'get-the-book' => 'landings#get_the_book'
   get 'getinshape' => 'landings#getinshape'
 
+  get 'optin' => 'landings#optin'
+  get 'upsell' => 'landings#upsell'
+  get 'continuity-offer' => 'landings#continuity_offer'
+  get 'thanks' => 'landings#thanks'
+  get 'trial' => 'landings#trial'
+
   get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
 
   resources :searches, only: [:index]
