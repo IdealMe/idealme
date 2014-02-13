@@ -70,7 +70,8 @@ class OrdersController < ApplicationController
     @form_post_path = create_workbook_order_orders_path
     create_order(:new_workbook, 700, "Idealme Workbook Postage") do |response|
       sign_in(:user, @user)
-      redirect_to(workbook_thanks_path)
+      Rails.logger.info post_order_path
+      redirect_to(post_order_path)
     end
   end
 
@@ -84,6 +85,10 @@ class OrdersController < ApplicationController
   end
 
   protected
+
+  def post_order_path
+    session[:after_order_path] || workbook_thanks_path
+  end
 
   def create_order(form_controller_action, cost, description)
     @order.cost = cost

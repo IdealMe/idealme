@@ -1,7 +1,7 @@
 
 require 'spec_helper'
 
-describe 'get the body flow', js: true, vcr: true do
+describe 'get the body flow' do
 
   let!(:user)               { create(:user) }
   let!(:link)               { create(:affiliate_link) }

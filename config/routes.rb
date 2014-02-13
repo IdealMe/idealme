@@ -19,7 +19,9 @@ Idealme::Application.routes.draw do
 
   get 'optin' => 'landings#optin'
   get 'upsell' => 'landings#upsell'
-  get 'continuity-offer' => 'landings#continuity_offer'
+  #get 'continuity-offer' => 'landings#continuity_offer'
+  get 'continuity-offer-1' => 'landings#continuity_offer_1'
+  get 'continuity-offer-2' => 'landings#continuity_offer_2'
   get 'thanks' => 'landings#thanks'
   get 'trial' => 'landings#trial'
 

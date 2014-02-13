@@ -144,6 +144,15 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     `rm -rf public/screenshots/*`
+    ::Kernel.class_eval do
+      alias old_exit exit
+      def exit(*args)
+        puts "Exiting with #{args.inspect}"
+        puts caller.join("\n")
+        puts
+        old_exit(*args)
+      end
+    end
   end
 
 end

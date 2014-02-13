@@ -12,6 +12,7 @@ module TestHelpers
   end
 
   def submit_order_form(options = {})
+    return
     fill_in "Card Number", with: options.fetch(:card_number, '4242424242424242')
     fill_in "Security Code", with: '123'
     fill_in "First Name", with: "Bean"
@@ -23,6 +24,7 @@ module TestHelpers
 
     sleep 3
 
+    Order.order("created_at ASC").last
   end
 
   def buy_course_as(user, slug = 'my-link', market = nil)
