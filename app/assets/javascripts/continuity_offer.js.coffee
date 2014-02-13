@@ -9,7 +9,8 @@ class ContinuityOffer
     $('#offer-container').removeClass('hidden')
 
   purchaseOffer: ->
-    debugger
+    $.post('/purchase-continuity-offer').then (a,b,c) ->
+      debugger
 
   declineOffer: ->
     debugger
