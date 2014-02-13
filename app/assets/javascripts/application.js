@@ -43,6 +43,7 @@
 //= require style
 //= require users/welcome
 //= require votes
+//= require continuity_offer
 
 
 
