@@ -48,7 +48,7 @@ class LandingsController < ApplicationController
   def optin
     @courses = []
     session[:landing] = "/upsell"
-    session[:after_order_path] = "/continuity-offer"
+    session[:after_order_path] = "/continuity-offer-1"
     render template: "landings/index", layout: "chromeless"
   end
   def upsell

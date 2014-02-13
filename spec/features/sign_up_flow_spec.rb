@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'sign up flow with workbook purchase', js: true, vcr: true do
+describe 'sign up flow with workbook purchase' do
 
   let!(:user)               { create(:user) }
   let!(:link)               { create(:affiliate_link) }

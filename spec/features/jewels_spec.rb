@@ -3,7 +3,7 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe 'idealme gems', :vcr do
+describe 'idealme gems' do
   let!(:user)               { create(:user) }
   let!(:goal)               { create(:goal) }
   let!(:jewel)               { create(:jewel, linked_goal: goal, owner: user) }
