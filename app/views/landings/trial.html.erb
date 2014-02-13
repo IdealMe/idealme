@@ -9,7 +9,7 @@
             <a href="mailto:support@survivallife.com">Email Customer Service</a><br>
           </p>
         </div>
-      <%= image_tag('./f_files/1survlife-logo-sm.png', :height => 40, :width => 212) %>
+      <%= image_tag('1survlife-logo-sm.png', :height => 40, :width => 212) %>
     <div class="progress"> 
     </div>
 
@@ -22,7 +22,7 @@ FREE for 7 days and I'll STILL Give You<br>
 The $39 Knife FREE if You Love I
           </span>t
         </h2>
-        <p align="CENTER"><%= image_tag('./f_files/group-strike.jpg', :height => 275, :width => 700) %></p>
+        <p align="CENTER"><%= image_tag('group-strike.jpg', :height => 275, :width => 700) %></p>
         <p>Yes I know this is crazy, but you really need this information and I want
 to prove to you that we deliver. Plus I want you to have the knife as my
 gift to you but most of all we need patriots like you in the Lamplighters.
@@ -69,7 +69,7 @@ gift to you but most of all we need patriots like you in the Lamplighters.
         <table cellpadding="4" cellspacing="4" width="100%" align="center" id="anchor">
         <tbody><tr><td colspan="98"></td></tr>
         <tr style="display: none;" align="center">
-        <td style="background:url(&#39;../images/arrows.png&#39;) center bottom no-repeat">
+        <td style="background:url(arrows.png;) center bottom no-repeat">
           <p><span style="background-color:#FF0; margin: 5px;">Please Enter Your Email &amp; <br>
         Click Add To Cart Button To Purchase</span><br>
         <br>
@@ -86,7 +86,10 @@ gift to you but most of all we need patriots like you in the Lamplighters.
       <tr>
         <td align="center">
           <p>
-            <input type="image" src="./f_files/add-to-cart-7-day-trial.png" name="Submit" id="Submit" onclick="dontpop();">
+            <input type="image" <%= image_tag("addtocart-67.png")%> :name => Submit, :id =>Submit, :onclick => dontpop();>
+
+
+
             <br>
             <%= image_tag('./f_files/ssl_lock-sm2.png', :height => 64, :width => 60) %> 
           </p>
