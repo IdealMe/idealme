@@ -57,6 +57,9 @@ class LandingsController < ApplicationController
   def continuity_offer_1
     render layout: "chromeless"
   end
+  def purchase_continuity_offer
+    binding.pry
+  end
   def continuity_offer_2
     render layout: "chromeless"
   end
