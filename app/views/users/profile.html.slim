@@ -1,4 +1,14 @@
 .container
+  .row
+    .col-md-9
+      ul.left-menu
+        li
+          = link_to resources_path, class: (@active_tab == :all ? 'active' : '')
+            | All resources
+        li
+          = link_to my_goals_resources_path, class: (@active_tab == :my_goals ? 'active' : '')
+            | Only my goals
+.container
 
   .menu-section
     .user-menu

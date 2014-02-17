@@ -8,9 +8,19 @@ describe UpdateSubscriptionDays do
     expect(subscription.subscribed_days).to eq 0
     expect(subscription.unsubscribed_days).to eq 0
     expect(subscription.total_days).to eq 0
+
+    worker.perform
+
+    expect(subscription.subscribed_days).to eq 1
+    expect(subscription.last_update_day_count_at > 1.day.ago).to eq true
+
   end
 
   it "is idempotent" do
-    pending
+    # run it twice. don't double up the day counts
+    subscription.last_update_day_count_at = 1.day.ago
+    worker.perform
+    worker.perform
+    expect(subscription.subscribed_days).to eq 1
   end
 end

@@ -1,0 +1,133 @@
+.users-profile
+  +bg(#faf9f4)
+  .user-profile
+    margin: 30px 0 40px 0
+    .user-avatar
+      +float-left
+      width: 120px
+      .btn
+        +bg(white)
+        +bg-pos(top, left)
+        +border-radius(2px)
+        border: 1px solid #ebebeb
+        +box-shadow(none)
+        padding: 11px 35px
+        +hex(#4d4d4d)
+        +fs(12px)
+        +lh(12px)
+        +upper
+        &:hover
+          +bg-pos(top, left)
+          border: 1px solid #bcbcbc
+    .user-informaiton
+      +float-left
+      padding: 26px 0 0 32px
+      .user-fullname
+        +fs(28px)
+        +lh(20px)
+        +hex(#6b635b)
+        +bold
+        +m_b(8px)
+      .user-tagline
+        +hex(#a1a1a1)
+        +fs(12px)
+        +lh(20px)
+        width: 350px
+  .user-counters
+    +float-right
+    border: 1px solid #f2f2f2
+    +bg(white)
+    +border-radius(2px)
+    margin-top: 15px
+    margin-right: 15px
+    .counter
+      +centered
+      +hex(#999999)
+      +fs(11px)
+      +float-left
+      padding: 8px 35px 0 35px
+    .checkins-box
+      +fs(36px)
+      +lh(36px)
+      +bg(image-url("icons/checked_green_icon.png") no-repeat)
+      +bg_pos(100%, 1px)
+      +hex(#4fbe56)
+      text-align: left
+      padding-right: 36px
+    .collected-box
+      @extend .checkins-box
+      +hex(#ff716f)
+      +bg(image-url("icons/ruby2.png") no-repeat)
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .created-box
+      @extend .checkins-box
+      +hex(#e88391)
+      +bg(image-url("icons/ruby3.png") no-repeat)
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .supporters-box
+      @extend .checkins-box
+      +hex(#ff716f)
+      +bg(image-url("icons/support_icon.png") no-repeat)
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .supporting-box
+      @extend .checkins-box
+      +hex(#e88391)
+      +bg(image-url("icons/support_icon2.png") no-repeat)
+      +bg_pos(100%, 5px)
+      padding-right: 28px
+    .divider
+      +sprite_css(divider)
+      +float-left
+  .menu-section
+    +m_b(18px)
+    +m_l(8px)
+    .user-menu
+      margin: 0
+      font-weight: 600
+      color: #777
+      //@include float-left;
+      padding-top: 16px
+      li
+        +float-left
+        margin-right: 10px
+        &.active, &:hover
+          border-bottom: 2px solid #ff6766
+        a
+          padding: 10px 28px
+          +block
+          +hex(#424242)
+          +fs(14px)
+          +upper
+          +rel
+          top: 1px
+          &:hover
+            text-decoration: none
+        .goal-icon
+          +bg(image-url("icons/flag_icon2.png") no-repeat)
+          +bg_pos(0px, 50%)
+        .course-icon
+          +bg(image-url("icons/course_icon.png") no-repeat)
+          +bg_pos(0, 50%)
+          +p_l(35px)
+  .goals_section
+    padding-bottom: 20px
+  .bottom_box
+    +fs(10px)
+    +lh(14px)
+  .counter
+    +hex(#ff6766)
+    +centered
+  .lose_weight_icon
+    margin: 35px auto 30px auto
+
+#edit_user
+  .profile-picture
+    margin-bottom: -50px
+  .form-inline
+    margin-left: 180px
+  .btn
+    padding: 7px 70px
+
