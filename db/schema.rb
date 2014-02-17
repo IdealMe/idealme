@@ -634,11 +634,11 @@ ActiveRecord::Schema.define(version: 20140214003041) do
 
   create_table "subscriptions", force: true do |t|
     t.text     "stripe_object"
-    t.integer  "subscribed_days"
-    t.integer  "unsubscribed_days"
-    t.integer  "total_days"
+    t.integer  "subscribed_days",          default: 0
+    t.integer  "unsubscribed_days",        default: 0
+    t.integer  "total_days",               default: 0
     t.integer  "user_id"
-    t.datetime "days_updated_at"
+    t.datetime "last_update_day_count_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,9 +3,9 @@ class CreateSubscriptions < ActiveRecord::Migration
     create_table :subscriptions do |t|
 
       t.text :stripe_object
-      t.integer :subscribed_days
-      t.integer :unsubscribed_days
-      t.integer :total_days
+      t.integer :subscribed_days, default: 0
+      t.integer :unsubscribed_days, default: 0
+      t.integer :total_days, default: 0
       t.references :user
       t.datetime :last_update_day_count_at
       t.timestamps
