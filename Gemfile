@@ -44,6 +44,7 @@ gem 'pg'
 
 gem 'redis'
 gem 'sidekiq'
+gem 'sidetiq'
 
 #Flexible authentication solution for Rails with Warden
 gem 'devise'

@@ -23,7 +23,9 @@ module TestHelpers
 
     sleep 3
 
+    ap 'submit order form'
     Order.order("created_at ASC").last
+
   end
 
   def buy_course_as(user, slug = 'my-link', market = nil)

@@ -58,6 +58,17 @@ class LandingsController < ApplicationController
     render layout: "chromeless"
   end
   def purchase_continuity_offer
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    sub = customer.subscriptions.create({ :plan => 1 })
+    ap sub
+    Subscription.create(
+      user: current_user,
+      subscribed_days: 0,
+      unsubscribed_days: 0,
+      total_days: 0,
+      stripe_object: sub.to_json,
+    )
     render json: { success: true }
   end
   def continuity_offer_2

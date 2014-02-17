@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   # == Relationships ========================================================
+  has_many :subscriptions
   has_many :owned_courses, class_name: 'Course', foreign_key: 'owner_id'
   has_many :goal_users
   has_many :goals, through: :goal_users
