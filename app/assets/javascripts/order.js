@@ -15,6 +15,7 @@ jQuery(function($) {
         $form.append($('<input type="hidden" name="stripeToken" />').val(token));
         // and submit
         $form.get(0).submit();
+        debugger;
       }
     };
 
@@ -51,6 +52,7 @@ jQuery(function($) {
     }
 
     // Prevent the form from submitting with the default action
+    debugger;
     return false;
   });
 });
