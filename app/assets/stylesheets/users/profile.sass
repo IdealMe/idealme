@@ -123,6 +123,25 @@
   .lose_weight_icon
     margin: 35px auto 30px auto
 
+  .left-menu
+    @include float-left
+    margin: 0
+    padding-left: 0
+    li
+      @include float-left
+      margin: 0 10px
+      a
+        @include hex(#777777)
+        @include fs(14px)
+        font-weight: 400
+        @include lh(64px)
+        @include upper
+        @include block
+        text-decoration: none
+        height: 64px
+        &:hover, &.active
+          border-bottom: 3px solid #ff6766
+
 #edit_user
   .profile-picture
     margin-bottom: -50px
