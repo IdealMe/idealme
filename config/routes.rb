@@ -191,7 +191,6 @@ Idealme::Application.routes.draw do
         get 'paypal_return' => 'paypals#paypal_return'
         get 'paypal_cancel' => 'paypals#paypal_cancel'
       end
-
     end
   end
 
