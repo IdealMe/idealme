@@ -3,13 +3,13 @@
     .col-md-9
       ul.left-menu
         li
-          = link_to resources_path(tab: :circle), class: (@active_tab == :circle ? 'active' : '')
+          = link_to user_path(tab: :circle), class: (@active_tab == :circle ? 'active' : '')
             | INSIDER CIRCLE
         li
-          = link_to resources_path(tab: :goals), class: (@active_tab == :goals ? 'active' : '')
+          = link_to user_path(tab: :goals), class: (@active_tab == :goals ? 'active' : '')
             | MY GOALS
         li
-          = link_to resources_path(tab: :courses), class: (@active_tab == :courses ? 'active' : '')
+          = link_to user_path(tab: :courses), class: (@active_tab == :courses ? 'active' : '')
             | MY COURSES
 .container
 
