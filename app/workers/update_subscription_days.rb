@@ -14,6 +14,7 @@ class UpdateSubscriptionDays
       # TODO
 
       sub.increment :subscribed_days
+      sub.increment :total_days
       sub.touch :last_update_day_count_at
       sub.save!
 
