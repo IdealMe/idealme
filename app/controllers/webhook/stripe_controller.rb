@@ -5,7 +5,7 @@ class Webhook::StripeController < ApplicationController
     Rails.logger.debug "STRIPE WEBHOOK"
     Rails.logger.debug params
     swc = StripeWebhookCall.new
-    swc.params = params
+    swc.params = params.to_s
     swc.save!
     head :ok
   end
