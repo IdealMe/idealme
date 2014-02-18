@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def profile
 
-    #@tab = params[:tab] || 'goal'
+    @active_tab = params[:tab] || :circle
+    @active_tab = @active_tab.to_sym
     if @owner
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user)
