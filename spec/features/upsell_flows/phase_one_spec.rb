@@ -33,10 +33,10 @@ describe 'phase one' do
     ap "step 10"
     click_button "Buy this thing"
     ap "step 11"
-    #sleep 10
-    #user = User.order("created_at ASC").last
-    #expect(user.subscriptions.count).to eq 1
-    #expect(user.subscriptions.last).to eq Subscription.first
+    sleep 1
+    user = User.order("created_at ASC").last
+    expect(user.subscriptions.count).to eq 1
+    expect(user.subscriptions.last).to eq Subscription.first
     #screenshot true
   end
 end

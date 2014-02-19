@@ -1,5 +1,6 @@
 class LandingsController < ApplicationController
   before_filter :setup_form, only: [:get_the_book, :get_the_body, :upsell]
+  skip_before_filter :verify_authenticity_token
 
   def index
     redirect_to user_path(current_user) and return if current_user
@@ -38,7 +39,9 @@ class LandingsController < ApplicationController
   def aweber_callback
     session[:email]              = params[:email]
     SendHipchatMessage.send("New email optin: #{params[:email]}")
-    redirect_to session[:landing] || '/getthebook'
+    destination = session[:landing] || '/getthebook'
+    ap "aweber callback redirecting to #{destination}"
+    redirect_to destination
   end
 
   def ping
@@ -52,12 +55,15 @@ class LandingsController < ApplicationController
     render template: "landings/index", layout: "chromeless"
   end
   def upsell
+    ap "upsell"
     render layout: "chromeless"
   end
   def continuity_offer_1
     render layout: "chromeless"
   end
+
   def purchase_continuity_offer
+    Rails.logger.debug "purchase continuity offer"
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
     sub = customer.subscriptions.create({ :plan => 1 })
