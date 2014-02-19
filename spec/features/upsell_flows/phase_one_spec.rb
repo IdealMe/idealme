@@ -5,7 +5,7 @@ describe 'phase one' do
     #`rm /Users/charlie/Workspace/idealme/spec/fixtures/vcr_cassettes/phase_one/gets_to_continuity_offer_page.yml`
     path = 'spec/fixtures/vcr_cassettes/phase_one/gets_to_continuity_offer_page.yml'
     if File.exists?(path)
-      File.delete(path)
+      #File.delete(path)
     end
   end
   it 'gets to continuity offer page', js: true, vcr: true do
