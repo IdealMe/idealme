@@ -6,13 +6,13 @@ class UsersController < ApplicationController
   WELCOME_MESSAGE = 'Hi! Now what? On this page you can keep track of your goals. Drag your goals into the order you want to tackle them. Any courses you take will be kept here too. And <a href="http://idealme-prod.s3.amazonaws.com/Ideal%20Me%20Worksheet%20PDF%20v01.pdf">here\'s</a> the link to download your free Ebook.'
 
   def profile
-
     @active_tab = params[:tab] || :circle
     @active_tab = @active_tab.to_sym
     if @owner
       @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user)
       @courses    = @user.courses
+      @drip_articles = @user.drip_articles
       flash[:notice] = WELCOME_MESSAGE.html_safe if show_welcome_message?
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).order("position ASC")
@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @goal_users.each_with_index do |goal_user, index|
       goal_user.update_attribute(:position, index + 1)
     end
+
   end
 
   def welcome
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
 
   def dismiss_welcome_message
     current_user.update_attribute :welcome_message_dismissed, true
-    head :ok
+    render json: { success: true }
   end
 
   protected

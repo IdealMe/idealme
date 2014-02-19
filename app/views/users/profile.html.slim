@@ -14,7 +14,7 @@
 .container
 
   .goals-section class=(@active_tab == :circle ? 'active' : 'hidden')
-    p
+    = render partial: "resources/article_summary", collection: @drip_articles
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'
   - if @owner

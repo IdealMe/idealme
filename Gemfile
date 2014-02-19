@@ -183,6 +183,7 @@ group :test do
   gem 'poltergeist'
   gem 'vcr'
   gem 'webmock', '< 1.16'
+  gem 'faker'
 end
 
 group :development do

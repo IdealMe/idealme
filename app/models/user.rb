@@ -151,6 +151,23 @@ class User < ActiveRecord::Base
   end
 
   # == Instance Methods =====================================================
+
+  def drip_articles
+    # articles that the user can see based on the duration of their subscription, if any
+    sub = self.subscriptions.first
+    @articles = []
+
+    if self.access_admin?
+      @articles = Article
+        .where(drip_content: true).to_a
+    elsif sub
+      @articles = Article
+        .where(drip_content: true)
+        .where("reveal_after_days <= ?", sub.subscribed_days).to_a
+    end
+  end
+
+
   def fullname
     "#{self.firstname} #{self.lastname}"
   end
