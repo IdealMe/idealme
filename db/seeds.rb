@@ -20,6 +20,14 @@ u = User.find_or_create_by_email(firstname: 'User', lastname: 'User', username: 
 u.update_attributes({access_admin: false, access_affiliate: false, access_instructor: false})
 u.confirm!
 
+u = User.find_or_create_by_email(firstname: 'Subscriber', lastname: 'User', username: 'subscriberuser', password: '123123123',
+                                 email: 'subscriber@idealme.com',
+                                 avatar: File.new("#{Rails.root.to_s}/db/seeds/users/images.jpg", 'r'),
+                                 instructor_about: '<p>Subscriber User!</p>')
+u.update_attributes({access_admin: false, access_affiliate: false, access_instructor: false})
+u.confirm!
+Subscription.create(user: u, subscribed_days: 10)
+
 unless Rails.env.production?
 	%w(alice bob david eden frank george hilbert ida jack kelly liam mike nancy).each do |user|
 	  u = User.find_or_create_by_email(firstname: user, lastname: 'IdealMe', username: user,
