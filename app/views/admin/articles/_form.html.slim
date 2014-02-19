@@ -6,6 +6,8 @@
   = f.input :name
   = f.input :author
   = f.input :original_url
+  = f.input :drip_content
+  = f.input :reveal_after_days, label: "Reveal after N days"
   .control-group
     label.controls Content
     = f.cktext_area :content
