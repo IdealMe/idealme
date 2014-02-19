@@ -21,7 +21,7 @@
         ul.module-article-list
           - articles.each do |article|
             li.article-title-link
-              = article.name
+              = link_to article.name, resource_path(article)
 
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'
