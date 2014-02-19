@@ -17,7 +17,7 @@
     /= render partial: "resources/article_summary", collection: @drip_articles
     - @modules.each_with_index do |articles, index|
       h2.module-header
-        | MODULE #{index}
+        | MODULE #{index+1}
         ul.module-article-list
           - articles.each do |article|
             li.article-title-link
