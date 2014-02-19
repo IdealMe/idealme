@@ -165,6 +165,7 @@ class User < ActiveRecord::Base
         .where(drip_content: true)
         .where("reveal_after_days <= ?", sub.subscribed_days).to_a
     end
+    @articles.sort {|a,b| b.reveal_after_days <=> a.reveal_after_days }
   end
 
 
