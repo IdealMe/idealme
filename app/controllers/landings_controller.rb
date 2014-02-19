@@ -63,11 +63,10 @@ class LandingsController < ApplicationController
   end
 
   def purchase_continuity_offer
-    Rails.logger.debug "purchase continuity offer"
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    sub = customer.subscriptions.create({ :plan => 1 })
-    ap sub
+
+    sub = customer.subscriptions.create({ :plan => "1" })
     Subscription.create(
       user: current_user,
       subscribed_days: 0,

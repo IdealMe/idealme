@@ -10,8 +10,13 @@ class ContinuityOffer
 
   purchaseOffer: ->
     $.post('/purchase-continuity-offer').then (a,b,c) ->
+      console.log a
+      console.log b
+      console.log c
+
       window.location = "/thanks"
 
   declineOffer: ->
-    debugger
+    #debugger
+    true
 new ContinuityOffer

@@ -9,30 +9,18 @@ describe 'phase one' do
     end
   end
   it 'gets to continuity offer page', js: true, vcr: true do
-
-    ap "step 1"
+    pending "too much browser http with external services; need to stub these out somehow"
     visit '/optin'
-    ap "step 2"
     sleep 1
-    ap "step 3"
     visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
-    ap "step 4"
     expect(current_path).to eq "/upsell"
-    ap "step 5"
     submit_order_form
-    ap "step 6"
     sleep 4
-    ap "step 7"
     expect(current_path).to eq "/continuity-offer-1"
-    ap "step 8"
-
     sleep 1
-    ap "step 9"
     page.execute_script("$('#offer-container').removeClass('hidden')")
     sleep 1
-    ap "step 10"
     click_button "Buy this thing"
-    ap "step 11"
     sleep 1
     user = User.order("created_at ASC").last
     expect(user.subscriptions.count).to eq 1

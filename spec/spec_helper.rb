@@ -62,7 +62,7 @@ Capybara.register_driver :poltergeist do |app|
   timeout = 1.minute
   timeout = 10.minutes unless ENV['CI']
   #Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: timeout, inspector: true)
-  Capybara::Poltergeist::Driver.new(app, timeout: timeout, inspector: true)
+  Capybara::Poltergeist::Driver.new(app, timeout: timeout)
 end
 
 Capybara.javascript_driver = :poltergeist
