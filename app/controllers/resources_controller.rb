@@ -2,20 +2,20 @@ class ResourcesController < ApplicationController
   before_action :set_goals
   def index
     @active_tab = :all
-    @articles = ArticleGoal.where("article_id is not null").map(&:article).uniq
+    @articles = ArticleGoal.where("article_id is not null").map(&:article).uniq.reject {|article| article.drip_content? }
   end
 
   def goal
     @active_tab = :all
     @goal = Goal.find(params[:goal_id])
-    @articles = ArticleGoal.where(goal: @goal).map(&:article).uniq.compact
+    @articles = ArticleGoal.where(goal: @goal).map(&:article).uniq.compact.reject {|article| article.drip_content? }
     render :index
   end
 
   def my_goals
     @active_tab = :my_goals
     goal_ids = @goals.map {|goal| goal.id }
-    @articles = Article.where(id: ArticleGoal.where(goal_id: goal_ids).pluck(:article_id).uniq)
+    @articles = Article.where(drip_content: false, id: ArticleGoal.where(goal_id: goal_ids).pluck(:article_id).uniq).to_a
     render :index
   end
 
