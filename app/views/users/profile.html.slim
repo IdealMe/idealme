@@ -13,8 +13,16 @@
             | MY COURSES
 .container
 
-  .goals-section class=(@active_tab == :circle ? 'active' : 'hidden')
-    = render partial: "resources/article_summary", collection: @drip_articles
+  .modules-section class=(@active_tab == :circle ? 'active' : 'hidden')
+    /= render partial: "resources/article_summary", collection: @drip_articles
+    - @modules.each_with_index do |articles, index|
+      h2.module-header
+        | MODULE #{index}
+        ul.module-article-list
+          - articles.each do |article|
+            li.article-title-link
+              = article.name
+
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'
   - if @owner

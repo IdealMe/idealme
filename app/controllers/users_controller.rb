@@ -7,10 +7,22 @@ class UsersController < ApplicationController
     @active_tab = params[:tab] || :circle
     @active_tab = @active_tab.to_sym
     if @owner
-      @goal_users = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("position ASC")
-      @checkins   = Checkin.for_user(@user)
-      @courses    = @user.courses
-      @drip_articles = @user.drip_articles
+      @goal_users   = GoalUser.goal_for(@user).active.includes(:goal, :checkins).order("position ASC")
+      @checkins     = Checkin.for_user(@user)
+      @courses      = @user.courses
+      drip_articles = @user.drip_articles
+      @modules      = []
+      end_date      = 28
+      20.times do
+        articles = drip_articles.select { |article| article.reveal_after_days <= end_date }
+        drip_articles = drip_articles - articles
+        if articles.empty?
+          break
+        else
+          end_date = end_date + 28
+          @modules.push articles
+        end
+      end
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user).private_goal(false)
