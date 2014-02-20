@@ -74,6 +74,7 @@ class LandingsController < ApplicationController
       total_days: 0,
       stripe_object: sub.to_json,
     )
+    AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
     render json: { success: true }
   end
   def continuity_offer_2

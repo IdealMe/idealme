@@ -288,14 +288,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def add_to_aweber!
+  def add_to_aweber!(list = 'idealmeoptin')
     return unless Rails.env.production?
-    list = aweber.account.lists.find_by_name('idealmeoptin')
+    list = aweber.account.lists.find_by_name(list)
     subscriber = {"email" => self.email}
     list.subscribers.create(subscriber)
     self.update_attribute :added_to_aweber, true
   rescue AWeber::CreationError => e
     Rails.logger.info "Failed to add #{self.email} to aweber mailing list"
+    Rails.logger.debug e.inspect
   end
 
   def allowed_username

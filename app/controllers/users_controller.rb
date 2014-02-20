@@ -29,7 +29,6 @@ class UsersController < ApplicationController
           articles
         end
       end
-      ap @modules
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user).private_goal(false)

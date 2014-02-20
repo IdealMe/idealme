@@ -72,6 +72,7 @@ class OrdersController < ApplicationController
       sign_in(:user, @user)
       Rails.logger.info post_order_path
       redirect_to(post_order_path)
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
     end
   end
 
