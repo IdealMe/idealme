@@ -13,16 +13,23 @@ class UsersController < ApplicationController
       drip_articles = @user.drip_articles
       @modules      = []
       end_date      = 28
-      20.times do
+      12.times do
         articles = drip_articles.select { |article| article.reveal_after_days <= end_date }
         drip_articles = drip_articles - articles
         if articles.empty?
           break
         else
           end_date = end_date + 28
-          @modules.push articles
+          @modules.push([
+            articles.select { |article| article.reveal_after_days % 28 >= 0 && article.reveal_after_days % 28 <= 7 },
+            articles.select { |article| article.reveal_after_days % 28 >= 8 && article.reveal_after_days % 28 <= 14 },
+            articles.select { |article| article.reveal_after_days % 28 >= 15 && article.reveal_after_days % 28 <= 21 },
+            articles.select { |article| article.reveal_after_days % 28 >= 22 && article.reveal_after_days % 28 <= 28 },
+          ])
+          articles
         end
       end
+      ap @modules
     else
       @goal_users = GoalUser.goal_for(@user).active.private_goal(false).includes(:goal, :checkins).order("position ASC")
       @checkins   = Checkin.for_user(@user).private_goal(false)

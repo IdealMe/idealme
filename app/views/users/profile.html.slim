@@ -15,13 +15,14 @@
 
   .modules-section class=(@active_tab == :circle ? 'active' : 'hidden')
     /= render partial: "resources/article_summary", collection: @drip_articles
-    - @modules.each_with_index do |articles, index|
+    - @modules.each_with_index do |weeks, index|
       h2.module-header
         | MODULE #{index+1}
         ul.module-article-list
-          - articles.each do |article|
-            li.article-title-link
-              = link_to article.name, resource_path(article)
+          - weeks.each_with_index do |week, windex|
+            - week.each do |article|
+              li.article-title-link
+                = link_to "WEEK #{windex+1}: #{article.name}", resource_path(article)
 
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'
