@@ -16,5 +16,7 @@ namespace :ckeditor do
     copy_assets /ckeditor\/lang\/en.js/
     copy_assets /ckeditor\/styles.js/
     copy_assets /ckeditor\/skins\/moono\/.+png/
+    copy_assets /ckeditor\/skins\/moono\/dialog.css/
+    copy_assets /ckeditor\/plugins\/image\/dialogs\/image.js/
   end
 end
