@@ -13,14 +13,16 @@
 
       <div class="action-buttons">
         <br/>
-        <div class="confirmation-container">
+        <!-- <div class="confirmation-container">
           <input type="checkbox" id="confirm-checkbox-2" name="confirm" value="true">
           <label for="confirm-checkbox-2" class="<%= @confirm_error_class %>">I confirm the $19.95 charge to my credit card.</label>
         </div>
-        <%= link_to "Confirm Purchase", purchase_continuity_offer_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
+      -->
+        <%= link_to "Add to cart", purchase_continuity_offer_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
         <br/>
+        7 Day FREE trial, then $19.95 month
         <br/>
-        <%= link_to "Decline Purchase", user_path(current_user), class: "decline-link" %>
+        <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", user_path(current_user), class: "decline-link" %>
       </div>
     </div>
   </div>
