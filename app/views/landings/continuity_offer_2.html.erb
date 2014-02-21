@@ -4,7 +4,7 @@
   <div id="outer" class="">
     <div id="container">
       <div class="header-fragment-content">
-        <% fragment = Fragment.where(slug: "funnel-header") %>
+        <% fragment = Fragment.where(slug: "funnel-header").first %>
         <%= fragment.html.html_safe if fragment %>
       </div>
       <div class="main-fragment-content">
