@@ -59,6 +59,7 @@ class LandingsController < ApplicationController
     render layout: "chromeless"
   end
   def continuity_offer_1
+    @fragment = Fragment.where(slug: "continuity-offer-1").first
     render layout: "chromeless"
   end
 
