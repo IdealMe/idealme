@@ -5,16 +5,26 @@ class ContinuityOffer
     $(document).on "click", "#purchase-offer-btn", @purchaseOffer
     $(document).on "click", "#decline-offer-btn", @declineOffer
 
+    $(document).on "change", "#confirm-checkbox-2", @updatePurchaseUrl
+
   showOffer: ->
     $('#offer-container').removeClass('hidden')
 
   purchaseOffer: ->
-    $.post('/purchase-continuity-offer').then (a,b,c) ->
-      console.log a
-      console.log b
-      console.log c
+    cbv = $('#confirm-checkbox').get()[0].checked
+    $.post('/purchase-continuity-offer?confirm=' + cbv).then (data,b,c) ->
+      if data.success == true
+        window.location = "/thanks"
+      else
+        alert("please check the box to confirm your purchase")
+        $('.confirmation-container label').addClass("error")
 
-      window.location = "/thanks"
+  updatePurchaseUrl: ->
+    cbv = $('#confirm-checkbox-2').get()[0].checked
+    href = $('.purchase-offer-btn-2').attr('data-href')
+    href = "#{href}?confirm=#{cbv}"
+    $('.purchase-offer-btn-2').attr('href', href)
+    alert($('.purchase-offer-btn-2').attr('href'))
 
   declineOffer: ->
     #debugger

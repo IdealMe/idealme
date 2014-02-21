@@ -2,6 +2,8 @@ class LandingsController < ApplicationController
   before_filter :setup_form, only: [:get_the_book, :get_the_body, :upsell]
   skip_before_filter :verify_authenticity_token
 
+  before_filter :require_authentication, only: [:continuity_offer_1, :continuity_offer_2, :purchase_continuity_offer]
+
   def index
     redirect_to user_path(current_user) and return if current_user
     @courses = Course.includes(:owner, :default_market).limit(12)
@@ -64,22 +66,37 @@ class LandingsController < ApplicationController
   end
 
   def purchase_continuity_offer
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    confirm = params[:confirm]
+    plan = "1" if request.referer.include? "continuity-offer-1"
+    plan = "2" if request.referer.include? "continuity-offer-2"
+    if confirm == "true"
+      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-    sub = customer.subscriptions.create({ :plan => "1" })
-    Subscription.create(
-      user: current_user,
-      subscribed_days: 0,
-      unsubscribed_days: 0,
-      total_days: 0,
-      stripe_object: sub.to_json,
-    )
-    AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
-    render json: { success: true }
+      sub = customer.subscriptions.create({ :plan => plan })
+      Subscription.create(
+        user: current_user,
+        subscribed_days: 0,
+        unsubscribed_days: 0,
+        total_days: 0,
+        stripe_object: sub.to_json,
+      )
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+      respond_to do |format|
+        format.json { render json: { success: true } }
+        format.html { redirect_to "/thanks/subscriber" }
+      end
+
+    else
+      respond_to do |format|
+        format.json { render json: { success: false } }
+        format.html { redirect_to action: "continuity_offer_#{plan}".to_sym, confirm: false }
+      end
+    end
   end
 
   def continuity_offer_2
+    @confirm_error_class = "error" if params[:confirm] == "false"
     @fragment = Fragment.where(slug: "continuity-offer-2").first
     render layout: "chromeless"
   end

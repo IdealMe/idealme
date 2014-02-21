@@ -13,9 +13,14 @@
 
       <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
 
-      <div id="offer-container" class="hidden">
-        <button type="link" name="button1" id="purchase-offer-btn">Buy this thing</button>
-        <button type="link" name="button2" id="decline-offer-btn">Don't buy this thing</button>
+      <div id="offer-container" class="xhidden">
+
+        <div class="confirmation-container">
+          <input type="checkbox" id="confirm-checkbox" name="confirm" value="true">
+          <label for="confirm-checkbox">I confirm the $19.95 charge to my credit card.</label>
+        </div>
+        <button type="link" name="button1" id="purchase-offer-btn">Confirm purchase</button>
+        <button type="link" name="button2" id="decline-offer-btn">Decline purchase</button>
       </div>
     </div>
   </div>

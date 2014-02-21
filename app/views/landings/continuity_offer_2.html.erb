@@ -13,9 +13,14 @@
 
       <div class="action-buttons">
         <br/>
-        <%= link_to "Purchase Offer", purchase_continuity_offer_path, method: :post, class: "btn btn-primary btn-red" %>
+        <div class="confirmation-container">
+          <input type="checkbox" id="confirm-checkbox-2" name="confirm" value="true">
+          <label for="confirm-checkbox-2" class="<%= @confirm_error_class %>">I confirm the $19.95 charge to my credit card.</label>
+        </div>
+        <%= link_to "Confirm Purchase", purchase_continuity_offer_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
         <br/>
-        <%= link_to "Don't purchase offer", user_path(current_user), class: "decline-link" %>
+        <br/>
+        <%= link_to "Decline Purchase", user_path(current_user), class: "decline-link" %>
       </div>
     </div>
   </div>
