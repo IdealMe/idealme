@@ -52,7 +52,7 @@ Idealme::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   #config.assets.precompile += %w( ckeditor/skins/moono/editor.css ckeditor/skins/moono/editor.css ckeditor/lang/en.js )
-  config.assets.precompile += %w( ckeditor/skins/moono/editor.css ckeditor/skins/moono/editor.css ckeditor/lang/en.js admin.js )
+  config.assets.precompile += %w( ckeditor/skins/moono/editor.css ckeditor/skins/moono/editor.css ckeditor/lang/en.js admin.js /ckeditor/plugins/image/dialogs/image.js /ckeditor/skins/moono/dialog.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
