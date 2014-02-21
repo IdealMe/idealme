@@ -3,27 +3,17 @@
 <div id="wrap">
   <div id="outer">
     <div id="container">
-      <div class="toprighttext">
-        <p><strong>Need help? </strong><br>
-        Call us at 1-844-IDEALME (a.k.a. 1-844-433-2563)</p>
-        <p>
-        <a href="mailto:info@idealme.com">Email Customer Service</a><br>
-        </p>
+      <div class="header-fragment-content">
+        <% fragment = Fragment.where(slug: "funnel-header").first %>
+        <%= fragment.html.html_safe if fragment %>
       </div>
-      <%= image_tag('idealme-logo-sm.png', :height => 63, :width => 212) %>
-      <div id="container2">
-        <p align="center">
-        <%= image_tag('dontclose-new4.png') %>
-        </p>
-
-        <iframe src="//fast.wistia.net/embed/iframe/ds0p8ohv3o" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="835" height="640"></iframe>
-
+      <div class="main-fragment-content">
+        <%= @fragment.html.html_safe if @fragment %>
       </div>
 
-      <h1 class="offer-container"> Reserved for Brittany</h1>
+      <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
 
       <div id="offer-container" class="hidden">
-
         <button type="link" name="button1" id="purchase-offer-btn">Buy this thing</button>
         <button type="link" name="button2" id="decline-offer-btn">Don't buy this thing</button>
       </div>

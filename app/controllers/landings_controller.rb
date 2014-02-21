@@ -59,6 +59,7 @@ class LandingsController < ApplicationController
     render layout: "chromeless"
   end
   def continuity_offer_1
+    @fragment = Fragment.where(slug: "continuity-offer-1").first
     render layout: "chromeless"
   end
 
@@ -77,12 +78,16 @@ class LandingsController < ApplicationController
     AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
     render json: { success: true }
   end
+
   def continuity_offer_2
+    @fragment = Fragment.where(slug: "continuity-offer-2").first
     render layout: "chromeless"
   end
+
   def trial
     render layout: "chromeless"
   end
+
   def thanks
     render layout: "chromeless"
   end
@@ -93,9 +98,6 @@ class LandingsController < ApplicationController
     @fragment = Fragment.where(slug: thanks_type).first
     render layout: "chromeless"
   end
-
-
-
 
   private
 
