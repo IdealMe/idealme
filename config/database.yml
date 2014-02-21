@@ -1,5 +1,5 @@
 defaults: &defaults
-  pool: 30
+  pool: 10
   adapter: postgresql
   host: localhost
   port: 5432 # connect directly to postgres
