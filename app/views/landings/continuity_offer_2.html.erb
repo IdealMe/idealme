@@ -1,19 +1,27 @@
 
 <div id="topbar" ></div>
-  <div id="wrap">
-    <div id="outer" class="">
-      <div id="container">
+<div id="wrap">
+  <div id="outer" class="">
+    <div id="container">
+      <div class="header-fragment-content">
+        <% fragment = Fragment.where(slug: "funnel-header") %>
+        <%= fragment.html.html_safe if fragment %>
+      </div>
+      <div class="main-fragment-content">
         <%= @fragment.html.html_safe if @fragment %>
+      </div>
 
+      <div class="action-buttons">
         <br/>
-        <%= link_to "Purchase Offer", purchase_continuity_offer_path, method: :post %>
+        <%= link_to "Purchase Offer", purchase_continuity_offer_path, method: :post, class: "btn btn-primary btn-red" %>
         <br/>
-        <%= link_to "Don't purchase offer", user_path(current_user) %>
+        <%= link_to "Don't purchase offer", user_path(current_user), class: "decline-link" %>
       </div>
     </div>
-    <div id="footer">
-      <div id="footertext"> </div>
-    </div>
-    <div style="clear:both;"></div>
   </div>
+  <div id="footer">
+    <div id="footertext"> </div>
+  </div>
+  <div style="clear:both;"></div>
+</div>
 </div>
