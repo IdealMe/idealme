@@ -4,6 +4,11 @@
     <div id="outer" class="">
       <div id="container">
         <%= @fragment.html.html_safe if @fragment %>
+
+        <br/>
+        <%= link_to "Purchase Offer", purchase_continuity_offer_path, method: :post %>
+        <br/>
+        <%= link_to "Don't purchase offer", user_path(current_user) %>
       </div>
     </div>
     <div id="footer">
