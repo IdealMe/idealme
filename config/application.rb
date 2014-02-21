@@ -26,6 +26,7 @@ module Idealme
     # config.i18n.default_locale = :de
 
     config.autoload_paths += Dir["#{config.root}/app/models/**/", "#{config.root}/lib/**/"]
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     config.middleware.insert_after ActionDispatch::RemoteIp, "RemoteIpLogger"
     config.middleware.insert_after ActionDispatch::RemoteIp, "ExcludeIp"

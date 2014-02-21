@@ -76,7 +76,7 @@ gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git'
 gem 'paperclip', '~> 3.5.2'
 
 #FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Ruby on Rails. It allows you to create pretty URLs and work with human-friendly strings as if they were numeric ids for Active Record models.
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.0'
 
 gem 'ckeditor'
 

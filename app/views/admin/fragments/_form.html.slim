@@ -1,0 +1,15 @@
+= simple_form_for(@fragment, url: url, wrapper: "bootstrap") do |f|
+  fieldset
+    #legend
+      legend HTML Fragment
+  = f.input :name
+  = f.input :slug
+
+  = f.input :html
+    = f.cktext_area :html
+
+
+
+  = f.submit 'Save', class: 'btn btn-success'
+  = link_to 'Back', admin_fragments_path, class: 'btn'
+

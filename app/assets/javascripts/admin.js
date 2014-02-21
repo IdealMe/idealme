@@ -1,5 +1,5 @@
-//= require ckeditor/override
 //= require ckeditor/init
+//= require ckeditor/override
 //= require admin/main
 //= require admin/lecture-attach-payload
 //= require comfortable_mexican_sofa/admin/application

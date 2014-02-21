@@ -1,0 +1,19 @@
+h1 HTML Fragments
+
+
+table.table
+  tr
+    th Fragment
+    th Slug
+    th Description
+
+  - @fragments.each do |fragment|
+    tr
+      td = link_to fragment.name, edit_admin_fragment_path(fragment)
+      td = fragment.slug
+      td = fragment.description
+
+
+br
+
+= link_to 'New fragment', new_admin_fragment_path, class: 'btn'

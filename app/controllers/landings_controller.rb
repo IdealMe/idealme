@@ -84,6 +84,8 @@ class LandingsController < ApplicationController
     render layout: "chromeless"
   end
   def thanks
+    thanks_type = params[:thanks_type]
+    ap thanks_type
     render layout: "chromeless"
   end
 

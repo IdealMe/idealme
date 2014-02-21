@@ -3,6 +3,8 @@ Idealme::Application.routes.draw do
   get "challenge" => "challenge#index", :as => :challenge
 
   mount Ckeditor::Engine => '/ckeditor'
+  get "pictures" => "ckeditor/pictures#index"
+  post "pictures" => "ckeditor/pictures#create"
   get "screenshots/index" unless Rails.env.production?
   get "screenshots/reset" unless Rails.env.production?
   get "payload/:id/download" => "payload#download", as: :download_payload
@@ -24,6 +26,7 @@ Idealme::Application.routes.draw do
   post 'purchase-continuity-offer' => 'landings#purchase_continuity_offer'
   get 'continuity-offer-2' => 'landings#continuity_offer_2'
   get 'thanks' => 'landings#thanks'
+  get 'thanks/:thanks_type' => 'landings#thanks'
   get 'trial' => 'landings#trial'
 
   get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
@@ -110,6 +113,8 @@ Idealme::Application.routes.draw do
     resources :articles do
       resources :payloads
     end
+
+    resources :fragments
 
     resources :courses do
       member do

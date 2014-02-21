@@ -18,5 +18,7 @@ ul.nav.nav-pills.nav-stacked
     = link_to 'Feedbacks', admin_feedbacks_path, class: ''
   li class="#{active_tab?('gems', tab, 'active', '')}"
     = link_to 'Gems', admin_gems_path, class: ''
+  li class="#{active_tab?('fragments', tab, 'active', '')}"
+    = link_to 'HTML Fragments', admin_fragments_path, class: ''
   li class=""
     = link_to 'CMS', admin_cms_path, class: ''
