@@ -4,8 +4,10 @@
 <div id="wrap">
   <div id="outer">
     <div id="container">
-
-      <%= @fragment.html.html_safe if @fragment %>
+      <div class="header-fragment-content">
+        <% fragment = Fragment.where(slug: "funnel-header").first %>
+        <%= fragment.html.html_safe if fragment %>
+      </div>
     </div>
   </div>
   <div style="clear:both;"></div>
