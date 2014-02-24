@@ -36,6 +36,17 @@ class OrdersController < ApplicationController
     render layout: "minimal"
   end
 
+  def new_subscription
+    @form_post_path = create_subscription_order_orders_path
+    if session[:order_params]
+      @order = Order.new(session[:order_params])
+    else
+      @order = Order.create_subscription_order_by_user(order_user)
+    end
+    @invoice = Order.generate_subscription_invoice(@order)
+    render layout: "minimal"
+  end
+
   # create a paypal payment and send the user to the approval url
   def paypal_checkout
     paypal = PayPal.new(paypal_endpoint, paypal_credentials)
@@ -69,6 +80,16 @@ class OrdersController < ApplicationController
   def create_workbook_order
     @form_post_path = create_workbook_order_orders_path
     create_order(:new_workbook, 700, "Idealme Workbook Postage") do |response|
+      sign_in(:user, @user)
+      Rails.logger.info post_order_path
+      redirect_to(post_order_path)
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
+    end
+  end
+
+  def create_subscription_order
+    @form_post_path = create_subscription_order_orders_path
+    create_order(:new_subscription, 1995, "Idealme Insider Circle") do |response|
       sign_in(:user, @user)
       Rails.logger.info post_order_path
       redirect_to(post_order_path)

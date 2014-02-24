@@ -61,6 +61,18 @@ class LandingsController < ApplicationController
     render layout: "chromeless"
   end
   def continuity_offer_1
+    # if we have a stripe card for this user, they can do 1 click
+    if current_user && current_user.striped?
+    else
+      @form_post_path = create_subscription_order_orders_path
+      if session[:order_params]
+        @order = Order.new(session[:order_params])
+      else
+        @order = Order.create_subscription_order_by_user(order_user)
+      end
+      @invoice = Order.generate_subscription_invoice(@order)
+    end
+
     @fragment = Fragment.where(slug: "continuity-offer-1").first
     render layout: "chromeless"
   end
@@ -82,6 +94,7 @@ class LandingsController < ApplicationController
         stripe_object: sub.to_json,
       )
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+
       respond_to do |format|
         format.json { render json: { success: true } }
         format.html { redirect_to "/thanks/subscriber" }
