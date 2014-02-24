@@ -6,6 +6,10 @@ describe 'ordering' do
   let!(:market)             { create(:market, course: course) }
   let!(:course)             { create(:course, owner: affiliate_user) }
 
+  it "can purchase subscription without account" do
+    user.subscriptions.length.should eq 1
+  end
+
   it "be logged in after set password", vcr: true, js: true do
     user = create(:user)
     user.update_attributes({
