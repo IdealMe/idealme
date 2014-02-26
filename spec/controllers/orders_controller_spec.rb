@@ -47,6 +47,10 @@ describe OrdersController do
         expect(user.stripe_token).to eq create_params["stripeToken"]
         expect(Order.count).to eq 1
         expect(Subscription.count).to eq 1
+
+        # json in postgres! http://clarkdave.net/2013/06/what-can-you-do-with-postgresql-and-json/
+        stripe_id = Subscription.select("stripe_object->>'id' AS stripe_id").first.stripe_id
+        expect(Subscription.last.stripe_object.to_s).to include stripe_id
       end
     end
   end
