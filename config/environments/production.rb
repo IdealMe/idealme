@@ -6,6 +6,8 @@ Idealme::Application.configure do
 
   config.eager_load = true
 
+  config.preload_app = true
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
@@ -78,7 +80,7 @@ Idealme::Application.configure do
   Paperclip::Attachment.default_options[:s3_protocol] = :https
   Paperclip::Attachment.default_options[:url] = ':s3_alias_url'
   Paperclip::Attachment.default_options[:s3_host_alias] = 'd13lmyn0z90wuo.cloudfront.net'
-  #Paperclip::Attachment.default_options[:path] = ":class/:id/:style.:extension"
+  Paperclip::Attachment.default_options[:path] = ":class/:id/:style.:extension"
 
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.sendgrid.net',
@@ -90,5 +92,4 @@ Idealme::Application.configure do
     enable_starttls_auto: true
   }
 end
-TEST_STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['TEST_STRIPE_SECRET_KEY'])
-STRIPE_GATEWAY      = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_SECRET_KEY'])
+

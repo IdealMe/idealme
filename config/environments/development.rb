@@ -8,6 +8,8 @@ Idealme::Application.configure do
 
   config.eager_load = false
 
+  config.preload_app = true
+
   # Show full error reports and disable caching
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
@@ -34,15 +36,14 @@ Idealme::Application.configure do
     Bullet.rails_logger = true
   end
 
-  config.middleware.use(Rack::LiveReload,
-                        :min_delay        => 500,    # default 1000
-                        :max_delay        => 10_000, # default 60_000
-                        :live_reload_port => 35729,  # default 35729
-                        :host             => '0.0.0.0',
-                        :ignore           => [ %r{dont/modify\.html$} ],
-                        :source           => :vendored,
-
-                       )
+  #config.middleware.use(Rack::LiveReload,
+                        #:min_delay        => 500,    # default 1000
+                        #:max_delay        => 10_000, # default 60_000
+                        #:live_reload_port => 35729,  # default 35729
+                        #:host             => '0.0.0.0',
+                        #:ignore           => [ %r{dont/modify\.html$} ],
+                        #:source           => :vendored,
+                       #)
 
 
   #Paperclip::Attachment.default_options[:storage] = :s3
@@ -65,4 +66,3 @@ Idealme::Application.configure do
 
 end
 
-STRIPE_GATEWAY = ActiveMerchant::Billing::StripeGateway.new(login: ENV['STRIPE_SECRET_KEY'])
