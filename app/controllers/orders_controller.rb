@@ -92,15 +92,18 @@ class OrdersController < ApplicationController
     create_order(:new_subscription, 0, "Idealme Insider Circle", false, "1") do |response|
       sign_in(:user, @user)
       Rails.logger.info post_order_path
-      redirect_to(post_order_path)
-      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
 
+      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
       sc = Stripe::Customer.retrieve(current_user.stripe_customer_id)
       sc.subscriptions.each do |stripe_subscription|
         subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
         subscription.stripe_object = YAML.dump(stripe_subscription)
+        subscription.plan = "1"
         subscription.save!
       end
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+
+      redirect_to(post_order_path)
     end
   end
 

@@ -17,6 +17,7 @@ describe 'get the body flow' do
   end
 
   it 'anonymous user', js: true, vcr: true do
+    pending "update to use buy_course_as"
     visit '/get-the-body'
     expect(page).to have_css "form.af-form-wrapper"
 

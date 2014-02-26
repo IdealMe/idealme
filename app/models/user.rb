@@ -213,6 +213,10 @@ class User < ActiveRecord::Base
     c
   end
 
+  def striped?
+    self.stripe_customer_id.present?
+  end
+
   def voted?(poll)
     PollResult.where(owner_id: self.id, poll_question_id: poll.id).exists?
   end

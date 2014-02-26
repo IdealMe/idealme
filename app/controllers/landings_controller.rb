@@ -56,7 +56,6 @@ class LandingsController < ApplicationController
     render template: "landings/index", layout: "chromeless"
   end
   def upsell
-    ap "upsell"
     render layout: "chromeless"
   end
   def continuity_offer_1
@@ -77,22 +76,21 @@ class LandingsController < ApplicationController
   end
 
   def purchase_continuity_offer
+    ap params
     confirm = params[:confirm]
     plan = "1" if request.referer.include? "continuity-offer-1"
     plan = "2" if request.referer.include? "continuity-offer-2"
     if confirm == "true"
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-      sub = customer.subscriptions.create({ :plan => plan })
-      Subscription.create(
-        user: current_user,
-        subscribed_days: 0,
-        unsubscribed_days: 0,
-        total_days: 0,
-        stripe_object: sub.to_json,
-      )
-      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      customer.subscriptions.each do |stripe_subscription|
+        subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
+        subscription.stripe_object = YAML.dump(stripe_subscription)
+        subscription.plan = "1"
+        subscription.save!
+      end
+      AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
 
       respond_to do |format|
         format.json { render json: { success: true } }
