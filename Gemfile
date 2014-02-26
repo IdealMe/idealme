@@ -145,7 +145,7 @@ gem 'twitter'
 gem 'faraday'
 gem 'typhoeus'
 
-gem 'slim'
+gem 'slim-rails'
 gem 'haml2slim'
 
 gem 'aweber'
