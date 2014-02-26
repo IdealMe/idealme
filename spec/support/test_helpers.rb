@@ -63,6 +63,7 @@ module TestHelpers
     else
       visit "/now/#{slug}"
     end
+    expect(page).to have_css(".enroll-btn")
     find('.enroll-btn').click
     submit_order_form({
       card_number: '4242424242424242',

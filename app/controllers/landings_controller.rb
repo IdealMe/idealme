@@ -42,7 +42,6 @@ class LandingsController < ApplicationController
     session[:email]              = params[:email]
     SendHipchatMessage.send("New email optin: #{params[:email]}")
     destination = session[:landing] || '/getthebook'
-    ap "aweber callback redirecting to #{destination}"
     redirect_to destination
   end
 

@@ -8,6 +8,7 @@ describe 'phase one' do
       #File.delete(path)
     end
   end
+
   it 'gets to continuity offer page', js: true, vcr: true do
     pending "too much browser http with external services; need to stub these out somehow"
     visit '/optin'

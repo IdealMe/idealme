@@ -24,5 +24,7 @@
       </div>
     </div>
   </div>
-  <div style="display: none;"><img src="https://forms.aweber.com/form/displays.htm?id=rBwMDMwsHOw=" alt="" /></div>
+  <% if Rails.env.production? %>
+    <div style="display: none;"><img src="https://forms.aweber.com/form/displays.htm?id=rBwMDMwsHOw=" alt="" /></div>
+  <% end %>
 </form>
