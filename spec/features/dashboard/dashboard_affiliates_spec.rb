@@ -3,7 +3,7 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe 'affiliate dashboard functionality' do
+describe 'affiliate dashboard functionality', ci_only: true do
 
   let!(:user)               { create(:user) }
   let!(:user2)              { create(:user2) }
@@ -19,7 +19,6 @@ describe 'affiliate dashboard functionality' do
     Warden.test_reset!
     buy_course_as user
     expect(Order.count).to eq 1
-
   end
 
   it "shows affiliate dashboard index", js: true, vcr: true do
@@ -84,6 +83,7 @@ describe 'affiliate dashboard functionality' do
   end
 
   it 'affiliate urls', js: true, vcr: true do
+    pending "no assertions"
     login_as(affiliate_user, scope: :user, run_callbacks: false)
     visit "/dashboard/affiliates?tab=urls"
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'affiliate links' do
+describe 'affiliate links', ci_only: true do
 
   let!(:user)               { create(:user) }
   let!(:link)               { create(:affiliate_link) }

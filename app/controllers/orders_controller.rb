@@ -98,7 +98,6 @@ class OrdersController < ApplicationController
       sc.subscriptions.each do |stripe_subscription|
         subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
         subscription.stripe_object = YAML.dump(stripe_subscription)
-        subscription.plan = "1"
         subscription.save!
         ap "save subscription"
       end

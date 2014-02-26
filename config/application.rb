@@ -28,10 +28,9 @@ module Idealme
     config.autoload_paths += Dir["#{config.root}/app/models/**/", "#{config.root}/lib/**/"]
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
-    config.middleware.insert_after ActionDispatch::RemoteIp, "RemoteIpLogger"
-    config.middleware.insert_after ActionDispatch::RemoteIp, "ExcludeIp"
-    config.middleware.insert_after ActionDispatch::RemoteIp, "TrackRequests"
-
+    #config.middleware.insert_after ActionDispatch::RemoteIp, "RemoteIpLogger"
+    #config.middleware.insert_after ActionDispatch::RemoteIp, "ExcludeIp"
+    #config.middleware.insert_after ActionDispatch::RemoteIp, "TrackRequests"
 
     config.filter_parameters += [:password, :card_number, :card_cvv, :card_type, :card_exp_year, :card_exp_month]
   end

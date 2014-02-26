@@ -3,7 +3,7 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe 'course preview page (market show)' do
+describe 'course preview page (market show)', ci_only: true do
   let!(:user)               { create(:user) }
   let!(:user2)              { create(:user2) }
   let!(:link)               { create(:affiliate_link) }

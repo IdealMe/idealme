@@ -115,7 +115,7 @@ gem 'will_paginate'
 # gem 'deep_cloneable'
 
 # New Relic is a performance management system, developed by New Relic, Inc (http://www.newrelic.com). New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin, hosted on http://github.com/newrelic/rpm/
-#gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 
 #A gem to sign url and stream paths for Amazon CloudFront private content. Includes specific signing methods for both url and streaming paths, including html 'safe' escpaed versions of each.
 gem 'cloudfront-signer'

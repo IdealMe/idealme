@@ -47,11 +47,11 @@ jQuery(function($) {
       $('.order-errors').append($('<div class="alert alert-danger alert-dismissable" style="margin: 0;"><button aria-hidden="true" class="close" data-dismiss="alert" type="button">×</button>There was a problem validating your information. Please ensure all your information is correct</div>'))
       $form.find('button').prop('disabled', false);
     } else {
-      //if (window.IM_ENVIRONMENT === 'development' || window.IM_ENVIRONMENT === 'test') {
-        //stripeResponseHandler(200, { id: 'stripe-card-token-123123123123123123' })
-      //} else {
+      if (window.IM_ENVIRONMENT === 'test' && window.IM_USE_STRIPE != true) {
+        stripeResponseHandler(200, { id: 'stripe-card-token-123123123123123123' })
+      } else {
         Stripe.card.createToken($form, stripeResponseHandler);
-      //}
+      }
     }
 
     // Prevent the form from submitting with the default action

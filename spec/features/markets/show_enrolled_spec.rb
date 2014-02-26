@@ -4,7 +4,7 @@ require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe 'market page shows number of enrolled users' do
+describe 'market page shows number of enrolled users', ci_only: true do
   let!(:user)               { create(:user) }
   let!(:user2)              { create(:user2) }
   let!(:link)               { create(:affiliate_link) }

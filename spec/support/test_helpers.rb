@@ -1,16 +1,5 @@
 module TestHelpers
 
-  def stripe_js_finished?
-    page.has_css?("input[name='stripeToken']") || page.has_css?("input[name='stripeFailed']")
-  end
-
-  def wait_for_stripe
-    Timeout.timeout(10.seconds) do
-      loop until stripe_js_finished?
-    end
-    sleep 1
-  end
-
   def fill_in_order_form(options = {})
     fill_in "First Name", with: options.fetch(:firstname, "Bean")
     fill_in "Last Name", with: options.fetch(:lastname, "Salad")
@@ -23,16 +12,14 @@ module TestHelpers
   end
 
   def submit_order_form(options = {})
-    # don't want this to actually post to stripe
-    if page.has_css?(".alert button.close")
-      find(".alert button.close").click
-    end
+
+    page.evaluate_script('window.IM_USE_STRIPE = true;') if options[:use_stripe]
+    page.evaluate_script('$(".alert").remove()')
     expect(page.text).to_not include 'card was declined'
 
     card_email = options.fetch(:email, "beansalad@idealme.com")
     fill_in_order_form(options)
     click_button "Complete Purchase"
-
     Timeout.timeout(15.seconds) do
       completed = false
       while completed == false
@@ -45,6 +32,10 @@ module TestHelpers
           completed = true
         end
 
+        if current_path == '/login'
+          completed = true
+        end
+
         sleep 1
       end
     end
@@ -52,6 +43,7 @@ module TestHelpers
     order = Order.where(card_email: card_email).order("created_at ASC").last
     order
   rescue Timeout::Error => e
+    ap "submit order form timeout error"
     screenshot true
   end
 

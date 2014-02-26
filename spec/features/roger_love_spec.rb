@@ -15,7 +15,7 @@ describe 'roger love course purchase' do
     login_as user, scope: :user
   end
 
-  it 'testing roger love course purchase', js: true, vcr: true do
+  it 'testing roger love course purchase', js: true, vcr: true, ci_only: true do
     visit root_path
     click_link "MARKETPLACE"
     screenshot
