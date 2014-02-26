@@ -1,22 +1,24 @@
 source 'https://rubygems.org'
 
 #ComfortableMexicanSofa is a powerful CMS Engine for Ruby on Rails applications
-gem 'comfortable_mexican_sofa', '~> 1.11.0'
+gem "comfortable_mexican_sofa", "~> 1.11.2"
 
 gem 'dotenv-rails'
 
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6.1'
 
 #Ruby on Rails
 gem 'rails'
-gem 'actionpack-action_caching', '~>1.0.0'
-#gem 'actionpack-page_caching', '~>1.0.0'
-gem 'actionpack-xml_parser', '~>1.0.0'
-gem 'actionview-encoded_mail_to', '~>1.0.4'
-gem 'activerecord-session_store', '~>0.0.1'
-gem 'activeresource', '~>4.0.0.beta1'
-gem 'rails-observers', '~>0.1.1'
+#gem 'actionpack-action_caching', '~> 1.1.1'
+#gem 'actionpack-page_caching', '~> 1.0.0'
+#gem 'actionpack-xml_parser', '~> 1.0.1'
+#gem 'actionview-encoded_mail_to', '~> 1.0.4'
+gem 'activerecord-session_store', '~> 0.1.0'
+#gem 'activeresource', '~>4.0.0.beta1'
+#gem 'rails-observers', '~>0.1.1'
 # gem 'rails-perftest', '~>0.0.2'
+
+gem "http_parser.rb", "~> 0.5.3"
 
 gem 'griddler'
 
@@ -99,13 +101,13 @@ gem 'carmen'
 gem 'carmen-rails', git: 'https://github.com/jim/carmen-rails.git'
 
 #AWS SDK for Ruby
-gem 'aws-sdk', '~> 1.26.0'
+gem 'aws-sdk', '~> 1.34.1'
 
 #Do some browser detection with Ruby.
 gem 'browser'
 
 #TZInfo is a Ruby library that uses the standard tz (Olson) database to provide daylight savings aware transformations between times in different time zones.
-gem 'tzinfo'
+gem 'tzinfo', '~> 0.3.37'
 
 #will_paginate provides a simple API for performing paginated queries with Active Record, DataMapper and Sequel, and includes helpers for rendering pagination links in Rails, Sinatra and Merb web apps.
 gem 'will_paginate'
@@ -121,7 +123,7 @@ gem 'newrelic_rpm'
 gem 'cloudfront-signer'
 
 #MetaInspector lets you scrape a web page and get its title, charset, link and meta tags
-gem 'metainspector'
+gem 'metainspector', '~> 2.1.0'
 
 gem 'embedly'
 
@@ -139,7 +141,7 @@ gem 'activemerchant'
 gem 'ransack'
 
 #A Ruby interface to the Twitter API.
-gem 'twitter'
+#gem 'twitter', '~> 5.7.1'
 
 # network libs
 gem 'faraday'
@@ -182,7 +184,7 @@ group :test do
   #gem 'simplecov', :require => false
   gem 'poltergeist'
   gem 'vcr'
-  gem 'webmock', '< 1.16'
+  gem 'webmock', '~> 1.17.3'
   gem 'faker'
 end
 
@@ -219,7 +221,7 @@ group :development do
   # gem 'guard-rails'
   gem 'guard-bundler'
   gem 'guard-rspec'
-  gem 'guard-livereload'
+  gem "guard-livereload", "~> 2.1.1", require: false
   # gem 'guard-rubocop'
   gem 'rack-livereload'
   gem 'guard-ctags-bundler'

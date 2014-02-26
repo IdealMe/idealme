@@ -36,14 +36,14 @@ Idealme::Application.configure do
     Bullet.rails_logger = true
   end
 
-  #config.middleware.use(Rack::LiveReload,
-                        #:min_delay        => 500,    # default 1000
-                        #:max_delay        => 10_000, # default 60_000
-                        #:live_reload_port => 35729,  # default 35729
-                        #:host             => '0.0.0.0',
-                        #:ignore           => [ %r{dont/modify\.html$} ],
+  config.middleware.use(Rack::LiveReload,
+                        :min_delay        => 500,    # default 1000
+                        :max_delay        => 10_000, # default 60_000
+                        :live_reload_port => 35721,  # default 35729
+                        :host             => 'localhost',
+                        :ignore           => [ %r{dont/modify\.html$} ],
                         #:source           => :vendored,
-                       #)
+                       )
 
 
   #Paperclip::Attachment.default_options[:storage] = :s3
