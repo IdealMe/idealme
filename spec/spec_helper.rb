@@ -148,6 +148,10 @@ RSpec.configure do |config|
     `rm -rf public/screenshots/*`
   end
 
+  config.after(:all) do
+    binding.pry
+  end
+
   config.filter_run_excluding(:ci_only => true) unless ENV['CI']
 
 end
