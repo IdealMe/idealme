@@ -184,7 +184,7 @@ group :test do
   #gem 'simplecov', :require => false
   gem 'poltergeist'
   gem 'vcr'
-  gem 'webmock', '~> 1.17.3'
+  gem 'webmock', '< 1.16'
   gem 'faker'
 end
 

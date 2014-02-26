@@ -562,7 +562,7 @@ GEM
     vcr (2.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    webmock (1.17.3)
+    webmock (1.15.2)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
     websocket (1.0.7)
@@ -666,5 +666,5 @@ DEPENDENCIES
   tzinfo (~> 0.3.37)
   uglifier
   vcr
-  webmock (~> 1.17.3)
+  webmock (< 1.16)
   will_paginate

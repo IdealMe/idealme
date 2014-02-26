@@ -97,9 +97,8 @@ class OrdersController < ApplicationController
       sc = Stripe::Customer.retrieve(current_user.stripe_customer_id)
       sc.subscriptions.each do |stripe_subscription|
         subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
-        subscription.stripe_object = YAML.dump(stripe_subscription)
+        subscription.stripe_object = stripe_subscription.to_json
         subscription.save!
-        ap "save subscription"
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
 

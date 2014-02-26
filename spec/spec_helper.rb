@@ -123,6 +123,11 @@ RSpec.configure do |config|
 
   config.before(:all) do
     if self.respond_to? :visit
+
+      def visit *args
+        super
+        raise "Server returned status #{status_code}\n#{page.text}" if status_code >= 400
+      end
       visit '/assets/application.css'
       visit '/assets/application.js'
     end
