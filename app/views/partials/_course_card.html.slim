@@ -12,9 +12,9 @@
   .bottom-box
     - if current_user
       .like-box
-        .like data-type=course.class id=course.id direction=1 voted=(course.up_voted?(current_user) ? '1':'0')
+        .like data-type=course.class data-id=course.id id=course.id direction=1 data-voted=(course.up_voted?(current_user) ? '1':'0')
           = course.up_votes
-        .dislike data-type=course.class id=course.id direction="-1" voted=(course.down_voted?(current_user) ? '1':'0')
+        .dislike data-type=course.class data-id=course.id id=course.id direction="-1" data-voted=(course.down_voted?(current_user) ? '1':'0')
           = course.down_votes
         .clear
     - else
