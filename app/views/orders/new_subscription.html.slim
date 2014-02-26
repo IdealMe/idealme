@@ -1,0 +1,12 @@
+.container
+  .main-section.col-sm-7
+    .product-info
+      .media
+        .pull-left
+          /= image_tag @market.avatar(:thumb)
+        .media-body
+          h4.media-heading
+            ' IdealMe Insider Circle Subscription
+          .price
+            | $19.95 per month
+    = render partial: 'form'

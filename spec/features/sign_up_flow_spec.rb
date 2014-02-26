@@ -74,7 +74,6 @@ describe 'sign up flow with workbook purchase' do
     visit '/getthebook'
     visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
     page.current_path.should eq '/getthebook'
-
     find('#getthebook-btn').click
     page.current_path.should eq '/orders/new/workbook'
     submit_order_form(card_number: '4000000000000002')

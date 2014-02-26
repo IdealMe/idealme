@@ -6,7 +6,11 @@ describe 'ordering' do
   let!(:market)             { create(:market, course: course) }
   let!(:course)             { create(:course, owner: affiliate_user) }
 
-  it "can purchase subscription without account" do
+  it "can purchase subscription without account", js: true, vcr: true do
+    visit '/orders/new/subscription'
+    submit_order_form
+    user = User.order("created_at ASC").last
+    user.email.should eq "beansalad@idealme.com"
     user.subscriptions.length.should eq 1
   end
 

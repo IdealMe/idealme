@@ -61,6 +61,11 @@ class Order < ActiveRecord::Base
     invoice
   end
 
+  def self.generate_subscription_invoice(order)
+    invoice = "#{order.id}.#{rand(36**8).to_s(36)}"
+    invoice
+  end
+
   # Parse the given invoice and populate an invoice hash
   #
   # @param [String] invoice the invoice returned by PayPal
@@ -107,6 +112,21 @@ class Order < ActiveRecord::Base
     order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
     order
   end
+
+  def self.create_subscription_order_by_user(user)
+    order = Order.new
+    order.user = user
+    order.cost = 0
+    order.card_firstname = user.firstname
+    order.card_lastname = user.lastname
+    order.card_email = user.email
+
+
+    order.time = Time.now.to_i
+    order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
+    order
+  end
+
 
   # == Instance Methods =====================================================
 

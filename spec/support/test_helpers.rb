@@ -11,21 +11,48 @@ module TestHelpers
     sleep 1
   end
 
-  def submit_order_form(options = {})
-    fill_in "Card Number", with: options.fetch(:card_number, '4242424242424242')
-    fill_in "Security Code", with: '123'
-    fill_in "First Name", with: "Bean"
-    fill_in "Last Name", with: "Salad"
+  def fill_in_order_form(options = {})
+    fill_in "First Name", with: options.fetch(:firstname, "Bean")
+    fill_in "Last Name", with: options.fetch(:lastname, "Salad")
     fill_in "Email Address", with: options.fetch(:email, "beansalad@idealme.com")
-    fill_in "Card exp month", with: '01'
-    fill_in "Card exp year", with: '2020'
+
+    fill_in "Card Number", with: options.fetch(:card_number, '4242424242424242')
+    fill_in "Security Code", with: options.fetch(:card_cvv, '123')
+    fill_in "Card exp month", with: options.fetch(:card_exp_month, '01')
+    fill_in "Card exp year", with: options.fetch(:card_exp_year, '2020')
+  end
+
+  def submit_order_form(options = {})
+    # don't want this to actually post to stripe
+    if page.has_css?(".alert button.close")
+      find(".alert button.close").click
+    end
+    expect(page.text).to_not include 'card was declined'
+
+    card_email = options.fetch(:email, "beansalad@idealme.com")
+    fill_in_order_form(options)
     click_button "Complete Purchase"
 
-    sleep 3
+    Timeout.timeout(15.seconds) do
+      completed = false
+      while completed == false
+        order = Order.order("created_at ASC").last
+        if order && order.reload.card_email == card_email
+          completed = true
+        end
 
-    ap 'submit order form'
-    Order.order("created_at ASC").last
+        if page.text.include? 'card was declined'
+          completed = true
+        end
 
+        sleep 1
+      end
+    end
+
+    order = Order.where(card_email: card_email).order("created_at ASC").last
+    order
+  rescue Timeout::Error => e
+    screenshot true
   end
 
   def buy_course_as(user, slug = 'my-link', market = nil)
@@ -37,15 +64,13 @@ module TestHelpers
       visit "/now/#{slug}"
     end
     find('.enroll-btn').click
-    fill_in "Card Number", with: '4242424242424242'
-    fill_in "Security Code", with: '123'
-    fill_in "Card exp month", with: '01'
-    fill_in "Card exp year", with: '2020'
-    click_button "Complete Purchase"
+    submit_order_form({
+      card_number: '4242424242424242',
+      email: user.email,
+      first_name: user.firstname,
+      last_name: user.lastname,
+    })
 
-    Timeout.timeout(10.seconds) do
-      loop until page.current_path == '/orders'
-    end
     logout(:user)
     sleep 1
   end

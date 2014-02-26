@@ -23,6 +23,9 @@ meta content=asset_path("mstile-70x70.png") name="msapplication-square70x70logo"
 meta content=asset_path("mstile-150x150.png") name="msapplication-square150x150logo" /
 meta content=asset_path("mstile-310x310.png") name="msapplication-square310x310logo" /
 
+script type="text/javascript"
+  ' window.IM_ENVIRONMENT = '#{Rails.env}';
+
 script src="https://js.stripe.com/v2/"
 script type="text/javascript"
   ' Stripe.setPublishableKey('#{ENV['STRIPE_PUBLIC_KEY']}');

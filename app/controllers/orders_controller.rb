@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   #before_filter :require_authentication
   before_filter :init_order, only: [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
-  before_filter :build_order, only: [:create, :create_workbook_order]
+  before_filter :build_order, only: [:create, :create_workbook_order, :create_subscription_order]
 
   before_filter :ensure_product_user_uniqueness
-  before_filter :ensure_user, only: [:create, :create_workbook_order]
+  before_filter :ensure_user, only: [:create, :create_workbook_order, :create_subscription_order]
 
 
   protect_from_forgery except: :thanks
@@ -89,11 +89,18 @@ class OrdersController < ApplicationController
 
   def create_subscription_order
     @form_post_path = create_subscription_order_orders_path
-    create_order(:new_subscription, 1995, "Idealme Insider Circle") do |response|
+    create_order(:new_subscription, 0, "Idealme Insider Circle", false, "1") do |response|
       sign_in(:user, @user)
       Rails.logger.info post_order_path
       redirect_to(post_order_path)
-      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+
+      sc = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      sc.subscriptions.each do |stripe_subscription|
+        subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
+        subscription.stripe_object = YAML.dump(stripe_subscription)
+        subscription.save!
+      end
     end
   end
 
@@ -112,7 +119,7 @@ class OrdersController < ApplicationController
     session[:after_order_path] || workbook_thanks_path
   end
 
-  def create_order(form_controller_action, cost, description)
+  def create_order(form_controller_action, cost, description, charge = true, plan = nil)
     @order.cost = cost
     if @order.valid? && @user
       token = params[:stripeToken]
@@ -122,16 +129,19 @@ class OrdersController < ApplicationController
         customer = Stripe::Customer.create(
           :card => token,
           :description => @user.email,
+          :plan => plan,
         )
         @user.update_attribute(:stripe_customer_id, customer.id)
-        charge = Stripe::Charge.create(
-          :amount => cost,
-          :currency => "usd",
-          :customer => customer.id,
-          #:description => description,
-        )
-        flash[:alert] = nil
-        @order.parameters = charge.to_json
+        if charge
+          charge = Stripe::Charge.create(
+            :amount => cost,
+            :currency => "usd",
+            :customer => customer.id,
+            #:description => description,
+          )
+          flash[:alert] = nil
+          @order.parameters = charge.to_json
+        end
         @order.status = Order::STATUS_SUCCESSFUL
         @order.user = @user
         @order.complete!
