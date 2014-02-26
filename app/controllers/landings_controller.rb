@@ -2,7 +2,7 @@ class LandingsController < ApplicationController
   before_filter :setup_form, only: [:get_the_book, :get_the_body, :upsell]
   skip_before_filter :verify_authenticity_token
 
-  before_filter :require_authentication, only: [:continuity_offer_1, :continuity_offer_2, :purchase_continuity_offer]
+  before_filter :require_authentication, only: [:purchase_continuity_offer]
 
   def index
     redirect_to user_path(current_user) and return if current_user
@@ -76,24 +76,26 @@ class LandingsController < ApplicationController
   end
 
   def purchase_continuity_offer
-    ap params
     confirm = params[:confirm]
     plan = "1" if request.referer.include? "continuity-offer-1"
     plan = "2" if request.referer.include? "continuity-offer-2"
     if confirm == "true"
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      customer.subscriptions.each do |stripe_subscription|
-        subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
-        subscription.stripe_object = YAML.dump(stripe_subscription)
-        subscription.plan = "1"
-        subscription.save!
-      end
+
+      sub = customer.subscriptions.create({ :plan => plan })
+      Subscription.create(
+        user: current_user,
+        subscribed_days: 0,
+        unsubscribed_days: 0,
+        total_days: 0,
+        stripe_object: sub.to_json,
+        stripe_id: sub.id,
+      )
       AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
 
       respond_to do |format|
-        format.json { render json: { success: true } }
+        format.json { render json: { success: true, thanks_path: "/thanks/subscriber" } }
         format.html { redirect_to "/thanks/subscriber" }
       end
 

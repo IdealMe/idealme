@@ -100,6 +100,7 @@ class OrdersController < ApplicationController
         subscription.stripe_object = YAML.dump(stripe_subscription)
         subscription.plan = "1"
         subscription.save!
+        ap "save subscription"
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
 

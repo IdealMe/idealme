@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_3Z6QyyofnUhZjL&description=beansalad%40idealme.com
+      string: card=tok_3Z6UiPLkPfvaYB&description=beansalad%40idealme.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -32,21 +32,21 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 26 Feb 2014 03:18:52 GMT
+      - Wed, 26 Feb 2014 03:23:06 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
       - '1172'
       Connection:
       - keep-alive
-      Access-Control-Max-Age:
-      - '300'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
       Cache-Control:
       - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
@@ -54,8 +54,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1393384731,
-          "id": "cus_3Z6QEkcpgpP5bv",
+          "created": 1393384985,
+          "id": "cus_3Z6UhVCqgASpXX",
           "livemode": false,
           "description": "beansalad@idealme.com",
           "email": null,
@@ -64,7 +64,7 @@ http_interactions:
           "subscriptions": {
             "object": "list",
             "count": 0,
-            "url": "/v1/customers/cus_3Z6QEkcpgpP5bv/subscriptions",
+            "url": "/v1/customers/cus_3Z6UhVCqgASpXX/subscriptions",
             "data": []
           },
           "discount": null,
@@ -73,17 +73,17 @@ http_interactions:
           "cards": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3Z6QEkcpgpP5bv/cards",
+            "url": "/v1/customers/cus_3Z6UhVCqgASpXX/cards",
             "data": [
               {
-                "id": "card_3Z6QgdICj8z8XA",
+                "id": "card_3Z6USpQgeNXeHs",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 1,
                 "exp_year": 2020,
                 "fingerprint": "0FJgJUWQopgJgoZs",
-                "customer": "cus_3Z6QEkcpgpP5bv",
+                "customer": "cus_3Z6UhVCqgASpXX",
                 "country": "US",
                 "name": null,
                 "address_line1": null,
@@ -98,16 +98,16 @@ http_interactions:
               }
             ]
           },
-          "default_card": "card_3Z6QgdICj8z8XA"
+          "default_card": "card_3Z6USpQgeNXeHs"
         }
     http_version: 
-  recorded_at: Wed, 26 Feb 2014 03:18:54 GMT
+  recorded_at: Wed, 26 Feb 2014 03:23:08 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=700&currency=usd&customer=cus_3Z6QEkcpgpP5bv
+      string: amount=700&currency=usd&customer=cus_3Z6UhVCqgASpXX
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -134,44 +134,44 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 26 Feb 2014 03:18:53 GMT
+      - Wed, 26 Feb 2014 03:23:06 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
       - '969'
       Connection:
       - keep-alive
-      Access-Control-Max-Age:
-      - '300'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
       Cache-Control:
       - no-cache, no-store
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_3Z6QOubXpk14e2",
+          "id": "ch_3Z6UOoYt9U4m8T",
           "object": "charge",
-          "created": 1393384732,
+          "created": 1393384986,
           "livemode": false,
           "paid": true,
           "amount": 700,
           "currency": "usd",
           "refunded": false,
           "card": {
-            "id": "card_3Z6QgdICj8z8XA",
+            "id": "card_3Z6USpQgeNXeHs",
             "object": "card",
             "last4": "4242",
             "type": "Visa",
             "exp_month": 1,
             "exp_year": 2020,
             "fingerprint": "0FJgJUWQopgJgoZs",
-            "customer": "cus_3Z6QEkcpgpP5bv",
+            "customer": "cus_3Z6UhVCqgASpXX",
             "country": "US",
             "name": null,
             "address_line1": null,
@@ -186,21 +186,21 @@ http_interactions:
           },
           "captured": true,
           "refunds": [],
-          "balance_transaction": "txn_3Z6QYBATrcek8U",
+          "balance_transaction": "txn_3Z6UbcnBpOBuLl",
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
-          "customer": "cus_3Z6QEkcpgpP5bv",
+          "customer": "cus_3Z6UhVCqgASpXX",
           "invoice": null,
           "description": null,
           "dispute": null,
           "metadata": {}
         }
     http_version: 
-  recorded_at: Wed, 26 Feb 2014 03:18:55 GMT
+  recorded_at: Wed, 26 Feb 2014 03:23:09 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/customers/cus_3Z6QEkcpgpP5bv
+    uri: https://api.stripe.com/v1/customers/cus_3Z6UhVCqgASpXX
     body:
       encoding: US-ASCII
       string: ''
@@ -228,21 +228,21 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 26 Feb 2014 03:18:56 GMT
+      - Wed, 26 Feb 2014 03:23:10 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
       - '1172'
       Connection:
       - keep-alive
-      Cache-Control:
-      - no-cache, no-store
-      Access-Control-Allow-Credentials:
-      - 'true'
       Access-Control-Max-Age:
       - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
+      Cache-Control:
+      - no-cache, no-store
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
@@ -250,8 +250,8 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1393384731,
-          "id": "cus_3Z6QEkcpgpP5bv",
+          "created": 1393384985,
+          "id": "cus_3Z6UhVCqgASpXX",
           "livemode": false,
           "description": "beansalad@idealme.com",
           "email": null,
@@ -260,7 +260,7 @@ http_interactions:
           "subscriptions": {
             "object": "list",
             "count": 0,
-            "url": "/v1/customers/cus_3Z6QEkcpgpP5bv/subscriptions",
+            "url": "/v1/customers/cus_3Z6UhVCqgASpXX/subscriptions",
             "data": []
           },
           "discount": null,
@@ -269,17 +269,17 @@ http_interactions:
           "cards": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3Z6QEkcpgpP5bv/cards",
+            "url": "/v1/customers/cus_3Z6UhVCqgASpXX/cards",
             "data": [
               {
-                "id": "card_3Z6QgdICj8z8XA",
+                "id": "card_3Z6USpQgeNXeHs",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 1,
                 "exp_year": 2020,
                 "fingerprint": "0FJgJUWQopgJgoZs",
-                "customer": "cus_3Z6QEkcpgpP5bv",
+                "customer": "cus_3Z6UhVCqgASpXX",
                 "country": "US",
                 "name": null,
                 "address_line1": null,
@@ -294,13 +294,13 @@ http_interactions:
               }
             ]
           },
-          "default_card": "card_3Z6QgdICj8z8XA"
+          "default_card": "card_3Z6USpQgeNXeHs"
         }
     http_version: 
-  recorded_at: Wed, 26 Feb 2014 03:18:59 GMT
+  recorded_at: Wed, 26 Feb 2014 03:23:12 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers/cus_3Z6QEkcpgpP5bv/subscriptions
+    uri: https://api.stripe.com/v1/customers/cus_3Z6UhVCqgASpXX/subscriptions
     body:
       encoding: US-ASCII
       string: plan=1
@@ -330,28 +330,28 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 26 Feb 2014 03:18:57 GMT
+      - Wed, 26 Feb 2014 03:23:11 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
       - '696'
       Connection:
       - keep-alive
-      Access-Control-Max-Age:
-      - '300'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
       Cache-Control:
       - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
       string: |
         {
-          "id": "sub_3Z6Q6z1V22ua4R",
+          "id": "sub_3Z6U0XHHboBtGo",
           "plan": {
             "interval": "month",
             "name": "Ideal Me Insider Circle 1",
@@ -366,12 +366,12 @@ http_interactions:
             "metadata": {}
           },
           "object": "subscription",
-          "start": 1393384736,
+          "start": 1393384990,
           "status": "active",
-          "customer": "cus_3Z6QEkcpgpP5bv",
+          "customer": "cus_3Z6UhVCqgASpXX",
           "cancel_at_period_end": false,
-          "current_period_start": 1393384736,
-          "current_period_end": 1395803936,
+          "current_period_start": 1393384990,
+          "current_period_end": 1395804190,
           "ended_at": null,
           "trial_start": null,
           "trial_end": null,
@@ -381,5 +381,5 @@ http_interactions:
           "discount": null
         }
     http_version: 
-  recorded_at: Wed, 26 Feb 2014 03:19:00 GMT
+  recorded_at: Wed, 26 Feb 2014 03:23:13 GMT
 recorded_with: VCR 2.8.0

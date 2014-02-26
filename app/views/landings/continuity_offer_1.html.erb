@@ -11,17 +11,20 @@
         <%= @fragment.html.html_safe if @fragment %>
       </div>
 
-      <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
-
-      <div id="offer-container" class="xhidden">
-
-        <div class="confirmation-container">
-          <input type="checkbox" id="confirm-checkbox" name="confirm" value="true">
-          <label for="confirm-checkbox">I confirm the $19.95 charge to my credit card.</label>
+      <% if current_user %>
+        <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
+        <div id="offer-container" class="xhidden">
+          <div class="confirmation-container">
+            <input type="checkbox" id="confirm-checkbox" name="confirm" value="true">
+            <label for="confirm-checkbox">I confirm the $19.95 charge to my credit card.</label>
+          </div>
+          <button type="link" name="button1" id="purchase-offer-btn">Confirm purchase</button>
+          <button type="link" name="button2" id="decline-offer-btn">Decline purchase</button>
         </div>
-        <button type="link" name="button1" id="purchase-offer-btn">Confirm purchase</button>
-        <button type="link" name="button2" id="decline-offer-btn">Decline purchase</button>
-      </div>
+      <% else %>
+
+      <% end %>
+
     </div>
   </div>
 </div>
