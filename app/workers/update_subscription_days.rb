@@ -8,7 +8,7 @@ class UpdateSubscriptionDays
 
     Rails.logger.info "running update subscription days worker"
 
-    Subscription.where("last_update_day_count_at < ?", 1.day.ago).find_each do |sub|
+    Subscription.where("last_update_day_count_at < ? or last_update_day_count_at is null", 1.day.ago).find_each do |sub|
       # how do we validate the subscription is in good standing?
       # for now, assume all subs are valid. We will setup the webhook later
       # TODO

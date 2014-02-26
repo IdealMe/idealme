@@ -225,7 +225,7 @@ group :development do
   gem 'guard-ctags-bundler'
   gem 'gem-ctags'
   #gem 'guard-rails'
-  #gem 'guard-sidekiq'
+  gem 'guard-sidekiq'
 end
 
 group :development, :test do
