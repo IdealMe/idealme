@@ -149,7 +149,7 @@ RSpec.configure do |config|
   end
 
   config.after(:all) do
-    binding.pry
+    #binding.pry
   end
 
   config.filter_run_excluding(:ci_only => true) unless ENV['CI']
