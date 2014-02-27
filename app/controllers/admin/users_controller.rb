@@ -25,7 +25,6 @@ class Admin::UsersController < Admin::BaseController
     @user.save!
     redirect_to edit_admin_user_path(@user), notice: 'User was successfully created.'
   rescue ActiveRecord::RecordInvalid
-    ap @user.errors
     render action: :new
   end
 
@@ -34,7 +33,6 @@ class Admin::UsersController < Admin::BaseController
     @user.update_attributes!(user_params)
     redirect_to edit_admin_user_path(@user), notice: 'User was successfully updated.'
   rescue ActiveRecord::RecordInvalid
-    ap @user.errors
     render action: :edit
   end
 

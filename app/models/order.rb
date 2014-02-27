@@ -24,6 +24,7 @@ class Order < ActiveRecord::Base
 
   # == Relationships ========================================================
   belongs_to :course
+  belongs_to :subscription
   belongs_to :user
   belongs_to :market
 

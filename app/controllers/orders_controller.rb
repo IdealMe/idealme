@@ -90,8 +90,10 @@ class OrdersController < ApplicationController
   end
 
   def create_subscription_order
+    plan = "1" if request.referer.include? "continuity-offer-1"
+    plan = "2" if request.referer.include? "continuity-offer-2"
     @form_post_path = create_subscription_order_orders_path
-    create_order(:new_subscription, 0, "Idealme Insider Circle", false, "1") do |response|
+    create_order(:new_subscription, 0, "Idealme Insider Circle", false, plan) do |response|
       sign_in(:user, @user)
 
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
@@ -100,6 +102,7 @@ class OrdersController < ApplicationController
         subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
         subscription.stripe_object = stripe_subscription.to_json
         subscription.save!
+        @order.update_attribute(:subscription_id, subscription.id)
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
 

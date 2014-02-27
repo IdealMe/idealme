@@ -8,7 +8,7 @@ class ContinuityOffer
     $(document).on "change", "#confirm-checkbox-2", @updatePurchaseUrl
 
   showOffer: ->
-    $('#offer-container').removeClass('hidden')
+    $('#offer-container, #form-container').removeClass('hidden')
 
   purchaseOffer: ->
     $.post('/purchase-continuity-offer').then (data,b,c) ->

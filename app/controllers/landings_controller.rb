@@ -124,7 +124,6 @@ class LandingsController < ApplicationController
 
   def thanks_custom
     thanks_type = params[:thanks_type]
-    ap thanks_type
     @fragment = Fragment.where(slug: thanks_type).first
     render layout: "chromeless"
   end
