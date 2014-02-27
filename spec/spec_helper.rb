@@ -14,7 +14,6 @@ require 'vcr'
 require 'sidekiq/testing'
 require 'factory_girl_rails'
 
-
 Sidekiq::Testing.inline!
 
 #poltergeist_log = File.open(Rails.root.join("log","poltergeist.log"), "a")
@@ -117,7 +116,7 @@ RSpec.configure do |config|
 
   config.include TestHelpers
 
-  config.formatter = 'Growl::RSpec::Formatter' unless ENV['CI']
+  #config.formatter = 'Growl::RSpec::Formatter' unless ENV['CI']
 
   DatabaseCleaner.strategy = :truncation
 

@@ -82,7 +82,6 @@ class LandingsController < ApplicationController
     if confirm == "true"
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-
       sub = customer.subscriptions.create({ :plan => plan })
       Subscription.create(
         user: current_user,

@@ -31,3 +31,4 @@ public/screenshots
 gems.tags
 vagrant_ansible_inventory_default
 production.log
+diagnostic.txt

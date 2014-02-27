@@ -12,9 +12,56 @@ module TestHelpers
     fill_in "Card exp year", with: options.fetch(:card_exp_year, '2020')
   end
 
+  class MockSubscriptions
+    def initialize
+      @subs = []
+    end
+
+    def []
+      @subs
+    end
+
+    def create(args)
+      obj = OpenStruct.new
+      obj.id = SecureRandom.hex
+      obj.plan = args
+      @subs.push obj
+      obj
+    end
+
+    def count
+      @subs.length
+    end
+
+    def each
+      @subs.each do |sub|
+        yield sub
+      end
+    end
+  end
+
   def submit_order_form(options = {})
 
-    page.evaluate_script('window.IM_USE_STRIPE = true;') if options[:use_stripe]
+    subscriptions = MockSubscriptions.new
+    subscriptions.stub(:[]).and_return([{id: "subscription-id-123"}])
+    customer = double(:customer, id: "stripe-customer-id-123", subscriptions: subscriptions)
+
+    Stripe::Customer.stub(:create) do |args|
+      customer.subscriptions.create({plan: args[:plan]}) if args[:plan]
+      customer
+    end
+    Stripe::Customer.stub(:retrieve).and_return(customer)
+
+    charge = double(:charge)
+    Stripe::Charge.stub(:create) do |args|
+      if options[:card_number].try(:include?, "4000")
+        raise Stripe::CardError.new('Your card was declined','param','code')
+      else
+        charge
+      end
+    end
+
+    #page.evaluate_script('window.IM_USE_STRIPE = true;') if options[:use_stripe]
     page.evaluate_script('$(".alert").remove()')
     expect(page.text).to_not include 'card was declined'
 

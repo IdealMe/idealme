@@ -91,7 +91,6 @@ class OrdersController < ApplicationController
     @form_post_path = create_subscription_order_orders_path
     create_order(:new_subscription, 0, "Idealme Insider Circle", false, "1") do |response|
       sign_in(:user, @user)
-      Rails.logger.info post_order_path
 
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
       sc = Stripe::Customer.retrieve(current_user.stripe_customer_id)
