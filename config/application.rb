@@ -31,10 +31,10 @@ module Idealme
     #config.middleware.insert_after ActionDispatch::RemoteIp, "RemoteIpLogger"
     #config.middleware.insert_after ActionDispatch::RemoteIp, "ExcludeIp"
     #config.middleware.insert_after ActionDispatch::RemoteIp, "TrackRequests"
-    if Rails.env == 'test'
-      require_relative '../app/middleware/diagnostic'
-      config.middleware.use(Idealme::DiagnosticMiddleware)
-    end
+    #if Rails.env == 'test'
+      #require_relative '../app/middleware/diagnostic'
+      #config.middleware.use(Idealme::DiagnosticMiddleware)
+    #end
 
     config.filter_parameters += [:password, :card_number, :card_cvv, :card_type, :card_exp_year, :card_exp_month]
   end
@@ -45,3 +45,4 @@ ActiveRecord::Base.logger = ActiveSupport::Logger.new("log/#{Rails.env}.sql.log"
 
 I18n.enforce_available_locales = false
 OmniAuth.config.full_host = 'https://idealme.com'
+
