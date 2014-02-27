@@ -90,7 +90,7 @@ class OrdersController < ApplicationController
   end
 
   def create_subscription_order
-    plan = "1" if request.referer.include? "continuity-offer-1"
+    plan = "1"
     plan = "2" if request.referer.include? "continuity-offer-2"
     @form_post_path = create_subscription_order_orders_path
     create_order(:new_subscription, 0, "Idealme Insider Circle", false, plan) do |response|
