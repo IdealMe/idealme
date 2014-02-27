@@ -1,5 +1,6 @@
 
 
+
 <div id="topbar"> </div>
 <div id="wrap">
   <div id="outer">
@@ -8,6 +9,7 @@
         <% fragment = Fragment.where(slug: "funnel-header").first %>
         <%= fragment.html.html_safe if fragment %>
       </div>
+      <%= @fragment.html.html_safe if @fragment %>
     </div>
   </div>
   <div style="clear:both;"></div>
