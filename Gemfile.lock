@@ -487,6 +487,7 @@ GEM
     ruby2ruby (2.0.7)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
+    ruby_gntp (0.3.4)
     ruby_parser (3.4.1)
       sexp_processor (~> 4.1)
     rubyzip (1.1.0)
@@ -651,6 +652,7 @@ DEPENDENCIES
   redis
   reek
   rspec-rails
+  ruby_gntp
   sass-rails
   selenium-webdriver
   sidekiq

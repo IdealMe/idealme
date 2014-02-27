@@ -233,6 +233,7 @@ end
 group :development, :test do
   gem 'growl-rspec'
   gem 'growl'
+  gem 'ruby_gntp'
   gem 'rspec-rails'
   gem 'factory_girl', require: false
   gem 'factory_girl_rails', require: false
