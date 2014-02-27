@@ -30,6 +30,14 @@ describe 'phase one upsell flows' do
     page.execute_script("$('#offer-container').removeClass('hidden')")
     sleep 1
 
+    click_link "No thanks"
+    expect(current_path).to eq "/register/sign_up"
+
+    fill_in 'user_email', with: 'newguy1000@idealme.com'
+    fill_in 'user_password', with: 'passpass'
+    page.find('input[name="commit"]').click
+    expect(current_path).to eq '/user/welcome'
+
 
     #user = User.order("created_at ASC").last
     #expect(user.subscriptions.count).to eq 1

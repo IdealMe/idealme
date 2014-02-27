@@ -15,12 +15,15 @@
         <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
         <div id="offer-container" class="xhidden">
           <button type="link" name="button2" id="decline-offer-btn">Revoke My Access</button>
-          <button type="link" name="button1" id="purchase-offer-btn">Approve My Access</button> 
+          <button type="link" name="button1" id="purchase-offer-btn">Approve My Access</button>
           <div class="dumb"><%= image_tag('ll-buttons-07.png', :height => 127, :width => 330) %></div>
           <div class="dumber"><%= image_tag('ll-buttons-08.png', :height => 127, :width => 331) %></div>
         </div>
       <% else %>
-
+        <div id="offer-container" class="xhidden">
+          <%= render partial: "orders/form" %>
+          <a href="/trial" class="btn btn-primary btn-decline-purchase">No thanks</a>
+        </div>
       <% end %>
 
     </div>
