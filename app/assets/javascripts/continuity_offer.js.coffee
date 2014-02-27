@@ -11,12 +11,10 @@ class ContinuityOffer
     $('#offer-container').removeClass('hidden')
 
   purchaseOffer: ->
-    cbv = $('#confirm-checkbox').get()[0].checked
-    $.post('/purchase-continuity-offer?confirm=' + cbv).then (data,b,c) ->
+    $.post('/purchase-continuity-offer').then (data,b,c) ->
       if data.success == true
         window.location = data.thanks_path
       else
-        alert("please check the box to confirm your purchase")
         $('.confirmation-container label').addClass("error")
 
   updatePurchaseUrl: ->

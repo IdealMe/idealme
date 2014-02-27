@@ -3,6 +3,7 @@ class LandingsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   before_filter :require_authentication, only: [:purchase_continuity_offer]
+  include LandingsHelper
 
   def index
     redirect_to user_path(current_user) and return if current_user
@@ -55,9 +56,11 @@ class LandingsController < ApplicationController
     session[:after_order_path] = "/continuity-offer-1"
     render template: "landings/index", layout: "chromeless"
   end
+
   def upsell
     render layout: "chromeless"
   end
+
   def continuity_offer_1
     # if we have a stripe card for this user, they can do 1 click
     if current_user && current_user.striped?
@@ -79,40 +82,39 @@ class LandingsController < ApplicationController
     confirm = params[:confirm]
     plan = "1" if request.referer.include? "continuity-offer-1"
     plan = "2" if request.referer.include? "continuity-offer-2"
-    if confirm == "true"
-      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      sub = customer.subscriptions.create({ :plan => plan })
-      Subscription.create(
-        user: current_user,
-        subscribed_days: 0,
-        unsubscribed_days: 0,
-        total_days: 0,
-        stripe_object: sub.to_json,
-        stripe_id: sub.id,
-      )
-      AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    sub = customer.subscriptions.create({ :plan => plan })
+    Subscription.create(
+      user: current_user,
+      subscribed_days: 0,
+      unsubscribed_days: 0,
+      total_days: 0,
+      stripe_object: sub.to_json,
+      stripe_id: sub.id,
+    )
+    AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
 
-      respond_to do |format|
-        format.json { render json: { success: true, thanks_path: "/thanks/subscriber" } }
-        format.html { redirect_to "/thanks/subscriber" }
-      end
-
-    else
-      respond_to do |format|
-        format.json { render json: { success: false } }
-        format.html { redirect_to action: "continuity_offer_#{plan}".to_sym, confirm: false }
-      end
+    respond_to do |format|
+      format.json { render json: { success: true, thanks_path: thanks_page_path } }
+      format.html { redirect_to thanks_page_path }
     end
+
   end
 
   def continuity_offer_2
+    if current_user && current_user.striped?
+    else
+      @form_post_path = create_subscription_order_orders_path
+      if session[:order_params]
+        @order = Order.new(session[:order_params])
+      else
+        @order = Order.create_subscription_order_by_user(order_user)
+      end
+      @invoice = Order.generate_subscription_invoice(@order)
+    end
     @confirm_error_class = "error" if params[:confirm] == "false"
     @fragment = Fragment.where(slug: "continuity-offer-2").first
-    render layout: "chromeless"
-  end
-
-  def trial
     render layout: "chromeless"
   end
 

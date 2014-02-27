@@ -11,13 +11,12 @@ describe 'phase one upsell flows' do
     expect(current_path).to eq "/continuity-offer-1"
     page.execute_script("$('#offer-container').removeClass('hidden')")
     sleep 0.1
-    check "I confirm"
-    click_button "Confirm purchase"
-    sleep 0.2
+    find('#purchase-offer-btn').click
+    sleep 2
     user = User.order("created_at ASC").last
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
-    expect(current_path).to eq "/thanks/subscriber"
+    expect(current_path).to eq "/thanks/thank-you-a"
   end
 
   it 'decline workbook; purchase subscription', js: true, vcr: true do
@@ -26,22 +25,57 @@ describe 'phase one upsell flows' do
     visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
     expect(current_path).to eq "/upsell"
     click_link "No thanks"
-    expect(current_path).to eq "/trial"
+    expect(current_path).to eq "/continuity-offer-1"
+    page.execute_script("$('#offer-container').removeClass('hidden')")
+    sleep 1
+
+    submit_order_form(email: 'newguy1000@idealme.com')
+    sleep 1
+
+    user = User.where(email: 'newguy1000@idealme.com').order("created_at ASC").last
+    expect(user.subscriptions.count).to eq 1
+    expect(user.subscriptions.last).to eq Subscription.first
+    expect(current_path).to eq "/thanks/thank-you-b"
+  end
+
+  it 'decline workbook; decline continuity-offer-1; purchase trial subscription', js: true, vcr: true do
+    visit '/optin'
+    sleep 0.1
+    visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
+    expect(current_path).to eq "/upsell"
+    click_link "No thanks"
+    expect(current_path).to eq "/continuity-offer-1"
     page.execute_script("$('#offer-container').removeClass('hidden')")
     sleep 1
 
     click_link "No thanks"
-    expect(current_path).to eq "/register/sign_up"
+    expect(current_path).to eq "/continuity-offer-2"
 
-    fill_in 'user_email', with: 'newguy1000@idealme.com'
-    fill_in 'user_password', with: 'passpass'
-    page.find('input[name="commit"]').click
-    expect(current_path).to eq '/user/welcome'
+    submit_order_form(email: 'newguy1000@idealme.com')
 
+    user = User.where(email: 'newguy1000@idealme.com').order("created_at ASC").last
+    expect(user.subscriptions.count).to eq 1
+    expect(user.subscriptions.last).to eq Subscription.first
+    expect(current_path).to eq "/thanks/thank-you-b"
+  end
 
-    #user = User.order("created_at ASC").last
-    #expect(user.subscriptions.count).to eq 1
-    #expect(user.subscriptions.last).to eq Subscription.first
-    #expect(current_path).to eq "/thanks/subscriber"
+  it "decline workbook, decline subscription", js: true, vcr: true do
+    visit '/optin'
+    sleep 0.1
+    visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
+    expect(current_path).to eq "/upsell"
+
+    click_link "No thanks"
+    expect(current_path).to eq "/continuity-offer-1"
+
+    click_link "No thanks"
+    expect(current_path).to eq "/continuity-offer-2"
+
+    page.execute_script("$('#offer-container').removeClass('hidden')")
+    sleep 0.1
+
+    click_link "No thanks"
+
+    expect(current_path).to eq "/thanks/thank-you-c"
   end
 end

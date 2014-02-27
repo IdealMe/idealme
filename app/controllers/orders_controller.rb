@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include LandingsHelper
   #before_filter :require_authentication
   before_filter :init_order, only: [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
   before_filter :build_order, only: [:create, :create_workbook_order, :create_subscription_order]
@@ -81,7 +82,8 @@ class OrdersController < ApplicationController
     @form_post_path = create_workbook_order_orders_path
     create_order(:new_workbook, 700, "Idealme Workbook Postage") do |response|
       sign_in(:user, @user)
-      Rails.logger.info post_order_path
+      @user.ordered_workbook = true
+      @user.save!
       redirect_to(post_order_path)
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
     end
@@ -101,7 +103,7 @@ class OrdersController < ApplicationController
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
 
-      redirect_to(post_order_path)
+      redirect_to(thanks_page_path)
     end
   end
 

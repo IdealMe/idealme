@@ -11,6 +11,18 @@
         <%= @fragment.html.html_safe if @fragment %>
       </div>
 
+      <% if current_user %>
+        <%= link_to "Add to cart", purchase_continuity_offer_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
+        <br/>
+        7 Day FREE trial, then $19.95 month
+        <br/>
+        <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/trial', class: "decline-link" %>
+      <% else %>
+        <div id="form-container" class="xhidden">
+          <%= render partial: "orders/form" %>
+          <a href="/thanks/thank-you-c" class="btn btn-primary btn-decline-purchase">No thanks</a>
+        </div>
+      <% end %>
       <div class="action-buttons">
         <br/>
         <!-- <div class="confirmation-container">
@@ -18,11 +30,10 @@
           <label for="confirm-checkbox-2" class="<%= @confirm_error_class %>">I confirm the $19.95 charge to my credit card.</label>
         </div>
       -->
-        <%= link_to "Add to cart", purchase_continuity_offer_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
         <br/>
         7 Day FREE trial, then $19.95 month
         <br/>
-        <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", user_path(current_user), class: "decline-link" %>
+        <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/trial', class: "decline-link" %>
       </div>
     </div>
   </div>
