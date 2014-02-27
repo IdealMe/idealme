@@ -14,12 +14,10 @@
       <% if current_user %>
         <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
         <div id="offer-container" class="xhidden">
-          <div class="confirmation-container">
-            <input type="checkbox" id="confirm-checkbox" name="confirm" value="true">
-            <label for="confirm-checkbox">I confirm the $19.95 charge to my credit card.</label>
-          </div>
-          <button type="link" name="button1" id="purchase-offer-btn">Confirm purchase</button>
-          <button type="link" name="button2" id="decline-offer-btn">Decline purchase</button>
+          <button type="link" name="button2" id="decline-offer-btn">Revoke My Access</button>
+          <button type="link" name="button1" id="purchase-offer-btn">Approve My Access</button> 
+          <div class="dumb"><%= image_tag('ll-buttons-07.png', :height => 127, :width => 330) %></div>
+          <div class="dumber"><%= image_tag('ll-buttons-08.png', :height => 127, :width => 331) %></div>
         </div>
       <% else %>
 
