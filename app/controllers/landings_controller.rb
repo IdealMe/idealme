@@ -79,7 +79,6 @@ class LandingsController < ApplicationController
   end
 
   def purchase_continuity_offer
-    confirm = params[:confirm]
     plan = "1"
     plan = "2" if request.referer.include? "continuity-offer-2"
 
