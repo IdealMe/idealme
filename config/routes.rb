@@ -1,16 +1,16 @@
 Idealme::Application.routes.draw do
 
-  get '__ping' => 'landings#ping'
-  get "challenge" => "challenge#index", :as => :challenge
-
   mount Ckeditor::Engine => '/ckeditor'
   get "pictures" => "ckeditor/pictures#index"
   post "pictures" => "ckeditor/pictures#create"
+
   get "screenshots/index" unless Rails.env.production?
   get "screenshots/reset" unless Rails.env.production?
+
   get "payload/:id/download" => "payload#download", as: :download_payload
 
   root to: 'landings#index'
+  get '__ping' => 'landings#ping'
   get 'aweber_callback' => 'landings#aweber_callback'
   get 'workbook' => 'landings#workbook'
   get 'continuity-offer-1' => 'landings#continuity_offer_1'
@@ -30,17 +30,8 @@ Idealme::Application.routes.draw do
       post 'create/workbook-order' => 'orders#create_workbook_order', as: :create_workbook_order
       post 'create/subscription-order' => 'orders#create_subscription_order', as: :create_subscription_order
       get 'new/:id' => 'orders#new', as: :subscribe
-      post 'thanks/:id' => 'orders#thanks', as: :paypal_return
-    end
-    member do
-      post 'paypal' => 'orders#paypal_checkout', as: :paypal_checkout
-      get 'paypal-return' => 'orders#paypal_return'
-      get 'paypal-cancel' => 'orders#paypal_cancel'
     end
   end
-
-  post "paypal/success" => "paypal#success"
-  post "paypal/cancel" => "paypal#cancel"
 
   resources :markets, only: [:index, :show] do
     collection do
@@ -48,6 +39,7 @@ Idealme::Application.routes.draw do
       get ':market_affiliate_tag/:user_affiliate_tag' => 'markets#affiliate_init', as: :markets_affiliate, user_affiliate_tag: /[^\/]+/
     end
   end
+
   resources :courses, only: [:index, :show] do
     resources :reviews
   end
