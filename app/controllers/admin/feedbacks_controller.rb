@@ -45,7 +45,7 @@ class Admin::FeedbacksController < Admin::BaseController
   def load_feedback
     @feedback = Feedback.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_feedbacks_path, alert: "Feedback not found"
+    redirect_to admin_feedbacks_path, alert: 'Feedback not found'
   end
 
   def load_feedbacks
@@ -55,5 +55,4 @@ class Admin::FeedbacksController < Admin::BaseController
   def build_feedback
     @feedback = Feedback.new(params[:feedback])
   end
-
 end

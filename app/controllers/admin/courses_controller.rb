@@ -6,7 +6,7 @@ class Admin::CoursesController < Admin::BaseController
   def sort_sections
     course = Course.find(params[:id])
     params[:section].each_with_index do |id, index|
-      course.sections.update_all({position: index+1}, {id: id})
+      course.sections.update_all({ position: index + 1 }, { id: id })
     end
     render nothing: true
   end
@@ -38,7 +38,7 @@ class Admin::CoursesController < Admin::BaseController
   # PUT /admin/courses/1
   def update
     @course.update_attributes!(course_params)
-    #redirect_to edit_admin_course_path(@course), notice: 'Course was successfully updated.'
+    # redirect_to edit_admin_course_path(@course), notice: 'Course was successfully updated.'
     flash[:notice] = 'Course was successfully updated.'
     render action: :edit
   rescue ActiveRecord::RecordInvalid
@@ -56,12 +56,12 @@ class Admin::CoursesController < Admin::BaseController
     @course = Course.find(params[:id])
     @course.default_market.features.build unless @course.default_market.nil?
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_courses_path, alert: "Course not found"
+    redirect_to admin_courses_path, alert: 'Course not found'
   end
 
   def load_courses
     @courses = Course.all
-    @courses.sort! {|a, b| a.name <=> b.name }
+    @courses.sort! { |a, b| a.name <=> b.name }
   end
 
   def build_course

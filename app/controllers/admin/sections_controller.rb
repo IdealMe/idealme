@@ -3,10 +3,9 @@ class Admin::SectionsController < Admin::BaseController
   before_filter :load_sections, only: :index
   before_filter :build_section, only: [:new, :create]
 
-
   def sort
     params[:section].each_with_index do |id, index|
-      Section.update_all({position: index+1}, {id: id})
+      Section.update_all({ position: index + 1 }, { id: id })
     end
     render nothing: true
   end
@@ -69,5 +68,4 @@ class Admin::SectionsController < Admin::BaseController
   def section_params
     params.require(:section).permit!
   end
-
 end

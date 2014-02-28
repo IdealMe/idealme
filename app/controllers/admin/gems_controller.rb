@@ -41,7 +41,6 @@ class Admin::GemsController < Admin::BaseController
     redirect_to admin_gems_url, notice: 'Gem was successfully deleted'
   end
 
-
   protected
   def load_gem
     @gem = Jewel.find(params[:id])
@@ -56,6 +55,4 @@ class Admin::GemsController < Admin::BaseController
   def build_gem
     @gem = Jewel.new(params[:jewel])
   end
-
 end
-

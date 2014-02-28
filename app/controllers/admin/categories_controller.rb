@@ -45,7 +45,7 @@ class Admin::CategoriesController < Admin::BaseController
   def load_category
     @category = Category.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_categories_path, alert: "Category not found"
+    redirect_to admin_categories_path, alert: 'Category not found'
   end
 
   def load_categories

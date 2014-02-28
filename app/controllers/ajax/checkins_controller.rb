@@ -1,6 +1,5 @@
 class Ajax::CheckinsController < Ajax::BaseController
-
-  #before_filter :require_authentication
+  # before_filter :require_authentication
   # GET /ajax/checkins.json
   def index
     @checkins = Checkin.all

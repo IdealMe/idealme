@@ -13,9 +13,9 @@ class Ajax::CommentsController < Ajax::BaseController
   # POST /ajax/comments.json
   def create
     @comment.save!
-    redirect_to(@comment.redirect_back_to) and return if @comment.redirect_back_to
+    redirect_to(@comment.redirect_back_to) && return if @comment.redirect_back_to
   rescue ActiveRecord::RecordInvalid
-    redirect_to(@comment.redirect_back_to, alert: 'Comments can not be empty') and return if @comment.redirect_back_to
+    redirect_to(@comment.redirect_back_to, alert: 'Comments can not be empty') && return if @comment.redirect_back_to
   end
 
   # PUT /ajax/comments/1.json
@@ -43,5 +43,4 @@ class Ajax::CommentsController < Ajax::BaseController
   def comment_params
     params.require(:comment).permit!
   end
-
 end

@@ -45,7 +45,7 @@ class Admin::GoalsController < Admin::BaseController
   def load_goal
     @goal = Goal.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_goals_path, alert: "Goal not found"
+    redirect_to admin_goals_path, alert: 'Goal not found'
   end
 
   def load_goals
@@ -59,5 +59,4 @@ class Admin::GoalsController < Admin::BaseController
   def goal_params
     params.fetch(:goal, {}).permit!
   end
-
 end

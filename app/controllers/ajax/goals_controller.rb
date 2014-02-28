@@ -11,12 +11,11 @@ class Ajax::GoalsController < Ajax::BaseController
   protected
   def search_scope
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
   end
 end

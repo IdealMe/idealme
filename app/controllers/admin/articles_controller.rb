@@ -47,7 +47,7 @@ class Admin::ArticlesController < Admin::BaseController
     @article = Article.where(slug: params[:id]).first
     @article.article_goals.build(article: @article)
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_articles_path, alert: "Article not found"
+    redirect_to admin_articles_path, alert: 'Article not found'
   end
 
   def load_articles
@@ -61,5 +61,4 @@ class Admin::ArticlesController < Admin::BaseController
   def article_params
     params.require(:article).permit!
   end
-
 end

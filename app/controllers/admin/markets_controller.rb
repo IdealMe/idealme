@@ -42,7 +42,6 @@ class Admin::MarketsController < Admin::BaseController
     redirect_to admin_markets_url, notice: 'Market was successfully deleted'
   end
 
-
   protected
 
   def redirect_to_course_admin
@@ -54,7 +53,7 @@ class Admin::MarketsController < Admin::BaseController
     @market = Market.find(params[:id])
     @market.features.build
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_markets_path, alert: "Market not found"
+    redirect_to admin_markets_path, alert: 'Market not found'
   end
 
   def load_markets
@@ -65,6 +64,4 @@ class Admin::MarketsController < Admin::BaseController
     @market = Market.new(params[:market])
     @market.features.build
   end
-
 end
-

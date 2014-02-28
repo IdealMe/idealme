@@ -48,7 +48,7 @@ class Admin::UsersController < Admin::BaseController
     @user.affiliate_links.build
     @instructor = Course.where(owner_id: @user.id).exists?
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_users_path, alert: "User not found"
+    redirect_to admin_users_path, alert: 'User not found'
   end
 
   def load_users
@@ -64,5 +64,4 @@ class Admin::UsersController < Admin::BaseController
   def user_params
     params.require(:user).permit!
   end
-
 end

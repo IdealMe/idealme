@@ -1,18 +1,16 @@
 # Application controller specific to the ajax
 class Ajax::BaseController < ::ApplicationController
-
   respond_to :json
   before_filter :set_im_ajax_results
-
 
   rescue_from IdealmeException::Ajax::EarlyBailout do |exception|
     render(json: :early_bailout)
   end
 
-  def set_status_and_error(status, error, exception=IdealmeException::Ajax::EarlyBailout)
+  def set_status_and_error(status, error, exception = IdealmeException::Ajax::EarlyBailout)
     @im_ajax_results.error = error
     @im_ajax_results.status = status
-    raise exception
+    fail exception
   end
 
   def set_im_ajax_results

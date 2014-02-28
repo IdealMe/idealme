@@ -30,7 +30,7 @@ class Admin::FragmentsController < Admin::BaseController
 
   # PUT /admin/fragments/1
   def update
-    #@fragment.update_attributes!(fragment_params)
+    # @fragment.update_attributes!(fragment_params)
     @fragment.name = fragment_params[:name]
     @fragment.html = fragment_params[:html]
     @fragment.description = fragment_params[:description]
@@ -54,7 +54,7 @@ class Admin::FragmentsController < Admin::BaseController
     @fragment = Fragment.where(slug: params[:id]).first unless @fragment
 
   rescue ActiveRecord::RecordNotFound
-    redirect_to admin_fragments_path, alert: "fragment not found"
+    redirect_to admin_fragments_path, alert: 'fragment not found'
   end
 
   def load_fragments
@@ -68,5 +68,4 @@ class Admin::FragmentsController < Admin::BaseController
   def fragment_params
     params.require(:fragment).permit!
   end
-
 end

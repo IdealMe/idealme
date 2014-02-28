@@ -3,10 +3,9 @@ class Admin::LecturesController < Admin::BaseController
   before_filter :load_lectures, only: :index
   before_filter :build_lecture, only: [:new, :create]
 
-
   def sort
     params[:lecture].each_with_index do |id, index|
-      Lecture.update_all({position: index+1}, {id: id})
+      Lecture.update_all({ position: index + 1 }, { id: id })
     end
     render nothing: true
   end
@@ -27,7 +26,7 @@ class Admin::LecturesController < Admin::BaseController
     @lecture.payloads.push(@payload)
     @lecture.save!
     @payload_parent = @lecture
-    render "_payloads", layout: nil
+    render '_payloads', layout: nil
   end
 
   def new
@@ -81,5 +80,4 @@ class Admin::LecturesController < Admin::BaseController
   def lecture_params
     params.require(:lecture).permit!
   end
-
 end
