@@ -2,8 +2,7 @@ machine:
   environment:
     CI: true
     DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
-  ruby:
-    version: 2.0.0
+
 database:
   override:
     # replace CircleCI's generated database.yml
