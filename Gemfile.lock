@@ -161,6 +161,7 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     colored (1.2)
+    colorize (0.6.0)
     comfortable_mexican_sofa (1.11.2)
       active_link_to (>= 1.0.0)
       codemirror-rails (>= 3.0.0)
@@ -510,6 +511,9 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    scss-lint (0.7.0)
+      colorize
+      sass
     selenium-webdriver (2.40.0)
       childprocess (>= 0.5.0)
       multi_json (~> 1.0)
@@ -670,6 +674,7 @@ DEPENDENCIES
   rubocop
   ruby_gntp
   sass-rails
+  scss-lint
   selenium-webdriver
   sidekiq
   sidetiq

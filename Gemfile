@@ -232,6 +232,7 @@ end
 
 group :development, :test do
   gem 'rubocop'
+  gem 'scss-lint'
   gem 'overcommit'
   gem 'growl-rspec'
   gem 'growl'
