@@ -15,8 +15,8 @@ class PollChoice < ActiveRecord::Base
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
   def total_votes
-    if self.poll_results
-      self.poll_results.length
+    if poll_results
+      poll_results.length
     else
       0
     end

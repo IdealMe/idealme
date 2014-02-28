@@ -11,7 +11,7 @@ class Reply < ActiveRecord::Base
   def participants
     emails = []
     emails << comment.owner.email
-    comment.replies.each {|r| emails << r.owner.email }
+    comment.replies.each { |r| emails << r.owner.email }
     emails.uniq - [owner.email]
   end
 end

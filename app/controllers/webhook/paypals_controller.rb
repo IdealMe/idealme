@@ -32,7 +32,7 @@ class Webhook::PaypalsController < ApplicationController
   end
 
   def do_subscr_signup(notify, post)
-    invoice = notify.invoice.split(".")
+    invoice = notify.invoice.split('.')
     control_code = invoice[0].to_i
     if control_code < 0 # New user for courses
       course_id = notify.item_id.to_i
@@ -70,7 +70,7 @@ class Webhook::PaypalsController < ApplicationController
       user_id = invoice[2]
       user = User.where(id: user_id).first
       plan = Plan.where(id: plan_id).first
-      #TODO Fix this shit
+      # TODO Fix this shit
       if user && plan
         user.subscribe_plan(plan)
         Service.create_complete_service(plan, user, notify.transaction_id, notify.status, post.to_json, IM_ORDER_PAID, post[:subscr_id])
@@ -79,12 +79,12 @@ class Webhook::PaypalsController < ApplicationController
   end
 
   def do_subscr_payment(notify, post)
-    invoice = notify.invoice.split(".")
+    invoice = notify.invoice.split('.')
     control_code = invoice[0].to_i
     if control_code == 0
-      SubscriptionService.create!(subscriber_id: post[:subscr_id], transaction_type: notify.type, transaction_id: notify.transaction_id, transaction_status: notify.status, ipn: post.to_json, payment_date: DateTime.strptime(post['payment_date'], "%H:%M:%S %b %d, %Y %z"), status: IM_ORDER_PAID)
+      SubscriptionService.create!(subscriber_id: post[:subscr_id], transaction_type: notify.type, transaction_id: notify.transaction_id, transaction_status: notify.status, ipn: post.to_json, payment_date: DateTime.strptime(post['payment_date'], '%H:%M:%S %b %d, %Y %z'), status: IM_ORDER_PAID)
     else
-      SubscriptionOrder.create!(subscriber_id: post[:subscr_id], transaction_type: notify.type, transaction_id: notify.transaction_id, transaction_status: notify.status, ipn: post.to_json, payment_date: DateTime.strptime(post['payment_date'], "%H:%M:%S %b %d, %Y %z"), status: IM_ORDER_PAID)
+      SubscriptionOrder.create!(subscriber_id: post[:subscr_id], transaction_type: notify.type, transaction_id: notify.transaction_id, transaction_status: notify.status, ipn: post.to_json, payment_date: DateTime.strptime(post['payment_date'], '%H:%M:%S %b %d, %Y %z'), status: IM_ORDER_PAID)
     end
   end
 

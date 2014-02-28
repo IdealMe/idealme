@@ -7,7 +7,6 @@ class ReviewsController < ApplicationController
   before_filter :load_reviews, only: [:index]
   before_filter :build_review, only: [:new, :create]
 
-
   # GET /reviews
   def index
   end
@@ -52,7 +51,7 @@ class ReviewsController < ApplicationController
   def load_course
     @course = Course.find(params[:course_id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to courses_path, alert: "course not found"
+    redirect_to courses_path, alert: 'course not found'
   end
 
   def load_reviews

@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    styles: {thumb: '40x40#', square: '120x120#'},
+                    styles: { thumb: '40x40#', square: '120x120#' },
                     convert_options: {
                         thumb: '-gravity center -extent 40x40 -quality 75 -strip',
                         square: '-gravity center -extent 120x120 -quality 75 -strip',
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
 
   after_create -> {
     return unless Rails.env.production?
-    NewUserNotification.perform_in(10.seconds, self.id)
+    NewUserNotification.perform_in(10.seconds, id)
   }
 
   # == Scopes ===============================================================
@@ -111,15 +111,15 @@ class User < ActiveRecord::Base
   #  *:result* the result from the method.
   #  when *:result* is *0* then there is an exception
   def self.find_or_create_identity(provider, omniauth, target_user)
-    result = Hash.new
+    result = {}
     identity = Identity.where(provider: omniauth.provider, uid: omniauth.uid).includes(:owner).first
     # Logged in user with new identity
     if target_user && identity.nil?
       identity = Identity.create!(identifier: omniauth.uid, provider: omniauth.provider, access_token: omniauth.credentials.to_json, uid: omniauth.uid, owner_id: target_user.id)
-      result = {identity: identity, user: identity.owner, result: 1}
+      result = { identity: identity, user: identity.owner, result: 1 }
       # Anonymous user with authenticated identity
     elsif target_user.nil? && identity
-      result = {identity: identity, user: identity.owner, result: 1}
+      result = { identity: identity, user: identity.owner, result: 1 }
       # Anonymous user with new identity, and an email is provided
     elsif target_user.nil? && identity.nil? && omniauth.info.email
       user = User.where(email: omniauth.info.email).first
@@ -132,11 +132,11 @@ class User < ActiveRecord::Base
           file = open(omniauth.info.image) if omniauth.info.image
         end
         user = User.new(firstname: omniauth.info.first_name, lastname: omniauth.info.last_name, username: User.generate_unique_username(omniauth.info.first_name, omniauth.info.last_name), email: omniauth.info.email, password: Devise.friendly_token[0, 20])
-        #user.assign_attributes({has_password: false}, as: :internal)
+        # user.assign_attributes({has_password: false}, as: :internal)
         user.avatar = file if file
         user.save!
         identity = Identity.create!(identifier: omniauth.uid, provider: omniauth.provider, access_token: omniauth.credentials.to_json, uid: omniauth.uid, owner_id: user.id)
-        result = {identity: identity, user: identity.owner, result: 1}
+        result = { identity: identity, user: identity.owner, result: 1 }
       else
         # Anonymous user tried to attach an identity to an existing account
         result[:result] = 0
@@ -149,14 +149,14 @@ class User < ActiveRecord::Base
   end
 
   def self.for_select
-    User.all.collect { |user| [user.fullname, user.id] }
+    User.all.map { |user| [user.fullname, user.id] }
   end
 
   # == Instance Methods =====================================================
 
   def drip_articles
     # articles that the user can see based on the duration of their subscription, if any
-    sub = self.subscriptions.first
+    sub = subscriptions.first
     @articles = []
 
     if self.access_admin?
@@ -165,14 +165,13 @@ class User < ActiveRecord::Base
     elsif sub
       @articles = Article
         .where(drip_content: true)
-        .where("reveal_after_days <= ?", sub.subscribed_days).to_a
+        .where('reveal_after_days <= ?', sub.subscribed_days).to_a
     end
-    @articles.sort {|a,b| b.reveal_after_days <=> a.reveal_after_days }
+    @articles.sort { |a, b| b.reveal_after_days <=> a.reveal_after_days }
   end
 
-
   def fullname
-    "#{self.firstname} #{self.lastname}"
+    "#{firstname} #{lastname}"
   end
 
   def fullname_or_username_or_id
@@ -183,7 +182,7 @@ class User < ActiveRecord::Base
   #
   # The callback will set the user's profile pic to a random avatar if one was not provided
   def after_create
-    if self.avatar_file_name.nil? && !Rails.env.test?
+    if avatar_file_name.nil? && !Rails.env.test?
       avatars = Dir.glob("#{Rails.root.to_s}/db/seeds/users/avatars/anon*.png")
       self.avatar = File.new(avatars.sample, 'r')
       self.save!
@@ -191,44 +190,44 @@ class User < ActiveRecord::Base
 
     # send welcome email?
     # add to aweber
-    #self.add_to_aweber!
+    # self.add_to_aweber!
   end
 
   def unsubscribe_goal(goal)
-    GoalUser.where(user_id: self.id, goal_id: goal.id).first.try :destroy
+    GoalUser.where(user_id: id, goal_id: goal.id).first.try :destroy
   end
 
   def subscribe_goal(goal)
-    c = GoalUser.where(user_id: self.id, goal_id: goal.id).first
+    c = GoalUser.where(user_id: id, goal_id: goal.id).first
     if c.nil?
-      c = GoalUser.create(user_id: self.id, goal_id: goal.id)
+      c = GoalUser.create(user_id: id, goal_id: goal.id)
     end
     c
   end
 
   def subscribe_course(course)
-    c = CourseUser.where(user_id: self.id, course_id: course.id).first
+    c = CourseUser.where(user_id: id, course_id: course.id).first
     if c.nil?
-      c = CourseUser.create(user_id: self.id, course_id: course.id)
+      c = CourseUser.create(user_id: id, course_id: course.id)
       # CourseMailer.delay.course_registration_confirmation(self, course)
     end
     c
   end
 
   def striped?
-    self.stripe_customer_id.present?
+    stripe_customer_id.present?
   end
 
   def voted?(poll)
-    PollResult.where(owner_id: self.id, poll_question_id: poll.id).exists?
+    PollResult.where(owner_id: id, poll_question_id: poll.id).exists?
   end
 
   def can_vote?(poll)
-    PollResult.where(owner_id: self.id, poll_question_id: poll.id).exists?
+    PollResult.where(owner_id: id, poll_question_id: poll.id).exists?
   end
 
   def subscribed_course?(course)
-    CourseUser.where(user_id: self.id, course_id: course.id).exists?
+    CourseUser.where(user_id: id, course_id: course.id).exists?
   end
 
   def subscribed_section?(section)
@@ -240,7 +239,7 @@ class User < ActiveRecord::Base
   end
 
   def instructor_about
-    self.read_attribute(:instructor_about) || ""
+    read_attribute(:instructor_about) || ''
   end
 
   def reject_blank_affiliate_links
@@ -252,7 +251,7 @@ class User < ActiveRecord::Base
   def set_username
     if username.nil? && email.present?
       self.username = email.split('@').first.parameterize('-')
-      self.username = "#{SecureRandom.urlsafe_base64(5)}_#{self.username}" unless self.valid?
+      self.username = "#{SecureRandom.urlsafe_base64(5)}_#{username}" unless self.valid?
     end
   end
 
@@ -266,11 +265,11 @@ class User < ActiveRecord::Base
 
   # new function to return whether a password has been set
   def has_no_password?
-    self.encrypted_password.blank?
+    encrypted_password.blank?
   end
 
   def only_if_unconfirmed
-    pending_any_confirmation {yield}
+    pending_any_confirmation { yield }
   end
 
   def password_required?
@@ -288,7 +287,7 @@ class User < ActiveRecord::Base
     else
       require 'aweber'
       oauth = AWeber::OAuth.new(ENV['AWEBER_CONSUMER_KEY'], ENV['AWEBER_CONSUMER_SECRET'])
-      #Rather than authorizing with the verification code, we use the token and secret
+      # Rather than authorizing with the verification code, we use the token and secret
       oauth.authorize_with_access(ENV['AWEBER_TOKEN'], ENV['AWEBER_SECRET'])
       @aweber = AWeber::Base.new(oauth)
     end
@@ -297,21 +296,19 @@ class User < ActiveRecord::Base
   def add_to_aweber!(list = 'idealmeoptin')
     return unless Rails.env.production?
     list = aweber.account.lists.find_by_name(list)
-    subscriber = {"email" => self.email}
+    subscriber = { 'email' => email }
     list.subscribers.create(subscriber)
-    self.update_attribute :added_to_aweber, true
+    update_attribute :added_to_aweber, true
   rescue AWeber::CreationError => e
-    Rails.logger.info "Failed to add #{self.email} to aweber mailing list"
+    Rails.logger.info "Failed to add #{email} to aweber mailing list"
     Rails.logger.debug e.inspect
   end
 
   def allowed_username
-    path = Rails.application.routes.recognize_path "/#{self.username}"
-    unless path[:controller] == "users" &&
-       path[:action] == "profile"
-      errors.add(:username, "not allowed")
+    path = Rails.application.routes.recognize_path "/#{username}"
+    unless path[:controller] == 'users' &&
+       path[:action] == 'profile'
+      errors.add(:username, 'not allowed')
     end
   end
-
 end
-

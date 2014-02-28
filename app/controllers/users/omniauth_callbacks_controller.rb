@@ -1,8 +1,8 @@
-#Users::OmniauthCallbacksController
+# Users::OmniauthCallbacksController
 #
-#Overloads the default devise omniauth callback controller
+# Overloads the default devise omniauth callback controller
 #
-#Skips device authorization check
+# Skips device authorization check
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_authorization_check
   skip_before_filter :authenticate
@@ -33,9 +33,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to(user_identity_path(current_user))
       else
         results[:user].confirm! if results[:user].email
-        sign_in_and_redirect results[:user], event: :authentication #this will throw if @user is not activated
+        sign_in_and_redirect results[:user], event: :authentication # this will throw if @user is not activated
       end
-
 
     else
       session['devise.facebook_data'] = request.env['omniauth.auth']

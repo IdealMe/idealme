@@ -20,20 +20,20 @@ class Review < ActiveRecord::Base
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
   def after_create
-    if self.recommended
-      self.course.review_positive += 1
+    if recommended
+      course.review_positive += 1
     else
-      self.course.review_negative += 1
+      course.review_negative += 1
     end
-    self.course.save!
+    course.save!
   end
 
   def before_destroy
-    if self.recommended
-      self.course.review_positive += 1
+    if recommended
+      course.review_positive += 1
     else
-      self.course.review_negative += 1
+      course.review_negative += 1
     end
-    self.course.save!
+    course.save!
   end
 end

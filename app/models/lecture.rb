@@ -15,7 +15,7 @@ class Lecture < ActiveRecord::Base
   has_many :payloads, as: :payloadable, dependent: :destroy
 
   def lecture_type
-    first_payload = self.payloads.first
+    first_payload = payloads.first
     if first_payload
       case first_payload.intended_type
       when IM_PAYLOAD_DOCUMENT

@@ -27,11 +27,9 @@ class Jewel < ActiveRecord::Base
   has_many :goal_user_jewel
   has_many :goals, through: :goal_user_jewel
 
-
   belongs_to :linked_course, primary_key: :id, foreign_key: :course_id, class_name: 'Course'
 
   belongs_to :linked_goal, primary_key: :id, foreign_key: :goal_id, class_name: 'Goal'
-
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :replies, through: :comments
@@ -44,7 +42,7 @@ class Jewel < ActiveRecord::Base
   end
   has_attached_file :avatar,
                     storage: storage,
-                    styles: {full: '229x201#', thumb: '80x64#', bigger: '525x525'},
+                    styles: { full: '229x201#', thumb: '80x64#', bigger: '525x525' },
                     convert_options: {
                         full: '-gravity center -extent 229x201 -quality 75 -strip',
                         bigger: '-gravity center -extent 525x525 -quality 75 -strip',
@@ -54,11 +52,11 @@ class Jewel < ActiveRecord::Base
   # == Validations ==========================================================
 
   # == Scopes ===============================================================
-  scope :private_goal, lambda { |permission| joins(goal_user_jewel: :goal_user).where(goal_users: {private: permission}) }
-  scope :for_goal, lambda { |goal| joins(goal_user_jewel: :goal_user).where(goal_user_jewels: {goal_id: goal.id}) }
-  scope :for_user, lambda { |user| joins(goal_user_jewel: :goal_user).where(goal_users: {user_id: user.id}) }
+  scope :private_goal, lambda { |permission| joins(goal_user_jewel: :goal_user).where(goal_users: { private: permission }) }
+  scope :for_goal, lambda { |goal| joins(goal_user_jewel: :goal_user).where(goal_user_jewels: { goal_id: goal.id }) }
+  scope :for_user, lambda { |user| joins(goal_user_jewel: :goal_user).where(goal_users: { user_id: user.id }) }
 
-  scope :filter, lambda { |filter_name| 
+  scope :filter, lambda { |filter_name|
     case filter_name.to_sym
     when :all
       where(visible: true)
@@ -83,11 +81,11 @@ class Jewel < ActiveRecord::Base
 
   # == Class Methods ========================================================
   def self.mine(user, url, goal = nil)
-    url = "http://#{url}" unless url.start_with? "http"
+    url = "http://#{url}" unless url.start_with? 'http'
     if gem = Jewel.where(visible: true, url: Jewel.scrub_url(url), linked_goal: goal).first
       e = DuplicateJewel.new('That jewel already exists')
       e.jewel = gem
-      raise e
+      fail e
     else
       gem             = Jewel.new
       gem.url         = url
@@ -103,14 +101,14 @@ class Jewel < ActiveRecord::Base
     if uri.host.include?('idealme.dev') || uri.host.include?('idealme.com')
       segments = uri.path.split('/')
       if segments.second == 'markets' || segments.second == 'courses'
-        return {service: :idealme, kind: :courses, slug: segments.third}
+        return { service: :idealme, kind: :courses, slug: segments.third }
       elsif segments.second == 'goals'
-        return {service: :idealme, kind: :goals, slug: segments.third}
+        return { service: :idealme, kind: :goals, slug: segments.third }
       end
     elsif uri.host.include?('twitter.com')
       segments = uri.path.split('/')
       if segments.third == 'status' && segments.fourth.present?
-        return {service: :twitter_status, status_id: segments.fourth}
+        return { service: :twitter_status, status_id: segments.fourth }
       end
     elsif uri.host.include?('youtube.com')
       segments = uri.path.split('/')
@@ -118,19 +116,18 @@ class Jewel < ActiveRecord::Base
 
         queries = Rack::Utils.parse_nested_query(uri.query)
 
-        return {service: :youtube, url: url, youtube_id: queries['v']}
+        return { service: :youtube, url: url, youtube_id: queries['v'] }
       end
     end
 
-
-    {service: :other, url: url}
+    { service: :other, url: url }
   end
 
   # == Instance Methods =====================================================
   def fetch!
-    self.scrub_url
+    scrub_url
 
-    parameters      = Jewel.get_service(self.url)
+    parameters      = Jewel.get_service(url)
     self.parameters  = parameters
 
     if parameters[:service] == :twitter_status
@@ -144,7 +141,7 @@ class Jewel < ActiveRecord::Base
       end
       self.kind = Jewel::TYPES[:other]
     elsif parameters[:service] == :other
-      page        = MetaInspector.new(url, :allow_redirections => :safe)
+      page        = MetaInspector.new(url, allow_redirections: :safe)
       self.name    = page.title
       self.content = page.description
       if page.image
@@ -155,18 +152,18 @@ class Jewel < ActiveRecord::Base
       self.kind    = Jewel::TYPES[:other]
       self.fetch_embed!
     elsif parameters[:service] == :youtube
-      page        = MetaInspector.new(url, :allow_redirections => :safe)
+      page        = MetaInspector.new(url, allow_redirections: :safe)
       self.name    = page.title
       self.content = page.description
       self.avatar  = URI.parse(page.image) if page.image
       self.kind    = Jewel::TYPES[:video]
       self.fetch_embed!
     elsif parameters[:service] == :idealme
-      if parameters[:kind] ==:courses
+      if parameters[:kind] == :courses
         self.kind      = Jewel::TYPES[:course]
         course        = Course.where(slug: parameters[:slug]).first
         self.course_id = course.id
-      elsif parameters[:kind] ==:goals
+      elsif parameters[:kind] == :goals
         self.kind    = Jewel::TYPES[:goal]
         goal        = Goal.where(id: parameters[:slug]).first
         self.goal_id = goal.id
@@ -175,26 +172,24 @@ class Jewel < ActiveRecord::Base
 
     self.save!
     self
-
   end
 
   def fetch_embed!
-    embedly = Embedly::API.new :key => 'afb72ff295f0459286495f3a2483cea1', :user_agent => 'Mozilla/5.0 (compatible; idealme.com/1.0; info@idealme.com)'
+    embedly = Embedly::API.new key: 'afb72ff295f0459286495f3a2483cea1', user_agent: 'Mozilla/5.0 (compatible; idealme.com/1.0; info@idealme.com)'
     obj = embedly.oembed(
-      url: self.url,
+      url: url,
       maxwidth: 525,
       maxheight: 525,
     )
     if obj.first
       obj = obj.first
-      self.kind    = Jewel::TYPES[:video] if obj.type == "video"
-      self.embed_content = obj.html if obj.type == "video"
+      self.kind    = Jewel::TYPES[:video] if obj.type == 'video'
+      self.embed_content = obj.html if obj.type == 'video'
     end
-    
   end
 
   def self.scrub_url(url)
-    scrub = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
+    scrub = %w(utm_source utm_medium utm_campaign utm_content)
     uri = URI(url)
     clean = "#{uri.scheme}://#{uri.hostname}#{uri.path}"
 
@@ -206,7 +201,7 @@ class Jewel < ActiveRecord::Base
   end
 
   def scrub_url
-    self.url = Jewel.scrub_url(self.url)
+    self.url = Jewel.scrub_url(url)
   end
 
   def saved_by(user)
@@ -214,7 +209,5 @@ class Jewel < ActiveRecord::Base
   end
 
   def inspect_and_set_meta
-
   end
-
 end

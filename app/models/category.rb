@@ -11,11 +11,11 @@ class Category < ActiveRecord::Base
   # == Relationships ========================================================
   has_many :courses
   has_many :goals
-  #has_many :articles
+  # has_many :articles
 
   # == Paperclip ============================================================
   has_attached_file :avatar,
-                    styles: {thumb: '30x30#'},
+                    styles: { thumb: '30x30#' },
                     convert_options: {
                         thumb: ' -transparent white -gravity center -extent 30x30 -quality 75 -strip',
                     }
@@ -28,7 +28,7 @@ class Category < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.for_select
-    Category.all.collect { |category| [category.name, category.id] }
+    Category.all.map { |category| [category.name, category.id] }
   end
 
   # == Instance Methods =====================================================

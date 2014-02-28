@@ -1,21 +1,13 @@
 class SearchesController < ApplicationController
-
   def index
     @search = params[:q]
-    #redirect_to user_path(current_user) and return if @search.nil? || @search.empty?
+    # redirect_to user_path(current_user) and return if @search.nil? || @search.empty?
 
-    @users = User.search({firstname_or_lastname_or_username_cont: @search}).result.limit(10)
-    @courses = Course.search({name_cont: @search}).result.limit(10)
-    @goals = Goal.search({name_cont: @search}).result.limit(10)
-    @discovers = Jewel.search({name_cont: @search}).result.limit(10)
+    @users = User.search( firstname_or_lastname_or_username_cont: @searc h).result.limit(10)
+    @courses = Course.search( name_cont: @searc h).result.limit(10)
+    @goals = Goal.search( name_cont: @searc h).result.limit(10)
+    @discovers = Jewel.search( name_cont: @searc h).result.limit(10)
 
     @user_goals = GoalUser.where(user_id: current_user.id).includes(:goal).all.map(&:goal)
-
-
-    #@projects = Project.search(name_cont: q).result
-    #@users = User.search(name_cont: q).result
-
-
   end
-
 end

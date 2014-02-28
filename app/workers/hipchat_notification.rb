@@ -1,5 +1,4 @@
 class HipchatNotification
-
   include Sidekiq::Worker
   sidekiq_options queue: :notifications
 

@@ -2,7 +2,7 @@ class Webhook::SendGridController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def notify
     events.each do |event|
-      if event["event"] == "clicked"
+      if event['event'] == 'clicked'
         handle_clicks(event)
       end
     end
@@ -13,7 +13,7 @@ class Webhook::SendGridController < ApplicationController
 
   def handle_clicks(event)
     url = event['url']
-    user = user_by_email event["email"]
+    user = user_by_email event['email']
     if user && url
       tags = get_tags_from_url(url)
       unless tags.empty?
@@ -29,8 +29,8 @@ class Webhook::SendGridController < ApplicationController
 
   def get_tags_from_url(url)
     uri = URI.parse(url)
-    tags = uri.query.split('&').map {|pair| pair.split('=') }.find{|pair| pair[0] == 'iminterest'}.last.split(',')
-    tags.map {|tag| tag.strip }
+    tags = uri.query.split('&').map { |pair| pair.split('=') }.find { |pair| pair[0] == 'iminterest' }.last.split(',')
+    tags.map { |tag| tag.strip }
   rescue NoMethodError => e
     []
   end

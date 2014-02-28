@@ -1,5 +1,4 @@
 class AddToAweberList
-
   include Sidekiq::Worker
   sidekiq_options queue: :default
 

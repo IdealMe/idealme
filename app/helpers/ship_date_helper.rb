@@ -4,9 +4,9 @@ module ShipDateHelper
 
     dates = []
     4.times do |i|
-      dates << from + (i+1).days
+      dates << from + (i + 1).days
     end
-    dates.reject {|date| date.saturday? || date.sunday? }[1]
+    dates.reject { |date| date.saturday? || date.sunday? }[1]
   end
 
   def next_delivery_date_month

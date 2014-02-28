@@ -2,7 +2,6 @@
 #
 # @see Payload
 module Admin::PayloadsHelper
-
   # Relative path helper for displaying a list of payloads
   #
   # @todo What is the parameter *payload* used for?
@@ -11,7 +10,7 @@ module Admin::PayloadsHelper
   # @see Market
   # @see Lecture
   # @see Article
-  def admin_payloads_path(payload=nil)
+  def admin_payloads_path(payload = nil)
     case @payload_parent.class.name
       when 'Market'
         admin_market_payloads_path(@payload_parent)
@@ -31,7 +30,7 @@ module Admin::PayloadsHelper
   # @see Market
   # @see Lecture
   # @see Article
-  def admin_payload_path(payload, format=nil)
+  def admin_payload_path(payload, format = nil)
     case @payload_parent.class.name
       when 'Market'
         admin_market_payload_path(@payload_parent, payload, format)

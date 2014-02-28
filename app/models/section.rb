@@ -19,7 +19,7 @@ class Section < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.for_select
-    Section.all.collect { |section| [section.name, section.id] }
+    Section.all.map { |section| [section.name, section.id] }
   end
 
   # == Instance Methods =====================================================

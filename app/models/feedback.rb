@@ -1,5 +1,4 @@
 class Feedback < ActiveRecord::Base
-
   GENERAL_FEEDBACK = 1
   REQUEST_A_FEATURE = 2
   REPORT_A_PROBLEM = 3
@@ -17,5 +16,4 @@ class Feedback < ActiveRecord::Base
         ['Report a problem', Feedback::REPORT_A_PROBLEM],
     ]
   end
-
 end

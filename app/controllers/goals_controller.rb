@@ -6,7 +6,7 @@ class GoalsController < ApplicationController
   before_filter :load_active_goal_user, only: [:share, :checkin, :archive, :complete]
   before_filter :load_archived_goal_users, only: [:archived]
   before_filter :load_archived_goal_user, only: [:activate]
-  #before_filter :ensure_owner, only: [:show, :share, :checkin]
+  # before_filter :ensure_owner, only: [:show, :share, :checkin]
 
   # GET /goals
   def index
@@ -30,9 +30,9 @@ class GoalsController < ApplicationController
 
   # GET /goals/1
   def show
-    #@jewels = @goal.jewels.where(visible: true)
-    @jewels = @goal.jewels.filter(:all).order("up_votes DESC")
-    @filter_name = "all"
+    # @jewels = @goal.jewels.where(visible: true)
+    @jewels = @goal.jewels.filter(:all).order('up_votes DESC')
+    @filter_name = 'all'
   end
 
   def filter
@@ -50,14 +50,14 @@ class GoalsController < ApplicationController
   def share
     url = params[:url]
     #
-    #begin
+    # begin
     #  uri = URI(url)
     #  request = Net::HTTP.new(uri.host)
     #  response = request.request_head(uri.path)
     #  raise URI::InvalidURIError unless response.code.to_i == 200
-    #rescue URI::InvalidURIError
+    # rescue URI::InvalidURIError
     #  redirect_to(goal_path(@goal_user), alert: 'That was not a valid URL!') and return
-    #end
+    # end
     gem = Jewel.mine(current_user, url)
     @goal_user.add_gem(gem)
     redirect_to goal_path(@goal_user), notice: 'Successfully shared your gem!'
@@ -95,17 +95,16 @@ class GoalsController < ApplicationController
   end
 
   def archived
-
   end
 
   def toggle
     goal_user = GoalUser.where(user: current_user, goal_id: params[:id]).first
     if goal_user
       goal_user.destroy
-      render json: {status: "destroyed"}
+      render json: { status: 'destroyed' }
     else
       GoalUser.create(user: current_user, goal_id: params[:id])
-      render json: {status: "created"}
+      render json: { status: 'created' }
     end
   end
 
@@ -138,6 +137,6 @@ class GoalsController < ApplicationController
 
   # Ensure that the owner is browsing the curent profile
   def ensure_owner
-    redirect_to(user_path(current_user), alert: 'That goal does not exist!') and return if (!@owner && @goal_user && @goal_user.private?)
+    redirect_to(user_path(current_user), alert: 'That goal does not exist!') && return if !@owner && @goal_user && @goal_user.private?
   end
 end

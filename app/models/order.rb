@@ -2,7 +2,6 @@ class Order < ActiveRecord::Base
   # == Imports ==============================================================
   serialize :parameters
 
-
   # == Slug =================================================================
   # == Constants ============================================================
   GATEWAY_PAYPAL = 1
@@ -14,9 +13,9 @@ class Order < ActiveRecord::Base
   STATUS_DECLINED = 3
 
   ORDER_STATUSES = {
-    1 => "created",
-    2 => "completed",
-    3 => "declined",
+    1 => 'created',
+    2 => 'completed',
+    3 => 'declined',
   }
 
   # == Attributes ===========================================================
@@ -37,7 +36,7 @@ class Order < ActiveRecord::Base
   validates_presence_of :card_lastname
   validates_presence_of :card_email
 
-  #validate :validate_credit_card
+  # validate :validate_credit_card
 
   # == Scopes ===============================================================
   # == Callbacks ============================================================
@@ -48,7 +47,7 @@ class Order < ActiveRecord::Base
   # @param [Course] course the course to be used for the invoice
   # @param [Order] order the order to be used for the invoice
   # @return [String] the invoice string for orders
-  def self.generate_invoice(course, affiliate_user=nil, affiliate_tracking=nil)
+  def self.generate_invoice(course, affiliate_user = nil, affiliate_tracking = nil)
     invoice = "#{course.id}.#{rand(36**8).to_s(36)}"
     if affiliate_user
       invoice << ".#{affiliate_user.id}"
@@ -73,7 +72,7 @@ class Order < ActiveRecord::Base
   # @return [Hash] the hash contains the parsed data
   def self.parse_invoice(invoice)
     invoice_parts = invoice.split('.')
-    parsed = Hash.new
+    parsed = {}
     parsed['affiliate_user_id'] = nil
     parsed['affiliate_tracking_id'] = nil
     parsed['course_id'] = invoice_parts[0].to_i if invoice_parts.length >= 1
@@ -82,7 +81,6 @@ class Order < ActiveRecord::Base
     parsed['affiliate_tracking_id'] = invoice_parts[3].to_i if invoice_parts.length >= 4
     parsed
   end
-
 
   def self.create_order_by_market_and_user(market, user)
     order = Order.new
@@ -93,7 +91,6 @@ class Order < ActiveRecord::Base
     order.card_firstname = user.firstname
     order.card_lastname = user.lastname
     order.card_email = user.email
-
 
     order.time = Time.now.to_i
     order.checksum = Digest::SHA1.hexdigest("#{order.market.id}#{order.market.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
@@ -108,7 +105,6 @@ class Order < ActiveRecord::Base
     order.card_lastname = user.lastname
     order.card_email = user.email
 
-
     order.time = Time.now.to_i
     order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
     order
@@ -122,19 +118,17 @@ class Order < ActiveRecord::Base
     order.card_lastname = user.lastname
     order.card_email = user.email
 
-
     order.time = Time.now.to_i
     order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
     order
   end
 
-
   # == Instance Methods =====================================================
 
   def complete!
-    NewOrderNotification.perform_in(5.seconds, self.id)
+    NewOrderNotification.perform_in(5.seconds, id)
     self.save!
-    self.send_course_purchase_complete_mail
+    send_course_purchase_complete_mail
   end
 
   def send_course_purchase_complete_mail
@@ -148,7 +142,6 @@ class Order < ActiveRecord::Base
   end
 
   def valid_checksum?(validate_market_id, validate_course_id, validate_time)
-    self.checksum == Digest::SHA1.hexdigest("#{validate_market_id}#{validate_course_id}#{validate_time}#{Idealme::Application.config.secret_key_base.reverse}")
+    checksum == Digest::SHA1.hexdigest("#{validate_market_id}#{validate_course_id}#{validate_time}#{Idealme::Application.config.secret_key_base.reverse}")
   end
-
 end

@@ -3,7 +3,7 @@ class ScreenshotsController < ApplicationController
   def index
     return unless Rails.env.test? || Rails.env.development?
 
-    @screenshots = Dir.glob('public/screenshots/test-*.png').map{|path| path.sub(/^public/,'') }
+    @screenshots = Dir.glob('public/screenshots/test-*.png').map { |path| path.sub(/^public/, '') }
     @screenshots.sort!
     @screenshots.reverse!
 

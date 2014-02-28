@@ -1,0 +1,7 @@
+inherit_from: rubocop-todo.yml
+
+#Encoding:
+  #Enabled: false
+
+#LineLength:
+  #Max: 120

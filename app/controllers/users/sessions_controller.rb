@@ -17,19 +17,17 @@ class Users::SessionsController < Devise::SessionsController
   def new
     self.resource = resource_class.new(sign_in_params)
     clean_up_passwords(resource)
-    self.resource.email = session[:email] if session[:email]
+    resource.email = session[:email] if session[:email]
     respond_with(resource, serialize_options(resource))
   end
 
   protected
 
-
-
   def auth_options
     if params[:quick] == '1'
-      { scope: resource_name, recall: "users/registrations#new" }
+      { scope: resource_name, recall: 'users/registrations#new' }
     else
-      { scope: resource_name, recall: "users/sessions#new" }
+      { scope: resource_name, recall: 'users/sessions#new' }
     end
   end
 end

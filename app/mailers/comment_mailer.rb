@@ -1,5 +1,5 @@
 class CommentMailer < ActionMailer::Base
-  default from: "questions@questions.idealme.com"
+  default from: 'questions@questions.idealme.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -20,6 +20,6 @@ class CommentMailer < ActionMailer::Base
     reply = Reply.find rid
     @username = reply.owner.username
     @course = comment.commentable
-    mail(to: "questions@idealme.com", bcc: emails, from: "#{course.slug}+#{cid}@questions.idealme.com")
+    mail(to: 'questions@idealme.com', bcc: emails, from: "#{course.slug}+#{cid}@questions.idealme.com")
   end
 end

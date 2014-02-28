@@ -28,25 +28,24 @@ class GoalUser < ActiveRecord::Base
 
   scope :finished, -> { where(archived: false, completed: true) }
 
-
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Instance Methods =====================================================
   def checkedin?
     !Checkin.where('created_at >= ? AND created_at <= ? AND goal_user_id = ?',
-                   DateTime.now.beginning_of_day, DateTime.now.end_of_day, self.id).first.nil?
+                   DateTime.now.beginning_of_day, DateTime.now.end_of_day, id).first.nil?
   end
 
   def to_activity_key
     if self.persisted?
-      "#{self.class.name}-#{self.id}-goal-#{self.goal.id}"
+      "#{self.class.name}-#{id}-goal-#{goal.id}"
     else
       "#{self.class.name}"
     end
   end
 
   def active?
-    self.archived == false && self.completed == false
+    archived == false && completed == false
   end
 
   def complete!
@@ -71,36 +70,26 @@ class GoalUser < ActiveRecord::Base
     checkin = nil
     ActiveRecord::Base.transaction do
       checkin = Checkin.where('created_at >= ? AND created_at <= ? AND goal_user_id = ?',
-                              DateTime.now.beginning_of_day, DateTime.now.end_of_day, self.id).first
+                              DateTime.now.beginning_of_day, DateTime.now.end_of_day, id).first
       if checkin.nil?
         checkin = Checkin.create(thoughts: thoughts)
-        self.checkins << checkin
-        Activity.create(sender: self, trackable: checkin, share_key: self.to_activity_key, action: 'goal-user/checkin-create')
+        checkins << checkin
+        Activity.create(sender: self, trackable: checkin, share_key: to_activity_key, action: 'goal-user/checkin-create')
       end
     end
     checkin
   end
 
   def add_gem(gem)
-    goal_user_jewel = GoalUserJewel.where(goal_id: self.goal.id, goal_user_id: self.id, jewel_id: gem.id).first
+    goal_user_jewel = GoalUserJewel.where(goal_id: goal.id, goal_user_id: id, jewel_id: gem.id).first
     if  goal_user_jewel.nil?
-      GoalUserJewel.create!(goal_id: self.goal.id, goal_user_id: self.id, jewel_id: gem.id)
-      Activity.create(sender: self, trackable: gem, share_key: self.to_activity_key, action: 'goal-user/jewel-create')
+      GoalUserJewel.create!(goal_id: goal.id, goal_user_id: id, jewel_id: gem.id)
+      Activity.create(sender: self, trackable: gem, share_key: to_activity_key, action: 'goal-user/jewel-create')
     end
   end
 
-  def privacy_set_private
-
-  end
-
-  def privacy_set_public
-
-  end
-
   def privacy_toggle
-    self.private = !self.private
+    self.private = !private
     self.save!
   end
-
-
 end

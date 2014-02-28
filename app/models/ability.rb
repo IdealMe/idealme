@@ -6,13 +6,11 @@ class Ability
   def initialize(user)
     # Guests can not read anything
 
-
     cannot :read, User
     cannot :read, Course
     cannot :read, Section
     cannot :read, Lecture
     cannot :read, GoalUser
-
 
     # Logged in user with cascading permissions
     if user
@@ -32,7 +30,7 @@ class Ability
       if user.access_affiliate
         can :access, :affiliate
         can :access, :course_creation
-        can :read, AffiliateLink, :user_id => user.id
+        can :read, AffiliateLink, user_id: user.id
       end
       if user.access_instructor
       end

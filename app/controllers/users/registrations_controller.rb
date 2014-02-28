@@ -11,21 +11,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # required for settings form to submit when password is left blank
     if account_update_params[:password].blank?
-      account_update_params.delete("password")
-      account_update_params.delete("password_confirmation")
+      account_update_params.delete('password')
+      account_update_params.delete('password_confirmation')
     end
 
     @user = User.find(current_user.id)
     if @user.update_attributes(account_update_params)
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
-      sign_in @user, :bypass => true
+      sign_in @user, bypass: true
       redirect_to after_update_path_for(@user)
     else
       if account_update_params[:password].blank?
-        render "edit"
+        render 'edit'
       else
-        render "edit_password"
+        render 'edit_password'
       end
     end
   end
@@ -34,8 +34,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     HipchatNotification.perform_async("Skip workbook order - #{session[:email]}") if params[:skip].present?
     flash[:alert] = nil if params[:quick] == '1'
     build_resource({})
-    self.resource.email = session[:email] if session[:email]
-    respond_with self.resource
+    resource.email = session[:email] if session[:email]
+    respond_with resource
   end
 
   def edit_password
@@ -56,4 +56,3 @@ class Users::RegistrationsController < Devise::RegistrationsController
     { scope: resource_name, recall: "#{controller_path}#new" }
   end
 end
-

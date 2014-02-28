@@ -16,6 +16,6 @@ module Dashboard::PaymentsHelper
     address << "#{payment.address1}<br />"
     address << "#{payment.address2}<br />" if payment.address2 && payment.address2.length > 0
     address << "#{payment.city}, #{payment.province}, #{Carmen::Country.coded(payment.country).name}<br />#{payment.postal_code}</address>"
-    return address.html_safe
+    address.html_safe
   end
 end

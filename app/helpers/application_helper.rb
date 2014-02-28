@@ -1,7 +1,7 @@
 module ApplicationHelper
   def render_activity(activity)
     render_key = "activities/#{activity.action.downcase.gsub('.', '/')}"
-    render partial: render_key, locals: {activity: activity}
+    render partial: render_key, locals: { activity: activity }
   end
 
   # A wrapper for number_to_currency which converts pennies to currency
@@ -12,9 +12,9 @@ module ApplicationHelper
   #  :locale: Sets the locale of the conversion, defaults to *:en_us*
   # @return [Float] The formatted cost
   def penny_to_currency(amount, option = {})
-    option[:precision] = 2 unless option.has_key?(:precision)
-    option[:locale] = :en_us unless option.has_key?(:locale)
-    amount = amount/100.00
+    option[:precision] = 2 unless option.key?(:precision)
+    option[:locale] = :en_us unless option.key?(:locale)
+    amount = amount / 100.00
     number_to_currency(amount, option)
   end
 
@@ -24,9 +24,8 @@ module ApplicationHelper
     classes << (user_signed_in? ? 'logged-in' : 'logged-out')
     classes << 'admin' if params[:controller].include?('admin/')
     classes << 'dashboard' if params[:controller].include?('dashboard/')
-    classes.join(" ")
+    classes.join(' ')
   end
-
 
   # Returns active or inactive class for tabs
   #
@@ -35,7 +34,7 @@ module ApplicationHelper
   # @param [String] active_text The active class
   # @param [String] inactive_text The inactive class
   # @return [String] The class of the current tabs
-  def active_tab?(expect, target, active_text='active', inactive_text='inactive')
+  def active_tab?(expect, target, active_text = 'active', inactive_text = 'inactive')
     if expect.kind_of?(Array) && expect.include?(target)
       active_text
     elsif expect.kind_of?(String) && expect == target
@@ -65,15 +64,14 @@ module ApplicationHelper
     friendly
   end
 
-
   def cc_month_options_for_select(selected_value = nil)
-    months = (1..12).map { |h| ["%02d"%h, h] }
+    months = (1..12).map { |h| ['%02d' % h, h] }
     # options_for_select(months, selected_value)
     months
   end
 
   def cc_year_options_for_select(selected_value = nil)
-    years = (Time.now.year..Time.now.year+10).map { |h| ["%02d"%h, h] }
+    years = (Time.now.year..Time.now.year + 10).map { |h| ['%02d' % h, h] }
     # options_for_select(years, selected_value)
     years
   end
@@ -97,6 +95,6 @@ module ApplicationHelper
   end
 
   def image_or_video_tag(path)
-    render(partial: "partials/market_promo_media", locals: { url: path, media_type: guessed_media_type(path) })
+    render(partial: 'partials/market_promo_media', locals: { url: path, media_type: guessed_media_type(path) })
   end
 end

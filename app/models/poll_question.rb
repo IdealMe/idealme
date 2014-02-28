@@ -17,15 +17,15 @@ class PollQuestion < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.compute_poll_question_tags
-    payloads = Hash.new
-    PollQuestion.includes({poll_choices: :poll_results}, :poll_results).find_each { |poll| payloads["{im:model:poll_question:#{poll.id}}"] = poll }
+    payloads = {}
+    PollQuestion.includes({ poll_choices: :poll_results }, :poll_results).find_each { |poll| payloads["{im:model:poll_question:#{poll.id}}"] = poll }
     payloads
   end
 
   # == Instance Methods =====================================================
   def total_votes
-    if self.poll_results
-      self.poll_results.length
+    if poll_results
+      poll_results.length
     else
       0
     end

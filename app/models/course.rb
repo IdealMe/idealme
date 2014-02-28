@@ -29,24 +29,24 @@ class Course < ActiveRecord::Base
 
   # == Paperclip ============================================================
   has_attached_file :image,
-                    styles: {full: '252x202#', thumb: '80x64#'},
-                    :s3_permissions => :public_read,
+                    styles: { full: '252x202#', thumb: '80x64#' },
+                    s3_permissions: :public_read,
                     convert_options: {
                         full: '-gravity center -extent 252x202 -quality 75 -strip',
                         thumb: '-gravity center -extent 80x64 -quality 75 -strip'
                     }
 
   has_attached_file :avatar,
-                    styles: {full: '252x202#', thumb: '80x64#'},
-                    :s3_permissions => :public_read,
+                    styles: { full: '252x202#', thumb: '80x64#' },
+                    s3_permissions: :public_read,
                     convert_options: {
                         full: '-gravity center -extent 252x202 -quality 75 -strip',
                         thumb: '-gravity center -extent 80x64 -quality 75 -strip'
                     }
   # == Validations ==========================================================
   validates :name, presence: true
-  validates :name, length: {minimum: 1}
-  validates_inclusion_of :cost, in: 0..999999
+  validates :name, length: { minimum: 1 }
+  validates_inclusion_of :cost, in: 0..999_999
   validates :default_market_id, presence: true
 
   # == Scopes ===============================================================
@@ -55,24 +55,24 @@ class Course < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.for_select
-    Course.all.collect { |course| [course.name, course.id] }
+    Course.all.map { |course| [course.name, course.id] }
   end
   # == Instance Methods =====================================================
 
   def cost_in_dollars
-    '%.2f' % (self.cost.to_i/100.0) # -> '0.10'
+    '%.2f' % (cost.to_i / 100.0) # -> '0.10'
   end
 
   def cost_in_dollars=(v)
-    self.cost = (v.to_f*100).to_i
+    self.cost = (v.to_f * 100).to_i
   end
 
   def cost_in_dollars_without_cents
-    "$#{self.cost.to_i / 100}"
+    "$#{cost.to_i / 100}"
   end
 
   def swipe_files
-    self.payloads
+    payloads
   end
 
   def audio_count
@@ -92,7 +92,7 @@ class Course < ActiveRecord::Base
   end
 
   def payloads_with_type(payload_type)
-    payloads = self.lectures.map {|lecture| lecture.payloads.to_a }.flatten
-    payloads.select {|payload| payload.intended_type == payload_type }.count
+    payloads = lectures.map { |lecture| lecture.payloads.to_a }.flatten
+    payloads.select { |payload| payload.intended_type == payload_type }.count
   end
 end

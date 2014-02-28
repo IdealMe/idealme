@@ -3,7 +3,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # don't want to enable logged users to access the confirmation page.
   skip_before_filter :require_no_authentication
   skip_before_filter :authenticate_user!
-  layout "minimal"
+  layout 'minimal'
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do
@@ -13,7 +13,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
           do_confirm
         else
           do_show
-          @confirmable.errors.clear #so that we wont render :new
+          @confirmable.errors.clear # so that we wont render :new
         end
       else
         self.class.add_error_on(self, :email, :password_allready_set)
@@ -21,7 +21,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
 
     if !@confirmable.errors.empty?
-      render 'users/confirmations/show' #Change this if you don't have the views on default path
+      render 'users/confirmations/show' # Change this if you don't have the views on default path
     end
   end
 
@@ -37,7 +37,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
     if !@confirmable.errors.empty?
       self.resource = @confirmable
-      render 'users/confirmations/show' #Change this if you don't have the views on default path
+      render 'users/confirmations/show' # Change this if you don't have the views on default path
     end
   end
 
@@ -52,7 +52,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     confirmation_token = Devise.token_generator.digest(User, :confirmation_token, original_token)
     @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
     if !@confirmable.new_record?
-      @confirmable.only_if_unconfirmed {yield}
+      @confirmable.only_if_unconfirmed { yield }
     end
   end
 
@@ -60,7 +60,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     self.resource = @confirmable
-    render 'users/confirmations/show' #Change this if you don't have the views on default path
+    render 'users/confirmations/show' # Change this if you don't have the views on default path
   end
 
   def do_confirm
@@ -73,9 +73,5 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     else
       sign_in_and_redirect(resource_name, @confirmable)
     end
-
   end
-
 end
-
-

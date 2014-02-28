@@ -23,7 +23,7 @@ class Payload < ActiveRecord::Base
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   def self.compute_payload_tags(base)
-    payloads = Hash.new
+    payloads = {}
     base.payloads.each { |payload| payloads["{im:model:payload:#{payload.id}}"] = payload }
     base.payloads.each { |payload| payloads["[payload_#{payload.id}]"] = payload }
     payloads
@@ -32,7 +32,7 @@ class Payload < ActiveRecord::Base
   # == Instance Methods =====================================================
 
   def intended_type_to_s
-    case self.intended_type
+    case intended_type
       when IM_PAYLOAD_IMAGE
         'Image'
       when IM_PAYLOAD_VIDEO
@@ -70,7 +70,6 @@ class Payload < ActiveRecord::Base
     self.intended_type = IM_PAYLOAD_AUDIO if payload_file_name.include?('.mp3')
   end
 
-
   def payload_remote_url=(url_value)
     self.payload = URI.parse(url_value)
     # Assuming url_value is http://example.com/photos/face.png
@@ -92,8 +91,6 @@ class Payload < ActiveRecord::Base
   end
 
   def short_dropbox_path
-    self.dropbox_path.sub('/Dropbox/upload/','')
+    dropbox_path.sub('/Dropbox/upload/', '')
   end
-
-
 end

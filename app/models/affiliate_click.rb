@@ -15,7 +15,7 @@ class AffiliateClick < ActiveRecord::Base
   # == Scopes ===============================================================
   # == Callbacks ============================================================
   # == Class Methods ========================================================
-  def self.track(affiliate_user, ip, ua, tracking_code, affiliate_link=nil)
+  def self.track(affiliate_user, ip, ua, tracking_code, affiliate_link = nil)
     if affiliate_link
       click = AffiliateClick.where(user_id: affiliate_user.id, affiliate_link_id: affiliate_link.id, ip: ip, user_agent: ua, tracking_code: tracking_code).where('created_at >= ?', Time.now.beginning_of_day).first
     else

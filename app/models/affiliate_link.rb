@@ -6,7 +6,6 @@ class AffiliateLink < ActiveRecord::Base
   has_many :sales, class_name: 'AffiliateSale'
   has_many :affiliate_clicks
 
-
   def path(market_tag = nil)
     market_tag ||= self.market_tag
     "/markets/#{market_tag}/#{user.affiliate_tag}/#{slug}"

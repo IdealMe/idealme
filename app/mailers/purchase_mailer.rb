@@ -1,5 +1,5 @@
 class PurchaseMailer < ActionMailer::Base
-  default from: "info@idealme.com"
+  default from: 'info@idealme.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
