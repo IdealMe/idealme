@@ -2,7 +2,7 @@ class Users::SessionsController < Devise::SessionsController
   layout 'minimal'
 
   skip_authorization_check
-  skip_before_filter :require_no_authentication
+  skip_before_filter :require_no_authentication, only: [:create]
 
   def create
     super

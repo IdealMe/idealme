@@ -43,4 +43,4 @@ fetch(:default_env).merge!(rails_env: :production)
 set :rails_env, 'production'
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.0.0-p247'
+set :rvm_ruby_version, '2.1.1'
