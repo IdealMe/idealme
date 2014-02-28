@@ -91,7 +91,7 @@ class OrdersController < ApplicationController
 
   def create_subscription_order
     plan = "1"
-    plan = "2" if request.referer.include? "continuity-offer-2"
+    plan = "2" if referer_includes? "continuity-offer-2"
     @form_post_path = create_subscription_order_orders_path
     create_order(:new_subscription, 0, "Idealme Insider Circle", false, plan) do |response|
       sign_in(:user, @user)
@@ -297,6 +297,10 @@ class OrdersController < ApplicationController
     user = build_user
     user.save!
     sign_in(:user, user)
+  end
+
+  def referer_includes?(v)
+    request.referer.include?(v) if request.referer.present?
   end
 
 end
