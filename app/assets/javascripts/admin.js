@@ -1,5 +1,5 @@
-//= require ckeditor/init
 //= require ckeditor/override
+//= require ckeditor/init
 //= require ckeditor/config
 //= require admin/main
 //= require admin/lecture-attach-payload

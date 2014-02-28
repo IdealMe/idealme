@@ -11,24 +11,12 @@ namespace :ckeditor do
   desc 'Create nondigest versions of some ckeditor assets (e.g. moono skin png)'
   task :create_nondigest_assets do
     fingerprint = /\-[0-9a-f]{32}\./
-    for file in Dir['public/assets/ckeditor/contents-*.css', 'public/assets/ckeditor/skins/moono/*.png']
+    Dir['public/assets/ckeditor/**/*'].each |file|
       next unless file =~ fingerprint
       nondigest = file.sub fingerprint, '.' # contents-0d8ffa186a00f5063461bc0ba0d96087.css => contents.css
       FileUtils.cp file, nondigest, verbose: true
     end
   end
-
-  #desc 'Copy ckeditor assets, that cant be used with digest'
-  #task copy_nondigest_assets: :environment do
-  #  copy_assets /ckeditor\/contents.css/
-  #  copy_assets /ckeditor\/config.js/
-  #  copy_assets /ckeditor\/skins\/moono\/editor.css/
-  #  copy_assets /ckeditor\/lang\/en.js/
-  #  copy_assets /ckeditor\/styles.js/
-  #  copy_assets /ckeditor\/skins\/moono\/.+png/
-  #  copy_assets /ckeditor\/skins\/moono\/dialog.css/
-  #  copy_assets /ckeditor\/plugins\/image\/dialogs\/image.js/
-  #end
 end
 
 

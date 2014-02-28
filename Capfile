@@ -78,7 +78,7 @@ after 'deploy:migrations', 'deploy:notify_honeybadger'
 
 desc 'copy ckeditor nondigest assets'
 task :copy_nondigest_assets, roles: :app do
-  as_app "cd /home/idealme/app && bundle exec rake RAILS_ENV=production ckeditor:copy_nondigest_assets"
+  as_app "cd /home/idealme/app && bundle exec rake RAILS_ENV=production ckeditor:create_nondigest_assets"
 end
 after 'rails:assets:precompile', 'copy_nondigest_assets'
 
