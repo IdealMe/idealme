@@ -15,7 +15,7 @@
         }
 
         .pay-method {
-           @include m_l(10px);         
+           @include m_l(10px);
         }
 
         .orders-payment-form {
@@ -184,6 +184,7 @@
           margin: 21px 41px 0px 41px;
         }
         .paypal_icon2 {
+          display: none;
           margin: 15px 88px 0 17px;
         }
         .norton_icon {
