@@ -2,6 +2,7 @@ module TestHelpers
 
 
   def fill_in_order_form(options = {})
+    expect(page.text).to include "First Name"
     fill_in "First Name", with: options.fetch(:firstname, "Bean")
     fill_in "Last Name", with: options.fetch(:lastname, "Salad")
     fill_in "Email Address", with: options.fetch(:email, "beansalad@idealme.com")
@@ -41,7 +42,6 @@ module TestHelpers
   end
 
   def submit_order_form(options = {})
-
     subscriptions = MockSubscriptions.new
     subscriptions.stub(:[]).and_return([{id: "subscription-id-123"}])
     customer = double(:customer, id: "stripe-customer-id-123", subscriptions: subscriptions)

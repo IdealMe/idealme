@@ -8,9 +8,11 @@ describe 'phase one upsell flows' do
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
     find('#purchase-offer-btn').click
+    sleep 1
+    expect(current_path).to eq "/thanks/thank-you-a"
+    expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
-    expect(current_path).to eq "/thanks/thank-you-a"
   end
 
   it 'purchase workbook; decline subscription; purchase trial subscription', js: true, vcr: true do
@@ -21,12 +23,12 @@ describe 'phase one upsell flows' do
     find('#decline-offer-btn').click
     expect(current_path).to eq "/continuity-offer-2"
 
-    submit_order_form(email: 'newguy1000@idealme.com')
+    find('.purchase-offer-btn-2').click
+    expect(current_path).to eq "/thanks/thank-you-a"
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
     expect(user.orders.last.subscription).to eq user.subscriptions.last
     expect(user.subscriptions.last.stripe_object["table"]["plan"]["plan"]).to eq "2"
-    expect(current_path).to eq "/thanks/thank-you-b"
   end
 
   it 'purchase workbook and decline everything else', js: true, vcr: true do

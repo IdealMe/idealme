@@ -80,12 +80,13 @@ class LandingsController < ApplicationController
 
   def purchase_continuity_offer
     confirm = params[:confirm]
-    plan = "1" if request.referer.include? "continuity-offer-1"
+    plan = "1"
     plan = "2" if request.referer.include? "continuity-offer-2"
+
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
     sub = customer.subscriptions.create({ :plan => plan })
-    Subscription.create(
+    subscription = Subscription.create(
       user: current_user,
       subscribed_days: 0,
       unsubscribed_days: 0,
@@ -94,6 +95,12 @@ class LandingsController < ApplicationController
       stripe_id: sub.id,
     )
     AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
+
+    @order = Order.create_subscription_order_by_user(current_user)
+    @order.status = Order::STATUS_SUCCESSFUL
+    @order.subscription_id = subscription.id
+    @order.user = current_user
+    @order.complete!
 
     respond_to do |format|
       format.json { render json: { success: true, thanks_path: thanks_page_path } }
