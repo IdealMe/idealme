@@ -5,7 +5,6 @@ class Ajax::UsersController < Ajax::BaseController
   before_filter :ensure_user, only: [:update]
 
   def set_timezone
-
   end
 
   # PUT /admin/users/1
@@ -16,7 +15,7 @@ class Ajax::UsersController < Ajax::BaseController
 
   protected
   def filter_params
-    allowed = ['timezone', 'tagline', 'toured']
+    allowed = %w(timezone tagline toured)
     params[:user].slice!(*allowed) if params[:user]
   end
 

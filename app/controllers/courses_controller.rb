@@ -28,5 +28,4 @@ class CoursesController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to markets_path, alert: 'Course not found.'
   end
-
 end

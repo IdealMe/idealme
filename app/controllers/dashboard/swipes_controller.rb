@@ -6,7 +6,7 @@ class Dashboard::SwipesController < Dashboard::ApplicationController
   end
 
   def show
-    @course = Course.where(:slug => params[:id]).first
+    @course = Course.where(slug: params[:id]).first
   end
 
   private

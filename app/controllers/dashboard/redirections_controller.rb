@@ -4,8 +4,8 @@ class Dashboard::RedirectionsController < ApplicationController
   end
 
   def show
-    @redirection = ::Redirection.where(:slug => params[:id]).first
-    raise(IdealMeException::RecordNotFound, 'That redirection does not exist') if @redirection.nil?
+    @redirection = ::Redirection.where(slug: params[:id]).first
+    fail(IdealMeException::RecordNotFound, 'That redirection does not exist') if @redirection.nil?
   end
 
   def new
@@ -22,7 +22,7 @@ class Dashboard::RedirectionsController < ApplicationController
     if @redirection.save
       redirect_to dashboard_redirection_path(@redirection), notice: 'Redirection was successfully created.'
     else
-      render action: "new"
+      render action: 'new'
     end
   end
 
@@ -31,7 +31,7 @@ class Dashboard::RedirectionsController < ApplicationController
     if @redirection.update_attributes(params[:redirection])
       redirect_to dashboard_redirection_path(@redirection), notice: 'Redirection was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 
@@ -40,5 +40,4 @@ class Dashboard::RedirectionsController < ApplicationController
     @redirection.destroy
     redirect_to dashboard_redirections_url
   end
-
 end

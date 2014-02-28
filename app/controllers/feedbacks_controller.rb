@@ -71,5 +71,4 @@ class FeedbacksController < ApplicationController
   def feedback_params
     params.require(:feedback).permit!
   end
-
 end

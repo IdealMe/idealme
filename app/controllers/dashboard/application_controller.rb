@@ -4,6 +4,6 @@ class Dashboard::ApplicationController < ::ApplicationController
 
   def authenticate
     return if can?(:access, :affiliate_link) || can?(:access, :course_creation)
-    raise CanCan::AccessDenied
+    fail CanCan::AccessDenied
   end
 end

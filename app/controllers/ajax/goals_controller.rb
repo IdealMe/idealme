@@ -7,15 +7,4 @@ class Ajax::GoalsController < Ajax::BaseController
   def show
     @goal = Goal.find(params[:id])
   end
-
-  protected
-  def search_scope
-
-
-
-
-
-
-
-  end
 end

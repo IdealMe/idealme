@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   protect_from_forgery
   before_filter :set_gon
   before_filter :set_meta
@@ -8,8 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_staging
   before_filter :set_last_location
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  #https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
-
+  # https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug("CanCan: Access denied on #{exception.action} #{exception.subject.inspect}")
@@ -19,7 +17,7 @@ class ApplicationController < ActionController::Base
       else
         redirect_to(markets_path)
       end
-      #elsif exception.subject.is_a?(Article) && exception.action == :read
+      # elsif exception.subject.is_a?(Article) && exception.action == :read
       #  if exception.subject.default_market
       #    redirect_to(market_path(exception.subject.default_market))
       #  else
@@ -67,14 +65,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-
-
   def set_last_location
-    if (request.fullpath != '/login' && request.fullpath != '/logout' && !request.xhr?)
+    if request.fullpath != '/login' && request.fullpath != '/logout' && !request.xhr?
       session[:previous_url] = request.fullpath
     end
   end
-
 
   def require_authentication
     redirect_to new_user_session_path and return unless current_user
@@ -119,9 +114,9 @@ class ApplicationController < ActionController::Base
     title = "Are You Ready To Take The Ideal Me 'Dream Life' Challenge?"
     description = "12 Goals, One A Month, The Best Celeb Experts, Info & Products & Testing It For Max Results In Minimal Time To See What Works, What Doesn't And How To Become Your Ideal Me"
     image = ''
-    set_meta_tags(og: {site_name: 'Ideal Me', title: title, description: description, type: :website, url: 'https://www.idealme.com', image: image},
-                  fb: {admins: %w(100004702779319 278115168965598 470201106346280).join(',')},
-                  twitter: {card: 'summary', title: title, description: description, image: image},
+    set_meta_tags(og: { site_name: 'Ideal Me', title: title, description: description, type: :website, url: 'https://www.idealme.com', image: image },
+                  fb: { admins: %w(100004702779319 278115168965598 470201106346280).join(',') },
+                  twitter: { card: 'summary', title: title, description: description, image: image },
                   server: IM_HOSTNAME
 
     )
@@ -147,9 +142,9 @@ class ApplicationController < ActionController::Base
     end
 
     # CSRF token
-    #if protect_against_forgery?
+    # if protect_against_forgery?
     gon.form_authenticity_token = form_authenticity_token.inspect
-    #end
+    # end
     gon.fullpath = request.fullpath
     gon.timezone = current_user.timezone if current_user
     gon.timezone = Rails.configuration.time_zone unless current_user
@@ -191,5 +186,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :password
     devise_parameter_sanitizer.for(:account_update) << :password_confirmation
   end
-
 end
