@@ -25,6 +25,6 @@ class ContinuityOffer
     alert($('.purchase-offer-btn-2').attr('href'))
 
   declineOffer: ->
-    #debugger
     true
+
 new ContinuityOffer

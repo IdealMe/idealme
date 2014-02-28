@@ -1,5 +1,6 @@
 Idealme::Application.routes.draw do
 
+  get '__ping' => 'landings#ping'
   get "challenge" => "challenge#index", :as => :challenge
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -12,22 +13,10 @@ Idealme::Application.routes.draw do
   root to: 'landings#index'
   get 'aweber_callback' => 'landings#aweber_callback'
   get 'workbook' => 'landings#workbook'
-  get '__ping' => 'landings#ping'
-  #get 'workbook-thanks' => 'landings#workbook_thanks', as: :workbook_thanks
-  #get 'getthebook' => 'landings#getthebook'
-  #get 'get-the-body' => 'landings#get_the_body'
-  #get 'get-the-book' => 'landings#get_the_book'
-  #get 'getinshape' => 'landings#getinshape'
-
-  #get 'optin' => 'landings#optin'
-  #get 'upsell' => 'landings#upsell'
-  #get 'continuity-offer' => 'landings#continuity_offer'
   get 'continuity-offer-1' => 'landings#continuity_offer_1'
-  post 'purchase-continuity-offer' => 'landings#purchase_continuity_offer', as: :purchase_continuity_offer
   get 'continuity-offer-2' => 'landings#continuity_offer_2'
-  #get 'thanks' => 'landings#thanks'
   get 'thanks/:thanks_type' => 'landings#thanks'
-  #get 'trial' => 'landings#trial'
+  post 'purchase-continuity-offer' => 'landings#purchase_continuity_offer', as: :purchase_continuity_offer
 
   get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
 
