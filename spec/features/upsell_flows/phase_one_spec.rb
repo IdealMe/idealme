@@ -4,7 +4,6 @@ describe 'phase one workbook flows' do
 
   it 'purchase workbook; purchase subscription', js: true, vcr: true do
     visit_workbook
-    screenshot(true)
     submit_order_form
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements

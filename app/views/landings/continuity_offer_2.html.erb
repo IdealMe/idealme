@@ -13,18 +13,20 @@
 
       <% if current_user %>
         <div class="action-buttons">
-        <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
-        <br/>
-        7 Day FREE trial, then $19.95 month
-        <br/>
-        <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/thanks/thank-you-d', class: "decline-link" %>
-      </div>
-    <% else %>
+          <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
+          <br/>
+          7 Day FREE trial, then $19.95 month
+          <br/>
+          <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/thanks/thank-you-d', class: "decline-link" %>
+          <%= render partial: "partials/safesitecertified" %>
+        </div>
+      <% else %>
         <div id="form-container">
-        <%= render partial: "orders/form" %>
-        <a href="/thanks/thank-you-c" class="btn btn-primary btn-decline-purchase">No thanks</a>
-      </div>
-    <% end %>
+          <%= render partial: "orders/form" %>
+          <%= render partial: "partials/safesitecertified" %>
+          <a href="/thanks/thank-you-c" class="btn btn-primary btn-decline-purchase">No thanks</a>
+        </div>
+      <% end %>
     </div>
   </div>
   <div id="footer">

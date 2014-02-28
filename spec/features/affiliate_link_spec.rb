@@ -18,10 +18,7 @@ describe 'affiliate links', ci_only: true do
 
     find('.enroll-btn').click
 
-    screenshot
     expect(current_path).to include '/orders'
-
-
     submit_order_form
     expect(AffiliateSale.count).to eq 1
     expect(AffiliateClick.count).to eq 1
@@ -54,7 +51,6 @@ describe 'affiliate links', ci_only: true do
     find('.enroll-btn').click
 
     expect(current_path).to include '/orders'
-
 
     submit_order_form
 
