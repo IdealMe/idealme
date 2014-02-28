@@ -1,9 +1,10 @@
 require 'spec_helper'
 
-describe 'phase one upsell flows' do
+describe 'phase one workbook flows' do
 
   it 'purchase workbook; purchase subscription', js: true, vcr: true do
-    visit_upsell
+    visit_workbook
+    screenshot(true)
     submit_order_form
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
@@ -16,7 +17,7 @@ describe 'phase one upsell flows' do
   end
 
   it 'purchase workbook; decline subscription; purchase trial subscription', js: true, vcr: true do
-    visit_upsell
+    visit_workbook
     submit_order_form
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
@@ -32,7 +33,7 @@ describe 'phase one upsell flows' do
   end
 
   it 'purchase workbook and decline everything else', js: true, vcr: true do
-    visit_upsell
+    visit_workbook
     submit_order_form
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
@@ -44,7 +45,7 @@ describe 'phase one upsell flows' do
   end
 
   it 'decline workbook; purchase subscription', js: true, vcr: true do
-    visit_upsell
+    visit_workbook
     click_link "No thanks"
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
@@ -57,7 +58,7 @@ describe 'phase one upsell flows' do
   end
 
   it 'decline workbook; decline subscription; purchase trial subscription', js: true, vcr: true do
-    visit_upsell
+    visit_workbook
     click_link "No thanks"
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
@@ -74,7 +75,7 @@ describe 'phase one upsell flows' do
   end
 
   it "decline workbook; decline subscription; decline trial subscription", js: true, vcr: true do
-    visit_upsell
+    visit_workbook
     click_link "No thanks"
     expect(current_path).to eq "/continuity-offer-1"
     reveal_hidden_elements
@@ -92,10 +93,10 @@ describe 'phase one upsell flows' do
     User.order("created_at ASC").last
   end
 
-  def visit_upsell
-    visit '/optin'
-    expect(current_path).to eq "/optin"
+  def visit_workbook
+    visit '/'
+    expect(current_path).to eq "/"
     visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
-    expect(current_path).to eq "/upsell"
+    expect(current_path).to eq "/workbook"
   end
 end

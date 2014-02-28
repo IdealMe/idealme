@@ -84,7 +84,7 @@ class OrdersController < ApplicationController
   protected
 
   def post_order_path
-    session[:after_order_path] || workbook_thanks_path
+    session[:after_order_path] || thanks_page_path
   end
 
   def create_order(form_controller_action, cost, description, charge = true, plan = nil)

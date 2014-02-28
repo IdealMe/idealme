@@ -147,6 +147,6 @@ RSpec.configure do |config|
     #binding.pry
   end
 
-  config.filter_run_excluding(:ci_only => true) unless ENV['CI']
+  config.filter_run_excluding(:ci_only => true) unless (ENV['CI'] || ENV['RUN_ALL_TESTS'])
 
 end

@@ -30,7 +30,7 @@ describe 'purchase course' do
 
   it 'allows customers to purchase courses', js: true, vcr: true do
     visit root_path
-    screenshot
+    screenshot true
     click_link "Sample market"
 
     find('.top-enroll-btn').click
