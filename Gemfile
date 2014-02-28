@@ -231,6 +231,8 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rubocop'
+  gem 'overcommit'
   gem 'growl-rspec'
   gem 'growl'
   gem 'ruby_gntp'
