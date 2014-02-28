@@ -1,6 +1,6 @@
 
-threads 8,64
-workers 3
+threads 8,16
+workers 4
 bind 'unix:///home/idealme/puma.idealme.sock'
 daemonize false
 pidfile '/home/idealme/puma.idealme.pid'

@@ -5,10 +5,10 @@ class LandingsController < ApplicationController
   before_filter :require_authentication, only: [:purchase_continuity_offer]
   include LandingsHelper
 
-  def index
-    redirect_to user_path(current_user) and return if current_user
-    @courses = Course.includes(:owner, :default_market).limit(12)
-  end
+  #def index
+  #  redirect_to user_path(current_user) and return if current_user
+  #  @courses = Course.includes(:owner, :default_market).limit(12)
+  #end
 
   def workbook
   end
@@ -16,7 +16,7 @@ class LandingsController < ApplicationController
   def get_the_book
     session[:after_sign_up_path] = user_welcome_path
     session[:after_goals_path]   = resources_path
-    render layout: "chromeless"
+    render layout: 'chromeless'
   end
 
   def getthebook
@@ -27,7 +27,7 @@ class LandingsController < ApplicationController
   def get_the_body
     session[:landing] = request.path
     if session[:email].present? || current_user
-      render layout: "chromeless"
+      render layout: 'chromeless'
     else
       redirect_to root_path
     end
@@ -50,15 +50,17 @@ class LandingsController < ApplicationController
     render text: :ok, layout: nil
   end
 
-  def optin
-    @courses = []
-    session[:landing] = "/upsell"
-    session[:after_order_path] = "/continuity-offer-1"
-    render template: "landings/index", layout: "chromeless"
+  def index
+    redirect_to user_path(current_user) and return if current_user
+    #@courses = []
+    @courses = Course.includes(:owner, :default_market).limit(12)
+    session[:landing] = '/upsell'
+    session[:after_order_path] = '/continuity-offer-1'
+    render template: 'landings/index', layout: 'chromeless'
   end
 
   def upsell
-    render layout: "chromeless"
+    render layout: 'chromeless'
   end
 
   def continuity_offer_1
@@ -74,17 +76,17 @@ class LandingsController < ApplicationController
       @invoice = Order.generate_subscription_invoice(@order)
     end
 
-    @fragment = Fragment.where(slug: "continuity-offer-1").first
-    render layout: "chromeless"
+    @fragment = Fragment.where(slug: 'continuity-offer-1').first
+    render layout: 'chromeless'
   end
 
   def purchase_continuity_offer
-    plan = "1"
-    plan = "2" if request.referer.include? "continuity-offer-2"
+    plan = '1'
+    plan = '2' if request.referer.include? 'continuity-offer-2'
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    sub = customer.subscriptions.create({ :plan => plan })
+    sub = customer.subscriptions.create(plan: plan)
     subscription = Subscription.create(
       user: current_user,
       subscribed_days: 0,
@@ -106,7 +108,6 @@ class LandingsController < ApplicationController
       format.json { render json: { success: true, thanks_path: thanks_page_path } }
       format.html { redirect_to thanks_page_path }
     end
-
   end
 
   def continuity_offer_2
@@ -120,19 +121,19 @@ class LandingsController < ApplicationController
       end
       @invoice = Order.generate_subscription_invoice(@order)
     end
-    @confirm_error_class = "error" if params[:confirm] == "false"
-    @fragment = Fragment.where(slug: "continuity-offer-2").first
-    render layout: "chromeless"
+    @confirm_error_class = 'error' if params[:confirm] == 'false'
+    @fragment = Fragment.where(slug: 'continuity-offer-2').first
+    render layout: 'chromeless'
   end
 
   def thanks
-    render layout: "chromeless"
+    render layout: 'chromeless'
   end
 
   def thanks_custom
     thanks_type = params[:thanks_type]
     @fragment = Fragment.where(slug: thanks_type).first
-    render layout: "chromeless"
+    render layout: 'chromeless'
   end
 
   private
@@ -155,5 +156,4 @@ class LandingsController < ApplicationController
       User.new
     end
   end
-
 end

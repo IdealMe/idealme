@@ -49,18 +49,9 @@ module Capybara::Poltergeist
   end
 end
 
-class WarningSuppressor
-  class << self
-    def write(message)
-      if message =~ /client\/compiled\/main\.js/ || message =~ /userSpaceScaleFactor/ || message =~ /QFont::setPixelSize: Pixel size <= 0/ || message =~/CoreText performance note:/ then 0 else puts(message);1;end
-    end
-  end
-end
-
 Capybara.register_driver :poltergeist do |app|
   timeout = 1.minute
   timeout = 10.minutes unless ENV['CI']
-  #Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: timeout, inspector: true)
   Capybara::Poltergeist::Driver.new(app, timeout: timeout)
 end
 

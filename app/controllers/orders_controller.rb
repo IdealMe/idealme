@@ -1,15 +1,13 @@
 class OrdersController < ApplicationController
   include LandingsHelper
-  #before_filter :require_authentication
-  before_filter :init_order, only: [:new, :thanks, :paypal_checkout, :paypal_cancel, :paypal_return]
+  # before_filter :require_authentication
+  before_filter :init_order, only: [:new, :thanks]
   before_filter :build_order, only: [:create, :create_workbook_order, :create_subscription_order]
 
   before_filter :ensure_product_user_uniqueness
   before_filter :ensure_user, only: [:create, :create_workbook_order, :create_subscription_order]
 
-
   protect_from_forgery except: :thanks
-
 
   def thanks
     render :create
@@ -23,64 +21,28 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @form_post_path = orders_path
-    render layout: "minimal"
+    render layout: 'minimal'
   end
 
   def new_workbook
     @form_post_path = create_workbook_order_orders_path
-    if session[:order_params]
-      @order = Order.new(session[:order_params])
-    else
-      @order = Order.create_workbook_order_by_user(order_user)
-    end
+    @order = workbook_order
     @invoice = Order.generate_workbook_invoice(@order)
-    render layout: "minimal"
+    render layout: 'minimal'
   end
+
+
 
   def new_subscription
     @form_post_path = create_subscription_order_orders_path
-    if session[:order_params]
-      @order = Order.new(session[:order_params])
-    else
-      @order = Order.create_subscription_order_by_user(order_user)
-    end
+    @order = subscription_order
     @invoice = Order.generate_subscription_invoice(@order)
-    render layout: "minimal"
-  end
-
-  # create a paypal payment and send the user to the approval url
-  def paypal_checkout
-    paypal = PayPal.new(paypal_endpoint, paypal_credentials)
-
-    paypal.create_payment(@order.course.cost_in_dollars, "Ideal Me - #{@market.name}", paypal_return_url, paypal_cancel_url)
-    session[:payment_id] = paypal.id
-    redirect_to paypal.approval_url
-  end
-
-  def paypal_return
-    paypal = PayPal.new(paypal_endpoint, paypal_credentials)
-    result = paypal.execute_payment(session[:payment_id], params['PayerID'], params['token'])
-    @order.parameters = result
-    @order.gateway = Order::GATEWAY_PAYPAL
-    @order.status = Order::STATUS_SUCCESSFUL
-    @order.user = current_user
-    @order.complete!
-
-    if get_affiliate_user
-      AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
-    end
-    current_user.subscribe_course(@market.course)
-    flash[:alert] = nil
-    render :create
-  end
-
-  def paypal_cancel
-    redirect_to action: :new and return
+    render layout: 'minimal'
   end
 
   def create_workbook_order
     @form_post_path = create_workbook_order_orders_path
-    create_order(:new_workbook, 700, "Idealme Workbook Postage") do |response|
+    create_order(:new_workbook, 700, 'Idealme Workbook Postage') do |response|
       sign_in(:user, @user)
       @user.ordered_workbook = true
       @user.save!
@@ -90,10 +52,10 @@ class OrdersController < ApplicationController
   end
 
   def create_subscription_order
-    plan = "1"
-    plan = "2" if referer_includes? "continuity-offer-2"
+    plan = '1'
+    plan = '2' if referer_includes? 'continuity-offer-2'
     @form_post_path = create_subscription_order_orders_path
-    create_order(:new_subscription, 0, "Idealme Insider Circle", false, plan) do |response|
+    create_order(:new_subscription, 0, 'Idealme Insider Circle', false, plan) do |response|
       sign_in(:user, @user)
 
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
@@ -133,18 +95,18 @@ class OrdersController < ApplicationController
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
       begin
         customer = Stripe::Customer.create(
-          :card => token,
-          :description => description,
-          :plan => plan,
-          :email => @user.email
+          card: token,
+          description: description,
+          plan: plan,
+          email: @user.email
         )
         @user.update_attribute(:stripe_customer_id, customer.id)
         if charge
           charge = Stripe::Charge.create(
-            :amount => cost,
-            :currency => "usd",
-            :customer => customer.id,
-            #:description => description,
+            amount: cost,
+            currency: 'usd',
+            customer: customer.id,
+            description: description,
           )
           flash[:alert] = nil
           @order.parameters = charge.to_json
@@ -153,7 +115,6 @@ class OrdersController < ApplicationController
         @order.user = @user
         @order.complete!
         HipchatNotification.perform_async("Order success - #{description} - #{@user.email}")
-
 
         if get_affiliate_user
           AffiliateSale.create_affiliate_sale(@order, get_affiliate_user, get_affiliate_link)
@@ -197,7 +158,7 @@ class OrdersController < ApplicationController
       if user.valid?
         user.save!
         @user = user
-        #sign_in(:user, user)
+        # sign_in(:user, user)
       else
         if user.email.present?
           user = User.where(email: user.email).first
@@ -219,7 +180,7 @@ class OrdersController < ApplicationController
     if @order.market
       "/orders/new/#{@order.market.slug}"
     else
-      "/orders/new/workbook"
+      '/orders/new/workbook'
     end
   end
 
@@ -231,7 +192,7 @@ class OrdersController < ApplicationController
                else
                  Order.generate_workbook_invoice(@order)
                end
-    #raise ActiveRecord::RecordInvalid unless @market
+    # raise ActiveRecord::RecordInvalid unless @market
   rescue ActiveRecord::RecordInvalid
     redirect_to markets_path and return
   end
@@ -243,52 +204,21 @@ class OrdersController < ApplicationController
   def ensure_product_user_uniqueness
     if current_user && @order && @order.market
       market = Market.where(id: @order.market.id).includes(:course).first
-      raise(IdealMeException::RecordNotFound, 'That market does not exist') unless market
+      fail(IdealMeException::RecordNotFound, 'That market does not exist') unless market
       course_user = CourseUser.where(course_id: market.course.id, user_id: current_user.id).first
       redirect_to(course_path(market.course)) and return if course_user
     end
-  end
-
-  def paypal_return_url
-    request.url.sub(/paypal$/,'paypal-return')
-  end
-
-  def paypal_cancel_url
-    request.url.sub(/paypal$/,'paypal-cancel')
-  end
-
-  def paypal_endpoint
-    if current_user.access_admin? && Rails.env.production?
-      ENV['TEST_IDEALME_PAYPAL_ENDPOINT']
-    else
-      ENV['IDEALME_PAYPAL_ENDPOINT']
-    end
-  end
-
-  def paypal_credentials
-    if current_user.access_admin? && Rails.env.production?
-      [
-        ENV['TEST_IDEALME_PAYPAL_AUTH_KEY'],
-        ENV['TEST_IDEALME_PAYPAL_AUTH_SECRET']
-      ]
-    else
-      [
-        ENV['IDEALME_PAYPAL_AUTH_KEY'],
-        ENV['IDEALME_PAYPAL_AUTH_SECRET']
-      ]
-    end
-
   end
 
   def build_user
     if @build_user
       @build_user
     else
-      @build_user = User.new({
+      @build_user = User.new(
         firstname: @order.card_firstname,
         lastname: @order.card_lastname,
-        email: @order.card_email,
-      })
+        email: @order.card_email
+      )
       @build_user.set_username
       @build_user
     end
@@ -304,5 +234,20 @@ class OrdersController < ApplicationController
     request.referer.include?(v) if request.referer.present?
   end
 
-end
+  def base_order
+    if session[:order_params]
+      Order.new(session[:order_params])
+    else
+      yield
+    end
+  end
 
+  def workbook_order
+    base_order { Order.create_workbook_order_by_user(order_user) }
+  end
+
+  def subscription_order
+    base_order { Order.create_subscription_order_by_user(order_user) }
+  end
+
+end
