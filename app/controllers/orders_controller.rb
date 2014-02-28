@@ -134,8 +134,9 @@ class OrdersController < ApplicationController
       begin
         customer = Stripe::Customer.create(
           :card => token,
-          :description => @user.email,
+          :description => description,
           :plan => plan,
+          :email => @user.email
         )
         @user.update_attribute(:stripe_customer_id, customer.id)
         if charge
