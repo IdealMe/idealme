@@ -100,7 +100,7 @@ class LandingsController < ApplicationController
     @order.subscription_id = subscription.id
     @order.user = current_user
     @order.complete!
-    HipchatNotification.perform_async("1 Click Order success - subscription plan #{plan} - #{@user.email}")
+    HipchatNotification.perform_async("1 Click Order success - subscription plan #{plan} - #{current_user.email}")
 
     respond_to do |format|
       format.json { render json: { success: true, thanks_path: thanks_page_path } }
