@@ -38,6 +38,14 @@ namespace :deploy do
   end
 
   desc "Notifies Honeybadger locally using curl"
+  task :tag_deployed_commit do
+    raise "no worky"
+    revision = capture_git 'rev-parse HEAD'
+    exec "git tag -d deployed"
+    exec "git tag -a deployed -m \"Deployed at #{DateTime.now.to_time.to_s}\" #{revision}"
+  end
+
+  desc "Notifies Honeybadger locally using curl"
   task :notify_honeybadger do
     require 'json'
     require 'honeybadger'
@@ -64,6 +72,7 @@ namespace :deploy do
 end
 
 after 'deploy', 'deploy:notify_honeybadger'
+#after 'deploy', 'deploy:tag_deployed_commit'
 after 'deploy:migrations', 'deploy:notify_honeybadger'
 
 
