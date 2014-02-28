@@ -1,5 +1,0 @@
----
-ruby_library_version:   "2.0.0"
-ruby_version:           "ruby-2.0.0-p353"
-ruby_checksum:          "3de4e4d9aff4682fa4f8ed2b70bd0d746fae17452fc3d3a8e8f505ead9105ad9"
-ruby_download_location: "http://cache.ruby-lang.org/pub/ruby/2.0/{{ ruby_version }}.tar.bz2"

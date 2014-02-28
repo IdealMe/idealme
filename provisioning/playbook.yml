@@ -1,23 +1,23 @@
 ---
 - hosts: all
-  user: vagrant
-  remote_user: vagrant
+  user: idealme
+  remote_user: idealme
   vars_files:
     - vars/defaults.yml
 
   roles:
-    - common
-    - curl
+    #- common
+    #- curl
     # - deploy-user
     # - ssh
     # - ruby-1.9.3
-    - ruby-2.0.0
-    - database
+    - ruby-2.1.1
+    #- database
     # - common
     # - webserver
     # - sidekiq
 
-  tasks:
-  - name: Run bundle install
-    shell: 'cd /vagrant && bundle install'
+  #tasks:
+  #- name: Run bundle install
+    #shell: 'cd /vagrant && bundle install'
 

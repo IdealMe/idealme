@@ -44,4 +44,5 @@
   file: path=/usr/local/bin/{{ item }}
         src={{ ruby_location }}/bin/{{ item }}
         state=link
+        force=yes
   with_items: ruby_symlinks
