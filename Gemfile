@@ -81,6 +81,7 @@ gem 'paperclip', '~> 3.5.2'
 gem 'friendly_id', '~> 5.0'
 
 gem 'ckeditor'
+gem 'non-stupid-digest-assets'
 
 #This gem provides jQuery and the jQuery-ujs driver for your Rails 3 application.
 gem 'jquery-rails'
