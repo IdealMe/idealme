@@ -14,7 +14,7 @@
       <% if current_user %>
         <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
         <div id="offer-container" class="hidden">
-          <a href="/continuity-offer-2" class="btn btn-primary btn-decline-purchase"><button type="link" name="button2" id="decline-offer-btn">Revoke My Access</button></a>
+          <a href="/continuity-offer-2" class="btn-decline-purchase"><button type="link" name="button2" id="decline-offer-btn">Revoke My Access</button></a>
           <button type="link" name="button1" id="purchase-offer-btn">Approve My Access</button>
           <div class="dumb"><%= image_tag('ll-buttons-07.png', :height => 127, :width => 330) %></div>
           <div class="dumber"><%= image_tag('ll-buttons-08.png', :height => 127, :width => 331) %></div>
