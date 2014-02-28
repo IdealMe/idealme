@@ -9,8 +9,8 @@
         <% fragment = Fragment.where(slug: "funnel-header").first %>
         <%= fragment.html.html_safe if fragment %>
       </div>
+      <p><%= image_tag('progress.png', :height => 27, :width => 790) %></p>
       <%= @fragment.html.html_safe if @fragment %>
-       <p><%= image_tag('progress.png', :height => 27, :width => 790) %></p>
     </div>
   </div>
   <div style="clear:both;"></div>
