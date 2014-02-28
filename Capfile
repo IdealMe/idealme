@@ -34,7 +34,7 @@ namespace :deploy do
   desc "Restart the application following a deploy"
   task :restart do
     as_app "kill -s TERM $(cat /home/idealme/sidekiq.pid)"
-    as_app "bundle exec pumactl -P /home/idealme/puma.idealme.pid restart"
+    as_app "bundle exec pumactl -P /home/idealme/puma.idealme.pid phased-restart"
   end
 
   desc "Notifies Honeybadger locally using curl"
