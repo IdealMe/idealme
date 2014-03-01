@@ -1,5 +1,10 @@
 module TestHelpers
 
+  def delete_vcr_cassette
+    file = VCR.current_cassette.file
+    File.delete(file) if File.exist?(file)
+    VCR.eject_cassette
+  end
 
   def fill_in_order_form(options = {})
     expect(page.text).to include "First Name"

@@ -46,6 +46,8 @@ class OrdersController < ApplicationController
       sign_in(:user, @user)
       @user.ordered_workbook = true
       @user.save!
+      @order.update_attribute(:data, { order_type: "workbook" }.to_json)
+      @order.complete!
       redirect_to(post_order_path)
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
     end
@@ -64,9 +66,11 @@ class OrdersController < ApplicationController
         subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
         subscription.stripe_object = stripe_subscription.to_json
         subscription.save!
+        @order.update_attribute(:data, { order_type: "subscription" }.to_json)
         @order.update_attribute(:subscription_id, subscription.id)
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+      @order.complete!
 
       redirect_to(thanks_page_path)
     end
@@ -76,8 +80,10 @@ class OrdersController < ApplicationController
   def create
     @form_post_path = orders_path
     create_order(:new, @market.course.cost, @order.course.name) do |response|
+      @order.update_attribute(:data, { order_type: "course" }.to_json)
       @user.subscribe_course(@market.course)
       sign_in(:user, @user)
+      @order.complete!
     end
   end
 
@@ -113,7 +119,6 @@ class OrdersController < ApplicationController
         end
         @order.status = Order::STATUS_SUCCESSFUL
         @order.user = @user
-        @order.complete!
         HipchatNotification.perform_async("Order success - #{description} - #{@user.email}")
 
         if get_affiliate_user

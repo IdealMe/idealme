@@ -128,20 +128,34 @@ class Order < ActiveRecord::Base
   def complete!
     NewOrderNotification.perform_in(5.seconds, id)
     self.save!
-    send_course_purchase_complete_mail
+    send_purchase_complete_mail
   end
 
-  def send_course_purchase_complete_mail
+  def send_purchase_complete_mail
     if course && course.roger_love?
       PurchaseMailer.roger_love(user).deliver
-    elsif course
+    elsif course?
       PurchaseMailer.confirmed(self).deliver
-    else
+    elsif subscription?
+      PurchaseMailer.subscribed(self).deliver
+    elsif workbook?
       PurchaseMailer.workbook(self).deliver
     end
   end
 
   def valid_checksum?(validate_market_id, validate_course_id, validate_time)
     checksum == Digest::SHA1.hexdigest("#{validate_market_id}#{validate_course_id}#{validate_time}#{Idealme::Application.config.secret_key_base.reverse}")
+  end
+
+  def course?
+    data['order_type'] == "course"
+  end
+
+  def workbook?
+    data['order_type'] == "workbook"
+  end
+
+  def subscription?
+    data['order_type'] == "subscription"
   end
 end

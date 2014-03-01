@@ -9,6 +9,7 @@ describe OrdersController do
   let!(:market2)            { create(:market2, course: course2) }
   let!(:course2)            { create(:course2, owner: affiliate_user) }
   let!(:goal)               { create(:goal) }
+
   describe "POST create_subscription_order" do
     let(:create_params) {
       {
@@ -56,7 +57,7 @@ describe OrdersController do
 
     describe "sends the subscriber an email" do
       let(:card_number) { "4242424242424242" }
-      it 'send the right email', vcr: true do
+      it 'send the right email', vcr: { record: :new_episodes } do
         post :create_subscription_order, create_params
         user = User.where(email: "beansalad@idealme.com").first
         expect(emails.last.body).to include user.firstname
@@ -70,10 +71,11 @@ describe OrdersController do
         post :create_subscription_order, create_params
         user = User.where(email: "beansalad@idealme.com").first
         expect(emails.last.body).to include user.firstname
-        expect(emails.last.body).to include "And nice job claiming your FREE copy of the $47 print edition"
+        expect(emails.last.body).to include "Nice job taking advantage of your special offer"
       end
     end
   end
+
   describe "POST create_workbook_order" do
     let(:create_params) {
       {

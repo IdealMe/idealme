@@ -18,10 +18,9 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - "{\"bindings_version\":\"1.10.2\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
-        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"stripe\",\"uname\":\"Darwin
+      - '{"bindings_version":"1.10.2","lang":"ruby","lang_version":"2.1.1 p76 (2014-02-24)","platform":"x86_64-darwin13.0","publisher":"stripe","uname":"Darwin
         charlie.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST
-        2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64\"}"
+        2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64"}'
       Content-Length:
       - '81'
   response:
@@ -32,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Feb 2014 23:00:00 GMT
+      - Sat, 01 Mar 2014 06:28:38 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -53,14 +52,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_3Z2Fc9henKwAam",
+          "id": "tok_3aHAB7hnmxYKlM",
           "livemode": false,
-          "created": 1393369200,
+          "created": 1393655318,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_3Z2FbFdng2Ks0V",
+            "id": "card_3aHA0dSrSGX0lZ",
             "object": "card",
             "last4": "4242",
             "type": "Visa",
@@ -79,13 +78,13 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Tue, 25 Feb 2014 23:00:01 GMT
+  recorded_at: Sat, 01 Mar 2014 06:28:38 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_3Z2Fc9henKwAam&description=beansalad%40idealme.com&plan=1
+      string: card=tok_3aHAB7hnmxYKlM&description=Idealme%20Insider%20Circle&plan=1&email=beansalad%40idealme.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -98,12 +97,11 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - "{\"bindings_version\":\"1.10.2\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
-        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"stripe\",\"uname\":\"Darwin
+      - '{"bindings_version":"1.10.2","lang":"ruby","lang_version":"2.1.1 p76 (2014-02-24)","platform":"x86_64-darwin13.0","publisher":"stripe","uname":"Darwin
         charlie.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST
-        2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64\"}"
+        2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64"}'
       Content-Length:
-      - '66'
+      - '99'
   response:
     status:
       code: 200
@@ -112,17 +110,17 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Feb 2014 23:00:01 GMT
+      - Sat, 01 Mar 2014 06:28:39 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '2054'
+      - '2074'
       Connection:
       - keep-alive
-      Cache-Control:
-      - no-cache, no-store
       Access-Control-Max-Age:
       - '300'
+      Cache-Control:
+      - no-cache, no-store
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
       Access-Control-Allow-Credentials:
@@ -134,20 +132,20 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1393369201,
-          "id": "cus_3Z2FnTBRhpR7mU",
+          "created": 1393655318,
+          "id": "cus_3aHAc3frYUXds8",
           "livemode": false,
-          "description": "beansalad@idealme.com",
-          "email": null,
+          "description": "Idealme Insider Circle",
+          "email": "beansalad@idealme.com",
           "delinquent": false,
           "metadata": {},
           "subscriptions": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3Z2FnTBRhpR7mU/subscriptions",
+            "url": "/v1/customers/cus_3aHAc3frYUXds8/subscriptions",
             "data": [
               {
-                "id": "sub_3Z2FhJvzTkwlAX",
+                "id": "sub_3aHArjI0cEPATo",
                 "plan": {
                   "interval": "month",
                   "name": "Ideal Me Insider Circle 1",
@@ -162,12 +160,12 @@ http_interactions:
                   "metadata": {}
                 },
                 "object": "subscription",
-                "start": 1393369201,
+                "start": 1393655318,
                 "status": "active",
-                "customer": "cus_3Z2FnTBRhpR7mU",
+                "customer": "cus_3aHAc3frYUXds8",
                 "cancel_at_period_end": false,
-                "current_period_start": 1393369201,
-                "current_period_end": 1395788401,
+                "current_period_start": 1393655318,
+                "current_period_end": 1396333718,
                 "ended_at": null,
                 "trial_start": null,
                 "trial_end": null,
@@ -184,17 +182,17 @@ http_interactions:
           "cards": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3Z2FnTBRhpR7mU/cards",
+            "url": "/v1/customers/cus_3aHAc3frYUXds8/cards",
             "data": [
               {
-                "id": "card_3Z2FbFdng2Ks0V",
+                "id": "card_3aHA0dSrSGX0lZ",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 2,
                 "exp_year": 2015,
                 "fingerprint": "0FJgJUWQopgJgoZs",
-                "customer": "cus_3Z2FnTBRhpR7mU",
+                "customer": "cus_3aHAc3frYUXds8",
                 "country": "US",
                 "name": null,
                 "address_line1": null,
@@ -209,13 +207,13 @@ http_interactions:
               }
             ]
           },
-          "default_card": "card_3Z2FbFdng2Ks0V"
+          "default_card": "card_3aHA0dSrSGX0lZ"
         }
     http_version: 
-  recorded_at: Tue, 25 Feb 2014 23:00:02 GMT
+  recorded_at: Sat, 01 Mar 2014 06:28:39 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/customers/cus_3Z2FnTBRhpR7mU
+    uri: https://api.stripe.com/v1/customers/cus_3aHAc3frYUXds8
     body:
       encoding: US-ASCII
       string: ''
@@ -231,10 +229,9 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - "{\"bindings_version\":\"1.10.2\",\"lang\":\"ruby\",\"lang_version\":\"2.1.0
-        p0 (2013-12-25)\",\"platform\":\"x86_64-darwin12.0\",\"publisher\":\"stripe\",\"uname\":\"Darwin
+      - '{"bindings_version":"1.10.2","lang":"ruby","lang_version":"2.1.1 p76 (2014-02-24)","platform":"x86_64-darwin13.0","publisher":"stripe","uname":"Darwin
         charlie.local 13.1.0 Darwin Kernel Version 13.1.0: Thu Jan 16 19:40:37 PST
-        2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64\"}"
+        2014; root:xnu-2422.90.20~2/RELEASE_X86_64 x86_64"}'
   response:
     status:
       code: 200
@@ -243,19 +240,19 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Feb 2014 23:00:02 GMT
+      - Sat, 01 Mar 2014 06:28:40 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '2054'
+      - '2074'
       Connection:
       - keep-alive
-      Cache-Control:
-      - no-cache, no-store
-      Access-Control-Allow-Credentials:
-      - 'true'
       Access-Control-Max-Age:
       - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
       Strict-Transport-Security:
@@ -265,20 +262,20 @@ http_interactions:
       string: |
         {
           "object": "customer",
-          "created": 1393369201,
-          "id": "cus_3Z2FnTBRhpR7mU",
+          "created": 1393655318,
+          "id": "cus_3aHAc3frYUXds8",
           "livemode": false,
-          "description": "beansalad@idealme.com",
-          "email": null,
+          "description": "Idealme Insider Circle",
+          "email": "beansalad@idealme.com",
           "delinquent": false,
           "metadata": {},
           "subscriptions": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3Z2FnTBRhpR7mU/subscriptions",
+            "url": "/v1/customers/cus_3aHAc3frYUXds8/subscriptions",
             "data": [
               {
-                "id": "sub_3Z2FhJvzTkwlAX",
+                "id": "sub_3aHArjI0cEPATo",
                 "plan": {
                   "interval": "month",
                   "name": "Ideal Me Insider Circle 1",
@@ -293,12 +290,12 @@ http_interactions:
                   "metadata": {}
                 },
                 "object": "subscription",
-                "start": 1393369201,
+                "start": 1393655318,
                 "status": "active",
-                "customer": "cus_3Z2FnTBRhpR7mU",
+                "customer": "cus_3aHAc3frYUXds8",
                 "cancel_at_period_end": false,
-                "current_period_start": 1393369201,
-                "current_period_end": 1395788401,
+                "current_period_start": 1393655318,
+                "current_period_end": 1396333718,
                 "ended_at": null,
                 "trial_start": null,
                 "trial_end": null,
@@ -315,17 +312,17 @@ http_interactions:
           "cards": {
             "object": "list",
             "count": 1,
-            "url": "/v1/customers/cus_3Z2FnTBRhpR7mU/cards",
+            "url": "/v1/customers/cus_3aHAc3frYUXds8/cards",
             "data": [
               {
-                "id": "card_3Z2FbFdng2Ks0V",
+                "id": "card_3aHA0dSrSGX0lZ",
                 "object": "card",
                 "last4": "4242",
                 "type": "Visa",
                 "exp_month": 2,
                 "exp_year": 2015,
                 "fingerprint": "0FJgJUWQopgJgoZs",
-                "customer": "cus_3Z2FnTBRhpR7mU",
+                "customer": "cus_3aHAc3frYUXds8",
                 "country": "US",
                 "name": null,
                 "address_line1": null,
@@ -340,8 +337,8 @@ http_interactions:
               }
             ]
           },
-          "default_card": "card_3Z2FbFdng2Ks0V"
+          "default_card": "card_3aHA0dSrSGX0lZ"
         }
     http_version: 
-  recorded_at: Tue, 25 Feb 2014 23:00:03 GMT
+  recorded_at: Sat, 01 Mar 2014 06:28:40 GMT
 recorded_with: VCR 2.8.0
