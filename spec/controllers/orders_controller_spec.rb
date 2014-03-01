@@ -53,6 +53,26 @@ describe OrdersController do
         expect(Subscription.last.stripe_object.to_s).to include stripe_id
       end
     end
+
+    describe "sends the subscriber an email" do
+      let(:card_number) { "4242424242424242" }
+      it 'send the right email', vcr: true do
+        post :create_subscription_order, create_params
+        user = User.where(email: "beansalad@idealme.com").first
+        expect(emails.last.body).to include user.firstname
+        expect(emails.last.body).to include "Nice job taking advantage of your special offer"
+      end
+    end
+
+    describe "sends the workbook buyer an email" do
+      let(:card_number) { "4242424242424242" }
+      it 'send the right email', vcr: true do
+        post :create_subscription_order, create_params
+        user = User.where(email: "beansalad@idealme.com").first
+        expect(emails.last.body).to include user.firstname
+        expect(emails.last.body).to include "And nice job claiming your FREE copy of the $47 print edition"
+      end
+    end
   end
   describe "POST create_workbook_order" do
     let(:create_params) {
