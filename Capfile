@@ -28,7 +28,7 @@ real_revision = `git rev-parse HEAD`
 set :real_revision, real_revision
 set :current_revision, real_revision
 
-set(:asset_precompilation_triggers, %w(app/assets vendor/assets Gemfile.lock))
+set(:asset_precompilation_triggers, %w(app/assets vendor/assets Gemfile.lock config))
 
 namespace :deploy do
   desc "Restart the application following a deploy"
@@ -74,6 +74,7 @@ end
 after 'deploy', 'deploy:notify_honeybadger'
 #after 'deploy', 'deploy:tag_deployed_commit'
 after 'deploy:migrations', 'deploy:notify_honeybadger'
+#after 'rails:assets:precompile:if_changed', 'rails:assets:precompile'
 
 
 #desc 'copy ckeditor nondigest assets'
