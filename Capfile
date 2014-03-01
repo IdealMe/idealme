@@ -18,7 +18,7 @@ set_default_env :RAILS_ENV, 'production'
 # hipchat config
 set :hipchat_token, '2876c736673caf9c04fd310cdb2e47'
 set :hipchat_room_name, "Notifications" # If you pass an array such as ["room_a", "room_b"] you can send announcements to multiple rooms.
-set :hipchat_announce, false # notify users
+set :hipchat_announce, true # notify users
 set :hipchat_color, 'gray' #normal message color
 set :hipchat_success_color, 'green' #finished deployment message color
 set :hipchat_failed_color, 'red' #cancelled deployment message color

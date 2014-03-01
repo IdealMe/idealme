@@ -12,9 +12,10 @@ window.CKEDITOR_GETURL = function( resource ) {
   if ( resource.indexOf( ':/' ) == -1 && resource.indexOf( '/' ) !== 0 )
     resource = this.basePath + resource;
 
+  console.log(resource)
   // Add the timestamp, except for directories.
   if ( resource.charAt( resource.length - 1 ) != '/'  ){
-    var url = resource.match( /^(.*?:\/\/[^\/]*)\/assets\/(.+)/ );
+    var url = resource.match( /^(.*?\/\/[^\/]*)\/assets\/(.+)/ );
     if(url) resource = url[1] + (CKEDITOR_ASSETS_MAPPING[url[2]] || '/assets/' + url[2]);
   }
 
