@@ -7,6 +7,7 @@ window.CKEDITOR_ASSETS_MAPPING = {
 }
 
 window.CKEDITOR_GETURL = function( resource ) {
+  debugger;
   // If this is not a full or absolute path.
   if ( resource.indexOf( ':/' ) == -1 && resource.indexOf( '/' ) !== 0 && resource.indexOf( '//' ) !== 0 )
     resource = this.basePath + resource;
