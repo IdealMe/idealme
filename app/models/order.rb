@@ -148,14 +148,14 @@ class Order < ActiveRecord::Base
   end
 
   def course?
-    data['order_type'] == "course"
+    data.present? && data['order_type'] == "course"
   end
 
   def workbook?
-    data['order_type'] == "workbook"
+    data.present? && data['order_type'] == "workbook"
   end
 
   def subscription?
-    data['order_type'] == "subscription"
+    data.present? && data['order_type'] == "subscription"
   end
 end
