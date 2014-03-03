@@ -11,6 +11,7 @@ class ContinuityOffer
     $('#offer-container, #form-container').removeClass('hidden')
 
   purchaseOffer: ->
+    window.PreventExitPop = false
     $.post('/purchase-continuity-offer').then (data,b,c) ->
       if data.success == true
         window.location = data.thanks_path
@@ -25,6 +26,7 @@ class ContinuityOffer
     alert($('.purchase-offer-btn-2').attr('href'))
 
   declineOffer: ->
+    window.PreventExitPop = false
     true
 
 new ContinuityOffer

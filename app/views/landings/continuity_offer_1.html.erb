@@ -13,7 +13,7 @@
 
       <% if current_user && current_user.striped? %>
         <h1 class="offer-container">Reserved for <%= current_user.firstname %></h1>
-        <div id="offer-container" class="hidden">
+        <div id="offer-container" class="xhidden">
           <a href="/continuity-offer-2" class="btn-decline-purchase"><button type="link" name="button2" id="decline-offer-btn">Revoke My Access</button></a>
           <button type="link" name="button1" id="purchase-offer-btn">Approve My Access</button>
           <div class="dumb"><%= image_tag('ll-buttons-07.png', :height => 127, :width => 330) %></div>
@@ -21,7 +21,7 @@
         </div>
         <%= render partial: "partials/safesitecertified" %>
       <% else %>
-        <div id="form-container" class="hidden">
+        <div id="form-container" class="hxidden">
           <%= render partial: "orders/form" %>
           <a href="/continuity-offer-2" class="btn btn-primary btn-decline-purchase">No thanks</a>
           <%= render partial: "partials/safesitecertified" %>
@@ -31,3 +31,4 @@
     </div>
   </div>
 </div>
+<%= render partial: "partials/exit_pop" %>

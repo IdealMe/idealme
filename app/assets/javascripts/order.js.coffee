@@ -15,6 +15,7 @@ jQuery ($) ->
         $form.append $("<input type=\"hidden\" name=\"stripeToken\" />").val(token)
 
         # and submit
+        window.PreventExitPop = false
         $form.get(0).submit()
 
     addFieldError = (field) ->
