@@ -10,6 +10,7 @@ Idealme::Application.routes.draw do
   get "payload/:id/download" => "payload#download", as: :download_payload
 
   root to: 'landings#index'
+  get 'ideal-life' => 'landings#index'
   get '__ping' => 'landings#ping'
   get 'aweber_callback' => 'landings#aweber_callback'
   get 'workbook' => 'landings#workbook'

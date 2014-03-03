@@ -10,7 +10,7 @@ class LandingsController < ApplicationController
     @courses = Course.includes(:owner, :default_market).limit(12)
     session[:landing] = '/workbook'
     session[:after_order_path] = '/continuity-offer-1'
-    render template: 'landings/index'
+    render template: 'landings/index', layout: index_layout
   end
 
   def aweber_callback
@@ -107,6 +107,14 @@ class LandingsController < ApplicationController
       current_user
     else
       User.new
+    end
+  end
+
+  def index_layout
+    if request.path =~ /ideal-life/
+      "chromeless"
+    else
+      "application"
     end
   end
 end
