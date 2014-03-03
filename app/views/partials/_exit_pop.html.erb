@@ -1,17 +1,23 @@
 <!--Exit Pop-->
 <SCRIPT language="javascript">
   window.PreventExitPop = true;
-  function ExitPop() {
+  function ExitPop(evt) {
     if( window.PreventExitPop != false ) {
-      document.location = "https://idealme.com/continuity-offer-2";
+      window.setTimeout(changeLocation, 100);
       return "WAIT -- WAIT -- Don't Leave\n\nYou haven't Accessed Your Ideal Me Insider Circle Training Area Yet.\n\nClick Stay On The Page to get Instant Access to a free 7 day trial to the Ideal Me Insider Circle Right Now to help you become your Ideal Me faster\n\nJust Click \"Stay On This Page\" Now!";
     }
+  }
+
+  function changeLocation() {
+    NoPop();
+    document.location = "https://idealme.com/continuity-offer-2";
   }
 
   function NoPop() {
     window.PreventExitPop = false;
   }
   window.onbeforeunload = ExitPop;
+
   $(document).on("click", "a", NoPop);
   $(document).on("submit", "form", NoPop);
 </SCRIPT>
