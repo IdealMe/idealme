@@ -26,4 +26,10 @@ module LandingsHelper
   def purchased_workbook
     current_user.ordered_workbook
   end
+
+  def hide_on_ideal_life
+    if request.path =~ /ideal-life/
+      "hidden"
+    end
+  end
 end
