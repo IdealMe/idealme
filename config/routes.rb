@@ -19,6 +19,8 @@ Idealme::Application.routes.draw do
   get 'thanks/:thanks_type' => 'landings#thanks'
   post 'purchase-continuity-offer' => 'landings#purchase_continuity_offer', as: :purchase_continuity_offer
 
+  get 'download-workbook' => 'resources#download_workbook'
+
   get "now/:slug(/:market_tag)" => "affiliate_links#perform", slug: /[^\/]+/, as: :affiliate_link
 
   resources :searches, only: [:index]

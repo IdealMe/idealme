@@ -29,4 +29,12 @@ class ResourcesController < ApplicationController
     @goals = []
     @goals = current_user.goals if current_user
   end
+
+  def download_workbook
+    if current_user
+      redirect_to 'http://idealme-prod.s3.amazonaws.com/Design_Your_Ideal_Life_Workbook.pdf', disposition: 'attachment'
+    else
+      redirect_to "#{root_path}#sign-up"
+    end
+  end
 end
