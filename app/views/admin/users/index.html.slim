@@ -14,7 +14,7 @@ table.table
   - @users.each do |user|
     tr
       td = link_to user.fullname, edit_admin_user_path(user)
-      td = link_to "site profile", user_path(user)
+      td = link_to "site profile", user_path(user.username)
       td = link_to user.email, edit_admin_user_path(user)
       td = user.affiliate_tag
 br
