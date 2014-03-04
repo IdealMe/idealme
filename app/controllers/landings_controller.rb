@@ -43,23 +43,26 @@ class LandingsController < ApplicationController
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    sub = customer.subscriptions.create(plan: plan)
-    subscription = Subscription.create(
-      user: current_user,
-      subscribed_days: 0,
-      unsubscribed_days: 0,
-      total_days: 0,
-      stripe_object: sub.to_json,
-      stripe_id: sub.id,
-    )
-    AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
+    plans = customer.subscriptions.select{|sub| sub.plan.id.present? }.map {|sub| sub.plan.id }
+    unless plans.include?("1") || plans.include?("2")
+      sub = customer.subscriptions.create(plan: plan)
+      subscription = Subscription.create(
+          user: current_user,
+          subscribed_days: 0,
+          unsubscribed_days: 0,
+          total_days: 0,
+          stripe_object: sub.to_json,
+          stripe_id: sub.id,
+      )
+      AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
 
-    @order = Order.create_subscription_order_by_user(current_user)
-    @order.status = Order::STATUS_SUCCESSFUL
-    @order.subscription_id = subscription.id
-    @order.user = current_user
-    @order.complete!
-    HipchatNotification.perform_async("1 Click Order success - subscription plan #{plan} - #{current_user.email}")
+      @order = Order.create_subscription_order_by_user(current_user)
+      @order.status = Order::STATUS_SUCCESSFUL
+      @order.subscription_id = subscription.id
+      @order.user = current_user
+      @order.complete!
+      HipchatNotification.perform_async("1 Click Order success - subscription plan #{plan} - #{current_user.email}")
+    end
 
     respond_to do |format|
       format.json { render json: { success: true, thanks_path: thanks_page_path } }
