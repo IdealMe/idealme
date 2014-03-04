@@ -1,11 +1,29 @@
+
 .authentication-section
-  = form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: 'form-horizontal'}) do |f|
-    = f.hidden_field :reset_password_token
-    .modal-box
-      .account-box
-        .message-box
-          | Sign in to your Ideal Me account
-        = f.password_field :password, autofocus: true
-        = f.password_field :password_confirmation
+  .modal-box
+    .account-box
+      .message-box
+        | Reset your password
+
+        .errors
+          = devise_error_messages!
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), wrapper: :bootstrap_horizontal_with_offset, html: {method: :put, class: 'form-horizontal'}) do |f|
+        = f.hidden_field :reset_password_token
+        = f.input :password
+        = f.input :password_confirmation, label: "Confirm"
+
+
         .control-box
-          = f.submit 'CHANGE MY PASSWORD', class: 'btn btn-red'
+          = f.submit 'Sign in', class: 'btn btn-red', id: 'sign-in-button'
+
+/.authentication-section
+/  = form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: 'form-horizontal'}) do |f|
+/    = f.hidden_field :reset_password_token
+/    .modal-box
+/      .account-box
+/        .message-box
+/          | Sign in to your Ideal Me account
+/        = f.password_field :password, autofocus: true
+/        = f.password_field :password_confirmation
+/        .control-box
+/          = f.submit 'CHANGE MY PASSWORD', class: 'btn btn-red'

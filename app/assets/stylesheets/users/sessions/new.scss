@@ -1,5 +1,5 @@
 .users-sessions-new, .users-sessions-create,
-.users-passwords-new, .users-passwords-create,
+.users-passwords-new, .users-passwords-create, .users-passwords-edit, .users-passwords-update,
 .users-registrations-new, .users-registrations-create, .users-confirmations-show,
 .users-confirmations-new, .users-confirmations-create, .users-confirmations-update {
   .body-content {
@@ -8,6 +8,11 @@
       margin: 0 auto;
       @include hex(#4d4d4d);
       @include fs(16px);
+      .errors {
+        ul, li {
+          list-style: none;
+        }
+      }
       .modal-box {
         @include m_b(27px);
         border: 1px solid #ddd;
