@@ -1,5 +1,18 @@
 p#notice= notice
 
+- if @order.workbook?
+  p Workbook order
+- elsif @order.subscription?
+  p Subscription order
+- elsif @order.course?
+  p Course order
+- else
+  p Workbook order
 
-= link_to 'Edit', edit_admin_order_path(@order)
-= link_to 'Back', admin_orders_path
+pre
+  = @order.address
+
+div
+  = link_to 'Edit', edit_admin_order_path(@order)
+div
+  = link_to 'Back', admin_orders_path

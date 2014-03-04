@@ -161,14 +161,15 @@ class Order < ActiveRecord::Base
 
   def address
     rv = ""
+    rv += "order # #{id}\n"
     rv += "#{card_email}\n"
     rv += "#{user.fullname}\n"
-    rv += "order # #{id}\n"
+
     rv += "#{billing_address1}\n" if billing_address1.present?
     rv += "#{billing_address2}\n" if billing_address2.present?
     rv += "#{billing_city}, #{billing_state}\n"
     rv += "#{billing_zip}\n\n"
   end
 
-  
+
 end

@@ -3,12 +3,14 @@ h1 Listing admin_orders
 table.table
   tr
     th Email
+    th Type
     th
     th
 
   - @orders.each do |order|
     tr
       td = link_to order.card_email, admin_order_path(order)
+      td = order_type(order)
       td = link_to 'Edit', edit_admin_order_path(order)
       td = link_to 'Destroy', admin_order_path(order), :method => :delete, :"data-confirm" => 'Are you sure?'
 
