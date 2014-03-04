@@ -1,6 +1,7 @@
 namespace :orders do
   desc "Load a bunch of fake orders"
   task :load_fakes => :environment do
+    return unless Rails.env.development?
     Order.destroy_all
     CourseUser.destroy_all
     AffiliateSale.destroy_all
@@ -15,6 +16,14 @@ namespace :orders do
       order.save!
       CourseUser.create!(user_id: user.id, course_id: course.id)
       AffiliateSale.create_affiliate_sale(order, charlie)
+    end
+  end
+
+  desc "print addresses for workbook orders"
+  task :workbook_addresses => :environment do
+    orders = Order.where(cost: 700).all.to_a
+    orders.each do |order|
+      puts order.address
     end
   end
 end
