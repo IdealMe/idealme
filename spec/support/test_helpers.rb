@@ -19,6 +19,7 @@ module TestHelpers
   end
 
   class MockSubscriptions
+    include Enumerable
     def initialize
       @subs = []
     end
