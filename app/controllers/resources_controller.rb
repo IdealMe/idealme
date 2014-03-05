@@ -34,7 +34,7 @@ class ResourcesController < ApplicationController
     if current_user
       redirect_to 'http://idealme-prod.s3.amazonaws.com/Design_Your_Ideal_Life_Workbook.pdf', disposition: 'attachment'
     else
-      redirect_to "#{root_path}#sign-up"
+      redirect_to new_user_session_path
     end
   end
 end

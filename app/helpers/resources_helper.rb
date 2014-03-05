@@ -3,7 +3,7 @@ module ResourcesHelper
     if current_user
       'http://idealme-prod.s3.amazonaws.com/Design_Your_Ideal_Life_Workbook.pdf'
     else
-      "#{root_path}#sign-up"
+      new_user_session_path
     end
   end
 end
