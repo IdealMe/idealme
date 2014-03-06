@@ -11,7 +11,7 @@
         <%= @fragment.html.html_safe if @fragment %>
       </div>
 
-      <% if current_user %>
+      <% if current_user && current_user.striped? %>
         <div class="action-buttons">
           <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
           <br/>
