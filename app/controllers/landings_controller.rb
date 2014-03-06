@@ -14,16 +14,6 @@ class LandingsController < ApplicationController
     render template: 'landings/index', layout: index_layout
   end
 
-  def after_order_path
-    if params[:p] == 'a'
-      '/continuity-offer-2'
-    elsif params[:p] == 'b'
-      '/continuity-offer-2'
-    else
-      '/continuity-offer-1'
-    end
-  end
-
   def aweber_callback
     session[:email] = params[:email]
     destination     = session[:landing] || '/getthebook'
@@ -142,5 +132,14 @@ class LandingsController < ApplicationController
     end
   end
 
+  def after_order_path
+    if params[:p] == 'a'
+      '/continuity-offer-2'
+    elsif params[:p] == 'b'
+      '/continuity-offer-2'
+    else
+      '/continuity-offer-1'
+    end
+  end
 
 end

@@ -15,6 +15,7 @@ describe 'phase one workbook flows' do
   end
 
   it 'funnel 3', js: true, vcr: true do
+    visit '/ideal-life?p=a'
     visit '/ideal-life?p=b'
     visit '/aweber_callback?email=charlie%2b22%40idealme%2ecom&from=charlie%2b22%40idealme%2ecom&listname=idealmeoptin&meta_adtracking=idealme%2ecom&meta_message=1&meta_required=email&meta_split_id=&meta_tooltip=&meta_web_form_id=58003487&name=&submit=Submit'
     expect(current_path).to eq "/workbook"
