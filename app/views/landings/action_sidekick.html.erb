@@ -1,0 +1,105 @@
+<div class="container">
+  <div id="column">
+    <div id="outer">
+      <%= image_tag('headline-workbook.png', :height => 100, :width => 900) %>
+      <div id="container" class="clearfix">
+        <div class="upsell-hero">
+          <%= image_tag('upsell-2-cover.jpg', :height => 383, :width => 435) %>
+        </div>
+        <div class="upsell-cta">
+          <div id="stocknotice">
+            <h3><strong>Ideal Me Print Edition Workbook</strong></h3>
+          </div>
+          <p>
+            <strong>For a Limited Time: FREE with Shipping</strong><br>
+            Tell Us Where We Can Send Yours Below:
+          </p>
+          <div align="center">
+            <p><b>Claim yours now:</b></p>
+            <div class="price-area">Each Printed Workbook&nbsp;-  FREE + $7 S&amp;H</div>
+            <p><a href="#order"><%= image_tag('nextpage-button3.png') %></a></p>
+            <p><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vid-player">
+        <iframe src="//fast.wistia.net/embed/iframe/i3lfb6jgkp" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="556"></iframe>
+      </div>
+
+      <div class="what-theyre-saying">
+        <h2>Here's What People Are Saying:  </h2>
+        <%= image_tag('cardsharp-social.jpg', :style => 'margin-bottom:8px;', :height => 353, :width => 375) %>
+      </div>
+
+      <div class="book-features">
+        <h2>Features</h2>
+        <ul class="smallchecks">
+          <li><strong>Ideal Me Vision Board</strong> - A place to define your “ideal me” vision using pictures, quotes, stickers, and cut-outs.</li>
+          <li><strong>Life Balance Wheel</strong> - Refocus your time and energy on the things that mean the most to you. (This worksheet is an eye-opener, so get ready to make huge shifts!).</li>
+          <li><strong>What Makes Me Happy?</strong> - Remember the people, places and things that bring joy to your life and experience them more often.</li>
+          <li><strong>Top 3 Goals</strong> - Get clear on your next steps using highly effective reverse-engineering strategies and life hacks.</li>
+          <li><strong>Ideal Me Career Plan</strong> - A dynamic way of defining and creating a clear, direct pathway to your dream career.</li>
+          <li><span class="highlight"><strong>UNADVERTISED BONUS -</strong></span> Complete your order for the ‘Design Your Ideal Life” workbook and you’ll get the <strong>“Ideal Body” BONUS WORKSHEETS</strong> , designed to help you reach your personal fitness and health goals. You’ll get:</li>
+            <ul>
+
+            <li><strong>Fitness Goals</strong> - To be successful, you must measure your progress. This worksheet will help you keep track of inches lost around your thighs, arms, stomach, so you’ll be <strong> motivated to reach your desired results</strong>.</li>
+            <li><strong>A Daily Food Journal</strong> - Studies show that keeping a food log can help you lose weight and keep it off. <strong> Transform your diet and your health</strong> with this simple, yet powerful system.</li>
+            <li><strong>Workout Calendar</strong> - This is not your ordinary calendar! You’ll be able to track your daily water intake, and plan out your cardio and strength training routines, so you <strong> never get bored</strong>.</li>
+          </ul>
+        </ul>
+        <p>Your BONUS worksheets include the <strong>“Life Balance Wheel”</strong>, <strong>“Ideal Me To-Do List”</strong>, <strong>“What Do I Value?”</strong>, <strong>“My Ideal Day”</strong>, <strong>“Ideal Me Career Plan”</strong>, <strong>“Gamify Your Life”</strong>, and MORE!</p>
+      </div>
+
+      <div class="claim col-sm-12">
+        <a id="order"></a>
+        <h1 align="center">Claim Your Design Your Ideal Life Workbook <span class="red1">FREE</span><br/>Right Now (just pay $7 S/H)</h1>
+      </div>
+
+      <div class="row">
+      <div class="pay-section col-sm-5">
+        <%= render partial: "orders/form" %>
+        <a href="/continuity-offer-1" class="btn btn-default btn-decline-purchase">No thanks</a>
+      </div>
+
+      <div id="rightcol" class="col-sm-5">
+        <p align="center"><%= image_tag('secure-privacy.png', :height => 97, :width => 300) %></p>
+        <blockquote>
+          <p><span class="bqstart">“</span>&nbsp;AI found this workbook really helpful. The Life-Balance worksheet gave me a whole new perspective on what I need in my life right now. Good stuff!</p>
+          <p class="name"> — R.M., Los Angeles<span class="bqend">”</span></p>
+        </blockquote>
+        <blockquote>
+          <p><span class="bqstart">“</span>&nbsp;I had NO idea what my Ideal Me even looked like before going through this process. If you’re in the same boat, do yourself a favor and order this now!</p>
+          <p class="name">— Stephanie.<span class="bqend">”</span></p>
+        </blockquote>
+        <blockquote>
+          <p><span class="bqstart">“</span> As someone who is already really busy with my day job and everything else I really didn’t think I’d have any time to work on my Ideal Me. Going through the workbook made me realize just how wrong I was..</p>
+          <p class="name">— Tanya.<span class="bqend">”</span></p>
+        </blockquote>
+        <blockquote>
+          <p><span class="bqstart">“</span>Using the workbook helped me visualize what my Ideal Me looked like. It was a HUGE help! Thank You.</p>
+          <p class="name">— Lorette.<span class="bqend">”</span></p>
+        </blockquote>
+
+        <div id="guarantees">
+          <p align="center">
+            <a href="/" onclick="">30 Day Money Back Guarantee</a>
+          </p>
+          <p align="center">
+            <a href="/" onclick=""><%= image_tag('100-guarantee-seal.png', :height => 193, :width => 264) %></a>&nbsp;
+          </p>
+          <h3 align="center">30-Day Risk-Free<br>100% Money-Back Guarantee</h3>
+        </div>
+      </div>
+      </div>
+
+      <%= render partial: "partials/safesitecertified" %>
+
+      <div class="phone col-sm-12">
+        <h2>Have Questions? Need Help? Call Us: 1-844-IDEAL ME</h2>
+      </div>
+
+    </div>
+  </div>
+</div>
+<%= render partial: "ga_workbook" %>
