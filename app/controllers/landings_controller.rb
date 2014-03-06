@@ -8,7 +8,8 @@ class LandingsController < ApplicationController
   def index
     redirect_to user_path(current_user) and return if current_user
     @courses = Course.includes(:owner, :default_market).limit(12)
-    session[:landing] = '/workbook'
+
+    session[:landing] = landing
     session[:after_order_path] = '/continuity-offer-1'
     render template: 'landings/index', layout: index_layout
   end
@@ -120,4 +121,16 @@ class LandingsController < ApplicationController
       "application"
     end
   end
+
+  def landing
+    if params[:p] == 'a'
+      '/continuity-offer-2'
+    elsif params[:p] == 'b'
+      '/workbook'
+    else
+      '/workbook'
+    end
+  end
+
+
 end
