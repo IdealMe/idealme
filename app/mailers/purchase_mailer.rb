@@ -20,6 +20,7 @@ class PurchaseMailer < ActionMailer::Base
     @salutation   = order.user.fullname_or_username_or_id
     @order_number = order.id
     @order_date   = order.created_at.to_date.to_formatted_s(:long)
+    @user = order.user
 
     mail to: "#{order.user.email}"
   end
@@ -28,6 +29,7 @@ class PurchaseMailer < ActionMailer::Base
     @salutation   = order.user.fullname_or_username_or_id
     @order_number = order.id
     @order_date   = order.created_at.to_date.to_formatted_s(:long)
+    @user = order.user
 
     mail to: "#{order.user.email}"
   end
@@ -39,6 +41,7 @@ class PurchaseMailer < ActionMailer::Base
     @course_name  = order.course.name
     @course_price = order.course.cost_in_dollars
     @course       = order.course
+    @user = order.user
 
     mail to: "#{order.user.email}"
   end

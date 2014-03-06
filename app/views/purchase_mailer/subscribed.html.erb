@@ -6,9 +6,9 @@ Hello <%= @salutation %>,<br/>
 
 <p>To <i><b>activate your Ideal Me membership</b></i>, please follow the simple steps below: </p>
 
-<p>STEP 1: Create a username and password for your Insider Circle account here. [LINK] </p>
+<p>STEP 1: Create a username and password for your Insider Circle account <%= link_to("here", confirmation_url(@user, :confirmation_token => @user.confirmation_token)) %>here.  </p>
 
-<P> STEP 2: CHARLIE — WHAT ELSE NEEDS TO HAPPEN? </p>
+<P> STEP 2: Visit the <a href="/#{@user.username}">Ideal Me Insider Circle</a></p>
 
 <P>This email will give you all the details you need to <i><b>activate your Ideal Me membership</b></i> and <i><b>access your FIRST weekly series</b></i>. </p>
 
