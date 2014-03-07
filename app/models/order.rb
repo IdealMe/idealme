@@ -100,7 +100,7 @@ class Order < ActiveRecord::Base
   def self.create_workbook_order_by_user(user)
     order = Order.new
     order.user = user
-    order.cost = 700
+    order.cost = WORKBOOK_COST_IN_CENTS
     order.card_firstname = user.firstname
     order.card_lastname = user.lastname
     order.card_email = user.email
