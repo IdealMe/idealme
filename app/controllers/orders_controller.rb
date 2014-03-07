@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
       @user.save!
       @order.update_attribute(:data, { order_type: "workbook" }.to_json)
       @order.complete!
-      @conversion_partial = "landings/ga_workbook_purchased"
+      session[:conversion_partial] = "landings/ga_workbook_purchased"
       redirect_to(post_order_path)
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
     end

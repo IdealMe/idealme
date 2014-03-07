@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_staging
   before_filter :set_last_location
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_conversion_partial
   # https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -185,5 +186,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :lastname
     devise_parameter_sanitizer.for(:account_update) << :password
     devise_parameter_sanitizer.for(:account_update) << :password_confirmation
+  end
+
+  def set_conversion_partial
+    @conversion_partial = session.delete :conversion_partial
   end
 end
