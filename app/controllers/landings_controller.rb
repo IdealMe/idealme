@@ -77,6 +77,11 @@ class LandingsController < ApplicationController
     render layout: 'chromeless'
   end
 
+  def action_sidekick
+
+    render layout: 'chromeless'
+  end
+
   def ping
     render text: :ok, layout: nil
   end
