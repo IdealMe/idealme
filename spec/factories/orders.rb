@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :order do
+    product :course
     user
     card_firstname { user.firstname }
     card_lastname { user.lastname }
