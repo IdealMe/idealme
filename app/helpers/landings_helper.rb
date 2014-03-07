@@ -27,6 +27,10 @@ module LandingsHelper
     current_user.ordered_workbook
   end
 
+  def after_order_path
+    session[:after_order_path] || '/continuity-offer-1'
+  end
+
   def hide_on_ideal_life
     if request.path =~ /ideal-life/
       "hidden"
