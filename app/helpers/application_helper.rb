@@ -97,4 +97,9 @@ module ApplicationHelper
   def image_or_video_tag(path)
     render(partial: 'partials/market_promo_media', locals: { url: path, media_type: guessed_media_type(path) })
   end
+
+  def workbook_cost_in_dollars
+    '%.2f' % (WORKBOOK_COST_IN_CENTS / 100.0) # -> '0.10'
+  end
+
 end
