@@ -17,7 +17,7 @@ html.no-js lang='en'
       - else
         = yield
     footer
-
+      = render partial: "partials/conversions"
     #fb-root
     javascript:
       var idealme = "you";#{include_gon( namespace: "im_js",  need_tag: false)}
