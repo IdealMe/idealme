@@ -29,10 +29,12 @@ Idealme::Application.routes.draw do
   resources :feedbacks, only: [:index, :new, :create]
   resources :orders, only: [:new, :create] do
     collection do
+      get 'new/action-sidekick' => 'orders#new_action_sidekick', as: :order_action_sidekick
       get 'new/workbook' => 'orders#new_workbook', as: :order_workbook
       get 'new/subscription' => 'orders#new_subscription', as: :order_subscription
       post 'create/workbook-order' => 'orders#create_workbook_order', as: :create_workbook_order
       post 'create/subscription-order' => 'orders#create_subscription_order', as: :create_subscription_order
+      post 'create/action-sidekick-order' => 'orders#create_action_sidekick_order', as: :create_action_sidekick_order
       get 'new/:id' => 'orders#new', as: :subscribe
     end
   end

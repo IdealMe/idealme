@@ -31,7 +31,12 @@ class OrdersController < ApplicationController
     render layout: 'minimal'
   end
 
-
+  def new_action_sidekick
+    @form_post_path = create_action_sidekick_order_orders_path
+    @order = action_sidekick_order
+    @invoice = Order.generate_action_sidekick_invoice(@order)
+    render layout: 'minimal'
+  end
 
   def new_subscription
     @form_post_path = create_subscription_order_orders_path
@@ -54,6 +59,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def create_action_sidekick_order
+    @form_post_path = create_action_sidekick_order_orders_path
+    create_order(:new_workbook, ACTION_SIDEKICK_COST_IN_CENTS, 'Idealme Action Sidekick') do |response|
+      sign_in(:user, @user)
+      @user.ordered_action_sidekick = true
+      @user.save!
+      @order.update_attribute(:data, { order_type: "action_sidekick" }.to_json)
+      @order.complete!
+      redirect_to(post_order_path)
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-sidekick')
+    end
+  end
+
   def create_subscription_order
     plan = '1'
     plan = '2' if referer_includes? 'continuity-offer-2'
@@ -62,8 +80,8 @@ class OrdersController < ApplicationController
       sign_in(:user, @user)
 
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      sc = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      sc.subscriptions.each do |stripe_subscription|
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      customer.subscriptions.each do |stripe_subscription|
         subscription = current_user.subscriptions.find_or_initialize_by(stripe_id: stripe_subscription.id)
         subscription.stripe_object = stripe_subscription.to_json
         subscription.save!
@@ -71,6 +89,7 @@ class OrdersController < ApplicationController
         @order.update_attribute(:subscription_id, subscription.id)
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+
       @order.complete!
 
       redirect_to(thanks_page_path)
@@ -95,6 +114,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order(form_controller_action, cost, description, charge = true, plan = nil)
+    # create order from posted order form
     @order.cost = cost
     if @order.valid? && @user
       token = params[:stripeToken]
@@ -247,6 +267,10 @@ class OrdersController < ApplicationController
     else
       yield
     end
+  end
+
+  def action_sidekick_order
+    base_order { Order.create_action_sidekick_order_by_user(order_user) }
   end
 
   def workbook_order

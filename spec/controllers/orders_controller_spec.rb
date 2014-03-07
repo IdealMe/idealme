@@ -15,6 +15,7 @@ describe OrdersController do
       {
         "utf8" => "✓",
         "order" => {
+          "product" => "subscription",
           "market_id" => "",
           "course_id" => "",
           "user_id" => "",
@@ -81,6 +82,7 @@ describe OrdersController do
       {
         "utf8" => "✓",
         "order" => {
+          "product" => "subscription",
           "market_id" => "",
           "course_id" => "",
           "user_id" => "",

@@ -4,6 +4,7 @@ section.pay-method
     = image_tag 'icons/credit_cards_icon.png', class: 'credit-cards-image'
 
 = simple_form_for(@order, url: @form_post_path, method: :post, wrapper: :bootstrap, html: {class: 'orders-payment-form', id: "idealme-order-form"}) do |f|
+  = f.hidden_field :product
   = f.hidden_field :market_id
   = f.hidden_field :course_id
   = f.hidden_field :user_id

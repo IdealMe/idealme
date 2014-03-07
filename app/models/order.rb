@@ -18,6 +18,11 @@ class Order < ActiveRecord::Base
     3 => 'declined',
   }
 
+  PRODUCT_WORKBOOK        = :workbook
+  PRODUCT_SUBSCRIPTION    = :subscription
+  PRODUCT_COURSE          = :course
+  PRODUCT_ACTION_SIDEKICK = :action_sidekick
+
   # == Attributes ===========================================================
   attr_accessor :time, :checksum, :card_number, :card_cvv, :cc
 
@@ -36,6 +41,8 @@ class Order < ActiveRecord::Base
   validates_presence_of :card_lastname
   validates_presence_of :card_email
 
+  validates_presence_of :product
+
   # validate :validate_credit_card
 
   # == Scopes ===============================================================
@@ -53,6 +60,11 @@ class Order < ActiveRecord::Base
       invoice << ".#{affiliate_user.id}"
       invoice << ".#{affiliate_tracking.id}" if affiliate_tracking
     end
+    invoice
+  end
+
+  def self.generate_action_sidekick_invoice(order)
+    invoice = "#{order.id}.#{rand(36**8).to_s(36)}"
     invoice
   end
 
@@ -82,44 +94,43 @@ class Order < ActiveRecord::Base
     parsed
   end
 
-  def self.create_order_by_market_and_user(market, user)
+  def self.create_base_order_for(user)
     order = Order.new
-    order.market = market
-    order.course = market.course
     order.user = user
-    order.cost = market.course.cost
     order.card_firstname = user.firstname
     order.card_lastname = user.lastname
     order.card_email = user.email
-
     order.time = Time.now.to_i
-    order.checksum = Digest::SHA1.hexdigest("#{order.market.id}#{order.market.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
+    order
+  end
+
+  def self.create_order_by_market_and_user(market, user)
+    order = create_base_order_for(user)
+    order.market = market
+    order.course = market.course
+    order.cost = market.course.cost
+    order.product = Order::PRODUCT_COURSE
     order
   end
 
   def self.create_workbook_order_by_user(user)
-    order = Order.new
-    order.user = user
+    order = create_base_order_for(user)
     order.cost = WORKBOOK_COST_IN_CENTS
-    order.card_firstname = user.firstname
-    order.card_lastname = user.lastname
-    order.card_email = user.email
-
-    order.time = Time.now.to_i
-    order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
+    order.product = Order::PRODUCT_WORKBOOK
     order
   end
 
   def self.create_subscription_order_by_user(user)
-    order = Order.new
-    order.user = user
+    order = create_base_order_for(user)
     order.cost = 0
-    order.card_firstname = user.firstname
-    order.card_lastname = user.lastname
-    order.card_email = user.email
+    order.product = Order::PRODUCT_SUBSCRIPTION
+    order
+  end
 
-    order.time = Time.now.to_i
-    order.checksum = Digest::SHA1.hexdigest("#{order.id}#{order.id}#{order.time}#{Idealme::Application.config.secret_key_base.reverse}")
+  def self.create_action_sidekick_order_by_user(user)
+    order = create_base_order_for(user)
+    order.cost = ACTION_SIDEKICK_COST_IN_CENTS
+    order.product = Order::PRODUCT_ACTION_SIDEKICK
     order
   end
 
