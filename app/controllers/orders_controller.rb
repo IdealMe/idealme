@@ -89,6 +89,7 @@ class OrdersController < ApplicationController
         @order.update_attribute(:subscription_id, subscription.id)
       end
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-subs')
+      session[:conversion_partial] = "landings/ga_continuity_offer_#{plan}_purchased"
 
       @order.complete!
 
