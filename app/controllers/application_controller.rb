@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
     bm = Benchmark.measure {
       yield
     }
+    return if request.fullpath =~ /^\/(__ping|webhook)/
     request_record = RequestRecord.new
     request_record.user_id = current_user.id if current_user
     request_record.fullpath = request.fullpath
