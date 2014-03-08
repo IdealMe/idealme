@@ -30,8 +30,6 @@ describe 'phase one workbook flows' do
     expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
-
-    binding.pry
   end
 
   it 'purchase workbook; purchase subscription', js: true, vcr: true do
