@@ -54,6 +54,7 @@ class OrdersController < ApplicationController
       @order.update_attribute(:data, { order_type: "workbook" }.to_json)
       @order.complete!
       session[:conversion_partial] = "landings/ga_workbook_purchased"
+      @conversion = "purchased workbook"
       redirect_to(post_order_path)
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
     end
@@ -67,6 +68,7 @@ class OrdersController < ApplicationController
       @user.save!
       @order.update_attribute(:data, { order_type: "action_sidekick" }.to_json)
       @order.complete!
+      @conversion = "purchased action sidekick"
       redirect_to(post_order_path)
       AddToAweberList.perform_in(1.minute, @user.id, 'idealme-sidekick')
     end
@@ -92,6 +94,7 @@ class OrdersController < ApplicationController
       session[:conversion_partial] = "landings/ga_continuity_offer_#{plan}_purchased"
 
       @order.complete!
+      @conversion = "purchased continuity offer #{plan}"
 
       redirect_to(thanks_page_path)
     end
@@ -105,6 +108,7 @@ class OrdersController < ApplicationController
       @user.subscribe_course(@market.course)
       sign_in(:user, @user)
       @order.complete!
+      @conversion = "purchased course #{@market.course.id} via market #{@market.id}"
     end
   end
 

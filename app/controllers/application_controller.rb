@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_last_location
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_conversion_partial
+
+  around_filter :record_request
   # https://github.com/plataformatec/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -27,6 +29,21 @@ class ApplicationController < ActionController::Base
     else
       redirect_to new_user_session_path, alert: exception.message
     end
+  end
+
+  def record_request
+    cookies[:imsid] ||= SecureRandom.urlsafe_base64(30)
+    bm = Benchmark.measure {
+      yield
+    }
+    request_record = RequestRecord.new
+    request_record.user_id = current_user.id if current_user
+    request_record.fullpath = request.fullpath
+    request_record.session_id = cookies[:imsid]
+    request_record.conversion = @conversion
+    request_record.request_duration = bm.real
+    request_record.request_method = request.request_method
+    request_record.save!
   end
 
   # Get the current affiliate user that is cookied on the customer's computer

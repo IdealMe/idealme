@@ -8,7 +8,7 @@ class LandingsController < ApplicationController
   def index
     redirect_to user_path(current_user) and return if current_user
     @courses = Course.includes(:owner, :default_market).limit(12)
-
+    @purchased_workbook = 123
     session[:landing] = landing
     session[:after_order_path] = after_order_path
     render template: 'landings/index', layout: index_layout
@@ -62,6 +62,8 @@ class LandingsController < ApplicationController
       @order.subscription_id = subscription.id
       @order.user = current_user
       @order.complete!
+      session[:conversion_partial] = "landings/ga_continuity_offer_#{plan}_purchased"
+      @conversion = "purchased continuity offer #{plan}"
       HipchatNotification.perform_async("1 Click Order success - subscription plan #{plan} - #{current_user.email}")
     end
 

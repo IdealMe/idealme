@@ -30,6 +30,8 @@ describe 'phase one workbook flows' do
     expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
+
+    binding.pry
   end
 
   it 'purchase workbook; purchase subscription', js: true, vcr: true do
@@ -39,7 +41,6 @@ describe 'phase one workbook flows' do
     reveal_hidden_elements
     find('#purchase-offer-btn').click
     sleep 1
-    
     expect(current_path).to eq "/thanks/thank-you-a"
     expect(page.html).to include "zkILCNi4kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
