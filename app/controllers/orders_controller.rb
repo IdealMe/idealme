@@ -47,16 +47,20 @@ class OrdersController < ApplicationController
 
   def create_workbook_order
     @form_post_path = create_workbook_order_orders_path
-    create_order(:new_workbook, WORKBOOK_COST_IN_CENTS, 'Idealme Workbook Postage') do |response|
-      sign_in(:user, @user)
-      @user.ordered_workbook = true
-      @user.save!
-      @order.update_attribute(:data, { order_type: "workbook" }.to_json)
-      @order.complete!
-      session[:conversion_partial] = "landings/ga_workbook_purchased"
-      @conversion = "purchased workbook"
+    if current_user.ordered_workbook
       redirect_to(post_order_path)
-      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
+    else
+      create_order(:new_workbook, WORKBOOK_COST_IN_CENTS, 'Idealme Workbook Postage') do |response|
+        sign_in(:user, @user)
+        @user.ordered_workbook = true
+        @user.save!
+        @order.update_attribute(:data, { order_type: "workbook" }.to_json)
+        @order.complete!
+        session[:conversion_partial] = "landings/ga_workbook_purchased"
+        @conversion = "purchased workbook"
+        redirect_to(post_order_path)
+        AddToAweberList.perform_in(1.minute, @user.id, 'idealme-gotbook')
+      end
     end
   end
 
