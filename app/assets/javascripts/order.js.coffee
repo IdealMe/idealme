@@ -1,5 +1,6 @@
 jQuery ($) ->
   $("#idealme-order-form").submit (event) ->
+    $form = $(this)
     $form.find("button").prop "disabled", true
 
     stripeResponseHandler = (status, response) ->
@@ -26,7 +27,7 @@ jQuery ($) ->
       $field.closest(".control-group").addClass "has-error"
       $field.closest(".controls").append $("<span class=\"help-inline\">can't be blank</span>")
 
-    $form = $(this)
+
 
     # Disable the submit button to prevent repeated clicks
 
