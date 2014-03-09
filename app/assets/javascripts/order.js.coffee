@@ -8,6 +8,7 @@ jQuery ($) ->
         $(".order-errors").append $("<div class=\"alert alert-danger alert-dismissable\" style=\"margin: 0;\"><button aria-hidden=\"true\" class=\"close\" data-dismiss=\"alert\" type=\"button\">×</button>" + response.error.message + "</div>")
         $form.find("button").prop "disabled", false
       else
+        $("#idealme-order-form").off "submit"
         # token contains id, last4, and card type
         token = response.id
 
@@ -34,6 +35,11 @@ jQuery ($) ->
     cvv       = $form.find("#order_card_cvv")
     exp_month = $form.find("#order_card_exp_month")
     exp_year  = $form.find("#order_card_exp_year")
+
+    billing_address1  = $form.find("#order_card_billing_address1")
+    billing_city      = $form.find("#order_card_billing_city")
+    billing_zip       = $form.find("#order_card_billing_zip")
+    billing_state     = $form.find("#order_card_billing_state")
     hasError  = false
     [
       email
@@ -43,6 +49,10 @@ jQuery ($) ->
       cvv
       exp_month
       exp_year
+      billing_address1
+      billing_city
+      billing_zip
+      billing_state
     ].forEach (f) ->
       if f.val() is ""
         hasError = true
