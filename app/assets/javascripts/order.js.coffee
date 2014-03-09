@@ -1,5 +1,7 @@
 jQuery ($) ->
   $("#idealme-order-form").submit (event) ->
+    $form.find("button").prop "disabled", true
+
     stripeResponseHandler = (status, response) ->
       $form = $("#idealme-order-form")
       if response.error
@@ -27,7 +29,7 @@ jQuery ($) ->
     $form = $(this)
 
     # Disable the submit button to prevent repeated clicks
-    $form.find("button").prop "disabled", true
+
     email     = $form.find("#order_card_email")
     firstname = $form.find("#order_card_firstname")
     lastname  = $form.find("#order_card_lastname")
