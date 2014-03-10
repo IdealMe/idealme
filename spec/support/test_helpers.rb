@@ -58,6 +58,8 @@ module TestHelpers
     end
     Stripe::Customer.stub(:retrieve).and_return(customer)
 
+    Stripe::Token.stub(:retrieve).and_return(double(:used => false))
+
     charge = double(:charge)
     Stripe::Charge.stub(:create) do |args|
       if options[:card_number].try(:include?, "4000")

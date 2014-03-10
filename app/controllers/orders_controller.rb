@@ -47,7 +47,14 @@ class OrdersController < ApplicationController
 
   def create_workbook_order
     @form_post_path = create_workbook_order_orders_path
+    token = params[:stripeToken]
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    token_obj = Stripe::Token.retrieve(token)
     if current_user && current_user.ordered_workbook
+      Rails.logger.debug("User has already ordered workbook")
+      redirect_to(post_order_path)
+    elsif token_obj && token_obj.used
+      Rails.logger.debug("Token has already been used")
       redirect_to(post_order_path)
     else
       create_order(:new_workbook, WORKBOOK_COST_IN_CENTS, 'Idealme Workbook Postage') do |response|
