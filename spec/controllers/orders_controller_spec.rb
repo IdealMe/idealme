@@ -111,6 +111,7 @@ describe OrdersController do
     describe "Good card" do
       let(:card_number) { "4242424242424242" }
       it 'takes the stripe token', vcr: true do
+        Stripe::Token.stub(:retrieve).and_return(double(:used => false))
         post :create_workbook_order, create_params
         user = User.where(email: "beansalad@idealme.com").first
         expect(user.stripe_token).to eq create_params["stripeToken"]
@@ -121,6 +122,7 @@ describe OrdersController do
     describe "Bad card" do
       let(:card_number) { "4000000000000002" }
       it 'takes the stripe token', vcr: true do
+        Stripe::Token.stub(:retrieve).and_return(double(:used => false))
         post :create_workbook_order, create_params
         user = User.where(email: "beansalad@idealme.com").first
         expect(user.stripe_token).to eq create_params["stripeToken"]
