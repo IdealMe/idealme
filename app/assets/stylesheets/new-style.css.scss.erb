@@ -610,7 +610,7 @@ color: #ff7a78;
 	background-image: url(<%= asset_path 'worn_dots.png' %>);
 }
 
-.landings-upsell, .landings-continuity_offer_1, .landings-continuity_offer_2, .landings-thanks, .landings-trial {
+.landings-upsell, .landings-continuity_offer_1, .landings-continuity_offer_2, .landings-thanks, .landings-trial, .landings-hit_your_goals {
 	background-image: url(<%= asset_path 'worn_dots.png' %>) !important;
 }
 
@@ -723,10 +723,170 @@ position: relative;
 left: 4px;
 }
 
-.hero {
-  background: url(<%= asset_path("squeeze-01.png") %>) no-repeat;
-  height:481px;
-  width: 987px;
-  margin-top: 20px;
+
+.landings-action_sidekick .vid-player {
+	margin-bottom: 0;
 }
+
+.landings-hit_your_goals {
+
+  header {
+  	display: none;
+  }
+
+  body {
+  	background-image: url(/worn_dots.png) !important;
+  }
+
+  .hero {
+	  background: url(<%= asset_path("squeeze-01.png") %>) no-repeat;
+	  height: 500px;
+	  width: 987px;
+	  margin-top: 20px;
+	  border: 4px dotted #ddd;
+	  border-radius: 8px;
+	  -webkit-box-shadow: 0 18px 16px -21px #666;
+	  -moz-box-shadow: 0 18px 16px -21px #666;
+      box-shadow: 0 18px 16px -21px #666;
+  }
+
+.container {
+	padding: 0;
+	width: 987px !important;
+}
+
+  .intro-text, .offer-CTA {
+  	text-align: center;
+  	width: 550px;
+  	float: left;
+  	position: relative;
+  	left: 400px;
+  	margin: 20px 0 0 0;
+  }
+
+  .intro-text {
+	  font-weight: 700;
+	  font-size: 32PX;
+	  line-height: 38PX;  
+	  color: #f75958;	
+	  letter-spacing: -1px;
+	  padding-top: 17px;
+  }
+
+  .offer-CTA {
+	  font-weight: 700;
+	  font-size: 21PX;
+	  line-height: 28PX;  
+	  color: #333;	
+  }
+
+
+  .squeeze {
+      float: right;
+	  position: relative;
+	  bottom: 232px;
+	  left: 25px;
+  }
+
+  .field {
+  	width: 500px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: 600;
+    padding: 0 24px;
+    color: #121212;
+  }
+
+  ::-webkit-input-placeholder {
+    text-align: center;
+    color: #ccc;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+   	 text-align: center; 
+     color: #ccc;
+   }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+   	 text-align: center;
+   	 color: #ccc;
+   }
+
+   :-ms-input-placeholder {  
+     text-align: center; 
+     color: #ccc;
+   }
+
+  .btn-special {
+  	width: 500px;
+  	height: 50px;
+  	margin-top: 10px;
+  	font-size: 16pt;
+  	border-radius: 8px;
+  	color: #333;
+  	-webkit-box-shadow: 0 3px 1px -1px #aaa;
+	-moz-box-shadow: 0 3px 1px -1px #666;
+	box-shadow: 0 3px 1px -1px #aaa;
+	text-shadow: 0px 2px 2px rgba(255, 255, 255, .7);
+  }
+
+  .secure {
+  	margin-top: 47px;
+	font-weight: 500;
+	color: #ccc;
+  }
+
+  .clear {
+  	clear:both;
+  }
+
+.offer-section .container {
+	margin-top: -162px;
+}
+
+.worksheet-column {
+        float: left;
+        width: 35%;
+        margin: 0 -7.5% 0 15%;  
+    }
+    .worksheet {
+        img {
+            border-radius: 2px;
+            float: left;
+            margin-right: 20px;
+            //border: 1px solid #eee;
+            padding: 3px;
+            background: #f1eae0;
+            -webkit-box-shadow: 0 18px 16px -21px #666;
+			-moz-box-shadow: 0 18px 16px -21px #666;
+			box-shadow: 0 18px 16px -21px #666;
+        }
+        p {
+            height: 224px;
+            font-size: 15px;
+        }
+    }
+
+    .worksheet-wp {
+      background: #fff;
+      padding-bottom: 4em;
+      }
+    .courses-wp {
+      background: #f7f5f1;
+      }
+    .course-name {
+      min-height: 60px;
+    }
+    .courses-wp .worksheet-wp {
+      .offer-section {
+        .course-card { margin: 10px 26px; }
+      }
+    }
+
+    .second-CTA {
+    	text-align: center;
+    }
+
+}
+
 
