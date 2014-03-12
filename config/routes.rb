@@ -14,6 +14,7 @@ Idealme::Application.routes.draw do
   get '__ping' => 'landings#ping'
   get 'aweber_callback' => 'landings#aweber_callback'
   get 'workbook' => 'landings#workbook'
+  get 'hit-your-goals' => 'landings#hit_your_goals'
   get 'action-sidekick' => 'landings#action_sidekick'
   get 'continuity-offer-1' => 'landings#continuity_offer_1'
   get 'continuity-offer-2' => 'landings#continuity_offer_2'

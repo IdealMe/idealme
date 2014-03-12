@@ -25,6 +25,10 @@ class LandingsController < ApplicationController
     render layout: 'chromeless'
   end
 
+  def hit_your_goals
+    render layout: 'chromeless'
+  end
+
   def continuity_offer_1
     setup_order_and_invoice
     @fragment = Fragment.where(slug: 'continuity-offer-1').first
