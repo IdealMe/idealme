@@ -31,7 +31,7 @@ module TestHelpers
     def create(args)
       obj = OpenStruct.new
       obj.id = SecureRandom.hex
-      obj.plan = args
+      obj.plan = OpenStruct.new id: args[:plan]
       @subs.push obj
       obj
     end

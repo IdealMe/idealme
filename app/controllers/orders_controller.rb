@@ -71,19 +71,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create_action_sidekick_order
-    @form_post_path = create_action_sidekick_order_orders_path
-    create_order(:new_workbook, ACTION_SIDEKICK_COST_IN_CENTS, 'Idealme Action Sidekick') do |response|
-      sign_in(:user, @user)
-      @user.ordered_action_sidekick = true
-      @user.save!
-      @order.update_attribute(:data, { order_type: "action_sidekick" }.to_json)
-      @order.complete!
-      @conversion = "purchased action sidekick"
-      redirect_to(post_order_path)
-      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-sidekick')
-    end
-  end
+
 
   def create_subscription_order
     plan = '1'
@@ -107,7 +95,22 @@ class OrdersController < ApplicationController
       @order.complete!
       @conversion = "purchased continuity offer #{plan}"
 
+      redirect_to("/action-sidekick")
+    end
+  end
+
+  def create_action_sidekick_order
+    @form_post_path = create_action_sidekick_order_orders_path
+    create_order(:new_workbook, ACTION_SIDEKICK_COST_IN_CENTS, 'Idealme Action Sidekick') do |response|
+      sign_in(:user, @user)
+      @user.ordered_action_sidekick = true
+      @user.save!
+      @order.update_attribute(:data, { order_type: "action_sidekick" }.to_json)
+      @order.complete!
+      @conversion = "purchased action sidekick"
       redirect_to(thanks_page_path)
+      #redirect_to(post_order_path)
+      AddToAweberList.perform_in(1.minute, @user.id, 'idealme-sk')
     end
   end
 

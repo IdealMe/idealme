@@ -42,22 +42,50 @@ class LandingsController < ApplicationController
     render layout: 'chromeless'
   end
 
+  def purchase_action_sidekick
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    unless current_user.ordered_action_sidekick?
+      charge = Stripe::Charge.create(
+        :amount => ACTION_SIDEKICK_COST_IN_CENTS,
+        :currency => "usd",
+        :customer => customer.id, # obtained with Stripe.js
+        :description => "Ideal Me Action Sidekick"
+      )
+      AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-sk')
+
+      current_user.update_attribute :ordered_action_sidekick, true
+      @order = Order.create_action_sidekick_order_by_user(current_user)
+      @order.status = Order::STATUS_SUCCESSFUL
+      @order.update_attribute(:data, { order_type: "action sidekick" }.to_json)
+      @order.user = current_user
+      @order.complete!
+      @conversion = "purchased action sidekick"
+      HipchatNotification.perform_async("1 Click Order success - action sidekick - #{current_user.email}")
+    end
+
+    respond_to do |format|
+      format.json { render json: { success: true, thanks_path: thanks_page_path } }
+      format.html { redirect_to thanks_page_path }
+    end
+  end
+
   def purchase_continuity_offer
     plan = '1'
     plan = '2' if request.referer.include? 'continuity-offer-2'
 
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    plans = customer.subscriptions.select{|sub| sub.plan.id.present? }.map {|sub| sub.plan.id }
+    plans = customer.subscriptions.select { |sub| sub.plan.id.present? }.map { |sub| sub.plan.id }
     unless plans.include?("1") || plans.include?("2")
       sub = customer.subscriptions.create(plan: plan)
       subscription = Subscription.create(
-          user: current_user,
-          subscribed_days: 0,
-          unsubscribed_days: 0,
-          total_days: 0,
-          stripe_object: sub.to_json,
-          stripe_id: sub.id,
+        user: current_user,
+        subscribed_days: 0,
+        unsubscribed_days: 0,
+        total_days: 0,
+        stripe_object: sub.to_json,
+        stripe_id: sub.id,
       )
       AddToAweberList.perform_in(1.minute, current_user.id, 'idealme-subs')
 
@@ -72,8 +100,8 @@ class LandingsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { success: true, thanks_path: thanks_page_path } }
-      format.html { redirect_to thanks_page_path }
+      format.json { render json: { success: true, thanks_path: "/action-sidekick" } }
+      format.html { redirect_to "/action-sidekick" }
     end
   end
 
@@ -114,6 +142,18 @@ class LandingsController < ApplicationController
         @order = Order.create_subscription_order_by_user(order_user)
       end
       @invoice = Order.generate_subscription_invoice(@order)
+    end
+  end
+
+  def setup_sidekick_order_and_invoice
+    unless current_user && current_user.striped?
+      @form_post_path = create_action_sidekick_order_orders_path
+      if session[:order_params]
+        @order = Order.new(session[:order_params])
+      else
+        @order = Order.create_action_sidekick_order_by_user(order_user)
+      end
+      @invoice = Order.generate_action_sidekick_invoice(@order)
     end
   end
 

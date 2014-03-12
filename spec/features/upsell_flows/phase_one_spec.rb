@@ -8,8 +8,13 @@ describe 'phase one workbook flows' do
     expect(current_path).to eq "/continuity-offer-2"
     submit_order_form
     sleep 1
+    expect(current_path).to eq "/action-sidekick"
+    find('.purchase-offer-btn-2').click
+    sleep 1
     expect(current_path).to eq "/thanks/thank-you-b"
     expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
+    expect(Order.count).to eq 2
+    expect(user.orders.count).to eq 2
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
   end
@@ -24,11 +29,15 @@ describe 'phase one workbook flows' do
     expect(page.html).to include "0ghXCIi7kAgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     find('.purchase-offer-btn-2').click
     sleep 1
+    expect(current_path).to eq "/action-sidekick"
+    expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    find('.purchase-offer-btn-2').click
+    sleep 1
 
     expect(current_path).to eq "/thanks/thank-you-a"
-    expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
     expect(user.subscriptions.count).to eq 1
+    expect(user.orders.count).to eq 3
     expect(user.subscriptions.last).to eq Subscription.first
   end
 
@@ -39,8 +48,11 @@ describe 'phase one workbook flows' do
     reveal_hidden_elements
     find('#purchase-offer-btn').click
     sleep 1
-    expect(current_path).to eq "/thanks/thank-you-a"
+    expect(current_path).to eq "/action-sidekick"
     expect(page.html).to include "zkILCNi4kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    find('.purchase-offer-btn-2').click
+    sleep 1
+    expect(current_path).to eq "/thanks/thank-you-a"
     expect(user.orders.where("subscription_id IS NOT NULL").count).to eq 1
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
@@ -53,13 +65,19 @@ describe 'phase one workbook flows' do
     reveal_hidden_elements
     find('#decline-offer-btn').click
     expect(current_path).to eq "/continuity-offer-2"
-
     find('.purchase-offer-btn-2').click
+    sleep 1
+    expect(current_path).to eq "/action-sidekick"
+    expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    find('.purchase-offer-btn-2').click
+    sleep 1
     expect(current_path).to eq "/thanks/thank-you-a"
+    expect(Subscription.count).to eq 1
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
-    expect(user.orders.last.subscription).to eq user.subscriptions.last
-    expect(user.subscriptions.last.stripe_object["table"]["plan"]["plan"]).to eq "2"
+    sub = user.orders.map(&:subscription).compact.first
+    expect(sub).to eq user.subscriptions.last
+    expect(sub.stripe_object["table"]["plan"]["table"]["id"]).to eq "2"
   end
 
   it 'purchase workbook and decline everything else', js: true, vcr: true do
@@ -70,6 +88,8 @@ describe 'phase one workbook flows' do
     find('#decline-offer-btn').click
     expect(current_path).to eq "/continuity-offer-2"
     find('.decline-link').click
+    expect(current_path).to eq "/action-sidekick"
+    find('.btn-decline-purchase').click
     expect(user.subscriptions.count).to eq 0
     expect(current_path).to eq "/thanks/thank-you-d"
   end
@@ -81,6 +101,9 @@ describe 'phase one workbook flows' do
     reveal_hidden_elements
 
     submit_order_form(email: 'newguy1000@idealme.com')
+    sleep 1
+    expect(current_path).to eq "/action-sidekick"
+    find('.btn-decline-purchase').click
 
     expect(user.subscriptions.count).to eq 1
     expect(user.subscriptions.last).to eq Subscription.first
@@ -97,10 +120,14 @@ describe 'phase one workbook flows' do
     expect(current_path).to eq "/continuity-offer-2"
 
     submit_order_form(email: 'newguy1000@idealme.com')
+    sleep 1
+    expect(current_path).to eq "/action-sidekick"
+    find('.btn-decline-purchase').click
 
     expect(user.subscriptions.last).to eq Subscription.first
-    expect(user.orders.last.subscription).to eq user.subscriptions.last
-    expect(user.subscriptions.last.stripe_object["table"]["plan"]["plan"]).to eq "2"
+    sub = user.orders.map(&:subscription).compact.first
+    expect(sub).to eq user.subscriptions.last
+    expect(sub.stripe_object["table"]["plan"]["table"]["id"]).to eq "2"
     expect(current_path).to eq "/thanks/thank-you-b"
   end
 
@@ -112,6 +139,9 @@ describe 'phase one workbook flows' do
     find('.btn-decline-purchase').click
     expect(current_path).to eq "/continuity-offer-2"
     click_link "No thanks"
+    sleep 1
+    expect(current_path).to eq "/action-sidekick"
+    find('.btn-decline-purchase').click
     expect(current_path).to eq "/thanks/thank-you-c"
   end
 

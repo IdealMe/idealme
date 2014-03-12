@@ -50,9 +50,24 @@
 
       <div class="row">
       <div class="pay-section col-sm-5">
-        <%#= render partial: "orders/form" %>
-        FPO FORM HERE
-        <a href="/continuity-offer-1" class="btn btn-default btn-decline-purchase">No thanks</a>
+
+
+
+        <% if current_user && current_user.striped? %>
+          <div id="offer-container">
+            <%= link_to "Purchase", purchase_action_sidekick_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_action_sidekick_path %>
+          </div>
+          <%= render partial: "partials/safesitecertified" %>
+        <% else %>
+          <div id="form-container">
+            <%= render partial: "orders/form" %>
+          </div>
+        <% end %>
+
+
+
+
+        <a href="<%= thanks_page_path %>" class="btn btn-default btn-decline-purchase">No thanks</a>
       </div>
 
       <div id="rightcol" class="col-sm-5">

@@ -13,18 +13,18 @@
 
       <% if current_user && current_user.striped? %>
         <div class="action-buttons">
-          <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path %>
+          <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path(plan: 2) %>
           <br/>
           7 Day FREE trial, then $19.95 month
           <br/>
-          <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/thanks/thank-you-d', class: "decline-link" %>
+          <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/action-sidekick', class: "decline-link" %>
           <%= render partial: "partials/safesitecertified" %>
         </div>
       <% else %>
         <div id="form-container">
           <%= render partial: "orders/form" %>
           <%= render partial: "partials/safesitecertified" %>
-          <a href="/thanks/thank-you-c" class="btn btn-primary btn-decline-purchase">No thanks</a>
+          <a href="/action-sidekick" class="btn btn-primary btn-decline-purchase">No thanks</a>
         </div>
       <% end %>
     </div>

@@ -18,8 +18,10 @@ Idealme::Application.routes.draw do
   get 'action-sidekick' => 'landings#action_sidekick'
   get 'continuity-offer-1' => 'landings#continuity_offer_1'
   get 'continuity-offer-2' => 'landings#continuity_offer_2'
+
   get 'thanks/:thanks_type' => 'landings#thanks'
   post 'purchase-continuity-offer' => 'landings#purchase_continuity_offer', as: :purchase_continuity_offer
+  post 'purchase-action-sidekick' => 'landings#purchase_action_sidekick', as: :purchase_action_sidekick
 
   get 'download-workbook' => 'resources#download_workbook'
 
