@@ -219,6 +219,7 @@ Idealme::Application.routes.draw do
         post 'register/affiliate_sign_up' => 'users/registrations#create_affiliate', as: :affiliate_registration
         constraints(id: /[0-9A-Za-z\-\.\_]+/) do
           get ':id' => 'users#profile', as: :user
+          get 'user/sidekick' => 'users#sidekick', as: :sidekick
 
           get ':id/sdfsdf/:tab' => 'users#profile', constraints: {tab: /(goal)|(course)|(saved-course)/}, as: :user_tab
 

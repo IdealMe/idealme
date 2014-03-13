@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :load_user, except: [:welcome, :welcome_save, :dismiss_welcome_message]
+  before_filter :load_user, except: [:welcome, :welcome_save, :dismiss_welcome_message, :sidekick]
   before_filter :ensure_owner, only: [:ensure_owner]
   before_filter :require_authentication
 
@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     @goal_users.each_with_index do |goal_user, index|
       goal_user.update_attribute(:position, index + 1)
     end
+  end
+
+  def sidekick
+
   end
 
   def welcome
