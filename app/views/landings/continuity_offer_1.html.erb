@@ -31,9 +31,15 @@
     </div>
   </div>
 </div>
+<% if current_user && current_user.ordered_workbook? %>
 <SCRIPT language="javascript">
   <!--
-  document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=Continuity+full+price&sales=1&description=Paid+for+full+price+continuity&value=20&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
+  document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=Workbook&sales=1&description=Purchase+of+workbook&value=3&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
   //-->
 </SCRIPT>
+<% end %>
+
+
+
+<%= render partial: "landings/hypertracker" %>
 <%= render partial: "partials/exit_pop" %>

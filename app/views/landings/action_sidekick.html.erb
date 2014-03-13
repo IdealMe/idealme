@@ -55,7 +55,7 @@
 
         <% if current_user && current_user.striped? %>
           <div id="offer-container">
-            <%= link_to "Purchase", root_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_action_sidekick_path %>
+            <%= link_to "Purchase", purchase_action_sidekick_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2" %>
           </div>
           <%= render partial: "partials/safesitecertified" %>
         <% else %>
@@ -109,8 +109,5 @@ I use it in combination with rescuetime.com which tracks exactly what I am doing
     </div>
   </div>
 </div>
-<SCRIPT language="javascript">
-  <!--
-  document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=The+Action+Sidekick&sales=1&description=Action+Sidekick&value=47&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
-  //-->
-</SCRIPT>
+
+<%= render partial: "landings/hypertracker" %>

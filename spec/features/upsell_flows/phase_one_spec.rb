@@ -26,11 +26,11 @@ describe 'phase one workbook flows' do
     expect(current_path).to eq "/workbook"
     submit_order_form
     expect(current_path).to eq "/continuity-offer-2"
-    expect(page.html).to include "0ghXCIi7kAgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    #expect(page.html).to include "0ghXCIi7kAgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     find('.purchase-offer-btn-2').click
     sleep 1
     expect(current_path).to eq "/action-sidekick"
-    expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    #expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     find('.purchase-offer-btn-2').click
     sleep 1
 
@@ -49,7 +49,7 @@ describe 'phase one workbook flows' do
     find('#purchase-offer-btn').click
     sleep 1
     expect(current_path).to eq "/action-sidekick"
-    expect(page.html).to include "zkILCNi4kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    #expect(page.html).to include "zkILCNi4kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     find('.purchase-offer-btn-2').click
     sleep 1
     expect(current_path).to eq "/thanks/thank-you-a"
@@ -68,7 +68,7 @@ describe 'phase one workbook flows' do
     find('.purchase-offer-btn-2').click
     sleep 1
     expect(current_path).to eq "/action-sidekick"
-    expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
+    #expect(page.html).to include "6m_yCNC5kQgQ8IKw0QM" # GA CONVERSION TRACKING CODE
     find('.purchase-offer-btn-2').click
     sleep 1
     expect(current_path).to eq "/thanks/thank-you-a"

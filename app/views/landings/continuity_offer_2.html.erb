@@ -13,20 +13,20 @@
 
       <% if current_user && current_user.striped? %>
         <div class="action-buttons">
-          <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2", "data-href" => purchase_continuity_offer_path(plan: 2) %>
-          <br/>
-          7 Day FREE trial, then $19.95 month
-          <br/>
-          <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/action-sidekick', class: "decline-link" %>
-          <%= render partial: "partials/safesitecertified" %>
-        </div>
-      <% else %>
+        <%= link_to "Add to cart", purchase_continuity_offer_path(plan: 2), :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2" %>
+        <br/>
+        7 Day FREE trial, then $19.95 month
+        <br/>
+        <%= link_to "No thanks, I don't want a FREE trial of the Insider Circle", '/action-sidekick', class: "decline-link" %>
+        <%= render partial: "partials/safesitecertified" %>
+      </div>
+    <% else %>
         <div id="form-container">
-          <%= render partial: "orders/form" %>
-          <%= render partial: "partials/safesitecertified" %>
-          <a href="/action-sidekick" class="btn btn-primary btn-decline-purchase">No thanks</a>
-        </div>
-      <% end %>
+        <%= render partial: "orders/form" %>
+        <%= render partial: "partials/safesitecertified" %>
+        <a href="/action-sidekick" class="btn btn-primary btn-decline-purchase">No thanks</a>
+      </div>
+    <% end %>
     </div>
   </div>
   <div id="footer">
@@ -35,8 +35,4 @@
   <div style="clear:both;"></div>
 </div>
 </div>
-<SCRIPT language="javascript">
-  <!--
-  document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=Continuity+Trial&sales=1&description=Trial+continuity&value=20&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
-  //-->
-</SCRIPT>
+<%= render partial: "landings/hypertracker" %>

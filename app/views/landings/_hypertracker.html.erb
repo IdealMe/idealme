@@ -1,0 +1,28 @@
+<% if current_user && current_user.ordered_workbook? %>
+<SCRIPT language="javascript">
+<!--
+document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=Workbook&sales=1&description=Purchase+of+workbook&value=3&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
+//-->
+</SCRIPT>
+<% end %>
+<% if @conversion =~ /offer 2/ %>
+<SCRIPT language="javascript">
+<!--
+document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=Continuity+Trial&sales=1&description=Trial+continuity&value=20&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
+//-->
+</SCRIPT>
+<% end %>
+<% if @conversion =~ /offer 1/ %>
+<SCRIPT language="javascript">
+<!--
+document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=Continuity+full+price&sales=1&description=Paid+for+full+price+continuity&value=20&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
+//-->
+</SCRIPT>
+<% end %>
+<% if @conversion =~ /sidekick/ %>
+<SCRIPT language="javascript">
+<!--
+document.write('<img src="http://www.hypertracker.com/count.php?user=idealme&name=The+Action+Sidekick&sales=1&description=Action+Sidekick&value=47&protection=default&rand='+Math.random()+'" BORDER="0" HEIGHT="1" WIDTH="1" ALT="">')
+//-->
+</SCRIPT>
+<% end %>

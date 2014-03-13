@@ -2,7 +2,7 @@ class ContinuityOffer
   constructor: ->
     setTimeout(@showOffer, (16 * 60 * 1000 + 20 * 1000))
 
-    $(document).on "click", "#purchase-offer-btn", @purchaseOffer
+    $(document).on "click", "#purchase-offer-btn, .purchase-offer-btn-2", @purchaseOffer
     $(document).on "click", "#decline-offer-btn", @declineOffer
 
     $(document).on "change", "#confirm-checkbox-2", @updatePurchaseUrl
