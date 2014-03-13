@@ -2,10 +2,10 @@ class OrdersController < ApplicationController
   include LandingsHelper
   # before_filter :require_authentication
   before_filter :init_order, only: [:new, :thanks]
-  before_filter :build_order, only: [:create, :create_workbook_order, :create_subscription_order]
+  before_filter :build_order, only: [:create, :create_workbook_order, :create_subscription_order, :create_action_sidekick_order]
 
   before_filter :ensure_product_user_uniqueness
-  before_filter :ensure_user, only: [:create, :create_workbook_order, :create_subscription_order]
+  before_filter :ensure_user, only: [:create, :create_workbook_order, :create_subscription_order, :create_action_sidekick_order]
 
   protect_from_forgery except: :thanks
 
@@ -101,7 +101,7 @@ class OrdersController < ApplicationController
 
   def create_action_sidekick_order
     @form_post_path = create_action_sidekick_order_orders_path
-    create_order(:new_workbook, ACTION_SIDEKICK_COST_IN_CENTS, 'Idealme Action Sidekick') do |response|
+    create_order(:new_action_sidekick, ACTION_SIDEKICK_COST_IN_CENTS, 'Idealme Action Sidekick') do |response|
       sign_in(:user, @user)
       @user.ordered_action_sidekick = true
       @user.save!
