@@ -1,0 +1,15 @@
+.container
+  .main-section.col-sm-7
+    .product-info
+      .media
+        .pull-left
+          /= image_tag @market.avatar(:thumb)
+        .media-body
+          h4.media-heading
+            ' IdealMe Action Sidekick
+          .author
+            ' by
+            ' IdealMe
+          .price
+            = penny_to_currency(@order.cost)
+    = render partial: 'form'
