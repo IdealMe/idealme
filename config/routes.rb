@@ -11,6 +11,7 @@ Idealme::Application.routes.draw do
 
   root to: 'landings#index'
   get 'ideal-life' => 'landings#index'
+  get 'ideallife' => 'landings#hit_your_goals'
   get '__ping' => 'landings#ping'
   get 'aweber_callback' => 'landings#aweber_callback'
   get 'workbook' => 'landings#workbook'

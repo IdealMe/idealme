@@ -39,7 +39,7 @@
           - weeks.each_with_index do |week, windex|
             - week.each do |article|
               li.article-title-link
-                = link_to "WEEK #{windex+1}: #{article.name}", resource_path(article)
+                = link_to "#{article.name}", resource_path(article)
 
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'
