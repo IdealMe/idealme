@@ -40,7 +40,9 @@ class UsersController < ApplicationController
   end
 
   def sidekick
-
+    unless current_user.ordered_action_sidekick? || current_user.access_admin?
+      redirect_to "/action-sidekick"
+    end
   end
 
   def welcome

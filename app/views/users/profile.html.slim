@@ -25,6 +25,9 @@
         li
           = link_to user_path(tab: :courses), class: (@active_tab == :courses ? 'active' : '')
             | MY COURSES
+        li
+          = link_to sidekick_path, class: (@active_tab == :sidekick ? 'active' : '')
+            | ACTION SIDEKICK
 .container
 
   .modules-section class=(@active_tab == :circle ? 'active' : 'hidden')
