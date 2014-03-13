@@ -54,10 +54,9 @@
 
 
         <% if current_user && current_user.striped? %>
-          <div id="offer-container">
+          <div id="sidekick-offer-container">
             <%= link_to "Purchase", purchase_action_sidekick_path, :method => :post, :class => "btn btn-primary btn-red purchase-offer-btn-2" %>
           </div>
-          <%= render partial: "partials/safesitecertified" %>
         <% else %>
           <div id="form-container">
             <%= render partial: "orders/form" %>
