@@ -7,5 +7,8 @@ class SendHipchatMessage
 
   def self.send(msg, notify = false)
     new.client['notifications'].send('idealme.com', msg, notify: (notify ? 1 : 0))
+  rescue StandardError => e
+    # try again later
+    HipchatNotification.perform_in(1.minute, msg)
   end
 end
