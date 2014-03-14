@@ -8,7 +8,7 @@ module Admin::AdminHelper
   end
 
   def drip_content?
-    session[:article_type] == "drip_content"
+    (params[:type] || session[:article_type]) == "drip_content"
   end
 end
 
