@@ -55,7 +55,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def load_articles
     if drip_content?
-      @articles = Article.where(drip_content: true).order("reveal_after_days ASC, intro DESC")
+      @articles = Article.where(drip_content: true).order("reveal_after_days ASC, intro ASC")
     else
       @articles = Article.where.not(drip_content: true).all
     end
