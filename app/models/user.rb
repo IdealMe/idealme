@@ -170,11 +170,11 @@ class User < ActiveRecord::Base
     @articles.sort! { |a, b| b.reveal_after_days <=> a.reveal_after_days }
     @articles.sort! { |a, b|
       if a.intro?
-        1
+        -1
       elsif b.intro? == a.intro?
         0
       else
-        -1
+        1
       end
     }
   end
