@@ -168,6 +168,7 @@ class User < ActiveRecord::Base
         .where('reveal_after_days <= ?', sub.subscribed_days).to_a
     end
     @articles.sort { |a, b| b.reveal_after_days <=> a.reveal_after_days }
+      .sort { |a, b| a.intro <=> b.intro }
   end
 
   def fullname
