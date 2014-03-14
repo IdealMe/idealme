@@ -35,11 +35,16 @@
     - @modules.each_with_index do |weeks, index|
       h2.module-header
         | MODULE #{index+1}
-        ul.module-article-list
-          - weeks.each_with_index do |week, windex|
-            - week.each do |article|
+      ul.module-article-list
+        - weeks.each_with_index do |week, windex|
+          - week.each do |article|
+            - if article.intro?
+              li.intro-article
+                h2 = article.name
+                div == article.content
+            - else
               li.article-title-link
-                = link_to "#{article.name}", resource_path(article)
+                h2 = link_to "#{article.name}", resource_path(article)
 
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'

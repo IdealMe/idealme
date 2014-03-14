@@ -9,13 +9,26 @@ h1 Articles
 table.table
   tr
     th Article
-    th Goal
+    - unless drip_content?
+      th Goal
+    - if drip_content?
+      th Intro
+      th Week
+      th Day
 
   - @articles.each do |article|
     tr
       td = link_to article.name, edit_admin_article_path(article)
-      td
-        = article.goals.map(&:name).join(", ")
+      - unless drip_content?
+        td
+          = article.goals.map(&:name).join(", ")
+      - if drip_content?
+        td
+          = article.intro? || ""
+        td
+          = (article.reveal_after_days / 7) + 1
+        td
+          = article.reveal_after_days
 
 br
 

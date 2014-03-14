@@ -1,4 +1,4 @@
-- tab = controller_name
+- tab = current_tab
 ul.nav.nav-pills.nav-stacked
   li class="#{active_tab?('orders', tab, 'active', '')}"
     = link_to 'Orders', admin_orders_path, class: ''
@@ -12,8 +12,10 @@ ul.nav.nav-pills.nav-stacked
     = link_to 'Categories', admin_categories_path, class: ''
   li class="#{active_tab?('polls', tab, 'active', '')}"
     = link_to 'Polls', admin_polls_path, class: ''
-  li class="#{active_tab?('articles', tab, 'active', '')}"
-    = link_to 'Articles', admin_articles_path, class: ''
+  li class="#{active_tab?('resources', tab, 'active', '')}"
+    = link_to 'Resource Articles', admin_articles_path(type: :resources), class: ''
+  li class="#{active_tab?('drip_content', tab, 'active', '')}"
+    = link_to 'Drip Content Articles', admin_articles_path(type: :drip_content), class: ''
   li class="#{active_tab?('feedbacks', tab, 'active', '')}"
     = link_to 'Feedbacks', admin_feedbacks_path, class: ''
   li class="#{active_tab?('gems', tab, 'active', '')}"

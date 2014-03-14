@@ -1,10 +1,12 @@
 class Admin::ArticlesController < Admin::BaseController
+  include Admin::AdminHelper
   before_filter :load_article, only: [:show, :edit, :update, :destroy]
   before_filter :load_articles, only: :index
   before_filter :build_article, only: [:create]
 
   # GET /admin/articles
   def index
+    session[:article_type] = params[:type] if params[:type].present?
   end
 
   # GET /admin/articles/1
@@ -14,6 +16,7 @@ class Admin::ArticlesController < Admin::BaseController
   # GET /admin/articles/new
   def new
     @article = Article.new
+    @article.drip_content = true if drip_content?
   end
 
   # GET /admin/articles/1/edit
@@ -51,7 +54,11 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def load_articles
-    @articles = Article.all
+    if drip_content?
+      @articles = Article.where(drip_content: true).order("reveal_after_days ASC, intro DESC")
+    else
+      @articles = Article.where.not(drip_content: true).all
+    end
   end
 
   def build_article
@@ -61,4 +68,5 @@ class Admin::ArticlesController < Admin::BaseController
   def article_params
     params.require(:article).permit!
   end
+
 end
