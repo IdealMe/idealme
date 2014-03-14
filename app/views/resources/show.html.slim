@@ -27,16 +27,17 @@
       .clear
     .comments
       - @comments.each do |comment|
-        .comment
-          .owner-avatar
-            = image_tag comment.owner.avatar.url(:thumb) if comment.owner && comment.owner.avatar
-          .comment-body
-            .comment-card
-              .owner-name
-                = comment.owner.fullname
-              .comment-date
-                = distance_of_time_in_words_to_now comment.created_at
-              .clear
-              .comment-content
-                = comment.content
-          .clear
+        - if comment.owner
+          .comment
+            .owner-avatar
+              = image_tag comment.owner.avatar.url(:thumb) if comment.owner && comment.owner.avatar
+            .comment-body
+              .comment-card
+                .owner-name
+                  = comment.owner.fullname
+                .comment-date
+                  = distance_of_time_in_words_to_now comment.created_at
+                .clear
+                .comment-content
+                  = comment.content
+            .clear
