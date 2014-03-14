@@ -26,7 +26,8 @@ table.table
         td
           = article.intro? || ""
         td
-          = (article.reveal_after_days / 7) + 1
+          - if article.reveal_after_days
+            = (article.reveal_after_days / 7) + 1
         td
           = article.reveal_after_days
 
