@@ -1,7 +1,7 @@
 module Admin::AdminHelper
   def current_tab
     if controller_name == 'articles'
-      session[:article_type]
+      params[:type] || session[:article_type]
     else
       controller_name
     end
