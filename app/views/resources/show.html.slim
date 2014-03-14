@@ -29,7 +29,7 @@
       - @comments.each do |comment|
         .comment
           .owner-avatar
-            = image_tag comment.owner.avatar.url(:thumb)
+            = image_tag comment.owner.avatar.url(:thumb) if comment.owner && comment.owner.avatar
           .comment-body
             .comment-card
               .owner-name
