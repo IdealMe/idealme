@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :load_user, except: [:welcome, :welcome_save, :dismiss_welcome_message, :sidekick]
+  before_filter :load_user, except: [:welcome, :welcome_save, :dismiss_welcome_message, :sidekick, :drip_content_article]
   before_filter :ensure_owner, only: [:ensure_owner]
   before_filter :require_authentication
 
@@ -37,6 +37,13 @@ class UsersController < ApplicationController
     @goal_users.each_with_index do |goal_user, index|
       goal_user.update_attribute(:position, index + 1)
     end
+  end
+
+  def drip_content_article
+    @article = Article.find(params[:slug])
+    @comment = Comment.new(commentable: @article, owner: current_user, redirect_back_to: resource_path(@article))
+    @comments = Comment.for(@article).includes(:owner, replies: :owner)
+    render template: "resources/show"
   end
 
   def sidekick

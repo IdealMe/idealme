@@ -9,6 +9,8 @@ Idealme::Application.routes.draw do
 
   get "payload/:id/download" => "payload#download", as: :download_payload
 
+  get "/ic/article/:slug" => "users#drip_content_article", as: :drip_content_article
+
   root to: 'landings#index'
   get 'ideal-life' => 'landings#index'
   get 'ideallife' => 'landings#hit_your_goals'

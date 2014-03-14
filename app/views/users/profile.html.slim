@@ -44,7 +44,7 @@
                 div == article.content
             - else
               li.article-title-link
-                h2 = link_to "#{article.name}", resource_path(article)
+                h2 = link_to "#{article.name}", drip_content_article_path(article.slug)
 
   .goals-section class=(@active_tab == :goals ? 'active' : 'hidden')
     = render partial: 'users/partials/goal'
