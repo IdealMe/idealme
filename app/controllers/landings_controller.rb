@@ -26,6 +26,7 @@ class LandingsController < ApplicationController
   end
 
   def hit_your_goals
+    session[:landing] = '/continuity-offer-2'
     render layout: 'chromeless'
   end
 
